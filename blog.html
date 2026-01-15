@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Blog - AI Life Summary | Developer Journey & Insights</title>
+    <meta name="description" content="Read stories about building web apps as a teenage developer. Learn about getting feedback, managing mental health, and sharing your first project with the world.">
+    <meta name="keywords" content="teen developer blog, web app development, beginner programmer, coding journey, developer mental health, feedback tips, first project, young developer">
+    <meta name="author" content="AI Life Summary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ailifesummary.com/blog">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ailifesummary.com/blog">
+    <meta property="og:title" content="Blog - AI Life Summary">
+    <meta property="og:description" content="Stories about building web apps as a teenage developer.">
+    <meta property="og:image" content="https://ailifesummary.com/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Life Summary">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ailifesummary.com/blog">
+    <meta name="twitter:title" content="Blog - AI Life Summary">
+    <meta name="twitter:description" content="Stories about building web apps as a teenage developer.">
+    <meta name="twitter:image" content="https://ailifesummary.com/assets/images/og-image.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        accent: '#f59e0b'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#10024;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">🇺🇸</span>
+                            <span id="current-lang-name">English</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇺🇸</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇰🇷</span><span>한국어</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇯🇵</span><span>日本語</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇨🇳</span><span>中文</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇪🇸</span><span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="gradient-bg py-16">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block">&#128221;</span>
+                <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+                    Developer Blog
+                </h1>
+                <p class="text-white/80 text-lg max-w-2xl mx-auto">
+                    A teenage developer's journey: Building my first web app, getting feedback, and staying motivated along the way.
+                </p>
+            </div>
+        </section>
+
+        <!-- Featured Series -->
+        <section class="py-12 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">SERIES</span>
+                        <span class="text-gray-500 text-sm">20 Posts</span>
+                    </div>
+                    <h2 class="font-heading text-2xl md:text-3xl font-bold mb-3">
+                        10대 초보가 만든 웹 앱을 세상에 공개하기까지
+                    </h2>
+                    <p class="text-gray-600 mb-4">
+                        A Teen's First Web App: From Zero to Launch - How to Get Feedback and Manage Your Mental Health
+                    </p>
+                    <p class="text-gray-500 text-sm">
+                        피드백 받는 법과 멘탈 관리에 대한 솔직한 이야기
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="py-12 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-heading text-2xl font-bold mb-8">Latest Posts</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-posts">
+                    <!-- Post 1 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                            <span class="text-6xl">🚀</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 1</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">왜 10대에 웹 앱을 만들기로 했는가</h3>
+                            <p class="text-gray-600 text-sm mb-4">Why I Decided to Build a Web App as a Teenager</p>
+                            <a href="/blog/post-1.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center">
+                            <span class="text-6xl">😰</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 2</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">처음 코딩을 시작했을 때 겪은 어려움</h3>
+                            <p class="text-gray-600 text-sm mb-4">The Struggles of Learning to Code for the First Time</p>
+                            <a href="/blog/post-2.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                            <span class="text-6xl">💡</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 3</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">아이디어를 구체화하는 방법</h3>
+                            <p class="text-gray-600 text-sm mb-4">How to Turn a Vague Idea into a Real Project</p>
+                            <a href="/blog/post-3.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 4 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
+                            <span class="text-6xl">🔥</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 4</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">혼자 개발할 때 동기부여 유지하기</h3>
+                            <p class="text-gray-600 text-sm mb-4">Staying Motivated When You're a Solo Developer</p>
+                            <a href="/blog/post-4.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 5 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                            <span class="text-6xl">🎉</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 5</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">첫 번째 프로토타입 완성까지의 여정</h3>
+                            <p class="text-gray-600 text-sm mb-4">The Journey to My First Working Prototype</p>
+                            <a href="/blog/post-5.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 6 -->
+                    <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                        <div class="h-48 bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center">
+                            <span class="text-6xl">👨‍👩‍👧</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded">Episode 6</span>
+                                <span class="text-xs text-gray-400">Coming Soon</span>
+                            </div>
+                            <h3 class="font-heading font-semibold text-lg mb-2">가족과 친구에게 처음 보여줬을 때</h3>
+                            <p class="text-gray-600 text-sm mb-4">Showing My Project to Family and Friends</p>
+                            <a href="/blog/post-6.html" class="text-primary text-sm font-medium hover:underline">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-10">
+                    <p class="text-gray-500 mb-4">More posts coming soon...</p>
+                    <a href="/contact.html" class="inline-block gradient-bg text-white font-medium py-3 px-6 rounded-lg hover:opacity-90 transition">
+                        Subscribe for Updates
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">Stay Updated</h2>
+                <p class="text-gray-600 mb-6">Get notified when new posts are published. No spam, unsubscribe anytime.</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <input type="email" placeholder="Enter your email" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent flex-1 max-w-sm">
+                    <button class="gradient-bg text-white font-medium py-3 px-6 rounded-lg hover:opacity-90 transition">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Life Summary. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/i18n.js?v=4"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
