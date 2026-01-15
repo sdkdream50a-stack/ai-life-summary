@@ -565,11 +565,11 @@ function updateBlogHtml(posts) {
 
   let blogContent = fs.readFileSync(BLOG_HTML, 'utf-8');
 
-  // 최신순으로 정렬
+  // 에피소드 번호 순으로 정렬 (1, 2, 3, ... 10)
   const sortedPosts = [...posts].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB - dateA;
+    const episodeA = parseInt(a.episode) || 0;
+    const episodeB = parseInt(b.episode) || 0;
+    return episodeA - episodeB;
   });
 
   // 포스트 카드 HTML 생성
