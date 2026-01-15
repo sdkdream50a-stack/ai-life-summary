@@ -17,19 +17,54 @@ const BLOG_HTML = path.join(__dirname, '../blog.html');
 const SITEMAP_PATH = path.join(__dirname, '../sitemap.xml');
 const DOMAIN = 'https://ailifesummary.com';
 
-// 색상 매핑
-const COLOR_MAP = {
-  'indigo-purple': { gradient: 'from-indigo-400 to-purple-500' },
-  'pink-rose': { gradient: 'from-pink-400 to-rose-500' },
-  'amber-orange': { gradient: 'from-amber-400 to-orange-500' },
-  'emerald-teal': { gradient: 'from-emerald-400 to-teal-500' },
-  'blue-cyan': { gradient: 'from-blue-400 to-cyan-500' },
-  'violet-purple': { gradient: 'from-violet-400 to-purple-500' },
-  'red-pink': { gradient: 'from-red-400 to-pink-500' },
-  'green-emerald': { gradient: 'from-green-400 to-emerald-500' },
-  'yellow-amber': { gradient: 'from-yellow-400 to-amber-500' },
-  'cyan-blue': { gradient: 'from-cyan-400 to-blue-500' }
-};
+// 색상 매핑 (순환용 배열로 변경)
+const COLOR_LIST = [
+  { name: 'indigo-purple', gradient: 'from-indigo-400 to-purple-500' },
+  { name: 'pink-rose', gradient: 'from-pink-400 to-rose-500' },
+  { name: 'emerald-teal', gradient: 'from-emerald-400 to-teal-500' },
+  { name: 'blue-cyan', gradient: 'from-blue-400 to-cyan-500' },
+  { name: 'amber-orange', gradient: 'from-amber-400 to-orange-500' },
+  { name: 'violet-fuchsia', gradient: 'from-violet-400 to-fuchsia-500' },
+  { name: 'teal-cyan', gradient: 'from-teal-400 to-cyan-500' },
+  { name: 'rose-red', gradient: 'from-rose-400 to-red-500' },
+  { name: 'green-lime', gradient: 'from-green-400 to-lime-500' },
+  { name: 'sky-indigo', gradient: 'from-sky-400 to-indigo-500' }
+];
+
+// 이모지 목록 (포스트마다 다른 이모지 적용)
+const EMOJI_LIST = [
+  '🚀', // 1: 첫 웹 앱 출시
+  '🛠️', // 2: 노코드 웹 앱
+  '💻', // 3: 50대 코딩 배우기
+  '📚', // 4: 초보자 웹 앱 튜토리얼
+  '⚡', // 5: 웹 앱 만들기
+  '🎯', // 6: 시니어를 위한 웹 앱
+  '🔥', // 7: 독학 웹 앱
+  '✨', // 8: 비개발자 웹 앱
+  '🌟', // 9: 50대 이후 코딩 커리어
+  '🎨', // 10: 중년 코딩 여정
+  '💡', // 11+
+  '🧩',
+  '🔧',
+  '📱',
+  '🌈'
+];
+
+// 색상 이름으로 매핑 (호환성 유지)
+const COLOR_MAP = {};
+COLOR_LIST.forEach(c => COLOR_MAP[c.name] = c);
+
+// 에피소드 번호에 따른 색상 자동 선택
+function getColorForEpisode(episode) {
+  const idx = (parseInt(episode) - 1) % COLOR_LIST.length;
+  return COLOR_LIST[idx];
+}
+
+// 에피소드 번호에 따른 이모지 자동 선택
+function getEmojiForEpisode(episode) {
+  const idx = (parseInt(episode) - 1) % EMOJI_LIST.length;
+  return EMOJI_LIST[idx];
+}
 
 // 새로운 포맷 파싱 (=== 구분자 사용)
 function parsePostContent(content, filename) {
@@ -301,7 +336,8 @@ function generatePostHtml(meta, content) {
   } else {
     htmlContent = markdownToHtml(content); // 마크다운은 변환
   }
-  const colors = COLOR_MAP[meta.color] || COLOR_MAP['indigo-purple'];
+  // 에피소드 번호에 따라 자동으로 색상 선택
+  const colors = meta.color ? (COLOR_MAP[meta.color] || getColorForEpisode(meta.episode)) : getColorForEpisode(meta.episode);
 
   return `<!DOCTYPE html>
 <html lang="${meta.lang || 'ko'}">
@@ -492,7 +528,9 @@ function generatePostHtml(meta, content) {
 
 // 블로그 카드 HTML 생성
 function generatePostCard(meta, isPublished = true) {
-  const colors = COLOR_MAP[meta.color] || COLOR_MAP['indigo-purple'];
+  // 에피소드 번호에 따라 자동으로 색상과 이모지 선택
+  const colors = meta.color ? (COLOR_MAP[meta.color] || getColorForEpisode(meta.episode)) : getColorForEpisode(meta.episode);
+  const emoji = meta.emoji || getEmojiForEpisode(meta.episode);
   const statusBadge = isPublished
     ? `<span class="text-xs text-gray-400">${meta.date}</span>`
     : `<span class="text-xs text-gray-400">Coming Soon</span>`;
@@ -501,7 +539,7 @@ function generatePostCard(meta, isPublished = true) {
                     <!-- Post ${meta.episode} -->
                     <article class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
                         <div class="h-48 bg-gradient-to-br ${colors.gradient} flex items-center justify-center">
-                            <span class="text-6xl">${meta.emoji || '📝'}</span>
+                            <span class="text-6xl">${emoji}</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center space-x-2 mb-3">
