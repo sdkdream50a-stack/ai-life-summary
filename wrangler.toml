@@ -1,8 +1,5 @@
 name = "ai-life-summary"
 compatibility_date = "2024-01-01"
 
-[site]
-bucket = "./"
-
-[[pages]]
-name = "ai-life-summary"
+[assets]
+directory = "./"
