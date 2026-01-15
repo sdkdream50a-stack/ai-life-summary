@@ -1,0 +1,11 @@
+{
+  "name": "ai-life-summary",
+  "version": "1.0.0",
+  "description": "AI Life Summary - AI-powered life summary generator",
+  "scripts": {
+    "build:blog": "node scripts/build-blog.js",
+    "new:post": "node scripts/new-post.js"
+  },
+  "author": "AI Life Summary",
+  "license": "MIT"
+}

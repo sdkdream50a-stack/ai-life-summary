@@ -1,129 +1,26 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+포커스 키워드: 첫 웹 앱 출시
 
-    <!-- Primary SEO Meta Tags -->
-    <title>첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법 | AI Life Summary Blog</title>
-    <meta name="description" content="첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.">
-    <meta name="keywords" content="첫 웹 앱 출시, 50대 코딩 도전, 비전공자 앱 배포, 웹 서비스 런칭 가이드, MVP 테스트 방법, 사이드 프로젝트 피드백, 1인 개발자 마인드셋">
-    <meta name="author" content="AI Life Summary">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ailifesummary.com/blog/post-1.html">
+관련 키워드 (LSI):
+50대 코딩 도전
+비전공자 앱 배포
+웹 서비스 런칭 가이드
+MVP 테스트 방법
+사이드 프로젝트 피드백
+1인 개발자 마인드셋
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ailifesummary.com/blog/post-1.html">
-    <meta property="og:title" content="첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법">
-    <meta property="og:description" content="첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.">
-    <meta property="og:image" content="https://ailifesummary.com/assets/images/blog/post-1.png">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="AI Life Summary">
-    <meta property="article:published_time" content="2026-01-15">
-    <meta property="article:author" content="AI Life Summary">
+SEO 최적화 제목 제안:
+첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법
+개발자가 아니어도 괜찮아: 첫 웹 앱 출시 실전 가이드
+첫 웹 앱 출시, 완벽하지 않아도 지금 공유해야 하는 이유
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법">
-    <meta name="twitter:description" content="첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.">
-    <meta name="twitter:image" content="https://ailifesummary.com/assets/images/blog/post-1.png">
+메타 디스크립션:
+첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#ec4899'
-                    },
-                    fontFamily: {
-                        heading: ['Poppins', 'sans-serif'],
-                        body: ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+이모지: 🚀
+색상: indigo-purple
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', 'Noto Sans KR', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .tip-box { background-color: #e8f4fd; border-left: 4px solid #1a73e8; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .warning-box { background-color: #ffebee; border-left: 4px solid #f44336; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .info-box { background-color: #f3f4f6; border-left: 4px solid #6b7280; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .success-box { background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        pre code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.5; }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="flex items-center space-x-2">
-                    <span class="text-2xl">&#10024;</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
-                </a>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
-                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
-                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
-                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
-                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Article Header -->
-        <article>
-            <header class="gradient-bg py-16">
-                <div class="max-w-3xl mx-auto px-4 text-center">
-                    <div class="flex items-center justify-center space-x-2 mb-4">
-                        <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Episode 1</span>
-                        <span class="text-white/70 text-sm">2026-01-15</span>
-                    </div>
-                    <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                        첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법
-                    </h1>
-                    <p class="text-white/80 text-lg max-w-2xl mx-auto">
-                        첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.
-                    </p>
-                </div>
-            </header>
-
-            <!-- Article Content -->
-            <div class="max-w-3xl mx-auto px-4 py-12">
-                <div class="prose prose-lg max-w-none">
-                    <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
+===
+<div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
     <p data-ke-size="size8">&nbsp;</p>
 
     <!-- 메타 설명 박스 -->
@@ -351,62 +248,3 @@
     }
     </script>
 </div>
-                </div>
-
-                <!-- Share Buttons -->
-                <div class="mt-12 pt-8 border-t border-gray-200">
-                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-gray-500 text-sm">Share:</span>
-                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Failifesummary.com%2Fblog%2Fpost-1.html&text=%EC%B2%AB%20%EC%9B%B9%20%EC%95%B1%20%EC%B6%9C%EC%8B%9C%3A%2050%EB%8C%80%20%EB%B9%84%EC%A0%84%EA%B3%B5%EC%9E%90%EA%B0%80%20%EB%91%90%EB%A0%A4%EC%9B%80%EC%9D%84%20%EC%9D%B4%EA%B8%B0%EB%8A%94%203%EA%B0%80%EC%A7%80%20%EB%B0%A9%EB%B2%95" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-400 transition">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                            </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Failifesummary.com%2Fblog%2Fpost-1.html" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-600 transition">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            </a>
-                        </div>
-                        <a href="/blog.html" class="text-primary font-medium hover:underline flex items-center space-x-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                            <span>Back to Blog</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 AI Life Summary. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "첫 웹 앱 출시: 50대 비전공자가 두려움을 이기는 3가지 방법",
-      "description": "첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.",
-      "author": { "@type": "Person", "name": "AI Life Summary" },
-      "datePublished": "2026-01-15",
-      "dateModified": "2026-01-15",
-      "publisher": {
-        "@type": "Organization",
-        "name": "AI Life Summary",
-        "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
-      },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/post-1.html" },
-      "image": "https://ailifesummary.com/assets/images/blog/post-1.png",
-      "keywords": "첫 웹 앱 출시, 50대 코딩 도전, 비전공자 앱 배포, 웹 서비스 런칭 가이드, MVP 테스트 방법, 사이드 프로젝트 피드백, 1인 개발자 마인드셋"
-    }
-    </script>
-
-    <script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-    </script>
-</body>
-</html>
