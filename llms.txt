@@ -1,0 +1,34 @@
+# AI Life Summary
+
+> AI-powered life summary generator that creates personalized insights based on your birthday.
+
+## About
+AI Life Summary is a free web application that generates unique, personalized life summaries using artificial intelligence. Users enter their birthday and receive a one-sentence summary that captures their personality and life essence.
+
+## Features
+- Free AI-generated life summaries based on birthday
+- Instant results with no registration required
+- Available in 5 languages (English, Korean, Japanese, Chinese, Spanish)
+- Share results on social media
+- Download results as images
+- Mobile-friendly responsive design
+
+## Main Pages
+- /: Home page with birthday input form
+- /generate: Results page showing personalized life summary
+- /blog: Blog with articles about personality, astrology, and self-discovery
+- /about: Information about the service
+- /contact: Contact information
+
+## How It Works
+1. User enters their birthday (month and day)
+2. AI analyzes the date and generates a unique life summary
+3. User can view, share, or download their personalized result
+
+## Target Audience
+- People interested in personality analysis
+- Users curious about birthday-based insights
+- Social media users who enjoy sharing personality content
+
+## Contact
+Website: https://goodpicknow.com
