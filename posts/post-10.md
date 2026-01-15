@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 비전공자 중년 코딩 여정, 하루 30분으로 시작하는 법
 
 메타 디스크립션: 중년 코딩 여정은 비싼 강의가 아닌 작은 결심에서 시작됩니다. 4050의 경험과 연륜을 무기로 나만의 앱을 만드는 현실적인 5단계 방법과 루틴을 확인하세요.
+
+날짜: 2026-01-15
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; max-width: 800px; margin: 0 auto; font-size: 16px; color: #444; box-sizing: border-box;">
 

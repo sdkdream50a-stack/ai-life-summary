@@ -25,6 +25,9 @@ SEO 최적화 제목 제안:
 메타 디스크립션:
 
 시니어를 위한 웹 앱 제작 가이드. 복잡한 코딩 없이 일상의 불편함을 해결하는 나만의 도구를 만들어보세요. 50대 이상을 위한 맞춤형 기획, 도구 선택, 테스트 방법을 단계별로 안내합니다.
+
+날짜: 2026-01-13
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; max-width: 800px; margin: 0 auto; font-size: 17px; color: #333; box-sizing: border-box; word-break: keep-all;">
     <p data-ke-size="size8">&nbsp;</p>

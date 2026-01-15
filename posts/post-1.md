@@ -16,6 +16,8 @@ SEO 최적화 제목 제안:
 메타 디스크립션:
 첫 웹 앱 출시가 두려운 50대 비전공자를 위한 실전 가이드. 완벽함 대신 나만의 이야기를 담아 소규모로 시작하는 법과 상처받지 않고 피드백을 수용하는 구체적인 전략을 소개합니다.
 
+날짜: 2026-01-11
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
     <p data-ke-size="size8">&nbsp;</p>

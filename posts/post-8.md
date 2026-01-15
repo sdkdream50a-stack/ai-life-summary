@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 비개발자 웹 앱 구축: 두려움 없이 아이디어를 현실로 만드는 법
 
 메타 디스크립션: 50대 비개발자도 웹 앱을 만들 수 있습니다. 전문 용어 없이, 작은 습관과 적절한 도구 선택으로 아이디어를 현실로 만드는 5단계 실전 가이드를 확인하세요.
+
+날짜: 2026-01-14
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
 

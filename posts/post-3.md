@@ -23,6 +23,9 @@ SEO 최적화 제목 제안:
 메타 디스크립션:
 
 "50대 코딩 배우기, 지금 시작해도 될까요? 컴맹도 가능한 웹 앱 제작 기초부터 마인드셋, 하루 30분 학습 루틴까지 현실적인 가이드를 제공합니다. 당신의 경험에 기술을 더해보세요."
+
+날짜: 2026-01-12
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
 

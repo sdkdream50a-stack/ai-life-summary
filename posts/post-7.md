@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 독학 웹 앱 만들기, 첫 시도가 엉망이어도 포기하지 않는 법
 
 메타 디스크립션: 독학 웹 앱 개발을 시작하셨나요? 50대 비전공자도 따라 할 수 있는 안전한 실험법과 실수를 지식으로 바꾸는 노하우를 공개합니다. 엉망인 첫 코드를 성장의 발판으로 만드세요.
+
+날짜: 2026-01-14
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
     <p data-ke-size="size8">&nbsp;</p>

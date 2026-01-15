@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 나만의 웹 앱 만들기: 막연한 꿈을 현실로 바꾸는 구체적 방법
 
 메타 디스크립션: 50대 이후 웹 앱 만들기, 늦지 않았습니다. 복잡한 코딩 없이 시작하는 현실적인 3단계 로드맵과 마인드셋, 구체적인 실행 전략을 확인하세요.
+
+날짜: 2026-01-13
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
 

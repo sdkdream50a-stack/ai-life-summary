@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 코딩 몰라도 가능? 초보자 웹 앱 튜토리얼 (30분 완성 루틴)
 
 메타 디스크립션: 50대에 시작하는 초보자 웹 앱 튜토리얼. 아이디어 선정부터 배포까지 5단계 핵심 이정표와 실패 없는 학습 전략을 30초 요약으로 확인하세요. 지금 바로 나만의 도구를 만들어보세요.
+
+날짜: 2026-01-12
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
     <p data-ke-size="size8">&nbsp;</p>

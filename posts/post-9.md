@@ -11,6 +11,9 @@ SEO 최적화 제목 제안:
 50대 코딩 도전? 나이보다 중요한 성공 법칙 7가지
 
 메타 디스크립션: 50대 이후 코딩 커리어를 고민 중이신가요? 나이는 장벽이 아닌 전략입니다. 오해를 깨고 현실적인 학습 계획과 안전한 커리어 전환 방법을 30초 요약과 함께 확인하세요. 중장년의 경험에 기술을 더하는 법을 소개합니다.
+
+날짜: 2026-01-15
+
 ===
 <div style="font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333; box-sizing: border-box;">
     <p data-ke-size="size8">&nbsp;</p>
