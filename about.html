@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AI Life Summary</title>
+    <meta name="description" content="Learn about AI Life Summary, our mission to help people discover themselves through AI-generated personality insights, and how our unique algorithm works.">
+    <meta name="keywords" content="about AI life summary, personality test, AI algorithm, self discovery, birthday analysis">
+    <link rel="canonical" href="https://ailifesummary.com/about">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us - AI Life Summary">
+    <meta property="og:description" content="Learn about our mission to help people discover themselves through AI-generated personality insights.">
+    <meta property="og:image" content="https://ailifesummary.com/assets/images/og-image.png">
+    <meta property="og:url" content="https://ailifesummary.com/about">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        accent: '#f59e0b'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        quote: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#10024;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-primary font-medium" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">🇺🇸</span>
+                            <span id="current-lang-name">English</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇺🇸</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇰🇷</span><span>한국어</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇯🇵</span><span>日本語</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇨🇳</span><span>中文</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇪🇸</span><span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/about.html" class="text-primary font-medium" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="gradient-bg py-16">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block">&#127775;</span>
+                <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="about.title">
+                    About AI Life Summary
+                </h1>
+                <p class="text-white/80 text-lg" data-i18n="about.subtitle">
+                    Discover the story behind the technology that helps millions understand themselves better
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <!-- What We Do -->
+                <div class="mb-12">
+                    <h2 class="font-heading text-3xl font-bold mb-6 gradient-text" data-i18n="about.what.title">What We Do</h2>
+                    <div class="prose prose-lg text-gray-700 space-y-4">
+                        <p data-i18n="about.what.p1">
+                            AI Life Summary is a unique web application that generates personalized life insights based on your birthday. Using a sophisticated algorithm that we've developed and refined over years of research, we create meaningful, thought-provoking sentences that capture the essence of who you are and the journey you're on.
+                        </p>
+                        <p data-i18n="about.what.p2">
+                            Our service combines the timeless human fascination with self-discovery and personality analysis with modern computational techniques. While traditional personality assessments require lengthy questionnaires, AI Life Summary distills the experience into a simple, instant, and highly shareable format that resonates with users worldwide.
+                        </p>
+                        <p data-i18n="about.what.p3">
+                            Every day, thousands of people from around the globe visit our platform to discover their unique life summaries. Whether used for personal reflection, conversation starters, or simply entertainment, our generated sentences consistently surprise users with their relevance and depth.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Our Mission -->
+                <div class="mb-12">
+                    <h2 class="font-heading text-3xl font-bold mb-6 gradient-text" data-i18n="about.mission.title">Our Mission</h2>
+                    <div class="prose prose-lg text-gray-700 space-y-4">
+                        <p data-i18n="about.mission.p1">
+                            At the heart of AI Life Summary lies a simple yet powerful mission: to help people pause, reflect, and connect with themselves and others in meaningful ways. In our fast-paced digital world, moments of genuine self-reflection have become increasingly rare. We believe that a single, well-crafted sentence can serve as a catalyst for deeper thinking about who we are and what we value.
+                        </p>
+                        <p data-i18n="about.mission.p2">
+                            Beyond individual reflection, we aim to foster connection between people. When friends, family members, and colleagues share and compare their life summaries, conversations naturally deepen. These shared experiences create bonds and understanding that might not otherwise emerge in everyday interactions.
+                        </p>
+                        <p data-i18n="about.mission.p3">
+                            We're committed to maintaining a positive, uplifting tone in all our generated content. Every sentence in our database has been carefully crafted to highlight strengths, acknowledge challenges constructively, and inspire growth. We believe that everyone has unique gifts and that our platform should celebrate, rather than diminish, the human spirit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div class="mb-12">
+                    <h2 class="font-heading text-3xl font-bold mb-6 gradient-text" data-i18n="about.how.title">How Our Technology Works</h2>
+                    <div class="prose prose-lg text-gray-700 space-y-4">
+                        <p data-i18n="about.how.p1">
+                            Our algorithm operates on the principle that birth dates contain unique numerical patterns that can be mathematically transformed into personality insights. When you enter your birthday, our system generates a hash value - a numerical fingerprint of your birth date - which then determines the specific combination of traits, contexts, and templates used to construct your personal life summary.
+                        </p>
+                        <p data-i18n="about.how.p2">
+                            The sentence generation system draws from a database of over 800 carefully crafted components across 20 personality categories. These categories include resilience, creativity, empathy, wisdom, adventure, leadership, connection, authenticity, growth, and intuition, among others. Each component has been written by our content team with attention to nuance, positivity, and universal relevance.
+                        </p>
+                        <p data-i18n="about.how.p3">
+                            What makes our approach unique is the deterministic nature of the algorithm. The same birthday will always produce the same result, creating a sense of permanence and authenticity that users appreciate. Unlike random generators, our system creates a genuine connection between your birth date and your summary, making the result feel personally meaningful.
+                        </p>
+                        <p data-i18n="about.how.p4">
+                            We continuously refine our algorithm and expand our sentence database based on user feedback and ongoing research. Our team regularly reviews the generated content to ensure quality, relevance, and positive impact. This commitment to continuous improvement ensures that AI Life Summary remains fresh and valuable for both new and returning users.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entertainment Disclaimer -->
+                <div class="mb-12 bg-indigo-50 rounded-2xl p-8">
+                    <h2 class="font-heading text-2xl font-bold mb-4 text-indigo-900" data-i18n="about.note.title">A Note on Our Service</h2>
+                    <div class="text-gray-700 space-y-4">
+                        <p data-i18n="about.note.p1">
+                            AI Life Summary is designed primarily for entertainment and personal reflection. While many users find genuine insight in their results, we want to be transparent that our algorithm is not based on scientific personality assessment methods or predictive analytics.
+                        </p>
+                        <p data-i18n="about.note.p2">
+                            The power of our service lies not in any claim to psychological accuracy, but in its ability to prompt meaningful self-reflection and conversation. A well-crafted sentence, even one generated algorithmically, can serve as a mirror that reflects aspects of ourselves we may not have consciously considered.
+                        </p>
+                        <p data-i18n="about.note.p3">
+                            We encourage users to approach their results with an open mind, taking what resonates and leaving what doesn't. The best use of AI Life Summary is as a starting point for reflection, not as a definitive statement about who you are.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="mb-12">
+                    <h2 class="font-heading text-3xl font-bold mb-6 gradient-text" data-i18n="about.faq.title">Frequently Asked Questions</h2>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q1">Is my data stored or shared?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a1">No. Your birthday is processed entirely in your browser using our client-side algorithm. We do not transmit, store, or share any personal information. Your privacy is completely protected.</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q2">Why do I get the same result every time?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a2">Our algorithm is deterministic, meaning the same input always produces the same output. This is intentional - it creates a genuine connection between your birthday and your summary, making it feel more personal and authentic.</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q3">Can I use my results commercially?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a3">Personal sharing on social media is encouraged and welcomed. For commercial use, please contact us to discuss licensing options.</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q4">How accurate are the results?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a4">AI Life Summary is designed for entertainment and reflection, not scientific accuracy. Many users find their results surprisingly relevant, but we encourage you to take what resonates and enjoy the experience without expectations.</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q5">Is there a mobile app available?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a5">Our website is fully responsive and works beautifully on mobile devices. We don't currently have a dedicated app, but you can add our site to your home screen for an app-like experience.</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-semibold text-lg mb-2" data-i18n="about.faq.q6">How can I provide feedback?</h3>
+                            <p class="text-gray-700" data-i18n="about.faq.a6">We love hearing from our users! Please visit our Contact page to share your thoughts, suggestions, or experiences with AI Life Summary.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="font-heading text-3xl font-bold mb-4" data-i18n="about.cta.title">
+                    Ready to Discover Your Summary?
+                </h2>
+                <p class="text-gray-600 text-lg mb-8" data-i18n="about.cta.desc">
+                    Join millions of people who have discovered meaningful insights about themselves.
+                </p>
+                <a href="/" class="inline-block gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg" data-i18n="about.cta.btn">
+                    Get My Life Summary
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm" data-i18n="footer.description">
+                        Discover who you are with AI-powered life summaries.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.quick_links">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition" data-i18n="footer.home">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition" data-i18n="nav.about">About</a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition" data-i18n="nav.archive">Archive</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.legal">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition" data-i18n="form.privacy_link">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition" data-i18n="form.terms_link">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.connect">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 <span data-i18n="footer.copyright">AI Life Summary. All rights reserved.</span></p>
+                <p class="mt-2" data-i18n="footer.entertainment">This service is for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/i18n.js?v=4"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

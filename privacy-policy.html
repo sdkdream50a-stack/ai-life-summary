@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AI Life Summary</title>
+    <meta name="description" content="Read our Privacy Policy to understand how AI Life Summary collects, uses, and protects your personal information when you use our service.">
+    <meta name="keywords" content="privacy policy, data protection, personal information, AI life summary privacy">
+    <link rel="canonical" href="https://ailifesummary.com/privacy-policy">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#10024;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">🇺🇸</span>
+                            <span id="current-lang-name">English</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇺🇸</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇰🇷</span><span>한국어</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇯🇵</span><span>日本語</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇨🇳</span><span>中文</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇪🇸</span><span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="font-heading text-4xl font-bold mb-2 gradient-text" data-i18n="privacy.title">Privacy Policy</h1>
+            <p class="text-gray-500 mb-8" data-i18n="privacy.last_updated">Last updated: January 2025</p>
+
+            <div class="prose prose-lg max-w-none text-gray-700 space-y-8">
+                <!-- Introduction -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.intro.title">Introduction</h2>
+                    <p data-i18n="privacy.intro.p1">
+                        Welcome to AI Life Summary ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience when using our website and services. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at ailifesummary.com (the "Site") and use our AI-powered life summary generation service (the "Service").
+                    </p>
+                    <p data-i18n="privacy.intro.p2">
+                        Please read this Privacy Policy carefully. By accessing or using our Site and Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not access or use our Site or Service.
+                    </p>
+                    <p data-i18n="privacy.intro.p3">
+                        We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of this Privacy Policy. You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Site and Service after the date such revised Privacy Policy is posted.
+                    </p>
+                </section>
+
+                <!-- Information We Collect -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.collect.title">Information We Collect</h2>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3" data-i18n="privacy.collect.personal.title">Personal Information You Provide</h3>
+                    <p data-i18n="privacy.collect.personal.desc">
+                        When you use our Service, you may provide us with certain personal information, specifically:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.collect.personal.dob"><strong>Date of Birth:</strong> We collect your date of birth to generate your personalized life summary. This information is used solely for the purpose of running our algorithm and generating your result. Importantly, this data is processed entirely within your web browser using client-side JavaScript and is never transmitted to our servers.</li>
+                        <li data-i18n="privacy.collect.personal.gender"><strong>Gender (Optional):</strong> You may optionally provide your gender to receive a more personalized result. This information, like your date of birth, is processed locally in your browser and is not transmitted to or stored on our servers.</li>
+                    </ul>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3 mt-6" data-i18n="privacy.collect.auto.title">Information Collected Automatically</h3>
+                    <p data-i18n="privacy.collect.auto.desc">
+                        When you access our Site, certain information may be collected automatically, including:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.collect.auto.device"><strong>Device Information:</strong> We may collect information about your device, including your device type, operating system, unique device identifiers, and mobile network information.</li>
+                        <li data-i18n="privacy.collect.auto.browser"><strong>Browser Information:</strong> We may collect information about your browser type, version, language preferences, and settings.</li>
+                        <li data-i18n="privacy.collect.auto.usage"><strong>Usage Data:</strong> We may collect information about how you interact with our Site, including pages visited, time spent on pages, links clicked, and other actions taken on the Site.</li>
+                        <li data-i18n="privacy.collect.auto.ip"><strong>IP Address:</strong> Your IP address may be collected for analytics purposes and to help diagnose technical issues.</li>
+                        <li data-i18n="privacy.collect.auto.cookies"><strong>Cookies and Similar Technologies:</strong> We use cookies and similar tracking technologies to track activity on our Site and hold certain information. See our Cookie Policy section below for more details.</li>
+                    </ul>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3 mt-6" data-i18n="privacy.collect.local.title">Information from Local Storage</h3>
+                    <p data-i18n="privacy.collect.local.desc">
+                        Our Service uses your browser's local storage functionality to save your generated results and preferences. This information is stored entirely on your device and is not transmitted to our servers. You can clear this data at any time through your browser settings.
+                    </p>
+                </section>
+
+                <!-- How We Use Your Information -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.use.title">How We Use Your Information</h2>
+                    <p data-i18n="privacy.use.desc">
+                        We use the information we collect for various purposes, including:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.use.item1">To provide, operate, and maintain our Service</li>
+                        <li data-i18n="privacy.use.item2">To improve, personalize, and expand our Service</li>
+                        <li data-i18n="privacy.use.item3">To understand and analyze how you use our Site</li>
+                        <li data-i18n="privacy.use.item4">To develop new products, services, features, and functionality</li>
+                        <li data-i18n="privacy.use.item5">To communicate with you, including for customer service and support</li>
+                        <li data-i18n="privacy.use.item6">To send you updates and other information relating to the Service</li>
+                        <li data-i18n="privacy.use.item7">To find and prevent fraud and abuse</li>
+                        <li data-i18n="privacy.use.item8">To comply with legal obligations</li>
+                    </ul>
+                </section>
+
+                <!-- Disclosure of Your Information -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.disclosure.title">Disclosure of Your Information</h2>
+                    <p data-i18n="privacy.disclosure.desc">
+                        We may share information we have collected about you in certain situations:
+                    </p>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3" data-i18n="privacy.disclosure.third.title">Third-Party Service Providers</h3>
+                    <p data-i18n="privacy.disclosure.third.desc">
+                        We may share your information with third-party service providers that perform services on our behalf, including:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.disclosure.third.ga"><strong>Google Analytics:</strong> We use Google Analytics to help us understand how visitors engage with our Site. Google Analytics uses cookies to collect information about your use of the Site. This information is transmitted to and stored by Google on servers in the United States. Google may use this information for various purposes as described in the Google Privacy Policy.</li>
+                        <li data-i18n="privacy.disclosure.third.adsense"><strong>Google AdSense:</strong> We use Google AdSense to display advertisements on our Site. Google AdSense may use cookies and similar technologies to serve ads based on your prior visits to our Site or other websites. You can opt out of personalized advertising by visiting Google Ads Settings.</li>
+                        <li data-i18n="privacy.disclosure.third.cloudflare"><strong>Cloudflare:</strong> Our Site is hosted on Cloudflare Pages, which provides content delivery and security services. Cloudflare may collect certain technical information to provide these services as described in the Cloudflare Privacy Policy.</li>
+                    </ul>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3 mt-6" data-i18n="privacy.disclosure.legal.title">Legal Requirements</h3>
+                    <p data-i18n="privacy.disclosure.legal.desc">
+                        We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process.
+                    </p>
+
+                    <h3 class="font-heading text-xl font-medium text-gray-800 mb-3 mt-6" data-i18n="privacy.disclosure.business.title">Business Transfers</h3>
+                    <p data-i18n="privacy.disclosure.business.desc">
+                        We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.
+                    </p>
+                </section>
+
+                <!-- Cookies and Tracking Technologies -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cookies.title">Cookies and Tracking Technologies</h2>
+                    <p data-i18n="privacy.cookies.desc1">
+                        We use cookies and similar tracking technologies to track the activity on our Site and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier.
+                    </p>
+                    <p data-i18n="privacy.cookies.desc2">
+                        We use the following types of cookies:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.cookies.essential"><strong>Essential Cookies:</strong> These cookies are necessary for the Site to function properly and cannot be switched off in our systems.</li>
+                        <li data-i18n="privacy.cookies.analytics"><strong>Analytics Cookies:</strong> These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our Site.</li>
+                        <li data-i18n="privacy.cookies.advertising"><strong>Advertising Cookies:</strong> These cookies may be set through our Site by our advertising partners to build a profile of your interests and show you relevant advertisements on other sites.</li>
+                    </ul>
+                    <p class="mt-4" data-i18n="privacy.cookies.control">
+                        You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.
+                    </p>
+                </section>
+
+                <!-- Your Privacy Rights -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.rights.title">Your Privacy Rights</h2>
+                    <p data-i18n="privacy.rights.desc">
+                        Depending on your location, you may have certain rights regarding your personal information:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li data-i18n="privacy.rights.access"><strong>Right to Access:</strong> You have the right to request copies of your personal information.</li>
+                        <li data-i18n="privacy.rights.rectification"><strong>Right to Rectification:</strong> You have the right to request that we correct any information you believe is inaccurate or complete information you believe is incomplete.</li>
+                        <li data-i18n="privacy.rights.erasure"><strong>Right to Erasure:</strong> You have the right to request that we erase your personal information, under certain conditions.</li>
+                        <li data-i18n="privacy.rights.restrict"><strong>Right to Restrict Processing:</strong> You have the right to request that we restrict the processing of your personal information, under certain conditions.</li>
+                        <li data-i18n="privacy.rights.portability"><strong>Right to Data Portability:</strong> You have the right to request that we transfer the data we have collected to another organization, or directly to you, under certain conditions.</li>
+                        <li data-i18n="privacy.rights.withdraw"><strong>Right to Withdraw Consent:</strong> Where we rely on your consent to process your personal information, you have the right to withdraw that consent at any time.</li>
+                    </ul>
+                    <p class="mt-4" data-i18n="privacy.rights.exercise">
+                        To exercise any of these rights, please contact us using the information provided at the end of this Privacy Policy.
+                    </p>
+                </section>
+
+                <!-- Data Security -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.security.title">Data Security</h2>
+                    <p data-i18n="privacy.security.p1">
+                        We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure.
+                    </p>
+                    <p data-i18n="privacy.security.p2">
+                        As noted above, your date of birth and gender information is processed entirely within your browser and is never transmitted to our servers, providing an additional layer of privacy protection for this sensitive information.
+                    </p>
+                </section>
+
+                <!-- Children's Privacy -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.children.title">Children's Privacy</h2>
+                    <p data-i18n="privacy.children.p1">
+                        Our Service is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under age 13 without verification of parental consent, we take steps to remove that information from our servers.
+                    </p>
+                    <p data-i18n="privacy.children.p2">
+                        We recommend that users aged 13-18 obtain parental consent before using our Service. If you are a parent or guardian and you believe your child has provided us with personal information, please contact us so that we can take appropriate action.
+                    </p>
+                </section>
+
+                <!-- International Data Transfers -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.international.title">International Data Transfers</h2>
+                    <p data-i18n="privacy.international.p1">
+                        Your information may be transferred to and maintained on computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction. If you are located outside the United States and choose to provide information to us, please note that we transfer the data to the United States and process it there.
+                    </p>
+                    <p data-i18n="privacy.international.p2">
+                        Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
+                    </p>
+                </section>
+
+                <!-- California Privacy Rights -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.california.title">California Privacy Rights</h2>
+                    <p data-i18n="privacy.california.p1">
+                        If you are a California resident, you have specific rights regarding your personal information under the California Consumer Privacy Act (CCPA). These include the right to know what personal information is being collected, the right to know whether your personal information is sold or disclosed and to whom, the right to say no to the sale of personal information, the right to access your personal information, and the right to equal service and price.
+                    </p>
+                    <p data-i18n="privacy.california.p2">
+                        To exercise your rights under the CCPA, please contact us using the information provided below.
+                    </p>
+                </section>
+
+                <!-- European Users (GDPR) -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.gdpr.title">European Users (GDPR)</h2>
+                    <p data-i18n="privacy.gdpr.p1">
+                        If you are a resident of the European Economic Area (EEA), you have certain data protection rights under the General Data Protection Regulation (GDPR). We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your personal information.
+                    </p>
+                    <p data-i18n="privacy.gdpr.p2">
+                        The legal basis for processing your information includes your consent, our legitimate interests in operating and improving our Service, and compliance with legal obligations.
+                    </p>
+                </section>
+
+                <!-- Contact Us -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.contact.title">Contact Us</h2>
+                    <p data-i18n="privacy.contact.desc">
+                        If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at:
+                    </p>
+                    <div class="bg-gray-100 rounded-lg p-6 mt-4">
+                        <p><strong>AI Life Summary</strong></p>
+                        <p><span data-i18n="privacy.contact.email">Email:</span> privacy@ailifesummary.com</p>
+                        <p><span data-i18n="privacy.contact.form">Contact Form:</span> <a href="/contact.html" class="text-primary hover:underline">ailifesummary.com/contact</a></p>
+                    </div>
+                    <p class="mt-4" data-i18n="privacy.contact.response">
+                        We will respond to your inquiry within a reasonable timeframe, typically within 30 days.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Discover who you are with AI-powered life summaries.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition">Archive</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Life Summary. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/i18n.js?v=4"></script>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

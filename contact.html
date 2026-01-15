@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AI Life Summary</title>
+    <meta name="description" content="Get in touch with AI Life Summary. We'd love to hear from you! Contact us for questions, feedback, partnership inquiries, or support.">
+    <meta name="keywords" content="contact AI life summary, support, feedback, partnership, questions">
+    <link rel="canonical" href="https://ailifesummary.com/contact">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Us - AI Life Summary">
+    <meta property="og:description" content="Get in touch with AI Life Summary. We'd love to hear from you!">
+    <meta property="og:image" content="https://ailifesummary.com/assets/images/og-image.png">
+    <meta property="og:url" content="https://ailifesummary.com/contact">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        accent: '#f59e0b'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#10024;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">🇺🇸</span>
+                            <span id="current-lang-name">English</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇺🇸</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇰🇷</span><span>한국어</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇯🇵</span><span>日本語</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇨🇳</span><span>中文</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇪🇸</span><span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
+                    <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="gradient-bg py-16">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block">&#128172;</span>
+                <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="contact.hero.title">
+                    Get In Touch
+                </h1>
+                <p class="text-white/80 text-lg max-w-2xl mx-auto" data-i18n="contact.hero.description">
+                    We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, we're here to help.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div>
+                        <h2 class="font-heading text-2xl font-bold mb-6" data-i18n="contact.form.title">Send Us a Message</h2>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span data-i18n="contact.form.name">Your Name</span> <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    data-i18n-placeholder="contact.form.name_placeholder"
+                                    placeholder="John Doe"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span data-i18n="contact.form.email">Email Address</span> <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    placeholder="john@example.com"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span data-i18n="contact.form.subject">Subject</span> <span class="text-red-500">*</span>
+                                </label>
+                                <select
+                                    id="subject"
+                                    name="subject"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                >
+                                    <option value="" data-i18n="contact.form.select_subject">Select a subject</option>
+                                    <option value="general" data-i18n="contact.form.opt_general">General Inquiry</option>
+                                    <option value="feedback" data-i18n="contact.form.opt_feedback">Feedback</option>
+                                    <option value="support" data-i18n="contact.form.opt_support">Technical Support</option>
+                                    <option value="partnership" data-i18n="contact.form.opt_partnership">Partnership Inquiry</option>
+                                    <option value="press" data-i18n="contact.form.opt_press">Press & Media</option>
+                                    <option value="other" data-i18n="contact.form.opt_other">Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span data-i18n="contact.form.message">Message</span> <span class="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none"
+                                    data-i18n-placeholder="contact.form.message_placeholder"
+                                    placeholder="How can we help you?"
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition"
+                                data-i18n="contact.form.submit"
+                            >
+                                Send Message
+                            </button>
+                        </form>
+
+                        <!-- Success Message (hidden by default) -->
+                        <div id="success-message" class="hidden mt-6 bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+                            <span class="text-4xl mb-2 inline-block">&#9989;</span>
+                            <h3 class="font-heading text-xl font-semibold text-green-800 mb-2" data-i18n="contact.success.title">Message Sent!</h3>
+                            <p class="text-green-700" data-i18n="contact.success.description">Thank you for reaching out. We'll get back to you within 24-48 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <h2 class="font-heading text-2xl font-bold mb-6" data-i18n="contact.info.title">Contact Information</h2>
+
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.email">Email</h3>
+                                    <p class="text-gray-600">ailifesummary@gmail.com</p>
+                                    <p class="text-sm text-gray-500 mt-1" data-i18n="contact.info.email_desc">We aim to respond within 24-48 hours</p>
+                                </div>
+                            </div>
+
+                            <!-- Social Media -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.social">Social Media</h3>
+                                    <div class="flex space-x-3 mt-2">
+                                        <a href="#" class="text-gray-500 hover:text-black transition" aria-label="Twitter">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="text-gray-500 hover:text-pink-600 transition" aria-label="Instagram">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="text-gray-500 hover:text-blue-600 transition" aria-label="Facebook">
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Response Time -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.response">Response Time</h3>
+                                    <p class="text-gray-600" data-i18n="contact.info.response_desc">We typically respond to inquiries within 24-48 business hours.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Link -->
+                        <div class="mt-10 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6">
+                            <h3 class="font-heading text-lg font-semibold mb-3" data-i18n="contact.faq.title">Looking for Answers?</h3>
+                            <p class="text-gray-600 mb-4" data-i18n="contact.faq.description">
+                                Check out our FAQ section on the About page for answers to commonly asked questions about AI Life Summary.
+                            </p>
+                            <a href="/about.html#faq" class="inline-flex items-center text-primary font-medium hover:underline">
+                                <span data-i18n="contact.faq.link">View FAQ</span>
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Specific Inquiries -->
+                        <div class="mt-8">
+                            <h3 class="font-heading text-lg font-semibold mb-4" data-i18n="contact.inquiries.title">Specific Inquiries</h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600" data-i18n="contact.inquiries.general">General Questions</span>
+                                    <span class="text-gray-900">ailifesummary@gmail.com</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600" data-i18n="contact.inquiries.support">Technical Support</span>
+                                    <span class="text-gray-900">ailifesummary@gmail.com</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600" data-i18n="contact.inquiries.partnership">Partnership Inquiries</span>
+                                    <span class="text-gray-900">ailifesummary@gmail.com</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600" data-i18n="contact.inquiries.press">Press & Media</span>
+                                    <span class="text-gray-900">ailifesummary@gmail.com</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2">
+                                    <span class="text-gray-600" data-i18n="contact.inquiries.privacy">Privacy Concerns</span>
+                                    <span class="text-gray-900">ailifesummary@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Info Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl font-bold mb-8 text-center" data-i18n="contact.help.title">
+                    How Can We Help You?
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Feedback -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="text-4xl mb-4">&#128161;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.feedback">Share Feedback</h3>
+                        <p class="text-gray-600 text-sm" data-i18n="contact.help.feedback_desc">
+                            We're always looking to improve. Let us know what you think about AI Life Summary and how we can make it better.
+                        </p>
+                    </div>
+
+                    <!-- Bug Reports -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="text-4xl mb-4">&#128027;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.issues">Report Issues</h3>
+                        <p class="text-gray-600 text-sm" data-i18n="contact.help.issues_desc">
+                            Found a bug or technical issue? Please let us know so we can fix it and improve the experience for everyone.
+                        </p>
+                    </div>
+
+                    <!-- Partnerships -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="text-4xl mb-4">&#129309;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.partner">Partner With Us</h3>
+                        <p class="text-gray-600 text-sm" data-i18n="contact.help.partner_desc">
+                            Interested in collaborating or partnering with AI Life Summary? We'd love to explore opportunities together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm" data-i18n="footer.description">
+                        Discover who you are with AI-powered life summaries.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.quick_links">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition" data-i18n="footer.home">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition" data-i18n="nav.about">About</a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition" data-i18n="nav.archive">Archive</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.legal">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition" data-i18n="footer.terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.connect">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 <span data-i18n="footer.copyright">AI Life Summary. All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/i18n.js?v=4"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // In a real implementation, you would send this data to your server
+            console.log('Form submitted:', formData);
+
+            // Show success message
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
+
+            // Optionally, you could save to localStorage for demo purposes
+            const contacts = JSON.parse(localStorage.getItem('contact-submissions') || '[]');
+            contacts.push({
+                ...formData,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('contact-submissions', JSON.stringify(contacts));
+        });
+    </script>
+</body>
+</html>

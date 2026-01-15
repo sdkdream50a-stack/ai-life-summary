@@ -1,0 +1,44 @@
+{
+  "save_name": "ai-life-summary-session-01",
+  "saved_at": "2026-01-15",
+  "last_updated": "2026-01-15 19:35",
+  "project_path": "/Users/seong/ai-life-summary",
+  "project_type": "static_html_website",
+  "server": {
+    "file": "server.py",
+    "port": 3000,
+    "url": "http://localhost:3000",
+    "type": "Python HTTP Server with Clean URL support",
+    "status": "running"
+  },
+  "project_files": {
+    "html": ["index.html", "about.html", "archive.html", "contact.html", "generate.html", "privacy-policy.html", "terms-of-service.html"],
+    "directories": ["assets", "css", "js"],
+    "i18n": "js/i18n.js"
+  },
+  "recent_changes": [
+    {
+      "date": "2026-01-15",
+      "description": "index.html Example 섹션 한국어 텍스트를 영어로 수정",
+      "files": ["index.html"]
+    },
+    {
+      "date": "2026-01-15",
+      "description": "언어 선택 드롭다운 중복 이벤트 리스너 제거 (i18n.js와 인라인 스크립트 충돌 해결)",
+      "files": ["index.html", "about.html", "archive.html", "contact.html", "generate.html", "privacy-policy.html", "terms-of-service.html"]
+    },
+    {
+      "date": "2026-01-15",
+      "description": "contact.html 모든 이메일 주소를 ailifesummary@gmail.com으로 통일",
+      "files": ["contact.html"],
+      "details": "contact@, support@, partners@, press@, privacy@ 모두 변경"
+    }
+  ],
+  "contact_email": "ailifesummary@gmail.com",
+  "i18n_info": {
+    "supported_languages": ["en", "ko", "ja", "zh", "es"],
+    "default_language": "en (브라우저 언어 기반 자동 선택)",
+    "storage_key": "ai-life-summary-lang"
+  },
+  "notes": "AI Life Summary 웹사이트 프로젝트. 서버 실행 명령: python3 server.py. 언어 선택 기능은 i18n.js에서 처리됨."
+}
