@@ -95,26 +95,47 @@
     <!-- Language Switching - Load Early -->
     <script>
     function switchLang(lang) {
+        // Save preference
         localStorage.setItem('preferredLanguage', lang);
+
+        // Update html lang attribute
         document.documentElement.lang = lang;
 
-        // Show/hide elements
-        document.querySelectorAll('.lang-en').forEach(function(el) {
-            el.style.display = lang === 'en' ? '' : 'none';
-        });
-        document.querySelectorAll('.lang-ko').forEach(function(el) {
-            el.style.display = lang === 'ko' ? '' : 'none';
-        });
+        // Show/hide elements based on language
+        var enElements = document.querySelectorAll('.lang-en');
+        var koElements = document.querySelectorAll('.lang-ko');
 
-        // Update selector display
-        var flagEl = document.getElementById('current-lang-flag');
-        var nameEl = document.getElementById('current-lang-name');
-        if (flagEl) flagEl.textContent = lang === 'ko' ? '🇰🇷' : '🇺🇸';
-        if (nameEl) nameEl.textContent = lang === 'ko' ? 'KO' : 'EN';
+        for (var i = 0; i < enElements.length; i++) {
+            enElements[i].style.display = lang === 'en' ? '' : 'none';
+        }
+        for (var i = 0; i < koElements.length; i++) {
+            koElements[i].style.display = lang === 'ko' ? '' : 'none';
+        }
 
-        // Close dropdown
-        var dropdown = document.getElementById('language-dropdown');
-        if (dropdown) dropdown.classList.add('hidden');
+        // Update toggle button styles
+        var btnEn = document.getElementById('lang-btn-en');
+        var btnKo = document.getElementById('lang-btn-ko');
+        if (btnEn && btnKo) {
+            if (lang === 'en') {
+                btnEn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
+                btnKo.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
+            } else {
+                btnEn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
+                btnKo.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
+            }
+        }
+
+        // Also update mobile buttons if they exist
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        for (var i = 0; i < mobileBtns.length; i++) {
+            var btn = mobileBtns[i];
+            var btnLang = btn.getAttribute('data-lang');
+            if (btnLang === lang) {
+                btn.className = 'mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded';
+            } else {
+                btn.className = 'mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200';
+            }
+        }
     }
 
     // Also support setLanguage for compatibility
@@ -144,22 +165,10 @@
                         <span class="lang-en">Take Test</span>
                         <span class="lang-ko">테스트 하기</span>
                     </a>
-                    <div id="language-selector" class="relative">
-                        <button type="button" onclick="document.getElementById('language-dropdown').classList.toggle('hidden')" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
-                            <span id="current-lang-flag">🇺🇸</span>
-                            <span id="current-lang-name">EN</span>
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </button>
-                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                            <button type="button" onclick="switchLang('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇺🇸</span><span>English</span>
-                            </button>
-                            <button type="button" onclick="switchLang('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇰🇷</span><span>한국어</span>
-                            </button>
-                        </div>
+                    <!-- Language Toggle Buttons -->
+                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
+                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
+                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -184,8 +193,8 @@
                             <span class="lang-ko">언어</span>
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
-                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
+                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">EN</button>
+                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
                         </div>
                     </div>
                 </div>
