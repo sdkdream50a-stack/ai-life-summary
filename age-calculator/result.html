@@ -83,30 +83,46 @@
             animation: pulse-glow 2s infinite;
         }
 
-        /* Language classes - CSS-based switching */
-        .lang-ko { display: none; }
-        html[lang="ko"] .lang-en { display: none; }
+        /* Language classes - CSS-based switching for 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
         html[lang="ko"] .lang-ko { display: inline; }
         html[lang="ko"] span.lang-ko { display: inline; }
         html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
         html[lang="ko"] a.lang-ko { display: inline-flex; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="ja"] a.lang-ja { display: inline-flex; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="zh"] a.lang-zh { display: inline-flex; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+        html[lang="es"] a.lang-es { display: inline-flex; }
     </style>
 
     <!-- Language Switching -->
     <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
     function switchLang(lang) {
         // Save to both localStorage keys for compatibility
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
 
-        // Update buttons
-        var btnEn = document.getElementById('lang-btn-en');
-        var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn) btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6';
-        if (btnEn) btnEn.style.color = (lang === 'en') ? 'white' : '#374151';
-        if (btnKo) btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6';
-        if (btnKo) btnKo.style.color = (lang === 'ko') ? 'white' : '#374151';
+        // Update dropdown display
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
 
         // Update mobile language buttons
         var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
@@ -116,11 +132,29 @@
             btn.style.color = (btnLang === lang) ? 'white' : '#374151';
         });
 
+        // Close dropdown
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+
         // Update dynamic content if results exist
         if (window.ageResults) {
             updateDynamicContent(lang);
         }
     }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
 
     function updateDynamicContent(lang) {
         var results = window.ageResults;
@@ -197,10 +231,19 @@
                         <span class="lang-en">New Test</span>
                         <span class="lang-ko">새 테스트</span>
                     </a>
-                    <!-- Language Toggle Buttons -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
                     </div>
                     <button id="share-btn" class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

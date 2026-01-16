@@ -121,32 +121,53 @@
     </style>
 
     <style>
-        /* Language switching - hide non-active language */
-        .lang-ko { display: none; }
-        html[lang="ko"] .lang-en { display: none; }
+        /* Language switching - hide non-active languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+
+        /* Korean */
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
         html[lang="ko"] .lang-ko { display: inline; }
-        html[lang="ko"] span.lang-ko,
-        html[lang="ko"] p.lang-ko,
-        html[lang="ko"] h1.lang-ko,
-        html[lang="ko"] h2.lang-ko,
-        html[lang="ko"] h3.lang-ko,
-        html[lang="ko"] li.lang-ko,
-        html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
         html[lang="ko"] a.lang-ko { display: inline-flex; }
+
+        /* Japanese */
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="ja"] a.lang-ja { display: inline-flex; }
+
+        /* Chinese */
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="zh"] a.lang-zh { display: inline-flex; }
+
+        /* Spanish */
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+        html[lang="es"] a.lang-es { display: inline-flex; }
     </style>
 
     <!-- Language Switching -->
     <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
     function switchLang(lang) {
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
 
-        // Update desktop buttons
-        var btnEn = document.getElementById('lang-btn-en');
-        var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn) { btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6'; btnEn.style.color = (lang === 'en') ? 'white' : '#374151'; }
-        if (btnKo) { btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6'; btnKo.style.color = (lang === 'ko') ? 'white' : '#374151'; }
+        // Update dropdown display
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
 
         // Update mobile buttons
         var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
@@ -156,7 +177,25 @@
             btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
             btn.style.color = isActive ? 'white' : '#374151';
         }
+
+        // Close dropdown if open
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
     }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', function() {
@@ -208,10 +247,19 @@
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
-                    <!-- Language Toggle -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -240,8 +288,11 @@
                     <div class="pt-3 border-t mt-3">
                         <p class="text-xs text-gray-500 mb-2">Language</p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">EN</button>
-                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" data-lang="ja" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" data-lang="zh" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" data-lang="es" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
                         </div>
                     </div>
                 </div>
@@ -257,24 +308,39 @@
                 <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                     <span class="lang-en">Discover Yourself with AI</span>
                     <span class="lang-ko">AI로 나를 발견하세요</span>
+                    <span class="lang-ja">AIで自分を発見しよう</span>
+                    <span class="lang-zh">用AI发现自己</span>
+                    <span class="lang-es">Descúbrete con IA</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-white/90 mb-4">
                     <span class="lang-en">Fun personality tests powered by AI</span>
                     <span class="lang-ko">AI 기반 재미있는 성격 테스트</span>
+                    <span class="lang-ja">AIで楽しい性格テスト</span>
+                    <span class="lang-zh">AI驱动的有趣性格测试</span>
+                    <span class="lang-es">Tests de personalidad divertidos con IA</span>
                 </p>
                 <p class="text-white/70 mb-10 max-w-2xl mx-auto text-lg">
                     <span class="lang-en">Explore our collection of AI-powered tests to learn more about yourself. Get instant insights, share with friends, and have fun!</span>
                     <span class="lang-ko">AI 테스트 컬렉션으로 자신에 대해 더 알아보세요. 즉시 결과를 확인하고, 친구들과 공유하며, 재미있게 즐기세요!</span>
+                    <span class="lang-ja">AIテストで自分をもっと知りましょう。すぐに結果を確認し、友達とシェアして楽しもう！</span>
+                    <span class="lang-zh">探索我们的AI测试系列，更好地了解自己。即时获取结果，与朋友分享，享受乐趣！</span>
+                    <span class="lang-es">Explora nuestra colección de tests con IA para conocerte mejor. ¡Obtén resultados al instante, comparte con amigos y diviértete!</span>
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="/life-summary/" class="bg-white text-primary font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-lg shadow-lg">
                         <span class="lang-en">&#10024; Try Life Summary</span>
                         <span class="lang-ko">&#10024; 인생 요약 테스트</span>
+                        <span class="lang-ja">&#10024; ライフサマリー</span>
+                        <span class="lang-zh">&#10024; 人生总结</span>
+                        <span class="lang-es">&#10024; Resumen de Vida</span>
                     </a>
                     <a href="/age-calculator/" class="bg-white/20 text-white font-semibold py-4 px-8 rounded-lg hover:bg-white/30 transition text-lg border-2 border-white/50">
                         <span class="lang-en">&#127874; Try Age Calculator</span>
                         <span class="lang-ko">&#127874; 나이 계산기 테스트</span>
+                        <span class="lang-ja">&#127874; 年齢計算機</span>
+                        <span class="lang-zh">&#127874; 年龄计算器</span>
+                        <span class="lang-es">&#127874; Calculadora de Edad</span>
                     </a>
                 </div>
 
@@ -282,6 +348,9 @@
                     <span class="text-2xl">&#127775;</span>
                     <span class="lang-en">Over 1,000,000 tests completed worldwide</span>
                     <span class="lang-ko">전 세계 1,000,000개 이상 테스트 완료</span>
+                    <span class="lang-ja">世界中で100万回以上のテスト完了</span>
+                    <span class="lang-zh">全球完成超过100万次测试</span>
+                    <span class="lang-es">Más de 1,000,000 tests completados en todo el mundo</span>
                 </div>
             </div>
         </section>
@@ -292,10 +361,16 @@
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
                     <span class="lang-en">Choose Your <span class="gradient-text">AI Test</span></span>
                     <span class="lang-ko"><span class="gradient-text">AI 테스트</span>를 선택하세요</span>
+                    <span class="lang-ja"><span class="gradient-text">AIテスト</span>を選ぼう</span>
+                    <span class="lang-zh">选择你的<span class="gradient-text">AI测试</span></span>
+                    <span class="lang-es">Elige tu <span class="gradient-text">Test de IA</span></span>
                 </h2>
                 <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
                     <span class="lang-en">Each test offers unique insights about different aspects of your personality and life</span>
                     <span class="lang-ko">각 테스트는 당신의 성격과 삶의 다양한 측면에 대한 독특한 인사이트를 제공합니다</span>
+                    <span class="lang-ja">各テストはあなたの性格と人生のさまざまな側面についてユニークな洞察を提供します</span>
+                    <span class="lang-zh">每个测试都能为您提供关于性格和生活各方面的独特见解</span>
+                    <span class="lang-es">Cada test ofrece perspectivas únicas sobre diferentes aspectos de tu personalidad y vida</span>
                 </p>
 
                 <div class="grid md:grid-cols-2 gap-8">
@@ -305,10 +380,16 @@
                         <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">
                             <span class="lang-en">AI Life Summary</span>
                             <span class="lang-ko">AI 인생 요약</span>
+                            <span class="lang-ja">AI ライフサマリー</span>
+                            <span class="lang-zh">AI 人生总结</span>
+                            <span class="lang-es">Resumen de Vida IA</span>
                         </h3>
                         <p class="text-gray-600 mb-4">
                             <span class="lang-en">Get your personalized life summary in one AI-generated sentence. Enter your birthday and discover what makes you unique.</span>
                             <span class="lang-ko">AI가 생성한 한 문장으로 나만의 인생 요약을 받아보세요. 생년월일을 입력하고 당신을 특별하게 만드는 것을 발견하세요.</span>
+                            <span class="lang-ja">AIが生成した一文であなただけの人生サマリーを。誕生日を入力して、あなたを特別にするものを発見しましょう。</span>
+                            <span class="lang-zh">用AI生成的一句话获取您的个性化人生总结。输入您的生日，发现是什么让您与众不同。</span>
+                            <span class="lang-es">Obtén tu resumen de vida personalizado en una frase generada por IA. Ingresa tu fecha de nacimiento y descubre qué te hace único.</span>
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mb-6">
                             <li class="flex items-center space-x-2">
@@ -317,6 +398,9 @@
                                 </svg>
                                 <span class="lang-en">Instant personalized results</span>
                                 <span class="lang-ko">즉시 맞춤형 결과</span>
+                                <span class="lang-ja">即座にパーソナライズされた結果</span>
+                                <span class="lang-zh">即时个性化结果</span>
+                                <span class="lang-es">Resultados personalizados al instante</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -324,6 +408,9 @@
                                 </svg>
                                 <span class="lang-en">Shareable image generator</span>
                                 <span class="lang-ko">공유 가능한 이미지 생성</span>
+                                <span class="lang-ja">共有可能な画像生成</span>
+                                <span class="lang-zh">可分享的图片生成</span>
+                                <span class="lang-es">Generador de imágenes compartibles</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -331,11 +418,17 @@
                                 </svg>
                                 <span class="lang-en">5 languages supported</span>
                                 <span class="lang-ko">5개 언어 지원</span>
+                                <span class="lang-ja">5ヶ国語対応</span>
+                                <span class="lang-zh">支持5种语言</span>
+                                <span class="lang-es">5 idiomas soportados</span>
                             </li>
                         </ul>
                         <span class="inline-flex items-center space-x-2 gradient-bg text-white font-semibold py-3 px-6 rounded-lg">
                             <span class="lang-en">Start Test</span>
                             <span class="lang-ko">테스트 시작</span>
+                            <span class="lang-ja">テスト開始</span>
+                            <span class="lang-zh">开始测试</span>
+                            <span class="lang-es">Iniciar Test</span>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
@@ -354,10 +447,16 @@
                         <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">
                             <span class="lang-en">AI Age Calculator</span>
                             <span class="lang-ko">AI 나이 계산기</span>
+                            <span class="lang-ja">AI 年齢計算機</span>
+                            <span class="lang-zh">AI 年龄计算器</span>
+                            <span class="lang-es">Calculadora de Edad IA</span>
                         </h3>
                         <p class="text-gray-600 mb-4">
                             <span class="lang-en">Discover your TRUE age! Compare your Real Age, Mental Age, and Energy Age to see how young or old you really are.</span>
                             <span class="lang-ko">진짜 나이를 발견하세요! 실제 나이, 정신 나이, 에너지 나이를 비교하여 얼마나 젊거나 늙었는지 확인하세요.</span>
+                            <span class="lang-ja">本当の年齢を発見！実年齢、精神年齢、エネルギー年齢を比較して、あなたが本当にどれだけ若いか見てみましょう。</span>
+                            <span class="lang-zh">发现你的真实年龄！比较实际年龄、心理年龄和能量年龄，看看你到底有多年轻。</span>
+                            <span class="lang-es">¡Descubre tu VERDADERA edad! Compara tu Edad Real, Edad Mental y Edad de Energía para ver qué tan joven eres realmente.</span>
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mb-6">
                             <li class="flex items-center space-x-2">
@@ -366,6 +465,9 @@
                                 </svg>
                                 <span class="lang-en">3 different age calculations</span>
                                 <span class="lang-ko">3가지 다른 나이 계산</span>
+                                <span class="lang-ja">3種類の年齢計算</span>
+                                <span class="lang-zh">3种不同的年龄计算</span>
+                                <span class="lang-es">3 cálculos de edad diferentes</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -373,6 +475,9 @@
                                 </svg>
                                 <span class="lang-en">7 lifestyle questions</span>
                                 <span class="lang-ko">7개 라이프스타일 질문</span>
+                                <span class="lang-ja">7つのライフスタイル質問</span>
+                                <span class="lang-zh">7个生活方式问题</span>
+                                <span class="lang-es">7 preguntas de estilo de vida</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -380,11 +485,17 @@
                                 </svg>
                                 <span class="lang-en">Compare with friends</span>
                                 <span class="lang-ko">친구와 비교하기</span>
+                                <span class="lang-ja">友達と比較</span>
+                                <span class="lang-zh">与朋友比较</span>
+                                <span class="lang-es">Compara con amigos</span>
                             </li>
                         </ul>
                         <span class="inline-flex items-center space-x-2 age-gradient-bg text-white font-semibold py-3 px-6 rounded-lg">
                             <span class="lang-en">Start Test</span>
                             <span class="lang-ko">테스트 시작</span>
+                            <span class="lang-ja">テスト開始</span>
+                            <span class="lang-zh">开始测试</span>
+                            <span class="lang-es">Iniciar Test</span>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
@@ -397,6 +508,9 @@
                     <h3 class="font-heading font-semibold text-xl text-center mb-6 text-gray-600">
                         <span class="lang-en">Coming Soon</span>
                         <span class="lang-ko">출시 예정</span>
+                        <span class="lang-ja">近日公開</span>
+                        <span class="lang-zh">即将推出</span>
+                        <span class="lang-es">Próximamente</span>
                     </h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
@@ -404,6 +518,9 @@
                             <p class="font-medium text-sm mt-2">
                                 <span class="lang-en">Love Age</span>
                                 <span class="lang-ko">사랑 나이</span>
+                                <span class="lang-ja">恋愛年齢</span>
+                                <span class="lang-zh">爱情年龄</span>
+                                <span class="lang-es">Edad del Amor</span>
                             </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
@@ -411,6 +528,9 @@
                             <p class="font-medium text-sm mt-2">
                                 <span class="lang-en">Work Age</span>
                                 <span class="lang-ko">직장 나이</span>
+                                <span class="lang-ja">仕事年齢</span>
+                                <span class="lang-zh">工作年龄</span>
+                                <span class="lang-es">Edad Laboral</span>
                             </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
@@ -418,6 +538,9 @@
                             <p class="font-medium text-sm mt-2">
                                 <span class="lang-en">Health Age</span>
                                 <span class="lang-ko">건강 나이</span>
+                                <span class="lang-ja">健康年齢</span>
+                                <span class="lang-zh">健康年龄</span>
+                                <span class="lang-es">Edad de Salud</span>
                             </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
@@ -425,6 +548,9 @@
                             <p class="font-medium text-sm mt-2">
                                 <span class="lang-en">Tech Age</span>
                                 <span class="lang-ko">테크 나이</span>
+                                <span class="lang-ja">テック年齢</span>
+                                <span class="lang-zh">科技年龄</span>
+                                <span class="lang-es">Edad Tech</span>
                             </p>
                         </div>
                     </div>
@@ -450,10 +576,16 @@
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
                     <span class="lang-en">How It <span class="gradient-text">Works</span></span>
                     <span class="lang-ko"><span class="gradient-text">이용 방법</span></span>
+                    <span class="lang-ja"><span class="gradient-text">使い方</span></span>
+                    <span class="lang-zh"><span class="gradient-text">使用方法</span></span>
+                    <span class="lang-es">Cómo <span class="gradient-text">Funciona</span></span>
                 </h2>
                 <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
                     <span class="lang-en">Get your personalized results in just a few simple steps</span>
                     <span class="lang-ko">간단한 몇 단계로 맞춤형 결과를 받아보세요</span>
+                    <span class="lang-ja">簡単なステップでパーソナライズされた結果を取得</span>
+                    <span class="lang-zh">只需几个简单步骤即可获得个性化结果</span>
+                    <span class="lang-es">Obtén tus resultados personalizados en solo unos simples pasos</span>
                 </p>
 
                 <div class="grid md:grid-cols-4 gap-8">
@@ -464,10 +596,16 @@
                         <h3 class="font-heading font-semibold text-lg mb-2">
                             <span class="lang-en">Choose a Test</span>
                             <span class="lang-ko">테스트 선택</span>
+                            <span class="lang-ja">テストを選択</span>
+                            <span class="lang-zh">选择测试</span>
+                            <span class="lang-es">Elige un Test</span>
                         </h3>
                         <p class="text-gray-600 text-sm">
                             <span class="lang-en">Select from our collection of AI-powered personality tests</span>
                             <span class="lang-ko">AI 기반 성격 테스트 컬렉션에서 선택하세요</span>
+                            <span class="lang-ja">AI搭載の性格テストコレクションから選択</span>
+                            <span class="lang-zh">从我们的AI性格测试系列中选择</span>
+                            <span class="lang-es">Selecciona de nuestra colección de tests de personalidad con IA</span>
                         </p>
                     </div>
                     <div class="text-center">
@@ -477,10 +615,16 @@
                         <h3 class="font-heading font-semibold text-lg mb-2">
                             <span class="lang-en">Answer Questions</span>
                             <span class="lang-ko">질문에 답하기</span>
+                            <span class="lang-ja">質問に答える</span>
+                            <span class="lang-zh">回答问题</span>
+                            <span class="lang-es">Responde Preguntas</span>
                         </h3>
                         <p class="text-gray-600 text-sm">
                             <span class="lang-en">Provide your information and answer a few fun questions</span>
                             <span class="lang-ko">정보를 입력하고 재미있는 질문에 답하세요</span>
+                            <span class="lang-ja">情報を入力し、いくつかの楽しい質問に答える</span>
+                            <span class="lang-zh">输入您的信息并回答几个有趣的问题</span>
+                            <span class="lang-es">Proporciona tu información y responde algunas preguntas divertidas</span>
                         </p>
                     </div>
                     <div class="text-center">
@@ -490,10 +634,16 @@
                         <h3 class="font-heading font-semibold text-lg mb-2">
                             <span class="lang-en">Get Results</span>
                             <span class="lang-ko">결과 확인</span>
+                            <span class="lang-ja">結果を取得</span>
+                            <span class="lang-zh">获取结果</span>
+                            <span class="lang-es">Obtén Resultados</span>
                         </h3>
                         <p class="text-gray-600 text-sm">
                             <span class="lang-en">Our AI analyzes your responses and generates unique insights</span>
                             <span class="lang-ko">AI가 응답을 분석하고 독특한 인사이트를 생성합니다</span>
+                            <span class="lang-ja">AIがあなたの回答を分析し、ユニークな洞察を生成</span>
+                            <span class="lang-zh">我们的AI分析您的回答并生成独特的见解</span>
+                            <span class="lang-es">Nuestra IA analiza tus respuestas y genera perspectivas únicas</span>
                         </p>
                     </div>
                     <div class="text-center">
@@ -503,10 +653,16 @@
                         <h3 class="font-heading font-semibold text-lg mb-2">
                             <span class="lang-en">Share & Compare</span>
                             <span class="lang-ko">공유 및 비교</span>
+                            <span class="lang-ja">共有・比較</span>
+                            <span class="lang-zh">分享和比较</span>
+                            <span class="lang-es">Comparte y Compara</span>
                         </h3>
                         <p class="text-gray-600 text-sm">
                             <span class="lang-en">Download images, share with friends, and compare results</span>
                             <span class="lang-ko">이미지 다운로드, 친구와 공유, 결과 비교하기</span>
+                            <span class="lang-ja">画像をダウンロード、友達と共有、結果を比較</span>
+                            <span class="lang-zh">下载图片，与朋友分享，比较结果</span>
+                            <span class="lang-es">Descarga imágenes, comparte con amigos y compara resultados</span>
                         </p>
                     </div>
                 </div>
@@ -519,6 +675,9 @@
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-12">
                     <span class="lang-en">Why <span class="gradient-text">AI Test Lab</span>?</span>
                     <span class="lang-ko">왜 <span class="gradient-text">AI Test Lab</span>인가요?</span>
+                    <span class="lang-ja">なぜ<span class="gradient-text">AI Test Lab</span>？</span>
+                    <span class="lang-zh">为什么选择<span class="gradient-text">AI Test Lab</span>？</span>
+                    <span class="lang-es">¿Por qué <span class="gradient-text">AI Test Lab</span>?</span>
                 </h2>
 
                 <div class="grid md:grid-cols-3 gap-8">
@@ -527,10 +686,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">Instant Results</span>
                             <span class="lang-ko">즉시 결과</span>
+                            <span class="lang-ja">即座に結果</span>
+                            <span class="lang-zh">即时结果</span>
+                            <span class="lang-es">Resultados Instantáneos</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">Get your personalized results in seconds. No waiting, no email required.</span>
                             <span class="lang-ko">몇 초 만에 맞춤형 결과를 받아보세요. 기다림도, 이메일도 필요 없습니다.</span>
+                            <span class="lang-ja">数秒でパーソナライズされた結果を取得。待ち時間なし、メール不要。</span>
+                            <span class="lang-zh">几秒钟内获得个性化结果。无需等待，无需邮箱。</span>
+                            <span class="lang-es">Obtén resultados personalizados en segundos. Sin esperas, sin email.</span>
                         </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -538,10 +703,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">5 Languages</span>
                             <span class="lang-ko">5개 언어 지원</span>
+                            <span class="lang-ja">5ヶ国語対応</span>
+                            <span class="lang-zh">5种语言</span>
+                            <span class="lang-es">5 Idiomas</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">Available in English, Korean, Japanese, Chinese, and Spanish.</span>
                             <span class="lang-ko">영어, 한국어, 일본어, 중국어, 스페인어로 이용 가능합니다.</span>
+                            <span class="lang-ja">英語、韓国語、日本語、中国語、スペイン語で利用可能。</span>
+                            <span class="lang-zh">支持英语、韩语、日语、中文和西班牙语。</span>
+                            <span class="lang-es">Disponible en inglés, coreano, japonés, chino y español.</span>
                         </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -549,10 +720,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">Privacy First</span>
                             <span class="lang-ko">개인정보 보호</span>
+                            <span class="lang-ja">プライバシー重視</span>
+                            <span class="lang-zh">隐私优先</span>
+                            <span class="lang-es">Privacidad Primero</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">Your data is processed locally. We don't store personal information.</span>
                             <span class="lang-ko">데이터는 로컬에서 처리됩니다. 개인정보를 저장하지 않습니다.</span>
+                            <span class="lang-ja">データはローカルで処理。個人情報は保存しません。</span>
+                            <span class="lang-zh">数据在本地处理。我们不存储个人信息。</span>
+                            <span class="lang-es">Tus datos se procesan localmente. No almacenamos información personal.</span>
                         </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -560,10 +737,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">Shareable Images</span>
                             <span class="lang-ko">공유 가능한 이미지</span>
+                            <span class="lang-ja">共有可能な画像</span>
+                            <span class="lang-zh">可分享的图片</span>
+                            <span class="lang-es">Imágenes Compartibles</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">Create beautiful images of your results to share on social media.</span>
                             <span class="lang-ko">소셜 미디어에 공유할 수 있는 아름다운 결과 이미지를 만드세요.</span>
+                            <span class="lang-ja">SNSで共有できる美しい結果画像を作成。</span>
+                            <span class="lang-zh">创建精美的结果图片分享到社交媒体。</span>
+                            <span class="lang-es">Crea hermosas imágenes de tus resultados para compartir en redes sociales.</span>
                         </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -571,10 +754,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">Mobile Friendly</span>
                             <span class="lang-ko">모바일 최적화</span>
+                            <span class="lang-ja">モバイル対応</span>
+                            <span class="lang-zh">移动端友好</span>
+                            <span class="lang-es">Compatible con Móviles</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">Fully responsive design that works perfectly on any device.</span>
                             <span class="lang-ko">모든 기기에서 완벽하게 작동하는 반응형 디자인입니다.</span>
+                            <span class="lang-ja">どのデバイスでも完璧に動作するレスポンシブデザイン。</span>
+                            <span class="lang-zh">完全响应式设计，在任何设备上完美运行。</span>
+                            <span class="lang-es">Diseño totalmente responsivo que funciona perfectamente en cualquier dispositivo.</span>
                         </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -582,10 +771,16 @@
                         <h3 class="font-heading font-semibold text-xl mb-2">
                             <span class="lang-en">100% Free</span>
                             <span class="lang-ko">100% 무료</span>
+                            <span class="lang-ja">100%無料</span>
+                            <span class="lang-zh">100%免费</span>
+                            <span class="lang-es">100% Gratis</span>
                         </h3>
                         <p class="text-gray-600">
                             <span class="lang-en">All our tests are completely free to use. No hidden charges.</span>
                             <span class="lang-ko">모든 테스트는 완전 무료입니다. 숨겨진 비용이 없습니다.</span>
+                            <span class="lang-ja">すべてのテストは完全無料。隠れた料金はありません。</span>
+                            <span class="lang-zh">所有测试完全免费使用。没有隐藏费用。</span>
+                            <span class="lang-es">Todos nuestros tests son completamente gratis. Sin cargos ocultos.</span>
                         </p>
                     </div>
                 </div>
@@ -598,19 +793,31 @@
                 <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
                     <span class="lang-en">Ready to <span class="gradient-text">Discover Yourself</span>?</span>
                     <span class="lang-ko"><span class="gradient-text">나를 발견</span>할 준비가 되셨나요?</span>
+                    <span class="lang-ja"><span class="gradient-text">自分を発見</span>する準備はできましたか？</span>
+                    <span class="lang-zh">准备好<span class="gradient-text">发现自己</span>了吗？</span>
+                    <span class="lang-es">¿Listo para <span class="gradient-text">Descubrirte</span>?</span>
                 </h2>
                 <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
                     <span class="lang-en">Start with our most popular test and see what AI reveals about you!</span>
                     <span class="lang-ko">가장 인기 있는 테스트로 시작하여 AI가 당신에 대해 무엇을 알려주는지 확인하세요!</span>
+                    <span class="lang-ja">人気のテストから始めて、AIがあなたについて何を明らかにするか見てみましょう！</span>
+                    <span class="lang-zh">从我们最受欢迎的测试开始，看看AI能揭示关于你的什么！</span>
+                    <span class="lang-es">¡Comienza con nuestro test más popular y descubre lo que la IA revela sobre ti!</span>
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="/life-summary/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
                         <span class="lang-en">&#10024; Try AI Life Summary</span>
                         <span class="lang-ko">&#10024; AI 인생 요약 테스트</span>
+                        <span class="lang-ja">&#10024; AI ライフサマリー</span>
+                        <span class="lang-zh">&#10024; AI 人生总结</span>
+                        <span class="lang-es">&#10024; Resumen de Vida IA</span>
                     </a>
                     <a href="/age-calculator/" class="age-gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
                         <span class="lang-en">&#127874; Try Age Calculator</span>
                         <span class="lang-ko">&#127874; 나이 계산기 테스트</span>
+                        <span class="lang-ja">&#127874; 年齢計算機</span>
+                        <span class="lang-zh">&#127874; 年龄计算器</span>
+                        <span class="lang-es">&#127874; Calculadora de Edad</span>
                     </a>
                 </div>
             </div>
@@ -629,6 +836,9 @@
                     <p class="text-gray-400 text-sm">
                         <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
                         <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
+                        <span class="lang-ja">AIによる性格テストで自分を発見。楽しく、洞察力があり、無料です。</span>
+                        <span class="lang-zh">通过AI性格测试发现自己。有趣、有洞察力、免费。</span>
+                        <span class="lang-es">Descúbrete con tests de personalidad con IA. Divertido, perspicaz y gratis.</span>
                     </p>
                 </div>
 
@@ -636,15 +846,24 @@
                     <h4 class="font-semibold text-white mb-4">
                         <span class="lang-en">Tests</span>
                         <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">Tests</span>
                     </h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/life-summary/" class="hover:text-white transition">
                             <span class="lang-en">AI Life Summary</span>
                             <span class="lang-ko">AI 인생 요약</span>
+                            <span class="lang-ja">AI ライフサマリー</span>
+                            <span class="lang-zh">AI 人生总结</span>
+                            <span class="lang-es">Resumen de Vida IA</span>
                         </a></li>
                         <li><a href="/age-calculator/" class="hover:text-white transition">
                             <span class="lang-en">AI Age Calculator</span>
                             <span class="lang-ko">AI 나이 계산기</span>
+                            <span class="lang-ja">AI 年齢計算機</span>
+                            <span class="lang-zh">AI 年龄计算器</span>
+                            <span class="lang-es">Calculadora de Edad IA</span>
                         </a></li>
                     </ul>
                 </div>
@@ -653,23 +872,38 @@
                     <h4 class="font-semibold text-white mb-4">
                         <span class="lang-en">Quick Links</span>
                         <span class="lang-ko">빠른 링크</span>
+                        <span class="lang-ja">クイックリンク</span>
+                        <span class="lang-zh">快速链接</span>
+                        <span class="lang-es">Enlaces Rápidos</span>
                     </h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/" class="hover:text-white transition">
                             <span class="lang-en">Home</span>
                             <span class="lang-ko">홈</span>
+                            <span class="lang-ja">ホーム</span>
+                            <span class="lang-zh">首页</span>
+                            <span class="lang-es">Inicio</span>
                         </a></li>
                         <li><a href="/about.html" class="hover:text-white transition">
                             <span class="lang-en">About</span>
                             <span class="lang-ko">소개</span>
+                            <span class="lang-ja">について</span>
+                            <span class="lang-zh">关于</span>
+                            <span class="lang-es">Acerca de</span>
                         </a></li>
                         <li><a href="/blog.html" class="hover:text-white transition">
                             <span class="lang-en">Blog</span>
                             <span class="lang-ko">블로그</span>
+                            <span class="lang-ja">ブログ</span>
+                            <span class="lang-zh">博客</span>
+                            <span class="lang-es">Blog</span>
                         </a></li>
                         <li><a href="/contact.html" class="hover:text-white transition">
                             <span class="lang-en">Contact</span>
                             <span class="lang-ko">문의</span>
+                            <span class="lang-ja">お問い合わせ</span>
+                            <span class="lang-zh">联系</span>
+                            <span class="lang-es">Contacto</span>
                         </a></li>
                     </ul>
                 </div>
@@ -678,25 +912,43 @@
                     <h4 class="font-semibold text-white mb-4">
                         <span class="lang-en">Legal</span>
                         <span class="lang-ko">법적 정보</span>
+                        <span class="lang-ja">法的情報</span>
+                        <span class="lang-zh">法律信息</span>
+                        <span class="lang-es">Legal</span>
                     </h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/privacy-policy.html" class="hover:text-white transition">
                             <span class="lang-en">Privacy Policy</span>
                             <span class="lang-ko">개인정보처리방침</span>
+                            <span class="lang-ja">プライバシーポリシー</span>
+                            <span class="lang-zh">隐私政策</span>
+                            <span class="lang-es">Política de Privacidad</span>
                         </a></li>
                         <li><a href="/terms-of-service.html" class="hover:text-white transition">
                             <span class="lang-en">Terms of Service</span>
                             <span class="lang-ko">이용약관</span>
+                            <span class="lang-ja">利用規約</span>
+                            <span class="lang-zh">服务条款</span>
+                            <span class="lang-es">Términos de Servicio</span>
                         </a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span></p>
+                <p>&copy; 2025 AI Test Lab.
+                    <span class="lang-en">All rights reserved.</span>
+                    <span class="lang-ko">모든 권리 보유.</span>
+                    <span class="lang-ja">全著作権所有。</span>
+                    <span class="lang-zh">版权所有。</span>
+                    <span class="lang-es">Todos los derechos reservados.</span>
+                </p>
                 <p class="mt-2">
                     <span class="lang-en">All tests are for entertainment purposes only.</span>
                     <span class="lang-ko">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</span>
+                    <span class="lang-ja">すべてのテストはエンターテインメント目的のみです。</span>
+                    <span class="lang-zh">所有测试仅供娱乐目的。</span>
+                    <span class="lang-es">Todos los tests son solo con fines de entretenimiento.</span>
                 </p>
             </div>
         </div>
