@@ -108,6 +108,24 @@
         .progress-bar {
             transition: width 0.5s ease;
         }
+
+        /* Language-based content switching */
+        html[lang="ko"] .lang-en { display: none !important; }
+        html[lang="ko"] .lang-ko { display: block !important; }
+        html[lang="en"] .lang-ko { display: none !important; }
+        html[lang="en"] .lang-en { display: block !important; }
+        html:not([lang="ko"]) .lang-ko { display: none !important; }
+        html:not([lang="ko"]) .lang-en { display: block !important; }
+        .lang-ko { display: none; }
+        .lang-en { display: block; }
+        /* For inline elements */
+        html[lang="ko"] span.lang-en { display: none !important; }
+        html[lang="ko"] span.lang-ko { display: inline !important; }
+        html[lang="en"] span.lang-ko { display: none !important; }
+        html[lang="en"] span.lang-en { display: inline !important; }
+        html:not([lang="ko"]) span.lang-ko { display: none !important; }
+        span.lang-ko { display: none; }
+        span.lang-en { display: inline; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -209,16 +227,13 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
-                    <span>Back to Tests</span>
+                    <span data-i18n="age.back_to_tests">Back to Tests</span>
                 </a>
                 <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                    &#127874; AI Age Calculator
+                    &#127874; <span data-i18n="age.title">AI Age Calculator</span>
                 </h1>
-                <p class="text-lg md:text-xl text-white/90">
+                <p class="text-lg md:text-xl text-white/90" data-i18n="age.subtitle">
                     Discover your TRUE age - Real vs Mental vs Energy
-                </p>
-                <p class="text-white/70 mt-2 text-sm">
-                    &#45817;&#49888;&#51032; &#51652;&#51676; &#45208;&#51060;&#47484; &#48156;&#44204;&#54616;&#49464;&#50836; - &#49892;&#51228; vs &#51221;&#49888; vs &#50640;&#45320;&#51648;
                 </p>
             </div>
         </section>
@@ -227,16 +242,16 @@
         <div class="bg-white border-b sticky top-[72px] z-40">
             <div class="max-w-4xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-gray-600">Progress</span>
-                    <span id="progress-text" class="text-sm font-medium text-age-primary">Step 1 of 3</span>
+                    <span class="text-sm font-medium text-gray-600" data-i18n="age.progress">Progress</span>
+                    <span id="progress-text" class="text-sm font-medium text-age-primary"></span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-3">
                     <div id="progress-bar" class="progress-bar age-gradient-bg h-3 rounded-full" style="width: 33%"></div>
                 </div>
                 <div class="flex justify-between mt-2 text-xs text-gray-500">
-                    <span id="step1-label" class="text-age-primary font-medium">Basic Info</span>
-                    <span id="step2-label">Lifestyle</span>
-                    <span id="step3-label">Mindset</span>
+                    <span id="step1-label" class="text-age-primary font-medium" data-i18n="age.step1">Basic Info</span>
+                    <span id="step2-label" data-i18n="age.step2">Lifestyle</span>
+                    <span id="step3-label" data-i18n="age.step3">Mindset</span>
                 </div>
             </div>
         </div>
@@ -251,15 +266,14 @@
                         <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#128197;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">Basic Information</h2>
-                                <p class="text-gray-500 text-sm mt-1">&#44592;&#48376; &#51221;&#48372;</p>
+                                <h2 class="font-heading text-2xl font-bold mt-2" data-i18n="age.basic_info">Basic Information</h2>
                             </div>
 
                             <div class="space-y-6">
                                 <!-- Birthday -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
-                                        Date of Birth <span class="text-gray-400">(&#49373;&#45380;&#50900;&#51068;)</span>
+                                        <span data-i18n="age.dob">Date of Birth</span>
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <div class="grid grid-cols-3 gap-3">
@@ -267,28 +281,28 @@
                                             <input type="number" id="birth-year" name="birth-year"
                                                 placeholder="YYYY" min="1920" max="2025" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center">Year (&#45380;)</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.year">Year</p>
                                         </div>
                                         <div>
                                             <input type="number" id="birth-month" name="birth-month"
                                                 placeholder="MM" min="1" max="12" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center">Month (&#50900;)</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.month">Month</p>
                                         </div>
                                         <div>
                                             <input type="number" id="birth-day" name="birth-day"
                                                 placeholder="DD" min="1" max="31" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center">Day (&#51068;)</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.day">Day</p>
                                         </div>
                                     </div>
-                                    <p id="birthday-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid date of birth.</p>
+                                    <p id="birthday-error" class="text-red-500 text-sm mt-2 hidden" data-i18n="age.birthday_error">Please enter a valid date of birth.</p>
                                 </div>
                             </div>
 
                             <button type="button" onclick="goToStep(2)"
                                 class="w-full mt-8 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
-                                Next: Lifestyle Questions &#8594;
+                                <span data-i18n="age.next_lifestyle">Next: Lifestyle Questions</span> &#8594;
                             </button>
                         </div>
                     </div>
@@ -298,41 +312,45 @@
                         <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#127968;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">Lifestyle Questions</h2>
-                                <p class="text-gray-500 text-sm mt-1">&#46972;&#51060;&#54532;&#49828;&#53440;&#51068; &#51656;&#47928; (4&#47928;&#54637;)</p>
+                                <h2 class="font-heading text-2xl font-bold mt-2">
+                                    <span class="lang-en">Lifestyle Questions</span>
+                                    <span class="lang-ko">생활 습관 질문</span>
+                                </h2>
                             </div>
 
                             <!-- Q1: Weekend Wake-up Time -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q1. What time do you usually wake up on weekends?</p>
-                                <p class="text-sm text-gray-500 mb-4">&#51452;&#47568; &#50500;&#52840;&#50640; &#48372;&#53685; &#47751; &#49884;&#50640; &#51068;&#50612;&#45208;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q1. What time do you usually wake up on weekends?</span>
+                                    <span class="lang-ko">Q1. 주말 아침에 보통 몇 시에 일어나시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q1" value="early" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Before 7 AM</span>
-                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 7&#49884; &#51060;&#51204;</span>
+                                            <span class="font-medium lang-en">Before 7 AM</span>
+                                            <span class="font-medium lang-ko">오전 7시 이전</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q1" value="morning">
                                         <div class="ml-3">
-                                            <span class="font-medium">7-9 AM</span>
-                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 7-9&#49884;</span>
+                                            <span class="font-medium lang-en">7-9 AM</span>
+                                            <span class="font-medium lang-ko">오전 7-9시</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q1" value="late">
                                         <div class="ml-3">
-                                            <span class="font-medium">9-11 AM</span>
-                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 9-11&#49884;</span>
+                                            <span class="font-medium lang-en">9-11 AM</span>
+                                            <span class="font-medium lang-ko">오전 9-11시</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q1" value="noon">
                                         <div class="ml-3">
-                                            <span class="font-medium">After 11 AM</span>
-                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 11&#49884; &#51060;&#54980;</span>
+                                            <span class="font-medium lang-en">After 11 AM</span>
+                                            <span class="font-medium lang-ko">오전 11시 이후</span>
                                         </div>
                                     </label>
                                 </div>
@@ -340,35 +358,37 @@
 
                             <!-- Q2: New Technology Adoption -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q2. How do you react to new apps or technology?</p>
-                                <p class="text-sm text-gray-500 mb-4">&#49352;&#47196;&#50868; &#50545;&#51060;&#45208; &#44592;&#49696;&#50640; &#50612;&#46523;&#44172; &#48152;&#51025;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q2. How do you react to new apps or technology?</span>
+                                    <span class="lang-ko">Q2. 새로운 앱이나 기술에 어떻게 반응하시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q2" value="eager" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Try immediately!</span>
-                                            <span class="text-gray-500 text-sm block">&#48148;&#47196; &#49324;&#50857;&#54644;&#48388;!</span>
+                                            <span class="font-medium lang-en">Try immediately!</span>
+                                            <span class="font-medium lang-ko">바로 사용해봄!</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q2" value="curious">
                                         <div class="ml-3">
-                                            <span class="font-medium">Wait for reviews first</span>
-                                            <span class="text-gray-500 text-sm block">&#47532;&#48624; &#48372;&#44256; &#44208;&#51221;</span>
+                                            <span class="font-medium lang-en">Wait for reviews first</span>
+                                            <span class="font-medium lang-ko">리뷰 보고 결정</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q2" value="cautious">
                                         <div class="ml-3">
-                                            <span class="font-medium">Use if necessary</span>
-                                            <span class="text-gray-500 text-sm block">&#54596;&#50836;&#54616;&#47732; &#49324;&#50857;</span>
+                                            <span class="font-medium lang-en">Use if necessary</span>
+                                            <span class="font-medium lang-ko">필요하면 사용</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q2" value="resistant">
                                         <div class="ml-3">
-                                            <span class="font-medium">Prefer what I know</span>
-                                            <span class="text-gray-500 text-sm block">&#51061;&#49689;&#54620; &#44163;&#51060; &#51339;&#50500;</span>
+                                            <span class="font-medium lang-en">Prefer what I know</span>
+                                            <span class="font-medium lang-ko">익숙한 것이 좋아</span>
                                         </div>
                                     </label>
                                 </div>
@@ -376,35 +396,37 @@
 
                             <!-- Q3: Stress Relief -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q3. How do you usually relieve stress?</p>
-                                <p class="text-sm text-gray-500 mb-4">&#49828;&#53944;&#47112;&#49828;&#47484; &#50612;&#46523;&#44172; &#54644;&#49548;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q3. How do you usually relieve stress?</span>
+                                    <span class="lang-ko">Q3. 스트레스를 어떻게 해소하시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q3" value="active" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Exercise / Sports</span>
-                                            <span class="text-gray-500 text-sm block">&#50868;&#46041; / &#49828;&#54252;&#52768;</span>
+                                            <span class="font-medium lang-en">Exercise / Sports</span>
+                                            <span class="font-medium lang-ko">운동 / 스포츠</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q3" value="social">
                                         <div class="ml-3">
-                                            <span class="font-medium">Meet friends</span>
-                                            <span class="text-gray-500 text-sm block">&#52828;&#44396; &#47564;&#45208;&#44592;</span>
+                                            <span class="font-medium lang-en">Meet friends</span>
+                                            <span class="font-medium lang-ko">친구 만나기</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q3" value="passive">
                                         <div class="ml-3">
-                                            <span class="font-medium">Watch TV / Movies</span>
-                                            <span class="text-gray-500 text-sm block">TV / &#50689;&#54868; &#49884;&#52397;</span>
+                                            <span class="font-medium lang-en">Watch TV / Movies</span>
+                                            <span class="font-medium lang-ko">TV / 영화 시청</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q3" value="rest">
                                         <div class="ml-3">
-                                            <span class="font-medium">Sleep / Rest</span>
-                                            <span class="text-gray-500 text-sm block">&#49688;&#47732; / &#55092;&#49885;</span>
+                                            <span class="font-medium lang-en">Sleep / Rest</span>
+                                            <span class="font-medium lang-ko">수면 / 휴식</span>
                                         </div>
                                     </label>
                                 </div>
@@ -412,35 +434,37 @@
 
                             <!-- Q4: 10 Years from Now -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q4. How do you feel about 10 years from now?</p>
-                                <p class="text-sm text-gray-500 mb-4">10&#45380; &#54980; &#48120;&#47000;&#50640; &#45824;&#54644; &#50612;&#46523;&#44172; &#49373;&#44033;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q4. How do you feel about 10 years from now?</span>
+                                    <span class="lang-ko">Q4. 10년 후 미래에 대해 어떻게 생각하시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q4" value="excited" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Excited & Optimistic</span>
-                                            <span class="text-gray-500 text-sm block">&#49444;&#47112;&#44256; &#44592;&#45824;&#46108;&#45796;</span>
+                                            <span class="font-medium lang-en">Excited & Optimistic</span>
+                                            <span class="font-medium lang-ko">설레고 기대된다</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q4" value="neutral">
                                         <div class="ml-3">
-                                            <span class="font-medium">Haven't thought much</span>
-                                            <span class="text-gray-500 text-sm block">&#48324;&#47196; &#49373;&#44033; &#50504; &#54644;&#48388;</span>
+                                            <span class="font-medium lang-en">Haven't thought much</span>
+                                            <span class="font-medium lang-ko">별로 생각 안 해봄</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q4" value="worried">
                                         <div class="ml-3">
-                                            <span class="font-medium">A bit worried</span>
-                                            <span class="text-gray-500 text-sm block">&#51312;&#44552; &#44145;&#51221;&#46108;&#45796;</span>
+                                            <span class="font-medium lang-en">A bit worried</span>
+                                            <span class="font-medium lang-ko">조금 걱정된다</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q4" value="anxious">
                                         <div class="ml-3">
-                                            <span class="font-medium">Quite anxious</span>
-                                            <span class="text-gray-500 text-sm block">&#47566;&#51060; &#48520;&#50504;&#54616;&#45796;</span>
+                                            <span class="font-medium lang-en">Quite anxious</span>
+                                            <span class="font-medium lang-ko">많이 불안하다</span>
                                         </div>
                                     </label>
                                 </div>
@@ -449,11 +473,11 @@
                             <div class="flex gap-3">
                                 <button type="button" onclick="goToStep(1)"
                                     class="flex-1 bg-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg hover:bg-gray-300 transition text-lg">
-                                    &#8592; Back
+                                    &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span>
                                 </button>
                                 <button type="button" onclick="goToStep(3)"
                                     class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
-                                    Next: Mindset &#8594;
+                                    <span class="lang-en">Next: Mindset</span><span class="lang-ko">다음: 마인드셋</span> &#8594;
                                 </button>
                             </div>
                         </div>
@@ -464,41 +488,45 @@
                         <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#129504;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">Mindset Questions</h2>
-                                <p class="text-gray-500 text-sm mt-1">&#47560;&#51064;&#46300;&#49483; &#51656;&#47928; (3&#47928;&#54637;)</p>
+                                <h2 class="font-heading text-2xl font-bold mt-2">
+                                    <span class="lang-en">Mindset Questions</span>
+                                    <span class="lang-ko">마인드셋 질문</span>
+                                </h2>
                             </div>
 
                             <!-- Q5: "Kids these days" -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q5. How often do you say "Kids these days..." or "Back in my day..."?</p>
-                                <p class="text-sm text-gray-500 mb-4">"&#50836;&#51608; &#50528;&#46308;&#51008;..." &#46608;&#45716; "&#50696;&#51204;&#50640;&#45716;..." &#51060;&#47088; &#47568;&#51012; &#50620;&#47560;&#45208; &#51088;&#51452; &#54616;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q5. How often do you say "Kids these days..." or "Back in my day..."?</span>
+                                    <span class="lang-ko">Q5. "요즘 애들은..." 또는 "예전에는..." 이런 말을 얼마나 자주 하시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q5" value="never" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Never</span>
-                                            <span class="text-gray-500 text-sm block">&#44144;&#51032; &#50504; &#54632;</span>
+                                            <span class="font-medium lang-en">Never</span>
+                                            <span class="font-medium lang-ko">거의 안 함</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q5" value="rarely">
                                         <div class="ml-3">
-                                            <span class="font-medium">Occasionally</span>
-                                            <span class="text-gray-500 text-sm block">&#44032;&#45140;</span>
+                                            <span class="font-medium lang-en">Occasionally</span>
+                                            <span class="font-medium lang-ko">가끔</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q5" value="often">
                                         <div class="ml-3">
-                                            <span class="font-medium">Often</span>
-                                            <span class="text-gray-500 text-sm block">&#51088;&#51452;</span>
+                                            <span class="font-medium lang-en">Often</span>
+                                            <span class="font-medium lang-ko">자주</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q5" value="always">
                                         <div class="ml-3">
-                                            <span class="font-medium">All the time</span>
-                                            <span class="text-gray-500 text-sm block">&#47588;&#50864; &#51088;&#51452;</span>
+                                            <span class="font-medium lang-en">All the time</span>
+                                            <span class="font-medium lang-ko">매우 자주</span>
                                         </div>
                                     </label>
                                 </div>
@@ -506,35 +534,37 @@
 
                             <!-- Q6: Late Night Call from Friend -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q6. A friend calls at 11 PM to hang out. Your reaction?</p>
-                                <p class="text-sm text-gray-500 mb-4">&#52828;&#44396;&#44032; &#48164; 11&#49884;&#50640; &#45440;&#51088;&#44256; &#51204;&#54868;&#54616;&#47732;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q6. A friend calls at 11 PM to hang out. Your reaction?</span>
+                                    <span class="lang-ko">Q6. 친구가 밤 11시에 놀자고 전화하면?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q6" value="excited" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">"Let's go!"</span>
-                                            <span class="text-gray-500 text-sm block">"&#44032;&#51088;!"</span>
+                                            <span class="font-medium lang-en">"Let's go!"</span>
+                                            <span class="font-medium lang-ko">"가자!"</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q6" value="maybe">
                                         <div class="ml-3">
-                                            <span class="font-medium">"Depends on tomorrow"</span>
-                                            <span class="text-gray-500 text-sm block">"&#45236;&#51068; &#51068;&#51221;&#50640; &#46384;&#46972;"</span>
+                                            <span class="font-medium lang-en">"Depends on tomorrow"</span>
+                                            <span class="font-medium lang-ko">"내일 일정에 따라"</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q6" value="reluctant">
                                         <div class="ml-3">
-                                            <span class="font-medium">"Too late for me"</span>
-                                            <span class="text-gray-500 text-sm block">"&#45320;&#47924; &#45734;&#50632;&#50612;"</span>
+                                            <span class="font-medium lang-en">"Too late for me"</span>
+                                            <span class="font-medium lang-ko">"너무 늦었어"</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q6" value="asleep">
                                         <div class="ml-3">
-                                            <span class="font-medium">"Already in bed"</span>
-                                            <span class="text-gray-500 text-sm block">"&#51060;&#48120; &#51088;&#44256; &#51080;&#50612;"</span>
+                                            <span class="font-medium lang-en">"Already in bed"</span>
+                                            <span class="font-medium lang-ko">"이미 자고 있어"</span>
                                         </div>
                                     </label>
                                 </div>
@@ -542,35 +572,37 @@
 
                             <!-- Q7: New Year's Resolution -->
                             <div class="mb-8">
-                                <p class="font-medium text-gray-800 mb-1">Q7. Your typical New Year's resolution style?</p>
-                                <p class="text-sm text-gray-500 mb-4">&#49352;&#54644; &#47785;&#54364;&#47484; &#50612;&#46523;&#44172; &#49464;&#50864;&#49884;&#45208;&#50836;?</p>
+                                <p class="font-medium text-gray-800 mb-3">
+                                    <span class="lang-en">Q7. Your typical New Year's resolution style?</span>
+                                    <span class="lang-ko">Q7. 새해 목표를 어떻게 세우시나요?</span>
+                                </p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q7" value="ambitious" required>
                                         <div class="ml-3">
-                                            <span class="font-medium">Big dreams & plans</span>
-                                            <span class="text-gray-500 text-sm block">&#53360; &#44984;&#44284; &#44228;&#54925;</span>
+                                            <span class="font-medium lang-en">Big dreams & plans</span>
+                                            <span class="font-medium lang-ko">큰 꿈과 계획</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q7" value="practical">
                                         <div class="ml-3">
-                                            <span class="font-medium">Small achievable goals</span>
-                                            <span class="text-gray-500 text-sm block">&#49892;&#54788; &#44032;&#45733;&#54620; &#47785;&#54364;</span>
+                                            <span class="font-medium lang-en">Small achievable goals</span>
+                                            <span class="font-medium lang-ko">실현 가능한 목표</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q7" value="none">
                                         <div class="ml-3">
-                                            <span class="font-medium">Don't make resolutions</span>
-                                            <span class="text-gray-500 text-sm block">&#47785;&#54364; &#50504; &#49464;&#50880;</span>
+                                            <span class="font-medium lang-en">Don't make resolutions</span>
+                                            <span class="font-medium lang-ko">목표 안 세움</span>
                                         </div>
                                     </label>
                                     <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
                                         <input type="radio" name="q7" value="same">
                                         <div class="ml-3">
-                                            <span class="font-medium">Same as last year...</span>
-                                            <span class="text-gray-500 text-sm block">&#51089;&#45380;&#44284; &#46608;&#44057;&#51008;...</span>
+                                            <span class="font-medium lang-en">Same as last year...</span>
+                                            <span class="font-medium lang-ko">작년과 똑같은...</span>
                                         </div>
                                     </label>
                                 </div>
@@ -579,11 +611,11 @@
                             <div class="flex gap-3">
                                 <button type="button" onclick="goToStep(2)"
                                     class="flex-1 bg-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg hover:bg-gray-300 transition text-lg">
-                                    &#8592; Back
+                                    &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span>
                                 </button>
                                 <button type="submit"
                                     class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
-                                    &#128302; Calculate My Age
+                                    &#128302; <span class="lang-en">Calculate My Age</span><span class="lang-ko">내 나이 계산하기</span>
                                 </button>
                             </div>
                         </div>
