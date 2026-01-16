@@ -657,6 +657,64 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
-    <script src="/js/i18n.js"></script>
+
+    <!-- Language Switching Script -->
+    <script>
+    (function() {
+        // Get saved language or default to 'en'
+        function getCurrentLang() {
+            return localStorage.getItem('preferredLanguage') || 'en';
+        }
+
+        // Apply language to page
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            // Show/hide elements based on language
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = lang === 'en' ? '' : 'none';
+            });
+            document.querySelectorAll('.lang-ko').forEach(el => {
+                el.style.display = lang === 'ko' ? '' : 'none';
+            });
+
+            // Update language selector display
+            const flagEl = document.getElementById('current-lang-flag');
+            const nameEl = document.getElementById('current-lang-name');
+            if (flagEl && nameEl) {
+                flagEl.textContent = lang === 'ko' ? '🇰🇷' : '🇺🇸';
+                nameEl.textContent = lang === 'ko' ? 'KO' : 'EN';
+            }
+        }
+
+        // Set language and save
+        window.setLanguage = function(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+            applyLanguage(lang);
+
+            // Close dropdown
+            const dropdown = document.getElementById('language-dropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+        };
+
+        // Language dropdown toggle
+        const langSelector = document.getElementById('language-selector');
+        if (langSelector) {
+            langSelector.querySelector('button').addEventListener('click', function(e) {
+                e.stopPropagation();
+                document.getElementById('language-dropdown').classList.toggle('hidden');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            const dropdown = document.getElementById('language-dropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+        });
+
+        // Apply language on page load
+        applyLanguage(getCurrentLang());
+    })();
+    </script>
 </body>
 </html>
