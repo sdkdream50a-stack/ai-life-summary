@@ -60,6 +60,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        /* Prevent word breaking in the middle for CJK languages */
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
