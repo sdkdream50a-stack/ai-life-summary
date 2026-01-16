@@ -64,6 +64,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        /* Language classes - CSS-based switching */
+        .lang-ko { display: none; }
+        html[lang="ko"] .lang-en { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline-flex; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -234,29 +241,53 @@
 
                 <!-- AI Age Calculator Section -->
                 <div class="mb-12">
-                    <h2 class="font-heading text-3xl font-bold mb-6" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI Age Calculator</h2>
+                    <h2 class="font-heading text-3xl font-bold mb-6" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                    </h2>
                     <div class="prose prose-lg text-gray-700 space-y-4">
-                        <p>
+                        <p class="lang-en">
                             Our newest addition to AI Test Lab is the <strong>AI Age Calculator</strong> - an innovative tool that goes beyond your biological age to reveal your Mental Age and Energy Age. While your Real Age is determined by your birthday, your Mental Age reflects your cognitive patterns, curiosity levels, and mental flexibility. Your Energy Age represents your physical vitality and lifestyle choices.
                         </p>
-                        <p>
+                        <p class="lang-ko">
+                            AI Test Lab의 최신 추가 기능인 <strong>AI 나이 계산기</strong>는 생물학적 나이를 넘어 정신 나이와 에너지 나이를 알려주는 혁신적인 도구입니다. 실제 나이는 생년월일로 결정되지만, 정신 나이는 인지 패턴, 호기심 수준, 정신적 유연성을 반영합니다. 에너지 나이는 신체적 활력과 라이프스타일 선택을 나타냅니다.
+                        </p>
+                        <p class="lang-en">
                             The AI Age Calculator uses a carefully designed questionnaire covering lifestyle habits, mindset patterns, and daily routines. Based on your responses, our algorithm calculates:
                         </p>
-                        <ul class="list-disc pl-6 space-y-2">
+                        <p class="lang-ko">
+                            AI 나이 계산기는 라이프스타일 습관, 마인드셋 패턴, 일상 루틴을 다루는 세심하게 설계된 설문지를 사용합니다. 응답을 기반으로 알고리즘이 다음을 계산합니다:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 lang-en">
                             <li><strong>Real Age:</strong> Your chronological age based on your birthday</li>
                             <li><strong>Mental Age:</strong> How old your mind "feels" based on curiosity, learning habits, and mental flexibility</li>
                             <li><strong>Energy Age:</strong> Your physical vitality age based on exercise, sleep, and lifestyle choices</li>
                         </ul>
-                        <p>
+                        <ul class="list-disc pl-6 space-y-2 lang-ko">
+                            <li><strong>실제 나이:</strong> 생년월일을 기준으로 한 실제 나이</li>
+                            <li><strong>정신 나이:</strong> 호기심, 학습 습관, 정신적 유연성을 기반으로 마음이 "느끼는" 나이</li>
+                            <li><strong>에너지 나이:</strong> 운동, 수면, 라이프스타일 선택을 기반으로 한 신체적 활력 나이</li>
+                        </ul>
+                        <p class="lang-en">
                             The gap between your Real Age and these calculated ages can provide interesting insights. A Mental Age younger than your Real Age might indicate a curious, growth-oriented mindset. An Energy Age older than your Real Age might suggest areas where lifestyle improvements could help.
                         </p>
-                        <p>
+                        <p class="lang-ko">
+                            실제 나이와 계산된 나이 사이의 차이는 흥미로운 통찰을 제공할 수 있습니다. 실제 나이보다 젊은 정신 나이는 호기심 많고 성장 지향적인 마인드셋을 나타낼 수 있습니다. 실제 나이보다 많은 에너지 나이는 라이프스타일 개선이 도움이 될 수 있는 영역을 제안할 수 있습니다.
+                        </p>
+                        <p class="lang-en">
                             Like our Life Summary service, the Age Calculator is designed for entertainment and self-reflection. It's a fun way to think about how your daily choices might be affecting your overall vitality and mental sharpness. Share your results with friends and compare your ages!
+                        </p>
+                        <p class="lang-ko">
+                            인생 요약 서비스와 마찬가지로, 나이 계산기는 오락과 자기 성찰을 위해 설계되었습니다. 일상적인 선택이 전반적인 활력과 정신적 예리함에 어떤 영향을 미치는지 생각해볼 수 있는 재미있는 방법입니다. 결과를 친구들과 공유하고 나이를 비교해보세요!
                         </p>
                     </div>
                     <div class="mt-6">
-                        <a href="/age-calculator/" class="inline-flex items-center space-x-2 text-emerald-600 font-semibold hover:text-emerald-700 transition">
+                        <a href="/age-calculator/" class="inline-flex items-center space-x-2 text-emerald-600 font-semibold hover:text-emerald-700 transition lang-en">
                             <span>Try the AI Age Calculator</span>
+                            <span>&#8594;</span>
+                        </a>
+                        <a href="/age-calculator/" class="inline-flex items-center space-x-2 text-emerald-600 font-semibold hover:text-emerald-700 transition lang-ko">
+                            <span>AI 나이 계산기 해보기</span>
                             <span>&#8594;</span>
                         </a>
                     </div>
@@ -305,17 +336,21 @@
         <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <h2 class="font-heading text-3xl font-bold mb-4">
-                    Ready to Discover Yourself?
+                    <span class="lang-en">Ready to Discover Yourself?</span>
+                    <span class="lang-ko">자신을 발견할 준비가 되셨나요?</span>
                 </h2>
                 <p class="text-gray-600 text-lg mb-8">
-                    Join millions of people who have discovered meaningful insights about themselves.
+                    <span class="lang-en">Join millions of people who have discovered meaningful insights about themselves.</span>
+                    <span class="lang-ko">의미 있는 통찰을 발견한 수백만 명의 사람들과 함께하세요.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
                     <a href="/life-summary/" class="inline-block gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg">
-                        &#10024; Get Life Summary
+                        <span class="lang-en">&#10024; Get Life Summary</span>
+                        <span class="lang-ko">&#10024; 인생 요약 받기</span>
                     </a>
                     <a href="/age-calculator/" class="inline-block text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">
-                        &#127874; Calculate My Age
+                        <span class="lang-en">&#127874; Calculate My Age</span>
+                        <span class="lang-ko">&#127874; 내 나이 계산하기</span>
                     </a>
                 </div>
             </div>
