@@ -83,6 +83,12 @@
             animation: pulse-glow 2s infinite;
         }
 
+        /* Prevent word breaking in the middle for Korean/CJK languages */
+        .word-keep {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
         /* Language classes - CSS-based switching for 5 languages */
         .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
         html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
@@ -369,7 +375,7 @@
                                 <p id="mental-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-indigo-600">--</p>
                                 <p id="mental-gap" class="text-sm mt-2 font-medium text-indigo-500">--</p>
                             </div>
-                            <p id="mental-short-desc" class="text-sm text-gray-600 mt-3 px-2"></p>
+                            <p id="mental-short-desc" class="text-sm text-gray-600 mt-3 px-2 word-keep"></p>
                         </div>
 
                         <!-- Energy Age -->
@@ -385,7 +391,7 @@
                                 <p id="energy-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-emerald-600">--</p>
                                 <p id="energy-gap" class="text-sm mt-2 font-medium text-emerald-500">--</p>
                             </div>
-                            <p id="energy-short-desc" class="text-sm text-gray-600 mt-3 px-2"></p>
+                            <p id="energy-short-desc" class="text-sm text-gray-600 mt-3 px-2 word-keep"></p>
                         </div>
                     </div>
 
