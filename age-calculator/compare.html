@@ -84,13 +84,48 @@
                     <span class="text-2xl">&#129302;</span>
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
-                <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-4">
                     <a href="/age-calculator/" class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
-                        <span>Take Test</span>
+                        <span data-i18n="age.take_test">Take Test</span>
                     </a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127482;&#127480;</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/age-calculator/" class="text-age-primary font-medium">Take Test</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -504,6 +539,12 @@
                 }
             }
         }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
     </script>
+    <script src="/js/i18n.js"></script>
 </body>
 </html>

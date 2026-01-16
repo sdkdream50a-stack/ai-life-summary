@@ -152,6 +152,23 @@
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127482;&#127480;</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,6 +189,13 @@
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -788,6 +812,12 @@
             // Redirect to result page
             window.location.href = '/age-calculator/result.html';
         });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
     </script>
+    <script src="/js/i18n.js"></script>
 </body>
 </html>

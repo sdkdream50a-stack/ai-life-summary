@@ -93,19 +93,62 @@
                     <span class="text-2xl">&#129302;</span>
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
-                <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-4">
                     <a href="/age-calculator/" class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
-                        <span class="hidden sm:inline">New Test</span>
+                        <span>New Test</span>
                     </a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127482;&#127480;</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
+                            </button>
+                        </div>
+                    </div>
                     <button id="share-btn" class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                         </svg>
-                        <span>Share</span>
+                        <span data-i18n="age.share">Share</span>
                     </button>
+                </div>
+                <div class="flex md:hidden items-center space-x-2">
+                    <button id="share-btn-mobile" class="age-gradient-bg text-white p-2 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/age-calculator/" class="text-age-primary font-medium">New Test</a>
+                    <a href="/age-calculator/compare.html" class="text-gray-600 hover:text-primary transition">Compare Ages</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -507,6 +550,23 @@
                 copyResultLink();
             }
         });
+
+        // Mobile share button
+        const shareBtnMobile = document.getElementById('share-btn-mobile');
+        if (shareBtnMobile) {
+            shareBtnMobile.addEventListener('click', async function() {
+                const shared = await shareNative(window.ageResults);
+                if (!shared) {
+                    copyResultLink();
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
     </script>
+    <script src="/js/i18n.js"></script>
 </body>
 </html>
