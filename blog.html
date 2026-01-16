@@ -70,6 +70,13 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
         }
+        /* Language classes - CSS-based switching */
+        .lang-ko { display: none; }
+        html[lang="ko"] .lang-en { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] h4.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline-block; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -153,10 +160,12 @@
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <span class="text-5xl mb-4 inline-block">&#128221;</span>
                 <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
-                    Developer Blog
+                    <span class="lang-en">Developer Blog</span>
+                    <span class="lang-ko">개발자 블로그</span>
                 </h1>
                 <p class="text-white/80 text-lg max-w-2xl mx-auto">
-                    A 50s developer's journey: Building my first web app, getting feedback, and staying motivated along the way.
+                    <span class="lang-en">A 50s developer's journey: Building my first web app, getting feedback, and staying motivated along the way.</span>
+                    <span class="lang-ko">50대 개발자의 여정: 첫 웹 앱 만들기, 피드백 받기, 그리고 끝까지 동기 유지하기.</span>
                 </p>
             </div>
         </section>
@@ -184,7 +193,10 @@
         <!-- Blog Posts Grid -->
         <section class="py-12 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold mb-8">Latest Posts</h2>
+                <h2 class="font-heading text-2xl font-bold mb-8">
+                    <span class="lang-en">Latest Posts</span>
+                    <span class="lang-ko">최신 글</span>
+                </h2>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-posts">
                     <!-- AUTO-GENERATED POSTS START -->
@@ -478,9 +490,13 @@
 
                 <!-- Load More Button -->
                 <div class="text-center mt-10">
-                    <p class="text-gray-500 mb-4">More posts coming soon...</p>
+                    <p class="text-gray-500 mb-4">
+                        <span class="lang-en">More posts coming soon...</span>
+                        <span class="lang-ko">더 많은 글이 곧 업로드됩니다...</span>
+                    </p>
                     <a href="/contact.html" class="inline-block gradient-bg text-white font-medium py-3 px-6 rounded-lg hover:opacity-90 transition">
-                        Subscribe for Updates
+                        <span class="lang-en">Subscribe for Updates</span>
+                        <span class="lang-ko">업데이트 구독하기</span>
                     </a>
                 </div>
             </div>
@@ -489,12 +505,20 @@
         <!-- Newsletter Section -->
         <section class="py-16 bg-white">
             <div class="max-w-2xl mx-auto px-4 text-center">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">Stay Updated</h2>
-                <p class="text-gray-600 mb-6">Get notified when new posts are published. No spam, unsubscribe anytime.</p>
+                <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">
+                    <span class="lang-en">Stay Updated</span>
+                    <span class="lang-ko">최신 소식 받기</span>
+                </h2>
+                <p class="text-gray-600 mb-6">
+                    <span class="lang-en">Get notified when new posts are published. No spam, unsubscribe anytime.</span>
+                    <span class="lang-ko">새 글이 게시되면 알림을 받으세요. 스팸 없음, 언제든 구독 취소 가능.</span>
+                </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                    <input type="email" placeholder="Enter your email" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent flex-1 max-w-sm">
+                    <input type="email" id="newsletter-email" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent flex-1 max-w-sm lang-en" placeholder="Enter your email">
+                    <input type="email" id="newsletter-email-ko" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent flex-1 max-w-sm lang-ko" placeholder="이메일을 입력하세요">
                     <button class="gradient-bg text-white font-medium py-3 px-6 rounded-lg hover:opacity-90 transition">
-                        Subscribe
+                        <span class="lang-en">Subscribe</span>
+                        <span class="lang-ko">구독하기</span>
                     </button>
                 </div>
             </div>
@@ -510,31 +534,61 @@
                         <span class="text-2xl">&#10024;</span>
                         <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
                     </div>
-                    <p class="text-gray-400 text-sm">
+                    <p class="text-gray-400 text-sm lang-en">
                         Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.
+                    </p>
+                    <p class="text-gray-400 text-sm lang-ko">
+                        AI 기반 인생 요약으로 자신을 발견하세요. 자신을 더 잘 이해하는 재미있고 통찰력 있는 방법입니다.
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                        </a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">
+                            <span class="lang-en">Blog</span>
+                            <span class="lang-ko">블로그</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 고지</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보 처리방침</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Connect</span>
+                        <span class="lang-ko">연결</span>
+                    </h4>
                     <div class="flex space-x-4">
                         <a href="#" class="hover:text-white transition" aria-label="Twitter">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -551,7 +605,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Life Summary. All rights reserved.</p>
+                <p>&copy; 2025 AI Life Summary. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span></p>
             </div>
         </div>
     </footer>
