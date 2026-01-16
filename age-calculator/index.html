@@ -116,7 +116,8 @@
     <!-- Language Switching -->
     <script>
     function switchLang(lang) {
-        // Save and set
+        // Save to both localStorage keys for consistency
+        localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
 
@@ -139,11 +140,20 @@
         if (btnEn) btnEn.style.color = (lang === 'en') ? 'white' : '#374151';
         if (btnKo) btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6';
         if (btnKo) btnKo.style.color = (lang === 'ko') ? 'white' : '#374151';
+
+        // Update mobile buttons
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        for (var j = 0; j < mobileBtns.length; j++) {
+            var btn = mobileBtns[j];
+            var isActive = btn.getAttribute('data-lang') === lang;
+            btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
+            btn.style.color = isActive ? 'white' : '#374151';
+        }
     }
 
     // Run on page load
     (function() {
-        var lang = localStorage.getItem('preferredLanguage') || 'en';
+        var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
         // Apply immediately when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
@@ -176,8 +186,14 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#10024;</span>
                                     <div>
-                                        <p class="font-medium text-gray-800">AI Life Summary</p>
-                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Life Summary</span>
+                                            <span class="lang-ko">AI 인생 요약</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Your life in one sentence</span>
+                                            <span class="lang-ko">한 문장으로 보는 인생</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -185,8 +201,14 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#127874;</span>
                                     <div>
-                                        <p class="font-medium text-age-primary">AI Age Calculator</p>
-                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                        <p class="font-medium text-age-primary">
+                                            <span class="lang-en">AI Age Calculator</span>
+                                            <span class="lang-ko">AI 나이 계산기</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
+                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -240,13 +262,15 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
-                    <span data-i18n="age.back_to_tests">Back to Tests</span>
+                    <span class="lang-en">Back to Tests</span>
+                    <span class="lang-ko">테스트 목록으로</span>
                 </a>
                 <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                    &#127874; <span data-i18n="age.title">AI Age Calculator</span>
+                    &#127874; <span class="lang-en">AI Age Calculator</span><span class="lang-ko">AI 나이 계산기</span>
                 </h1>
-                <p class="text-lg md:text-xl text-white/90" data-i18n="age.subtitle">
-                    Discover your TRUE age - Real vs Mental vs Energy
+                <p class="text-lg md:text-xl text-white/90">
+                    <span class="lang-en">Discover your TRUE age - Real vs Mental vs Energy</span>
+                    <span class="lang-ko">진짜 나이를 발견하세요 - 실제 vs 정신 vs 에너지</span>
                 </p>
             </div>
         </section>
@@ -255,16 +279,28 @@
         <div class="bg-white border-b sticky top-[72px] z-40">
             <div class="max-w-4xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-gray-600" data-i18n="age.progress">Progress</span>
+                    <span class="text-sm font-medium text-gray-600">
+                        <span class="lang-en">Progress</span>
+                        <span class="lang-ko">진행률</span>
+                    </span>
                     <span id="progress-text" class="text-sm font-medium text-age-primary"></span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-3">
                     <div id="progress-bar" class="progress-bar age-gradient-bg h-3 rounded-full" style="width: 33%"></div>
                 </div>
                 <div class="flex justify-between mt-2 text-xs text-gray-500">
-                    <span id="step1-label" class="text-age-primary font-medium" data-i18n="age.step1">Basic Info</span>
-                    <span id="step2-label" data-i18n="age.step2">Lifestyle</span>
-                    <span id="step3-label" data-i18n="age.step3">Mindset</span>
+                    <span id="step1-label" class="text-age-primary font-medium">
+                        <span class="lang-en">Basic Info</span>
+                        <span class="lang-ko">기본 정보</span>
+                    </span>
+                    <span id="step2-label">
+                        <span class="lang-en">Lifestyle</span>
+                        <span class="lang-ko">생활 습관</span>
+                    </span>
+                    <span id="step3-label">
+                        <span class="lang-en">Mindset</span>
+                        <span class="lang-ko">마인드셋</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -279,14 +315,18 @@
                         <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#128197;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2" data-i18n="age.basic_info">Basic Information</h2>
+                                <h2 class="font-heading text-2xl font-bold mt-2">
+                                    <span class="lang-en">Basic Information</span>
+                                    <span class="lang-ko">기본 정보</span>
+                                </h2>
                             </div>
 
                             <div class="space-y-6">
                                 <!-- Birthday -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
-                                        <span data-i18n="age.dob">Date of Birth</span>
+                                        <span class="lang-en">Date of Birth</span>
+                                        <span class="lang-ko">생년월일</span>
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <div class="grid grid-cols-3 gap-3">
@@ -294,28 +334,41 @@
                                             <input type="number" id="birth-year" name="birth-year"
                                                 placeholder="YYYY" min="1920" max="2025" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.year">Year</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center">
+                                                <span class="lang-en">Year</span>
+                                                <span class="lang-ko">년</span>
+                                            </p>
                                         </div>
                                         <div>
                                             <input type="number" id="birth-month" name="birth-month"
                                                 placeholder="MM" min="1" max="12" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.month">Month</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center">
+                                                <span class="lang-en">Month</span>
+                                                <span class="lang-ko">월</span>
+                                            </p>
                                         </div>
                                         <div>
                                             <input type="number" id="birth-day" name="birth-day"
                                                 placeholder="DD" min="1" max="31" required
                                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
-                                            <p class="text-xs text-gray-400 mt-1 text-center" data-i18n="age.day">Day</p>
+                                            <p class="text-xs text-gray-400 mt-1 text-center">
+                                                <span class="lang-en">Day</span>
+                                                <span class="lang-ko">일</span>
+                                            </p>
                                         </div>
                                     </div>
-                                    <p id="birthday-error" class="text-red-500 text-sm mt-2 hidden" data-i18n="age.birthday_error">Please enter a valid date of birth.</p>
+                                    <p id="birthday-error" class="text-red-500 text-sm mt-2 hidden">
+                                        <span class="lang-en">Please enter a valid date of birth.</span>
+                                        <span class="lang-ko">올바른 생년월일을 입력해주세요.</span>
+                                    </p>
                                 </div>
                             </div>
 
                             <button type="button" onclick="goToStep(2)"
                                 class="w-full mt-8 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
-                                <span data-i18n="age.next_lifestyle">Next: Lifestyle Questions</span> &#8594;
+                                <span class="lang-en">Next: Lifestyle Questions</span>
+                                <span class="lang-ko">다음: 생활 습관 질문</span> &#8594;
                             </button>
                         </div>
                     </div>
@@ -654,17 +707,26 @@
             <div class="max-w-4xl mx-auto px-4">
                 <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-6 md:p-8 border border-emerald-100">
                     <h3 class="font-heading text-xl font-bold mb-4 flex items-center">
-                        <span class="text-2xl mr-2">&#128161;</span> Did You Know?
+                        <span class="text-2xl mr-2">&#128161;</span>
+                        <span class="lang-en">Did You Know?</span>
+                        <span class="lang-ko">알고 계셨나요?</span>
                     </h3>
                     <div class="space-y-4 text-gray-700">
-                        <p>
+                        <p class="lang-en">
                             <strong>Mental Age</strong> is different from your chronological age. It reflects how you think, feel, and perceive the world around you. Some people have a mental age younger than their actual age, meaning they maintain a youthful outlook and adaptability.
                         </p>
-                        <p>
+                        <p class="lang-ko">
+                            <strong>정신 나이</strong>는 실제 나이와 다릅니다. 정신 나이는 당신이 어떻게 생각하고, 느끼고, 세상을 인식하는지를 반영합니다. 어떤 사람들은 실제 나이보다 어린 정신 나이를 가지고 있어서 젊은 시각과 적응력을 유지합니다.
+                        </p>
+                        <p class="lang-en">
                             <strong>Energy Age</strong> measures your vitality and physical energy levels based on your lifestyle choices. Regular exercise, social connections, and positive stress management can keep your energy age much younger than your real age!
                         </p>
+                        <p class="lang-ko">
+                            <strong>에너지 나이</strong>는 생활 습관에 따른 활력과 신체 에너지 수준을 측정합니다. 규칙적인 운동, 사회적 관계, 긍정적인 스트레스 관리는 에너지 나이를 실제 나이보다 훨씬 젊게 유지할 수 있습니다!
+                        </p>
                         <p class="text-sm text-gray-500 mt-4">
-                            &#8251; This test is for entertainment purposes only and is not a scientific measurement.
+                            <span class="lang-en">&#8251; This test is for entertainment purposes only and is not a scientific measurement.</span>
+                            <span class="lang-ko">&#8251; 이 테스트는 오락 목적으로만 제공되며 과학적 측정이 아닙니다.</span>
                         </p>
                     </div>
                 </div>
@@ -682,36 +744,73 @@
                         <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        Discover yourself with AI-powered personality tests. Fun, insightful, and free.
+                        <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
+                        <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Tests</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
-                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                        <li><a href="/life-summary/" class="hover:text-white transition">
+                            <span class="lang-en">AI Life Summary</span>
+                            <span class="lang-ko">AI 인생 요약</span>
+                        </a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">
+                            <span class="lang-en">AI Age Calculator</span>
+                            <span class="lang-ko">AI 나이 계산기</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
-                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                        </a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">
+                            <span class="lang-en">Blog</span>
+                            <span class="lang-ko">블로그</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 정보</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보처리방침</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                        </a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
-                <p class="mt-2">All tests are for entertainment purposes only.</p>
+                <p>&copy; 2025 AI Test Lab. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span></p>
+                <p class="mt-2">
+                    <span class="lang-en">All tests are for entertainment purposes only.</span>
+                    <span class="lang-ko">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</span>
+                </p>
             </div>
         </div>
     </footer>
