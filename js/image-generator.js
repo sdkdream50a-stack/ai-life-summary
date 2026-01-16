@@ -298,25 +298,32 @@ function getTextSizes(format) {
  * @returns {array} - Array of text lines
  */
 function wrapText(ctx, text, maxWidth) {
-    const words = text.split(' ');
+    // First, split by explicit line breaks
+    const paragraphs = text.split('\n');
     const lines = [];
-    let currentLine = '';
 
-    words.forEach(word => {
-        const testLine = currentLine + (currentLine ? ' ' : '') + word;
-        const metrics = ctx.measureText(testLine);
+    paragraphs.forEach(paragraph => {
+        if (!paragraph.trim()) return;
 
-        if (metrics.width > maxWidth && currentLine) {
+        const words = paragraph.split(' ');
+        let currentLine = '';
+
+        words.forEach(word => {
+            const testLine = currentLine + (currentLine ? ' ' : '') + word;
+            const metrics = ctx.measureText(testLine);
+
+            if (metrics.width > maxWidth && currentLine) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = testLine;
+            }
+        });
+
+        if (currentLine) {
             lines.push(currentLine);
-            currentLine = word;
-        } else {
-            currentLine = testLine;
         }
     });
-
-    if (currentLine) {
-        lines.push(currentLine);
-    }
 
     return lines;
 }

@@ -43,7 +43,11 @@ function initShareButtons(sentence, lang = 'en') {
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             if (typeof generateShareImage === 'function') {
-                generateShareImage(sentence, 'story', lang);
+                // Format sentence with line breaks for image if function exists
+                const formattedSentence = typeof formatSentenceWithLineBreaks === 'function'
+                    ? formatSentenceWithLineBreaks(sentence, lang)
+                    : sentence;
+                generateShareImage(formattedSentence, 'story', lang);
             }
         });
     }

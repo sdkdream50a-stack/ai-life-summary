@@ -1442,6 +1442,54 @@ function generateLifeSummary(birthdate, gender, lang) {
 }
 
 /**
+ * Format sentence with line breaks after punctuation for better readability
+ * @param {string} sentence - The sentence to format
+ * @param {string} lang - Language code (en, ko, ja, zh, es)
+ * @returns {string} - Formatted sentence with line breaks
+ */
+function formatSentenceWithLineBreaks(sentence, lang) {
+    if (!sentence) return sentence;
+
+    lang = lang || 'en';
+
+    switch (lang) {
+        case 'ko':
+            // Korean: line break after comma and period patterns
+            return sentence
+                .replace(/,\s*/g, ',\n')
+                .replace(/\.\s*/g, '.\n')
+                .replace(/다\.\s*/g, '다.\n')
+                .replace(/요\.\s*/g, '요.\n')
+                .trim();
+        case 'ja':
+            // Japanese: line break after 。 and 、
+            return sentence
+                .replace(/、\s*/g, '、\n')
+                .replace(/。\s*/g, '。\n')
+                .replace(/,\s*/g, ',\n')
+                .replace(/\.\s*/g, '.\n')
+                .trim();
+        case 'zh':
+            // Chinese: line break after 。 and ，
+            return sentence
+                .replace(/，\s*/g, '，\n')
+                .replace(/。\s*/g, '。\n')
+                .replace(/,\s*/g, ',\n')
+                .replace(/\.\s*/g, '.\n')
+                .trim();
+        case 'es':
+        case 'en':
+        default:
+            // English/Spanish: line break after comma and period
+            return sentence
+                .replace(/,\s+/g, ',\n')
+                .replace(/\.\s+/g, '.\n')
+                .replace(/—/g, '—\n')
+                .trim();
+    }
+}
+
+/**
  * Get all sentences for a specific birth month/year (for archive)
  * @param {number} year - Year
  * @param {number} month - Month (1-12)
@@ -1492,6 +1540,7 @@ function getExampleSentences(count = 6) {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         generateLifeSummary,
+        formatSentenceWithLineBreaks,
         getMonthSentences,
         getExampleSentences,
         createHash

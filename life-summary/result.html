@@ -63,6 +63,7 @@
         }
         .quote-text {
             font-family: 'Merriweather', serif;
+            white-space: pre-line;
         }
         .gradient-bg {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
@@ -803,7 +804,9 @@
             // Generate and display the life summary with language support
             const result = generateLifeSummary(birthdate, gender, lang);
 
-            document.getElementById('life-summary').textContent = '"' + result.sentence + '"';
+            // Format sentence with line breaks for better readability
+            const formattedSentence = formatSentenceWithLineBreaks(result.sentence, lang);
+            document.getElementById('life-summary').textContent = '"' + formattedSentence + '"';
             document.getElementById('birthday-info').textContent = getBirthdayLabel(lang) + formatDate(birthdate, lang);
             document.getElementById('core-trait').textContent = translateCoreTrait(result.coreTrait, lang);
             document.getElementById('life-phase').textContent = translateLifePhase(result.lifePhase, lang);
