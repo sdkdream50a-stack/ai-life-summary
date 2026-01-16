@@ -109,8 +109,18 @@
             transition: width 0.5s ease;
         }
 
-        /* Language classes - controlled by JavaScript */
+        /* Language switching - hide non-active language */
         .lang-ko { display: none; }
+        html[lang="ko"] .lang-en { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko,
+        html[lang="ko"] h1.lang-ko,
+        html[lang="ko"] h2.lang-ko,
+        html[lang="ko"] h3.lang-ko,
+        html[lang="ko"] li.lang-ko,
+        html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline; }
     </style>
 
     <!-- Language Switching -->
@@ -119,48 +129,30 @@
         // Save to both localStorage keys for consistency
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
+        // Set html lang attribute - CSS will handle visibility
         document.documentElement.lang = lang;
 
-        // Show/hide - simple and direct
-        var i, el;
-        var enList = document.getElementsByClassName('lang-en');
-        var koList = document.getElementsByClassName('lang-ko');
-
-        for (i = 0; i < enList.length; i++) {
-            enList[i].style.display = (lang === 'en') ? '' : 'none';
-        }
-        for (i = 0; i < koList.length; i++) {
-            koList[i].style.display = (lang === 'ko') ? '' : 'none';
-        }
-
-        // Update buttons
+        // Update desktop buttons
         var btnEn = document.getElementById('lang-btn-en');
         var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn) btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6';
-        if (btnEn) btnEn.style.color = (lang === 'en') ? 'white' : '#374151';
-        if (btnKo) btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6';
-        if (btnKo) btnKo.style.color = (lang === 'ko') ? 'white' : '#374151';
+        if (btnEn) { btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6'; btnEn.style.color = (lang === 'en') ? 'white' : '#374151'; }
+        if (btnKo) { btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6'; btnKo.style.color = (lang === 'ko') ? 'white' : '#374151'; }
 
         // Update mobile buttons
         var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
-        for (var j = 0; j < mobileBtns.length; j++) {
-            var btn = mobileBtns[j];
+        for (var i = 0; i < mobileBtns.length; i++) {
+            var btn = mobileBtns[i];
             var isActive = btn.getAttribute('data-lang') === lang;
             btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
             btn.style.color = isActive ? 'white' : '#374151';
         }
     }
 
-    // Run on page load
-    (function() {
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', function() {
         var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-        // Apply immediately when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
-        } else {
-            switchLang(lang);
-        }
-    })();
+        switchLang(lang);
+    });
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
