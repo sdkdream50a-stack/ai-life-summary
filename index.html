@@ -120,10 +120,24 @@
         }
     </style>
 
+    <style>
+        /* Language switching - hide non-active language */
+        .lang-ko { display: none; }
+        html[lang="ko"] .lang-en { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko,
+        html[lang="ko"] p.lang-ko,
+        html[lang="ko"] h1.lang-ko,
+        html[lang="ko"] h2.lang-ko,
+        html[lang="ko"] h3.lang-ko,
+        html[lang="ko"] li.lang-ko,
+        html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline-flex; }
+    </style>
+
     <!-- Language Switching -->
     <script>
     function switchLang(lang) {
-        // Use same key as i18n.js
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
@@ -144,14 +158,10 @@
         }
     }
 
-    // Initialize buttons on load
+    // Initialize on load
     document.addEventListener('DOMContentLoaded', function() {
         var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-        // Just update button styles, let i18n.js handle translations
-        var btnEn = document.getElementById('lang-btn-en');
-        var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn) { btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6'; btnEn.style.color = (lang === 'en') ? 'white' : '#374151'; }
-        if (btnKo) { btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6'; btnKo.style.color = (lang === 'ko') ? 'white' : '#374151'; }
+        switchLang(lang);
     });
     </script>
 </head>
@@ -245,28 +255,33 @@
             <div class="max-w-5xl mx-auto px-4 text-center">
                 <div class="float-animation inline-block text-6xl mb-6">&#129302;</div>
                 <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                    Discover Yourself with AI
+                    <span class="lang-en">Discover Yourself with AI</span>
+                    <span class="lang-ko">AI로 나를 발견하세요</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-white/90 mb-4">
-                    Fun personality tests powered by AI
+                    <span class="lang-en">Fun personality tests powered by AI</span>
+                    <span class="lang-ko">AI 기반 재미있는 성격 테스트</span>
                 </p>
                 <p class="text-white/70 mb-10 max-w-2xl mx-auto text-lg">
-                    Explore our collection of AI-powered tests to learn more about yourself.
-                    Get instant insights, share with friends, and have fun!
+                    <span class="lang-en">Explore our collection of AI-powered tests to learn more about yourself. Get instant insights, share with friends, and have fun!</span>
+                    <span class="lang-ko">AI 테스트 컬렉션으로 자신에 대해 더 알아보세요. 즉시 결과를 확인하고, 친구들과 공유하며, 재미있게 즐기세요!</span>
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="/life-summary/" class="bg-white text-primary font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-lg shadow-lg">
-                        &#10024; Try Life Summary
+                        <span class="lang-en">&#10024; Try Life Summary</span>
+                        <span class="lang-ko">&#10024; 인생 요약 테스트</span>
                     </a>
                     <a href="/age-calculator/" class="bg-white/20 text-white font-semibold py-4 px-8 rounded-lg hover:bg-white/30 transition text-lg border-2 border-white/50">
-                        &#127874; Try Age Calculator
+                        <span class="lang-en">&#127874; Try Age Calculator</span>
+                        <span class="lang-ko">&#127874; 나이 계산기 테스트</span>
                     </a>
                 </div>
 
                 <div class="mt-12 flex items-center justify-center space-x-2 text-white/80">
                     <span class="text-2xl">&#127775;</span>
-                    <span id="total-tests-count">Over 1,000,000 tests completed worldwide</span>
+                    <span class="lang-en">Over 1,000,000 tests completed worldwide</span>
+                    <span class="lang-ko">전 세계 1,000,000개 이상 테스트 완료</span>
                 </div>
             </div>
         </section>
@@ -275,43 +290,52 @@
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
-                    Choose Your <span class="gradient-text">AI Test</span>
+                    <span class="lang-en">Choose Your <span class="gradient-text">AI Test</span></span>
+                    <span class="lang-ko"><span class="gradient-text">AI 테스트</span>를 선택하세요</span>
                 </h2>
                 <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Each test offers unique insights about different aspects of your personality and life
+                    <span class="lang-en">Each test offers unique insights about different aspects of your personality and life</span>
+                    <span class="lang-ko">각 테스트는 당신의 성격과 삶의 다양한 측면에 대한 독특한 인사이트를 제공합니다</span>
                 </p>
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- AI Life Summary Card -->
                     <a href="/life-summary/" class="block card-hover bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border-2 border-indigo-100 relative overflow-hidden">
                         <div class="text-5xl mb-4">&#10024;</div>
-                        <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">AI Life Summary</h3>
+                        <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">
+                            <span class="lang-en">AI Life Summary</span>
+                            <span class="lang-ko">AI 인생 요약</span>
+                        </h3>
                         <p class="text-gray-600 mb-4">
-                            Get your personalized life summary in one AI-generated sentence.
-                            Enter your birthday and discover what makes you unique.
+                            <span class="lang-en">Get your personalized life summary in one AI-generated sentence. Enter your birthday and discover what makes you unique.</span>
+                            <span class="lang-ko">AI가 생성한 한 문장으로 나만의 인생 요약을 받아보세요. 생년월일을 입력하고 당신을 특별하게 만드는 것을 발견하세요.</span>
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mb-6">
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>Instant personalized results</span>
+                                <span class="lang-en">Instant personalized results</span>
+                                <span class="lang-ko">즉시 맞춤형 결과</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>Shareable image generator</span>
+                                <span class="lang-en">Shareable image generator</span>
+                                <span class="lang-ko">공유 가능한 이미지 생성</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>5 languages supported</span>
+                                <span class="lang-en">5 languages supported</span>
+                                <span class="lang-ko">5개 언어 지원</span>
                             </li>
                         </ul>
                         <span class="inline-flex items-center space-x-2 gradient-bg text-white font-semibold py-3 px-6 rounded-lg">
-                            <span>Start Test</span>
+                            <span class="lang-en">Start Test</span>
+                            <span class="lang-ko">테스트 시작</span>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
@@ -327,33 +351,40 @@
                             </span>
                         </div>
                         <div class="text-5xl mb-4">&#127874;</div>
-                        <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">AI Age Calculator</h3>
+                        <h3 class="font-heading font-bold text-2xl mb-3 text-gray-800">
+                            <span class="lang-en">AI Age Calculator</span>
+                            <span class="lang-ko">AI 나이 계산기</span>
+                        </h3>
                         <p class="text-gray-600 mb-4">
-                            Discover your TRUE age! Compare your Real Age, Mental Age, and Energy Age
-                            to see how young or old you really are.
+                            <span class="lang-en">Discover your TRUE age! Compare your Real Age, Mental Age, and Energy Age to see how young or old you really are.</span>
+                            <span class="lang-ko">진짜 나이를 발견하세요! 실제 나이, 정신 나이, 에너지 나이를 비교하여 얼마나 젊거나 늙었는지 확인하세요.</span>
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mb-6">
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>3 different age calculations</span>
+                                <span class="lang-en">3 different age calculations</span>
+                                <span class="lang-ko">3가지 다른 나이 계산</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>7 lifestyle questions</span>
+                                <span class="lang-en">7 lifestyle questions</span>
+                                <span class="lang-ko">7개 라이프스타일 질문</span>
                             </li>
                             <li class="flex items-center space-x-2">
                                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>Compare with friends</span>
+                                <span class="lang-en">Compare with friends</span>
+                                <span class="lang-ko">친구와 비교하기</span>
                             </li>
                         </ul>
                         <span class="inline-flex items-center space-x-2 age-gradient-bg text-white font-semibold py-3 px-6 rounded-lg">
-                            <span>Start Test</span>
+                            <span class="lang-en">Start Test</span>
+                            <span class="lang-ko">테스트 시작</span>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
@@ -363,23 +394,38 @@
 
                 <!-- Coming Soon Tests -->
                 <div class="mt-12">
-                    <h3 class="font-heading font-semibold text-xl text-center mb-6 text-gray-600">Coming Soon</h3>
+                    <h3 class="font-heading font-semibold text-xl text-center mb-6 text-gray-600">
+                        <span class="lang-en">Coming Soon</span>
+                        <span class="lang-ko">출시 예정</span>
+                    </h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
                             <span class="text-3xl">&#128149;</span>
-                            <p class="font-medium text-sm mt-2">Love Age</p>
+                            <p class="font-medium text-sm mt-2">
+                                <span class="lang-en">Love Age</span>
+                                <span class="lang-ko">사랑 나이</span>
+                            </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
                             <span class="text-3xl">&#128188;</span>
-                            <p class="font-medium text-sm mt-2">Work Age</p>
+                            <p class="font-medium text-sm mt-2">
+                                <span class="lang-en">Work Age</span>
+                                <span class="lang-ko">직장 나이</span>
+                            </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
                             <span class="text-3xl">&#128170;</span>
-                            <p class="font-medium text-sm mt-2">Health Age</p>
+                            <p class="font-medium text-sm mt-2">
+                                <span class="lang-en">Health Age</span>
+                                <span class="lang-ko">건강 나이</span>
+                            </p>
                         </div>
                         <div class="bg-gray-100 rounded-xl p-4 text-center opacity-60">
                             <span class="text-3xl">&#128241;</span>
-                            <p class="font-medium text-sm mt-2">Tech Age</p>
+                            <p class="font-medium text-sm mt-2">
+                                <span class="lang-en">Tech Age</span>
+                                <span class="lang-ko">테크 나이</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -402,10 +448,12 @@
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
-                    How It <span class="gradient-text">Works</span>
+                    <span class="lang-en">How It <span class="gradient-text">Works</span></span>
+                    <span class="lang-ko"><span class="gradient-text">이용 방법</span></span>
                 </h2>
                 <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Get your personalized results in just a few simple steps
+                    <span class="lang-en">Get your personalized results in just a few simple steps</span>
+                    <span class="lang-ko">간단한 몇 단계로 맞춤형 결과를 받아보세요</span>
                 </p>
 
                 <div class="grid md:grid-cols-4 gap-8">
@@ -413,29 +461,53 @@
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">1</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Choose a Test</h3>
-                        <p class="text-gray-600 text-sm">Select from our collection of AI-powered personality tests</p>
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Choose a Test</span>
+                            <span class="lang-ko">테스트 선택</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Select from our collection of AI-powered personality tests</span>
+                            <span class="lang-ko">AI 기반 성격 테스트 컬렉션에서 선택하세요</span>
+                        </p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">2</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Answer Questions</h3>
-                        <p class="text-gray-600 text-sm">Provide your information and answer a few fun questions</p>
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Answer Questions</span>
+                            <span class="lang-ko">질문에 답하기</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Provide your information and answer a few fun questions</span>
+                            <span class="lang-ko">정보를 입력하고 재미있는 질문에 답하세요</span>
+                        </p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">3</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Get Results</h3>
-                        <p class="text-gray-600 text-sm">Our AI analyzes your responses and generates unique insights</p>
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Get Results</span>
+                            <span class="lang-ko">결과 확인</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Our AI analyzes your responses and generates unique insights</span>
+                            <span class="lang-ko">AI가 응답을 분석하고 독특한 인사이트를 생성합니다</span>
+                        </p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">4</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Share & Compare</h3>
-                        <p class="text-gray-600 text-sm">Download images, share with friends, and compare results</p>
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Share & Compare</span>
+                            <span class="lang-ko">공유 및 비교</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Download images, share with friends, and compare results</span>
+                            <span class="lang-ko">이미지 다운로드, 친구와 공유, 결과 비교하기</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -445,39 +517,76 @@
         <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-12">
-                    Why <span class="gradient-text">AI Test Lab</span>?
+                    <span class="lang-en">Why <span class="gradient-text">AI Test Lab</span>?</span>
+                    <span class="lang-ko">왜 <span class="gradient-text">AI Test Lab</span>인가요?</span>
                 </h2>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#9889;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">Instant Results</h3>
-                        <p class="text-gray-600">Get your personalized results in seconds. No waiting, no email required.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">Instant Results</span>
+                            <span class="lang-ko">즉시 결과</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Get your personalized results in seconds. No waiting, no email required.</span>
+                            <span class="lang-ko">몇 초 만에 맞춤형 결과를 받아보세요. 기다림도, 이메일도 필요 없습니다.</span>
+                        </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#127760;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">5 Languages</h3>
-                        <p class="text-gray-600">Available in English, Korean, Japanese, Chinese, and Spanish.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">5 Languages</span>
+                            <span class="lang-ko">5개 언어 지원</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Available in English, Korean, Japanese, Chinese, and Spanish.</span>
+                            <span class="lang-ko">영어, 한국어, 일본어, 중국어, 스페인어로 이용 가능합니다.</span>
+                        </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#128274;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">Privacy First</h3>
-                        <p class="text-gray-600">Your data is processed locally. We don't store personal information.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">Privacy First</span>
+                            <span class="lang-ko">개인정보 보호</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Your data is processed locally. We don't store personal information.</span>
+                            <span class="lang-ko">데이터는 로컬에서 처리됩니다. 개인정보를 저장하지 않습니다.</span>
+                        </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#128247;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">Shareable Images</h3>
-                        <p class="text-gray-600">Create beautiful images of your results to share on social media.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">Shareable Images</span>
+                            <span class="lang-ko">공유 가능한 이미지</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Create beautiful images of your results to share on social media.</span>
+                            <span class="lang-ko">소셜 미디어에 공유할 수 있는 아름다운 결과 이미지를 만드세요.</span>
+                        </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#128241;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">Mobile Friendly</h3>
-                        <p class="text-gray-600">Fully responsive design that works perfectly on any device.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">Mobile Friendly</span>
+                            <span class="lang-ko">모바일 최적화</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Fully responsive design that works perfectly on any device.</span>
+                            <span class="lang-ko">모든 기기에서 완벽하게 작동하는 반응형 디자인입니다.</span>
+                        </p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-sm">
                         <div class="text-4xl mb-4">&#127881;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">100% Free</h3>
-                        <p class="text-gray-600">All our tests are completely free to use. No hidden charges.</p>
+                        <h3 class="font-heading font-semibold text-xl mb-2">
+                            <span class="lang-en">100% Free</span>
+                            <span class="lang-ko">100% 무료</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">All our tests are completely free to use. No hidden charges.</span>
+                            <span class="lang-ko">모든 테스트는 완전 무료입니다. 숨겨진 비용이 없습니다.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -487,17 +596,21 @@
         <section class="py-16 bg-white">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
-                    Ready to <span class="gradient-text">Discover Yourself</span>?
+                    <span class="lang-en">Ready to <span class="gradient-text">Discover Yourself</span>?</span>
+                    <span class="lang-ko"><span class="gradient-text">나를 발견</span>할 준비가 되셨나요?</span>
                 </h2>
                 <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-                    Start with our most popular test and see what AI reveals about you!
+                    <span class="lang-en">Start with our most popular test and see what AI reveals about you!</span>
+                    <span class="lang-ko">가장 인기 있는 테스트로 시작하여 AI가 당신에 대해 무엇을 알려주는지 확인하세요!</span>
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="/life-summary/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
-                        &#10024; Try AI Life Summary
+                        <span class="lang-en">&#10024; Try AI Life Summary</span>
+                        <span class="lang-ko">&#10024; AI 인생 요약 테스트</span>
                     </a>
                     <a href="/age-calculator/" class="age-gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
-                        &#127874; Try Age Calculator
+                        <span class="lang-en">&#127874; Try Age Calculator</span>
+                        <span class="lang-ko">&#127874; 나이 계산기 테스트</span>
                     </a>
                 </div>
             </div>
@@ -514,40 +627,77 @@
                         <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        Discover yourself with AI-powered personality tests. Fun, insightful, and free.
+                        <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
+                        <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Tests</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
-                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                        <li><a href="/life-summary/" class="hover:text-white transition">
+                            <span class="lang-en">AI Life Summary</span>
+                            <span class="lang-ko">AI 인생 요약</span>
+                        </a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">
+                            <span class="lang-en">AI Age Calculator</span>
+                            <span class="lang-ko">AI 나이 계산기</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
-                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                        </a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">
+                            <span class="lang-en">Blog</span>
+                            <span class="lang-ko">블로그</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 정보</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보처리방침</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                        </a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
-                <p class="mt-2">All tests are for entertainment purposes only.</p>
+                <p>&copy; 2025 AI Test Lab. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span></p>
+                <p class="mt-2">
+                    <span class="lang-en">All tests are for entertainment purposes only.</span>
+                    <span class="lang-ko">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</span>
+                </p>
             </div>
         </div>
     </footer>
