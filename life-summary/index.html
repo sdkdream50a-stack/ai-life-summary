@@ -135,6 +135,15 @@
             currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
         }
 
+        // Update select options text
+        var selects = document.querySelectorAll('select');
+        selects.forEach(function(select) {
+            var options = select.querySelectorAll('option[data-' + lang + ']');
+            options.forEach(function(option) {
+                option.textContent = option.getAttribute('data-' + lang);
+            });
+        });
+
         var dropdown = document.getElementById('lang-dropdown');
         if (dropdown) dropdown.classList.add('hidden');
     }
@@ -396,10 +405,10 @@
                                 <span class="lang-es">Género (Opcional)</span>
                             </label>
                             <select id="gender" name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg">
-                                <option value="prefer-not-to-say">Prefer not to say / 선택 안함</option>
-                                <option value="male">Male / 남성</option>
-                                <option value="female">Female / 여성</option>
-                                <option value="other">Other / 기타</option>
+                                <option value="prefer-not-to-say" data-en="Prefer not to say" data-ko="선택 안 함" data-ja="回答しない" data-zh="不想说" data-es="Prefiero no decir">Prefer not to say</option>
+                                <option value="male" data-en="Male" data-ko="남성" data-ja="男性" data-zh="男" data-es="Masculino">Male</option>
+                                <option value="female" data-en="Female" data-ko="여성" data-ja="女性" data-zh="女" data-es="Femenino">Female</option>
+                                <option value="other" data-en="Other" data-ko="기타" data-ja="その他" data-zh="其他" data-es="Otro">Other</option>
                             </select>
                         </div>
 
