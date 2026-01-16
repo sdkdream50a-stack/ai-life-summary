@@ -798,8 +798,8 @@
             // Save result to localStorage
             saveResult(birthdate, result);
 
-            // Initialize share buttons
-            initShareButtons(result.sentence);
+            // Initialize share buttons with language
+            initShareButtons(result.sentence, lang);
         });
 
         function getBirthdayLabel(lang) {

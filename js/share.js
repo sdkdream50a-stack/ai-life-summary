@@ -9,8 +9,9 @@ const HASHTAGS = 'AILifeSummary,PersonalityTest';
 /**
  * Initialize share buttons with event listeners
  * @param {string} sentence - The life summary sentence to share
+ * @param {string} lang - Language code (en, ko, ja, zh, es)
  */
-function initShareButtons(sentence) {
+function initShareButtons(sentence, lang = 'en') {
     const shareText = `My AI Life Summary: "${sentence}" - Discover yours at`;
 
     // Twitter/X Share
@@ -42,7 +43,7 @@ function initShareButtons(sentence) {
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             if (typeof generateShareImage === 'function') {
-                generateShareImage(sentence);
+                generateShareImage(sentence, 'story', lang);
             }
         });
     }

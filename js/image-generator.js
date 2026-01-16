@@ -17,12 +17,22 @@ const gradientPalettes = [
     { start: '#84cc16', end: '#06b6d4' }   // Lime to Cyan
 ];
 
+// Translated titles for each language
+const imageTitles = {
+    en: 'AI Life Summary',
+    ko: 'AI 인생 한 줄',
+    ja: 'AI人生サマリー',
+    zh: 'AI人生总结',
+    es: 'Resumen de Vida IA'
+};
+
 /**
  * Generate a shareable image with the life summary
  * @param {string} sentence - The life summary sentence
  * @param {string} format - Image format ('story' for 1080x1920, 'square' for 1080x1080, 'landscape' for 1200x630)
+ * @param {string} lang - Language code (en, ko, ja, zh, es)
  */
-function generateShareImage(sentence, format = 'story') {
+function generateShareImage(sentence, format = 'story', lang = 'en') {
     const dimensions = getImageDimensions(format);
     const canvas = document.createElement('canvas');
     canvas.width = dimensions.width;
@@ -39,8 +49,8 @@ function generateShareImage(sentence, format = 'story') {
     // Add decorative elements
     drawDecorativeElements(ctx, canvas.width, canvas.height);
 
-    // Draw main content
-    drawContent(ctx, canvas, sentence, format);
+    // Draw main content with language support
+    drawContent(ctx, canvas, sentence, format, lang);
 
     // Download the image
     downloadImage(canvas, `ai-life-summary-${format}.png`);
@@ -186,8 +196,9 @@ function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
  * @param {HTMLCanvasElement} canvas - Canvas element
  * @param {string} sentence - The sentence to display
  * @param {string} format - Image format
+ * @param {string} lang - Language code
  */
-function drawContent(ctx, canvas, sentence, format) {
+function drawContent(ctx, canvas, sentence, format, lang = 'en') {
     const width = canvas.width;
     const height = canvas.height;
 
@@ -198,10 +209,11 @@ function drawContent(ctx, canvas, sentence, format) {
     // Calculate text sizes based on format
     const sizes = getTextSizes(format);
 
-    // Draw title
+    // Draw title in the appropriate language
+    const title = imageTitles[lang] || imageTitles.en;
     ctx.font = `bold ${sizes.title}px "Poppins", sans-serif`;
     const titleY = format === 'story' ? height * 0.15 : height * 0.2;
-    ctx.fillText('AI Life Summary', width / 2, titleY);
+    ctx.fillText(title, width / 2, titleY);
 
     // Draw sparkle emoji
     ctx.font = `${sizes.emoji}px Arial`;
@@ -325,9 +337,10 @@ function downloadImage(canvas, filename) {
  * Generate image preview without downloading
  * @param {string} sentence - The sentence to display
  * @param {string} format - Image format
+ * @param {string} lang - Language code
  * @returns {string} - Data URL of the image
  */
-function generateImagePreview(sentence, format = 'story') {
+function generateImagePreview(sentence, format = 'story', lang = 'en') {
     const dimensions = getImageDimensions(format);
     const canvas = document.createElement('canvas');
     canvas.width = dimensions.width;
@@ -339,7 +352,7 @@ function generateImagePreview(sentence, format = 'story') {
 
     drawGradientBackground(ctx, canvas.width, canvas.height, palette);
     drawDecorativeElements(ctx, canvas.width, canvas.height);
-    drawContent(ctx, canvas, sentence, format);
+    drawContent(ctx, canvas, sentence, format, lang);
 
     return canvas.toDataURL('image/png');
 }
@@ -348,9 +361,10 @@ function generateImagePreview(sentence, format = 'story') {
  * Create image blob for sharing
  * @param {string} sentence - The sentence to display
  * @param {string} format - Image format
+ * @param {string} lang - Language code
  * @returns {Promise<Blob>} - Image blob
  */
-async function createImageBlob(sentence, format = 'story') {
+async function createImageBlob(sentence, format = 'story', lang = 'en') {
     const dimensions = getImageDimensions(format);
     const canvas = document.createElement('canvas');
     canvas.width = dimensions.width;
@@ -362,7 +376,7 @@ async function createImageBlob(sentence, format = 'story') {
 
     drawGradientBackground(ctx, canvas.width, canvas.height, palette);
     drawDecorativeElements(ctx, canvas.width, canvas.height);
-    drawContent(ctx, canvas, sentence, format);
+    drawContent(ctx, canvas, sentence, format, lang);
 
     return new Promise(resolve => {
         canvas.toBlob(blob => {
