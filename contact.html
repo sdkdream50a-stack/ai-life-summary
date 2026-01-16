@@ -71,37 +71,66 @@
         <nav class="max-w-6xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <a href="/" class="flex items-center space-x-2">
-                    <span class="text-2xl">&#10024;</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span>
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <!-- Tests Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-gray-600 hover:text-primary transition">
+                            <span>Tests</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="/life-summary/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#10024;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">AI Life Summary</p>
+                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/age-calculator/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#127874;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
+                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
                     <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
                     <div id="language-selector" class="relative">
                         <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
-                            <span id="current-lang-flag">🇺🇸</span>
-                            <span id="current-lang-name">English</span>
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                         <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                             <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇺🇸</span><span>English</span>
+                                <span>&#127482;&#127480;</span><span>English</span>
                             </button>
                             <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇰🇷</span><span>한국어</span>
+                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
                             </button>
                             <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇯🇵</span><span>日本語</span>
+                                <span>&#127471;&#127477;</span><span>&#26085;&#26412;&#35486;</span>
                             </button>
                             <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇨🇳</span><span>中文</span>
+                                <span>&#127464;&#127475;</span><span>&#20013;&#25991;</span>
                             </button>
                             <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>🇪🇸</span><span>Español</span>
+                                <span>&#127466;&#127480;</span><span>Espa&#241;ol</span>
                             </button>
                         </div>
                     </div>
@@ -114,18 +143,27 @@
             </div>
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#10024;</span><span>AI Life Summary</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
+                    </a>
+                    <div class="border-t my-2"></div>
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.archive">Archive</a>
                     <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
                     <div class="pt-3 border-t mt-3">
                         <p class="text-xs text-gray-500 mb-2">Language</p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
-                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
-                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
-                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
-                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127471;&#127477; JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127464;&#127475; ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127466;&#127480; ES</button>
                         </div>
                     </div>
                 </div>

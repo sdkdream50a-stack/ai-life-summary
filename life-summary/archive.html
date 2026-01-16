@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Life Summary Archive - Browse by Birthday | AI Life Summary</title>
+    <meta name="description" content="Explore our archive of AI-generated life summaries. Browse by birth year, decade, and month to discover unique personality insights. Find life sentences for any birthday from 1950 to present.">
+    <meta name="keywords" content="life summary archive, birthday meanings, personality sentences, AI generated summaries, birth year analysis, decade personality, monthly horoscope, birthday database, life sentence collection">
+    <meta name="author" content="AI Life Summary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://goodpicknow.com/archive">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goodpicknow.com/archive">
+    <meta property="og:title" content="Life Summary Archive - AI Life Summary">
+    <meta property="og:description" content="Explore our archive of AI-generated life summaries organized by birth year and month.">
+    <meta property="og:image" content="https://goodpicknow.com/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Life Summary">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://goodpicknow.com/archive">
+    <meta name="twitter:title" content="Life Summary Archive - AI Life Summary">
+    <meta name="twitter:description" content="Browse AI-generated life summaries by birthday, decade, and month.">
+    <meta name="twitter:image" content="https://goodpicknow.com/assets/images/og-image.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        accent: '#f59e0b'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        quote: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .quote-text { font-family: 'Merriweather', serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <!-- Tests Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-primary font-medium transition">
+                            <span>Tests</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="/life-summary/" class="block px-4 py-3 bg-indigo-50 border-l-4 border-primary">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#10024;</span>
+                                    <div>
+                                        <p class="font-medium text-primary">AI Life Summary</p>
+                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/age-calculator/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#127874;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
+                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127482;&#127480;</span><span>English</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127471;&#127477;</span><span>&#26085;&#26412;&#35486;</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127464;&#127475;</span><span>&#20013;&#25991;</span>
+                            </button>
+                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>&#127466;&#127480;</span><span>Espa&#241;ol</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-primary font-medium pl-2">
+                        <span>&#10024;</span><span>AI Life Summary</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
+                    </a>
+                    <div class="border-t my-2"></div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127471;&#127477; JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127464;&#127475; ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127466;&#127480; ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="gradient-bg py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block">&#128218;</span>
+                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="archive.title">
+                    Sentence Archive
+                </h1>
+                <p class="text-white/80 text-lg max-w-2xl mx-auto" data-i18n="archive.description">
+                    Explore life summaries from around the world. Browse by decade and month to discover unique insights based on birthday analysis.
+                </p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="py-8 bg-white border-b">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <div class="flex-1 max-w-md">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="archive.search_label">
+                            Find by Birthday
+                        </label>
+                        <div class="flex gap-2">
+                            <input
+                                type="text"
+                                id="search-year"
+                                inputmode="numeric"
+                                pattern="[0-9]{4}"
+                                maxlength="4"
+                                class="w-20 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-center"
+                                data-i18n-placeholder="form.year"
+                                placeholder="Year"
+                            >
+                            <input
+                                type="text"
+                                id="search-month"
+                                inputmode="numeric"
+                                pattern="[0-9]{1,2}"
+                                maxlength="2"
+                                class="w-16 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-center"
+                                data-i18n-placeholder="form.month"
+                                placeholder="Month"
+                            >
+                            <input
+                                type="text"
+                                id="search-day"
+                                inputmode="numeric"
+                                pattern="[0-9]{1,2}"
+                                maxlength="2"
+                                class="w-16 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-center"
+                                data-i18n-placeholder="form.day"
+                                placeholder="Day"
+                            >
+                        </div>
+                    </div>
+                    <button
+                        id="search-btn"
+                        class="gradient-bg text-white px-6 py-3 rounded-lg hover:opacity-90 transition mt-6 md:mt-0"
+                        data-i18n="archive.search_btn"
+                    >
+                        Find Summary
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm" data-i18n="ad.label">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Content -->
+        <section class="py-12">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-heading text-2xl font-bold mb-8 text-center">
+                    <span data-i18n="archive.browse_decade">Browse by</span> <span class="gradient-text" data-i18n="archive.browse_decade_highlight">Decade</span>
+                </h2>
+
+                <!-- Decade Navigation -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button class="decade-btn active px-4 py-2 rounded-full bg-primary text-white font-medium" data-decade="1990">1990s</button>
+                    <button class="decade-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-decade="1980">1980s</button>
+                    <button class="decade-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-decade="2000">2000s</button>
+                    <button class="decade-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-decade="1970">1970s</button>
+                    <button class="decade-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-decade="2010">2010s</button>
+                </div>
+
+                <!-- Month Grid -->
+                <div id="archive-content">
+                    <!-- January -->
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#10052;</span> <span data-i18n="archive.month.january">January</span> <span id="decade-display" class="text-gray-500 ml-2">1990s</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.jan1">
+                                    "You are someone who bounces back from challenges with remarkable grace and finds meaning in the smallest moments."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.jan_1_10">Born January 1-10</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.jan2">
+                                    "Your journey is marked by seeing beauty in unexpected places, especially when nurturing relationships that matter most."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.jan_11_20">Born January 11-20</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.jan3">
+                                    "Strength comes naturally when you learn from every experience, for you are becoming the best version of yourself."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.jan_21_31">Born January 21-31</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- February -->
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#128150;</span> <span data-i18n="archive.month.february">February</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.feb1">
+                                    "You find purpose through understanding others at a profound level, and spreading love wherever you go guides your way."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.feb_1_10">Born February 1-10</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.feb2">
+                                    "What defines you is how you transform challenges into stepping stones while creating beautiful memories."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.feb_11_20">Born February 11-20</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.feb3">
+                                    "Your essence lies in connecting hearts across distances, always finding your unique path."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.feb_21_29">Born February 21-29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- March -->
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#127800;</span> <span data-i18n="archive.month.march">March</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.mar1">
+                                    "You navigate life by seeking new horizons fearlessly, naturally embracing transformation courageously."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.mar_1_10">Born March 1-10</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.mar2">
+                                    "The world sees someone who inspires others through example, yet beneath this, you are growing stronger with every challenge."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.mar_11_20">Born March 11-20</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.mar3">
+                                    "Your gift is creating something from nothing, paired with the ability to touch lives in profound ways."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.mar_21_31">Born March 21-31</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Months -->
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#127799;</span> <span data-i18n="archive.month.april_june">April - June</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.apr">
+                                    "You embody staying true to yourself always, which allows you to make the world a little brighter."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.april">Born in April</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.may">
+                                    "Life has taught you to trust your gut instincts, and now you live each day with gratitude."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.may">Born in May</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.jun">
+                                    "At your core, you build bridges between people, and this helps you create lasting contributions."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.june">Born in June</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#9728;</span> <span data-i18n="archive.month.july_september">July - September</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.jul">
+                                    "You were born to embrace continuous improvement, destined to inspire future generations."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.july">Born in July</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.aug">
+                                    "Your path is illuminated by leading with integrity and purpose, leading you to being a force for good."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.august">Born in August</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.sep">
+                                    "Others admire how you see patterns others miss while effortlessly maintaining inner calm amid chaos."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.september">Born in September</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-10">
+                        <h3 class="font-heading text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-2xl mr-2">&#127810;</span> <span data-i18n="archive.month.october_december">October - December</span>
+                        </h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.oct">
+                                    "You carry within you finding meaning in silence, which empowers you to guide others with gentle insight."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.october">Born in October</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.nov">
+                                    "Your spirit is defined by sensing what others need before they ask, always seeking to heal through presence alone."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.november">Born in November</p>
+                            </div>
+                            <div class="card-hover bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                                <p class="quote-text text-gray-700 italic text-sm mb-3" data-i18n="archive.quote.dec">
+                                    "The universe aligned to make you someone who embraces obstacles as opportunities and leaves the world better than you found it."
+                                </p>
+                                <p class="text-xs text-gray-500" data-i18n="archive.born.december">Born in December</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-12">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-4 py-2 rounded-lg bg-gray-200 text-gray-600 hover:bg-gray-300 transition" data-i18n="archive.pagination.previous">Previous</button>
+                        <span class="px-4 py-2 rounded-lg bg-primary text-white">1</span>
+                        <span class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition cursor-pointer">2</span>
+                        <span class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition cursor-pointer">3</span>
+                        <span class="text-gray-500">...</span>
+                        <span class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition cursor-pointer">10</span>
+                        <button class="px-4 py-2 rounded-lg bg-primary text-white hover:opacity-90 transition" data-i18n="archive.pagination.next">Next</button>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Understanding Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl font-bold mb-6 text-center">
+                    <span data-i18n="archive.understanding.title">Understanding Your</span> <span class="gradient-text" data-i18n="archive.understanding.highlight">Life Summary</span><span data-i18n="archive.understanding.title_end"></span>
+                </h2>
+
+                <div class="prose prose-lg max-w-none text-gray-700 space-y-4">
+                    <p data-i18n="archive.understanding.p1">
+                        The AI Life Summary archive contains thousands of unique sentences generated by our proprietary algorithm. Each sentence is created based on the numerical patterns inherent in birth dates, combining elements of personality psychology, life wisdom, and inspirational messaging.
+                    </p>
+
+                    <p data-i18n="archive.understanding.p2">
+                        When browsing the archive, you'll notice that sentences for different birth periods share thematic similarities while remaining distinctly unique. This reflects our algorithm's approach of grouping certain personality traits and life themes based on temporal patterns, while ensuring that each individual's complete birth date produces a one-of-a-kind result.
+                    </p>
+
+                    <p data-i18n="archive.understanding.p3">
+                        The archive serves multiple purposes: it allows users to explore the range and depth of our sentence database, provides inspiration for self-reflection, and enables comparisons across different birth periods. Many users enjoy browsing sentences for family members, friends, and partners to gain insights into their personalities and life journeys.
+                    </p>
+
+                    <p data-i18n="archive.understanding.p4">
+                        We continuously expand our archive with new sentences and insights. Our content team regularly reviews and refines the sentence components to ensure they remain meaningful, positive, and thought-provoking. Whether you're here for entertainment or genuine self-discovery, we hope you find value in exploring these AI-generated life summaries.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 bg-gradient-to-br from-indigo-50 to-purple-50">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="font-heading text-2xl font-bold mb-4" data-i18n="archive.cta.title">
+                    Want Your Personal Summary?
+                </h2>
+                <p class="text-gray-600 mb-6" data-i18n="archive.cta.desc">
+                    Enter your exact birthday to get your unique, personalized life summary.
+                </p>
+                <a href="/" class="inline-block gradient-bg text-white font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition" data-i18n="archive.cta.btn">
+                    Get My Life Summary
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm" data-i18n="footer.description">
+                        Discover who you are with AI-powered life summaries.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.quick_links">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition" data-i18n="footer.home">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition" data-i18n="nav.about">About</a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition" data-i18n="nav.archive">Archive</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.legal">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition" data-i18n="form.privacy_link">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition" data-i18n="form.terms_link">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.connect">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 <span data-i18n="footer.copyright">AI Life Summary. All rights reserved.</span></p>
+                <p class="mt-2" data-i18n="footer.entertainment">This service is for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/i18n.js?v=4"></script>
+    <script>
+        // Ensure translations are applied including placeholders
+        if (typeof applyTranslations === 'function') {
+            applyTranslations();
+        }
+
+        // Manually set date placeholders
+        if (typeof t === 'function') {
+            document.getElementById('search-year').placeholder = t('form.year');
+            document.getElementById('search-month').placeholder = t('form.month');
+            document.getElementById('search-day').placeholder = t('form.day');
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const year = document.getElementById('search-year').value;
+            const month = document.getElementById('search-month').value;
+            const day = document.getElementById('search-day').value;
+            if (year && month && day) {
+                const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                localStorage.setItem('ai-life-summary-birthdate', date);
+                localStorage.setItem('ai-life-summary-gender', 'prefer-not-to-say');
+                window.location.href = '/generate.html';
+            }
+        });
+
+        // Decade button functionality
+        document.querySelectorAll('.decade-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.decade-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-primary', 'text-white');
+                    b.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                this.classList.add('active', 'bg-primary', 'text-white');
+                this.classList.remove('bg-gray-200', 'text-gray-700');
+                document.getElementById('decade-display').textContent = this.dataset.decade + 's';
+            });
+        });
+    </script>
+</body>
+</html>

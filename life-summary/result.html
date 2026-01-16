@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Your Life Summary Result - AI Life Summary | Personalized Insights</title>
+    <meta name="description" content="Discover your personalized AI-generated life summary based on your birthday. View your unique personality insights, share with friends, download as image, and explore what makes you special.">
+    <meta name="keywords" content="AI life summary result, personality test result, birthday meaning, life sentence, self discovery, share personality, download life summary, personal insights, birthday analysis result">
+    <meta name="author" content="AI Life Summary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://goodpicknow.com/generate">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goodpicknow.com/generate">
+    <meta property="og:title" content="My AI Life Summary">
+    <meta property="og:description" content="I just discovered my AI-generated life summary. Try it yourself!">
+    <meta property="og:image" content="https://goodpicknow.com/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Life Summary">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://goodpicknow.com/generate">
+    <meta name="twitter:title" content="My AI Life Summary">
+    <meta name="twitter:description" content="I just discovered my AI-generated life summary. Try it yourself!">
+    <meta name="twitter:image" content="https://goodpicknow.com/assets/images/twitter-image.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        accent: '#f59e0b'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        quote: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .quote-text {
+            font-family: 'Merriweather', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <!-- Tests Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-primary font-medium transition">
+                            <span>Tests</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="/life-summary/" class="block px-4 py-3 bg-indigo-50 border-l-4 border-primary">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#10024;</span>
+                                    <div>
+                                        <p class="font-medium text-primary">AI Life Summary</p>
+                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/age-calculator/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#127874;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
+                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div id="language-selector" class="relative">
+                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                            <span id="current-lang-name">EN</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <button type="button" onclick="setLanguage('en')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"><span>&#127482;&#127480;</span><span>English</span></button>
+                            <button type="button" onclick="setLanguage('ko')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"><span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span></button>
+                            <button type="button" onclick="setLanguage('ja')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"><span>&#127471;&#127477;</span><span>&#26085;&#26412;&#35486;</span></button>
+                            <button type="button" onclick="setLanguage('zh')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"><span>&#127464;&#127475;</span><span>&#20013;&#25991;</span></button>
+                            <button type="button" onclick="setLanguage('es')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"><span>&#127466;&#127480;</span><span>Espa&#241;ol</span></button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-primary font-medium pl-2">
+                        <span>&#10024;</span><span>AI Life Summary</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
+                    </a>
+                    <div class="border-t my-2"></div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
+                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127471;&#127477; JA</button>
+                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127464;&#127475; ZH</button>
+                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127466;&#127480; ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Result Section -->
+        <section class="gradient-bg py-16 md:py-20">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="animate-fade-in-up">
+                    <span class="text-5xl sparkle inline-block mb-6">&#10024;</span>
+                    <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
+                        Your Life Summary
+                    </h1>
+                    <p class="text-white/70 mb-8">Based on your birthday analysis</p>
+                </div>
+
+                <!-- Main Result Card -->
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 animate-fade-in-up delay-100">
+                    <div id="result-container">
+                        <p id="life-summary" class="quote-text text-2xl md:text-3xl text-gray-800 italic leading-relaxed mb-8">
+                            Loading your life summary...
+                        </p>
+                        <p id="birthday-info" class="text-gray-500 mb-6"></p>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="border-t pt-6">
+                        <p class="text-gray-600 mb-4 font-medium">Share your result:</p>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button id="share-twitter" class="flex items-center space-x-2 bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                                <span>Twitter/X</span>
+                            </button>
+
+                            <button id="share-facebook" class="flex items-center space-x-2 bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                <span>Facebook</span>
+                            </button>
+
+                            <button id="share-whatsapp" class="flex items-center space-x-2 bg-green-500 text-white px-5 py-3 rounded-lg hover:bg-green-600 transition">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                                <span>WhatsApp</span>
+                            </button>
+
+                            <button id="copy-link" class="flex items-center space-x-2 bg-gray-600 text-white px-5 py-3 rounded-lg hover:bg-gray-700 transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                <span>Copy Link</span>
+                            </button>
+                        </div>
+
+                        <!-- Image Download -->
+                        <div class="mt-6">
+                            <button id="download-image" class="inline-flex items-center space-x-2 gradient-bg text-white px-6 py-3 rounded-lg hover:opacity-90 transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <span>Download as Image</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Try Again -->
+                <div class="mt-8 animate-fade-in-up delay-200">
+                    <a href="/life-summary/" class="inline-flex items-center space-x-2 text-white hover:text-white/80 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        <span>Try a Different Birthday</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot 2 -->
+        <section class="py-8 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-100 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-24 flex items-center justify-center text-gray-400">
+                        [Ad Slot - 336x280 Medium Rectangle]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Insights Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-3xl font-bold text-center mb-4">
+                    <span class="text-2xl">&#128202;</span> Your Personal Insights
+                </h2>
+                <p class="text-gray-600 text-center mb-10">
+                    Discover more about yourself based on your birthday analysis
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <!-- Core Trait -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center card-hover">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">&#127775;</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Core Trait</h3>
+                        <p id="core-trait" class="text-primary font-medium text-xl">Resilience</p>
+                        <p class="text-gray-500 text-sm mt-2">Your defining characteristic</p>
+                    </div>
+
+                    <!-- Life Phase -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center card-hover">
+                        <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">&#127793;</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Life Phase</h3>
+                        <p id="life-phase" class="text-secondary font-medium text-xl">Growth</p>
+                        <p class="text-gray-500 text-sm mt-2">Current chapter of your journey</p>
+                    </div>
+
+                    <!-- Lucky Element -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center card-hover">
+                        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl">&#127754;</span>
+                        </div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Lucky Element</h3>
+                        <p id="lucky-element" class="text-accent font-medium text-xl">Water</p>
+                        <p class="text-gray-500 text-sm mt-2">Natural element connection</p>
+                    </div>
+                </div>
+
+                <!-- Extended Insights -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <h3 class="font-heading font-semibold text-xl mb-4">What This Means For You</h3>
+                    <div id="extended-insights" class="text-gray-700 space-y-4">
+                        <p>
+                            Based on the unique numerical patterns derived from your birth date, our algorithm has identified key personality traits and life themes that resonate with your journey. While this analysis is primarily for entertainment, many people find meaningful connections in these insights.
+                        </p>
+                        <p>
+                            Your core trait reflects the fundamental strength that guides you through life's challenges. This characteristic often manifests in how you approach problems, relate to others, and pursue your goals. Embracing this trait can help you navigate difficult situations with greater confidence and clarity.
+                        </p>
+                        <p>
+                            The life phase indicator suggests the general theme of your current life chapter. Understanding this can provide perspective on the opportunities and challenges you might be experiencing, helping you make decisions that align with your natural rhythm.
+                        </p>
+                        <p>
+                            Your lucky element represents a deeper connection to natural forces that ancient traditions believed influenced human destiny. Whether you take this literally or metaphorically, many find that reflecting on elemental connections brings a sense of grounding and purpose.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot 3 -->
+        <section class="py-8 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-100 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-24 flex items-center justify-center text-gray-400">
+                        [Ad Slot - 300x250 Medium Rectangle]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Tests Section -->
+        <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-heading text-3xl font-bold text-center mb-4">
+                    <span class="text-2xl">&#128302;</span> Try These Related Tests
+                </h2>
+                <p class="text-gray-600 text-center mb-10">
+                    Explore more ways to discover insights about yourself and your relationships
+                </p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Daily Summary -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm card-hover">
+                        <div class="text-4xl mb-4">&#127774;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Daily Summary</h3>
+                        <p class="text-gray-600 text-sm mb-4">Get a new life insight every day based on the current date combined with your birthday.</p>
+                        <span class="text-primary text-sm font-medium">Coming Soon</span>
+                    </div>
+
+                    <!-- Monthly Summary -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm card-hover">
+                        <div class="text-4xl mb-4">&#128197;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Monthly Summary</h3>
+                        <p class="text-gray-600 text-sm mb-4">Discover what this month has in store for you with our monthly life analysis.</p>
+                        <span class="text-primary text-sm font-medium">Coming Soon</span>
+                    </div>
+
+                    <!-- Couple Compatibility -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm card-hover">
+                        <div class="text-4xl mb-4">&#128149;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Couple Match</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter two birthdays and discover your relationship compatibility summary.</p>
+                        <span class="text-primary text-sm font-medium">Coming Soon</span>
+                    </div>
+
+                    <!-- Family Version -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm card-hover">
+                        <div class="text-4xl mb-4">&#128106;</div>
+                        <h3 class="font-heading font-semibold text-lg mb-2">Family Dynamics</h3>
+                        <p class="text-gray-600 text-sm mb-4">Analyze family relationships and discover your unique family dynamic summary.</p>
+                        <span class="text-primary text-sm font-medium">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-heading text-3xl font-bold text-center mb-4">
+                    <span class="text-2xl">&#128172;</span> What Others Are Saying
+                </h2>
+                <p class="text-gray-600 text-center mb-10">
+                    Join millions of people who have discovered their life summaries
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">
+                            "I was amazed at how accurate my life summary felt. It perfectly captured something I've always known about myself but never put into words."
+                        </p>
+                        <p class="text-gray-500 text-sm">- Sarah M., California</p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">
+                            "My friends and I spent hours comparing our results. It's such a fun way to learn more about each other and start meaningful conversations."
+                        </p>
+                        <p class="text-gray-500 text-sm">- James K., London</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span><span>&#11088;</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">
+                            "The image generator is amazing! I shared my result on Instagram and got so many comments. Everyone wanted to try it for themselves."
+                        </p>
+                        <p class="text-gray-500 text-sm">- Yuki T., Tokyo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="font-heading text-3xl font-bold mb-6">
+                    Share Your Result With Friends
+                </h2>
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                    Did your life summary resonate with you? Share it with friends and family and see how their results compare to yours!
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/life-summary/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg">
+                        Generate Another Summary
+                    </a>
+                    <a href="/life-summary/archive.html" class="bg-gray-200 text-gray-700 font-semibold py-4 px-8 rounded-lg hover:bg-gray-300 transition text-lg">
+                        Browse Archive
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#10024;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition">Archive</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition" aria-label="Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-white transition" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Life Summary. All rights reserved.</p>
+                <p class="mt-2">This service is for entertainment purposes only and should not be considered as professional advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- i18n Script -->
+    <script src="/js/i18n.js?v=4"></script>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Load Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/share.js"></script>
+    <script src="/js/image-generator.js"></script>
+
+    <!-- Initialize Page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const birthdate = localStorage.getItem('ai-life-summary-birthdate');
+            const gender = localStorage.getItem('ai-life-summary-gender') || 'prefer-not-to-say';
+
+            if (!birthdate) {
+                window.location.href = '/life-summary/';
+                return;
+            }
+
+            // Generate and display the life summary
+            const result = generateLifeSummary(birthdate, gender);
+
+            document.getElementById('life-summary').textContent = '"' + result.sentence + '"';
+            document.getElementById('birthday-info').textContent = 'Birthday: ' + formatDate(birthdate);
+            document.getElementById('core-trait').textContent = result.coreTrait;
+            document.getElementById('life-phase').textContent = result.lifePhase;
+            document.getElementById('lucky-element').textContent = result.element;
+
+            // Save result to localStorage
+            saveResult(birthdate, result);
+
+            // Initialize share buttons
+            initShareButtons(result.sentence);
+        });
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        function saveResult(birthdate, result) {
+            const savedResults = JSON.parse(localStorage.getItem('ai-life-summary-history') || '[]');
+            savedResults.unshift({
+                birthdate: birthdate,
+                sentence: result.sentence,
+                timestamp: new Date().toISOString()
+            });
+            // Keep only last 10 results
+            if (savedResults.length > 10) savedResults.pop();
+            localStorage.setItem('ai-life-summary-history', JSON.stringify(savedResults));
+        }
+    </script>
+</body>
+</html>

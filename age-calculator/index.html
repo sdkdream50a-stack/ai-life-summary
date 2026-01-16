@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>AI Age Calculator - Discover Your Real, Mental & Energy Age | AI Test Lab</title>
+    <meta name="description" content="Calculate your TRUE age with AI! Compare your Real Age, Mental Age, and Energy Age. Answer 7 fun questions and discover how young or old you really are. Free and instant results.">
+    <meta name="keywords" content="AI age calculator, mental age test, energy age, real age, age comparison, personality test, how old am I mentally, biological age, lifestyle age calculator">
+    <meta name="author" content="AI Test Lab">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://goodpicknow.com/age-calculator/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goodpicknow.com/age-calculator/">
+    <meta property="og:title" content="AI Age Calculator - Discover Your TRUE Age">
+    <meta property="og:description" content="Compare your Real Age, Mental Age, and Energy Age with our AI calculator!">
+    <meta property="og:image" content="https://goodpicknow.com/assets/images/age-calculator-og.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Test Lab">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://goodpicknow.com/age-calculator/">
+    <meta name="twitter:title" content="AI Age Calculator - Discover Your TRUE Age">
+    <meta name="twitter:description" content="Compare your Real Age, Mental Age, and Energy Age!">
+    <meta name="twitter:image" content="https://goodpicknow.com/assets/images/age-calculator-twitter.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        'age-primary': '#10b981',
+                        'age-secondary': '#06b6d4'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .age-gradient-bg { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+        .age-gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Step transitions */
+        .step-section {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .step-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Option card styles */
+        .option-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 80px;
+        }
+        .option-card:hover {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        .option-card.selected {
+            border-color: #10b981;
+            background-color: #d1fae5;
+            box-shadow: 0 0 0 2px #10b981;
+        }
+        .option-card input[type="radio"] {
+            display: none;
+        }
+
+        /* Progress bar animation */
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-age-primary font-medium transition">
+                            <span>Tests</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="/life-summary/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#10024;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">AI Life Summary</p>
+                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/age-calculator/" class="block px-4 py-3 bg-emerald-50 border-l-4 border-age-primary">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#127874;</span>
+                                    <div>
+                                        <p class="font-medium text-age-primary">AI Age Calculator</p>
+                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition">
+                        <span>&#10024;</span><span>AI Life Summary</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-age-primary font-medium">
+                        <span>&#127874;</span><span>AI Age Calculator</span>
+                    </a>
+                    <div class="border-t my-2"></div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="age-gradient-bg py-10 md:py-14">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <a href="/" class="inline-flex items-center space-x-2 text-white/80 hover:text-white mb-4 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Back to Tests</span>
+                </a>
+                <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+                    &#127874; AI Age Calculator
+                </h1>
+                <p class="text-lg md:text-xl text-white/90">
+                    Discover your TRUE age - Real vs Mental vs Energy
+                </p>
+                <p class="text-white/70 mt-2 text-sm">
+                    &#45817;&#49888;&#51032; &#51652;&#51676; &#45208;&#51060;&#47484; &#48156;&#44204;&#54616;&#49464;&#50836; - &#49892;&#51228; vs &#51221;&#49888; vs &#50640;&#45320;&#51648;
+                </p>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <div class="bg-white border-b sticky top-[72px] z-40">
+            <div class="max-w-4xl mx-auto px-4 py-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-gray-600">Progress</span>
+                    <span id="progress-text" class="text-sm font-medium text-age-primary">Step 1 of 3</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="progress-bar" class="progress-bar age-gradient-bg h-3 rounded-full" style="width: 33%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs text-gray-500">
+                    <span id="step1-label" class="text-age-primary font-medium">Basic Info</span>
+                    <span id="step2-label">Lifestyle</span>
+                    <span id="step3-label">Mindset</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <section class="py-8 md:py-12">
+            <div class="max-w-2xl mx-auto px-4">
+                <form id="age-calculator-form">
+
+                    <!-- Step 1: Basic Info -->
+                    <div id="step1" class="step-section active">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#128197;</span>
+                                <h2 class="font-heading text-2xl font-bold mt-2">Basic Information</h2>
+                                <p class="text-gray-500 text-sm mt-1">&#44592;&#48376; &#51221;&#48372;</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <!-- Birthday -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Date of Birth <span class="text-gray-400">(&#49373;&#45380;&#50900;&#51068;)</span>
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <div>
+                                            <input type="number" id="birth-year" name="birth-year"
+                                                placeholder="YYYY" min="1920" max="2025" required
+                                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
+                                            <p class="text-xs text-gray-400 mt-1 text-center">Year (&#45380;)</p>
+                                        </div>
+                                        <div>
+                                            <input type="number" id="birth-month" name="birth-month"
+                                                placeholder="MM" min="1" max="12" required
+                                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
+                                            <p class="text-xs text-gray-400 mt-1 text-center">Month (&#50900;)</p>
+                                        </div>
+                                        <div>
+                                            <input type="number" id="birth-day" name="birth-day"
+                                                placeholder="DD" min="1" max="31" required
+                                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-age-primary focus:border-transparent text-center text-lg">
+                                            <p class="text-xs text-gray-400 mt-1 text-center">Day (&#51068;)</p>
+                                        </div>
+                                    </div>
+                                    <p id="birthday-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid date of birth.</p>
+                                </div>
+                            </div>
+
+                            <button type="button" onclick="goToStep(2)"
+                                class="w-full mt-8 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                Next: Lifestyle Questions &#8594;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Lifestyle (4 Questions) -->
+                    <div id="step2" class="step-section">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#127968;</span>
+                                <h2 class="font-heading text-2xl font-bold mt-2">Lifestyle Questions</h2>
+                                <p class="text-gray-500 text-sm mt-1">&#46972;&#51060;&#54532;&#49828;&#53440;&#51068; &#51656;&#47928; (4&#47928;&#54637;)</p>
+                            </div>
+
+                            <!-- Q1: Weekend Wake-up Time -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q1. What time do you usually wake up on weekends?</p>
+                                <p class="text-sm text-gray-500 mb-4">&#51452;&#47568; &#50500;&#52840;&#50640; &#48372;&#53685; &#47751; &#49884;&#50640; &#51068;&#50612;&#45208;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q1" value="early" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Before 7 AM</span>
+                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 7&#49884; &#51060;&#51204;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q1" value="morning">
+                                        <div class="ml-3">
+                                            <span class="font-medium">7-9 AM</span>
+                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 7-9&#49884;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q1" value="late">
+                                        <div class="ml-3">
+                                            <span class="font-medium">9-11 AM</span>
+                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 9-11&#49884;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q1" value="noon">
+                                        <div class="ml-3">
+                                            <span class="font-medium">After 11 AM</span>
+                                            <span class="text-gray-500 text-sm block">&#50724;&#51204; 11&#49884; &#51060;&#54980;</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q2: New Technology Adoption -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q2. How do you react to new apps or technology?</p>
+                                <p class="text-sm text-gray-500 mb-4">&#49352;&#47196;&#50868; &#50545;&#51060;&#45208; &#44592;&#49696;&#50640; &#50612;&#46523;&#44172; &#48152;&#51025;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q2" value="eager" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Try immediately!</span>
+                                            <span class="text-gray-500 text-sm block">&#48148;&#47196; &#49324;&#50857;&#54644;&#48388;!</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q2" value="curious">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Wait for reviews first</span>
+                                            <span class="text-gray-500 text-sm block">&#47532;&#48624; &#48372;&#44256; &#44208;&#51221;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q2" value="cautious">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Use if necessary</span>
+                                            <span class="text-gray-500 text-sm block">&#54596;&#50836;&#54616;&#47732; &#49324;&#50857;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q2" value="resistant">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Prefer what I know</span>
+                                            <span class="text-gray-500 text-sm block">&#51061;&#49689;&#54620; &#44163;&#51060; &#51339;&#50500;</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q3: Stress Relief -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q3. How do you usually relieve stress?</p>
+                                <p class="text-sm text-gray-500 mb-4">&#49828;&#53944;&#47112;&#49828;&#47484; &#50612;&#46523;&#44172; &#54644;&#49548;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q3" value="active" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Exercise / Sports</span>
+                                            <span class="text-gray-500 text-sm block">&#50868;&#46041; / &#49828;&#54252;&#52768;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q3" value="social">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Meet friends</span>
+                                            <span class="text-gray-500 text-sm block">&#52828;&#44396; &#47564;&#45208;&#44592;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q3" value="passive">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Watch TV / Movies</span>
+                                            <span class="text-gray-500 text-sm block">TV / &#50689;&#54868; &#49884;&#52397;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q3" value="rest">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Sleep / Rest</span>
+                                            <span class="text-gray-500 text-sm block">&#49688;&#47732; / &#55092;&#49885;</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q4: 10 Years from Now -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q4. How do you feel about 10 years from now?</p>
+                                <p class="text-sm text-gray-500 mb-4">10&#45380; &#54980; &#48120;&#47000;&#50640; &#45824;&#54644; &#50612;&#46523;&#44172; &#49373;&#44033;&#54616;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q4" value="excited" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Excited & Optimistic</span>
+                                            <span class="text-gray-500 text-sm block">&#49444;&#47112;&#44256; &#44592;&#45824;&#46108;&#45796;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q4" value="neutral">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Haven't thought much</span>
+                                            <span class="text-gray-500 text-sm block">&#48324;&#47196; &#49373;&#44033; &#50504; &#54644;&#48388;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q4" value="worried">
+                                        <div class="ml-3">
+                                            <span class="font-medium">A bit worried</span>
+                                            <span class="text-gray-500 text-sm block">&#51312;&#44552; &#44145;&#51221;&#46108;&#45796;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q4" value="anxious">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Quite anxious</span>
+                                            <span class="text-gray-500 text-sm block">&#47566;&#51060; &#48520;&#50504;&#54616;&#45796;</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3">
+                                <button type="button" onclick="goToStep(1)"
+                                    class="flex-1 bg-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg hover:bg-gray-300 transition text-lg">
+                                    &#8592; Back
+                                </button>
+                                <button type="button" onclick="goToStep(3)"
+                                    class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                    Next: Mindset &#8594;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Mindset (3 Questions) -->
+                    <div id="step3" class="step-section">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#129504;</span>
+                                <h2 class="font-heading text-2xl font-bold mt-2">Mindset Questions</h2>
+                                <p class="text-gray-500 text-sm mt-1">&#47560;&#51064;&#46300;&#49483; &#51656;&#47928; (3&#47928;&#54637;)</p>
+                            </div>
+
+                            <!-- Q5: "Kids these days" -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q5. How often do you say "Kids these days..." or "Back in my day..."?</p>
+                                <p class="text-sm text-gray-500 mb-4">"&#50836;&#51608; &#50528;&#46308;&#51008;..." &#46608;&#45716; "&#50696;&#51204;&#50640;&#45716;..." &#51060;&#47088; &#47568;&#51012; &#50620;&#47560;&#45208; &#51088;&#51452; &#54616;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q5" value="never" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Never</span>
+                                            <span class="text-gray-500 text-sm block">&#44144;&#51032; &#50504; &#54632;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q5" value="rarely">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Occasionally</span>
+                                            <span class="text-gray-500 text-sm block">&#44032;&#45140;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q5" value="often">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Often</span>
+                                            <span class="text-gray-500 text-sm block">&#51088;&#51452;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q5" value="always">
+                                        <div class="ml-3">
+                                            <span class="font-medium">All the time</span>
+                                            <span class="text-gray-500 text-sm block">&#47588;&#50864; &#51088;&#51452;</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q6: Late Night Call from Friend -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q6. A friend calls at 11 PM to hang out. Your reaction?</p>
+                                <p class="text-sm text-gray-500 mb-4">&#52828;&#44396;&#44032; &#48164; 11&#49884;&#50640; &#45440;&#51088;&#44256; &#51204;&#54868;&#54616;&#47732;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q6" value="excited" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">"Let's go!"</span>
+                                            <span class="text-gray-500 text-sm block">"&#44032;&#51088;!"</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q6" value="maybe">
+                                        <div class="ml-3">
+                                            <span class="font-medium">"Depends on tomorrow"</span>
+                                            <span class="text-gray-500 text-sm block">"&#45236;&#51068; &#51068;&#51221;&#50640; &#46384;&#46972;"</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q6" value="reluctant">
+                                        <div class="ml-3">
+                                            <span class="font-medium">"Too late for me"</span>
+                                            <span class="text-gray-500 text-sm block">"&#45320;&#47924; &#45734;&#50632;&#50612;"</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q6" value="asleep">
+                                        <div class="ml-3">
+                                            <span class="font-medium">"Already in bed"</span>
+                                            <span class="text-gray-500 text-sm block">"&#51060;&#48120; &#51088;&#44256; &#51080;&#50612;"</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q7: New Year's Resolution -->
+                            <div class="mb-8">
+                                <p class="font-medium text-gray-800 mb-1">Q7. Your typical New Year's resolution style?</p>
+                                <p class="text-sm text-gray-500 mb-4">&#49352;&#54644; &#47785;&#54364;&#47484; &#50612;&#46523;&#44172; &#49464;&#50864;&#49884;&#45208;&#50836;?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q7" value="ambitious" required>
+                                        <div class="ml-3">
+                                            <span class="font-medium">Big dreams & plans</span>
+                                            <span class="text-gray-500 text-sm block">&#53360; &#44984;&#44284; &#44228;&#54925;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q7" value="practical">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Small achievable goals</span>
+                                            <span class="text-gray-500 text-sm block">&#49892;&#54788; &#44032;&#45733;&#54620; &#47785;&#54364;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q7" value="none">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Don't make resolutions</span>
+                                            <span class="text-gray-500 text-sm block">&#47785;&#54364; &#50504; &#49464;&#50880;</span>
+                                        </div>
+                                    </label>
+                                    <label class="option-card border-2 border-gray-200 rounded-xl p-4 flex items-center">
+                                        <input type="radio" name="q7" value="same">
+                                        <div class="ml-3">
+                                            <span class="font-medium">Same as last year...</span>
+                                            <span class="text-gray-500 text-sm block">&#51089;&#45380;&#44284; &#46608;&#44057;&#51008;...</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3">
+                                <button type="button" onclick="goToStep(2)"
+                                    class="flex-1 bg-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg hover:bg-gray-300 transition text-lg">
+                                    &#8592; Back
+                                </button>
+                                <button type="submit"
+                                    class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                    &#128302; Calculate My Age
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-8 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-24 flex items-center justify-center text-gray-400">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Did You Know Section -->
+        <section class="py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-6 md:p-8 border border-emerald-100">
+                    <h3 class="font-heading text-xl font-bold mb-4 flex items-center">
+                        <span class="text-2xl mr-2">&#128161;</span> Did You Know?
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p>
+                            <strong>Mental Age</strong> is different from your chronological age. It reflects how you think, feel, and perceive the world around you. Some people have a mental age younger than their actual age, meaning they maintain a youthful outlook and adaptability.
+                        </p>
+                        <p>
+                            <strong>Energy Age</strong> measures your vitality and physical energy levels based on your lifestyle choices. Regular exercise, social connections, and positive stress management can keep your energy age much younger than your real age!
+                        </p>
+                        <p class="text-sm text-gray-500 mt-4">
+                            &#8251; This test is for entertainment purposes only and is not a scientific measurement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#129302;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Discover yourself with AI-powered personality tests. Fun, insightful, and free.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Tests</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
+                <p class="mt-2">All tests are for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Current step
+        let currentStep = 1;
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Option card selection
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const name = this.querySelector('input').name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+                    input.closest('.option-card').classList.remove('selected');
+                });
+                this.classList.add('selected');
+                this.querySelector('input').checked = true;
+            });
+        });
+
+        // Go to specific step
+        function goToStep(step) {
+            // Validate current step before proceeding
+            if (step > currentStep && !validateStep(currentStep)) {
+                return;
+            }
+
+            // Hide current step
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+
+            // Show new step
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+
+            // Update progress
+            updateProgress();
+
+            // Scroll to top of form
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        // Validate step
+        function validateStep(step) {
+            if (step === 1) {
+                const year = document.getElementById('birth-year').value;
+                const month = document.getElementById('birth-month').value;
+                const day = document.getElementById('birth-day').value;
+
+                if (!year || !month || !day) {
+                    document.getElementById('birthday-error').textContent = 'Please enter your complete date of birth.';
+                    document.getElementById('birthday-error').classList.remove('hidden');
+                    return false;
+                }
+
+                const birthDate = new Date(year, month - 1, day);
+                const today = new Date();
+
+                if (birthDate > today || year < 1920) {
+                    document.getElementById('birthday-error').textContent = 'Please enter a valid date of birth.';
+                    document.getElementById('birthday-error').classList.remove('hidden');
+                    return false;
+                }
+
+                document.getElementById('birthday-error').classList.add('hidden');
+                return true;
+            }
+
+            if (step === 2) {
+                const q1 = document.querySelector('input[name="q1"]:checked');
+                const q2 = document.querySelector('input[name="q2"]:checked');
+                const q3 = document.querySelector('input[name="q3"]:checked');
+                const q4 = document.querySelector('input[name="q4"]:checked');
+
+                if (!q1 || !q2 || !q3 || !q4) {
+                    alert('Please answer all questions before proceeding.');
+                    return false;
+                }
+                return true;
+            }
+
+            return true;
+        }
+
+        // Update progress bar and labels
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const labels = ['step1-label', 'step2-label', 'step3-label'];
+
+            const progress = (currentStep / 3) * 100;
+            progressBar.style.width = progress + '%';
+            progressText.textContent = `Step ${currentStep} of 3`;
+
+            labels.forEach((label, index) => {
+                const el = document.getElementById(label);
+                if (index < currentStep) {
+                    el.classList.add('text-age-primary', 'font-medium');
+                    el.classList.remove('text-gray-500');
+                } else {
+                    el.classList.remove('text-age-primary', 'font-medium');
+                    el.classList.add('text-gray-500');
+                }
+            });
+        }
+
+        // Form submission
+        document.getElementById('age-calculator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate final step
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            const q6 = document.querySelector('input[name="q6"]:checked');
+            const q7 = document.querySelector('input[name="q7"]:checked');
+
+            if (!q5 || !q6 || !q7) {
+                alert('Please answer all questions before calculating.');
+                return;
+            }
+
+            // Collect all data
+            const formData = {
+                birthYear: document.getElementById('birth-year').value,
+                birthMonth: document.getElementById('birth-month').value,
+                birthDay: document.getElementById('birth-day').value,
+                q1: document.querySelector('input[name="q1"]:checked').value,
+                q2: document.querySelector('input[name="q2"]:checked').value,
+                q3: document.querySelector('input[name="q3"]:checked').value,
+                q4: document.querySelector('input[name="q4"]:checked').value,
+                q5: document.querySelector('input[name="q5"]:checked').value,
+                q6: document.querySelector('input[name="q6"]:checked').value,
+                q7: document.querySelector('input[name="q7"]:checked').value
+            };
+
+            // Store in localStorage
+            localStorage.setItem('age-calculator-data', JSON.stringify(formData));
+
+            // Redirect to result page
+            window.location.href = '/age-calculator/result.html';
+        });
+    </script>
+</body>
+</html>

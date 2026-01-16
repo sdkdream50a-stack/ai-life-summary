@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Compare Age Results - AI Age Calculator | AI Test Lab</title>
+    <meta name="description" content="Compare your AI Age Calculator results with friends. See who has the younger Mental Age and Energy Age!">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goodpicknow.com/age-calculator/compare.html">
+    <meta property="og:title" content="Compare Our Ages - AI Age Calculator">
+    <meta property="og:description" content="Compare Mental Age and Energy Age with friends!">
+    <meta property="og:image" content="https://goodpicknow.com/assets/images/age-calculator-og.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        'age-primary': '#10b981',
+                        'age-secondary': '#06b6d4'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .age-gradient-bg { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+        .age-gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .compare-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .winner-badge {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="/age-calculator/" class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        <span>Take Test</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="age-gradient-bg py-10 md:py-14">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block">&#128101;</span>
+                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
+                    Age Comparison
+                </h1>
+                <p class="text-white/80">&#45208;&#51060; &#48708;&#44368;</p>
+            </div>
+        </section>
+
+        <!-- Comparison Results -->
+        <section id="comparison-section" class="py-8 md:py-12">
+            <div class="max-w-4xl mx-auto px-4">
+                <!-- Waiting for Friend -->
+                <div id="waiting-view" class="hidden text-center py-12">
+                    <span class="text-6xl mb-6 inline-block">&#9203;</span>
+                    <h2 class="font-heading text-2xl font-bold mb-4">Waiting for Friend's Results</h2>
+                    <p class="text-gray-600 mb-6">Share this link with your friend to compare results!</p>
+                    <div class="bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto">
+                        <p class="text-sm text-gray-500 mb-3">Your comparison link:</p>
+                        <div class="flex gap-2">
+                            <input type="text" id="share-link" readonly class="flex-1 px-4 py-2 border rounded-lg bg-gray-50 text-sm">
+                            <button onclick="copyCompareLink()" class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition">
+                                Copy
+                            </button>
+                        </div>
+                        <p id="copy-success" class="text-green-600 text-sm mt-2 hidden">Copied!</p>
+                    </div>
+                </div>
+
+                <!-- Comparison View -->
+                <div id="compare-view" class="hidden">
+                    <!-- VS Header -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center space-x-4 bg-white rounded-full px-6 py-3 shadow-lg">
+                            <span class="font-heading font-bold text-xl text-indigo-600">You</span>
+                            <span class="text-2xl font-bold text-gray-400">VS</span>
+                            <span class="font-heading font-bold text-xl text-pink-600">Friend</span>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Cards -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <!-- Person 1 (You) -->
+                        <div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-indigo-500">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#128100;</span>
+                                <h3 class="font-heading font-bold text-xl text-indigo-600 mt-2">You</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                                    <p class="text-gray-500 text-sm">Real Age</p>
+                                    <p id="p1-real" class="font-heading text-3xl font-bold text-gray-800">--</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="text-center p-4 bg-indigo-50 rounded-xl">
+                                        <p class="text-gray-500 text-sm">&#129504; Mental</p>
+                                        <p id="p1-mental" class="font-heading text-2xl font-bold text-indigo-600">--</p>
+                                        <p id="p1-mental-gap" class="text-sm text-indigo-500">--</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-emerald-50 rounded-xl">
+                                        <p class="text-gray-500 text-sm">&#9889; Energy</p>
+                                        <p id="p1-energy" class="font-heading text-2xl font-bold text-emerald-600">--</p>
+                                        <p id="p1-energy-gap" class="text-sm text-emerald-500">--</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Person 2 (Friend) -->
+                        <div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-pink-500" style="animation-delay: 0.2s">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#128101;</span>
+                                <h3 class="font-heading font-bold text-xl text-pink-600 mt-2">Friend</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="text-center p-4 bg-gray-50 rounded-xl">
+                                    <p class="text-gray-500 text-sm">Real Age</p>
+                                    <p id="p2-real" class="font-heading text-3xl font-bold text-gray-800">--</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="text-center p-4 bg-indigo-50 rounded-xl">
+                                        <p class="text-gray-500 text-sm">&#129504; Mental</p>
+                                        <p id="p2-mental" class="font-heading text-2xl font-bold text-indigo-600">--</p>
+                                        <p id="p2-mental-gap" class="text-sm text-indigo-500">--</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-emerald-50 rounded-xl">
+                                        <p class="text-gray-500 text-sm">&#9889; Energy</p>
+                                        <p id="p2-energy" class="font-heading text-2xl font-bold text-emerald-600">--</p>
+                                        <p id="p2-energy-gap" class="text-sm text-emerald-500">--</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Winner Section -->
+                    <div id="winner-section" class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 text-center mb-8">
+                        <span class="text-5xl mb-4 inline-block winner-badge">&#127942;</span>
+                        <h3 class="font-heading text-2xl font-bold mb-2" id="winner-title">Winner</h3>
+                        <p class="text-gray-700" id="winner-desc">Comparison result will appear here</p>
+                    </div>
+
+                    <!-- Detailed Comparison -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="font-heading text-xl font-bold mb-6 text-center">Detailed Comparison</h3>
+
+                        <!-- Mental Age Comparison -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium">&#129504; Mental Age Gap</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="flex-1">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>You</span>
+                                        <span id="p1-mental-bar-label">--</span>
+                                    </div>
+                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="p1-mental-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>Friend</span>
+                                        <span id="p2-mental-bar-label">--</span>
+                                    </div>
+                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="p2-mental-bar" class="h-full bg-pink-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Energy Age Comparison -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium">&#9889; Energy Age Gap</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="flex-1">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>You</span>
+                                        <span id="p1-energy-bar-label">--</span>
+                                    </div>
+                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="p1-energy-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                        <span>Friend</span>
+                                        <span id="p2-energy-bar-label">--</span>
+                                    </div>
+                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="p2-energy-bar" class="h-full bg-pink-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                        <button onclick="shareComparison()" class="age-gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition flex items-center justify-center space-x-2">
+                            <span>&#128279;</span>
+                            <span>Share Comparison</span>
+                        </button>
+                        <a href="/age-calculator/" class="bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition text-center">
+                            &#8634; Take Test Again
+                        </a>
+                    </div>
+                </div>
+
+                <!-- No Data View -->
+                <div id="no-data-view" class="hidden text-center py-12">
+                    <span class="text-6xl mb-6 inline-block">&#128533;</span>
+                    <h2 class="font-heading text-2xl font-bold mb-4">No Results Found</h2>
+                    <p class="text-gray-600 mb-6">Take the AI Age Calculator test first to compare with friends!</p>
+                    <a href="/age-calculator/" class="inline-block age-gradient-bg text-white font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition">
+                        Take the Test
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Try More Tests -->
+        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl font-bold text-center mb-8">
+                    &#128302; Try More Tests
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <a href="/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="flex items-start space-x-4">
+                            <span class="text-4xl">&#10024;</span>
+                            <div>
+                                <h3 class="font-heading font-semibold text-lg mb-2">AI Life Summary</h3>
+                                <p class="text-gray-600 text-sm">Get your personalized life summary in one AI-generated sentence.</p>
+                                <span class="inline-block mt-3 text-primary font-medium text-sm">Try Now &#8594;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/age-calculator/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="flex items-start space-x-4">
+                            <span class="text-4xl">&#127874;</span>
+                            <div>
+                                <h3 class="font-heading font-semibold text-lg mb-2">AI Age Calculator</h3>
+                                <p class="text-gray-600 text-sm">Discover your Mental Age and Energy Age based on lifestyle.</p>
+                                <span class="inline-block mt-3 text-age-primary font-medium text-sm">Try Now &#8594;</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#129302;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Discover yourself with AI-powered personality tests.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Tests</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
+                <p class="mt-2">All tests are for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/age-calculator.js"></script>
+    <script src="/js/age-share.js"></script>
+    <script>
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+
+        // Check for comparison data
+        const hasPerson1 = params.has('r1') && params.has('m1') && params.has('e1');
+        const hasPerson2 = params.has('r2') && params.has('m2') && params.has('e2');
+
+        // Get stored results
+        const storedData = localStorage.getItem('age-calculator-data');
+        let myResults = null;
+
+        if (storedData) {
+            const data = JSON.parse(storedData);
+            const realAge = calculateRealAge(parseInt(data.birthYear), parseInt(data.birthMonth), parseInt(data.birthDay));
+            const answers = { q1: data.q1, q2: data.q2, q3: data.q3, q4: data.q4, q5: data.q5, q6: data.q6, q7: data.q7, birthMonth: data.birthMonth };
+            myResults = {
+                realAge: realAge,
+                mentalAge: calculateMentalAge(realAge, answers),
+                energyAge: calculateEnergyAge(realAge, answers)
+            };
+        }
+
+        // Determine which view to show
+        if (hasPerson1 && hasPerson2) {
+            // Full comparison mode
+            showComparison({
+                realAge: parseInt(params.get('r1')),
+                mentalAge: parseInt(params.get('m1')),
+                energyAge: parseInt(params.get('e1'))
+            }, {
+                realAge: parseInt(params.get('r2')),
+                mentalAge: parseInt(params.get('m2')),
+                energyAge: parseInt(params.get('e2'))
+            });
+        } else if (hasPerson1 && myResults) {
+            // Someone shared with me, compare with my results
+            showComparison(myResults, {
+                realAge: parseInt(params.get('r1')),
+                mentalAge: parseInt(params.get('m1')),
+                energyAge: parseInt(params.get('e1'))
+            });
+        } else if (myResults) {
+            // I have results, waiting for friend
+            showWaitingView(myResults);
+        } else {
+            // No data at all
+            showNoDataView();
+        }
+
+        function showComparison(person1, person2) {
+            document.getElementById('compare-view').classList.remove('hidden');
+
+            // Person 1 data
+            const p1MentalGap = person1.mentalAge - person1.realAge;
+            const p1EnergyGap = person1.energyAge - person1.realAge;
+
+            document.getElementById('p1-real').textContent = person1.realAge;
+            document.getElementById('p1-mental').textContent = person1.mentalAge;
+            document.getElementById('p1-energy').textContent = person1.energyAge;
+            document.getElementById('p1-mental-gap').textContent = getAgeGapLabel(p1MentalGap, 'en');
+            document.getElementById('p1-energy-gap').textContent = getAgeGapLabel(p1EnergyGap, 'en');
+
+            // Person 2 data
+            const p2MentalGap = person2.mentalAge - person2.realAge;
+            const p2EnergyGap = person2.energyAge - person2.realAge;
+
+            document.getElementById('p2-real').textContent = person2.realAge;
+            document.getElementById('p2-mental').textContent = person2.mentalAge;
+            document.getElementById('p2-energy').textContent = person2.energyAge;
+            document.getElementById('p2-mental-gap').textContent = getAgeGapLabel(p2MentalGap, 'en');
+            document.getElementById('p2-energy-gap').textContent = getAgeGapLabel(p2EnergyGap, 'en');
+
+            // Bar charts
+            const maxGap = 15;
+            document.getElementById('p1-mental-bar').style.width = `${Math.max(0, Math.min(100, 50 - (p1MentalGap / maxGap) * 50))}%`;
+            document.getElementById('p2-mental-bar').style.width = `${Math.max(0, Math.min(100, 50 - (p2MentalGap / maxGap) * 50))}%`;
+            document.getElementById('p1-energy-bar').style.width = `${Math.max(0, Math.min(100, 50 - (p1EnergyGap / maxGap) * 50))}%`;
+            document.getElementById('p2-energy-bar').style.width = `${Math.max(0, Math.min(100, 50 - (p2EnergyGap / maxGap) * 50))}%`;
+
+            document.getElementById('p1-mental-bar-label').textContent = (p1MentalGap >= 0 ? '+' : '') + p1MentalGap;
+            document.getElementById('p2-mental-bar-label').textContent = (p2MentalGap >= 0 ? '+' : '') + p2MentalGap;
+            document.getElementById('p1-energy-bar-label').textContent = (p1EnergyGap >= 0 ? '+' : '') + p1EnergyGap;
+            document.getElementById('p2-energy-bar-label').textContent = (p2EnergyGap >= 0 ? '+' : '') + p2EnergyGap;
+
+            // Determine winner
+            const p1Avg = (p1MentalGap + p1EnergyGap) / 2;
+            const p2Avg = (p2MentalGap + p2EnergyGap) / 2;
+
+            let winnerTitle, winnerDesc;
+            if (p1Avg < p2Avg - 2) {
+                winnerTitle = "You Win! &#127881;";
+                winnerDesc = "Your mental and energy ages are younger overall. Keep up the youthful spirit!";
+            } else if (p2Avg < p1Avg - 2) {
+                winnerTitle = "Friend Wins! &#127881;";
+                winnerDesc = "Your friend has younger mental and energy ages. Challenge them to share their secrets!";
+            } else {
+                winnerTitle = "It's a Tie! &#129309;";
+                winnerDesc = "You both have similar mental and energy age profiles. Great minds think alike!";
+            }
+
+            document.getElementById('winner-title').innerHTML = winnerTitle;
+            document.getElementById('winner-desc').textContent = winnerDesc;
+
+            // Store for sharing
+            window.comparisonData = { person1, person2 };
+        }
+
+        function showWaitingView(results) {
+            document.getElementById('waiting-view').classList.remove('hidden');
+            const compareUrl = generateComparisonUrl(results);
+            document.getElementById('share-link').value = compareUrl;
+        }
+
+        function showNoDataView() {
+            document.getElementById('no-data-view').classList.remove('hidden');
+        }
+
+        function copyCompareLink() {
+            const input = document.getElementById('share-link');
+            input.select();
+            document.execCommand('copy');
+            document.getElementById('copy-success').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('copy-success').classList.add('hidden');
+            }, 2000);
+        }
+
+        function shareComparison() {
+            if (window.comparisonData) {
+                const url = generateComparisonUrl(window.comparisonData.person1, window.comparisonData.person2);
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Age Comparison Results',
+                        text: 'Check out our AI Age comparison!',
+                        url: url
+                    });
+                } else {
+                    navigator.clipboard.writeText(url).then(() => {
+                        alert('Comparison link copied to clipboard!');
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
