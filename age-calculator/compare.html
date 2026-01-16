@@ -74,78 +74,48 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* Language-based content switching */
-        html[lang="ko"] .lang-en { display: none !important; }
-        html[lang="ko"] .lang-ko { display: block !important; }
-        html[lang="en"] .lang-ko { display: none !important; }
-        html[lang="en"] .lang-en { display: block !important; }
-        html:not([lang="ko"]) .lang-ko { display: none !important; }
-        html:not([lang="ko"]) .lang-en { display: block !important; }
+        /* Language classes - controlled by JavaScript */
         .lang-ko { display: none; }
-        .lang-en { display: block; }
-        html[lang="ko"] span.lang-en { display: none !important; }
-        html[lang="ko"] span.lang-ko { display: inline !important; }
-        html[lang="en"] span.lang-ko { display: none !important; }
-        html[lang="en"] span.lang-en { display: inline !important; }
-        html:not([lang="ko"]) span.lang-ko { display: none !important; }
-        span.lang-ko { display: none; }
-        span.lang-en { display: inline; }
     </style>
 
-    <!-- Language Switching - Load Early -->
+    <!-- Language Switching -->
     <script>
     function switchLang(lang) {
-        // Save preference
+        // Save and set
         localStorage.setItem('preferredLanguage', lang);
-
-        // Update html lang attribute
         document.documentElement.lang = lang;
 
-        // Show/hide elements based on language
-        var enElements = document.querySelectorAll('.lang-en');
-        var koElements = document.querySelectorAll('.lang-ko');
+        // Show/hide - simple and direct
+        var i, el;
+        var enList = document.getElementsByClassName('lang-en');
+        var koList = document.getElementsByClassName('lang-ko');
 
-        for (var i = 0; i < enElements.length; i++) {
-            enElements[i].style.display = lang === 'en' ? '' : 'none';
+        for (i = 0; i < enList.length; i++) {
+            enList[i].style.display = (lang === 'en') ? '' : 'none';
         }
-        for (var i = 0; i < koElements.length; i++) {
-            koElements[i].style.display = lang === 'ko' ? '' : 'none';
+        for (i = 0; i < koList.length; i++) {
+            koList[i].style.display = (lang === 'ko') ? '' : 'none';
         }
 
-        // Update toggle button styles
+        // Update buttons
         var btnEn = document.getElementById('lang-btn-en');
         var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn && btnKo) {
-            if (lang === 'en') {
-                btnEn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                btnKo.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-            } else {
-                btnEn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                btnKo.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-            }
-        }
-
-        // Also update mobile buttons if they exist
-        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
-        for (var i = 0; i < mobileBtns.length; i++) {
-            var btn = mobileBtns[i];
-            var btnLang = btn.getAttribute('data-lang');
-            if (btnLang === lang) {
-                btn.className = 'mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded';
-            } else {
-                btn.className = 'mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200';
-            }
-        }
+        if (btnEn) btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6';
+        if (btnEn) btnEn.style.color = (lang === 'en') ? 'white' : '#374151';
+        if (btnKo) btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6';
+        if (btnKo) btnKo.style.color = (lang === 'ko') ? 'white' : '#374151';
     }
 
-    // Also support setLanguage for compatibility
-    function setLanguage(lang) { switchLang(lang); }
-
-    // Apply saved language on load
-    document.addEventListener('DOMContentLoaded', function() {
-        var savedLang = localStorage.getItem('preferredLanguage') || 'en';
-        switchLang(savedLang);
-    });
+    // Run on page load
+    (function() {
+        var lang = localStorage.getItem('preferredLanguage') || 'en';
+        // Apply immediately when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
+        } else {
+            switchLang(lang);
+        }
+    })();
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
