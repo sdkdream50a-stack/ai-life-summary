@@ -779,20 +779,21 @@
         document.addEventListener('DOMContentLoaded', function() {
             const birthdate = localStorage.getItem('ai-life-summary-birthdate');
             const gender = localStorage.getItem('ai-life-summary-gender') || 'prefer-not-to-say';
+            const lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
 
             if (!birthdate) {
                 window.location.href = '/life-summary/';
                 return;
             }
 
-            // Generate and display the life summary
-            const result = generateLifeSummary(birthdate, gender);
+            // Generate and display the life summary with language support
+            const result = generateLifeSummary(birthdate, gender, lang);
 
             document.getElementById('life-summary').textContent = '"' + result.sentence + '"';
-            document.getElementById('birthday-info').textContent = 'Birthday: ' + formatDate(birthdate);
-            document.getElementById('core-trait').textContent = result.coreTrait;
-            document.getElementById('life-phase').textContent = result.lifePhase;
-            document.getElementById('lucky-element').textContent = result.element;
+            document.getElementById('birthday-info').textContent = getBirthdayLabel(lang) + formatDate(birthdate, lang);
+            document.getElementById('core-trait').textContent = translateCoreTrait(result.coreTrait, lang);
+            document.getElementById('life-phase').textContent = translateLifePhase(result.lifePhase, lang);
+            document.getElementById('lucky-element').textContent = translateElement(result.element, lang);
 
             // Save result to localStorage
             saveResult(birthdate, result);
@@ -801,9 +802,129 @@
             initShareButtons(result.sentence);
         });
 
-        function formatDate(dateStr) {
+        function getBirthdayLabel(lang) {
+            const labels = {
+                en: 'Birthday: ',
+                ko: '생년월일: ',
+                ja: '誕生日: ',
+                zh: '生日: ',
+                es: 'Cumpleaños: '
+            };
+            return labels[lang] || labels.en;
+        }
+
+        function formatDate(dateStr, lang) {
             const date = new Date(dateStr);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const locales = {
+                en: 'en-US',
+                ko: 'ko-KR',
+                ja: 'ja-JP',
+                zh: 'zh-CN',
+                es: 'es-ES'
+            };
+            return date.toLocaleDateString(locales[lang] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        function translateCoreTrait(trait, lang) {
+            const translations = {
+                ko: {
+                    'Resilience': '회복력', 'Creativity': '창의성', 'Empathy': '공감', 'Wisdom': '지혜', 'Adventure': '모험',
+                    'Leadership': '리더십', 'Connection': '연결', 'Authenticity': '진정성', 'Growth': '성장', 'Intuition': '직관',
+                    'Compassion': '연민', 'Courage': '용기', 'Curiosity': '호기심', 'Determination': '결단력', 'Harmony': '조화',
+                    'Innovation': '혁신', 'Kindness': '친절', 'Patience': '인내', 'Passion': '열정', 'Serenity': '평온',
+                    'Vision': '비전', 'Adaptability': '적응력', 'Balance': '균형', 'Depth': '깊이', 'Energy': '에너지',
+                    'Focus': '집중력', 'Generosity': '관대함', 'Hope': '희망', 'Integrity': '정직', 'Joy': '기쁨',
+                    'Knowledge': '지식', 'Love': '사랑', 'Mindfulness': '마음챙김', 'Nurturing': '양육', 'Optimism': '낙관',
+                    'Perseverance': '인내심', 'Quest': '탐구', 'Reflection': '성찰', 'Strength': '강인함', 'Trust': '신뢰'
+                },
+                ja: {
+                    'Resilience': '回復力', 'Creativity': '創造性', 'Empathy': '共感', 'Wisdom': '知恵', 'Adventure': '冒険',
+                    'Leadership': 'リーダーシップ', 'Connection': 'つながり', 'Authenticity': '真正性', 'Growth': '成長', 'Intuition': '直感',
+                    'Compassion': '思いやり', 'Courage': '勇気', 'Curiosity': '好奇心', 'Determination': '決断力', 'Harmony': '調和',
+                    'Innovation': '革新', 'Kindness': '優しさ', 'Patience': '忍耐', 'Passion': '情熱', 'Serenity': '静けさ',
+                    'Vision': 'ビジョン', 'Adaptability': '適応力', 'Balance': 'バランス', 'Depth': '深さ', 'Energy': 'エネルギー',
+                    'Focus': '集中力', 'Generosity': '寛大さ', 'Hope': '希望', 'Integrity': '誠実', 'Joy': '喜び',
+                    'Knowledge': '知識', 'Love': '愛', 'Mindfulness': 'マインドフルネス', 'Nurturing': '養育', 'Optimism': '楽観',
+                    'Perseverance': '忍耐力', 'Quest': '探求', 'Reflection': '内省', 'Strength': '強さ', 'Trust': '信頼'
+                },
+                zh: {
+                    'Resilience': '韧性', 'Creativity': '创造力', 'Empathy': '同理心', 'Wisdom': '智慧', 'Adventure': '冒险',
+                    'Leadership': '领导力', 'Connection': '联系', 'Authenticity': '真实性', 'Growth': '成长', 'Intuition': '直觉',
+                    'Compassion': '怜悯', 'Courage': '勇气', 'Curiosity': '好奇心', 'Determination': '决心', 'Harmony': '和谐',
+                    'Innovation': '创新', 'Kindness': '善良', 'Patience': '耐心', 'Passion': '热情', 'Serenity': '宁静',
+                    'Vision': '远见', 'Adaptability': '适应力', 'Balance': '平衡', 'Depth': '深度', 'Energy': '能量',
+                    'Focus': '专注', 'Generosity': '慷慨', 'Hope': '希望', 'Integrity': '正直', 'Joy': '喜悦',
+                    'Knowledge': '知识', 'Love': '爱', 'Mindfulness': '正念', 'Nurturing': '培育', 'Optimism': '乐观',
+                    'Perseverance': '毅力', 'Quest': '追求', 'Reflection': '反思', 'Strength': '力量', 'Trust': '信任'
+                },
+                es: {
+                    'Resilience': 'Resiliencia', 'Creativity': 'Creatividad', 'Empathy': 'Empatía', 'Wisdom': 'Sabiduría', 'Adventure': 'Aventura',
+                    'Leadership': 'Liderazgo', 'Connection': 'Conexión', 'Authenticity': 'Autenticidad', 'Growth': 'Crecimiento', 'Intuition': 'Intuición',
+                    'Compassion': 'Compasión', 'Courage': 'Valor', 'Curiosity': 'Curiosidad', 'Determination': 'Determinación', 'Harmony': 'Armonía',
+                    'Innovation': 'Innovación', 'Kindness': 'Amabilidad', 'Patience': 'Paciencia', 'Passion': 'Pasión', 'Serenity': 'Serenidad',
+                    'Vision': 'Visión', 'Adaptability': 'Adaptabilidad', 'Balance': 'Equilibrio', 'Depth': 'Profundidad', 'Energy': 'Energía',
+                    'Focus': 'Enfoque', 'Generosity': 'Generosidad', 'Hope': 'Esperanza', 'Integrity': 'Integridad', 'Joy': 'Alegría',
+                    'Knowledge': 'Conocimiento', 'Love': 'Amor', 'Mindfulness': 'Atención plena', 'Nurturing': 'Crianza', 'Optimism': 'Optimismo',
+                    'Perseverance': 'Perseverancia', 'Quest': 'Búsqueda', 'Reflection': 'Reflexión', 'Strength': 'Fuerza', 'Trust': 'Confianza'
+                }
+            };
+            return (translations[lang] && translations[lang][trait]) || trait;
+        }
+
+        function translateLifePhase(phase, lang) {
+            const translations = {
+                ko: {
+                    'Discovery': '발견', 'Growth': '성장', 'Transformation': '변화', 'Integration': '통합', 'Mastery': '숙달',
+                    'Expansion': '확장', 'Renewal': '갱신', 'Deepening': '심화', 'Awakening': '각성', 'Flourishing': '번영',
+                    'Exploration': '탐험', 'Creation': '창조', 'Foundation': '기반', 'Evolution': '진화', 'Illumination': '깨달음',
+                    'Emergence': '출현', 'Ascension': '상승', 'Cultivation': '배양', 'Revelation': '계시', 'Transcendence': '초월'
+                },
+                ja: {
+                    'Discovery': '発見', 'Growth': '成長', 'Transformation': '変容', 'Integration': '統合', 'Mastery': '習熟',
+                    'Expansion': '拡大', 'Renewal': '再生', 'Deepening': '深化', 'Awakening': '覚醒', 'Flourishing': '繁栄',
+                    'Exploration': '探求', 'Creation': '創造', 'Foundation': '基盤', 'Evolution': '進化', 'Illumination': '悟り',
+                    'Emergence': '出現', 'Ascension': '上昇', 'Cultivation': '育成', 'Revelation': '啓示', 'Transcendence': '超越'
+                },
+                zh: {
+                    'Discovery': '发现', 'Growth': '成长', 'Transformation': '转变', 'Integration': '整合', 'Mastery': '精通',
+                    'Expansion': '扩展', 'Renewal': '更新', 'Deepening': '深化', 'Awakening': '觉醒', 'Flourishing': '繁荣',
+                    'Exploration': '探索', 'Creation': '创造', 'Foundation': '基础', 'Evolution': '演化', 'Illumination': '启示',
+                    'Emergence': '涌现', 'Ascension': '升华', 'Cultivation': '培养', 'Revelation': '启示', 'Transcendence': '超越'
+                },
+                es: {
+                    'Discovery': 'Descubrimiento', 'Growth': 'Crecimiento', 'Transformation': 'Transformación', 'Integration': 'Integración', 'Mastery': 'Maestría',
+                    'Expansion': 'Expansión', 'Renewal': 'Renovación', 'Deepening': 'Profundización', 'Awakening': 'Despertar', 'Flourishing': 'Florecimiento',
+                    'Exploration': 'Exploración', 'Creation': 'Creación', 'Foundation': 'Fundación', 'Evolution': 'Evolución', 'Illumination': 'Iluminación',
+                    'Emergence': 'Emergencia', 'Ascension': 'Ascensión', 'Cultivation': 'Cultivo', 'Revelation': 'Revelación', 'Transcendence': 'Trascendencia'
+                }
+            };
+            return (translations[lang] && translations[lang][phase]) || phase;
+        }
+
+        function translateElement(element, lang) {
+            const translations = {
+                ko: {
+                    'Water': '물', 'Fire': '불', 'Earth': '흙', 'Air': '공기', 'Ether': '에테르',
+                    'Wood': '나무', 'Metal': '금속', 'Light': '빛', 'Shadow': '그림자', 'Crystal': '수정',
+                    'Storm': '폭풍', 'Moon': '달', 'Sun': '태양', 'Star': '별', 'Ocean': '바다'
+                },
+                ja: {
+                    'Water': '水', 'Fire': '火', 'Earth': '土', 'Air': '風', 'Ether': 'エーテル',
+                    'Wood': '木', 'Metal': '金', 'Light': '光', 'Shadow': '影', 'Crystal': '水晶',
+                    'Storm': '嵐', 'Moon': '月', 'Sun': '太陽', 'Star': '星', 'Ocean': '海'
+                },
+                zh: {
+                    'Water': '水', 'Fire': '火', 'Earth': '土', 'Air': '风', 'Ether': '以太',
+                    'Wood': '木', 'Metal': '金', 'Light': '光', 'Shadow': '影', 'Crystal': '水晶',
+                    'Storm': '暴风', 'Moon': '月', 'Sun': '太阳', 'Star': '星', 'Ocean': '海洋'
+                },
+                es: {
+                    'Water': 'Agua', 'Fire': 'Fuego', 'Earth': 'Tierra', 'Air': 'Aire', 'Ether': 'Éter',
+                    'Wood': 'Madera', 'Metal': 'Metal', 'Light': 'Luz', 'Shadow': 'Sombra', 'Crystal': 'Cristal',
+                    'Storm': 'Tormenta', 'Moon': 'Luna', 'Sun': 'Sol', 'Star': 'Estrella', 'Ocean': 'Océano'
+                }
+            };
+            return (translations[lang] && translations[lang][element]) || element;
         }
 
         function saveResult(birthdate, result) {
