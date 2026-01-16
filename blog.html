@@ -92,6 +92,12 @@
         html[lang="es"] span.lang-es { display: inline; }
         html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] h4.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
         html[lang="es"] a.lang-es { display: inline-block; }
+
+        /* Prevent word breaking in the middle for CJK languages */
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
