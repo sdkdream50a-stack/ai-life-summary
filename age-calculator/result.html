@@ -100,6 +100,41 @@
         span.lang-ko { display: none; }
         span.lang-en { display: inline; }
     </style>
+
+    <!-- Language Switching - Load Early -->
+    <script>
+    function switchLang(lang) {
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        // Show/hide elements
+        document.querySelectorAll('.lang-en').forEach(function(el) {
+            el.style.display = lang === 'en' ? '' : 'none';
+        });
+        document.querySelectorAll('.lang-ko').forEach(function(el) {
+            el.style.display = lang === 'ko' ? '' : 'none';
+        });
+
+        // Update selector display
+        var flagEl = document.getElementById('current-lang-flag');
+        var nameEl = document.getElementById('current-lang-name');
+        if (flagEl) flagEl.textContent = lang === 'ko' ? '🇰🇷' : '🇺🇸';
+        if (nameEl) nameEl.textContent = lang === 'ko' ? 'KO' : 'EN';
+
+        // Close dropdown
+        var dropdown = document.getElementById('language-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    // Also support setLanguage for compatibility
+    function setLanguage(lang) { switchLang(lang); }
+
+    // Apply saved language on load
+    document.addEventListener('DOMContentLoaded', function() {
+        var savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        switchLang(savedLang);
+    });
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -119,19 +154,19 @@
                         <span class="lang-ko">새 테스트</span>
                     </a>
                     <div id="language-selector" class="relative">
-                        <button type="button" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
-                            <span id="current-lang-flag">&#127482;&#127480;</span>
+                        <button type="button" onclick="document.getElementById('language-dropdown').classList.toggle('hidden')" class="flex items-center space-x-1 px-3 py-2 text-sm text-gray-600 hover:text-primary transition rounded-lg hover:bg-gray-100">
+                            <span id="current-lang-flag">🇺🇸</span>
                             <span id="current-lang-name">EN</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                         <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>&#127482;&#127480;</span><span>English</span>
+                            <button type="button" onclick="switchLang('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇺🇸</span><span>English</span>
                             </button>
-                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
-                                <span>&#127472;&#127479;</span><span>&#54620;&#44397;&#50612;</span>
+                            <button type="button" onclick="switchLang('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                                <span>🇰🇷</span><span>한국어</span>
                             </button>
                         </div>
                     </div>
@@ -176,8 +211,8 @@
                             <span class="lang-ko">언어</span>
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127482;&#127480; EN</button>
-                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">&#127472;&#127479; KO</button>
+                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
                         </div>
                     </div>
                 </div>
@@ -656,65 +691,6 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-    </script>
-
-    <!-- Language Switching Script -->
-    <script>
-    (function() {
-        // Get saved language or default to 'en'
-        function getCurrentLang() {
-            return localStorage.getItem('preferredLanguage') || 'en';
-        }
-
-        // Apply language to page
-        function applyLanguage(lang) {
-            document.documentElement.lang = lang;
-
-            // Show/hide elements based on language
-            document.querySelectorAll('.lang-en').forEach(el => {
-                el.style.display = lang === 'en' ? '' : 'none';
-            });
-            document.querySelectorAll('.lang-ko').forEach(el => {
-                el.style.display = lang === 'ko' ? '' : 'none';
-            });
-
-            // Update language selector display
-            const flagEl = document.getElementById('current-lang-flag');
-            const nameEl = document.getElementById('current-lang-name');
-            if (flagEl && nameEl) {
-                flagEl.textContent = lang === 'ko' ? '🇰🇷' : '🇺🇸';
-                nameEl.textContent = lang === 'ko' ? 'KO' : 'EN';
-            }
-        }
-
-        // Set language and save
-        window.setLanguage = function(lang) {
-            localStorage.setItem('preferredLanguage', lang);
-            applyLanguage(lang);
-
-            // Close dropdown
-            const dropdown = document.getElementById('language-dropdown');
-            if (dropdown) dropdown.classList.add('hidden');
-        };
-
-        // Language dropdown toggle
-        const langSelector = document.getElementById('language-selector');
-        if (langSelector) {
-            langSelector.querySelector('button').addEventListener('click', function(e) {
-                e.stopPropagation();
-                document.getElementById('language-dropdown').classList.toggle('hidden');
-            });
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function() {
-            const dropdown = document.getElementById('language-dropdown');
-            if (dropdown) dropdown.classList.add('hidden');
-        });
-
-        // Apply language on page load
-        applyLanguage(getCurrentLang());
-    })();
     </script>
 </body>
 </html>
