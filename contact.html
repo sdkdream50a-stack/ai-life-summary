@@ -63,7 +63,65 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Language switching - 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
     </style>
+
+    <!-- Language Switching Script -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    (function() {
+        var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+        document.documentElement.lang = lang;
+        document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
+    })();
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -75,11 +133,21 @@
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
                     <!-- Tests Dropdown -->
                     <div class="relative group">
                         <button class="flex items-center space-x-1 text-gray-600 hover:text-primary transition">
-                            <span>Tests</span>
+                            <span class="lang-en">Tests</span>
+                            <span class="lang-ko">테스트</span>
+                            <span class="lang-ja">テスト</span>
+                            <span class="lang-zh">测试</span>
+                            <span class="lang-es">Tests</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -89,8 +157,20 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#10024;</span>
                                     <div>
-                                        <p class="font-medium text-gray-800">AI Life Summary</p>
-                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Life Summary</span>
+                                            <span class="lang-ko">AI 인생 요약</span>
+                                            <span class="lang-ja">AIライフサマリー</span>
+                                            <span class="lang-zh">AI人生总结</span>
+                                            <span class="lang-es">Resumen de Vida IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Your life in one sentence</span>
+                                            <span class="lang-ko">한 문장으로 보는 인생</span>
+                                            <span class="lang-ja">一文であなたの人生</span>
+                                            <span class="lang-zh">一句话概括你的人生</span>
+                                            <span class="lang-es">Tu vida en una oración</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -98,20 +178,54 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#127874;</span>
                                     <div>
-                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
-                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Age Calculator</span>
+                                            <span class="lang-ko">AI 나이 계산기</span>
+                                            <span class="lang-ja">AI年齢計算機</span>
+                                            <span class="lang-zh">AI年龄计算器</span>
+                                            <span class="lang-es">Calculadora de Edad IA</span>
+                                            <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
+                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
+                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
+                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
-                    <!-- Language Toggle -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <a href="/contact.html" class="text-primary font-medium">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系我们</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -122,24 +236,67 @@
             </div>
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
-                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">
+                        <span class="lang-en">TESTS</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">TESTS</span>
+                    </p>
                     <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#10024;</span><span>AI Life Summary</span>
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AIライフサマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
                     </a>
                     <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
                         <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-primary font-medium" data-i18n="nav.contact">Contact</a>
+                    <a href="/contact.html" class="text-primary font-medium">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系我们</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
                     <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
                         <div class="flex flex-wrap gap-2">
                             <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">EN</button>
                             <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">JA</button>
+                            <button onclick="switchLang('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">ZH</button>
+                            <button onclick="switchLang('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">ES</button>
                         </div>
                     </div>
                 </div>
@@ -152,11 +309,19 @@
         <section class="gradient-bg py-16">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <span class="text-5xl mb-4 inline-block">&#128172;</span>
-                <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="contact.hero.title">
-                    Get In Touch
+                <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+                    <span class="lang-en">Get In Touch</span>
+                    <span class="lang-ko">문의하기</span>
+                    <span class="lang-ja">お問い合わせ</span>
+                    <span class="lang-zh">联系我们</span>
+                    <span class="lang-es">Contáctanos</span>
                 </h1>
-                <p class="text-white/80 text-lg max-w-2xl mx-auto" data-i18n="contact.hero.description">
-                    We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, we're here to help.
+                <p class="text-white/80 text-lg max-w-2xl mx-auto">
+                    <span class="lang-en">We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, we're here to help.</span>
+                    <span class="lang-ko">여러분의 의견을 듣고 싶습니다! 질문, 피드백, 또는 인사를 하고 싶으시다면 언제든 연락해 주세요.</span>
+                    <span class="lang-ja">ご連絡をお待ちしております！ご質問、フィードバック、またはご挨拶でも、お気軽にどうぞ。</span>
+                    <span class="lang-zh">我们期待您的来信！无论您有问题、反馈，还是只想打个招呼，我们都在这里为您服务。</span>
+                    <span class="lang-es">¡Nos encantaría saber de ti! Ya sea que tengas preguntas, comentarios o solo quieras saludar, estamos aquí para ayudar.</span>
                 </p>
             </div>
         </section>
@@ -167,92 +332,117 @@
                 <div class="grid md:grid-cols-2 gap-12">
                     <!-- Contact Form -->
                     <div>
-                        <h2 class="font-heading text-2xl font-bold mb-6" data-i18n="contact.form.title">Send Us a Message</h2>
+                        <h2 class="font-heading text-2xl font-bold mb-6">
+                            <span class="lang-en">Send Us a Message</span>
+                            <span class="lang-ko">메시지 보내기</span>
+                            <span class="lang-ja">メッセージを送る</span>
+                            <span class="lang-zh">给我们留言</span>
+                            <span class="lang-es">Envíanos un Mensaje</span>
+                        </h2>
                         <form id="contact-form" class="space-y-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <span data-i18n="contact.form.name">Your Name</span> <span class="text-red-500">*</span>
+                                    <span class="lang-en">Your Name</span>
+                                    <span class="lang-ko">이름</span>
+                                    <span class="lang-ja">お名前</span>
+                                    <span class="lang-zh">您的姓名</span>
+                                    <span class="lang-es">Tu Nombre</span>
+                                    <span class="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    required
+                                <input type="text" id="name" name="name" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                                    data-i18n-placeholder="contact.form.name_placeholder"
-                                    placeholder="John Doe"
-                                >
+                                    placeholder="John Doe">
                             </div>
 
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <span data-i18n="contact.form.email">Email Address</span> <span class="text-red-500">*</span>
+                                    <span class="lang-en">Email Address</span>
+                                    <span class="lang-ko">이메일 주소</span>
+                                    <span class="lang-ja">メールアドレス</span>
+                                    <span class="lang-zh">电子邮箱</span>
+                                    <span class="lang-es">Correo Electrónico</span>
+                                    <span class="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    required
+                                <input type="email" id="email" name="email" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                                    placeholder="john@example.com"
-                                >
+                                    placeholder="john@example.com">
                             </div>
 
                             <div>
                                 <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <span data-i18n="contact.form.subject">Subject</span> <span class="text-red-500">*</span>
+                                    <span class="lang-en">Subject</span>
+                                    <span class="lang-ko">제목</span>
+                                    <span class="lang-ja">件名</span>
+                                    <span class="lang-zh">主题</span>
+                                    <span class="lang-es">Asunto</span>
+                                    <span class="text-red-500">*</span>
                                 </label>
-                                <select
-                                    id="subject"
-                                    name="subject"
-                                    required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                                >
-                                    <option value="" data-i18n="contact.form.select_subject">Select a subject</option>
-                                    <option value="general" data-i18n="contact.form.opt_general">General Inquiry</option>
-                                    <option value="feedback" data-i18n="contact.form.opt_feedback">Feedback</option>
-                                    <option value="support" data-i18n="contact.form.opt_support">Technical Support</option>
-                                    <option value="partnership" data-i18n="contact.form.opt_partnership">Partnership Inquiry</option>
-                                    <option value="press" data-i18n="contact.form.opt_press">Press & Media</option>
-                                    <option value="other" data-i18n="contact.form.opt_other">Other</option>
+                                <select id="subject" name="subject" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                                    <option value="">
+                                        <span class="lang-en">Select a subject</span>
+                                    </option>
+                                    <option value="general">General Inquiry / 일반 문의</option>
+                                    <option value="feedback">Feedback / 피드백</option>
+                                    <option value="support">Technical Support / 기술 지원</option>
+                                    <option value="partnership">Partnership / 파트너십</option>
+                                    <option value="press">Press & Media / 언론</option>
+                                    <option value="other">Other / 기타</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <span data-i18n="contact.form.message">Message</span> <span class="text-red-500">*</span>
+                                    <span class="lang-en">Message</span>
+                                    <span class="lang-ko">메시지</span>
+                                    <span class="lang-ja">メッセージ</span>
+                                    <span class="lang-zh">留言内容</span>
+                                    <span class="lang-es">Mensaje</span>
+                                    <span class="text-red-500">*</span>
                                 </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    rows="5"
-                                    required
+                                <textarea id="message" name="message" rows="5" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none"
-                                    data-i18n-placeholder="contact.form.message_placeholder"
-                                    placeholder="How can we help you?"
-                                ></textarea>
+                                    placeholder="How can we help you?"></textarea>
                             </div>
 
-                            <button
-                                type="submit"
-                                class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition"
-                                data-i18n="contact.form.submit"
-                            >
-                                Send Message
+                            <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition">
+                                <span class="lang-en">Send Message</span>
+                                <span class="lang-ko">메시지 보내기</span>
+                                <span class="lang-ja">メッセージを送信</span>
+                                <span class="lang-zh">发送消息</span>
+                                <span class="lang-es">Enviar Mensaje</span>
                             </button>
                         </form>
 
                         <!-- Success Message (hidden by default) -->
                         <div id="success-message" class="hidden mt-6 bg-green-50 border border-green-200 rounded-lg p-6 text-center">
                             <span class="text-4xl mb-2 inline-block">&#9989;</span>
-                            <h3 class="font-heading text-xl font-semibold text-green-800 mb-2" data-i18n="contact.success.title">Message Sent!</h3>
-                            <p class="text-green-700" data-i18n="contact.success.description">Thank you for reaching out. We'll get back to you within 24-48 hours.</p>
+                            <h3 class="font-heading text-xl font-semibold text-green-800 mb-2">
+                                <span class="lang-en">Message Sent!</span>
+                                <span class="lang-ko">메시지 전송됨!</span>
+                                <span class="lang-ja">メッセージ送信完了!</span>
+                                <span class="lang-zh">消息已发送！</span>
+                                <span class="lang-es">¡Mensaje Enviado!</span>
+                            </h3>
+                            <p class="text-green-700">
+                                <span class="lang-en">Thank you for reaching out. We'll get back to you within 24-48 hours.</span>
+                                <span class="lang-ko">연락해 주셔서 감사합니다. 24-48시간 내에 답변 드리겠습니다.</span>
+                                <span class="lang-ja">お問い合わせいただきありがとうございます。24-48時間以内にご連絡いたします。</span>
+                                <span class="lang-zh">感谢您的联系。我们将在24-48小时内回复您。</span>
+                                <span class="lang-es">Gracias por contactarnos. Te responderemos dentro de 24-48 horas.</span>
+                            </p>
                         </div>
                     </div>
 
                     <!-- Contact Information -->
                     <div>
-                        <h2 class="font-heading text-2xl font-bold mb-6" data-i18n="contact.info.title">Contact Information</h2>
+                        <h2 class="font-heading text-2xl font-bold mb-6">
+                            <span class="lang-en">Contact Information</span>
+                            <span class="lang-ko">연락처 정보</span>
+                            <span class="lang-ja">連絡先情報</span>
+                            <span class="lang-zh">联系信息</span>
+                            <span class="lang-es">Información de Contacto</span>
+                        </h2>
 
                         <div class="space-y-6">
                             <!-- Email -->
@@ -263,9 +453,21 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.email">Email</h3>
+                                    <h3 class="font-semibold text-gray-900 mb-1">
+                                        <span class="lang-en">Email</span>
+                                        <span class="lang-ko">이메일</span>
+                                        <span class="lang-ja">メール</span>
+                                        <span class="lang-zh">电子邮件</span>
+                                        <span class="lang-es">Correo</span>
+                                    </h3>
                                     <p class="text-gray-600">ailifesummary@gmail.com</p>
-                                    <p class="text-sm text-gray-500 mt-1" data-i18n="contact.info.email_desc">We aim to respond within 24-48 hours</p>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        <span class="lang-en">We aim to respond within 24-48 hours</span>
+                                        <span class="lang-ko">24-48시간 내에 답변 드리겠습니다</span>
+                                        <span class="lang-ja">24-48時間以内に返信いたします</span>
+                                        <span class="lang-zh">我们将在24-48小时内回复</span>
+                                        <span class="lang-es">Respondemos dentro de 24-48 horas</span>
+                                    </p>
                                 </div>
                             </div>
 
@@ -277,7 +479,13 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.social">Social Media</h3>
+                                    <h3 class="font-semibold text-gray-900 mb-1">
+                                        <span class="lang-en">Social Media</span>
+                                        <span class="lang-ko">소셜 미디어</span>
+                                        <span class="lang-ja">ソーシャルメディア</span>
+                                        <span class="lang-zh">社交媒体</span>
+                                        <span class="lang-es">Redes Sociales</span>
+                                    </h3>
                                     <div class="flex space-x-3 mt-2">
                                         <a href="#" class="text-gray-500 hover:text-black transition" aria-label="Twitter">
                                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -306,20 +514,46 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-900 mb-1" data-i18n="contact.info.response">Response Time</h3>
-                                    <p class="text-gray-600" data-i18n="contact.info.response_desc">We typically respond to inquiries within 24-48 business hours.</p>
+                                    <h3 class="font-semibold text-gray-900 mb-1">
+                                        <span class="lang-en">Response Time</span>
+                                        <span class="lang-ko">응답 시간</span>
+                                        <span class="lang-ja">返信時間</span>
+                                        <span class="lang-zh">响应时间</span>
+                                        <span class="lang-es">Tiempo de Respuesta</span>
+                                    </h3>
+                                    <p class="text-gray-600">
+                                        <span class="lang-en">We typically respond to inquiries within 24-48 business hours.</span>
+                                        <span class="lang-ko">일반적으로 24-48 영업시간 이내에 답변드립니다.</span>
+                                        <span class="lang-ja">通常24-48営業時間以内に返信いたします。</span>
+                                        <span class="lang-zh">我们通常在24-48个工作小时内回复。</span>
+                                        <span class="lang-es">Normalmente respondemos dentro de 24-48 horas hábiles.</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- FAQ Link -->
                         <div class="mt-10 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6">
-                            <h3 class="font-heading text-lg font-semibold mb-3" data-i18n="contact.faq.title">Looking for Answers?</h3>
-                            <p class="text-gray-600 mb-4" data-i18n="contact.faq.description">
-                                Check out our FAQ section on the About page for answers to commonly asked questions about AI Life Summary.
+                            <h3 class="font-heading text-lg font-semibold mb-3">
+                                <span class="lang-en">Looking for Answers?</span>
+                                <span class="lang-ko">답변을 찾고 계신가요?</span>
+                                <span class="lang-ja">お探しの回答はありますか？</span>
+                                <span class="lang-zh">寻找答案？</span>
+                                <span class="lang-es">¿Buscas Respuestas?</span>
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                <span class="lang-en">Check out our FAQ section on the About page for answers to commonly asked questions about AI Life Summary.</span>
+                                <span class="lang-ko">소개 페이지의 FAQ 섹션에서 AI 인생 요약에 대한 자주 묻는 질문의 답변을 확인하세요.</span>
+                                <span class="lang-ja">よくある質問については、概要ページのFAQセクションをご覧ください。</span>
+                                <span class="lang-zh">查看"关于"页面的常见问题解答部分。</span>
+                                <span class="lang-es">Consulta nuestra sección de preguntas frecuentes en la página Acerca de.</span>
                             </p>
                             <a href="/about.html#faq" class="inline-flex items-center text-primary font-medium hover:underline">
-                                <span data-i18n="contact.faq.link">View FAQ</span>
+                                <span class="lang-en">View FAQ</span>
+                                <span class="lang-ko">FAQ 보기</span>
+                                <span class="lang-ja">FAQを見る</span>
+                                <span class="lang-zh">查看常见问题</span>
+                                <span class="lang-es">Ver FAQ</span>
                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                 </svg>
@@ -328,26 +562,62 @@
 
                         <!-- Specific Inquiries -->
                         <div class="mt-8">
-                            <h3 class="font-heading text-lg font-semibold mb-4" data-i18n="contact.inquiries.title">Specific Inquiries</h3>
+                            <h3 class="font-heading text-lg font-semibold mb-4">
+                                <span class="lang-en">Specific Inquiries</span>
+                                <span class="lang-ko">문의 유형별 연락처</span>
+                                <span class="lang-ja">お問い合わせ種別</span>
+                                <span class="lang-zh">具体咨询</span>
+                                <span class="lang-es">Consultas Específicas</span>
+                            </h3>
                             <div class="space-y-3 text-sm">
                                 <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                                    <span class="text-gray-600" data-i18n="contact.inquiries.general">General Questions</span>
+                                    <span class="text-gray-600">
+                                        <span class="lang-en">General Questions</span>
+                                        <span class="lang-ko">일반 질문</span>
+                                        <span class="lang-ja">一般的な質問</span>
+                                        <span class="lang-zh">一般问题</span>
+                                        <span class="lang-es">Preguntas Generales</span>
+                                    </span>
                                     <span class="text-gray-900">ailifesummary@gmail.com</span>
                                 </div>
                                 <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                                    <span class="text-gray-600" data-i18n="contact.inquiries.support">Technical Support</span>
+                                    <span class="text-gray-600">
+                                        <span class="lang-en">Technical Support</span>
+                                        <span class="lang-ko">기술 지원</span>
+                                        <span class="lang-ja">技術サポート</span>
+                                        <span class="lang-zh">技术支持</span>
+                                        <span class="lang-es">Soporte Técnico</span>
+                                    </span>
                                     <span class="text-gray-900">ailifesummary@gmail.com</span>
                                 </div>
                                 <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                                    <span class="text-gray-600" data-i18n="contact.inquiries.partnership">Partnership Inquiries</span>
+                                    <span class="text-gray-600">
+                                        <span class="lang-en">Partnership Inquiries</span>
+                                        <span class="lang-ko">파트너십 문의</span>
+                                        <span class="lang-ja">パートナーシップ</span>
+                                        <span class="lang-zh">合作咨询</span>
+                                        <span class="lang-es">Consultas de Asociación</span>
+                                    </span>
                                     <span class="text-gray-900">ailifesummary@gmail.com</span>
                                 </div>
                                 <div class="flex justify-between items-center py-2 border-b border-gray-100">
-                                    <span class="text-gray-600" data-i18n="contact.inquiries.press">Press & Media</span>
+                                    <span class="text-gray-600">
+                                        <span class="lang-en">Press & Media</span>
+                                        <span class="lang-ko">언론 및 미디어</span>
+                                        <span class="lang-ja">プレス・メディア</span>
+                                        <span class="lang-zh">媒体合作</span>
+                                        <span class="lang-es">Prensa y Medios</span>
+                                    </span>
                                     <span class="text-gray-900">ailifesummary@gmail.com</span>
                                 </div>
                                 <div class="flex justify-between items-center py-2">
-                                    <span class="text-gray-600" data-i18n="contact.inquiries.privacy">Privacy Concerns</span>
+                                    <span class="text-gray-600">
+                                        <span class="lang-en">Privacy Concerns</span>
+                                        <span class="lang-ko">개인정보 관련</span>
+                                        <span class="lang-ja">プライバシー関連</span>
+                                        <span class="lang-zh">隐私问题</span>
+                                        <span class="lang-es">Preocupaciones de Privacidad</span>
+                                    </span>
                                     <span class="text-gray-900">ailifesummary@gmail.com</span>
                                 </div>
                             </div>
@@ -360,35 +630,69 @@
         <!-- Additional Info Section -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold mb-8 text-center" data-i18n="contact.help.title">
-                    How Can We Help You?
+                <h2 class="font-heading text-2xl font-bold mb-8 text-center">
+                    <span class="lang-en">How Can We Help You?</span>
+                    <span class="lang-ko">어떻게 도와드릴까요?</span>
+                    <span class="lang-ja">どのようにお手伝いできますか？</span>
+                    <span class="lang-zh">我们能为您做什么？</span>
+                    <span class="lang-es">¿Cómo Podemos Ayudarte?</span>
                 </h2>
 
                 <div class="grid md:grid-cols-3 gap-6">
                     <!-- Feedback -->
                     <div class="bg-white rounded-xl p-6 shadow-sm text-center">
                         <div class="text-4xl mb-4">&#128161;</div>
-                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.feedback">Share Feedback</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="contact.help.feedback_desc">
-                            We're always looking to improve. Let us know what you think about AI Life Summary and how we can make it better.
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Share Feedback</span>
+                            <span class="lang-ko">피드백 공유</span>
+                            <span class="lang-ja">フィードバック</span>
+                            <span class="lang-zh">分享反馈</span>
+                            <span class="lang-es">Comparte Comentarios</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">We're always looking to improve. Let us know what you think about AI Life Summary and how we can make it better.</span>
+                            <span class="lang-ko">항상 개선하고자 합니다. AI 인생 요약에 대한 의견과 개선 방안을 알려주세요.</span>
+                            <span class="lang-ja">常に改善を心がけています。AIライフサマリーについてのご意見をお聞かせください。</span>
+                            <span class="lang-zh">我们一直在寻求改进。请告诉我们您对AI人生总结的看法。</span>
+                            <span class="lang-es">Siempre buscamos mejorar. Cuéntanos qué piensas del Resumen de Vida IA.</span>
                         </p>
                     </div>
 
                     <!-- Bug Reports -->
                     <div class="bg-white rounded-xl p-6 shadow-sm text-center">
                         <div class="text-4xl mb-4">&#128027;</div>
-                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.issues">Report Issues</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="contact.help.issues_desc">
-                            Found a bug or technical issue? Please let us know so we can fix it and improve the experience for everyone.
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Report Issues</span>
+                            <span class="lang-ko">문제 신고</span>
+                            <span class="lang-ja">問題を報告</span>
+                            <span class="lang-zh">报告问题</span>
+                            <span class="lang-es">Reportar Problemas</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Found a bug or technical issue? Please let us know so we can fix it and improve the experience for everyone.</span>
+                            <span class="lang-ko">버그나 기술적 문제를 발견하셨나요? 알려주시면 수정하여 모두의 경험을 개선하겠습니다.</span>
+                            <span class="lang-ja">バグや技術的な問題を見つけましたか？お知らせいただければ修正いたします。</span>
+                            <span class="lang-zh">发现错误或技术问题？请告诉我们，以便我们修复并改善体验。</span>
+                            <span class="lang-es">¿Encontraste un error? Por favor avísanos para corregirlo y mejorar la experiencia.</span>
                         </p>
                     </div>
 
                     <!-- Partnerships -->
                     <div class="bg-white rounded-xl p-6 shadow-sm text-center">
                         <div class="text-4xl mb-4">&#129309;</div>
-                        <h3 class="font-heading font-semibold text-lg mb-2" data-i18n="contact.help.partner">Partner With Us</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="contact.help.partner_desc">
-                            Interested in collaborating or partnering with AI Life Summary? We'd love to explore opportunities together.
+                        <h3 class="font-heading font-semibold text-lg mb-2">
+                            <span class="lang-en">Partner With Us</span>
+                            <span class="lang-ko">파트너십</span>
+                            <span class="lang-ja">パートナーになる</span>
+                            <span class="lang-zh">与我们合作</span>
+                            <span class="lang-es">Asóciate con Nosotros</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Interested in collaborating or partnering with AI Life Summary? We'd love to explore opportunities together.</span>
+                            <span class="lang-ko">AI 인생 요약과의 협업이나 파트너십에 관심이 있으신가요? 함께 기회를 탐색하고 싶습니다.</span>
+                            <span class="lang-ja">AIライフサマリーとのコラボやパートナーシップに興味がありますか？一緒に機会を探りましょう。</span>
+                            <span class="lang-zh">有兴趣与AI人生总结合作吗？我们很乐意一起探索机会。</span>
+                            <span class="lang-es">¿Interesado en colaborar con Resumen de Vida IA? Nos encantaría explorar oportunidades juntos.</span>
                         </p>
                     </div>
                 </div>
@@ -405,28 +709,80 @@
                         <span class="text-2xl">&#10024;</span>
                         <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
                     </div>
-                    <p class="text-gray-400 text-sm" data-i18n="footer.description">
-                        Discover who you are with AI-powered life summaries.
+                    <p class="text-gray-400 text-sm">
+                        <span class="lang-en">Discover who you are with AI-powered life summaries.</span>
+                        <span class="lang-ko">AI 기반 인생 요약으로 자신을 발견하세요.</span>
+                        <span class="lang-ja">AI駆動のライフサマリーで自分を発見しましょう。</span>
+                        <span class="lang-zh">通过AI驱动的人生总结发现自己。</span>
+                        <span class="lang-es">Descubre quién eres con resúmenes de vida impulsados por IA.</span>
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.quick_links">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                        <span class="lang-ja">クイックリンク</span>
+                        <span class="lang-zh">快速链接</span>
+                        <span class="lang-es">Enlaces Rápidos</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition" data-i18n="footer.home">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition" data-i18n="nav.about">About</a></li>
-                        <li><a href="/archive.html" class="hover:text-white transition" data-i18n="nav.archive">Archive</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                            <span class="lang-ja">ホーム</span>
+                            <span class="lang-zh">首页</span>
+                            <span class="lang-es">Inicio</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                            <span class="lang-ja">概要</span>
+                            <span class="lang-zh">关于</span>
+                            <span class="lang-es">Acerca de</span>
+                        </a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                            <span class="lang-ja">お問い合わせ</span>
+                            <span class="lang-zh">联系我们</span>
+                            <span class="lang-es">Contacto</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.legal">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 고지</span>
+                        <span class="lang-ja">法的情報</span>
+                        <span class="lang-zh">法律信息</span>
+                        <span class="lang-es">Legal</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition" data-i18n="footer.privacy">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition" data-i18n="footer.terms">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보 처리방침</span>
+                            <span class="lang-ja">プライバシーポリシー</span>
+                            <span class="lang-zh">隐私政策</span>
+                            <span class="lang-es">Política de Privacidad</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                            <span class="lang-ja">利用規約</span>
+                            <span class="lang-zh">服务条款</span>
+                            <span class="lang-es">Términos de Servicio</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.connect">Connect</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Connect</span>
+                        <span class="lang-ko">연결</span>
+                        <span class="lang-ja">つながる</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Conectar</span>
+                    </h4>
                     <div class="flex space-x-4">
                         <a href="#" class="hover:text-white transition" aria-label="Twitter">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -442,42 +798,11 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 <span data-i18n="footer.copyright">AI Life Summary. All rights reserved.</span></p>
+                <p>&copy; 2025 AI Life Summary. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span><span class="lang-ja">全著作権所有。</span><span class="lang-zh">版权所有。</span><span class="lang-es">Todos los derechos reservados.</span></p>
             </div>
         </div>
     </footer>
 
-    <!-- Language Switch Script -->
-    <script>
-        function switchLang(lang) {
-            localStorage.setItem('ai-life-summary-lang', lang);
-            localStorage.setItem('preferredLanguage', lang);
-            document.documentElement.lang = lang;
-
-            var enBtn = document.getElementById('lang-btn-en');
-            var koBtn = document.getElementById('lang-btn-ko');
-            if (enBtn && koBtn) {
-                if (lang === 'en') {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                } else {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                }
-            }
-
-            if (typeof setLanguage === 'function') {
-                setLanguage(lang);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var savedLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-            switchLang(savedLang);
-        });
-    </script>
-
-    <script src="/js/i18n.js?v=4"></script>
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {

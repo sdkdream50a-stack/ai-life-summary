@@ -99,7 +99,65 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
         }
+
+        /* Language switching - 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
     </style>
+
+    <!-- Language Switching Script -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    (function() {
+        var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+        document.documentElement.lang = lang;
+        document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
+    })();
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -111,11 +169,21 @@
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
                     <!-- Tests Dropdown -->
                     <div class="relative group">
                         <button class="flex items-center space-x-1 text-primary font-medium transition">
-                            <span>Tests</span>
+                            <span class="lang-en">Tests</span>
+                            <span class="lang-ko">테스트</span>
+                            <span class="lang-ja">テスト</span>
+                            <span class="lang-zh">测试</span>
+                            <span class="lang-es">Tests</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -125,8 +193,20 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#10024;</span>
                                     <div>
-                                        <p class="font-medium text-primary">AI Life Summary</p>
-                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                        <p class="font-medium text-primary">
+                                            <span class="lang-en">AI Life Summary</span>
+                                            <span class="lang-ko">AI 인생 요약</span>
+                                            <span class="lang-ja">AI人生サマリー</span>
+                                            <span class="lang-zh">AI人生总结</span>
+                                            <span class="lang-es">Resumen de Vida IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Your life in one sentence</span>
+                                            <span class="lang-ko">한 문장으로 보는 인생</span>
+                                            <span class="lang-ja">一文であなたの人生</span>
+                                            <span class="lang-zh">一句话概括你的人生</span>
+                                            <span class="lang-es">Tu vida en una frase</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -134,20 +214,54 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#127874;</span>
                                     <div>
-                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
-                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Age Calculator</span>
+                                            <span class="lang-ko">AI 나이 계산기</span>
+                                            <span class="lang-ja">AI年齢計算機</span>
+                                            <span class="lang-zh">AI年龄计算器</span>
+                                            <span class="lang-es">Calculadora de Edad IA</span>
+                                            <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
+                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
+                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
+                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">紹介</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
-                    <!-- Language Toggle -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative" id="lang-selector">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 border rounded-lg hover:bg-gray-50 transition">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇪🇸 ES</button>
+                        </div>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -159,25 +273,68 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
-                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">
+                        <span class="lang-en">TESTS</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">TESTS</span>
+                    </p>
                     <a href="/life-summary/" class="flex items-center space-x-2 text-primary font-medium pl-2">
-                        <span>&#10024;</span><span>AI Life Summary</span>
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
                     </a>
                     <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
                         <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">紹介</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
                     <!-- Mobile Language Selector -->
                     <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">EN</button>
-                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
                         </div>
                     </div>
                 </div>
@@ -189,97 +346,88 @@
         <!-- Hero Section -->
         <section class="gradient-bg py-16 md:py-24">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-i18n="hero.title">
-                    Your Life in One AI Sentence
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    <span class="lang-en">Your Life in One AI Sentence</span>
+                    <span class="lang-ko">AI가 만드는 당신의 인생 한 문장</span>
+                    <span class="lang-ja">AIがあなたの人生を一文で表現</span>
+                    <span class="lang-zh">AI用一句话总结你的人生</span>
+                    <span class="lang-es">Tu Vida en Una Frase de IA</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-white/90 mb-4" data-i18n="hero.subtitle">
-                    Discover your life in one AI-generated sentence
+                <p class="text-xl md:text-2xl text-white/90 mb-4">
+                    <span class="lang-en">Discover your life in one AI-generated sentence</span>
+                    <span class="lang-ko">AI가 생성한 한 문장으로 당신의 삶을 발견하세요</span>
+                    <span class="lang-ja">AIが生成した一文であなたの人生を発見</span>
+                    <span class="lang-zh">用AI生成的一句话发现你的人生</span>
+                    <span class="lang-es">Descubre tu vida en una frase generada por IA</span>
                 </p>
-                <p class="text-white/70 mb-8 max-w-2xl mx-auto" data-i18n="hero.description">
-                    Enter your birthday and let our advanced AI algorithm reveal a unique insight about your life journey. Share with friends and compare your results!
+                <p class="text-white/70 mb-8 max-w-2xl mx-auto">
+                    <span class="lang-en">Enter your birthday and let our advanced AI algorithm reveal a unique insight about your life journey. Share with friends and compare your results!</span>
+                    <span class="lang-ko">생년월일을 입력하고 AI 알고리즘이 당신의 인생 여정에 대한 독특한 통찰을 발견하게 하세요. 친구들과 공유하고 결과를 비교해보세요!</span>
+                    <span class="lang-ja">誕生日を入力して、AIアルゴリズムがあなたの人生の旅についてユニークな洞察を明らかにします。友達と共有して結果を比較しましょう！</span>
+                    <span class="lang-zh">输入您的生日，让我们的AI算法揭示关于您人生旅程的独特见解。与朋友分享并比较结果！</span>
+                    <span class="lang-es">Ingresa tu fecha de nacimiento y deja que nuestro algoritmo de IA revele una visión única de tu viaje de vida. ¡Comparte con amigos y compara resultados!</span>
                 </p>
 
                 <!-- Input Form -->
                 <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-md mx-auto">
                     <form id="life-summary-form" class="space-y-5">
                         <div>
-                            <label class="block text-left text-sm font-medium text-gray-700 mb-2" data-i18n="form.birthdate">
-                                Date of Birth
+                            <label class="block text-left text-sm font-medium text-gray-700 mb-2">
+                                <span class="lang-en">Date of Birth</span>
+                                <span class="lang-ko">생년월일</span>
+                                <span class="lang-ja">生年月日</span>
+                                <span class="lang-zh">出生日期</span>
+                                <span class="lang-es">Fecha de Nacimiento</span>
                             </label>
                             <div class="flex space-x-2">
-                                <input
-                                    type="number"
-                                    id="birth-year"
-                                    name="birth-year"
-                                    required
-                                    min="1900"
-                                    max="2025"
-                                    placeholder="YYYY"
-                                    data-i18n-placeholder="form.year"
-                                    class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center"
-                                >
-                                <input
-                                    type="number"
-                                    id="birth-month"
-                                    name="birth-month"
-                                    required
-                                    min="1"
-                                    max="12"
-                                    placeholder="MM"
-                                    data-i18n-placeholder="form.month"
-                                    class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center"
-                                >
-                                <input
-                                    type="number"
-                                    id="birth-day"
-                                    name="birth-day"
-                                    required
-                                    min="1"
-                                    max="31"
-                                    placeholder="DD"
-                                    data-i18n-placeholder="form.day"
-                                    class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center"
-                                >
+                                <input type="number" id="birth-year" name="birth-year" required min="1900" max="2025" placeholder="YYYY" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
+                                <input type="number" id="birth-month" name="birth-month" required min="1" max="12" placeholder="MM" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
+                                <input type="number" id="birth-day" name="birth-day" required min="1" max="31" placeholder="DD" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
                             </div>
                             <input type="hidden" id="birthdate" name="birthdate">
                         </div>
 
                         <div>
-                            <label for="gender" class="block text-left text-sm font-medium text-gray-700 mb-2" data-i18n="form.gender">
-                                Gender (Optional)
+                            <label for="gender" class="block text-left text-sm font-medium text-gray-700 mb-2">
+                                <span class="lang-en">Gender (Optional)</span>
+                                <span class="lang-ko">성별 (선택)</span>
+                                <span class="lang-ja">性別（任意）</span>
+                                <span class="lang-zh">性别（可选）</span>
+                                <span class="lang-es">Género (Opcional)</span>
                             </label>
-                            <select
-                                id="gender"
-                                name="gender"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg"
-                            >
-                                <option value="prefer-not-to-say" data-i18n="form.gender.prefer_not">Prefer not to say</option>
-                                <option value="male" data-i18n="form.gender.male">Male</option>
-                                <option value="female" data-i18n="form.gender.female">Female</option>
-                                <option value="other" data-i18n="form.gender.other">Other</option>
+                            <select id="gender" name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg">
+                                <option value="prefer-not-to-say">Prefer not to say / 선택 안함</option>
+                                <option value="male">Male / 남성</option>
+                                <option value="female">Female / 여성</option>
+                                <option value="other">Other / 기타</option>
                             </select>
                         </div>
 
-                        <button
-                            type="submit"
-                            class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg shadow-lg hover:shadow-xl"
-                            data-i18n="form.submit"
-                        >
-                            Discover My Life Summary
+                        <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg shadow-lg hover:shadow-xl">
+                            <span class="lang-en">Discover My Life Summary</span>
+                            <span class="lang-ko">나의 인생 요약 발견하기</span>
+                            <span class="lang-ja">私の人生サマリーを発見</span>
+                            <span class="lang-zh">发现我的人生总结</span>
+                            <span class="lang-es">Descubrir Mi Resumen de Vida</span>
                         </button>
                     </form>
 
                     <p class="text-xs text-gray-500 mt-4">
-                        <span data-i18n="form.terms">By using this service, you agree to our</span>
-                        <a href="/terms-of-service.html" class="text-primary hover:underline" data-i18n="form.terms_link">Terms of Service</a> <span data-i18n="form.and">and</span>
-                        <a href="/privacy-policy.html" class="text-primary hover:underline" data-i18n="form.privacy_link">Privacy Policy</a>.
-                        <span data-i18n="form.entertainment">This service is for entertainment purposes only.</span>
+                        <span class="lang-en">By using this service, you agree to our <a href="/terms-of-service.html" class="text-primary hover:underline">Terms of Service</a> and <a href="/privacy-policy.html" class="text-primary hover:underline">Privacy Policy</a>. This service is for entertainment purposes only.</span>
+                        <span class="lang-ko">이 서비스를 이용함으로써 <a href="/terms-of-service.html" class="text-primary hover:underline">이용약관</a> 및 <a href="/privacy-policy.html" class="text-primary hover:underline">개인정보처리방침</a>에 동의합니다. 이 서비스는 오락 목적으로만 제공됩니다.</span>
+                        <span class="lang-ja">このサービスを利用することで、<a href="/terms-of-service.html" class="text-primary hover:underline">利用規約</a>と<a href="/privacy-policy.html" class="text-primary hover:underline">プライバシーポリシー</a>に同意したものとみなされます。このサービスは娯楽目的のみです。</span>
+                        <span class="lang-zh">使用本服务即表示您同意我们的<a href="/terms-of-service.html" class="text-primary hover:underline">服务条款</a>和<a href="/privacy-policy.html" class="text-primary hover:underline">隐私政策</a>。此服务仅供娱乐目的。</span>
+                        <span class="lang-es">Al usar este servicio, aceptas nuestros <a href="/terms-of-service.html" class="text-primary hover:underline">Términos de Servicio</a> y <a href="/privacy-policy.html" class="text-primary hover:underline">Política de Privacidad</a>. Este servicio es solo para entretenimiento.</span>
                     </p>
                 </div>
 
                 <div class="mt-8 flex items-center justify-center space-x-2 text-white/80">
                     <span class="text-2xl">&#127775;</span>
-                    <span data-i18n="hero.stats">Over 1,000,000 sentences generated worldwide</span>
+                    <span class="lang-en">Over 1,000,000 sentences generated worldwide</span>
+                    <span class="lang-ko">전 세계 1,000,000개 이상의 문장 생성</span>
+                    <span class="lang-ja">世界中で100万以上の文章を生成</span>
+                    <span class="lang-zh">全球已生成超过100万条语句</span>
+                    <span class="lang-es">Más de 1,000,000 frases generadas en todo el mundo</span>
                 </div>
             </div>
         </section>
@@ -288,65 +436,109 @@
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
-                    <span data-i18n="examples.title">Recently Generated</span> <span class="gradient-text" data-i18n="examples.title_highlight">Life Summaries</span>
+                    <span class="lang-en">Recently Generated <span class="gradient-text">Life Summaries</span></span>
+                    <span class="lang-ko">최근 생성된 <span class="gradient-text">인생 요약</span></span>
+                    <span class="lang-ja">最近生成された<span class="gradient-text">人生サマリー</span></span>
+                    <span class="lang-zh">最近生成的<span class="gradient-text">人生总结</span></span>
+                    <span class="lang-es">Resúmenes de Vida <span class="gradient-text">Generados Recientemente</span></span>
                 </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto" data-i18n="examples.description">
-                    See what others have discovered about themselves. Every sentence is unique and personalized based on birthday analysis.
+                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                    <span class="lang-en">See what others have discovered about themselves. Every sentence is unique and personalized based on birthday analysis.</span>
+                    <span class="lang-ko">다른 사람들이 자신에 대해 발견한 것을 확인하세요. 모든 문장은 생년월일 분석을 기반으로 고유하고 개인화되어 있습니다.</span>
+                    <span class="lang-ja">他の人が自分自身について発見したことをご覧ください。すべての文章は誕生日分析に基づいてユニークでパーソナライズされています。</span>
+                    <span class="lang-zh">看看其他人对自己的发现。每句话都是根据生日分析独特且个性化的。</span>
+                    <span class="lang-es">Mira lo que otros han descubierto sobre sí mismos. Cada frase es única y personalizada según el análisis de cumpleaños.</span>
                 </p>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Example Card 1 -->
                     <div class="card-hover bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
                         <div class="text-3xl mb-4">&#128173;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote1">
-                            "You are someone who finds beauty in ordinary moments and transforms challenges into stepping stones for growth."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"You are someone who finds beauty in ordinary moments and transforms challenges into stepping stones for growth."</span>
+                            <span class="lang-ko">"당신은 평범한 순간에서 아름다움을 발견하고 도전을 성장의 디딤돌로 바꾸는 사람입니다."</span>
+                            <span class="lang-ja">「あなたは平凡な瞬間に美しさを見出し、挑戦を成長の足がかりに変える人です。」</span>
+                            <span class="lang-zh">"你是一个能在平凡时刻发现美丽，并将挑战转化为成长垫脚石的人。"</span>
+                            <span class="lang-es">"Eres alguien que encuentra belleza en momentos ordinarios y transforma desafíos en escalones para el crecimiento."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born1">Born in March</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in March</span><span class="lang-ko">3월생</span><span class="lang-ja">3月生まれ</span><span class="lang-zh">三月出生</span><span class="lang-es">Nacido en Marzo</span>
+                        </p>
                     </div>
 
                     <!-- Example Card 2 -->
                     <div class="card-hover bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6 border border-pink-100">
                         <div class="text-3xl mb-4">&#11088;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote2">
-                            "Your journey is marked by quiet resilience, and your strength lies in understanding what others often overlook."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"Your journey is marked by quiet resilience, and your strength lies in understanding what others often overlook."</span>
+                            <span class="lang-ko">"당신의 여정은 조용한 회복력으로 특징지어지며, 다른 사람들이 놓치기 쉬운 것을 이해하는 데 강점이 있습니다."</span>
+                            <span class="lang-ja">「あなたの旅は静かな回復力で特徴づけられ、他の人が見落としがちなことを理解する強さがあります。」</span>
+                            <span class="lang-zh">"你的旅程以安静的韧性为特征，你的力量在于理解他人常常忽视的东西。"</span>
+                            <span class="lang-es">"Tu viaje está marcado por una resiliencia silenciosa, y tu fortaleza radica en comprender lo que otros suelen pasar por alto."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born2">Born in September</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in September</span><span class="lang-ko">9월생</span><span class="lang-ja">9月生まれ</span><span class="lang-zh">九月出生</span><span class="lang-es">Nacido en Septiembre</span>
+                        </p>
                     </div>
 
                     <!-- Example Card 3 -->
                     <div class="card-hover bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-100">
                         <div class="text-3xl mb-4">&#128640;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote3">
-                            "You navigate life with creative intuition, turning imagination into reality while inspiring those around you."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"You navigate life with creative intuition, turning imagination into reality while inspiring those around you."</span>
+                            <span class="lang-ko">"당신은 창의적인 직관으로 삶을 헤쳐나가며 상상력을 현실로 바꾸고 주변 사람들에게 영감을 줍니다."</span>
+                            <span class="lang-ja">「あなたは創造的な直感で人生を歩み、想像力を現実に変えながら周りの人にインスピレーションを与えます。」</span>
+                            <span class="lang-zh">"你以创造性的直觉导航人生，将想象变为现实，同时激励身边的人。"</span>
+                            <span class="lang-es">"Navegas la vida con intuición creativa, convirtiendo la imaginación en realidad mientras inspiras a quienes te rodean."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born3">Born in July</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in July</span><span class="lang-ko">7월생</span><span class="lang-ja">7月生まれ</span><span class="lang-zh">七月出生</span><span class="lang-es">Nacido en Julio</span>
+                        </p>
                     </div>
 
                     <!-- Example Card 4 -->
                     <div class="card-hover bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100">
                         <div class="text-3xl mb-4">&#127793;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote4">
-                            "Strength comes naturally when you embrace authenticity, for you are destined to lead through compassion."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"Strength comes naturally when you embrace authenticity, for you are destined to lead through compassion."</span>
+                            <span class="lang-ko">"진정성을 받아들일 때 강함은 자연스럽게 찾아옵니다. 당신은 연민으로 이끌도록 운명지어졌습니다."</span>
+                            <span class="lang-ja">「本物を受け入れると自然と強さが生まれます。あなたは思いやりで導く運命にあります。」</span>
+                            <span class="lang-zh">"当你拥抱真实时，力量自然而来，因为你注定要用同情心来领导。"</span>
+                            <span class="lang-es">"La fuerza llega naturalmente cuando abrazas la autenticidad, pues estás destinado a liderar a través de la compasión."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born4">Born in December</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in December</span><span class="lang-ko">12월생</span><span class="lang-ja">12月生まれ</span><span class="lang-zh">十二月出生</span><span class="lang-es">Nacido en Diciembre</span>
+                        </p>
                     </div>
 
                     <!-- Example Card 5 -->
                     <div class="card-hover bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
                         <div class="text-3xl mb-4">&#127754;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote5">
-                            "In life, you seek deeper meaning in every experience, and wisdom flows naturally through your decisions."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"In life, you seek deeper meaning in every experience, and wisdom flows naturally through your decisions."</span>
+                            <span class="lang-ko">"삶에서 당신은 모든 경험에서 더 깊은 의미를 찾고, 결정을 통해 지혜가 자연스럽게 흐릅니다."</span>
+                            <span class="lang-ja">「人生において、あなたはあらゆる経験に深い意味を求め、決断を通じて自然と知恵が流れます。」</span>
+                            <span class="lang-zh">"在生活中，你在每一次经历中寻求更深的意义，智慧自然地流淌在你的决定中。"</span>
+                            <span class="lang-es">"En la vida, buscas un significado más profundo en cada experiencia, y la sabiduría fluye naturalmente a través de tus decisiones."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born5">Born in February</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in February</span><span class="lang-ko">2월생</span><span class="lang-ja">2月生まれ</span><span class="lang-zh">二月出生</span><span class="lang-es">Nacido en Febrero</span>
+                        </p>
                     </div>
 
                     <!-- Example Card 6 -->
                     <div class="card-hover bg-gradient-to-br from-violet-50 to-fuchsia-50 rounded-xl p-6 border border-violet-100">
                         <div class="text-3xl mb-4">&#10024;</div>
-                        <p class="quote-text text-gray-700 italic mb-4" data-i18n="examples.quote6">
-                            "You find purpose through connecting hearts across distances, and empathy guides your way forward."
+                        <p class="quote-text text-gray-700 italic mb-4">
+                            <span class="lang-en">"You find purpose through connecting hearts across distances, and empathy guides your way forward."</span>
+                            <span class="lang-ko">"당신은 거리를 넘어 마음을 연결함으로써 목적을 찾고, 공감이 앞으로 나아가는 길을 안내합니다."</span>
+                            <span class="lang-ja">「あなたは距離を越えて心を繋ぐことで目的を見つけ、共感が前に進む道を導きます。」</span>
+                            <span class="lang-zh">"你通过跨越距离连接心灵找到目标，同理心引导你前行。"</span>
+                            <span class="lang-es">"Encuentras propósito conectando corazones a través de distancias, y la empatía guía tu camino hacia adelante."</span>
                         </p>
-                        <p class="text-sm text-gray-500" data-i18n="examples.born6">Born in May</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="lang-en">Born in May</span><span class="lang-ko">5월생</span><span class="lang-ja">5月生まれ</span><span class="lang-zh">五月出生</span><span class="lang-es">Nacido en Mayo</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -368,10 +560,18 @@
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
-                    <span data-i18n="how.title">How Does</span> <span class="gradient-text" data-i18n="how.title_highlight">AI Life Summary</span> <span data-i18n="how.title_end">Work?</span>
+                    <span class="lang-en">How Does <span class="gradient-text">AI Life Summary</span> Work?</span>
+                    <span class="lang-ko"><span class="gradient-text">AI 인생 요약</span>은 어떻게 작동하나요?</span>
+                    <span class="lang-ja"><span class="gradient-text">AI人生サマリー</span>はどのように機能しますか？</span>
+                    <span class="lang-zh"><span class="gradient-text">AI人生总结</span>如何运作？</span>
+                    <span class="lang-es">¿Cómo Funciona <span class="gradient-text">AI Life Summary</span>?</span>
                 </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto" data-i18n="how.description">
-                    Our innovative algorithm combines computational analysis with personality insights to create meaningful, personalized life summaries.
+                <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+                    <span class="lang-en">Our innovative algorithm combines computational analysis with personality insights to create meaningful, personalized life summaries.</span>
+                    <span class="lang-ko">우리의 혁신적인 알고리즘은 계산 분석과 성격 통찰력을 결합하여 의미 있고 개인화된 인생 요약을 만듭니다.</span>
+                    <span class="lang-ja">私たちの革新的なアルゴリズムは、計算分析と性格の洞察を組み合わせて、意味のあるパーソナライズされた人生サマリーを作成します。</span>
+                    <span class="lang-zh">我们创新的算法将计算分析与性格洞察相结合，创建有意义的个性化人生总结。</span>
+                    <span class="lang-es">Nuestro algoritmo innovador combina análisis computacional con perspectivas de personalidad para crear resúmenes de vida significativos y personalizados.</span>
                 </p>
 
                 <div class="grid md:grid-cols-3 gap-8 mb-12">
@@ -380,9 +580,19 @@
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">1</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3" data-i18n="how.step1.title">Enter Your Birthday</h3>
-                        <p class="text-gray-600" data-i18n="how.step1.desc">
-                            Your birth date contains unique numerical patterns that our algorithm uses as the foundation for your personalized analysis.
+                        <h3 class="font-heading font-semibold text-xl mb-3">
+                            <span class="lang-en">Enter Your Birthday</span>
+                            <span class="lang-ko">생년월일 입력</span>
+                            <span class="lang-ja">誕生日を入力</span>
+                            <span class="lang-zh">输入您的生日</span>
+                            <span class="lang-es">Ingresa Tu Cumpleaños</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Your birth date contains unique numerical patterns that our algorithm uses as the foundation for your personalized analysis.</span>
+                            <span class="lang-ko">당신의 생년월일에는 우리 알고리즘이 개인화된 분석의 기초로 사용하는 고유한 숫자 패턴이 포함되어 있습니다.</span>
+                            <span class="lang-ja">あなたの生年月日には、アルゴリズムがパーソナライズされた分析の基礎として使用するユニークな数値パターンが含まれています。</span>
+                            <span class="lang-zh">您的出生日期包含独特的数字模式，我们的算法将其作为个性化分析的基础。</span>
+                            <span class="lang-es">Tu fecha de nacimiento contiene patrones numéricos únicos que nuestro algoritmo usa como base para tu análisis personalizado.</span>
                         </p>
                     </div>
 
@@ -391,9 +601,19 @@
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">2</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3" data-i18n="how.step2.title">AI Analysis</h3>
-                        <p class="text-gray-600" data-i18n="how.step2.desc">
-                            Our sophisticated algorithm processes your data through multiple personality matrices to identify your core traits and life themes.
+                        <h3 class="font-heading font-semibold text-xl mb-3">
+                            <span class="lang-en">AI Analysis</span>
+                            <span class="lang-ko">AI 분석</span>
+                            <span class="lang-ja">AI分析</span>
+                            <span class="lang-zh">AI分析</span>
+                            <span class="lang-es">Análisis de IA</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Our sophisticated algorithm processes your data through multiple personality matrices to identify your core traits and life themes.</span>
+                            <span class="lang-ko">우리의 정교한 알고리즘은 여러 성격 매트릭스를 통해 데이터를 처리하여 핵심 특성과 삶의 테마를 식별합니다.</span>
+                            <span class="lang-ja">私たちの洗練されたアルゴリズムは、複数の性格マトリックスを通じてデータを処理し、核心的な特性と人生のテーマを特定します。</span>
+                            <span class="lang-zh">我们精密的算法通过多个性格矩阵处理您的数据，识别您的核心特质和人生主题。</span>
+                            <span class="lang-es">Nuestro sofisticado algoritmo procesa tus datos a través de múltiples matrices de personalidad para identificar tus rasgos principales y temas de vida.</span>
                         </p>
                     </div>
 
@@ -402,32 +622,64 @@
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl text-white font-bold">3</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-xl mb-3" data-i18n="how.step3.title">Get Your Summary</h3>
-                        <p class="text-gray-600" data-i18n="how.step3.desc">
-                            Receive a beautifully crafted sentence that captures the essence of who you are, ready to share with friends and family.
+                        <h3 class="font-heading font-semibold text-xl mb-3">
+                            <span class="lang-en">Get Your Summary</span>
+                            <span class="lang-ko">요약 받기</span>
+                            <span class="lang-ja">サマリーを取得</span>
+                            <span class="lang-zh">获取您的总结</span>
+                            <span class="lang-es">Obtén Tu Resumen</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span class="lang-en">Receive a beautifully crafted sentence that captures the essence of who you are, ready to share with friends and family.</span>
+                            <span class="lang-ko">당신이 누구인지의 본질을 담은 아름다운 문장을 받아 친구와 가족과 공유하세요.</span>
+                            <span class="lang-ja">あなたが誰であるかの本質を捉えた美しい文章を受け取り、友人や家族と共有しましょう。</span>
+                            <span class="lang-zh">收到一句精心制作的句子，捕捉你是谁的本质，准备与朋友和家人分享。</span>
+                            <span class="lang-es">Recibe una frase bellamente elaborada que captura la esencia de quién eres, lista para compartir con amigos y familiares.</span>
                         </p>
                     </div>
                 </div>
 
                 <!-- Detailed Explanation -->
                 <div class="bg-gray-50 rounded-2xl p-8 md:p-12">
-                    <h3 class="font-heading font-semibold text-2xl mb-6 text-center" data-i18n="science.title">The Science Behind Your Summary</h3>
+                    <h3 class="font-heading font-semibold text-2xl mb-6 text-center">
+                        <span class="lang-en">The Science Behind Your Summary</span>
+                        <span class="lang-ko">요약 뒤에 숨은 과학</span>
+                        <span class="lang-ja">サマリーの背後にある科学</span>
+                        <span class="lang-zh">您的总结背后的科学</span>
+                        <span class="lang-es">La Ciencia Detrás de Tu Resumen</span>
+                    </h3>
 
                     <div class="space-y-6 text-gray-700 max-w-3xl mx-auto">
-                        <p data-i18n="science.p1">
-                            The AI Life Summary system utilizes a proprietary algorithm that analyzes numerical patterns derived from your birth date. This computational approach draws inspiration from various personality frameworks and psychological research, creating a unique blend of analysis that produces meaningful and relatable life summaries.
+                        <p>
+                            <span class="lang-en">The AI Life Summary system utilizes a proprietary algorithm that analyzes numerical patterns derived from your birth date. This computational approach draws inspiration from various personality frameworks and psychological research, creating a unique blend of analysis that produces meaningful and relatable life summaries.</span>
+                            <span class="lang-ko">AI 인생 요약 시스템은 생년월일에서 파생된 숫자 패턴을 분석하는 독점 알고리즘을 활용합니다. 이 계산적 접근 방식은 다양한 성격 프레임워크와 심리학 연구에서 영감을 받아 의미 있고 공감할 수 있는 인생 요약을 만들어냅니다.</span>
+                            <span class="lang-ja">AI人生サマリーシステムは、生年月日から導き出された数値パターンを分析する独自のアルゴリズムを使用しています。この計算的アプローチは、様々な性格フレームワークと心理学研究からインスピレーションを得て、意味のある共感できる人生サマリーを作成します。</span>
+                            <span class="lang-zh">AI人生总结系统利用专有算法分析从您的出生日期派生的数字模式。这种计算方法从各种人格框架和心理研究中汲取灵感，创建一种独特的分析组合，产生有意义且相关的人生总结。</span>
+                            <span class="lang-es">El sistema AI Life Summary utiliza un algoritmo propietario que analiza patrones numéricos derivados de tu fecha de nacimiento. Este enfoque computacional se inspira en varios marcos de personalidad e investigación psicológica, creando una mezcla única de análisis que produce resúmenes de vida significativos y relacionables.</span>
                         </p>
 
-                        <p data-i18n="science.p2">
-                            Our database contains over 800 carefully crafted sentence components across 20 different personality categories, including resilience, creativity, empathy, wisdom, and adventure. Each component has been developed by content specialists who understand the nuances of human personality and life experiences.
+                        <p>
+                            <span class="lang-en">Our database contains over 800 carefully crafted sentence components across 20 different personality categories, including resilience, creativity, empathy, wisdom, and adventure. Each component has been developed by content specialists who understand the nuances of human personality and life experiences.</span>
+                            <span class="lang-ko">우리 데이터베이스에는 회복력, 창의성, 공감, 지혜, 모험을 포함한 20개의 다른 성격 카테고리에 걸쳐 800개 이상의 신중하게 제작된 문장 구성 요소가 포함되어 있습니다. 각 구성 요소는 인간 성격과 삶의 경험의 뉘앙스를 이해하는 콘텐츠 전문가가 개발했습니다.</span>
+                            <span class="lang-ja">私たちのデータベースには、回復力、創造性、共感、知恵、冒険を含む20の異なる性格カテゴリにわたる800以上の慎重に作成された文章コンポーネントが含まれています。各コンポーネントは、人間の性格と人生経験のニュアンスを理解するコンテンツスペシャリストによって開発されました。</span>
+                            <span class="lang-zh">我们的数据库包含超过800个精心制作的句子组件，涵盖20个不同的性格类别，包括韧性、创造力、同理心、智慧和冒险。每个组件都由理解人类性格和生活经验细微差别的内容专家开发。</span>
+                            <span class="lang-es">Nuestra base de datos contiene más de 800 componentes de oraciones cuidadosamente elaborados en 20 categorías de personalidad diferentes, incluyendo resiliencia, creatividad, empatía, sabiduría y aventura. Cada componente ha sido desarrollado por especialistas en contenido que entienden los matices de la personalidad humana y las experiencias de vida.</span>
                         </p>
 
-                        <p data-i18n="science.p3">
-                            When you enter your birthday, our algorithm generates a unique hash value that determines which combination of traits, contexts, and templates will form your personal life summary. This ensures that each result is deterministic (the same birthday always produces the same result) while maintaining the feeling of personalization and relevance.
+                        <p>
+                            <span class="lang-en">When you enter your birthday, our algorithm generates a unique hash value that determines which combination of traits, contexts, and templates will form your personal life summary. This ensures that each result is deterministic (the same birthday always produces the same result) while maintaining the feeling of personalization and relevance.</span>
+                            <span class="lang-ko">생년월일을 입력하면 알고리즘은 고유한 해시 값을 생성하여 어떤 특성, 맥락, 템플릿의 조합이 개인 인생 요약을 형성할지 결정합니다. 이렇게 하면 각 결과가 결정적이면서도(같은 생년월일은 항상 같은 결과를 생성) 개인화와 관련성의 느낌을 유지합니다.</span>
+                            <span class="lang-ja">誕生日を入力すると、アルゴリズムはユニークなハッシュ値を生成し、どの特性、コンテキスト、テンプレートの組み合わせがあなたの個人的な人生サマリーを形成するかを決定します。これにより、各結果が決定的（同じ誕生日は常に同じ結果を生成）でありながら、パーソナライズと関連性の感覚を維持します。</span>
+                            <span class="lang-zh">当您输入生日时，我们的算法会生成一个唯一的哈希值，决定哪种特质、背景和模板的组合将形成您的个人人生总结。这确保每个结果都是确定性的（相同的生日总是产生相同的结果），同时保持个性化和相关性的感觉。</span>
+                            <span class="lang-es">Cuando ingresas tu cumpleaños, nuestro algoritmo genera un valor hash único que determina qué combinación de rasgos, contextos y plantillas formarán tu resumen de vida personal. Esto asegura que cada resultado sea determinista (el mismo cumpleaños siempre produce el mismo resultado) mientras mantiene la sensación de personalización y relevancia.</span>
                         </p>
 
-                        <p data-i18n="science.p4">
-                            While we present this service primarily for entertainment purposes, many users find genuine insight and reflection in their results. The power of a well-crafted life summary lies not in its predictive accuracy, but in its ability to prompt self-reflection and meaningful conversations with others.
+                        <p>
+                            <span class="lang-en">While we present this service primarily for entertainment purposes, many users find genuine insight and reflection in their results. The power of a well-crafted life summary lies not in its predictive accuracy, but in its ability to prompt self-reflection and meaningful conversations with others.</span>
+                            <span class="lang-ko">이 서비스는 주로 오락 목적으로 제공되지만, 많은 사용자들이 결과에서 진정한 통찰력과 성찰을 발견합니다. 잘 만들어진 인생 요약의 힘은 예측 정확도가 아니라 자기 성찰과 다른 사람들과의 의미 있는 대화를 촉진하는 능력에 있습니다.</span>
+                            <span class="lang-ja">このサービスは主に娯楽目的で提供していますが、多くのユーザーは結果に真の洞察と内省を見出しています。よく作られた人生サマリーの力は、予測精度ではなく、自己省察と他者との意味のある会話を促す能力にあります。</span>
+                            <span class="lang-zh">虽然我们主要将此服务作为娱乐目的，但许多用户在他们的结果中发现了真正的洞察和反思。精心制作的人生总结的力量不在于其预测准确性，而在于其促进自我反思和与他人进行有意义对话的能力。</span>
+                            <span class="lang-es">Aunque presentamos este servicio principalmente con fines de entretenimiento, muchos usuarios encuentran una perspectiva y reflexión genuinas en sus resultados. El poder de un resumen de vida bien elaborado no radica en su precisión predictiva, sino en su capacidad para promover la autorreflexión y conversaciones significativas con otros.</span>
                         </p>
                     </div>
                 </div>
@@ -438,7 +690,11 @@
         <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-12">
-                    <span data-i18n="why.title">Why Try</span> <span class="gradient-text" data-i18n="why.title_highlight">AI Life Summary</span><span data-i18n="why.title_end">?</span>
+                    <span class="lang-en">Why Try <span class="gradient-text">AI Life Summary</span>?</span>
+                    <span class="lang-ko">왜 <span class="gradient-text">AI 인생 요약</span>을 시도해야 할까요?</span>
+                    <span class="lang-ja">なぜ<span class="gradient-text">AI人生サマリー</span>を試すべきですか？</span>
+                    <span class="lang-zh">为什么要尝试<span class="gradient-text">AI人生总结</span>？</span>
+                    <span class="lang-es">¿Por Qué Probar <span class="gradient-text">AI Life Summary</span>?</span>
                 </h2>
 
                 <div class="grid md:grid-cols-2 gap-8">
@@ -446,9 +702,19 @@
                         <div class="flex items-start space-x-4">
                             <div class="text-3xl">&#127919;</div>
                             <div>
-                                <h3 class="font-heading font-semibold text-xl mb-2" data-i18n="why.discovery.title">Self-Discovery</h3>
-                                <p class="text-gray-600" data-i18n="why.discovery.desc">
-                                    Sometimes a single sentence can spark profound self-reflection. Our AI-generated summaries often highlight aspects of your personality you may not have consciously recognized, offering a fresh perspective on who you are.
+                                <h3 class="font-heading font-semibold text-xl mb-2">
+                                    <span class="lang-en">Self-Discovery</span>
+                                    <span class="lang-ko">자기 발견</span>
+                                    <span class="lang-ja">自己発見</span>
+                                    <span class="lang-zh">自我发现</span>
+                                    <span class="lang-es">Autodescubrimiento</span>
+                                </h3>
+                                <p class="text-gray-600">
+                                    <span class="lang-en">Sometimes a single sentence can spark profound self-reflection. Our AI-generated summaries often highlight aspects of your personality you may not have consciously recognized, offering a fresh perspective on who you are.</span>
+                                    <span class="lang-ko">때로는 한 문장이 깊은 자기 성찰을 불러일으킬 수 있습니다. AI가 생성한 요약은 의식적으로 인식하지 못했던 성격의 측면을 강조하여 자신에 대한 새로운 관점을 제공합니다.</span>
+                                    <span class="lang-ja">時には一つの文章が深い自己省察を引き起こすことがあります。AI生成のサマリーは、意識的に認識していなかった性格の側面を強調し、自分自身についての新鮮な視点を提供します。</span>
+                                    <span class="lang-zh">有时一句话可以激发深刻的自我反思。我们的AI生成的总结通常会突出您可能没有意识到的性格方面，为您提供关于自己的新视角。</span>
+                                    <span class="lang-es">A veces una sola frase puede despertar una profunda autorreflexión. Nuestros resúmenes generados por IA a menudo destacan aspectos de tu personalidad que quizás no hayas reconocido conscientemente, ofreciendo una perspectiva fresca de quién eres.</span>
                                 </p>
                             </div>
                         </div>
@@ -458,9 +724,19 @@
                         <div class="flex items-start space-x-4">
                             <div class="text-3xl">&#128101;</div>
                             <div>
-                                <h3 class="font-heading font-semibold text-xl mb-2" data-i18n="why.share.title">Share & Compare</h3>
-                                <p class="text-gray-600" data-i18n="why.share.desc">
-                                    Generate summaries for your friends and family members. Compare results and discover interesting patterns among people born in similar periods. It's a fun way to start meaningful conversations.
+                                <h3 class="font-heading font-semibold text-xl mb-2">
+                                    <span class="lang-en">Share & Compare</span>
+                                    <span class="lang-ko">공유 및 비교</span>
+                                    <span class="lang-ja">共有と比較</span>
+                                    <span class="lang-zh">分享与比较</span>
+                                    <span class="lang-es">Compartir y Comparar</span>
+                                </h3>
+                                <p class="text-gray-600">
+                                    <span class="lang-en">Generate summaries for your friends and family members. Compare results and discover interesting patterns among people born in similar periods. It's a fun way to start meaningful conversations.</span>
+                                    <span class="lang-ko">친구와 가족 구성원을 위한 요약을 생성하세요. 결과를 비교하고 비슷한 시기에 태어난 사람들 사이에서 흥미로운 패턴을 발견하세요. 의미 있는 대화를 시작하는 재미있는 방법입니다.</span>
+                                    <span class="lang-ja">友人や家族のサマリーを生成しましょう。結果を比較し、似た時期に生まれた人々の間で興味深いパターンを発見しましょう。意味のある会話を始める楽しい方法です。</span>
+                                    <span class="lang-zh">为您的朋友和家人生成总结。比较结果并发现在相似时期出生的人之间有趣的模式。这是开始有意义对话的有趣方式。</span>
+                                    <span class="lang-es">Genera resúmenes para tus amigos y familiares. Compara resultados y descubre patrones interesantes entre personas nacidas en períodos similares. Es una forma divertida de iniciar conversaciones significativas.</span>
                                 </p>
                             </div>
                         </div>
@@ -470,9 +746,19 @@
                         <div class="flex items-start space-x-4">
                             <div class="text-3xl">&#128247;</div>
                             <div>
-                                <h3 class="font-heading font-semibold text-xl mb-2" data-i18n="why.image.title">Beautiful Shareable Images</h3>
-                                <p class="text-gray-600" data-i18n="why.image.desc">
-                                    Create stunning images of your life summary to share on Instagram, Twitter, and other social platforms. Our built-in image generator creates eye-catching visuals perfect for social media.
+                                <h3 class="font-heading font-semibold text-xl mb-2">
+                                    <span class="lang-en">Beautiful Shareable Images</span>
+                                    <span class="lang-ko">아름다운 공유 가능한 이미지</span>
+                                    <span class="lang-ja">美しい共有可能な画像</span>
+                                    <span class="lang-zh">精美的可分享图片</span>
+                                    <span class="lang-es">Hermosas Imágenes Compartibles</span>
+                                </h3>
+                                <p class="text-gray-600">
+                                    <span class="lang-en">Create stunning images of your life summary to share on Instagram, Twitter, and other social platforms. Our built-in image generator creates eye-catching visuals perfect for social media.</span>
+                                    <span class="lang-ko">인스타그램, 트위터 및 기타 소셜 플랫폼에서 공유할 인생 요약의 멋진 이미지를 만드세요. 내장된 이미지 생성기는 소셜 미디어에 완벽한 눈길을 끄는 비주얼을 만듭니다.</span>
+                                    <span class="lang-ja">Instagram、Twitter、その他のソーシャルプラットフォームで共有する人生サマリーの素晴らしい画像を作成しましょう。内蔵の画像生成器は、ソーシャルメディアに最適な目を引くビジュアルを作成します。</span>
+                                    <span class="lang-zh">创建您人生总结的精美图片，在Instagram、Twitter和其他社交平台上分享。我们内置的图片生成器创建完美适合社交媒体的引人注目的视觉效果。</span>
+                                    <span class="lang-es">Crea impresionantes imágenes de tu resumen de vida para compartir en Instagram, Twitter y otras plataformas sociales. Nuestro generador de imágenes integrado crea visuales llamativos perfectos para las redes sociales.</span>
                                 </p>
                             </div>
                         </div>
@@ -482,9 +768,19 @@
                         <div class="flex items-start space-x-4">
                             <div class="text-3xl">&#128274;</div>
                             <div>
-                                <h3 class="font-heading font-semibold text-xl mb-2" data-i18n="why.privacy.title">Privacy First</h3>
-                                <p class="text-gray-600" data-i18n="why.privacy.desc">
-                                    We take your privacy seriously. Your birth date is processed locally in your browser, and we don't store any personal information on our servers. Enjoy the experience worry-free.
+                                <h3 class="font-heading font-semibold text-xl mb-2">
+                                    <span class="lang-en">Privacy First</span>
+                                    <span class="lang-ko">프라이버시 우선</span>
+                                    <span class="lang-ja">プライバシー第一</span>
+                                    <span class="lang-zh">隐私优先</span>
+                                    <span class="lang-es">Privacidad Primero</span>
+                                </h3>
+                                <p class="text-gray-600">
+                                    <span class="lang-en">We take your privacy seriously. Your birth date is processed locally in your browser, and we don't store any personal information on our servers. Enjoy the experience worry-free.</span>
+                                    <span class="lang-ko">우리는 개인 정보 보호를 진지하게 생각합니다. 생년월일은 브라우저에서 로컬로 처리되며 서버에 개인 정보를 저장하지 않습니다. 걱정 없이 경험을 즐기세요.</span>
+                                    <span class="lang-ja">私たちはあなたのプライバシーを真剣に考えています。生年月日はブラウザでローカルに処理され、サーバーに個人情報は保存されません。安心して体験をお楽しみください。</span>
+                                    <span class="lang-zh">我们非常重视您的隐私。您的出生日期在浏览器中本地处理，我们不会在服务器上存储任何个人信息。请放心享受体验。</span>
+                                    <span class="lang-es">Tomamos tu privacidad en serio. Tu fecha de nacimiento se procesa localmente en tu navegador, y no almacenamos ninguna información personal en nuestros servidores. Disfruta de la experiencia sin preocupaciones.</span>
                                 </p>
                             </div>
                         </div>
@@ -497,15 +793,26 @@
         <section class="py-16 bg-white">
             <div class="max-w-4xl mx-auto px-4 text-center">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
-                    <span data-i18n="cta.title">Ready to Discover</span> <span class="gradient-text" data-i18n="cta.title_highlight">Your Life Summary</span><span data-i18n="cta.title_end">?</span>
+                    <span class="lang-en">Ready to Discover <span class="gradient-text">Your Life Summary</span>?</span>
+                    <span class="lang-ko"><span class="gradient-text">당신의 인생 요약</span>을 발견할 준비가 되셨나요?</span>
+                    <span class="lang-ja"><span class="gradient-text">あなたの人生サマリー</span>を発見する準備はできていますか？</span>
+                    <span class="lang-zh">准备好发现<span class="gradient-text">您的人生总结</span>了吗？</span>
+                    <span class="lang-es">¿Listo para Descubrir <span class="gradient-text">Tu Resumen de Vida</span>?</span>
                 </h2>
-                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto" data-i18n="cta.description">
-                    Join millions of people worldwide who have discovered their unique life summaries. It takes just seconds and the result might surprise you!
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                    <span class="lang-en">Join millions of people worldwide who have discovered their unique life summaries. It takes just seconds and the result might surprise you!</span>
+                    <span class="lang-ko">전 세계 수백만 명이 자신만의 인생 요약을 발견했습니다. 몇 초만 걸리고 결과가 당신을 놀라게 할 수 있습니다!</span>
+                    <span class="lang-ja">世界中の何百万人もの人々が独自の人生サマリーを発見しています。わずか数秒で結果があなたを驚かせるかもしれません！</span>
+                    <span class="lang-zh">全球数百万人已经发现了他们独特的人生总结。只需几秒钟，结果可能会让您惊喜！</span>
+                    <span class="lang-es">Únete a millones de personas en todo el mundo que han descubierto sus resúmenes de vida únicos. ¡Solo toma segundos y el resultado podría sorprenderte!</span>
                 </p>
                 <a href="#" onclick="document.getElementById('birthdate').focus(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
-                   class="inline-block gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg hover:shadow-xl"
-                   data-i18n="cta.button">
-                    Get My Life Summary Now
+                   class="inline-block gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg hover:shadow-xl">
+                    <span class="lang-en">Get My Life Summary Now</span>
+                    <span class="lang-ko">지금 내 인생 요약 받기</span>
+                    <span class="lang-ja">今すぐ人生サマリーを取得</span>
+                    <span class="lang-zh">立即获取我的人生总结</span>
+                    <span class="lang-es">Obtener Mi Resumen de Vida Ahora</span>
                 </a>
             </div>
         </section>
@@ -520,31 +827,89 @@
                         <span class="text-2xl">&#10024;</span>
                         <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
                     </div>
-                    <p class="text-gray-400 text-sm" data-i18n="footer.description">
-                        Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.
+                    <p class="text-gray-400 text-sm">
+                        <span class="lang-en">Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.</span>
+                        <span class="lang-ko">AI 기반 인생 요약으로 자신을 발견하세요. 자신을 더 잘 이해하는 재미있고 통찰력 있는 방법입니다.</span>
+                        <span class="lang-ja">AI駆動のライフサマリーで自分を発見しましょう。自分をより深く理解する楽しく洞察力のある方法です。</span>
+                        <span class="lang-zh">通过AI驱动的人生总结发现自己。一种有趣且有洞察力的方式来更好地了解自己。</span>
+                        <span class="lang-es">Descubre quién eres con resúmenes de vida impulsados por IA. Una forma divertida y perspicaz de entenderte mejor.</span>
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.quick_links">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                        <span class="lang-ja">クイックリンク</span>
+                        <span class="lang-zh">快速链接</span>
+                        <span class="lang-es">Enlaces Rápidos</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition" data-i18n="footer.home">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition" data-i18n="nav.about">About</a></li>
-                        <li><a href="/archive.html" class="hover:text-white transition" data-i18n="nav.archive">Archive</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition" data-i18n="nav.contact">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                            <span class="lang-ja">ホーム</span>
+                            <span class="lang-zh">首页</span>
+                            <span class="lang-es">Inicio</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                            <span class="lang-ja">概要</span>
+                            <span class="lang-zh">关于</span>
+                            <span class="lang-es">Acerca de</span>
+                        </a></li>
+                        <li><a href="/archive.html" class="hover:text-white transition">
+                            <span class="lang-en">Archive</span>
+                            <span class="lang-ko">아카이브</span>
+                            <span class="lang-ja">アーカイブ</span>
+                            <span class="lang-zh">存档</span>
+                            <span class="lang-es">Archivo</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                            <span class="lang-ja">お問い合わせ</span>
+                            <span class="lang-zh">联系</span>
+                            <span class="lang-es">Contacto</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.legal">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 고지</span>
+                        <span class="lang-ja">法的情報</span>
+                        <span class="lang-zh">法律信息</span>
+                        <span class="lang-es">Legal</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition" data-i18n="form.privacy_link">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition" data-i18n="form.terms_link">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보 처리방침</span>
+                            <span class="lang-ja">プライバシーポリシー</span>
+                            <span class="lang-zh">隐私政策</span>
+                            <span class="lang-es">Política de Privacidad</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                            <span class="lang-ja">利用規約</span>
+                            <span class="lang-zh">服务条款</span>
+                            <span class="lang-es">Términos de Servicio</span>
+                        </a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold text-white mb-4" data-i18n="footer.connect">Connect</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Connect</span>
+                        <span class="lang-ko">연결</span>
+                        <span class="lang-ja">つながる</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Conectar</span>
+                    </h4>
                     <div class="flex space-x-4">
                         <a href="#" class="hover:text-white transition" aria-label="Twitter">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -566,47 +931,18 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 <span data-i18n="footer.copyright">AI Life Summary. All rights reserved.</span></p>
-                <p class="mt-2" data-i18n="footer.entertainment">This service is for entertainment purposes only and should not be considered as professional advice.</p>
+                <p>&copy; 2025 AI Life Summary. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span><span class="lang-ja">全著作権所有。</span><span class="lang-zh">版权所有。</span><span class="lang-es">Todos los derechos reservados.</span></p>
+                <p class="mt-2">
+                    <span class="lang-en">This service is for entertainment purposes only and should not be considered as professional advice.</span>
+                    <span class="lang-ko">이 서비스는 오락 목적으로만 제공되며 전문적인 조언으로 간주되어서는 안 됩니다.</span>
+                    <span class="lang-ja">このサービスは娯楽目的のみであり、専門的なアドバイスとして考慮されるべきではありません。</span>
+                    <span class="lang-zh">此服务仅供娱乐目的，不应被视为专业建议。</span>
+                    <span class="lang-es">Este servicio es solo para entretenimiento y no debe considerarse como asesoramiento profesional.</span>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- Language Switch Script -->
-    <script>
-        function switchLang(lang) {
-            localStorage.setItem('ai-life-summary-lang', lang);
-            localStorage.setItem('preferredLanguage', lang);
-            document.documentElement.lang = lang;
-
-            // Update button styles
-            var enBtn = document.getElementById('lang-btn-en');
-            var koBtn = document.getElementById('lang-btn-ko');
-            if (enBtn && koBtn) {
-                if (lang === 'en') {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                } else {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                }
-            }
-
-            // Apply translations if i18n is loaded
-            if (typeof setLanguage === 'function') {
-                setLanguage(lang);
-            }
-        }
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            var savedLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-            switchLang(savedLang);
-        });
-    </script>
-
-    <!-- i18n Script -->
-    <script src="/js/i18n.js?v=4"></script>
 
     <!-- Mobile Menu Script -->
     <script>

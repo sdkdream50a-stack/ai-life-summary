@@ -104,7 +104,65 @@
         .sparkle {
             animation: sparkle 2s ease-in-out infinite;
         }
+
+        /* Language switching - 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
     </style>
+
+    <!-- Language Switching Script -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    (function() {
+        var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+        document.documentElement.lang = lang;
+        document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
+    })();
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -116,11 +174,21 @@
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
                     <!-- Tests Dropdown -->
                     <div class="relative group">
                         <button class="flex items-center space-x-1 text-primary font-medium transition">
-                            <span>Tests</span>
+                            <span class="lang-en">Tests</span>
+                            <span class="lang-ko">테스트</span>
+                            <span class="lang-ja">テスト</span>
+                            <span class="lang-zh">测试</span>
+                            <span class="lang-es">Tests</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -130,8 +198,20 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#10024;</span>
                                     <div>
-                                        <p class="font-medium text-primary">AI Life Summary</p>
-                                        <p class="text-xs text-gray-500">Your life in one sentence</p>
+                                        <p class="font-medium text-primary">
+                                            <span class="lang-en">AI Life Summary</span>
+                                            <span class="lang-ko">AI 인생 요약</span>
+                                            <span class="lang-ja">AI人生サマリー</span>
+                                            <span class="lang-zh">AI人生总结</span>
+                                            <span class="lang-es">Resumen de Vida IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Your life in one sentence</span>
+                                            <span class="lang-ko">한 문장으로 보는 인생</span>
+                                            <span class="lang-ja">一文であなたの人生</span>
+                                            <span class="lang-zh">一句话概括你的人生</span>
+                                            <span class="lang-es">Tu vida en una frase</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -139,20 +219,54 @@
                                 <div class="flex items-center space-x-3">
                                     <span class="text-xl">&#127874;</span>
                                     <div>
-                                        <p class="font-medium text-gray-800">AI Age Calculator <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span></p>
-                                        <p class="text-xs text-gray-500">Real vs Mental vs Energy Age</p>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Age Calculator</span>
+                                            <span class="lang-ko">AI 나이 계산기</span>
+                                            <span class="lang-ja">AI年齢計算機</span>
+                                            <span class="lang-zh">AI年龄计算器</span>
+                                            <span class="lang-es">Calculadora de Edad IA</span>
+                                            <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1">NEW</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
+                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
+                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
+                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
-                    <!-- Language Toggle -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative" id="lang-selector">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 border rounded-lg hover:bg-gray-50 transition">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition">🇪🇸 ES</button>
+                        </div>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -164,24 +278,67 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
-                    <p class="text-xs text-gray-500 mt-2">TESTS</p>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">
+                        <span class="lang-en">TESTS</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">TESTS</span>
+                    </p>
                     <a href="/life-summary/" class="flex items-center space-x-2 text-primary font-medium pl-2">
-                        <span>&#10024;</span><span>AI Life Summary</span>
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
                     </a>
                     <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#127874;</span><span>AI Age Calculator</span>
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
                         <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded">NEW</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.about">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
                     <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">EN</button>
-                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
                         </div>
                     </div>
                 </div>

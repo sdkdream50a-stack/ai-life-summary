@@ -196,10 +196,20 @@
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
                     <div class="relative group">
                         <button class="flex items-center space-x-1 text-age-primary font-medium transition">
-                            <span>Tests</span>
+                            <span class="lang-en">Tests</span>
+                            <span class="lang-ko">테스트</span>
+                            <span class="lang-ja">テスト</span>
+                            <span class="lang-zh">测试</span>
+                            <span class="lang-es">Tests</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -212,10 +222,16 @@
                                         <p class="font-medium text-gray-800">
                                             <span class="lang-en">AI Life Summary</span>
                                             <span class="lang-ko">AI 인생 요약</span>
+                                            <span class="lang-ja">AI人生サマリー</span>
+                                            <span class="lang-zh">AI人生总结</span>
+                                            <span class="lang-es">Resumen de Vida IA</span>
                                         </p>
                                         <p class="text-xs text-gray-500">
                                             <span class="lang-en">Your life in one sentence</span>
                                             <span class="lang-ko">한 문장으로 보는 인생</span>
+                                            <span class="lang-ja">一文であなたの人生</span>
+                                            <span class="lang-zh">一句话概括你的人生</span>
+                                            <span class="lang-es">Tu vida en una frase</span>
                                         </p>
                                     </div>
                                 </div>
@@ -227,19 +243,37 @@
                                         <p class="font-medium text-age-primary">
                                             <span class="lang-en">AI Age Calculator</span>
                                             <span class="lang-ko">AI 나이 계산기</span>
+                                            <span class="lang-ja">AI年齢計算機</span>
+                                            <span class="lang-zh">AI年龄计算器</span>
+                                            <span class="lang-es">Calculadora de Edad IA</span>
                                         </p>
                                         <p class="text-xs text-gray-500">
                                             <span class="lang-en">Real vs Mental vs Energy Age</span>
                                             <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
+                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
+                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
                     <!-- Language Dropdown -->
                     <div id="lang-selector" class="relative">
                         <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
@@ -263,22 +297,66 @@
             </div>
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">Home</a>
-                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition">
-                        <span>&#10024;</span><span>AI Life Summary</span>
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
                     </a>
-                    <a href="/age-calculator/" class="flex items-center space-x-2 text-age-primary font-medium">
-                        <span>&#127874;</span><span>AI Age Calculator</span>
+                    <p class="text-xs text-gray-500 mt-2">
+                        <span class="lang-en">TESTS</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">TESTS</span>
+                    </p>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-age-primary font-medium pl-2">
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
                     <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">Language</p>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">EN</button>
-                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" data-lang="ja" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" data-lang="zh" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" data-lang="es" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
                         </div>
                     </div>
                 </div>
