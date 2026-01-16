@@ -731,11 +731,25 @@
 
     <!-- Language Switch Script -->
     <script>
+        var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+        var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
         function switchLang(lang) {
             localStorage.setItem('ai-life-summary-lang', lang);
             localStorage.setItem('preferredLanguage', lang);
             document.documentElement.lang = lang;
 
+            // Update current-lang display in dropdown button
+            var currentLangEl = document.getElementById('current-lang');
+            if (currentLangEl) {
+                currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+            }
+
+            // Close dropdown
+            var dropdown = document.getElementById('lang-dropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+
+            // Update old 2-button style (if exists)
             var enBtn = document.getElementById('lang-btn-en');
             var koBtn = document.getElementById('lang-btn-ko');
             if (enBtn && koBtn) {
