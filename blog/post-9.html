@@ -73,6 +73,9 @@
         .info-box { background-color: #f3f4f6; border-left: 4px solid #6b7280; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         .success-box { background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         pre code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.5; }
+        .lang-switch { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+        .lang-switch:hover { background-color: rgba(99, 102, 241, 0.1); }
+        .lang-switch.active { background-color: #6366f1; color: white; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -89,6 +92,10 @@
                     <a href="/blog.html" class="text-primary font-medium">Blog</a>
                     <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
+                        <a href="/blog/ko/post-9.html" class="lang-switch active">한국어</a>
+                        <a href="/blog/en/post-9.html" class="lang-switch">English</a>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,6 +109,10 @@
                     <a href="/blog.html" class="text-primary font-medium">Blog</a>
                     <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <div class="flex items-center space-x-2 pt-3 border-t border-gray-200">
+                        <a href="/blog/ko/post-9.html" class="lang-switch active">한국어</a>
+                        <a href="/blog/en/post-9.html" class="lang-switch">English</a>
+                    </div>
                 </div>
             </div>
         </nav>
