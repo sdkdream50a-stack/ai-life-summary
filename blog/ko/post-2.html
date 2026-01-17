@@ -10,7 +10,7 @@
     <meta name="keywords" content="노코드 웹 앱, 노코드 툴, 앱 만들기, 50대 코딩 교육, 업무 자동화, Glide 사용법, Bubble 기초, 나만의 앱 제작, MVP 제작, 노코드 플랫폼 비교, 시민 개발자">
     <meta name="author" content="AI Life Summary">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ailifesummary.com/blog/post-2.html">
+    <link rel="canonical" href="https://ailifesummary.com/blog/ko/post-2.html">
 
     <!-- Hreflang Tags for SEO -->
     <link rel="alternate" hreflang="ko" href="https://ailifesummary.com/blog/ko/post-2.html">
@@ -19,11 +19,11 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ailifesummary.com/blog/post-2.html">
+    <meta property="og:url" content="https://ailifesummary.com/blog/ko/post-2.html">
     <meta property="og:title" content="노코드 웹 앱: 코딩 1도 몰라도 2주 만에 내 앱 만드는 법">
-    <meta property="og:description" content="노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다. 필수 도구 추천과 성공 노하우 수록.">
+    <meta property="og:description" content="노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다.">
     <meta property="og:image" content="https://ailifesummary.com/assets/images/blog/post-2.png">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="ko_KR">
     <meta property="og:site_name" content="AI Life Summary">
     <meta property="article:published_time" content="2026-01-11">
     <meta property="article:author" content="AI Life Summary">
@@ -31,7 +31,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="노코드 웹 앱: 코딩 1도 몰라도 2주 만에 내 앱 만드는 법">
-    <meta name="twitter:description" content="노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다. 필수 도구 추천과 성공 노하우 수록.">
+    <meta name="twitter:description" content="노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요.">
     <meta name="twitter:image" content="https://ailifesummary.com/assets/images/blog/post-2.png">
 
     <!-- Tailwind CSS -->
@@ -59,7 +59,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; word-break: keep-all; overflow-wrap: break-word; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', 'Noto Sans KR', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
         .gradient-text {
@@ -73,6 +73,9 @@
         .info-box { background-color: #f3f4f6; border-left: 4px solid #6b7280; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         .success-box { background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         pre code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.5; }
+        .lang-switch { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+        .lang-switch:hover { background-color: rgba(99, 102, 241, 0.1); }
+        .lang-switch.active { background-color: #6366f1; color: white; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -89,6 +92,11 @@
                     <a href="/blog.html" class="text-primary font-medium">Blog</a>
                     <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <!-- Language Switcher -->
+                    <div class="flex items-center border rounded-lg overflow-hidden">
+                        <a href="/blog/ko/post-2.html" class="lang-switch active">🇰🇷 한국어</a>
+                        <a href="/blog/en/post-2.html" class="lang-switch">🇺🇸 English</a>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,6 +110,11 @@
                     <a href="/blog.html" class="text-primary font-medium">Blog</a>
                     <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <!-- Mobile Language Switcher -->
+                    <div class="flex items-center space-x-2 pt-2 border-t">
+                        <a href="/blog/ko/post-2.html" class="lang-switch active">🇰🇷 한국어</a>
+                        <a href="/blog/en/post-2.html" class="lang-switch">🇺🇸 English</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -120,7 +133,7 @@
                         노코드 웹 앱: 코딩 1도 몰라도 2주 만에 내 앱 만드는 법
                     </h1>
                     <p class="text-white/80 text-lg max-w-2xl mx-auto">
-                        노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다. 필수 도구 추천과 성공 노하우 수록.
+                        노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다.
                     </p>
                 </div>
             </header>
@@ -132,12 +145,12 @@
 
     <p data-ke-size="size8">&nbsp;</p>
 
-    <!-- 3.2 메타 설명 박스 -->
+    <!-- 메타 설명 박스 -->
     <div style="background-color: #e0f7fa; padding: 15px; border-radius: 8px; border: 1px solid #b2ebf2; margin-bottom: 25px; font-style: italic;">
         <strong>💡 요약:</strong> <strong>노코드 웹 앱</strong> 제작을 꿈꾸시나요? 50대 초보자도 코딩 없이 나만의 도구를 만드는 7단계 핵심 가이드와 성공 비결을 3분 만에 확인하세요.
     </div>
 
-    <!-- 3.3 [Quick Answer] 30초 요약 박스 -->
+    <!-- [Quick Answer] 30초 요약 박스 -->
     <div id="quick-answer" style="border: 2px solid #00796b; background-color: #fff; padding: 25px; border-radius: 10px; margin-bottom: 35px; box-shadow: 0 4px 12px rgba(0,121,107,0.1);">
         <strong style="color: #00796b; font-size: 1.2em; display:block; margin-bottom:15px;">🚀 30초 요약: 노코드 웹 앱 성공 공식</strong>
         <ul style="margin: 0; padding-left: 20px; color: #555;">
@@ -147,24 +160,24 @@
         </ul>
     </div>
 
-    <!-- 3.4 도입부 -->
+    <!-- 도입부 -->
     <p style="margin-bottom: 15px;">
         <strong>노코드 웹 앱</strong>을 50대에 처음 만들기로 결심했을 때, 가장 큰 첫 번째 어려움은 기술적인 도구가 아니라 머릿속에 그려진 막연한 그림입니다. 많은 분들이 처음부터 은행 사이트나 글로벌 쇼핑몰 같은 거대한 서비스를 상상하곤 합니다.
     </p>
     <p style="margin-bottom: 15px;">
-        하지만 현실적으로 성공 확률을 높이는 첫 프로젝트는 '디지털 노트'에 더 가까워야 합니다. 작고 명확하며, 일상 속의 아주 작은 문제 하나에만 집중하는 것이 핵심입니다. 이 글에서는 복잡한 코딩 없이 여러분의 아이디어를 현실로 만드는 구체적인 7단계를 제시합니다. 😊
+        하지만 현실적으로 성공 확률을 높이는 첫 프로젝트는 '디지털 노트'에 더 가까워야 합니다. 작고 명확하며, 일상 속의 아주 작은 문제 하나에만 집중하는 것이 핵심입니다. 이 글에서는 복잡한 코딩 없이 여러분의 아이디어를 현실로 만드는 구체적인 7단계를 제시합니다.
     </p>
 
-    <!-- 3.5 본문 섹션 -->
+    <!-- 본문 섹션 -->
     <h2 style="font-size: 24px; color: white; background: linear-gradient(to right, #00796b, #004d40); margin: 40px 0 20px; padding-bottom: 8px; border-bottom: 2px solid #b2ebf2; border-radius: 8px; padding: 12px 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700;">
-        1. 노코드 웹 앱의 3가지 핵심 요소 이해하기 🤔
+        1. 노코드 웹 앱의 3가지 핵심 요소 이해하기
     </h2>
 
     <p style="margin-bottom: 15px;">
         노코드 웹 앱은 마법이 아닙니다. 기본적으로 다음 세 가지 요소의 조합으로 이루어집니다. 이 구조를 이해하면 스스로를 '가짜 개발자'가 아닌, 새로운 레고 블록을 조립하는 <span style="background-color: #e0f2f7; color: #00796b; padding: 2px 5px; border-radius: 4px; font-weight: bold;">창작자(Creator)</span>로 느끼게 될 것입니다.
     </p>
 
-    <!-- 3.8 데이터 표 -->
+    <!-- 데이터 표 -->
     <table style="width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 15px; border: 1px solid #ddd;">
         <thead>
             <tr style="background-color: #00796b; color: white;">
@@ -201,7 +214,7 @@
     </div>
 
     <h2 style="font-size: 24px; color: white; background: linear-gradient(to right, #00796b, #004d40); margin: 40px 0 20px; padding-bottom: 8px; border-bottom: 2px solid #b2ebf2; border-radius: 8px; padding: 12px 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700;">
-        2. 올바른 아이디어와 도구 선택하기 🛠️
+        2. 올바른 아이디어와 도구 선택하기
     </h2>
 
     <p style="margin-bottom: 15px;">
@@ -222,16 +235,8 @@
         </li>
     </ul>
 
-    <!-- 3.7 [자료실] 서식 다운로드 유도 -->
-    <div style="background-color: #f9f9f9; border: 1px dashed #00796b; padding: 25px; border-radius: 8px; text-align: center; margin: 35px 0;">
-        <h3 style="margin: 0 0 10px 0; font-size: 18px; color: #00796b;">📂 노코드 툴 비교 가이드북 (2025 ver)</h3>
-        <p style="font-size: 14px; color: #666; margin-bottom: 15px;">내 성향에 딱 맞는 도구를 찾고 계신가요? 초보자를 위한 비교표를 받아보세요.</p>
-        <button style="background-color: #00796b; color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">📄 가이드북 다운로드 (PDF)</button>
-        <div style="font-size: 12px; color: #999; margin-top: 10px;">※ 출처: 한국노코드연구회 (가상)</div>
-    </div>
-
     <h2 style="font-size: 24px; color: white; background: linear-gradient(to right, #00796b, #004d40); margin: 40px 0 20px; padding-bottom: 8px; border-bottom: 2px solid #b2ebf2; border-radius: 8px; padding: 12px 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700;">
-        3. 실전: 압도되지 않고 '버전 1' 완성하기 🏗️
+        3. 실전: 압도되지 않고 '버전 1' 완성하기
     </h2>
 
     <p style="margin-bottom: 15px;">
@@ -253,7 +258,7 @@
     </div>
 
     <h2 style="font-size: 24px; color: white; background: linear-gradient(to right, #00796b, #004d40); margin: 40px 0 20px; padding-bottom: 8px; border-bottom: 2px solid #b2ebf2; border-radius: 8px; padding: 12px 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700;">
-        4. 테스트와 공유, 그리고 성장 📈
+        4. 테스트와 공유, 그리고 성장
     </h2>
 
     <p style="margin-bottom: 15px;">
@@ -263,8 +268,8 @@
         결국 50대에 첫 노코드 웹 앱을 만든다는 것은 기술 습득을 넘어, <strong>"나는 여전히 배울 수 있고, 내 문제를 스스로 해결할 수 있다"</strong>는 자신감을 얻는 과정입니다.
     </p>
 
-    <!-- 3.9 FAQ 섹션 -->
-    <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #e0f2f7; padding-bottom: 10px; margin: 50px 0 20px;">자주 묻는 질문 (FAQ) 💬</h2>
+    <!-- FAQ 섹션 -->
+    <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #e0f2f7; padding-bottom: 10px; margin: 50px 0 20px;">자주 묻는 질문 (FAQ)</h2>
 
     <div style="margin-bottom: 25px;">
         <div style="font-weight: bold; color: #00796b; margin-bottom: 8px; font-size: 17px;">Q. 노코드 프로젝트를 만들려면 프로그래밍 배경이 꼭 필요한가요?</div>
@@ -287,7 +292,7 @@
         </div>
     </div>
 
-    <!-- 3.10 JSON-LD 스키마 -->
+    <!-- JSON-LD 스키마 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -314,17 +319,17 @@
                 <div class="mt-12 pt-8 border-t border-gray-200">
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
                         <div class="flex items-center space-x-3">
-                            <span class="text-gray-500 text-sm">Share:</span>
-                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Failifesummary.com%2Fblog%2Fpost-2.html&text=%EB%85%B8%EC%BD%94%EB%93%9C%20%EC%9B%B9%20%EC%95%B1%3A%20%EC%BD%94%EB%94%A9%201%EB%8F%84%20%EB%AA%B0%EB%9D%BC%EB%8F%84%202%EC%A3%BC%20%EB%A7%8C%EC%97%90%20%EB%82%B4%20%EC%95%B1%20%EB%A7%8C%EB%93%9C%EB%8A%94%20%EB%B2%95" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-400 transition">
+                            <span class="text-gray-500 text-sm">공유하기:</span>
+                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Failifesummary.com%2Fblog%2Fko%2Fpost-2.html&text=%EB%85%B8%EC%BD%94%EB%93%9C%20%EC%9B%B9%20%EC%95%B1%3A%20%EC%BD%94%EB%94%A9%201%EB%8F%84%20%EB%AA%B0%EB%9D%BC%EB%8F%84%202%EC%A3%BC%20%EB%A7%8C%EC%97%90%20%EB%82%B4%20%EC%95%B1%20%EB%A7%8C%EB%93%9C%EB%8A%94%20%EB%B2%95" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-400 transition">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Failifesummary.com%2Fblog%2Fpost-2.html" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-600 transition">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Failifesummary.com%2Fblog%2Fko%2Fpost-2.html" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-600 transition">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                             </a>
                         </div>
                         <a href="/blog.html" class="text-primary font-medium hover:underline flex items-center space-x-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                            <span>Back to Blog</span>
+                            <span>블로그로 돌아가기</span>
                         </a>
                     </div>
                 </div>
@@ -345,7 +350,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "노코드 웹 앱: 코딩 1도 몰라도 2주 만에 내 앱 만드는 법",
-      "description": "노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다. 필수 도구 추천과 성공 노하우 수록.",
+      "description": "노코드 웹 앱 제작이 처음이신가요? 코딩 없이 클릭만으로 나만의 도구를 만드는 7단계 가이드를 확인하세요. 50대 초보자도 2주면 충분합니다.",
       "author": { "@type": "Person", "name": "AI Life Summary" },
       "datePublished": "2026-01-11",
       "dateModified": "2026-01-11",
@@ -354,9 +359,10 @@
         "name": "AI Life Summary",
         "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
       },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/post-2.html" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/ko/post-2.html" },
       "image": "https://ailifesummary.com/assets/images/blog/post-2.png",
-      "keywords": "노코드 웹 앱, 노코드 툴, 앱 만들기, 50대 코딩 교육, 업무 자동화, Glide 사용법, Bubble 기초, 나만의 앱 제작, MVP 제작, 노코드 플랫폼 비교, 시민 개발자"
+      "inLanguage": "ko",
+      "keywords": "노코드 웹 앱, 노코드 툴, 앱 만들기, 50대 코딩 교육, 업무 자동화"
     }
     </script>
 
