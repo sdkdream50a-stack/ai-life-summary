@@ -45,5 +45,5 @@ AI Life Summary (AI Test Lab) is a free web application that provides AI-powered
 - 50+ adults learning web development (blog content)
 
 ## Contact
-Website: https://ailifesummary.com
+Website: https://goodpicknow.com
 Email: 50adreamfire@gmail.com
