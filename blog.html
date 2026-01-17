@@ -893,6 +893,27 @@
         var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
         var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
+        // Update blog post links based on selected language
+        function updateBlogLinks(lang) {
+            var blogLinks = document.querySelectorAll('a[href^="/blog/post-"], a[href^="/blog/en/post-"]');
+            for (var i = 0; i < blogLinks.length; i++) {
+                var link = blogLinks[i];
+                var href = link.getAttribute('href');
+                // Extract post number from href (e.g., /blog/post-1.html -> 1)
+                var match = href.match(/\/blog\/(?:en\/)?post-(\d+)\.html/);
+                if (match) {
+                    var postNum = match[1];
+                    if (lang === 'en') {
+                        // English: link to /blog/en/post-X.html
+                        link.setAttribute('href', '/blog/en/post-' + postNum + '.html');
+                    } else {
+                        // Other languages (ko, ja, zh, es): link to /blog/post-X.html (Korean version with language switcher)
+                        link.setAttribute('href', '/blog/post-' + postNum + '.html');
+                    }
+                }
+            }
+        }
+
         function switchLang(lang) {
             localStorage.setItem('ai-life-summary-lang', lang);
             localStorage.setItem('preferredLanguage', lang);
@@ -912,6 +933,9 @@
                 btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
                 btn.style.color = isActive ? 'white' : '#374151';
             }
+
+            // Update blog post links based on language
+            updateBlogLinks(lang);
 
             // Close dropdown
             var dropdown = document.getElementById('lang-dropdown');
