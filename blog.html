@@ -903,12 +903,12 @@
                 var match = href.match(/\/blog\/(?:en\/)?post-(\d+)\.html/);
                 if (match) {
                     var postNum = match[1];
-                    if (lang === 'en') {
-                        // English: link to /blog/en/post-X.html
-                        link.setAttribute('href', '/blog/en/post-' + postNum + '.html');
-                    } else {
-                        // Other languages (ko, ja, zh, es): link to /blog/post-X.html (Korean version with language switcher)
+                    if (lang === 'ko') {
+                        // Korean: link to /blog/post-X.html (Korean version)
                         link.setAttribute('href', '/blog/post-' + postNum + '.html');
+                    } else {
+                        // English, Japanese, Chinese, Spanish: link to /blog/en/post-X.html (English translated version)
+                        link.setAttribute('href', '/blog/en/post-' + postNum + '.html');
                     }
                 }
             }
