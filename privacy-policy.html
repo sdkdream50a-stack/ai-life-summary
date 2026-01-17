@@ -60,6 +60,21 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        /* Language classes - CSS-based switching for 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] h4.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] h4.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] h4.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] h4.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+
         /* Prevent word breaking in the middle for CJK languages */
         html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
             word-break: keep-all;
@@ -369,36 +384,92 @@
                         <span class="text-2xl">&#129302;</span>
                         <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
                     </div>
-                    <p class="text-gray-400 text-sm">
-                        Discover who you are with AI-powered personality tests.
-                    </p>
+                    <p class="text-gray-400 text-sm lang-en">Discover who you are with AI-powered personality tests.</p>
+                    <p class="text-gray-400 text-sm lang-ko">AI 기반 성격 테스트로 자신을 발견하세요.</p>
+                    <p class="text-gray-400 text-sm lang-ja">AI搭載の性格テストで自分を発見しましょう。</p>
+                    <p class="text-gray-400 text-sm lang-zh">通过AI驱动的性格测试发现真正的自己。</p>
+                    <p class="text-gray-400 text-sm lang-es">Descubre quién eres con pruebas de personalidad impulsadas por IA.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Tests</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">Pruebas</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
                         <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                        <span class="lang-ja">クイックリンク</span>
+                        <span class="lang-zh">快速链接</span>
+                        <span class="lang-es">Enlaces Rápidos</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                            <span class="lang-ja">ホーム</span>
+                            <span class="lang-zh">首页</span>
+                            <span class="lang-es">Inicio</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                            <span class="lang-ja">概要</span>
+                            <span class="lang-zh">关于</span>
+                            <span class="lang-es">Acerca de</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                            <span class="lang-ja">お問い合わせ</span>
+                            <span class="lang-zh">联系我们</span>
+                            <span class="lang-es">Contacto</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 고지</span>
+                        <span class="lang-ja">法的情報</span>
+                        <span class="lang-zh">法律信息</span>
+                        <span class="lang-es">Legal</span>
+                    </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보 처리방침</span>
+                            <span class="lang-ja">プライバシーポリシー</span>
+                            <span class="lang-zh">隐私政策</span>
+                            <span class="lang-es">Política de Privacidad</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                            <span class="lang-ja">利用規約</span>
+                            <span class="lang-zh">服务条款</span>
+                            <span class="lang-es">Términos de Servicio</span>
+                        </a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
-                <p class="mt-2">All tests are for entertainment purposes only.</p>
+                <p>&copy; 2025 AI Test Lab. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span><span class="lang-ja">全著作権所有。</span><span class="lang-zh">版权所有。</span><span class="lang-es">Todos los derechos reservados.</span></p>
+                <p class="mt-2">
+                    <span class="lang-en">All tests are for entertainment purposes only.</span>
+                    <span class="lang-ko">모든 테스트는 오락 목적으로만 제공됩니다.</span>
+                    <span class="lang-ja">すべてのテストはエンターテインメント目的のみです。</span>
+                    <span class="lang-zh">所有测试仅供娱乐目的。</span>
+                    <span class="lang-es">Todas las pruebas son solo para entretenimiento.</span>
+                </p>
             </div>
         </div>
     </footer>
