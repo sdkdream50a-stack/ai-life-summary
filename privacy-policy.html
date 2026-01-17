@@ -110,6 +110,20 @@
                     <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -391,6 +405,45 @@
 
     <script src="/js/i18n.js?v=5"></script>
     <script>
+        var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+        var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+        function switchLang(lang) {
+            localStorage.setItem('ai-life-summary-lang', lang);
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+
+            var currentLangEl = document.getElementById('current-lang');
+            if (currentLangEl) {
+                currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+            }
+
+            var dropdown = document.getElementById('lang-dropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+
+            if (typeof setLanguage === 'function') {
+                setLanguage(lang);
+            }
+        }
+
+        function toggleLangDropdown() {
+            var dropdown = document.getElementById('lang-dropdown');
+            if (dropdown) dropdown.classList.toggle('hidden');
+        }
+
+        document.addEventListener('click', function(e) {
+            var langSelector = document.getElementById('lang-selector');
+            var dropdown = document.getElementById('lang-dropdown');
+            if (langSelector && dropdown && !langSelector.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var savedLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+            switchLang(savedLang);
+        });
+
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
