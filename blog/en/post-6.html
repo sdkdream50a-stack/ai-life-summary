@@ -266,26 +266,6 @@
         </div>
     </div>
 
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "Do I need to type fast or read small text well to build web apps?", "acceptedAnswer": { "@type": "Answer", "text": "No. Fast typing isn't necessary. You can adjust font size within computers and apps. Use large text, high contrast colors, and generous margins." } },
-            { "@type": "Question", "name": "What if I break my computer?", "acceptedAnswer": { "@type": "Answer", "text": "Today's tools are quite safe. Most mistakes only affect the app and don't impact your computer overall." } },
-            { "@type": "Question", "name": "How do I stay motivated when progress is slow?", "acceptedAnswer": { "@type": "Answer", "text": "Keep a progress log in your notebook. Writing what you learned or fixed in one sentence after each session gives you a sense of achievement." } }
-          ]
-        },
-        {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["#quick-answer"]
-        }
-      ]
-    }
-    </script>
 </div>
                 </div>
 
@@ -322,21 +302,58 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Web Apps for Seniors: A Guide for Your 50s",
-      "description": "A guide to building web apps for seniors. Create your own tools to solve daily inconveniences without complex coding.",
-      "author": { "@type": "Person", "name": "AI Life Summary" },
-      "datePublished": "2026-01-07",
-      "dateModified": "2026-01-13",
-      "publisher": {
-        "@type": "Organization",
-        "name": "AI Life Summary",
-        "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
-      },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-6.html" },
-      "image": "https://ailifesummary.com/assets/images/blog/post-6.png",
-      "inLanguage": "en",
-      "keywords": "web apps for seniors, no-code tools, senior digital literacy, hobbies for 50s, create your own app"
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Web Apps for Seniors: A Guide for Your 50s",
+          "description": "A guide to building web apps for seniors. Create your own tools to solve daily inconveniences without complex coding.",
+          "author": { "@type": "Person", "name": "AI Life Summary" },
+          "datePublished": "2026-01-07",
+          "dateModified": "2026-01-13",
+          "publisher": {
+            "@type": "Organization",
+            "name": "AI Life Summary",
+            "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
+          },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-6.html" },
+          "image": "https://ailifesummary.com/assets/images/blog/post-6.png",
+          "inLanguage": "en",
+          "keywords": "web apps for seniors, no-code tools, senior digital literacy, hobbies for 50s, create your own app"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do I need to type fast or read small text well to build web apps?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Fast typing isn't necessary. Most tools support font size adjustment and high-contrast color settings. Comfort itself is at the core of good design."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "I'm worried about breaking my computer while building.",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Today's tools are quite safe. Mistakes only happen within the app and don't affect your computer itself. It's like using 'undo' while editing a document."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I stay motivated when progress is slow?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Keep a 'progress log' in your notebook, one sentence at a time. Looking back on weekends, you'll confirm that even if it seems slow like a turtle, you're definitely moving forward."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#quick-answer"]
+        }
+      ]
     }
     </script>
 

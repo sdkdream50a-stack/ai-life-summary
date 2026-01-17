@@ -1,34 +1,49 @@
-# AI Life Summary
+# AI Life Summary (AI Test Lab)
 
-> AI-powered life summary generator that creates personalized insights based on your birthday.
+> AI-powered personality tests and life insights generator.
 
 ## About
-AI Life Summary is a free web application that generates unique, personalized life summaries using artificial intelligence. Users enter their birthday and receive a one-sentence summary that captures their personality and life essence.
+AI Life Summary (AI Test Lab) is a free web application that provides AI-powered personality tests and life insights. Our main services include AI Life Summary (birthday-based personality insights) and AI Age Calculator (real age vs mental age vs energy age comparison).
 
 ## Features
 - Free AI-generated life summaries based on birthday
+- AI Age Calculator with mental and energy age analysis
 - Instant results with no registration required
 - Available in 5 languages (English, Korean, Japanese, Chinese, Spanish)
 - Share results on social media
 - Download results as images
 - Mobile-friendly responsive design
+- Blog with articles about self-discovery, coding for beginners, and lifestyle
 
 ## Main Pages
-- /: Home page with birthday input form
-- /generate: Results page showing personalized life summary
-- /blog: Blog with articles about personality, astrology, and self-discovery
-- /about: Information about the service
-- /contact: Contact information
+- /: Home page with test selection
+- /life-summary/: AI Life Summary test
+- /life-summary/result.html: Life summary results page
+- /age-calculator/: AI Age Calculator test
+- /age-calculator/result.html: Age calculator results page
+- /blog.html: Blog with articles about personality, self-discovery, and coding
+- /about.html: Information about the service
+- /contact.html: Contact information
 
 ## How It Works
+### AI Life Summary
 1. User enters their birthday (month and day)
 2. AI analyzes the date and generates a unique life summary
 3. User can view, share, or download their personalized result
 
+### AI Age Calculator
+1. User enters their birth date
+2. User answers 7 lifestyle questions
+3. AI calculates real age, mental age, and energy age
+4. User receives detailed comparison and insights
+
 ## Target Audience
 - People interested in personality analysis
 - Users curious about birthday-based insights
+- Adults interested in mental and energy age comparison
 - Social media users who enjoy sharing personality content
+- 50+ adults learning web development (blog content)
 
 ## Contact
-Website: https://goodpicknow.com
+Website: https://ailifesummary.com
+Email: 50adreamfire@gmail.com

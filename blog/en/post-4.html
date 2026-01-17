@@ -270,26 +270,6 @@
         <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">A. Everyone starts as a beginner. Think of this process not as a 'life-changing decision' but as a 'curious 3-month experiment.' A late start is just another name for courage.</div>
     </div>
 
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "Do I need to be good at math to follow a web app guide?", "acceptedAnswer": { "@type": "Answer", "text": "No. Basic arithmetic is enough, and logical thinking is more important than mathematical knowledge." } },
-            { "@type": "Question", "name": "What device is best for learning in your 50s?", "acceptedAnswer": { "@type": "Answer", "text": "We recommend a laptop or desktop with a large screen. Using a large monitor and mouse reduces eye and wrist strain." } },
-            { "@type": "Question", "name": "I feel embarrassed about starting late.", "acceptedAnswer": { "@type": "Answer", "text": "Everyone starts as a beginner. Think of this as a 3-month experiment and have courage." } }
-          ]
-        },
-        {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["#quick-answer"]
-        }
-      ]
-    }
-    </script>
 </div>
                 </div>
 
@@ -326,21 +306,58 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Beginner Web App Tutorial: A 5-Step Roadmap for Starting in Your 50s",
-      "description": "A beginner web app tutorial for those starting in their 50s. Discover the 5 key milestones from idea selection to deployment and fail-proof learning strategies.",
-      "author": { "@type": "Person", "name": "AI Life Summary" },
-      "datePublished": "2026-01-05",
-      "dateModified": "2026-01-12",
-      "publisher": {
-        "@type": "Organization",
-        "name": "AI Life Summary",
-        "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
-      },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-4.html" },
-      "image": "https://ailifesummary.com/assets/images/blog/post-4.png",
-      "inLanguage": "en",
-      "keywords": "beginner web app tutorial, coding education for 50s, no-code tool recommendations, self-taught web app development"
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Beginner Web App Tutorial: A 5-Step Roadmap for Starting in Your 50s",
+          "description": "A beginner web app tutorial for those starting in their 50s. Discover the 5 key milestones from idea selection to deployment and fail-proof learning strategies.",
+          "author": { "@type": "Person", "name": "AI Life Summary" },
+          "datePublished": "2026-01-05",
+          "dateModified": "2026-01-12",
+          "publisher": {
+            "@type": "Organization",
+            "name": "AI Life Summary",
+            "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
+          },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-4.html" },
+          "image": "https://ailifesummary.com/assets/images/blog/post-4.png",
+          "inLanguage": "en",
+          "keywords": "beginner web app tutorial, coding education for 50s, no-code tool recommendations, self-taught web app development"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do I need to be good at math to follow a web app guide?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Basic arithmetic is enough for most beginner projects. Logical thinking about cause and effect like 'when user clicks button -> popup appears' is more important than mathematical knowledge."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What device is best for learning in your 50s?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We strongly recommend a laptop or desktop over a small phone screen. Using a large monitor and mouse can significantly improve learning efficiency by reducing eye and wrist strain."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "I feel embarrassed about starting late.",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Everyone starts as a beginner. Think of this process not as a 'life-changing decision' but as a 'curious 3-month experiment.' A late start is just another name for courage."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#quick-answer"]
+        }
+      ]
     }
     </script>
 

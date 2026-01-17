@@ -293,26 +293,6 @@
         </div>
     </div>
 
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "Do I need a programming background to create a no-code project?", "acceptedAnswer": { "@type": "Answer", "text": "Not at all. Basic computer skills are sufficient, and logical thinking is more important." } },
-            { "@type": "Question", "name": "How long does it usually take to complete the first small project?", "acceptedAnswer": { "@type": "Answer", "text": "With 1 hour per day investment, typically 1-2 weeks for a simple tool." } },
-            { "@type": "Question", "name": "What if I choose the wrong no-code platform initially?", "acceptedAnswer": { "@type": "Answer", "text": "Core concepts are transferable, so you'll adapt faster even when switching tools." } }
-          ]
-        },
-        {
-          "@type": "SpeakableSpecification",
-          "cssSelector": ["#quick-answer"]
-        }
-      ]
-    }
-    </script>
 </div>
                 </div>
 
@@ -349,21 +329,58 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "No-Code Web Apps: Build Your Own App in 2 Weeks Without Any Coding",
-      "description": "New to no-code web app development? Discover the 7-step guide to building your own tools with just clicks, no coding required.",
-      "author": { "@type": "Person", "name": "AI Life Summary" },
-      "datePublished": "2026-01-03",
-      "dateModified": "2026-01-11",
-      "publisher": {
-        "@type": "Organization",
-        "name": "AI Life Summary",
-        "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
-      },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-2.html" },
-      "image": "https://ailifesummary.com/assets/images/blog/post-2.png",
-      "inLanguage": "en",
-      "keywords": "no-code web app, no-code tools, app building, workflow automation, MVP development"
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "No-Code Web Apps: Build Your Own App in 2 Weeks Without Any Coding",
+          "description": "New to no-code web app development? Discover the 7-step guide to building your own tools with just clicks, no coding required.",
+          "author": { "@type": "Person", "name": "AI Life Summary" },
+          "datePublished": "2026-01-03",
+          "dateModified": "2026-01-11",
+          "publisher": {
+            "@type": "Organization",
+            "name": "AI Life Summary",
+            "logo": { "@type": "ImageObject", "url": "https://ailifesummary.com/assets/images/logo.png" }
+          },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://ailifesummary.com/blog/en/post-2.html" },
+          "image": "https://ailifesummary.com/assets/images/blog/post-2.png",
+          "inLanguage": "en",
+          "keywords": "no-code web app, no-code tools, app building, workflow automation, MVP development"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do I need a programming background to create a no-code project?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not at all. Basic computer skills like using a browser and typing are sufficient. What matters most is logical thinking and the ability to clearly define 'what you want the app to do.'"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does it usually take to complete the first small project?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Assuming 1 hour per day investment, a simple tool with 1-2 screens can typically be completed in 1-2 weeks. Building 'completion' experiences is more important than grand goals."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if I choose the wrong no-code platform initially?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Don't worry. Platform choice isn't permanent. Core concepts like data structuring and screen design apply across all tools, so you'll adapt much faster even if you switch tools later."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#quick-answer"]
+        }
+      ]
     }
     </script>
 
