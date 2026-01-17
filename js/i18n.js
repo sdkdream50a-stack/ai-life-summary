@@ -2776,7 +2776,7 @@ function applyTranslations(lang = null) {
         } else if (element.tagName === 'INPUT' && element.type === 'submit') {
             element.value = translation;
         } else {
-            element.textContent = translation;
+            element.innerHTML = translation;
         }
     });
 
