@@ -59,6 +59,21 @@
         "en": "post-20-en.html",
         "default": "post-20.html"
       }
+    },
+    {
+      "episode": 21,
+      "publish_date": "2026-01-23",
+      "title_ko": "웹 앱 기획 가이드: 50대 컴맹도 할 수 있는 5가지 단계",
+      "title_en": "Web App Planning Guide: 5 Steps Even Non-Tech 50s Can Follow",
+      "description_ko": "코딩을 전혀 모르는 50대 초보자도 바로 시작할 수 있습니다. 일상의 불편함을 찾아 한 문장 콘셉트로 정리하는 현실적인 방법을 확인하세요.",
+      "description_en": "Even complete beginners in their 50s with no coding knowledge can start right away. Find everyday inconveniences and organize them into one-sentence concepts.",
+      "emoji": "📋",
+      "gradient": "from-emerald-400 to-teal-500",
+      "files": {
+        "ko": "post-21-ko.html",
+        "en": "post-21-en.html",
+        "default": "post-21.html"
+      }
     }
   ]
 }
