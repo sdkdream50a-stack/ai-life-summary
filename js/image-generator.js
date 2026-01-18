@@ -8,18 +8,18 @@
  * - Hash result caching
  */
 
-// Gradient color palettes - 3-color gradients for beautiful results
+// Gradient color palettes
 const gradientPalettes = [
-    { start: '#667eea', mid: '#764ba2', end: '#f093fb' },  // Purple Dream (matches website)
-    { start: '#6366f1', mid: '#a855f7', end: '#ec4899' },  // Indigo to Pink
-    { start: '#8b5cf6', mid: '#06b6d4', end: '#10b981' },  // Violet to Teal
-    { start: '#f59e0b', mid: '#ef4444', end: '#ec4899' },  // Warm Sunset
-    { start: '#10b981', mid: '#3b82f6', end: '#8b5cf6' },  // Ocean Depths
-    { start: '#ec4899', mid: '#f59e0b', end: '#fbbf24' },  // Pink Sunrise
-    { start: '#14b8a6', mid: '#6366f1', end: '#a855f7' },  // Teal Dream
-    { start: '#f43f5e', mid: '#fb7185', end: '#fda4af' },  // Rose Bloom
-    { start: '#0ea5e9', mid: '#a855f7', end: '#ec4899' },  // Northern Lights
-    { start: '#84cc16', mid: '#06b6d4', end: '#3b82f6' }   // Nature Vibes
+    { start: '#6366f1', end: '#ec4899' },  // Indigo to Pink
+    { start: '#8b5cf6', end: '#06b6d4' },  // Violet to Cyan
+    { start: '#f59e0b', end: '#ef4444' },  // Amber to Red
+    { start: '#10b981', end: '#3b82f6' },  // Emerald to Blue
+    { start: '#ec4899', end: '#f59e0b' },  // Pink to Amber
+    { start: '#6366f1', end: '#8b5cf6' },  // Indigo to Violet
+    { start: '#14b8a6', end: '#6366f1' },  // Teal to Indigo
+    { start: '#f43f5e', end: '#fb7185' },  // Rose variations
+    { start: '#0ea5e9', end: '#a855f7' },  // Sky to Purple
+    { start: '#84cc16', end: '#06b6d4' }   // Lime to Cyan
 ];
 
 // ===== Performance: Map for O(1) title lookup =====
@@ -117,7 +117,7 @@ function simpleHash(str) {
 }
 
 /**
- * Draw gradient background with 3-color gradient
+ * Draw gradient background
  * @param {CanvasRenderingContext2D} ctx - Canvas context
  * @param {number} width - Canvas width
  * @param {number} height - Canvas height
@@ -126,7 +126,6 @@ function simpleHash(str) {
 function drawGradientBackground(ctx, width, height, palette) {
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, palette.start);
-    gradient.addColorStop(0.5, palette.mid);
     gradient.addColorStop(1, palette.end);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
@@ -141,41 +140,22 @@ function drawGradientBackground(ctx, width, height, palette) {
 function drawDecorativeElements(ctx, width, height) {
     ctx.save();
 
-    // Add subtle circles with varying opacity
+    // Add subtle circles
+    ctx.globalAlpha = 0.1;
     ctx.fillStyle = '#ffffff';
 
-    // Top right large circle
-    ctx.globalAlpha = 0.08;
+    // Top left circle
     ctx.beginPath();
-    ctx.arc(width * 0.85, height * 0.08, width * 0.22, 0, Math.PI * 2);
+    ctx.arc(width * 0.1, height * 0.1, width * 0.2, 0, Math.PI * 2);
     ctx.fill();
 
-    // Bottom left large circle
-    ctx.globalAlpha = 0.08;
+    // Bottom right circle
     ctx.beginPath();
-    ctx.arc(width * 0.15, height * 0.88, width * 0.2, 0, Math.PI * 2);
+    ctx.arc(width * 0.9, height * 0.85, width * 0.25, 0, Math.PI * 2);
     ctx.fill();
 
-    // Middle left small circle
-    ctx.globalAlpha = 0.05;
-    ctx.beginPath();
-    ctx.arc(width * 0.08, height * 0.45, width * 0.12, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Middle right small circle
-    ctx.globalAlpha = 0.05;
-    ctx.beginPath();
-    ctx.arc(width * 0.92, height * 0.55, width * 0.1, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Draw large decorative quote marks
-    ctx.globalAlpha = 0.12;
-    ctx.font = `bold ${width * 0.12}px Georgia, serif`;
-    ctx.fillText('"', width * 0.12, height * 0.22);
-    ctx.fillText('"', width * 0.88, height * 0.82);
-
-    // Add sparkle/star effects
-    ctx.globalAlpha = 0.35;
+    // Add sparkle effects
+    ctx.globalAlpha = 0.3;
     drawSparkles(ctx, width, height);
 
     ctx.restore();
@@ -189,20 +169,16 @@ function drawDecorativeElements(ctx, width, height) {
  */
 function drawSparkles(ctx, width, height) {
     const sparklePositions = [
-        { x: width * 0.18, y: height * 0.15, size: 18 },
-        { x: width * 0.82, y: height * 0.12, size: 15 },
-        { x: width * 0.08, y: height * 0.35, size: 12 },
-        { x: width * 0.92, y: height * 0.38, size: 14 },
-        { x: width * 0.12, y: height * 0.65, size: 16 },
-        { x: width * 0.88, y: height * 0.68, size: 13 },
-        { x: width * 0.25, y: height * 0.88, size: 11 },
-        { x: width * 0.75, y: height * 0.85, size: 17 }
+        { x: width * 0.15, y: height * 0.2 },
+        { x: width * 0.85, y: height * 0.15 },
+        { x: width * 0.1, y: height * 0.7 },
+        { x: width * 0.9, y: height * 0.75 }
     ];
 
     ctx.fillStyle = '#ffffff';
 
     sparklePositions.forEach(pos => {
-        drawStar(ctx, pos.x, pos.y, 4, pos.size, pos.size * 0.45);
+        drawStar(ctx, pos.x, pos.y, 4, 15, 7);
     });
 }
 
@@ -242,7 +218,7 @@ function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
 }
 
 /**
- * Draw main content on canvas with beautiful typography
+ * Draw main content on canvas
  * @param {CanvasRenderingContext2D} ctx - Canvas context
  * @param {HTMLCanvasElement} canvas - Canvas element
  * @param {string} sentence - The sentence to display
@@ -254,40 +230,30 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
     const height = canvas.height;
 
     ctx.save();
+    ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
 
     // Calculate text sizes based on format - O(1) Map lookup
     const sizes = getTextSizes(format);
 
-    // Add text shadow for depth
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-    ctx.shadowBlur = 15;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 4;
-
-    // Draw title sparkle emoji
-    ctx.fillStyle = '#ffffff';
-    ctx.font = `${sizes.emoji}px Arial`;
-    const titleY = format === 'story' ? height * 0.15 : height * 0.2;
-    ctx.fillText('\u2728', width / 2, titleY - sizes.title - 25);
-
     // Draw title in the appropriate language - O(1) Map lookup
     const title = imageTitles.get(lang) || imageTitles.get('en');
     ctx.font = `bold ${sizes.title}px "Poppins", sans-serif`;
+    const titleY = format === 'story' ? height * 0.15 : height * 0.2;
     ctx.fillText(title, width / 2, titleY);
 
-    // Increase shadow for quote
-    ctx.shadowBlur = 20;
-    ctx.shadowOffsetY = 6;
+    // Draw sparkle emoji
+    ctx.font = `${sizes.emoji}px Arial`;
+    ctx.fillText('\u2728', width / 2, titleY - sizes.title - 20);
 
-    // Draw quote with beautiful font
-    ctx.font = `${sizes.quote}px "Merriweather", serif`;
-    const quoteY = format === 'story' ? height * 0.48 : height * 0.52;
-    const maxWidth = width * 0.78;
+    // Draw quote
+    ctx.font = `italic ${sizes.quote}px "Merriweather", serif`;
+    const quoteY = format === 'story' ? height * 0.45 : height * 0.5;
+    const maxWidth = width * 0.8;
 
-    // Wrap text - remove outer quotes since we have decorative quote marks
-    const lines = wrapText(ctx, sentence, maxWidth);
-    const lineHeight = sizes.quote * 1.6;
+    // Wrap text
+    const lines = wrapText(ctx, `"${sentence}"`, maxWidth);
+    const lineHeight = sizes.quote * 1.5;
     const totalTextHeight = lines.length * lineHeight;
     let startY = quoteY - totalTextHeight / 2;
 
@@ -295,20 +261,16 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
         ctx.fillText(line, width / 2, startY + index * lineHeight);
     });
 
-    // Reset shadow for watermark
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetY = 2;
-
     // Draw watermark
-    ctx.globalAlpha = 0.75;
-    ctx.font = `500 ${sizes.watermark}px "Inter", sans-serif`;
-    const watermarkY = format === 'story' ? height * 0.91 : height * 0.88;
+    ctx.globalAlpha = 0.7;
+    ctx.font = `${sizes.watermark}px "Inter", sans-serif`;
+    const watermarkY = format === 'story' ? height * 0.92 : height * 0.9;
     ctx.fillText('ailifesummary.com', width / 2, watermarkY);
 
     // Draw bottom decoration
-    ctx.globalAlpha = 0.6;
+    ctx.globalAlpha = 0.5;
     ctx.font = `${sizes.decoration}px Arial`;
-    ctx.fillText('\u2728  \u2B50  \u2728', width / 2, watermarkY + sizes.watermark + 15);
+    ctx.fillText('\u2B50 \u2728 \u2B50', width / 2, watermarkY + sizes.watermark + 10);
 
     ctx.restore();
 }
