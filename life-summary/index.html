@@ -103,6 +103,23 @@
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
         }
 
+        /* Submit button pulse animation for mobile visibility */
+        .btn-pulse {
+            animation: pulse-shadow 2s ease-in-out infinite;
+            position: relative;
+        }
+        @keyframes pulse-shadow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(236, 72, 153, 0.6);
+            }
+        }
+        .btn-pulse:active {
+            transform: scale(0.98);
+        }
+
         /* Language switching - 5 languages */
         .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
         html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
@@ -421,7 +438,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg shadow-lg hover:shadow-xl">
+                        <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg btn-pulse">
                             <span class="lang-en">Discover My Life Summary</span>
                             <span class="lang-ko">나의 인생 요약 발견하기</span>
                             <span class="lang-ja">私の人生サマリーを発見</span>
