@@ -140,7 +140,9 @@
     var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
     var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
-    function switchLang(lang) {
+    function switchLang(lang, isInitialLoad) {
+        var currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
@@ -152,6 +154,11 @@
 
         var dropdown = document.getElementById('lang-dropdown');
         if (dropdown) dropdown.classList.add('hidden');
+
+        // If language changed (not initial load), reload page to regenerate summary
+        if (!isInitialLoad && currentLang !== lang) {
+            window.location.reload();
+        }
     }
 
     function toggleLangDropdown() {
@@ -170,7 +177,7 @@
     (function() {
         var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
         document.documentElement.lang = lang;
-        document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
+        document.addEventListener('DOMContentLoaded', function() { switchLang(lang, true); });
     })();
     </script>
 </head>
@@ -744,7 +751,9 @@
         var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
         var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
-        function switchLang(lang) {
+        function switchLang(lang, isInitialLoad) {
+            var currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+
             localStorage.setItem('ai-life-summary-lang', lang);
             localStorage.setItem('preferredLanguage', lang);
             document.documentElement.lang = lang;
@@ -775,11 +784,16 @@
             if (typeof setLanguage === 'function') {
                 setLanguage(lang);
             }
+
+            // If language changed (not initial load), reload page to regenerate summary
+            if (!isInitialLoad && currentLang !== lang) {
+                window.location.reload();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             var savedLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-            switchLang(savedLang);
+            switchLang(savedLang, true);
         });
     </script>
 
