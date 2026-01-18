@@ -44,6 +44,21 @@
         "en": "post-19-en.html",
         "default": "post-19.html"
       }
+    },
+    {
+      "episode": 20,
+      "publish_date": "2026-01-22",
+      "title_ko": "프론트엔드와 백엔드의 차이: 50대 비전공자를 위한 완벽 가이드",
+      "title_en": "Frontend vs Backend: A Complete Guide for Non-Tech People in Their 50s",
+      "description_ko": "매장과 창고에 비유하여 알기 쉽게 설명합니다. IT 필수 상식을 30초 만에 확인하세요.",
+      "description_en": "Learn the difference using a store and warehouse analogy. Essential IT knowledge in 30 seconds.",
+      "emoji": "🔄",
+      "gradient": "from-indigo-400 to-purple-500",
+      "files": {
+        "ko": "post-20-ko.html",
+        "en": "post-20-en.html",
+        "default": "post-20.html"
+      }
     }
   ]
 }
