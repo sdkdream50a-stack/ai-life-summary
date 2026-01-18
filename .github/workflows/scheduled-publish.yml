@@ -1,0 +1,160 @@
+name: Scheduled Blog Post Publish
+
+on:
+  schedule:
+    # 매일 KST 오전 9시 (UTC 00:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 수동 실행 허용
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check and publish scheduled posts
+        run: |
+          # 오늘 날짜 (KST)
+          TODAY=$(TZ=Asia/Seoul date +%Y-%m-%d)
+          echo "Today (KST): $TODAY"
+
+          # schedule.json 확인
+          if [ ! -f drafts/schedule.json ]; then
+            echo "No schedule.json found"
+            exit 0
+          fi
+
+          # 오늘 발행할 포스트 확인
+          POSTS_TO_PUBLISH=$(node -e "
+            const fs = require('fs');
+            const schedule = JSON.parse(fs.readFileSync('drafts/schedule.json', 'utf8'));
+            const today = '$TODAY';
+            const posts = schedule.scheduled_posts.filter(p => p.publish_date === today);
+            console.log(JSON.stringify(posts));
+          ")
+
+          echo "Posts to publish: $POSTS_TO_PUBLISH"
+
+          # 발행할 포스트가 없으면 종료
+          if [ "$POSTS_TO_PUBLISH" = "[]" ]; then
+            echo "No posts scheduled for today"
+            exit 0
+          fi
+
+          # 포스트 발행 처리
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+
+            const schedule = JSON.parse(fs.readFileSync('drafts/schedule.json', 'utf8'));
+            const today = '$TODAY';
+            const postsToPublish = schedule.scheduled_posts.filter(p => p.publish_date === today);
+
+            if (postsToPublish.length === 0) {
+              console.log('No posts to publish');
+              process.exit(0);
+            }
+
+            // blog.html 읽기
+            let blogHtml = fs.readFileSync('blog.html', 'utf8');
+
+            postsToPublish.forEach(post => {
+              console.log('Publishing Episode ' + post.episode + ': ' + post.title_ko);
+
+              // 파일 이동
+              const koSrc = 'drafts/' + post.files.ko;
+              const enSrc = 'drafts/' + post.files.en;
+              const defaultSrc = 'drafts/' + post.files.default;
+
+              const koDest = 'blog/ko/post-' + post.episode + '.html';
+              const enDest = 'blog/en/post-' + post.episode + '.html';
+              const defaultDest = 'blog/post-' + post.episode + '.html';
+
+              if (fs.existsSync(koSrc)) {
+                fs.renameSync(koSrc, koDest);
+                console.log('Moved ' + koSrc + ' -> ' + koDest);
+              }
+              if (fs.existsSync(enSrc)) {
+                fs.renameSync(enSrc, enDest);
+                console.log('Moved ' + enSrc + ' -> ' + enDest);
+              }
+              if (fs.existsSync(defaultSrc)) {
+                fs.renameSync(defaultSrc, defaultDest);
+                console.log('Moved ' + defaultSrc + ' -> ' + defaultDest);
+              }
+
+              // blog.html에 카드 추가
+              const cardHtml = \`
+                    <!-- Post \${post.episode} -->
+                    <article class=\"card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100\">
+                        <div class=\"h-48 bg-gradient-to-br \${post.gradient} flex items-center justify-center\">
+                            <span class=\"text-6xl\">\${post.emoji}</span>
+                        </div>
+                        <div class=\"p-6\">
+                            <div class=\"flex items-center space-x-2 mb-3\">
+                                <span class=\"text-xs text-primary font-medium bg-indigo-50 px-2 py-1 rounded\">Episode \${post.episode}</span>
+                                <span class=\"text-xs text-gray-400\">\${post.publish_date}</span>
+                            </div>
+                            <h3 class=\"font-heading font-semibold text-lg mb-2 line-clamp-2\">
+                                <span class=\"lang-en\">\${post.title_en}</span>
+                                <span class=\"lang-ko\">\${post.title_ko}</span>
+                                <span class=\"lang-ja\">\${post.title_ko}</span>
+                                <span class=\"lang-zh\">\${post.title_ko}</span>
+                                <span class=\"lang-es\">\${post.title_en}</span>
+                            </h3>
+                            <p class=\"text-gray-600 text-sm mb-4 line-clamp-2\">
+                                <span class=\"lang-en\">\${post.description_en}</span>
+                                <span class=\"lang-ko\">\${post.description_ko}</span>
+                                <span class=\"lang-ja\">\${post.description_ko}</span>
+                                <span class=\"lang-zh\">\${post.description_ko}</span>
+                                <span class=\"lang-es\">\${post.description_en}</span>
+                            </p>
+                            <a href=\"/blog/post-\${post.episode}.html\" class=\"text-primary text-sm font-medium hover:underline inline-flex items-center space-x-1\">
+                                <span>Read More</span>
+                                <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/></svg>
+                            </a>
+                        </div>
+                    </article>\`;
+
+              // AUTO-GENERATED POSTS END 앞에 삽입
+              blogHtml = blogHtml.replace(
+                '<!-- AUTO-GENERATED POSTS END -->',
+                cardHtml + '\n                    <!-- AUTO-GENERATED POSTS END -->'
+              );
+            });
+
+            // blog.html 저장
+            fs.writeFileSync('blog.html', blogHtml);
+            console.log('Updated blog.html');
+
+            // schedule.json에서 발행된 포스트 제거
+            schedule.scheduled_posts = schedule.scheduled_posts.filter(p => p.publish_date !== today);
+            fs.writeFileSync('drafts/schedule.json', JSON.stringify(schedule, null, 2));
+            console.log('Updated schedule.json');
+          "
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          git add -A
+
+          # 변경사항이 있는지 확인
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          TODAY=$(TZ=Asia/Seoul date +%Y-%m-%d)
+          git commit -m "feat: auto-publish scheduled posts for $TODAY"
+          git push
