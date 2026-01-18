@@ -66,58 +66,59 @@ const templates = [
     "Your truth is found in {trait}, expressed through {context}."
 ];
 
-// Korean Templates
+// Korean Templates - 자연스러운 한국어 문장 구조
+// Note: {trait}와 {context}는 "~하다" 형태의 동사구로 전달됨
 const templatesKo = [
-    "당신은 {trait} 그리고 {context}하는 사람입니다.",
-    "당신의 여정은 {trait}으로 특징지어지며, 특히 {context}할 때 그렇습니다.",
-    "당신이 {trait}할 때 강함은 자연스럽게 옵니다, 왜냐하면 당신은 {context}하기 때문입니다.",
-    "인생에서 당신은 {trait}합니다—이것이 당신이 {context}하는 방법입니다.",
-    "당신은 {trait}을 통해 목적을 찾고, {context}이 당신의 길을 안내합니다.",
-    "당신을 정의하는 것은 {trait}하면서 {context}하는 방식입니다.",
-    "당신의 본질은 {trait}에 있으며, 항상 {context}합니다.",
-    "당신은 {trait}하며 인생을 항해하고, 자연스럽게 {context}합니다.",
-    "세상은 {trait}하는 사람으로 당신을 보지만, 그 아래에서 당신은 {context}합니다.",
-    "당신의 재능은 {trait}이며, {context}하는 능력과 짝을 이룹니다.",
-    "당신은 {trait}을 구현하며, 이것이 당신을 {context}할 수 있게 합니다.",
-    "인생은 당신에게 {trait}하라고 가르쳤고, 이제 당신은 {context}합니다.",
-    "당신의 핵심에서, 당신은 {trait}하고, 이것이 당신을 {context}하는 데 도움이 됩니다.",
-    "당신은 {trait}하기 위해 태어났고, {context}할 운명입니다.",
-    "당신의 길은 {trait}으로 밝혀지며, {context}로 이끕니다.",
-    "다른 사람들은 당신이 {trait}하면서 손쉽게 {context}하는 것을 존경합니다.",
-    "당신 안에 {trait}을 품고 있으며, 이것이 당신을 {context}하게 합니다.",
-    "당신의 영혼은 {trait}으로 정의되며, 항상 {context}하려고 합니다.",
-    "우주는 당신을 {trait}하고 {context}하는 사람으로 만들기 위해 정렬했습니다.",
-    "깊은 곳에서, 당신은 {trait}하고, 이것이 자연스럽게 당신을 {context}하게 합니다.",
-    "당신의 인생 이야기는 {trait}의 것이며, {context}과 아름답게 얽혀 있습니다.",
-    "당신은 {trait}하는 드문 능력을 가지고 있어 {context}할 수 있습니다.",
-    "당신을 독특하게 만드는 것은 {trait}하면서 {context}을 결합하는 방식입니다.",
-    "당신의 운명은 {trait}을 통해 펼쳐지며, {context}하도록 안내합니다.",
-    "당신은 {trait}하여 도전을 변화시키고, 궁극적으로 {context}합니다.",
-    "당신 존재의 본질은 {trait}하고, 영원히 {context}하는 것입니다.",
-    "당신은 {trait}하여 세상을 밝히고, 우아하게 {context}합니다.",
-    "당신의 마음은 {trait}하는 법을 알고, 그래서 당신은 {context}합니다.",
-    "인생은 {trait}을 통해 당신에게 드러나며, 당신은 계속 {context}합니다.",
-    "당신은 {trait}으로 축복받아 끊임없이 {context}할 수 있습니다.",
-    "당신의 진정한 자아는 {trait}할 때 빛나며, 자연스럽게 {context}합니다.",
-    "별들은 {trait}하고 {context}하는 사람을 위해 정렬했습니다.",
-    "당신은 {trait}을 마스터했고, 이것이 {context}를 가능하게 합니다.",
-    "당신의 내면의 빛은 {trait}에서 오며, {context}하면서 바깥으로 발산합니다.",
-    "당신은 {trait}하며 인생을 걸어가고, 항상 {context}하는 방법을 찾습니다.",
-    "당신의 존재는 {trait}으로 표시되며, 다른 사람들에게 {context}하도록 영감을 줍니다.",
-    "당신은 {trait}하여 의미를 창조하고, 동시에 {context}합니다.",
-    "당신 안의 마법은 {trait}이며, {context}하면서 나타납니다.",
-    "당신은 {trait}하기 때문에 돋보이며, 우아하게 {context}합니다.",
-    "당신의 지혜는 {trait}에서 흘러나오며, {context}하도록 가르칩니다.",
-    "당신은 {trait}을 통해 삶을 감동시키고, 끊임없이 {context}합니다.",
-    "당신의 힘은 {trait}에서 오며, {context}하도록 안내합니다.",
-    "당신은 {trait}하여 세상을 치유하고, 연민을 가지고 {context}합니다.",
-    "당신의 유산은 {trait}으로 세워지며, 당신은 계속 {context}합니다.",
-    "당신은 다른 사람들에게 {trait}하도록 영감을 주고, 그들에게 {context}하는 법을 보여줍니다.",
-    "당신 영혼의 깊이는 {trait}을 드러내며, 항상 {context}합니다.",
-    "당신은 {trait}으로 이끌며, 다른 사람들에게 {context}하도록 가르칩니다.",
-    "당신의 여정은 {trait}을 기념하며, 영원히 {context}합니다.",
-    "당신은 {trait}하여 인생을 받아들이고, 기쁘게 {context}합니다.",
-    "당신의 진실은 {trait}에서 발견되며, {context}을 통해 표현됩니다."
+    "당신은 {trait}는 능력을 지녔으며, {context}는 삶을 살아갑니다.",
+    "당신의 여정에서 가장 빛나는 순간은 {trait}는 때이며, 그 과정에서 {context}게 됩니다.",
+    "당신에게 강함이란 {trait}는 것이고, 이를 통해 {context}게 됩니다.",
+    "삶에서 당신은 {trait}며, 이것이 바로 당신이 {context}는 방법입니다.",
+    "당신은 {trait}며 목적을 찾고, 그 여정에서 {context}게 됩니다.",
+    "당신을 특별하게 만드는 것은 {trait}면서 동시에 {context}는 능력입니다.",
+    "당신의 본질은 {trait}는 것이며, 언제나 {context}는 모습을 보여줍니다.",
+    "당신은 {trait}며 삶을 항해하고, 자연스럽게 {context}게 됩니다.",
+    "세상은 당신을 {trait}는 사람으로 보지만, 그 이면에서 당신은 {context}고 있습니다.",
+    "당신의 재능은 {trait}는 것이며, {context}는 능력과 조화를 이룹니다.",
+    "당신은 {trait}는 사람이며, 이것이 당신을 {context}게 만듭니다.",
+    "삶은 당신에게 {trait}라고 가르쳤고, 지금 당신은 {context}고 있습니다.",
+    "당신의 핵심에는 {trait}는 힘이 있고, 이것이 당신을 {context}게 합니다.",
+    "당신은 {trait}기 위해 태어났고, {context}는 운명을 지녔습니다.",
+    "당신의 길은 {trait}는 빛으로 밝혀지며, {context}는 방향으로 이어집니다.",
+    "사람들은 당신이 {trait}면서 자연스럽게 {context}는 모습을 존경합니다.",
+    "당신 안에는 {trait}는 힘이 있으며, 이것이 당신을 {context}게 합니다.",
+    "당신의 영혼은 {trait}는 것으로 정의되며, 항상 {context}려고 합니다.",
+    "우주는 당신이 {trait}고 {context}는 사람이 되도록 이끌었습니다.",
+    "깊은 곳에서 당신은 {trait}며, 이것이 자연스럽게 당신을 {context}게 합니다.",
+    "당신의 인생 이야기는 {trait}는 것이며, {context}는 것과 아름답게 얽혀 있습니다.",
+    "당신은 {trait}는 드문 능력을 가지고 있어, {context}ㄹ 수 있습니다.",
+    "당신을 독특하게 만드는 것은 {trait}면서 {context}는 방식입니다.",
+    "당신의 운명은 {trait}는 길을 통해 펼쳐지며, {context}도록 안내합니다.",
+    "당신은 {trait}며 도전을 변화시키고, 궁극적으로 {context}게 됩니다.",
+    "당신 존재의 본질은 {trait}고, 영원히 {context}는 것입니다.",
+    "당신은 {trait}며 세상을 밝히고, 우아하게 {context}고 있습니다.",
+    "당신의 마음은 {trait}는 법을 알고, 그래서 당신은 {context}게 됩니다.",
+    "삶은 당신에게 {trait}는 방식으로 드러나며, 당신은 계속 {context}고 있습니다.",
+    "당신은 {trait}는 축복을 받아, 끊임없이 {context}ㄹ 수 있습니다.",
+    "당신의 진정한 자아는 {trait}ㄹ 때 빛나며, 자연스럽게 {context}게 됩니다.",
+    "별들은 {trait}고 {context}는 사람을 위해 정렬되었습니다.",
+    "당신은 {trait}는 것을 마스터했고, 이것이 {context}는 것을 가능하게 합니다.",
+    "당신의 내면의 빛은 {trait}는 데서 오며, {context}면서 바깥으로 발산됩니다.",
+    "당신은 {trait}며 삶을 걸어가고, 항상 {context}는 방법을 찾습니다.",
+    "당신의 존재는 {trait}는 것으로 표현되며, 다른 사람들에게 {context}도록 영감을 줍니다.",
+    "당신은 {trait}며 의미를 창조하고, 동시에 {context}고 있습니다.",
+    "당신 안의 마법은 {trait}는 것이며, {context}면서 나타납니다.",
+    "당신은 {trait}기 때문에 돋보이며, 우아하게 {context}고 있습니다.",
+    "당신의 지혜는 {trait}는 데서 흘러나오며, {context}도록 이끕니다.",
+    "당신은 {trait}며 삶을 감동시키고, 끊임없이 {context}고 있습니다.",
+    "당신의 힘은 {trait}는 데서 오며, {context}도록 안내합니다.",
+    "당신은 {trait}며 세상을 치유하고, 연민을 가지고 {context}고 있습니다.",
+    "당신의 유산은 {trait}는 것으로 세워지며, 당신은 계속 {context}고 있습니다.",
+    "당신은 다른 사람들에게 {trait}도록 영감을 주고, 그들에게 {context}는 법을 보여줍니다.",
+    "당신 영혼의 깊이는 {trait}는 것을 드러내며, 항상 {context}고 있습니다.",
+    "당신은 {trait}며 이끌고, 다른 사람들에게 {context}도록 가르칩니다.",
+    "당신의 여정은 {trait}는 것을 기념하며, 영원히 {context}고 있습니다.",
+    "당신은 {trait}며 삶을 받아들이고, 기쁘게 {context}고 있습니다.",
+    "당신의 진실은 {trait}는 데서 발견되며, {context}는 것을 통해 표현됩니다."
 ];
 
 // Japanese Templates
@@ -1431,6 +1432,30 @@ function secondaryHash(primaryHash, modifier) {
 }
 
 /**
+ * Remove trailing "-다" from Korean verb forms to get the stem
+ * @param {string} text - Korean text ending in "-다"
+ * @returns {string} - Verb stem without "-다"
+ */
+function removeKoreanVerbEnding(text) {
+    if (text && text.endsWith('다')) {
+        return text.slice(0, -1);
+    }
+    return text;
+}
+
+/**
+ * Remove trailing "る" from Japanese verb forms to get the stem (for ru-verbs)
+ * @param {string} text - Japanese text ending in "る"
+ * @returns {string} - Verb stem without "る"
+ */
+function removeJapaneseVerbEnding(text) {
+    if (text && text.endsWith('る')) {
+        return text.slice(0, -1);
+    }
+    return text;
+}
+
+/**
  * Generate life summary based on birthdate, gender, and language
  * @param {string} birthdate - Date string in YYYY-MM-DD format
  * @param {string} gender - Gender selection
@@ -1451,10 +1476,25 @@ function generateLifeSummary(birthdate, gender, lang) {
     const traitIndex = secondaryHash(hash, 1) % selectedTraits.length;
     const contextIndex = secondaryHash(hash, 2) % selectedContexts.length;
 
+    // Get trait and context
+    let trait = selectedTraits[traitIndex];
+    let context = selectedContexts[contextIndex];
+
+    // For Korean, remove the "-다" ending to allow proper conjugation in templates
+    if (lang === 'ko') {
+        trait = removeKoreanVerbEnding(trait);
+        context = removeKoreanVerbEnding(context);
+    }
+    // For Japanese, remove the "る" ending to allow proper conjugation in templates
+    else if (lang === 'ja') {
+        trait = removeJapaneseVerbEnding(trait);
+        context = removeJapaneseVerbEnding(context);
+    }
+
     // Generate the sentence
     let sentence = selectedTemplates[templateIndex]
-        .replace('{trait}', selectedTraits[traitIndex])
-        .replace('{context}', selectedContexts[contextIndex]);
+        .replace('{trait}', trait)
+        .replace('{context}', context);
 
     // Capitalize first letter (for languages that use it)
     if (lang === 'en' || lang === 'es') {

@@ -499,9 +499,9 @@
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-3xl">&#127775;</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Core Trait</h3>
+                        <h3 id="core-trait-label" class="font-heading font-semibold text-lg mb-2">Core Trait</h3>
                         <p id="core-trait" class="text-primary font-medium text-xl">Resilience</p>
-                        <p class="text-gray-500 text-sm mt-2">Your defining characteristic</p>
+                        <p id="core-trait-desc" class="text-gray-500 text-sm mt-2">Your defining characteristic</p>
                     </div>
 
                     <!-- Life Phase -->
@@ -509,9 +509,9 @@
                         <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-3xl">&#127793;</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Life Phase</h3>
+                        <h3 id="life-phase-label" class="font-heading font-semibold text-lg mb-2">Life Phase</h3>
                         <p id="life-phase" class="text-secondary font-medium text-xl">Growth</p>
-                        <p class="text-gray-500 text-sm mt-2">Current chapter of your journey</p>
+                        <p id="life-phase-desc" class="text-gray-500 text-sm mt-2">Current chapter of your journey</p>
                     </div>
 
                     <!-- Lucky Element -->
@@ -519,26 +519,26 @@
                         <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-3xl">&#127754;</span>
                         </div>
-                        <h3 class="font-heading font-semibold text-lg mb-2">Lucky Element</h3>
+                        <h3 id="lucky-element-label" class="font-heading font-semibold text-lg mb-2">Lucky Element</h3>
                         <p id="lucky-element" class="text-accent font-medium text-xl">Water</p>
-                        <p class="text-gray-500 text-sm mt-2">Natural element connection</p>
+                        <p id="lucky-element-desc" class="text-gray-500 text-sm mt-2">Natural element connection</p>
                     </div>
                 </div>
 
                 <!-- Extended Insights -->
                 <div class="bg-white rounded-2xl p-8 shadow-sm">
-                    <h3 class="font-heading font-semibold text-xl mb-4">What This Means For You</h3>
+                    <h3 id="what-means-label" class="font-heading font-semibold text-xl mb-4">What This Means For You</h3>
                     <div id="extended-insights" class="text-gray-700 space-y-4">
-                        <p>
+                        <p id="insight-p1">
                             Based on the unique numerical patterns derived from your birth date, our algorithm has identified key personality traits and life themes that resonate with your journey. While this analysis is primarily for entertainment, many people find meaningful connections in these insights.
                         </p>
-                        <p>
+                        <p id="insight-p2">
                             Your core trait reflects the fundamental strength that guides you through life's challenges. This characteristic often manifests in how you approach problems, relate to others, and pursue your goals. Embracing this trait can help you navigate difficult situations with greater confidence and clarity.
                         </p>
-                        <p>
+                        <p id="insight-p3">
                             The life phase indicator suggests the general theme of your current life chapter. Understanding this can provide perspective on the opportunities and challenges you might be experiencing, helping you make decisions that align with your natural rhythm.
                         </p>
-                        <p>
+                        <p id="insight-p4">
                             Your lucky element represents a deeper connection to natural forces that ancient traditions believed influenced human destiny. Whether you take this literally or metaphorically, many find that reflecting on elemental connections brings a sense of grounding and purpose.
                         </p>
                     </div>
@@ -821,6 +821,9 @@
             document.getElementById('life-phase').textContent = translateLifePhase(result.lifePhase, lang);
             document.getElementById('lucky-element').textContent = translateElement(result.element, lang);
 
+            // Translate UI labels and descriptions
+            translateUILabels(lang);
+
             // Save result to localStorage
             saveResult(birthdate, result);
 
@@ -951,6 +954,72 @@
                 }
             };
             return (translations[lang] && translations[lang][element]) || element;
+        }
+
+        // Translate UI labels and descriptions
+        function translateUILabels(lang) {
+            const uiTranslations = {
+                ko: {
+                    'core-trait-label': '핵심 특성',
+                    'core-trait-desc': '당신을 정의하는 특성',
+                    'life-phase-label': '인생 단계',
+                    'life-phase-desc': '현재 여정의 장',
+                    'lucky-element-label': '행운의 원소',
+                    'lucky-element-desc': '자연 원소와의 연결',
+                    'what-means-label': '이것이 당신에게 의미하는 것',
+                    'insight-p1': '생년월일에서 파생된 고유한 숫자 패턴을 기반으로, 알고리즘은 당신의 여정과 공명하는 핵심 성격 특성과 인생 테마를 식별했습니다. 이 분석은 주로 엔터테인먼트용이지만, 많은 사람들이 이러한 통찰에서 의미 있는 연결을 찾습니다.',
+                    'insight-p2': '핵심 특성은 인생의 도전을 통해 당신을 안내하는 근본적인 강점을 반영합니다. 이 특성은 문제에 접근하고, 다른 사람들과 관계를 맺고, 목표를 추구하는 방식에서 종종 나타납니다. 이 특성을 받아들이면 더 큰 자신감과 명확성으로 어려운 상황을 헤쳐나갈 수 있습니다.',
+                    'insight-p3': '인생 단계 지표는 현재 인생 장의 일반적인 테마를 제안합니다. 이를 이해하면 경험하고 있는 기회와 도전에 대한 관점을 제공하여, 자연스러운 리듬에 맞는 결정을 내리는 데 도움이 됩니다.',
+                    'insight-p4': '행운의 원소는 고대 전통이 인간의 운명에 영향을 미친다고 믿었던 자연의 힘과의 더 깊은 연결을 나타냅니다. 이를 문자 그대로 받아들이든 은유적으로 받아들이든, 많은 사람들이 원소적 연결에 대한 성찰이 기반과 목적의 감각을 가져다준다고 느낍니다.'
+                },
+                ja: {
+                    'core-trait-label': '核心特性',
+                    'core-trait-desc': 'あなたを定義する特性',
+                    'life-phase-label': '人生段階',
+                    'life-phase-desc': '旅の現在の章',
+                    'lucky-element-label': 'ラッキーエレメント',
+                    'lucky-element-desc': '自然元素とのつながり',
+                    'what-means-label': 'これがあなたに意味すること',
+                    'insight-p1': '生年月日から導き出されたユニークな数字パターンに基づき、アルゴリズムはあなたの旅と共鳴する主要な性格特性と人生のテーマを特定しました。この分析は主にエンターテインメント目的ですが、多くの人々がこれらの洞察に意味のあるつながりを見出しています。',
+                    'insight-p2': '核心特性は、人生の挑戦を通じてあなたを導く根本的な強さを反映しています。この特性は、問題へのアプローチ、他者との関係、目標の追求において現れることが多いです。この特性を受け入れることで、より大きな自信と明確さを持って困難な状況を乗り越えることができます。',
+                    'insight-p3': '人生段階の指標は、現在の人生の章の一般的なテーマを示唆しています。これを理解することで、経験している機会と課題について視点を得ることができ、自然なリズムに合った決定を下すのに役立ちます。',
+                    'insight-p4': 'ラッキーエレメントは、古代の伝統が人間の運命に影響を与えると信じていた自然の力とのより深いつながりを表しています。これを文字通りに受け取るか比喩的に受け取るかにかかわらず、多くの人々が元素とのつながりについての内省が基盤と目的の感覚をもたらすと感じています。'
+                },
+                zh: {
+                    'core-trait-label': '核心特质',
+                    'core-trait-desc': '定义你的特质',
+                    'life-phase-label': '人生阶段',
+                    'life-phase-desc': '旅程的当前章节',
+                    'lucky-element-label': '幸运元素',
+                    'lucky-element-desc': '与自然元素的连接',
+                    'what-means-label': '这对你意味着什么',
+                    'insight-p1': '基于从您的出生日期得出的独特数字模式，我们的算法识别出与您的旅程产生共鸣的关键性格特征和人生主题。虽然此分析主要用于娱乐，但许多人在这些见解中找到了有意义的联系。',
+                    'insight-p2': '您的核心特质反映了指导您度过人生挑战的根本力量。这种特质通常体现在您处理问题、与他人交往和追求目标的方式中。拥抱这种特质可以帮助您以更大的信心和清晰度应对困难情况。',
+                    'insight-p3': '人生阶段指标暗示了您当前人生章节的一般主题。理解这一点可以为您正在经历的机会和挑战提供视角，帮助您做出符合自然节奏的决定。',
+                    'insight-p4': '您的幸运元素代表了与古代传统认为会影响人类命运的自然力量的更深层次的联系。无论您是从字面上还是比喻上理解这一点，许多人发现对元素联系的思考会带来基础感和目的感。'
+                },
+                es: {
+                    'core-trait-label': 'Rasgo Principal',
+                    'core-trait-desc': 'Tu característica definitoria',
+                    'life-phase-label': 'Fase de Vida',
+                    'life-phase-desc': 'Capítulo actual de tu viaje',
+                    'lucky-element-label': 'Elemento de Suerte',
+                    'lucky-element-desc': 'Conexión con elemento natural',
+                    'what-means-label': 'Lo Que Esto Significa Para Ti',
+                    'insight-p1': 'Basándose en los patrones numéricos únicos derivados de tu fecha de nacimiento, nuestro algoritmo ha identificado rasgos clave de personalidad y temas de vida que resuenan con tu viaje. Si bien este análisis es principalmente para entretenimiento, muchas personas encuentran conexiones significativas en estas percepciones.',
+                    'insight-p2': 'Tu rasgo principal refleja la fuerza fundamental que te guía a través de los desafíos de la vida. Esta característica a menudo se manifiesta en cómo abordas los problemas, te relacionas con otros y persigues tus metas. Abrazar este rasgo puede ayudarte a navegar situaciones difíciles con mayor confianza y claridad.',
+                    'insight-p3': 'El indicador de fase de vida sugiere el tema general de tu capítulo de vida actual. Comprender esto puede proporcionar perspectiva sobre las oportunidades y desafíos que podrías estar experimentando, ayudándote a tomar decisiones que se alineen con tu ritmo natural.',
+                    'insight-p4': 'Tu elemento de suerte representa una conexión más profunda con las fuerzas naturales que las tradiciones antiguas creían que influían en el destino humano. Ya sea que lo tomes literal o metafóricamente, muchos encuentran que reflexionar sobre las conexiones elementales trae una sensación de arraigo y propósito.'
+                }
+            };
+
+            if (uiTranslations[lang]) {
+                const trans = uiTranslations[lang];
+                for (const [id, text] of Object.entries(trans)) {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = text;
+                }
+            }
         }
 
         function saveResult(birthdate, result) {
