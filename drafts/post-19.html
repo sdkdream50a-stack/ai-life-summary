@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is Deployment? A 3-Minute Complete Guide for Non-Tech People | AI Life Summary Blog</title>
+    <meta name="description" content="Easy-to-understand explanation of 'deployment' for non-tech people. We explain how apps move from a developer's laptop to users using a store opening analogy. Learn terms like rollback and hotfix in 3 minutes.">
+    <meta name="keywords" content="what is deployment, software deployment meaning, IT terms deployment, rollback hotfix difference, service launch process, development process stages, staging server">
+    <meta name="author" content="AI Life Summary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://goodpicknow.com/blog/post-19.html">
+    <link rel="alternate" hreflang="ko" href="https://goodpicknow.com/blog/ko/post-19.html">
+    <link rel="alternate" hreflang="en" href="https://goodpicknow.com/blog/en/post-19.html">
+    <link rel="alternate" hreflang="x-default" href="https://goodpicknow.com/blog/post-19.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://goodpicknow.com/blog/post-19.html">
+    <meta property="og:title" content="What Is Deployment? A 3-Minute Complete Guide for Non-Tech People">
+    <meta property="og:description" content="Easy-to-understand explanation of 'deployment' for non-tech people. We use a store opening analogy to explain.">
+    <meta property="og:image" content="https://goodpicknow.com/assets/images/blog/post-19.png">
+    <meta property="og:locale" content="en_US">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#6366f1', secondary: '#ec4899' }, fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lang-switch { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+        .lang-switch:hover { background-color: rgba(99, 102, 241, 0.1); }
+        .lang-switch.active { background-color: #6366f1; color: white; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2"><span class="text-2xl">&#10024;</span><span class="font-heading font-bold text-xl gradient-text">AI Life Summary</span></a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">About</a>
+                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
+                    <a href="/archive.html" class="text-gray-600 hover:text-primary transition">Archive</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">Contact</a>
+                    <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
+                        <a href="/blog/ko/post-19.html" class="lang-switch">한국어</a>
+                        <a href="/blog/en/post-19.html" class="lang-switch active">English</a>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/about.html" class="text-gray-600">About</a>
+                    <a href="/blog.html" class="text-primary font-medium">Blog</a>
+                    <a href="/archive.html" class="text-gray-600">Archive</a>
+                    <a href="/contact.html" class="text-gray-600">Contact</a>
+                    <div class="flex items-center space-x-2 pt-3 border-t border-gray-200">
+                        <a href="/blog/ko/post-19.html" class="lang-switch">한국어</a>
+                        <a href="/blog/en/post-19.html" class="lang-switch active">English</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header class="gradient-bg py-16">
+                <div class="max-w-3xl mx-auto px-4 text-center">
+                    <div class="flex items-center justify-center space-x-2 mb-4">
+                        <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">Episode 19</span>
+                        <span class="text-white/70 text-sm">2026-01-21</span>
+                    </div>
+                    <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">What Is Deployment? A 3-Minute Complete Guide for Non-Tech People</h1>
+                    <p class="text-white/80 text-lg max-w-2xl mx-auto">Easy-to-understand explanation of 'deployment' for non-tech people. We use a store opening analogy to explain terms like rollback and hotfix.</p>
+                </div>
+            </header>
+
+            <div class="max-w-3xl mx-auto px-4 py-12">
+                <div class="prose prose-lg max-w-none">
+                    <div style="line-height: 1.8; max-width: 800px; margin: 0 auto; font-size: 16px; color: #333;">
+
+                        <div style="background-color: #e0f2f1; padding: 15px; border-radius: 8px; border: 1px solid #b2dfdb; margin-bottom: 25px; font-style: italic;">
+                            <strong>💡 Summary:</strong> <strong>What is deployment?</strong> We explain how an app moves from a developer's laptop to actual users using a 'store opening' analogy that even non-tech people in their 50s can easily understand.
+                        </div>
+
+                        <div id="quick-answer" style="border: 2px solid #00796b; background-color: #fff; padding: 25px; border-radius: 10px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,121,107,0.1);">
+                            <strong style="color: #00796b; font-size: 1.2em; display:block; margin-bottom:15px;">🚀 30-Second Summary: Key Points About Deployment</strong>
+                            <ul style="margin: 0; padding-left: 20px; color: #555;">
+                                <li style="margin-bottom: 8px;"><strong>Definition:</strong> The process of moving a finished program from the developer's private space (warehouse) to a public space (display shelf) where users can see it.</li>
+                                <li style="margin-bottom: 8px;"><strong>Analogy:</strong> It's like finishing rehearsals (development/testing) and starting the actual performance (deployment) in front of an audience.</li>
+                                <li><strong>Conclusion:</strong> It's not just copying files - it's the most important moment when a business actually meets its customers.</li>
+                            </ul>
+                        </div>
+
+                        <p style="margin-bottom: 15px;">
+                            When you first hear the question <strong>"What is deployment?"</strong> or related terms in a meeting, it might feel solemn and difficult, like moving troops in the military. But deployment in the software world is a concept much closer to our daily lives.
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            In this article, instead of complex coding terms, we'll explore the real meaning of deployment by comparing it to 'store openings' and 'new product launches' that we're familiar with. Once you grasp this concept, conversations with the IT department will become much smoother. 😊
+                        </p>
+
+                        <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #4db6ac; padding-bottom: 10px; margin: 40px 0 20px;">
+                            Understanding Deployment Through Everyday Analogies
+                        </h2>
+                        <p>
+                            What developers call deployment is, simply put, <strong>'the act of taking a product made in a hidden workshop and placing it on the store display shelf with the lights on.'</strong>
+                        </p>
+                        <ul style="list-style-type: disc; margin-left: 20px; color: #444; margin-bottom: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Before deployment (Development stage):</strong> The process of making samples in a workshop where only employees can enter. If there are mistakes, you can just fix them.</li>
+                            <li><strong>After deployment (Production stage):</strong> The product is on the display shelf where customers can touch and purchase it. From this point, even a small scratch becomes a complaint.</li>
+                        </ul>
+                        <p>
+                            In other words, an app before deployment is like <span style="background-color: #b2dfdb; padding: 2px 5px; border-radius: 4px; font-weight: bold;">a rehearsal in a small practice room</span>, while an app after deployment is <span style="background-color: #b2dfdb; padding: 2px 5px; border-radius: 4px; font-weight: bold;">the actual stage with the audience watching</span>. The environment completely changes.
+                        </p>
+
+                        <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #4db6ac; padding-bottom: 10px; margin: 40px 0 20px;">
+                            Why Developers Get Nervous on Deployment Day
+                        </h2>
+                        <p>
+                            On the surface, developers might seem to obsess over trivial things. But it's like <strong>the moment you hand over 10,000 company brochures to the printing press</strong>.
+                        </p>
+
+                        <div style="background-color: #f1f8e9; border-left: 4px solid #00796b; padding: 15px; margin: 20px 0;">
+                            <strong>💡 Insight:</strong> When the development team says "we need one more day," they're often not being picky - they're <span style="color: #d32f2f; font-weight: bold;">taking out insurance to prevent a major disaster</span>.
+                        </div>
+
+                        <p>
+                            While files are on your computer, you can freely make changes, but a typo after printing and distribution incurs enormous costs. After an update goes public, cleaning up mistakes becomes much more complex and expensive.
+                        </p>
+
+                        <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #4db6ac; padding-bottom: 10px; margin: 40px 0 20px;">
+                            Common Deployment Terms Explained
+                        </h2>
+                        <p>
+                            When problems arise during deployment, you start hearing unfamiliar terms. Comparing them to 'store operations' makes them very easy to understand.
+                        </p>
+
+                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; border: 1px solid #ddd;">
+                            <thead>
+                                <tr style="background-color: #00796b; color: white;">
+                                    <th style="padding: 12px; border: 1px solid rgba(255,255,255,0.3); width: 20%;">Term</th>
+                                    <th style="padding: 12px; border: 1px solid rgba(255,255,255,0.3); width: 30%;">Store Analogy</th>
+                                    <th style="padding: 12px; border: 1px solid rgba(255,255,255,0.3);">Actual Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: center; background-color: #f9f9f9; font-weight: bold;">Rollback</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Temporarily close store and restore</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Reverting the system to a previous working version when errors occur</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: center; background-color: #fff; font-weight: bold;">Hotfix</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Putting out fires during business hours</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">A small urgent fix performed without stopping everything</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: center; background-color: #f9f9f9; font-weight: bold;">Maintenance Window</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Break time</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">A scheduled time when the service is briefly stopped for safe deployment</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="background-color: #f9f9f9; border: 1px dashed #00796b; padding: 20px; border-radius: 8px; text-align: center; margin: 30px 0;">
+                            <h3 style="margin: 0 0 10px 0; font-size: 18px; color: #00796b;">📂 Deployment Checklist for Business Managers</h3>
+                            <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Get a list of must-ask questions when communicating with your development team.</p>
+                            <button style="background-color: #00796b; color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">📄 Download Checklist (PDF)</button>
+                            <div style="font-size: 12px; color: #999; margin-top: 10px;">※ Provided by: IT Communication Lab</div>
+                        </div>
+
+                        <h2 style="font-size: 22px; color: #00796b; border-bottom: 2px solid #4db6ac; padding-bottom: 10px; margin: 40px 0 20px;">
+                            Frequently Asked Questions (FAQ) 💬
+                        </h2>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-weight: bold; color: #00796b; margin-bottom: 8px;">Q1. Is deployment only something developers need to worry about?</div>
+                            <div style="background-color: #e0f2f1; padding: 15px; border-radius: 8px; line-height: 1.6;">
+                                A. No. Deployment affects the entire business including marketing timing, customer announcements, and budget. Even without technical knowledge, managers need to understand it because they need to manage "when customers can use it."
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-weight: bold; color: #00796b; margin-bottom: 8px;">Q2. Why is deployment often done at night or on weekends?</div>
+                            <div style="background-color: #e0f2f1; padding: 15px; border-radius: 8px; line-height: 1.6;">
+                                A. It's like renovating the store interior when there are the fewest customers. Problems need to be found and fixed during low-traffic times to minimize business impact.
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-weight: bold; color: #00796b; margin-bottom: 8px;">Q3. Can I participate in deployment meetings without a technical background?</div>
+                            <div style="background-color: #e0f2f1; padding: 15px; border-radius: 8px; line-height: 1.6;">
+                                A. Yes. Instead of code, ask risk management questions like "What impact will this have on users?" or "Is there a rollback plan if problems occur?"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div class="flex items-center space-x-3"><span class="text-gray-500 text-sm">Share:</span></div>
+                        <a href="/blog.html" class="text-primary font-medium hover:underline flex items-center space-x-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg><span>Back to Blog</span></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12"><div class="max-w-6xl mx-auto px-4 text-center"><p class="text-sm">&copy; 2025 AI Life Summary. All rights reserved.</p></div></footer>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "What Is Deployment? A 3-Minute Complete Guide for Non-Tech People",
+          "inLanguage": "en",
+          "datePublished": "2026-01-21",
+          "author": {"@type": "Person", "name": "AI Life Summary"},
+          "publisher": {"@type": "Organization", "name": "AI Life Summary"}
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Is deployment only something developers need to worry about?", "acceptedAnswer": { "@type": "Answer", "text": "No. Deployment affects the entire business including marketing, customer support, and budget. Understanding what deployment means makes it much easier to manage launch plans, expectations, and communication with tech teams." } },
+            { "@type": "Question", "name": "Why is deployment often done at night or on weekends?", "acceptedAnswer": { "@type": "Answer", "text": "Because it's easier to find and fix problems during low-traffic times. Understanding the meaning of deployment helps you see that this is a choice to protect user experience." } },
+            { "@type": "Question", "name": "Can I participate in deployment discussions without a technical background?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Instead of code, focus on questions about time, risk, and impact. Questions like 'What impact will this have on users?' and 'How do we roll back if there's a problem?' come from understanding deployment, not technical knowledge." } }
+          ]
+        },
+        {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#quick-answer"]
+        }
+      ]
+    }
+    </script>
+    <script>document.getElementById('mobile-menu-btn').addEventListener('click', function() { document.getElementById('mobile-menu').classList.toggle('hidden'); });</script>
+</body>
+</html>
