@@ -2,7 +2,15 @@
  * AI Life Summary - Main Sentence Generation Logic
  * Contains 800+ sentence components for generating unique life summaries
  * Supports multiple languages: EN, KO, JA, ZH, ES
+ *
+ * Performance optimizations applied:
+ * - Hash caching for repeated birthdate lookups
+ * - Map-based language lookups for O(1) access
+ * - Hoisted RegExp patterns for line break formatting
  */
+
+// ===== Performance: Hash Cache =====
+const birthdateHashCache = new Map();
 
 // Sentence Templates (50+) - English
 const templates = [
@@ -1339,12 +1347,52 @@ const elements = [
     "Storm", "Moon", "Sun", "Star", "Ocean"
 ];
 
+// ===== Performance: Language Maps for O(1) lookup =====
+// Defined once at module level instead of recreating on every function call
+const langTemplatesMap = new Map([
+    ['en', templates],
+    ['ko', templatesKo],
+    ['ja', templatesJa],
+    ['zh', templatesZh],
+    ['es', templatesEs]
+]);
+
+const langTraitsMap = new Map([
+    ['en', traits],
+    ['ko', traitsKo],
+    ['ja', traitsJa],
+    ['zh', traitsZh],
+    ['es', traitsEs]
+]);
+
+const langContextsMap = new Map([
+    ['en', contexts],
+    ['ko', contextsKo],
+    ['ja', contextsJa],
+    ['zh', contextsZh],
+    ['es', contextsEs]
+]);
+
+// ===== Performance: Pre-compiled RegExp patterns for line breaks =====
+// Hoisted outside functions to avoid recreation on every call
+const lineBreakPatterns = {
+    ko: [/,\s*/g, /\.\s*/g, /다\.\s*/g, /요\.\s*/g],
+    ja: [/、\s*/g, /。\s*/g, /,\s*/g, /\.\s*/g],
+    zh: [/，\s*/g, /。\s*/g, /,\s*/g, /\.\s*/g],
+    default: [/,\s+/g, /\.\s+/g, /—/g]
+};
+
 /**
- * Create a hash from birthdate string
+ * Create a hash from birthdate string with caching
  * @param {string} birthdate - Date string in YYYY-MM-DD format
  * @returns {number} - Hash value
  */
 function createHash(birthdate) {
+    // Check cache first for O(1) lookup on repeated calls
+    if (birthdateHashCache.has(birthdate)) {
+        return birthdateHashCache.get(birthdate);
+    }
+
     const date = new Date(birthdate);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -1353,15 +1401,23 @@ function createHash(birthdate) {
     // Create a deterministic hash
     let hash = 0;
     const dateString = `${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}`;
+    const len = dateString.length; // Cache length for loop optimization
 
-    for (let i = 0; i < dateString.length; i++) {
+    for (let i = 0; i < len; i++) {
         const char = dateString.charCodeAt(i);
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash; // Convert to 32-bit integer
     }
 
     // Make it positive
-    return Math.abs(hash);
+    const result = Math.abs(hash);
+
+    // Cache result (limit size to prevent memory issues)
+    if (birthdateHashCache.size < 5000) {
+        birthdateHashCache.set(birthdate, result);
+    }
+
+    return result;
 }
 
 /**
@@ -1385,32 +1441,10 @@ function generateLifeSummary(birthdate, gender, lang) {
     const hash = createHash(birthdate);
     lang = lang || 'en';
 
-    // Select the appropriate arrays based on language
-    const langTemplates = {
-        en: templates,
-        ko: templatesKo,
-        ja: templatesJa,
-        zh: templatesZh,
-        es: templatesEs
-    };
-    const langTraits = {
-        en: traits,
-        ko: traitsKo,
-        ja: traitsJa,
-        zh: traitsZh,
-        es: traitsEs
-    };
-    const langContexts = {
-        en: contexts,
-        ko: contextsKo,
-        ja: contextsJa,
-        zh: contextsZh,
-        es: contextsEs
-    };
-
-    const selectedTemplates = langTemplates[lang] || templates;
-    const selectedTraits = langTraits[lang] || traits;
-    const selectedContexts = langContexts[lang] || contexts;
+    // Use pre-defined Maps for O(1) lookup instead of recreating objects
+    const selectedTemplates = langTemplatesMap.get(lang) || templates;
+    const selectedTraits = langTraitsMap.get(lang) || traits;
+    const selectedContexts = langContextsMap.get(lang) || contexts;
 
     // Select components using hash
     const templateIndex = hash % selectedTemplates.length;
@@ -1443,50 +1477,49 @@ function generateLifeSummary(birthdate, gender, lang) {
 
 /**
  * Format sentence with line breaks after punctuation for better readability
+ * Uses pre-compiled RegExp patterns for performance
  * @param {string} sentence - The sentence to format
  * @param {string} lang - Language code (en, ko, ja, zh, es)
  * @returns {string} - Formatted sentence with line breaks
  */
 function formatSentenceWithLineBreaks(sentence, lang) {
-    if (!sentence) return sentence;
+    if (!sentence) return sentence; // Early return
 
     lang = lang || 'en';
 
-    switch (lang) {
-        case 'ko':
-            // Korean: line break after comma and period patterns
-            return sentence
-                .replace(/,\s*/g, ',\n')
-                .replace(/\.\s*/g, '.\n')
-                .replace(/다\.\s*/g, '다.\n')
-                .replace(/요\.\s*/g, '요.\n')
-                .trim();
-        case 'ja':
-            // Japanese: line break after 。 and 、
-            return sentence
-                .replace(/、\s*/g, '、\n')
-                .replace(/。\s*/g, '。\n')
-                .replace(/,\s*/g, ',\n')
-                .replace(/\.\s*/g, '.\n')
-                .trim();
-        case 'zh':
-            // Chinese: line break after 。 and ，
-            return sentence
-                .replace(/，\s*/g, '，\n')
-                .replace(/。\s*/g, '。\n')
-                .replace(/,\s*/g, ',\n')
-                .replace(/\.\s*/g, '.\n')
-                .trim();
-        case 'es':
-        case 'en':
-        default:
-            // English/Spanish: line break after comma and period
-            return sentence
-                .replace(/,\s+/g, ',\n')
-                .replace(/\.\s+/g, '.\n')
-                .replace(/—/g, '—\n')
-                .trim();
+    // Use pre-compiled patterns based on language
+    let result = sentence;
+
+    if (lang === 'ko') {
+        // Korean: use pre-compiled patterns
+        result = result
+            .replace(lineBreakPatterns.ko[0], ',\n')
+            .replace(lineBreakPatterns.ko[1], '.\n')
+            .replace(lineBreakPatterns.ko[2], '다.\n')
+            .replace(lineBreakPatterns.ko[3], '요.\n');
+    } else if (lang === 'ja') {
+        // Japanese: use pre-compiled patterns
+        result = result
+            .replace(lineBreakPatterns.ja[0], '、\n')
+            .replace(lineBreakPatterns.ja[1], '。\n')
+            .replace(lineBreakPatterns.ja[2], ',\n')
+            .replace(lineBreakPatterns.ja[3], '.\n');
+    } else if (lang === 'zh') {
+        // Chinese: use pre-compiled patterns
+        result = result
+            .replace(lineBreakPatterns.zh[0], '，\n')
+            .replace(lineBreakPatterns.zh[1], '。\n')
+            .replace(lineBreakPatterns.zh[2], ',\n')
+            .replace(lineBreakPatterns.zh[3], '.\n');
+    } else {
+        // English/Spanish/default: use pre-compiled patterns
+        result = result
+            .replace(lineBreakPatterns.default[0], ',\n')
+            .replace(lineBreakPatterns.default[1], '.\n')
+            .replace(lineBreakPatterns.default[2], '—\n');
     }
+
+    return result.trim();
 }
 
 /**

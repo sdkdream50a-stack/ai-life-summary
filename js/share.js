@@ -1,10 +1,46 @@
 /**
  * AI Life Summary - Social Sharing Functionality
  * Handles sharing to various social media platforms and clipboard
+ *
+ * Performance optimizations applied:
+ * - DOM query caching
+ * - localStorage caching
+ * - Early returns
  */
 
 const SITE_URL = 'https://ailifesummary.com';
 const HASHTAGS = 'AILifeSummary,PersonalityTest';
+
+// ===== Performance: DOM Query Cache =====
+// Cache DOM elements to avoid repeated querySelector calls
+const domCache = new Map();
+
+function getCachedElement(id) {
+    if (!domCache.has(id)) {
+        domCache.set(id, document.getElementById(id));
+    }
+    return domCache.get(id);
+}
+
+function clearDomCache() {
+    domCache.clear();
+}
+
+// ===== Performance: localStorage Cache =====
+// Cache localStorage reads to reduce I/O
+const storageCache = new Map();
+
+function getCachedStorage(key) {
+    if (!storageCache.has(key)) {
+        storageCache.set(key, localStorage.getItem(key));
+    }
+    return storageCache.get(key);
+}
+
+function setCachedStorage(key, value) {
+    localStorage.setItem(key, value);
+    storageCache.set(key, value);
+}
 
 /**
  * Initialize share buttons with event listeners
@@ -12,34 +48,37 @@ const HASHTAGS = 'AILifeSummary,PersonalityTest';
  * @param {string} lang - Language code (en, ko, ja, zh, es)
  */
 function initShareButtons(sentence, lang = 'en') {
+    // Clear DOM cache when re-initializing (page might have changed)
+    clearDomCache();
+
     const shareText = `My AI Life Summary: "${sentence}" - Discover yours at`;
 
-    // Twitter/X Share
-    const twitterBtn = document.getElementById('share-twitter');
+    // Twitter/X Share - Use cached DOM query
+    const twitterBtn = getCachedElement('share-twitter');
     if (twitterBtn) {
         twitterBtn.addEventListener('click', () => shareToTwitter(shareText));
     }
 
-    // Facebook Share
-    const facebookBtn = document.getElementById('share-facebook');
+    // Facebook Share - Use cached DOM query
+    const facebookBtn = getCachedElement('share-facebook');
     if (facebookBtn) {
         facebookBtn.addEventListener('click', () => shareToFacebook());
     }
 
-    // WhatsApp Share
-    const whatsappBtn = document.getElementById('share-whatsapp');
+    // WhatsApp Share - Use cached DOM query
+    const whatsappBtn = getCachedElement('share-whatsapp');
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', () => shareToWhatsApp(shareText));
     }
 
-    // Copy Link
-    const copyBtn = document.getElementById('copy-link');
+    // Copy Link - Use cached DOM query
+    const copyBtn = getCachedElement('copy-link');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => copyToClipboard(sentence));
     }
 
-    // Download Image
-    const downloadBtn = document.getElementById('download-image');
+    // Download Image - Use cached DOM query
+    const downloadBtn = getCachedElement('download-image');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             if (typeof generateShareImage === 'function') {
@@ -168,48 +207,48 @@ function fallbackCopyToClipboard(text) {
  * Show success message after copying
  */
 function showCopySuccess() {
-    const copyBtn = document.getElementById('copy-link');
-    if (copyBtn) {
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = `
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span>Copied!</span>
-        `;
-        copyBtn.classList.remove('bg-gray-600');
-        copyBtn.classList.add('bg-green-600');
+    const copyBtn = getCachedElement('copy-link');
+    if (!copyBtn) return; // Early return if element not found
 
-        setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.classList.remove('bg-green-600');
-            copyBtn.classList.add('bg-gray-600');
-        }, 2000);
-    }
+    const originalText = copyBtn.innerHTML;
+    copyBtn.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        <span>Copied!</span>
+    `;
+    copyBtn.classList.remove('bg-gray-600');
+    copyBtn.classList.add('bg-green-600');
+
+    setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+        copyBtn.classList.remove('bg-green-600');
+        copyBtn.classList.add('bg-gray-600');
+    }, 2000);
 }
 
 /**
  * Show error message if copy fails
  */
 function showCopyError() {
-    const copyBtn = document.getElementById('copy-link');
-    if (copyBtn) {
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = `
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-            <span>Failed</span>
-        `;
-        copyBtn.classList.remove('bg-gray-600');
-        copyBtn.classList.add('bg-red-600');
+    const copyBtn = getCachedElement('copy-link');
+    if (!copyBtn) return; // Early return if element not found
 
-        setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.classList.remove('bg-red-600');
-            copyBtn.classList.add('bg-gray-600');
-        }, 2000);
-    }
+    const originalText = copyBtn.innerHTML;
+    copyBtn.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+        <span>Failed</span>
+    `;
+    copyBtn.classList.remove('bg-gray-600');
+    copyBtn.classList.add('bg-red-600');
+
+    setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+        copyBtn.classList.remove('bg-red-600');
+        copyBtn.classList.add('bg-gray-600');
+    }, 2000);
 }
 
 /**
@@ -282,9 +321,9 @@ function trackShare(platform) {
     // Custom analytics (if implemented)
     console.log(`Shared via ${platform}`);
 
-    // Store share count locally
-    const shareCount = parseInt(localStorage.getItem('ai-life-summary-shares') || '0');
-    localStorage.setItem('ai-life-summary-shares', (shareCount + 1).toString());
+    // Store share count locally - Use cached localStorage
+    const shareCount = parseInt(getCachedStorage('ai-life-summary-shares') || '0');
+    setCachedStorage('ai-life-summary-shares', (shareCount + 1).toString());
 }
 
 /**
@@ -292,9 +331,13 @@ function trackShare(platform) {
  * @returns {object} - Share statistics
  */
 function getShareStats() {
+    // Use cached localStorage reads
+    const shares = getCachedStorage('ai-life-summary-shares');
+    const history = getCachedStorage('ai-life-summary-history');
+
     return {
-        totalShares: parseInt(localStorage.getItem('ai-life-summary-shares') || '0'),
-        resultsGenerated: JSON.parse(localStorage.getItem('ai-life-summary-history') || '[]').length
+        totalShares: parseInt(shares || '0'),
+        resultsGenerated: JSON.parse(history || '[]').length
     };
 }
 

@@ -1,6 +1,11 @@
 /**
  * AI Life Summary - Image Generator
  * Uses Canvas API to generate shareable images
+ *
+ * Performance optimizations applied:
+ * - Map-based lookups for O(1) access
+ * - Pre-computed dimension and size configurations
+ * - Hash result caching
  */
 
 // Gradient color palettes
@@ -17,14 +22,31 @@ const gradientPalettes = [
     { start: '#84cc16', end: '#06b6d4' }   // Lime to Cyan
 ];
 
-// Translated titles for each language
-const imageTitles = {
-    en: 'AI Life Summary',
-    ko: 'AI 인생 한 줄',
-    ja: 'AI人生サマリー',
-    zh: 'AI人生总结',
-    es: 'Resumen de Vida IA'
-};
+// ===== Performance: Map for O(1) title lookup =====
+const imageTitles = new Map([
+    ['en', 'AI Life Summary'],
+    ['ko', 'AI 인생 한 줄'],
+    ['ja', 'AI人生サマリー'],
+    ['zh', 'AI人生总结'],
+    ['es', 'Resumen de Vida IA']
+]);
+
+// ===== Performance: Map for O(1) dimension lookup (instead of switch) =====
+const imageDimensions = new Map([
+    ['story', { width: 1080, height: 1920 }],
+    ['square', { width: 1080, height: 1080 }],
+    ['landscape', { width: 1200, height: 630 }]
+]);
+
+// ===== Performance: Map for O(1) text size lookup (instead of switch) =====
+const textSizesMap = new Map([
+    ['story', { title: 64, emoji: 80, quote: 48, watermark: 28, decoration: 36 }],
+    ['square', { title: 56, emoji: 70, quote: 40, watermark: 24, decoration: 32 }],
+    ['landscape', { title: 40, emoji: 50, quote: 32, watermark: 20, decoration: 24 }]
+]);
+
+// ===== Performance: Hash cache to avoid recomputation =====
+const hashCache = new Map();
 
 /**
  * Generate a shareable image with the life summary
@@ -58,35 +80,40 @@ function generateShareImage(sentence, format = 'story', lang = 'en') {
 
 /**
  * Get image dimensions based on format
+ * Uses Map for O(1) lookup instead of switch statement
  * @param {string} format - Image format
  * @returns {object} - Width and height
  */
 function getImageDimensions(format) {
-    switch (format) {
-        case 'story':
-            return { width: 1080, height: 1920 };
-        case 'square':
-            return { width: 1080, height: 1080 };
-        case 'landscape':
-            return { width: 1200, height: 630 };
-        default:
-            return { width: 1080, height: 1920 };
-    }
+    return imageDimensions.get(format) || imageDimensions.get('story');
 }
 
 /**
- * Simple hash function for string
+ * Simple hash function for string with caching
  * @param {string} str - String to hash
  * @returns {number} - Hash value
  */
 function simpleHash(str) {
+    // Check cache first
+    if (hashCache.has(str)) {
+        return hashCache.get(str);
+    }
+
     let hash = 0;
-    for (let i = 0; i < str.length; i++) {
+    const len = str.length; // Cache length for loop optimization
+    for (let i = 0; i < len; i++) {
         const char = str.charCodeAt(i);
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash;
     }
-    return Math.abs(hash);
+    const result = Math.abs(hash);
+
+    // Cache result (limit cache size to prevent memory issues)
+    if (hashCache.size < 1000) {
+        hashCache.set(str, result);
+    }
+
+    return result;
 }
 
 /**
@@ -206,11 +233,11 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
 
-    // Calculate text sizes based on format
+    // Calculate text sizes based on format - O(1) Map lookup
     const sizes = getTextSizes(format);
 
-    // Draw title in the appropriate language
-    const title = imageTitles[lang] || imageTitles.en;
+    // Draw title in the appropriate language - O(1) Map lookup
+    const title = imageTitles.get(lang) || imageTitles.get('en');
     ctx.font = `bold ${sizes.title}px "Poppins", sans-serif`;
     const titleY = format === 'story' ? height * 0.15 : height * 0.2;
     ctx.fillText(title, width / 2, titleY);
@@ -250,44 +277,12 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
 
 /**
  * Get text sizes based on format
+ * Uses Map for O(1) lookup instead of switch statement
  * @param {string} format - Image format
  * @returns {object} - Text sizes
  */
 function getTextSizes(format) {
-    switch (format) {
-        case 'story':
-            return {
-                title: 64,
-                emoji: 80,
-                quote: 48,
-                watermark: 28,
-                decoration: 36
-            };
-        case 'square':
-            return {
-                title: 56,
-                emoji: 70,
-                quote: 40,
-                watermark: 24,
-                decoration: 32
-            };
-        case 'landscape':
-            return {
-                title: 40,
-                emoji: 50,
-                quote: 32,
-                watermark: 20,
-                decoration: 24
-            };
-        default:
-            return {
-                title: 64,
-                emoji: 80,
-                quote: 48,
-                watermark: 28,
-                decoration: 36
-            };
-    }
+    return textSizesMap.get(format) || textSizesMap.get('story');
 }
 
 /**

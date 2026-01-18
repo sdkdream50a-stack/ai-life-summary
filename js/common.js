@@ -1,7 +1,39 @@
 /**
  * AI Life Summary - Common Functions
  * Shared functionality across all pages
+ *
+ * Performance optimizations applied:
+ * - DOM element caching
+ * - Map-based lookups for O(1) access
+ * - Early returns
  */
+
+// ===== Performance: Language Data Maps for O(1) Lookup =====
+const langFlags = new Map([
+    ['en', '🇺🇸'],
+    ['ko', '🇰🇷'],
+    ['ja', '🇯🇵'],
+    ['zh', '🇨🇳'],
+    ['es', '🇪🇸']
+]);
+
+const langNames = new Map([
+    ['en', 'English'],
+    ['ko', '한국어'],
+    ['ja', '日本語'],
+    ['zh', '中文'],
+    ['es', 'Español']
+]);
+
+// ===== Performance: DOM Element Cache =====
+const commonDomCache = new Map();
+
+function getCommonElement(id) {
+    if (!commonDomCache.has(id)) {
+        commonDomCache.set(id, document.getElementById(id));
+    }
+    return commonDomCache.get(id);
+}
 
 // Common header HTML with language selector
 function getHeaderHTML(activePage = '') {
@@ -135,23 +167,29 @@ function getFooterHTML() {
 
 // Initialize common elements
 function initCommonElements() {
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    // Clear cache on init (DOM might have changed)
+    commonDomCache.clear();
+
+    // Mobile menu toggle - Use cached DOM queries
+    const mobileMenuBtn = getCommonElement('mobile-menu-btn');
+    const mobileMenu = getCommonElement('mobile-menu');
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
         });
     }
 
-    // Language selector dropdown
-    const langSelector = document.getElementById('language-selector');
-    const langDropdown = document.getElementById('language-dropdown');
+    // Language selector dropdown - Use cached DOM queries
+    const langSelector = getCommonElement('language-selector');
+    const langDropdown = getCommonElement('language-dropdown');
     if (langSelector && langDropdown) {
-        langSelector.querySelector('button').addEventListener('click', function(e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
+        const selectorBtn = langSelector.querySelector('button');
+        if (selectorBtn) {
+            selectorBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('hidden');
+            });
+        }
         document.addEventListener('click', function() {
             langDropdown.classList.add('hidden');
         });
@@ -161,15 +199,17 @@ function initCommonElements() {
     updateLangDisplay();
 }
 
-// Update language selector display
+// Update language selector display - Use Map for O(1) lookup
 function updateLangDisplay() {
     const lang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'en';
-    const flags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
-    const names = { en: 'English', ko: '한국어', ja: '日本語', zh: '中文', es: 'Español' };
-    const flagEl = document.getElementById('current-lang-flag');
-    const nameEl = document.getElementById('current-lang-name');
-    if (flagEl) flagEl.textContent = flags[lang] || flags.en;
-    if (nameEl) nameEl.textContent = names[lang] || names.en;
+
+    // Use cached DOM queries
+    const flagEl = getCommonElement('current-lang-flag');
+    const nameEl = getCommonElement('current-lang-name');
+
+    // Use Map for O(1) lookup instead of object property access
+    if (flagEl) flagEl.textContent = langFlags.get(lang) || langFlags.get('en');
+    if (nameEl) nameEl.textContent = langNames.get(lang) || langNames.get('en');
 }
 
 // Override setLanguage to also update display
