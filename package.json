@@ -4,8 +4,14 @@
   "description": "AI Life Summary - AI-powered life summary generator",
   "scripts": {
     "build:blog": "node scripts/build-blog.js",
-    "new:post": "node scripts/new-post.js"
+    "new:post": "node scripts/new-post.js",
+    "build:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --watch"
   },
   "author": "AI Life Summary",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
 }

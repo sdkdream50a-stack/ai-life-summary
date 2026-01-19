@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@source "../*.html";
+@source "../life-summary/**/*.html";
+@source "../age-calculator/**/*.html";
+@source "../blog/**/*.html";
+@source "../js/**/*.js";
+
+@theme {
+  --color-primary: #6366f1;
+  --color-secondary: #ec4899;
+  --color-accent: #f59e0b;
+  --color-age-primary: #10b981;
+  --color-age-secondary: #06b6d4;
+
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-quote: 'Merriweather', serif;
+}

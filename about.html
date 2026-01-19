@@ -40,33 +40,16 @@
     <meta name="twitter:image" content="https://goodpicknow.com/assets/images/og-image.png">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#ec4899',
-                        accent: '#f59e0b'
-                    },
-                    fontFamily: {
-                        heading: ['Poppins', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                        quote: ['Merriweather', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
+    
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="./css/tailwind.css">
+<style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
         html.lang-ready body { opacity: 1; }

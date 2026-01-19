@@ -2733,7 +2733,36 @@ function getCurrentLanguage() {
 }
 
 /**
- * Set current language
+ * Performance: DOM element cache for translated elements
+ * Caches querySelectorAll results to avoid repeated DOM queries
+ */
+let translatedElementsCache = null;
+
+function getTranslatedElements() {
+    if (translatedElementsCache) return translatedElementsCache;
+    translatedElementsCache = {
+        i18n: document.querySelectorAll('[data-i18n]'),
+        placeholder: document.querySelectorAll('[data-i18n-placeholder]'),
+        title: document.querySelectorAll('[data-i18n-title]'),
+        ariaLabel: document.querySelectorAll('[data-i18n-aria-label]')
+    };
+    return translatedElementsCache;
+}
+
+/**
+ * Invalidate translation element cache (call when DOM changes)
+ */
+function invalidateTranslationCache() {
+    translatedElementsCache = null;
+}
+
+/**
+ * Performance: Debounce for setLanguage to prevent rapid successive calls
+ */
+let setLanguageTimeout = null;
+
+/**
+ * Set current language (debounced to prevent rapid successive calls)
  */
 function setLanguage(lang) {
     if (!translations[lang]) {
@@ -2741,13 +2770,21 @@ function setLanguage(lang) {
         return;
     }
 
-    localStorage.setItem('ai-life-summary-lang', lang);
-    applyTranslations(lang);
-    updateLanguageSelector(lang);
-    updateLangSelectorDisplay(lang);
+    // Debounce: cancel pending language change and schedule new one
+    if (setLanguageTimeout) {
+        clearTimeout(setLanguageTimeout);
+    }
 
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
+    setLanguageTimeout = setTimeout(() => {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        applyTranslations(lang);
+        updateLanguageSelector(lang);
+        updateLangSelectorDisplay(lang);
+
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        setLanguageTimeout = null;
+    }, 50);
 }
 
 /**
@@ -2782,12 +2819,14 @@ function t(key, lang = null) {
 
 /**
  * Apply translations to all elements with data-i18n attribute
+ * Performance: Uses cached DOM queries instead of repeated querySelectorAll calls
  */
 function applyTranslations(lang = null) {
     const currentLang = lang || getCurrentLanguage();
+    const elements = getTranslatedElements();
 
     // Translate elements with data-i18n attribute
-    document.querySelectorAll('[data-i18n]').forEach(element => {
+    elements.i18n.forEach(element => {
         const key = element.getAttribute('data-i18n');
         const translation = t(key, currentLang);
 
@@ -2801,19 +2840,19 @@ function applyTranslations(lang = null) {
     });
 
     // Translate elements with data-i18n-placeholder
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+    elements.placeholder.forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
         element.placeholder = t(key, currentLang);
     });
 
     // Translate elements with data-i18n-title
-    document.querySelectorAll('[data-i18n-title]').forEach(element => {
+    elements.title.forEach(element => {
         const key = element.getAttribute('data-i18n-title');
         element.title = t(key, currentLang);
     });
 
     // Translate elements with data-i18n-aria-label
-    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+    elements.ariaLabel.forEach(element => {
         const key = element.getAttribute('data-i18n-aria-label');
         element.setAttribute('aria-label', t(key, currentLang));
     });
@@ -2843,7 +2882,7 @@ function createLanguageSelector() {
             </button>
             <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                 ${Object.keys(languageNames).map(lang => `
-                    <button type="button" onclick="setLanguage('${lang}')" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2 ${lang === currentLang ? 'bg-indigo-50 text-primary' : 'text-gray-700'}">
+                    <button type="button" data-lang="${lang}" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2 ${lang === currentLang ? 'bg-indigo-50 text-primary' : 'text-gray-700'}">
                         <span>${languageFlags[lang]}</span>
                         <span>${languageNames[lang]}</span>
                     </button>

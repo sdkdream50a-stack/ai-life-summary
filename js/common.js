@@ -35,6 +35,9 @@ function getCommonElement(id) {
     return commonDomCache.get(id);
 }
 
+// ===== Performance: AbortController for event listener cleanup =====
+let commonAbortController = null;
+
 // Common header HTML with language selector
 function getHeaderHTML(activePage = '') {
     return `
@@ -58,19 +61,19 @@ function getHeaderHTML(activePage = '') {
                             </svg>
                         </button>
                         <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                            <button type="button" onclick="setLanguage('en')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                            <button type="button" data-lang="en" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
                                 <span>🇺🇸</span><span>English</span>
                             </button>
-                            <button type="button" onclick="setLanguage('ko')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                            <button type="button" data-lang="ko" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
                                 <span>🇰🇷</span><span>한국어</span>
                             </button>
-                            <button type="button" onclick="setLanguage('ja')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                            <button type="button" data-lang="ja" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
                                 <span>🇯🇵</span><span>日本語</span>
                             </button>
-                            <button type="button" onclick="setLanguage('zh')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                            <button type="button" data-lang="zh" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
                                 <span>🇨🇳</span><span>中文</span>
                             </button>
-                            <button type="button" onclick="setLanguage('es')" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
+                            <button type="button" data-lang="es" class="lang-option w-full px-4 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2">
                                 <span>🇪🇸</span><span>Español</span>
                             </button>
                         </div>
@@ -92,11 +95,11 @@ function getHeaderHTML(activePage = '') {
                     <div class="pt-3 border-t mt-3">
                         <p class="text-xs text-gray-500 mb-2">Language</p>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="setLanguage('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
-                            <button onclick="setLanguage('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
-                            <button onclick="setLanguage('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
-                            <button onclick="setLanguage('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
-                            <button onclick="setLanguage('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                            <button data-lang="en" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button data-lang="ko" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 KO</button>
+                            <button data-lang="ja" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 JA</button>
+                            <button data-lang="zh" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 ZH</button>
+                            <button data-lang="es" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
                         </div>
                     </div>
                 </div>
@@ -167,6 +170,13 @@ function getFooterHTML() {
 
 // Initialize common elements
 function initCommonElements() {
+    // Cleanup previous event listeners to prevent memory leaks
+    if (commonAbortController) {
+        commonAbortController.abort();
+    }
+    commonAbortController = new AbortController();
+    const signal = commonAbortController.signal;
+
     // Clear cache on init (DOM might have changed)
     commonDomCache.clear();
 
@@ -176,7 +186,7 @@ function initCommonElements() {
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
-        });
+        }, { signal });
     }
 
     // Language selector dropdown - Use cached DOM queries
@@ -188,12 +198,26 @@ function initCommonElements() {
             selectorBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 langDropdown.classList.toggle('hidden');
-            });
+            }, { signal });
         }
         document.addEventListener('click', function() {
             langDropdown.classList.add('hidden');
-        });
+        }, { signal });
     }
+
+    // Event delegation for language selection buttons (replaces inline onclick)
+    document.addEventListener('click', function(e) {
+        const langBtn = e.target.closest('[data-lang]');
+        if (langBtn) {
+            const lang = langBtn.getAttribute('data-lang');
+            if (lang && typeof setLanguage === 'function') {
+                setLanguage(lang);
+                // Close dropdowns after selection
+                if (langDropdown) langDropdown.classList.add('hidden');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+            }
+        }
+    }, { signal });
 
     // Update language selector display
     updateLangDisplay();
