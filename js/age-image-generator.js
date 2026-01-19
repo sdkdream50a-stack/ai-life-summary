@@ -240,7 +240,7 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     // URL
     ctx.font = '24px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('goodpicknow.com/age-calculator', centerX, 1660);
+    ctx.fillText('smartaitest.com/age-calculator', centerX, 1660);
     ctx.globalAlpha = 1;
 }
 
@@ -320,7 +320,7 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
 
     ctx.font = '20px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('goodpicknow.com/age-calculator', centerX, 1020);
+    ctx.fillText('smartaitest.com/age-calculator', centerX, 1020);
     ctx.globalAlpha = 1;
 }
 

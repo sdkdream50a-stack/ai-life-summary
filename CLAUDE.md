@@ -57,7 +57,7 @@
 
 ## 프로젝트 정보
 
-- **사이트**: goodpicknow.com
+- **사이트**: smartaitest.com
 - **AdSense Publisher ID**: ca-pub-6241798439911569
 - **지원 언어**: 한국어(ko), 영어(en), 일본어(ja), 중국어(zh), 스페인어(es)
 - **블로그 구조**:

@@ -1,4 +1,4 @@
-# Robots.txt for goodpicknow.com
+# Robots.txt for smartaitest.com
 
 User-agent: *
 Allow: /
@@ -29,4 +29,4 @@ User-agent: GoogleOther
 Allow: /
 
 # Sitemaps
-Sitemap: https://goodpicknow.com/sitemap.xml
+Sitemap: https://smartaitest.com/sitemap.xml

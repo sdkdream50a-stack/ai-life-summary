@@ -74,6 +74,96 @@
         "en": "post-21-en.html",
         "default": "post-21.html"
       }
+    },
+    {
+      "episode": 22,
+      "publish_date": "2026-01-24",
+      "title_ko": "초보자를 위한 웹 앱 아이디어: 50대 경험을 돈으로 바꾸는 법",
+      "title_en": "Web App Ideas for Beginners: Turn Your 50s Experience Into Profit",
+      "description_ko": "코딩 기술 없이도 50대의 풍부한 경험과 일상의 불편함을 활용해 혁신적인 앱 주제를 찾는 실전 노하우를 공개합니다.",
+      "description_en": "Discover practical tips to find innovative app concepts using your rich life experience and everyday frustrations - no coding required.",
+      "emoji": "💡",
+      "gradient": "from-violet-400 to-fuchsia-500",
+      "files": {
+        "ko": "post-22-ko.html",
+        "en": "post-22-en.html",
+        "default": "post-22.html"
+      }
+    },
+    {
+      "episode": 23,
+      "publish_date": "2026-01-25",
+      "title_ko": "심플 웹 앱 로드맵: 비전공 50대를 위한 7단계 실전 가이드",
+      "title_en": "Simple Web App Roadmap: A 7-Step Practical Guide for Non-Tech 50s",
+      "description_ko": "아이디어 구상부터 현실적인 첫 앱 완성까지, 기술 없이도 따라 할 수 있는 7단계 실전 가이드를 확인하세요.",
+      "description_en": "From idea conception to completing your first realistic app - a 7-step practical guide you can follow without technical skills.",
+      "emoji": "🗺️",
+      "gradient": "from-sky-400 to-indigo-500",
+      "files": {
+        "ko": "post-23-ko.html",
+        "en": "post-23-en.html",
+        "default": "post-23.html"
+      }
+    },
+    {
+      "episode": 24,
+      "publish_date": "2026-01-26",
+      "title_ko": "50대 초보자를 위한 첫 번째 웹 앱 계획: 실패 없는 7단계 가이드",
+      "title_en": "Your First Web App Plan: A Fail-Proof 7-Step Guide for Beginners in Their 50s",
+      "description_ko": "복잡한 코딩 없이 종이와 펜만으로 아이디어를 구체화하고, 실패 없는 앱 개발을 시작하는 실전 노하우를 확인하세요.",
+      "description_en": "Turn ideas into reality with just paper and pen - no complex coding required. A practical guide to fail-proof app development.",
+      "emoji": "📝",
+      "gradient": "from-pink-400 to-rose-500",
+      "files": {
+        "ko": "post-24-ko.html",
+        "en": "post-24-en.html",
+        "default": "post-24.html"
+      }
+    },
+    {
+      "episode": 25,
+      "publish_date": "2026-01-27",
+      "title_ko": "초보자 웹 앱 여정: 50대 비개발자를 위한 3단계 가이드",
+      "title_en": "Beginner's Web App Journey: A 3-Step Guide for Non-Tech People in Their 50s",
+      "description_ko": "초보자 웹 앱 여정을 시작하시나요? 50대 비개발자도 할 수 있는 아이디어 구체화, 노코드 도구 활용, 첫 배포까지의 현실적인 3단계 로드맵을 확인하세요.",
+      "description_en": "Starting your beginner's web app journey? Discover a realistic 3-step roadmap from idea refinement to no-code tools and first deployment.",
+      "emoji": "🗺️",
+      "gradient": "from-green-400 to-lime-500",
+      "files": {
+        "ko": "post-25-ko.html",
+        "en": "post-25-en.html",
+        "default": "post-25.html"
+      }
+    },
+    {
+      "episode": 26,
+      "publish_date": "2026-01-28",
+      "title_ko": "50대의 웹 앱 개발: 늦지 않았다는 4가지 증거",
+      "title_en": "Web App Development in Your 50s: 4 Reasons It's Not Too Late",
+      "description_ko": "50대의 웹 앱 개발은 속도가 아닌 방향입니다. 작은 문제 해결부터 시작해 도구 선택, 피드백 활용까지, 중년을 위한 현실적인 개발 로드맵을 제시합니다.",
+      "description_en": "Web app development in your 50s is about direction, not speed. From solving small problems to choosing tools and using feedback - 4 realistic strategies for midlife.",
+      "emoji": "💪",
+      "gradient": "from-rose-400 to-red-500",
+      "files": {
+        "ko": "post-26-ko.html",
+        "en": "post-26-en.html",
+        "default": "post-26.html"
+      }
+    },
+    {
+      "episode": 27,
+      "publish_date": "2026-01-29",
+      "title_ko": "노코드 웹 앱: 50대 초보자가 30분 만에 나만의 앱 만드는 법",
+      "title_en": "No-Code Web Apps: How Beginners in Their 50s Can Build Their Own App in 30 Minutes",
+      "description_ko": "50대 비전공자를 위한 노코드 웹 앱 제작 가이드입니다. 복잡한 코딩 없이 엑셀 경험만으로 현실적인 문제를 해결하는 5단계 방법과 추천 도구를 확인하세요.",
+      "description_en": "A no-code web app guide for non-developers in their 50s. Discover 5 steps and recommended tools to solve real problems without complex coding.",
+      "emoji": "🛠️",
+      "gradient": "from-blue-400 to-cyan-500",
+      "files": {
+        "ko": "post-27-ko.html",
+        "en": "post-27-en.html",
+        "default": "post-27.html"
+      }
     }
   ]
 }

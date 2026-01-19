@@ -95,7 +95,7 @@ function shareToKakao(results) {
             content: {
                 title: 'My AI Age Results',
                 description: `Real: ${results.realAge}, Mental: ${results.mentalAge}, Energy: ${results.energyAge}`,
-                imageUrl: 'https://goodpicknow.com/assets/images/age-calculator-og.png',
+                imageUrl: 'https://smartaitest.com/assets/images/age-calculator-og.png',
                 link: {
                     webUrl: generateShareUrl(results),
                     mobileWebUrl: generateShareUrl(results)
