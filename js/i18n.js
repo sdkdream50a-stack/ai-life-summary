@@ -2698,23 +2698,38 @@ const languageFlags = {
 };
 
 /**
- * Get current language from localStorage or browser
+ * Get current language from localStorage, URL, or browser
  */
 function getCurrentLanguage() {
-    // Check localStorage first
+    // 1. Check localStorage first (user's previous selection)
     const saved = localStorage.getItem('ai-life-summary-lang');
     if (saved && translations[saved]) {
         return saved;
     }
 
-    // Check browser language
-    const browserLang = navigator.language.split('-')[0];
-    if (translations[browserLang]) {
-        return browserLang;
+    // 2. Check URL parameters (for search engine links: ?lang=ko, ?hl=ko)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang') || urlParams.get('hl');
+    if (urlLang) {
+        const langCode = urlLang.split('-')[0].toLowerCase();
+        if (translations[langCode]) {
+            // Save to localStorage for future visits
+            localStorage.setItem('ai-life-summary-lang', langCode);
+            return langCode;
+        }
     }
 
-    // Default to English
-    return 'en';
+    // 3. Check all browser preferred languages (navigator.languages)
+    const browserLanguages = navigator.languages || [navigator.language];
+    for (const lang of browserLanguages) {
+        const langCode = lang.split('-')[0].toLowerCase();
+        if (translations[langCode]) {
+            return langCode;
+        }
+    }
+
+    // 4. Default to Korean
+    return 'ko';
 }
 
 /**
