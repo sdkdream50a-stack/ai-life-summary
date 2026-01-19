@@ -60,22 +60,35 @@
         }
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        /* Prevent CLS */
+        body { opacity: 0; }
+        html.lang-ready body { opacity: 1; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .quote-text {
-            font-family: 'Merriweather', serif;
+            font-family: 'Merriweather', Georgia, serif;
             white-space: pre-line;
         }
+
+        /* Fixed header height */
+        header.bg-white { min-height: 72px; }
+        header nav { min-height: 56px; }
+        header .flex.items-center.justify-between { min-height: 40px; }
+        header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+        #lang-selector button { min-width: 90px; min-height: 36px; }
+        #current-lang { display: inline-block; min-width: 60px; }
         .gradient-bg {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
         }
@@ -143,13 +156,38 @@
         }
     </style>
 
+    <!-- Early Language Detection -->
+    <script>
+    (function() {
+        var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        var saved = localStorage.getItem('ai-life-summary-lang');
+        var lang = 'ko';
+        if (saved && supportedLangs.indexOf(saved) !== -1) { lang = saved; }
+        else {
+            var params = new URLSearchParams(window.location.search);
+            var urlLang = params.get('lang') || params.get('hl');
+            if (urlLang) {
+                var code = urlLang.split('-')[0].toLowerCase();
+                if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
+            } else {
+                var browserLangs = navigator.languages || [navigator.language];
+                for (var i = 0; i < browserLangs.length; i++) {
+                    var code = browserLangs[i].split('-')[0].toLowerCase();
+                    if (supportedLangs.indexOf(code) !== -1) { lang = code; break; }
+                }
+            }
+        }
+        document.documentElement.lang = lang;
+    })();
+    </script>
+
     <!-- Language Switching Script -->
     <script>
     var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
     var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
     function switchLang(lang, isInitialLoad) {
-        var currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+        var currentLang = localStorage.getItem('ai-life-summary-lang') || 'ko';
 
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
@@ -162,6 +200,8 @@
 
         var dropdown = document.getElementById('lang-dropdown');
         if (dropdown) dropdown.classList.add('hidden');
+
+        document.documentElement.classList.add('lang-ready');
 
         // If language changed (not initial load), reload page to regenerate summary
         if (!isInitialLoad && currentLang !== lang) {
@@ -182,11 +222,10 @@
         }
     });
 
-    (function() {
-        var lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-        document.documentElement.lang = lang;
-        document.addEventListener('DOMContentLoaded', function() { switchLang(lang, true); });
-    })();
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang || 'ko';
+        switchLang(lang, true);
+    });
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
