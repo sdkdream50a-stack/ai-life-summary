@@ -151,7 +151,8 @@ function shareToTelegram() {
     const text = generateShareText('telegram');
     const url = generateShareUrl();
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    window.open(telegramUrl, '_blank', 'width=600,height=400');
+    // Use location.href for more reliable opening
+    window.location.href = telegramUrl;
 }
 
 /**
@@ -159,10 +160,11 @@ function shareToTelegram() {
  */
 function shareToReddit() {
     const results = window.compatibilityResults;
-    const title = results ? `Our AI Compatibility Score: ${results.overallScore}%! ${results.relationshipType.emoji}` : 'AI Compatibility Test Results';
+    const title = results ? `AI Compatibility Score: ${results.overallScore}%` : 'AI Compatibility Test Results';
     const url = generateShareUrl();
     const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
-    window.open(redditUrl, '_blank', 'width=600,height=600');
+    // Use location.href for more reliable opening
+    window.location.href = redditUrl;
 }
 
 /**
@@ -171,10 +173,22 @@ function shareToReddit() {
 function shareToPinterest() {
     const url = generateShareUrl();
     const description = generateShareText('pinterest');
-    const imageUrl = 'https://smartaitest.com/assets/images/compatibility-og.png';
-    // Use the correct Pinterest share URL format
-    const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    window.open(pinterestUrl, '_blank', 'width=750,height=550,scrollbars=yes');
+    const fullText = `${description}\n\n${url}`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpening Pinterest - paste to create a pin.',
+            ko: '📋 복사되었습니다!\n\nPinterest가 열립니다 - 붙여넣기하여 핀을 만드세요.',
+            ja: '📋 コピーしました!\n\nPinterestが開きます - 貼り付けてピンを作成してください。',
+            zh: '📋 已复制!\n\n正在打开Pinterest - 粘贴以创建Pin。',
+            es: '📋 ¡Copiado!\n\nAbriendo Pinterest - pega para crear un pin.'
+        };
+        alert(messages[lang] || messages.en);
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    }).catch(() => {
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    });
 }
 
 /**

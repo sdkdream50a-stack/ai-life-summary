@@ -115,17 +115,17 @@ function shareToTelegram(results) {
     const text = generateShareText(results, 'telegram');
     const url = generateShareUrl(results);
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    window.open(telegramUrl, '_blank', 'width=600,height=400');
+    window.location.href = telegramUrl;
 }
 
 /**
  * Share to Reddit
  */
 function shareToReddit(results) {
-    const title = `My AI Age Results: Real ${results.realAge}, Mental ${results.mentalAge}, Energy ${results.energyAge}`;
+    const title = `AI Age: Real ${results.realAge}, Mental ${results.mentalAge}, Energy ${results.energyAge}`;
     const url = generateShareUrl(results);
     const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
-    window.open(redditUrl, '_blank', 'width=600,height=600');
+    window.location.href = redditUrl;
 }
 
 /**
@@ -134,9 +134,22 @@ function shareToReddit(results) {
 function shareToPinterest(results) {
     const url = generateShareUrl(results);
     const description = generateShareText(results, 'pinterest');
-    const imageUrl = 'https://smartaitest.com/assets/images/age-calculator-og.png';
-    const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    window.open(pinterestUrl, '_blank', 'width=750,height=550,scrollbars=yes');
+    const fullText = `${description}\n\n${url}`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpening Pinterest - paste to create a pin.',
+            ko: '📋 복사되었습니다!\n\nPinterest가 열립니다 - 붙여넣기하여 핀을 만드세요.',
+            ja: '📋 コピーしました!\n\nPinterestが開きます - 貼り付けてピンを作成してください。',
+            zh: '📋 已复制!\n\n正在打开Pinterest - 粘贴以创建Pin。',
+            es: '📋 ¡Copiado!\n\nAbriendo Pinterest - pega para crear un pin.'
+        };
+        alert(messages[lang] || messages.en);
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    }).catch(() => {
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    });
 }
 
 /**

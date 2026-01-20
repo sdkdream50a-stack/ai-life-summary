@@ -203,9 +203,21 @@ function shareToLinkedIn(text) {
  * @param {string} description - Description for the pin
  */
 function shareToPinterest(description) {
-    const imageUrl = 'https://smartaitest.com/assets/images/life-summary-og.png';
-    const url = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE_URL)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    window.open(url, '_blank', 'width=750,height=550,scrollbars=yes');
+    const fullText = `${description}\n\n${SITE_URL}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpening Pinterest - paste to create a pin.',
+            ko: '📋 복사되었습니다!\n\nPinterest가 열립니다 - 붙여넣기하여 핀을 만드세요.',
+            ja: '📋 コピーしました!\n\nPinterestが開きます - 貼り付けてピンを作成してください。',
+            zh: '📋 已复制!\n\n正在打开Pinterest - 粘贴以创建Pin。',
+            es: '📋 ¡Copiado!\n\nAbriendo Pinterest - pega para crear un pin.'
+        };
+        alert(messages[lang] || messages.en);
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    }).catch(() => {
+        window.location.href = 'https://www.pinterest.com/pin-builder/';
+    });
     trackShare('pinterest');
 }
 
@@ -216,7 +228,7 @@ function shareToPinterest(description) {
 function shareToTelegram(text) {
     const encodedText = encodeURIComponent(text + ' ' + SITE_URL);
     const url = `https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${encodedText}`;
-    window.open(url, '_blank');
+    window.location.href = url;
     trackShare('telegram');
 }
 
@@ -311,7 +323,7 @@ function shareToKakao(text) {
  */
 function shareToReddit(text) {
     const url = `https://www.reddit.com/submit?url=${encodeURIComponent(SITE_URL)}&title=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'width=600,height=600');
+    window.location.href = url;
     trackShare('reddit');
 }
 
