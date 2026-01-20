@@ -390,7 +390,7 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
 
     // Category bars (compact)
     const barStartY = cardY + 380;
-    const barWidth = 580;
+    const barWidth = 500;  // Reduced to not overlap with score text
     const barHeight = 16;
     const barSpacing = 50;
 
@@ -401,18 +401,13 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
         const y = barStartY + index * barSpacing;
         const score = results.categories[cat];
 
-        // Icon and score
+        // Icon (left side)
         ctx.fillStyle = '#374151';
         ctx.font = '18px Inter, sans-serif';
         ctx.textAlign = 'left';
         ctx.fillText(categoryIcons[index], cardX + 180, y);
 
-        ctx.textAlign = 'right';
-        ctx.fillStyle = colorScheme.gradient[0];
-        ctx.font = 'bold 18px Inter, sans-serif';
-        ctx.fillText(`${score}%`, cardX + cardWidth - 180, y);
-
-        // Bar background
+        // Bar background (draw BEFORE score text)
         ctx.fillStyle = '#e5e7eb';
         roundRectCompat(ctx, cardX + 215, y - 10, barWidth, barHeight, 8);
         ctx.fill();
@@ -424,6 +419,12 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
         ctx.fillStyle = gradient;
         roundRectCompat(ctx, cardX + 215, y - 10, barWidth * (score / 100), barHeight, 8);
         ctx.fill();
+
+        // Score text (draw AFTER bars so it appears on top)
+        ctx.textAlign = 'right';
+        ctx.fillStyle = colorScheme.gradient[0];
+        ctx.font = 'bold 18px Inter, sans-serif';
+        ctx.fillText(`${score}%`, cardX + cardWidth - 180, y);
 
         ctx.textAlign = 'center';
     });
