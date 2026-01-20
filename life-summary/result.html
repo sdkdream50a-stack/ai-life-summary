@@ -145,6 +145,48 @@
             word-break: keep-all;
             overflow-wrap: break-word;
         }
+
+        /* Emoji Reaction Styles */
+        .reaction-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 16px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        .reaction-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .reaction-btn.selected {
+            border-color: #6366f1;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(236,72,153,0.1) 100%);
+        }
+        .reaction-btn .emoji {
+            font-size: 2rem;
+            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+        .reaction-btn:hover .emoji {
+            transform: scale(1.2);
+        }
+        .reaction-btn .label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .reaction-stats {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .reaction-stats.show {
+            display: block;
+        }
     </style>
 
     <!-- Schema.org Structured Data -->
@@ -501,6 +543,65 @@
                             Loading your life summary...
                         </p>
                         <p id="birthday-info" class="text-gray-500 mb-6"></p>
+                    </div>
+
+                    <!-- Emoji Reaction Section -->
+                    <div class="border-t pt-6 mb-6">
+                        <p class="text-gray-700 font-semibold mb-4 text-center">
+                            <span class="lang-en">How was this result?</span>
+                            <span class="lang-ko">결과가 어떠셨나요?</span>
+                            <span class="lang-ja">結果はいかがでしたか？</span>
+                            <span class="lang-zh">您觉得结果怎么样？</span>
+                            <span class="lang-es">¿Qué te pareció el resultado?</span>
+                        </p>
+                        <div id="reaction-buttons" class="flex justify-center gap-4 flex-wrap">
+                            <button class="reaction-btn" data-reaction="love" onclick="selectReaction('love')">
+                                <span class="emoji">😍</span>
+                                <span class="label">
+                                    <span class="lang-en">So fun!</span>
+                                    <span class="lang-ko">완전 재밌어!</span>
+                                    <span class="lang-ja">超楽しい！</span>
+                                    <span class="lang-zh">太有趣了！</span>
+                                    <span class="lang-es">¡Muy divertido!</span>
+                                </span>
+                            </button>
+                            <button class="reaction-btn" data-reaction="good" onclick="selectReaction('good')">
+                                <span class="emoji">😊</span>
+                                <span class="label">
+                                    <span class="lang-en">Pretty good</span>
+                                    <span class="lang-ko">괜찮아요</span>
+                                    <span class="lang-ja">いい感じ</span>
+                                    <span class="lang-zh">还不错</span>
+                                    <span class="lang-es">Está bien</span>
+                                </span>
+                            </button>
+                            <button class="reaction-btn" data-reaction="meh" onclick="selectReaction('meh')">
+                                <span class="emoji">🤔</span>
+                                <span class="label">
+                                    <span class="lang-en">Hmm...</span>
+                                    <span class="lang-ko">글쎄요</span>
+                                    <span class="lang-ja">うーん...</span>
+                                    <span class="lang-zh">嗯...</span>
+                                    <span class="lang-es">Mmm...</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div id="reaction-stats" class="reaction-stats mt-4 text-center">
+                            <p class="gradient-text font-semibold">
+                                <span class="lang-en">✨ <span id="stat-percent">98</span>% found this fun!</span>
+                                <span class="lang-ko">✨ <span id="stat-percent-ko">98</span>%가 재밌었다고 평가!</span>
+                                <span class="lang-ja">✨ <span id="stat-percent-ja">98</span>%が楽しいと評価！</span>
+                                <span class="lang-zh">✨ <span id="stat-percent-zh">98</span>%的人觉得有趣！</span>
+                                <span class="lang-es">✨ ¡El <span id="stat-percent-es">98</span>% lo encontró divertido!</span>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1">
+                                <span class="lang-en">Thank you for your feedback!</span>
+                                <span class="lang-ko">소중한 의견 감사합니다!</span>
+                                <span class="lang-ja">フィードバックありがとうございます！</span>
+                                <span class="lang-zh">感谢您的反馈！</span>
+                                <span class="lang-es">¡Gracias por tu opinión!</span>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Share Buttons -->
@@ -1328,6 +1429,59 @@
             if (savedResults.length > 10) savedResults.pop();
             localStorage.setItem('ai-life-summary-history', JSON.stringify(savedResults));
         }
+
+        // Emoji Reaction Handler
+        function selectReaction(reaction) {
+            // Check if already reacted
+            const storageKey = 'lifesummary_reaction_' + window.location.search;
+            if (localStorage.getItem(storageKey)) {
+                return; // Already reacted
+            }
+
+            // Save reaction
+            localStorage.setItem(storageKey, reaction);
+
+            // Visual feedback - highlight selected button
+            const buttons = document.querySelectorAll('.reaction-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.dataset.reaction === reaction) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Generate fake stats (deterministic based on URL)
+            const urlHash = window.location.search.split('').reduce((a, b) => {
+                a = ((a << 5) - a) + b.charCodeAt(0);
+                return a & a;
+            }, 0);
+            const basePercent = 94 + Math.abs(urlHash % 5); // 94-98%
+
+            // Update stats display
+            document.getElementById('stat-percent').textContent = basePercent;
+            document.getElementById('stat-percent-ko').textContent = basePercent;
+            document.getElementById('stat-percent-ja').textContent = basePercent;
+            document.getElementById('stat-percent-zh').textContent = basePercent;
+            document.getElementById('stat-percent-es').textContent = basePercent;
+
+            // Show stats section
+            document.getElementById('reaction-stats').classList.add('show');
+
+            // Disable buttons after selection
+            buttons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = btn.classList.contains('selected') ? '1' : '0.5';
+            });
+        }
+
+        // Check for existing reaction on page load
+        (function checkExistingReaction() {
+            const storageKey = 'lifesummary_reaction_' + window.location.search;
+            const existingReaction = localStorage.getItem(storageKey);
+            if (existingReaction) {
+                selectReaction(existingReaction);
+            }
+        })();
     </script>
 </body>
 </html>
