@@ -8,7 +8,7 @@
  * - Early returns
  */
 
-const SITE_URL = 'https://ailifesummary.com';
+const SITE_URL = 'https://smartaitest.com/life-summary/';
 const HASHTAGS = 'AILifeSummary,PersonalityTest';
 
 // ===== Performance: DOM Query Cache =====
@@ -201,9 +201,9 @@ function shareToLinkedIn(text) {
 /**
  * Share to Pinterest
  * @param {string} description - Description for the pin
- * @param {string} imageUrl - URL of the image to pin
  */
-function shareToPinterest(description, imageUrl) {
+function shareToPinterest(description) {
+    const imageUrl = 'https://smartaitest.com/assets/images/life-summary-og.png';
     const url = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE_URL)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
     openShareWindow(url, 'pinterest');
     trackShare('pinterest');
