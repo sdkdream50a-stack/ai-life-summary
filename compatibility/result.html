@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QDH2KJQT9Y');
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Compatibility Results - AI Compatibility Test | AI Test Lab</title>
+    <meta name="description" content="Your AI Compatibility Test results. See your love match score, relationship analysis, and compatibility breakdown.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartaitest.com/compatibility/result.html">
+    <meta property="og:title" content="Our AI Compatibility Results - AI Test Lab">
+    <meta property="og:description" content="We just discovered our compatibility score! Try the AI Compatibility Test.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/compatibility-og.png">
+
+    <!-- Tailwind CSS -->
+    <!-- Google Fonts with Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+<style>
+        /* Prevent CLS - with fallback */
+        body { opacity: 0; transition: opacity 0.1s; }
+        html.lang-ready body { opacity: 1; }
+        @keyframes showBody { to { opacity: 1; } }
+        body { animation: showBody 0s 0.3s forwards; }
+
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+        /* Fixed header height */
+        header.bg-white { min-height: 72px; }
+        header nav { min-height: 56px; }
+        header .flex.items-center.justify-between { min-height: 40px; }
+        header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+        #lang-selector button { min-width: 90px; min-height: 36px; }
+        #current-lang { display: inline-block; min-width: 60px; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .love-gradient-bg { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+        .love-gradient-text {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Result animations */
+        .result-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.5); }
+        }
+        .glow-card {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Score circle */
+        .score-circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+        .score-circle .progress-ring {
+            transition: stroke-dashoffset 1s ease-out;
+        }
+        .score-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Category bar animation */
+        .category-bar {
+            transition: width 1s ease-out;
+        }
+
+        /* Heart animation */
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .heart-pulse {
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        /* Prevent word breaking in the middle for CJK languages */
+        .word-keep {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Language classes - CSS-based switching for 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline-flex; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="ja"] a.lang-ja { display: inline-flex; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="zh"] a.lang-zh { display: inline-flex; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+        html[lang="es"] a.lang-es { display: inline-flex; }
+    </style>
+
+    <!-- Early Language Detection -->
+    <script>
+    (function() {
+        var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        var saved = localStorage.getItem('ai-life-summary-lang');
+        var lang = 'ko';
+        if (saved && supportedLangs.indexOf(saved) !== -1) { lang = saved; }
+        else {
+            var params = new URLSearchParams(window.location.search);
+            var urlLang = params.get('lang') || params.get('hl');
+            if (urlLang) {
+                var code = urlLang.split('-')[0].toLowerCase();
+                if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
+            } else {
+                var browserLangs = navigator.languages || [navigator.language];
+                var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
+                if (langCodes.indexOf('ko') !== -1) {
+                    lang = 'ko';
+                } else {
+                    for (var i = 0; i < langCodes.length; i++) {
+                        if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
+                    }
+                }
+            }
+        }
+        document.documentElement.lang = lang;
+    })();
+    </script>
+
+    <!-- Language Switching -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        mobileBtns.forEach(function(btn) {
+            var btnLang = btn.getAttribute('data-lang');
+            btn.style.background = (btnLang === lang) ? '#ec4899' : '#f3f4f6';
+            btn.style.color = (btnLang === lang) ? 'white' : '#374151';
+        });
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+
+        document.documentElement.classList.add('lang-ready');
+
+        // Update dynamic content
+        if (window.compatibilityResults) {
+            updateDynamicContent(lang);
+        }
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    function updateDynamicContent(lang) {
+        var results = window.compatibilityResults;
+        if (!results) return;
+
+        // Update relationship type label
+        var typeLabel = document.getElementById('relationship-type');
+        if (typeLabel && results.relationshipType) {
+            typeLabel.textContent = results.relationshipType.emoji + ' ' + results.relationshipType.labels[lang];
+        }
+
+        // Update category descriptions
+        ['communication', 'values', 'energy', 'emotional', 'growth'].forEach(function(cat) {
+            var descEl = document.getElementById(cat + '-desc');
+            if (descEl) {
+                descEl.textContent = getCategoryDescription(cat, results.categories[cat], lang);
+            }
+            var nameEl = document.getElementById(cat + '-name');
+            if (nameEl) {
+                var info = getCategoryInfo(cat, lang);
+                nameEl.textContent = info.icon + ' ' + info.name;
+            }
+        });
+
+        // Update overall analysis
+        var analysis = generateOverallAnalysis(results, lang);
+        var introEl = document.getElementById('analysis-intro');
+        var typeEl = document.getElementById('analysis-type');
+        var strengthEl = document.getElementById('analysis-strength');
+        var growthEl = document.getElementById('analysis-growth');
+        var elementsEl = document.getElementById('analysis-elements');
+
+        if (introEl) introEl.textContent = analysis.intro;
+        if (typeEl) typeEl.textContent = analysis.type;
+        if (strengthEl) strengthEl.textContent = analysis.strength;
+        if (growthEl) growthEl.textContent = analysis.growth;
+        if (elementsEl) elementsEl.textContent = analysis.elements;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang || 'ko';
+        switchLang(lang);
+    });
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/compatibility/" class="text-gray-600 hover:text-pink-500 transition flex items-center space-x-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        <span class="lang-en">New Test</span>
+                        <span class="lang-ko">새 테스트</span>
+                        <span class="lang-ja">新しいテスト</span>
+                        <span class="lang-zh">新测试</span>
+                        <span class="lang-es">Nuevo Test</span>
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                    <button id="share-btn" class="love-gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                        </svg>
+                        <span class="lang-en">Share</span>
+                        <span class="lang-ko">공유</span>
+                        <span class="lang-ja">共有</span>
+                        <span class="lang-zh">分享</span>
+                        <span class="lang-es">Compartir</span>
+                    </button>
+                </div>
+                <div class="flex md:hidden items-center space-x-2">
+                    <button id="share-btn-mobile" class="love-gradient-bg text-white p-2 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <a href="/compatibility/" class="text-pink-500 font-medium">
+                        <span class="lang-en">New Test</span>
+                        <span class="lang-ko">새 테스트</span>
+                        <span class="lang-ja">新しいテスト</span>
+                        <span class="lang-zh">新测试</span>
+                        <span class="lang-es">Nuevo Test</span>
+                    </a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded">EN</button>
+                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded">KO</button>
+                            <button onclick="switchLang('ja')" data-lang="ja" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded">JA</button>
+                            <button onclick="switchLang('zh')" data-lang="zh" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded">ZH</button>
+                            <button onclick="switchLang('es')" data-lang="es" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded">ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Result Hero -->
+        <section class="love-gradient-bg py-10 md:py-14">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-5xl mb-4 inline-block heart-pulse">&#128149;</span>
+                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
+                    <span class="lang-en">Compatibility Results</span>
+                    <span class="lang-ko">궁합 결과</span>
+                    <span class="lang-ja">相性診断結果</span>
+                    <span class="lang-zh">配对结果</span>
+                    <span class="lang-es">Resultados de Compatibilidad</span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- Names Display -->
+        <section class="py-6 bg-white border-b">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                    <div class="text-center">
+                        <span class="text-3xl">&#128104;</span>
+                        <p id="person-a-name" class="font-heading font-bold text-lg mt-1">Person A</p>
+                        <p id="person-a-zodiac" class="text-sm text-gray-500"></p>
+                    </div>
+                    <span class="text-3xl text-pink-500 heart-pulse">&#128151;</span>
+                    <div class="text-center">
+                        <span class="text-3xl">&#128105;</span>
+                        <p id="person-b-name" class="font-heading font-bold text-lg mt-1">Person B</p>
+                        <p id="person-b-zodiac" class="text-sm text-gray-500"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Results Card -->
+        <section class="py-8 md:py-12">
+            <div class="max-w-2xl mx-auto px-4">
+                <div class="result-card bg-white rounded-2xl shadow-xl p-6 md:p-8 glow-card">
+                    <!-- Overall Score Circle -->
+                    <div class="flex flex-col items-center mb-8">
+                        <div class="score-circle">
+                            <svg width="200" height="200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f3f4f6" stroke-width="12"/>
+                                <circle id="score-ring" cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGradient)" stroke-width="12"
+                                    stroke-linecap="round" class="progress-ring"
+                                    stroke-dasharray="565.48" stroke-dashoffset="565.48"/>
+                                <defs>
+                                    <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ec4899"/>
+                                        <stop offset="100%" stop-color="#f43f5e"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="score-value">
+                                <span id="score-number" class="font-heading text-5xl font-bold love-gradient-text">--</span>
+                                <span class="text-gray-500 text-lg">%</span>
+                            </div>
+                        </div>
+                        <p id="relationship-type" class="mt-4 text-xl font-semibold text-gray-700">--</p>
+                    </div>
+
+                    <!-- Category Bars -->
+                    <div class="space-y-4">
+                        <!-- Communication -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="communication-name" class="font-medium text-gray-700">&#128172; Communication</span>
+                                <span id="communication-score" class="text-pink-600 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="communication-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Values -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="values-name" class="font-medium text-gray-700">&#9878;&#65039; Values</span>
+                                <span id="values-score" class="text-pink-600 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="values-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Energy -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="energy-name" class="font-medium text-gray-700">&#9889; Energy</span>
+                                <span id="energy-score" class="text-pink-600 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="energy-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Emotional -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="emotional-name" class="font-medium text-gray-700">&#128151; Emotional</span>
+                                <span id="emotional-score" class="text-pink-600 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="emotional-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Growth -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="growth-name" class="font-medium text-gray-700">&#127793; Growth</span>
+                                <span id="growth-score" class="text-pink-600 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div id="growth-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share Buttons -->
+        <section class="py-6">
+            <div class="max-w-2xl mx-auto px-4">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="font-heading font-semibold text-lg mb-4 text-center">
+                        <span class="lang-en">Share Your Results</span>
+                        <span class="lang-ko">결과 공유하기</span>
+                        <span class="lang-ja">結果を共有する</span>
+                        <span class="lang-zh">分享您的结果</span>
+                        <span class="lang-es">Comparte Tus Resultados</span>
+                    </h3>
+
+                    <!-- Image Download Options -->
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 text-center mb-3">
+                            <span class="lang-en">&#128247; Save as Image</span>
+                            <span class="lang-ko">&#128247; 이미지로 저장</span>
+                            <span class="lang-ja">&#128247; 画像として保存</span>
+                            <span class="lang-zh">&#128247; 保存为图片</span>
+                            <span class="lang-es">&#128247; Guardar como Imagen</span>
+                        </p>
+                        <div class="flex justify-center gap-3">
+                            <button onclick="downloadImage('story')" class="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-3 rounded-lg hover:opacity-90 transition">
+                                <span>&#128241;</span>
+                                <span class="lang-en">Story (9:16)</span>
+                                <span class="lang-ko">스토리 (9:16)</span>
+                                <span class="lang-ja">ストーリー (9:16)</span>
+                                <span class="lang-zh">故事 (9:16)</span>
+                                <span class="lang-es">Historia (9:16)</span>
+                            </button>
+                            <button onclick="downloadImage('square')" class="flex items-center space-x-2 bg-gradient-to-r from-rose-500 to-red-500 text-white px-4 py-3 rounded-lg hover:opacity-90 transition">
+                                <span>&#128444;</span>
+                                <span class="lang-en">Square (1:1)</span>
+                                <span class="lang-ko">정사각형 (1:1)</span>
+                                <span class="lang-ja">正方形 (1:1)</span>
+                                <span class="lang-zh">正方形 (1:1)</span>
+                                <span class="lang-es">Cuadrado (1:1)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <p class="text-sm text-gray-600 text-center mb-3">
+                            <span class="lang-en">&#128279; Share Link</span>
+                            <span class="lang-ko">&#128279; 링크 공유</span>
+                            <span class="lang-ja">&#128279; リンクを共有</span>
+                            <span class="lang-zh">&#128279; 分享链接</span>
+                            <span class="lang-es">&#128279; Compartir Enlace</span>
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button onclick="copyResultLink()" class="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-300 transition">
+                                <span>&#128279;</span>
+                                <span class="lang-en">Copy Link</span>
+                                <span class="lang-ko">링크 복사</span>
+                                <span class="lang-ja">リンクをコピー</span>
+                                <span class="lang-zh">复制链接</span>
+                                <span class="lang-es">Copiar Enlace</span>
+                            </button>
+                            <button onclick="shareToTwitter()" class="flex items-center space-x-2 bg-black text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition">
+                                <span>&#120143;</span>
+                                <span>X</span>
+                            </button>
+                            <button onclick="shareToFacebook()" class="flex items-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition">
+                                <span>f</span>
+                                <span>Facebook</span>
+                            </button>
+                            <button onclick="shareToWhatsApp()" class="flex items-center space-x-2 bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition">
+                                <span>&#128172;</span>
+                                <span>WhatsApp</span>
+                            </button>
+                            <button onclick="shareToLine()" class="flex items-center space-x-2 bg-emerald-400 text-white px-4 py-3 rounded-lg hover:bg-emerald-500 transition">
+                                <span>&#128172;</span>
+                                <span>LINE</span>
+                            </button>
+                            <button onclick="shareToKakao()" class="flex items-center space-x-2 bg-yellow-400 text-gray-900 px-4 py-3 rounded-lg hover:bg-yellow-500 transition">
+                                <span>&#128172;</span>
+                                <span>KakaoTalk</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p id="copy-feedback" class="text-center text-green-600 text-sm mt-3 hidden">
+                        <span class="lang-en">Link copied to clipboard!</span>
+                        <span class="lang-ko">클립보드에 복사되었습니다!</span>
+                        <span class="lang-ja">クリップボードにコピーしました！</span>
+                        <span class="lang-zh">已复制到剪贴板！</span>
+                        <span class="lang-es">Enlace copiado al portapapeles!</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Analysis -->
+        <section class="py-10 bg-white">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+                    <span class="lang-en">&#128214; Detailed Analysis</span>
+                    <span class="lang-ko">&#128214; 상세 분석</span>
+                    <span class="lang-ja">&#128214; 詳細分析</span>
+                    <span class="lang-zh">&#128214; 详细分析</span>
+                    <span class="lang-es">&#128214; Analisis Detallado</span>
+                </h2>
+
+                <!-- Overall Analysis -->
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6 mb-8 border border-pink-100">
+                    <p id="analysis-intro" class="text-gray-700 mb-3 font-medium"></p>
+                    <p id="analysis-type" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-strength" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-growth" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-elements" class="text-gray-600 text-sm"></p>
+                </div>
+
+                <!-- Category Details -->
+                <div class="space-y-6">
+                    <!-- Communication -->
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#128172;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                <span class="lang-en">Communication</span>
+                                <span class="lang-ko">소통</span>
+                                <span class="lang-ja">コミュニケーション</span>
+                                <span class="lang-zh">沟通</span>
+                                <span class="lang-es">Comunicacion</span>
+                            </h3>
+                        </div>
+                        <p id="communication-desc" class="text-gray-600 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Values -->
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#9878;&#65039;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                <span class="lang-en">Values</span>
+                                <span class="lang-ko">가치관</span>
+                                <span class="lang-ja">価値観</span>
+                                <span class="lang-zh">价值观</span>
+                                <span class="lang-es">Valores</span>
+                            </h3>
+                        </div>
+                        <p id="values-desc" class="text-gray-600 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#9889;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                <span class="lang-en">Energy</span>
+                                <span class="lang-ko">에너지</span>
+                                <span class="lang-ja">エネルギー</span>
+                                <span class="lang-zh">能量</span>
+                                <span class="lang-es">Energia</span>
+                            </h3>
+                        </div>
+                        <p id="energy-desc" class="text-gray-600 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Emotional -->
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#128151;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                <span class="lang-en">Emotional Connection</span>
+                                <span class="lang-ko">정서적 유대</span>
+                                <span class="lang-ja">感情的つながり</span>
+                                <span class="lang-zh">情感联系</span>
+                                <span class="lang-es">Conexion Emocional</span>
+                            </h3>
+                        </div>
+                        <p id="emotional-desc" class="text-gray-600 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Growth -->
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#127793;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                <span class="lang-en">Growth Potential</span>
+                                <span class="lang-ko">성장 가능성</span>
+                                <span class="lang-ja">成長の可能性</span>
+                                <span class="lang-zh">成长潜力</span>
+                                <span class="lang-es">Potencial de Crecimiento</span>
+                            </h3>
+                        </div>
+                        <p id="growth-desc" class="text-gray-600 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Try Again / More Tests -->
+        <section class="py-10 bg-gradient-to-br from-pink-50 to-rose-50">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <span class="text-4xl mb-4 inline-block">&#128149;</span>
+                <h2 class="font-heading text-2xl font-bold mb-4">
+                    <span class="lang-en">Try More Tests</span>
+                    <span class="lang-ko">더 많은 테스트</span>
+                    <span class="lang-ja">他のテストを試す</span>
+                    <span class="lang-zh">尝试更多测试</span>
+                    <span class="lang-es">Prueba Mas Tests</span>
+                </h2>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="/compatibility/" class="love-gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition inline-flex items-center justify-center space-x-2">
+                        <span>&#8634;</span>
+                        <span class="lang-en">Test Again</span>
+                        <span class="lang-ko">다시 테스트</span>
+                        <span class="lang-ja">もう一度テスト</span>
+                        <span class="lang-zh">再次测试</span>
+                        <span class="lang-es">Probar de Nuevo</span>
+                    </a>
+                    <a href="/life-summary/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
+                    </a>
+                    <a href="/age-calculator/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#129302;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-gray-400 text-sm lang-en">Discover yourself with AI-powered personality tests.</p>
+                    <p class="text-gray-400 text-sm lang-ko">AI 기반 성격 테스트로 자신을 발견하세요.</p>
+                    <p class="text-gray-400 text-sm lang-ja">AI搭載の性格テストで自分を発見しましょう。</p>
+                    <p class="text-gray-400 text-sm lang-zh">通过AI驱动的性格测试发现自己。</p>
+                    <p class="text-gray-400 text-sm lang-es">Descubrete con tests de personalidad con IA.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">Tests</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                        <li><a href="/compatibility/" class="hover:text-white transition">AI Compatibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
+                <p class="mt-2">All tests are for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/compatibility.js"></script>
+    <script src="/js/compatibility-share.js"></script>
+    <script src="/js/compatibility-image.js"></script>
+
+    <!-- Result Page Script -->
+    <script>
+        // Check for URL parameters first (shared link)
+        const urlParams = new URLSearchParams(window.location.search);
+        let inputData = null;
+
+        if (urlParams.has('a') && urlParams.has('b')) {
+            // Parse from URL (shared link format: ?a=YYYYMMDD&b=YYYYMMDD&na=Name&nb=Name)
+            const birthdayA = urlParams.get('a');
+            const birthdayB = urlParams.get('b');
+            const nameA = urlParams.get('na') || '';
+            const nameB = urlParams.get('nb') || '';
+
+            if (birthdayA.length === 8 && birthdayB.length === 8) {
+                inputData = {
+                    personA: {
+                        name: decodeURIComponent(nameA),
+                        year: parseInt(birthdayA.substring(0, 4)),
+                        month: parseInt(birthdayA.substring(4, 6)),
+                        day: parseInt(birthdayA.substring(6, 8))
+                    },
+                    personB: {
+                        name: decodeURIComponent(nameB),
+                        year: parseInt(birthdayB.substring(0, 4)),
+                        month: parseInt(birthdayB.substring(4, 6)),
+                        day: parseInt(birthdayB.substring(6, 8))
+                    }
+                };
+            }
+        }
+
+        // Fall back to localStorage
+        if (!inputData) {
+            const storedData = localStorage.getItem('compatibility-data');
+            if (storedData) {
+                inputData = JSON.parse(storedData);
+            }
+        }
+
+        if (!inputData) {
+            // No data, redirect to input page
+            window.location.href = '/compatibility/';
+        } else {
+            // Get current language
+            const currentLang = localStorage.getItem('ai-life-summary-lang') || 'en';
+
+            // Calculate compatibility
+            const results = calculateCompatibility(inputData.personA, inputData.personB);
+            window.compatibilityResults = results;
+
+            // Display names and zodiac
+            document.getElementById('person-a-name').textContent = results.personA.name;
+            document.getElementById('person-b-name').textContent = results.personB.name;
+            document.getElementById('person-a-zodiac').textContent = results.personA.zodiac + ' ' + results.personA.element;
+            document.getElementById('person-b-zodiac').textContent = results.personB.zodiac + ' ' + results.personB.element;
+
+            // Animate score display
+            setTimeout(() => {
+                // Score circle animation
+                const scoreRing = document.getElementById('score-ring');
+                const circumference = 2 * Math.PI * 90;
+                const offset = circumference - (results.overallScore / 100) * circumference;
+                scoreRing.style.strokeDashoffset = offset;
+
+                // Score number
+                document.getElementById('score-number').textContent = results.overallScore;
+
+                // Relationship type
+                document.getElementById('relationship-type').textContent =
+                    results.relationshipType.emoji + ' ' + results.relationshipType.labels[currentLang];
+            }, 300);
+
+            // Animate category bars
+            setTimeout(() => {
+                ['communication', 'values', 'energy', 'emotional', 'growth'].forEach((cat, index) => {
+                    setTimeout(() => {
+                        const score = results.categories[cat];
+                        document.getElementById(cat + '-score').textContent = score + '%';
+                        document.getElementById(cat + '-bar').style.width = score + '%';
+
+                        // Update category name with icon
+                        const info = getCategoryInfo(cat, currentLang);
+                        document.getElementById(cat + '-name').textContent = info.icon + ' ' + info.name;
+
+                        // Update description
+                        document.getElementById(cat + '-desc').textContent = getCategoryDescription(cat, score, currentLang);
+                    }, index * 150);
+                });
+            }, 600);
+
+            // Overall analysis
+            setTimeout(() => {
+                const analysis = generateOverallAnalysis(results, currentLang);
+                document.getElementById('analysis-intro').textContent = analysis.intro;
+                document.getElementById('analysis-type').textContent = analysis.type;
+                document.getElementById('analysis-strength').textContent = analysis.strength;
+                document.getElementById('analysis-growth').textContent = analysis.growth;
+                document.getElementById('analysis-elements').textContent = analysis.elements;
+            }, 1200);
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Share button click handlers
+        document.getElementById('share-btn').addEventListener('click', async function() {
+            const shared = await shareNative();
+            if (!shared) {
+                copyResultLink();
+            }
+        });
+
+        const shareBtnMobile = document.getElementById('share-btn-mobile');
+        if (shareBtnMobile) {
+            shareBtnMobile.addEventListener('click', async function() {
+                const shared = await shareNative();
+                if (!shared) {
+                    copyResultLink();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

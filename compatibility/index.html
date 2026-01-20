@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QDH2KJQT9Y');
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>AI Compatibility Test - Love & Relationship Match Calculator | AI Test Lab</title>
+    <meta name="description" content="Discover your romantic compatibility with AI! Enter two birthdays to reveal your love match score, relationship strengths, and detailed analysis. Free and instant results.">
+    <meta name="keywords" content="AI compatibility test, love calculator, relationship match, birthday compatibility, zodiac compatibility, couple match, romantic compatibility, soulmate test">
+    <meta name="author" content="AI Test Lab">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://smartaitest.com/compatibility/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartaitest.com/compatibility/">
+    <meta property="og:title" content="AI Compatibility Test - Discover Your Love Match">
+    <meta property="og:description" content="Calculate your romantic compatibility with AI! Enter two birthdays and reveal your perfect match score.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/compatibility-og.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Test Lab">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://smartaitest.com/compatibility/">
+    <meta name="twitter:title" content="AI Compatibility Test - Discover Your Love Match">
+    <meta name="twitter:description" content="Calculate your romantic compatibility with AI!">
+    <meta name="twitter:image" content="https://smartaitest.com/assets/images/compatibility-twitter.png">
+
+    <!-- Tailwind CSS -->
+    <!-- Google Fonts with Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+<style>
+        /* Prevent CLS - with fallback */
+        body { opacity: 0; transition: opacity 0.1s; }
+        html.lang-ready body { opacity: 1; }
+        @keyframes showBody { to { opacity: 1; } }
+        body { animation: showBody 0s 0.3s forwards; }
+
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+        /* Fixed header height */
+        header.bg-white { min-height: 72px; }
+        header nav { min-height: 56px; }
+        header .flex.items-center.justify-between { min-height: 40px; }
+        header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+        #lang-selector button { min-width: 90px; min-height: 36px; }
+        #current-lang { display: inline-block; min-width: 60px; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .love-gradient-bg { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+        .love-gradient-text {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Person card styles */
+        .person-card {
+            transition: all 0.3s ease;
+        }
+        .person-card:focus-within {
+            border-color: #ec4899;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+        }
+
+        /* Heart animation */
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .heart-pulse {
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        /* Language switching - hide non-active languages (5 languages) */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="ja"] a.lang-ja { display: inline; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="zh"] a.lang-zh { display: inline; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+        html[lang="es"] a.lang-es { display: inline; }
+
+        /* Prevent word breaking in the middle for CJK languages */
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+    </style>
+
+    <!-- Early Language Detection -->
+    <script>
+    (function() {
+        var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        var saved = localStorage.getItem('ai-life-summary-lang');
+        var lang = 'ko';
+        if (saved && supportedLangs.indexOf(saved) !== -1) { lang = saved; }
+        else {
+            var params = new URLSearchParams(window.location.search);
+            var urlLang = params.get('lang') || params.get('hl');
+            if (urlLang) {
+                var code = urlLang.split('-')[0].toLowerCase();
+                if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
+            } else {
+                var browserLangs = navigator.languages || [navigator.language];
+                var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
+                if (langCodes.indexOf('ko') !== -1) {
+                    lang = 'ko';
+                } else {
+                    for (var i = 0; i < langCodes.length; i++) {
+                        if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
+                    }
+                }
+            }
+        }
+        document.documentElement.lang = lang;
+    })();
+    </script>
+
+    <!-- Language Switching -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        for (var i = 0; i < mobileBtns.length; i++) {
+            var btn = mobileBtns[i];
+            var isActive = btn.getAttribute('data-lang') === lang;
+            btn.style.background = isActive ? '#ec4899' : '#f3f4f6';
+            btn.style.color = isActive ? 'white' : '#374151';
+        }
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+
+        document.documentElement.classList.add('lang-ready');
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang || 'ko';
+        switchLang(lang);
+    });
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">&#129302;</span>
+                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-pink-500 font-medium transition">
+                            <span class="lang-en">Tests</span>
+                            <span class="lang-ko">테스트</span>
+                            <span class="lang-ja">テスト</span>
+                            <span class="lang-zh">测试</span>
+                            <span class="lang-es">Tests</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="/life-summary/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#10024;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Life Summary</span>
+                                            <span class="lang-ko">AI 인생 요약</span>
+                                            <span class="lang-ja">AI人生サマリー</span>
+                                            <span class="lang-zh">AI人生总结</span>
+                                            <span class="lang-es">Resumen de Vida IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Your life in one sentence</span>
+                                            <span class="lang-ko">한 문장으로 보는 인생</span>
+                                            <span class="lang-ja">一文であなたの人生</span>
+                                            <span class="lang-zh">一句话概括你的人生</span>
+                                            <span class="lang-es">Tu vida en una frase</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/age-calculator/" class="block px-4 py-3 hover:bg-gray-50 transition">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#127874;</span>
+                                    <div>
+                                        <p class="font-medium text-gray-800">
+                                            <span class="lang-en">AI Age Calculator</span>
+                                            <span class="lang-ko">AI 나이 계산기</span>
+                                            <span class="lang-ja">AI年齢計算機</span>
+                                            <span class="lang-zh">AI年龄计算器</span>
+                                            <span class="lang-es">Calculadora de Edad IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
+                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
+                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
+                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
+                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/compatibility/" class="block px-4 py-3 bg-pink-50 border-l-4 border-pink-500">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl">&#128149;</span>
+                                    <div>
+                                        <p class="font-medium text-pink-600">
+                                            <span class="lang-en">AI Compatibility</span>
+                                            <span class="lang-ko">AI 궁합 테스트</span>
+                                            <span class="lang-ja">AI相性診断</span>
+                                            <span class="lang-zh">AI配对测试</span>
+                                            <span class="lang-es">Compatibilidad IA</span>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <span class="lang-en">Love match calculator</span>
+                                            <span class="lang-ko">연인 궁합 계산기</span>
+                                            <span class="lang-ja">恋愛相性計算機</span>
+                                            <span class="lang-zh">爱情配对计算器</span>
+                                            <span class="lang-es">Calculadora de amor</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div id="lang-selector" class="relative">
+                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
+                            <span id="current-lang">🇺🇸 EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Home</span>
+                        <span class="lang-ko">홈</span>
+                        <span class="lang-ja">ホーム</span>
+                        <span class="lang-zh">首页</span>
+                        <span class="lang-es">Inicio</span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">
+                        <span class="lang-en">TESTS</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">TESTS</span>
+                    </p>
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#10024;</span>
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
+                    </a>
+                    <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                        <span>&#127874;</span>
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
+                    </a>
+                    <a href="/compatibility/" class="flex items-center space-x-2 text-pink-500 font-medium pl-2">
+                        <span>&#128149;</span>
+                        <span class="lang-en">AI Compatibility</span>
+                        <span class="lang-ko">AI 궁합 테스트</span>
+                        <span class="lang-ja">AI相性診断</span>
+                        <span class="lang-zh">AI配对测试</span>
+                        <span class="lang-es">Compatibilidad IA</span>
+                    </a>
+                    <div class="border-t my-2"></div>
+                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">About</span>
+                        <span class="lang-ko">소개</span>
+                        <span class="lang-ja">概要</span>
+                        <span class="lang-zh">关于</span>
+                        <span class="lang-es">Acerca de</span>
+                    </a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                        <span class="lang-en">Contact</span>
+                        <span class="lang-ko">문의</span>
+                        <span class="lang-ja">お問い合わせ</span>
+                        <span class="lang-zh">联系</span>
+                        <span class="lang-es">Contacto</span>
+                    </a>
+                    <div class="pt-3 border-t mt-3">
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="lang-en">Language</span>
+                            <span class="lang-ko">언어</span>
+                            <span class="lang-ja">言語</span>
+                            <span class="lang-zh">语言</span>
+                            <span class="lang-es">Idioma</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇺🇸 EN</button>
+                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
+                            <button onclick="switchLang('ja')" data-lang="ja" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
+                            <button onclick="switchLang('zh')" data-lang="zh" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
+                            <button onclick="switchLang('es')" data-lang="es" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="love-gradient-bg py-10 md:py-14">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <a href="/" class="inline-flex items-center space-x-2 text-white/80 hover:text-white mb-4 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span class="lang-en">Back to Tests</span>
+                    <span class="lang-ko">테스트 목록으로</span>
+                    <span class="lang-ja">テスト一覧へ</span>
+                    <span class="lang-zh">返回测试</span>
+                    <span class="lang-es">Volver a Tests</span>
+                </a>
+                <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
+                    <span class="heart-pulse inline-block">&#128149;</span>
+                    <span class="lang-en">AI Compatibility Test</span>
+                    <span class="lang-ko">AI 궁합 테스트</span>
+                    <span class="lang-ja">AI相性診断</span>
+                    <span class="lang-zh">AI配对测试</span>
+                    <span class="lang-es">Test de Compatibilidad IA</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/90">
+                    <span class="lang-en">Discover your romantic compatibility with AI</span>
+                    <span class="lang-ko">AI가 분석하는 연인 궁합</span>
+                    <span class="lang-ja">AIが分析する恋愛相性</span>
+                    <span class="lang-zh">AI分析你们的爱情配对</span>
+                    <span class="lang-es">Descubre tu compatibilidad romantica con IA</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section class="py-8 md:py-12">
+            <div class="max-w-3xl mx-auto px-4">
+                <form id="compatibility-form">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Person A -->
+                        <div class="person-card bg-white rounded-2xl shadow-lg p-6 border-2 border-transparent">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#128104;</span>
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-600">
+                                    <span class="lang-en">Person A</span>
+                                    <span class="lang-ko">첫 번째 사람</span>
+                                    <span class="lang-ja">1人目</span>
+                                    <span class="lang-zh">第一位</span>
+                                    <span class="lang-es">Persona A</span>
+                                </h2>
+                            </div>
+
+                            <!-- Name (Optional) -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="lang-en">Name (Optional)</span>
+                                    <span class="lang-ko">이름 (선택)</span>
+                                    <span class="lang-ja">名前 (任意)</span>
+                                    <span class="lang-zh">姓名 (选填)</span>
+                                    <span class="lang-es">Nombre (Opcional)</span>
+                                </label>
+                                <input type="text" id="name-a" name="name-a" maxlength="20"
+                                    placeholder="&#128172;"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                            </div>
+
+                            <!-- Birthday -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="lang-en">Date of Birth</span>
+                                    <span class="lang-ko">생년월일</span>
+                                    <span class="lang-ja">生年月日</span>
+                                    <span class="lang-zh">出生日期</span>
+                                    <span class="lang-es">Fecha de Nacimiento</span>
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <input type="number" id="year-a" name="year-a"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Year</span>
+                                            <span class="lang-ko">년</span>
+                                            <span class="lang-ja">年</span>
+                                            <span class="lang-zh">年</span>
+                                            <span class="lang-es">Ano</span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="month-a" name="month-a"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Month</span>
+                                            <span class="lang-ko">월</span>
+                                            <span class="lang-ja">月</span>
+                                            <span class="lang-zh">月</span>
+                                            <span class="lang-es">Mes</span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="day-a" name="day-a"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Day</span>
+                                            <span class="lang-ko">일</span>
+                                            <span class="lang-ja">日</span>
+                                            <span class="lang-zh">日</span>
+                                            <span class="lang-es">Dia</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Heart Connector (visible on desktop) -->
+                        <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                            <span class="text-4xl heart-pulse">&#128151;</span>
+                        </div>
+
+                        <!-- Person B -->
+                        <div class="person-card bg-white rounded-2xl shadow-lg p-6 border-2 border-transparent">
+                            <div class="text-center mb-6">
+                                <span class="text-4xl">&#128105;</span>
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-600">
+                                    <span class="lang-en">Person B</span>
+                                    <span class="lang-ko">두 번째 사람</span>
+                                    <span class="lang-ja">2人目</span>
+                                    <span class="lang-zh">第二位</span>
+                                    <span class="lang-es">Persona B</span>
+                                </h2>
+                            </div>
+
+                            <!-- Name (Optional) -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="lang-en">Name (Optional)</span>
+                                    <span class="lang-ko">이름 (선택)</span>
+                                    <span class="lang-ja">名前 (任意)</span>
+                                    <span class="lang-zh">姓名 (选填)</span>
+                                    <span class="lang-es">Nombre (Opcional)</span>
+                                </label>
+                                <input type="text" id="name-b" name="name-b" maxlength="20"
+                                    placeholder="&#128172;"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                            </div>
+
+                            <!-- Birthday -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <span class="lang-en">Date of Birth</span>
+                                    <span class="lang-ko">생년월일</span>
+                                    <span class="lang-ja">生年月日</span>
+                                    <span class="lang-zh">出生日期</span>
+                                    <span class="lang-es">Fecha de Nacimiento</span>
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <input type="number" id="year-b" name="year-b"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Year</span>
+                                            <span class="lang-ko">년</span>
+                                            <span class="lang-ja">年</span>
+                                            <span class="lang-zh">年</span>
+                                            <span class="lang-es">Ano</span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="month-b" name="month-b"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Month</span>
+                                            <span class="lang-ko">월</span>
+                                            <span class="lang-ja">月</span>
+                                            <span class="lang-zh">月</span>
+                                            <span class="lang-es">Mes</span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="day-b" name="day-b"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                        <p class="text-xs text-gray-400 mt-1 text-center">
+                                            <span class="lang-en">Day</span>
+                                            <span class="lang-ko">일</span>
+                                            <span class="lang-ja">日</span>
+                                            <span class="lang-zh">日</span>
+                                            <span class="lang-es">Dia</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <p id="form-error" class="text-red-500 text-sm text-center mt-4 hidden">
+                        <span class="lang-en">Please enter valid dates for both people.</span>
+                        <span class="lang-ko">두 사람의 생년월일을 올바르게 입력해주세요.</span>
+                        <span class="lang-ja">両方の生年月日を正しく入力してください。</span>
+                        <span class="lang-zh">请正确输入两个人的出生日期。</span>
+                        <span class="lang-es">Por favor ingresa fechas validas para ambas personas.</span>
+                    </p>
+
+                    <!-- Submit Button -->
+                    <div class="mt-8 text-center">
+                        <button type="submit"
+                            class="love-gradient-bg text-white font-bold py-4 px-12 rounded-full text-lg hover:opacity-90 transition transform hover:scale-105 shadow-lg">
+                            <span class="lang-en">&#128149; Calculate Compatibility</span>
+                            <span class="lang-ko">&#128149; 궁합 계산하기</span>
+                            <span class="lang-ja">&#128149; 相性を診断</span>
+                            <span class="lang-zh">&#128149; 计算配对</span>
+                            <span class="lang-es">&#128149; Calcular Compatibilidad</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-8 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-24 flex items-center justify-center text-gray-400">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Did You Know Section -->
+        <section class="py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 md:p-8 border border-pink-100">
+                    <h3 class="font-heading text-xl font-bold mb-4 flex items-center">
+                        <span class="text-2xl mr-2">&#128161;</span>
+                        <span class="lang-en">About Compatibility</span>
+                        <span class="lang-ko">궁합이란?</span>
+                        <span class="lang-ja">相性について</span>
+                        <span class="lang-zh">关于配对</span>
+                        <span class="lang-es">Sobre Compatibilidad</span>
+                    </h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p class="lang-en">
+                            Our AI compatibility test analyzes birth dates to calculate relationship harmony across five key dimensions: <strong>Communication</strong>, <strong>Values</strong>, <strong>Energy</strong>, <strong>Emotional Connection</strong>, and <strong>Growth Potential</strong>. Each aspect contributes to the overall compatibility score.
+                        </p>
+                        <p class="lang-ko">
+                            AI 궁합 테스트는 생년월일을 분석하여 다섯 가지 핵심 영역에서 관계의 조화를 계산합니다: <strong>소통</strong>, <strong>가치관</strong>, <strong>에너지</strong>, <strong>정서적 유대</strong>, 그리고 <strong>성장 가능성</strong>. 각 영역이 전체 궁합 점수에 기여합니다.
+                        </p>
+                        <p class="lang-ja">
+                            AI相性診断は、生年月日を分析して5つの重要な次元で関係の調和を計算します：<strong>コミュニケーション</strong>、<strong>価値観</strong>、<strong>エネルギー</strong>、<strong>感情的つながり</strong>、<strong>成長の可能性</strong>。各側面が全体の相性スコアに貢献します。
+                        </p>
+                        <p class="lang-zh">
+                            AI配对测试分析出生日期，从五个关键维度计算关系和谐度：<strong>沟通</strong>、<strong>价值观</strong>、<strong>能量</strong>、<strong>情感联系</strong>和<strong>成长潜力</strong>。每个方面都对整体配对分数有所贡献。
+                        </p>
+                        <p class="lang-es">
+                            Nuestra prueba de compatibilidad IA analiza las fechas de nacimiento para calcular la armonia de la relacion en cinco dimensiones clave: <strong>Comunicacion</strong>, <strong>Valores</strong>, <strong>Energia</strong>, <strong>Conexion Emocional</strong> y <strong>Potencial de Crecimiento</strong>.
+                        </p>
+                        <p class="text-sm text-gray-500 mt-4">
+                            <span class="lang-en">&#8251; This test is for entertainment purposes only and is not a scientific measurement.</span>
+                            <span class="lang-ko">&#8251; 이 테스트는 오락 목적으로만 제공되며 과학적 측정이 아닙니다.</span>
+                            <span class="lang-ja">&#8251; このテストはエンターテインメント目的のみであり、科学的な測定ではありません。</span>
+                            <span class="lang-zh">&#8251; 此测试仅供娱乐目的，并非科学测量。</span>
+                            <span class="lang-es">&#8251; Esta prueba es solo para entretenimiento y no es una medicion cientifica.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">&#129302;</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
+                        <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
+                        <span class="lang-ja">AI搭載の性格テストで自分を発見しましょう。楽しく、洞察力があり、無料です。</span>
+                        <span class="lang-zh">通过AI驱动的性格测试发现自己。有趣、富有洞察力且免费。</span>
+                        <span class="lang-es">Descubrete con tests de personalidad con IA. Divertido, perspicaz y gratis.</span>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">Tests</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/life-summary/" class="hover:text-white transition">
+                            <span class="lang-en">AI Life Summary</span>
+                            <span class="lang-ko">AI 인생 요약</span>
+                            <span class="lang-ja">AIライフサマリー</span>
+                            <span class="lang-zh">AI人生总结</span>
+                            <span class="lang-es">Resumen de Vida IA</span>
+                        </a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">
+                            <span class="lang-en">AI Age Calculator</span>
+                            <span class="lang-ko">AI 나이 계산기</span>
+                            <span class="lang-ja">AI年齢計算機</span>
+                            <span class="lang-zh">AI年龄计算器</span>
+                            <span class="lang-es">Calculadora de Edad IA</span>
+                        </a></li>
+                        <li><a href="/compatibility/" class="hover:text-white transition">
+                            <span class="lang-en">AI Compatibility</span>
+                            <span class="lang-ko">AI 궁합 테스트</span>
+                            <span class="lang-ja">AI相性診断</span>
+                            <span class="lang-zh">AI配对测试</span>
+                            <span class="lang-es">Compatibilidad IA</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Quick Links</span>
+                        <span class="lang-ko">빠른 링크</span>
+                        <span class="lang-ja">クイックリンク</span>
+                        <span class="lang-zh">快速链接</span>
+                        <span class="lang-es">Enlaces Rapidos</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-ko">홈</span>
+                            <span class="lang-ja">ホーム</span>
+                            <span class="lang-zh">首页</span>
+                            <span class="lang-es">Inicio</span>
+                        </a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">
+                            <span class="lang-en">About</span>
+                            <span class="lang-ko">소개</span>
+                            <span class="lang-ja">概要</span>
+                            <span class="lang-zh">关于</span>
+                            <span class="lang-es">Acerca de</span>
+                        </a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">
+                            <span class="lang-en">Blog</span>
+                            <span class="lang-ko">블로그</span>
+                            <span class="lang-ja">ブログ</span>
+                            <span class="lang-zh">博客</span>
+                            <span class="lang-es">Blog</span>
+                        </a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-ko">문의</span>
+                            <span class="lang-ja">お問い合わせ</span>
+                            <span class="lang-zh">联系我们</span>
+                            <span class="lang-es">Contacto</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">
+                        <span class="lang-en">Legal</span>
+                        <span class="lang-ko">법적 정보</span>
+                        <span class="lang-ja">法的情報</span>
+                        <span class="lang-zh">法律信息</span>
+                        <span class="lang-es">Legal</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
+                            <span class="lang-en">Privacy Policy</span>
+                            <span class="lang-ko">개인정보처리방침</span>
+                            <span class="lang-ja">プライバシーポリシー</span>
+                            <span class="lang-zh">隐私政策</span>
+                            <span class="lang-es">Politica de Privacidad</span>
+                        </a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
+                            <span class="lang-en">Terms of Service</span>
+                            <span class="lang-ko">이용약관</span>
+                            <span class="lang-ja">利用規約</span>
+                            <span class="lang-zh">服务条款</span>
+                            <span class="lang-es">Terminos de Servicio</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Test Lab. <span class="lang-en">All rights reserved.</span><span class="lang-ko">모든 권리 보유.</span><span class="lang-ja">全著作権所有。</span><span class="lang-zh">版权所有。</span><span class="lang-es">Todos los derechos reservados.</span></p>
+                <p class="mt-2">
+                    <span class="lang-en">All tests are for entertainment purposes only.</span>
+                    <span class="lang-ko">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</span>
+                    <span class="lang-ja">すべてのテストはエンターテインメント目的のみです。</span>
+                    <span class="lang-zh">所有测试仅供娱乐目的。</span>
+                    <span class="lang-es">Todos los tests son solo para entretenimiento.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Form validation and submission
+        document.getElementById('compatibility-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const yearA = document.getElementById('year-a').value;
+            const monthA = document.getElementById('month-a').value;
+            const dayA = document.getElementById('day-a').value;
+            const nameA = document.getElementById('name-a').value.trim();
+
+            const yearB = document.getElementById('year-b').value;
+            const monthB = document.getElementById('month-b').value;
+            const dayB = document.getElementById('day-b').value;
+            const nameB = document.getElementById('name-b').value.trim();
+
+            // Validate dates
+            if (!yearA || !monthA || !dayA || !yearB || !monthB || !dayB) {
+                document.getElementById('form-error').classList.remove('hidden');
+                return;
+            }
+
+            const dateA = new Date(yearA, monthA - 1, dayA);
+            const dateB = new Date(yearB, monthB - 1, dayB);
+            const today = new Date();
+
+            if (dateA > today || dateB > today || yearA < 1920 || yearB < 1920) {
+                document.getElementById('form-error').classList.remove('hidden');
+                return;
+            }
+
+            document.getElementById('form-error').classList.add('hidden');
+
+            // Store data in localStorage
+            const formData = {
+                personA: {
+                    name: nameA,
+                    year: parseInt(yearA),
+                    month: parseInt(monthA),
+                    day: parseInt(dayA)
+                },
+                personB: {
+                    name: nameB,
+                    year: parseInt(yearB),
+                    month: parseInt(monthB),
+                    day: parseInt(dayB)
+                }
+            };
+
+            localStorage.setItem('compatibility-data', JSON.stringify(formData));
+
+            // Redirect to result page
+            window.location.href = '/compatibility/result.html';
+        });
+    </script>
+</body>
+</html>
