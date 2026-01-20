@@ -1,36 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 17,
-      "publish_date": "2026-01-20",
-      "title_ko": "웹 개발 용어 정복: 50대 비전공자를 위한 쉬운 번역 가이드",
-      "title_en": "Web Development Terms: An Easy Translation Guide for Non-Tech 50s",
-      "description_ko": "프론트엔드, 백엔드, API 등 어렵게만 느껴지는 웹 개발 용어, 50대 비전공자도 식당 비유로 쉽게 이해할 수 있습니다.",
-      "description_en": "Frontend, backend, API - these web development terms don't have to be intimidating. Learn them easily through restaurant analogies.",
-      "emoji": "📚",
-      "gradient": "from-blue-400 to-cyan-500",
-      "files": {
-        "ko": "post-17-ko.html",
-        "en": "post-17-en.html",
-        "default": "post-17.html"
-      }
-    },
-    {
-      "episode": 18,
-      "publish_date": "2026-01-20",
-      "title_ko": "서버란 무엇인가? 50대 비전공자를 위한 세상에서 제일 쉬운 설명",
-      "title_en": "What Is a Server? The World's Simplest Explanation for Non-Tech 50s",
-      "description_ko": "비전공자도 1분 만에 이해할 수 있도록 도서관과 식당에 비유해 설명합니다. 서버의 정의, 역할, 그리고 클라우드와의 관계를 정리합니다.",
-      "description_en": "We explain servers in 1 minute using library and restaurant analogies. Clear definitions, roles, and how it relates to the cloud.",
-      "emoji": "🖥️",
-      "gradient": "from-teal-400 to-emerald-500",
-      "files": {
-        "ko": "post-18-ko.html",
-        "en": "post-18-en.html",
-        "default": "post-18.html"
-      }
-    },
-    {
       "episode": 19,
       "publish_date": "2026-01-21",
       "title_ko": "배포란 무엇인가? 비전공자를 위한 3분 완벽 정리",
