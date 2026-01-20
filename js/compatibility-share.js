@@ -119,37 +119,29 @@ function shareToLine() {
 }
 
 /**
- * Share to KakaoTalk
+ * Share to KakaoTalk - copies link for sharing
  */
 function shareToKakao() {
     const results = window.compatibilityResults;
-    if (!results) return;
+    const url = generateShareUrl();
+    const text = results
+        ? `💕 AI 궁합 테스트 결과!\n${results.personA.name || 'A'} & ${results.personB.name || 'B'}: ${results.overallScore}% ${results.relationshipType.emoji}\n\n`
+        : 'AI 궁합 테스트 결과!\n\n';
+    const fullText = text + url;
 
-    if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
-        Kakao.Share.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: 'Our AI Compatibility Results!',
-                description: `${results.personA.name} & ${results.personB.name}: ${results.overallScore}% ${results.relationshipType.emoji}`,
-                imageUrl: 'https://smartaitest.com/assets/images/compatibility-og.png',
-                link: {
-                    webUrl: generateShareUrl(),
-                    mobileWebUrl: generateShareUrl()
-                }
-            },
-            buttons: [{
-                title: 'Try AI Compatibility Test',
-                link: {
-                    webUrl: window.location.origin + '/compatibility/',
-                    mobileWebUrl: window.location.origin + '/compatibility/'
-                }
-            }]
-        });
-    } else {
-        // Fallback to clipboard
-        copyResultLink();
-        alert('Link copied! Share it on KakaoTalk.');
-    }
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpen KakaoTalk and paste to share.',
+            ko: '📋 복사되었습니다!\n\n카카오톡을 열고 붙여넣기하여 공유하세요.',
+            ja: '📋 コピーしました!\n\nカカオトークを開いて貼り付けて共有してください。',
+            zh: '📋 已复制!\n\n打开KakaoTalk粘贴以分享。',
+            es: '📋 ¡Copiado!\n\nAbre KakaoTalk y pega para compartir.'
+        };
+        alert(messages[lang] || messages.en);
+    }).catch(() => {
+        alert('카카오톡을 열어 공유하세요!');
+    });
 }
 
 /**
@@ -180,8 +172,9 @@ function shareToPinterest() {
     const url = generateShareUrl();
     const description = generateShareText('pinterest');
     const imageUrl = 'https://smartaitest.com/assets/images/compatibility-og.png';
-    const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    window.open(pinterestUrl, '_blank', 'width=600,height=600');
+    // Use the correct Pinterest share URL format
+    const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+    window.open(pinterestUrl, '_blank', 'width=750,height=550,scrollbars=yes');
 }
 
 /**

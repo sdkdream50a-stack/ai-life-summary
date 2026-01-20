@@ -204,8 +204,8 @@ function shareToLinkedIn(text) {
  */
 function shareToPinterest(description) {
     const imageUrl = 'https://smartaitest.com/assets/images/life-summary-og.png';
-    const url = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE_URL)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    openShareWindow(url, 'pinterest');
+    const url = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE_URL)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+    window.open(url, '_blank', 'width=750,height=550,scrollbars=yes');
     trackShare('pinterest');
 }
 
@@ -290,9 +290,17 @@ function shareToLine(text) {
 function shareToKakao(text) {
     const fullText = `${text}\n\n${SITE_URL}`;
     navigator.clipboard.writeText(fullText).then(() => {
-        alert('📋 Copied!\n\nOpen KakaoTalk and paste to share.');
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpen KakaoTalk and paste to share.',
+            ko: '📋 복사되었습니다!\n\n카카오톡을 열고 붙여넣기하여 공유하세요.',
+            ja: '📋 コピーしました!\n\nカカオトークを開いて貼り付けて共有してください。',
+            zh: '📋 已复制!\n\n打开KakaoTalk粘贴以分享。',
+            es: '📋 ¡Copiado!\n\nAbre KakaoTalk y pega para compartir.'
+        };
+        alert(messages[lang] || messages.en);
     }).catch(() => {
-        alert('Open KakaoTalk to share your results!');
+        alert('카카오톡을 열어 공유하세요!');
     });
     trackShare('kakao');
 }

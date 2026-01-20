@@ -86,34 +86,26 @@ function shareToLine(results) {
 }
 
 /**
- * Share to KakaoTalk (requires Kakao SDK)
+ * Share to KakaoTalk - copies link for sharing
  */
 function shareToKakao(results) {
-    if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
-        Kakao.Share.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: 'My AI Age Results',
-                description: `Real: ${results.realAge}, Mental: ${results.mentalAge}, Energy: ${results.energyAge}`,
-                imageUrl: 'https://smartaitest.com/assets/images/age-calculator-og.png',
-                link: {
-                    webUrl: generateShareUrl(results),
-                    mobileWebUrl: generateShareUrl(results)
-                }
-            },
-            buttons: [{
-                title: 'Try AI Age Calculator',
-                link: {
-                    webUrl: window.location.origin + '/age-calculator/',
-                    mobileWebUrl: window.location.origin + '/age-calculator/'
-                }
-            }]
-        });
-    } else {
-        // Fallback to clipboard
-        copyShareLink(results);
-        alert('Link copied! Share it on KakaoTalk.');
-    }
+    const url = generateShareUrl(results);
+    const text = `🧠 AI 나이 계산기 결과!\n실제: ${results.realAge}세, 정신: ${results.mentalAge}세, 에너지: ${results.energyAge}세\n\n`;
+    const fullText = text + url;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Copied!\n\nOpen KakaoTalk and paste to share.',
+            ko: '📋 복사되었습니다!\n\n카카오톡을 열고 붙여넣기하여 공유하세요.',
+            ja: '📋 コピーしました!\n\nカカオトークを開いて貼り付けて共有してください。',
+            zh: '📋 已复制!\n\n打开KakaoTalk粘贴以分享。',
+            es: '📋 ¡Copiado!\n\nAbre KakaoTalk y pega para compartir.'
+        };
+        alert(messages[lang] || messages.en);
+    }).catch(() => {
+        alert('카카오톡을 열어 공유하세요!');
+    });
 }
 
 /**
@@ -143,8 +135,8 @@ function shareToPinterest(results) {
     const url = generateShareUrl(results);
     const description = generateShareText(results, 'pinterest');
     const imageUrl = 'https://smartaitest.com/assets/images/age-calculator-og.png';
-    const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
-    window.open(pinterestUrl, '_blank', 'width=600,height=600');
+    const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+    window.open(pinterestUrl, '_blank', 'width=750,height=550,scrollbars=yes');
 }
 
 /**
