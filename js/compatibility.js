@@ -963,6 +963,188 @@ const ANIMAL_COUPLES = {
             es: '¡Persecución eterna! Energéticos y adorablemente traviesos.'
         },
         chemistry: '🎀'
+    },
+    'dog-koala': {
+        title: {
+            en: 'Dog & Koala Couple', ko: '강아지와 코알라 커플',
+            ja: '犬とコアラカップル', zh: '狗狗与考拉情侣', es: 'Pareja Perro y Koala'
+        },
+        desc: {
+            en: 'Loyal energy meets cozy vibes! The perfect balance of active and chill.',
+            ko: '충직한 에너지와 포근한 감성의 만남! 활동과 휴식의 완벽한 균형.',
+            ja: '忠実なエネルギーと居心地の良い雰囲気の出会い！活動と癒しの完璧なバランス。',
+            zh: '忠诚的能量遇上舒适的氛围！活力与悠闲的完美平衡。',
+            es: '¡La energía leal conoce las vibraciones acogedoras! El equilibrio perfecto.'
+        },
+        chemistry: '🏠'
+    },
+    'fox-lion': {
+        title: {
+            en: 'Fox & Lion Couple', ko: '여우와 사자 커플',
+            ja: 'キツネとライオンカップル', zh: '狐狸与狮子情侣', es: 'Pareja Zorro y León'
+        },
+        desc: {
+            en: 'Cunning charm meets royal charisma! A power duo ruling with wit and strength.',
+            ko: '영리한 매력과 왕의 카리스마! 지혜와 힘으로 세상을 지배하는 듀오.',
+            ja: '狡猾な魅力と王室のカリスマの出会い！知恵と力で君臨するデュオ。',
+            zh: '狡黠的魅力遇上王者气质！用智慧和力量统治的二人组。',
+            es: '¡El encanto astuto conoce el carisma real! Un dúo que reina con ingenio y fuerza.'
+        },
+        chemistry: '👑'
+    },
+    'dog-lion': {
+        title: {
+            en: 'Dog & Lion Couple', ko: '강아지와 사자 커플',
+            ja: '犬とライオンカップル', zh: '狗狗与狮子情侣', es: 'Pareja Perro y León'
+        },
+        desc: {
+            en: 'The loyal knight and the brave king! An unbreakable bond of trust.',
+            ko: '충직한 기사와 용감한 왕! 깨지지 않는 신뢰의 유대.',
+            ja: '忠実な騎士と勇敢な王！壊れない信頼の絆。',
+            zh: '忠诚的骑士与勇敢的国王！牢不可破的信任纽带。',
+            es: '¡El caballero leal y el rey valiente! Un vínculo inquebrantable de confianza.'
+        },
+        chemistry: '⚔️'
+    },
+    'eagle-penguin': {
+        title: {
+            en: 'Eagle & Penguin Couple', ko: '독수리와 펭귄 커플',
+            ja: '鷲とペンギンカップル', zh: '鹰与企鹅情侣', es: 'Pareja Águila y Pingüino'
+        },
+        desc: {
+            en: 'Sky high ambition meets grounded devotion! Opposites that complete each other.',
+            ko: '하늘 높은 야망과 땅 위의 헌신! 서로를 완성하는 반대 매력.',
+            ja: '空高い野望と地に足のついた献身！互いを完成させる正反対の魅力。',
+            zh: '高飞的雄心遇上脚踏实地的奉献！互补的反差魅力。',
+            es: '¡La ambición del cielo conoce la devoción firme! Opuestos que se complementan.'
+        },
+        chemistry: '🌍'
+    },
+    'tiger-wolf': {
+        title: {
+            en: 'Tiger & Wolf Couple', ko: '호랑이와 늑대 커플',
+            ja: 'トラとオオカミカップル', zh: '老虎与狼情侣', es: 'Pareja Tigre y Lobo'
+        },
+        desc: {
+            en: 'Wild hearts unite! Two fierce souls with intense passion.',
+            ko: '야생의 심장이 만나다! 강렬한 열정의 두 맹수.',
+            ja: '野生の心が出会う！激しい情熱を持つ二つの猛獣の魂。',
+            zh: '狂野之心相遇！两颗炽热灵魂的激烈碰撞。',
+            es: '¡Corazones salvajes unidos! Dos almas feroces con pasión intensa.'
+        },
+        chemistry: '🔥'
+    },
+    'bear-dog': {
+        title: {
+            en: 'Bear & Dog Couple', ko: '곰과 강아지 커플',
+            ja: 'クマと犬カップル', zh: '熊与狗狗情侣', es: 'Pareja Oso y Perro'
+        },
+        desc: {
+            en: 'Big hugs and wagging tails! The most loyal and warm-hearted duo.',
+            ko: '큰 포옹과 흔들리는 꼬리! 가장 충직하고 따뜻한 조합.',
+            ja: '大きなハグと振れる尻尾！最も忠実で温かい心のデュオ。',
+            zh: '大大的拥抱和摇摆的尾巴！最忠诚最温暖的组合。',
+            es: '¡Grandes abrazos y colas meneando! El dúo más leal y cálido.'
+        },
+        chemistry: '🤗'
+    },
+    'owl-dolphin': {
+        title: {
+            en: 'Owl & Dolphin Couple', ko: '부엉이와 돌고래 커플',
+            ja: 'フクロウとイルカカップル', zh: '猫头鹰与海豚情侣', es: 'Pareja Búho y Delfín'
+        },
+        desc: {
+            en: 'Wisdom meets playfulness! Deep conversations and endless fun.',
+            ko: '지혜와 장난기의 만남! 깊은 대화와 끝없는 재미.',
+            ja: '知恵と遊び心の出会い！深い会話と終わりなき楽しさ。',
+            zh: '智慧遇上玩乐！深入交流与无尽欢乐。',
+            es: '¡La sabiduría conoce la diversión! Conversaciones profundas y diversión infinita.'
+        },
+        chemistry: '🌟'
+    },
+    'panda-dog': {
+        title: {
+            en: 'Panda & Dog Couple', ko: '판다와 강아지 커플',
+            ja: 'パンダと犬カップル', zh: '熊猫与狗狗情侣', es: 'Pareja Panda y Perro'
+        },
+        desc: {
+            en: 'Pure happiness! The most cheerful and adorable combination.',
+            ko: '순수한 행복! 가장 밝고 사랑스러운 조합.',
+            ja: '純粋な幸せ！最も陽気で愛らしい組み合わせ。',
+            zh: '纯粹的快乐！最欢乐最可爱的组合。',
+            es: '¡Pura felicidad! La combinación más alegre y adorable.'
+        },
+        chemistry: '🌈'
+    },
+    'butterfly-deer': {
+        title: {
+            en: 'Butterfly & Deer Couple', ko: '나비와 사슴 커플',
+            ja: '蝶と鹿カップル', zh: '蝴蝶与鹿情侣', es: 'Pareja Mariposa y Ciervo'
+        },
+        desc: {
+            en: 'Graceful dreamers! A fairy-tale romance full of gentle beauty.',
+            ko: '우아한 몽상가들! 부드러운 아름다움이 가득한 동화 같은 로맨스.',
+            ja: '優雅な夢想家たち！優しい美しさに満ちた童話のようなロマンス。',
+            zh: '优雅的梦想家！充满温柔之美的童话般浪漫。',
+            es: '¡Soñadores elegantes! Un romance de cuento lleno de belleza gentil.'
+        },
+        chemistry: '🌸'
+    },
+    'lion-owl': {
+        title: {
+            en: 'Lion & Owl Couple', ko: '사자와 부엉이 커플',
+            ja: 'ライオンとフクロウカップル', zh: '狮子与猫头鹰情侣', es: 'Pareja León y Búho'
+        },
+        desc: {
+            en: 'The king and the advisor! Strength guided by wisdom.',
+            ko: '왕과 현자의 만남! 지혜가 이끄는 힘.',
+            ja: '王と賢者の出会い！知恵に導かれる力。',
+            zh: '国王与智者相遇！智慧引导力量。',
+            es: '¡El rey y el consejero! La fuerza guiada por la sabiduría.'
+        },
+        chemistry: '🏛️'
+    },
+    'tiger-fox': {
+        title: {
+            en: 'Tiger & Fox Couple', ko: '호랑이와 여우 커플',
+            ja: 'トラとキツネカップル', zh: '老虎与狐狸情侣', es: 'Pareja Tigre y Zorro'
+        },
+        desc: {
+            en: 'Bold power meets clever charm! An unstoppable strategic duo.',
+            ko: '대담한 힘과 영리한 매력의 만남! 막을 수 없는 전략적 듀오.',
+            ja: '大胆な力と賢い魅力の出会い！止められない戦略的デュオ。',
+            zh: '大胆的力量遇上聪明的魅力！势不可挡的战略组合。',
+            es: '¡El poder audaz conoce el encanto astuto! Un dúo estratégico imparable.'
+        },
+        chemistry: '⚡'
+    },
+    'penguin-deer': {
+        title: {
+            en: 'Penguin & Deer Couple', ko: '펭귄과 사슴 커플',
+            ja: 'ペンギンと鹿カップル', zh: '企鹅与鹿情侣', es: 'Pareja Pingüino y Ciervo'
+        },
+        desc: {
+            en: 'Devoted hearts and gentle souls! A tender love story.',
+            ko: '헌신적인 마음과 부드러운 영혼! 따뜻한 사랑 이야기.',
+            ja: '献身的な心と優しい魂！温かいラブストーリー。',
+            zh: '专一的心与温柔的灵魂！温馨的爱情故事。',
+            es: '¡Corazones devotos y almas gentiles! Una tierna historia de amor.'
+        },
+        chemistry: '💝'
+    },
+    'wolf-dolphin': {
+        title: {
+            en: 'Wolf & Dolphin Couple', ko: '늑대와 돌고래 커플',
+            ja: 'オオカミとイルカカップル', zh: '狼与海豚情侣', es: 'Pareja Lobo y Delfín'
+        },
+        desc: {
+            en: 'Mystery meets joy! Depth and playfulness in perfect harmony.',
+            ko: '신비와 즐거움의 만남! 깊이와 유쾌함의 완벽한 조화.',
+            ja: '神秘と喜びの出会い！深さと遊び心の完璧な調和。',
+            zh: '神秘遇上欢乐！深度与趣味的完美和谐。',
+            es: '¡El misterio conoce la alegría! Profundidad y alegría en perfecta armonía.'
+        },
+        chemistry: '🌊'
     }
 };
 
