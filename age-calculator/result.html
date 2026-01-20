@@ -570,8 +570,7 @@
                             <span class="lang-es">&#128279; Compartir Enlace</span>
                         </p>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <!-- Copy Link -->
-                            <button onclick="copyResultLink()" class="flex items-center space-x-2 bg-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-300 transition text-sm">
+                            <button onclick="copyResultLink()" class="flex items-center space-x-1 bg-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-300 transition text-sm">
                                 <span>&#128279;</span>
                                 <span class="lang-en">Copy</span>
                                 <span class="lang-ko">복사</span>
@@ -579,57 +578,24 @@
                                 <span class="lang-zh">复制</span>
                                 <span class="lang-es">Copiar</span>
                             </button>
-                            <!-- X/Twitter -->
-                            <button onclick="shareToTwitter(window.ageResults)" class="bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 transition text-sm font-bold">
-                                𝕏
+                            <button onclick="shareToTwitter(window.ageResults)" class="flex items-center space-x-1 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 transition text-sm">
+                                <span>𝕏</span>
                             </button>
-                            <!-- Facebook -->
-                            <button onclick="shareToFacebook(window.ageResults)" class="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-bold">
-                                f
+                            <button onclick="shareToFacebook(window.ageResults)" class="flex items-center space-x-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
+                                <span>Facebook</span>
                             </button>
-                            <!-- Instagram -->
-                            <button onclick="shareToInstagram(window.ageResults)" class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-3 py-2 rounded-lg hover:opacity-90 transition text-sm">
-                                📷
+                            <button onclick="shareToWhatsApp(window.ageResults)" class="flex items-center space-x-1 bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 transition text-sm">
+                                <span>WhatsApp</span>
                             </button>
-                            <!-- Threads -->
-                            <button onclick="shareToThreads(window.ageResults)" class="bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 transition text-sm">
-                                @
+                            <button onclick="shareToLine(window.ageResults)" class="flex items-center space-x-1 bg-emerald-400 text-white px-3 py-2 rounded-lg hover:bg-emerald-500 transition text-sm">
+                                <span>LINE</span>
                             </button>
-                            <!-- Telegram -->
-                            <button onclick="shareToTelegram(window.ageResults)" class="bg-sky-500 text-white px-3 py-2 rounded-lg hover:bg-sky-600 transition text-sm">
-                                ✈️
-                            </button>
-                            <!-- WhatsApp -->
-                            <button onclick="shareToWhatsApp(window.ageResults)" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 transition text-sm">
-                                💬
-                            </button>
-                            <!-- LINE -->
-                            <button onclick="shareToLine(window.ageResults)" class="bg-emerald-400 text-white px-3 py-2 rounded-lg hover:bg-emerald-500 transition text-sm">
-                                🟢
-                            </button>
-                            <!-- KakaoTalk -->
-                            <button onclick="shareToKakao(window.ageResults)" class="bg-yellow-400 text-gray-900 px-3 py-2 rounded-lg hover:bg-yellow-500 transition text-sm">
-                                💛
-                            </button>
-                            <!-- Reddit -->
-                            <button onclick="shareToReddit(window.ageResults)" class="bg-orange-600 text-white px-3 py-2 rounded-lg hover:bg-orange-700 transition text-sm">
-                                🔴
-                            </button>
-                            <!-- Pinterest -->
-                            <button onclick="shareToPinterest(window.ageResults)" class="bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700 transition text-sm">
-                                📌
-                            </button>
-                            <!-- LinkedIn -->
-                            <button onclick="shareToLinkedIn(window.ageResults)" class="bg-blue-700 text-white px-3 py-2 rounded-lg hover:bg-blue-800 transition text-sm font-bold">
-                                in
-                            </button>
-                            <!-- WeChat -->
-                            <button onclick="shareToWeChat(window.ageResults)" class="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition text-sm">
-                                微
-                            </button>
-                            <!-- Weibo -->
-                            <button onclick="shareToWeibo(window.ageResults)" class="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition text-sm">
-                                微博
+                            <button onclick="shareToKakao(window.ageResults)" class="flex items-center space-x-1 bg-yellow-400 text-gray-900 px-3 py-2 rounded-lg hover:bg-yellow-500 transition text-sm">
+                                <span class="lang-en">KakaoTalk</span>
+                                <span class="lang-ko">카카오톡</span>
+                                <span class="lang-ja">カカオトーク</span>
+                                <span class="lang-zh">KakaoTalk</span>
+                                <span class="lang-es">KakaoTalk</span>
                             </button>
                         </div>
                     </div>
