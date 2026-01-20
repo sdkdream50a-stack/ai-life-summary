@@ -518,6 +518,57 @@
             </div>
         </section>
 
+        <!-- Movie Genre & Lucky Date Section -->
+        <section class="py-4 md:py-6">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Movie Genre Card -->
+                    <div id="movie-genre-card" class="result-card bg-gradient-to-br from-purple-50 via-white to-indigo-50 rounded-2xl shadow-lg p-5 md:p-6 border border-purple-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full mb-3">
+                                <span id="movie-genre-emoji" class="text-2xl">🎬</span>
+                            </div>
+                            <h3 class="font-heading text-sm text-gray-500 mb-1">
+                                <span class="lang-en">Your Love Movie Genre</span>
+                                <span class="lang-ko">당신들의 사랑 영화 장르</span>
+                                <span class="lang-ja">あなたたちの恋愛映画ジャンル</span>
+                                <span class="lang-zh">你们的爱情电影类型</span>
+                                <span class="lang-es">Tu Género de Película de Amor</span>
+                            </h3>
+                            <p id="movie-genre-title" class="font-heading text-lg font-bold text-purple-700 mb-2">Romantic Comedy</p>
+                            <p id="movie-genre-desc" class="text-gray-600 text-sm leading-relaxed">Your love story is full of laughter!</p>
+                        </div>
+                    </div>
+
+                    <!-- Lucky Date Card -->
+                    <div id="lucky-date-card" class="result-card bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-2xl shadow-lg p-5 md:p-6 border border-amber-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mb-3">
+                                <span id="lucky-date-emoji" class="text-2xl">📅</span>
+                            </div>
+                            <h3 class="font-heading text-sm text-gray-500 mb-1">
+                                <span class="lang-en">Your Lucky Date</span>
+                                <span class="lang-ko">당신들의 럭키 데이트</span>
+                                <span class="lang-ja">ラッキーデート</span>
+                                <span class="lang-zh">你们的幸运日期</span>
+                                <span class="lang-es">Tu Fecha de la Suerte</span>
+                            </h3>
+                            <p id="lucky-date-value" class="font-heading text-lg font-bold text-amber-700 mb-1">January 15, 2026</p>
+                            <p class="text-gray-600 text-sm">
+                                <span id="lucky-date-season-emoji">🌸</span>
+                                <span class="lang-en">Perfect for: </span>
+                                <span class="lang-ko">추천 데이트: </span>
+                                <span class="lang-ja">おすすめ: </span>
+                                <span class="lang-zh">推荐活动: </span>
+                                <span class="lang-es">Perfecto para: </span>
+                                <span id="lucky-date-activity" class="font-medium text-amber-600">cherry blossom picnic</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Main Results Card -->
         <section class="py-8 md:py-12">
             <div class="max-w-2xl mx-auto px-4">
@@ -1029,6 +1080,27 @@
                     document.getElementById('relationship-type').textContent =
                         results.relationshipType.emoji + ' ' + creativeLabel;
                 }
+            }
+
+            // Update Movie Genre section
+            if (results.movieGenre) {
+                const movieGenre = results.movieGenre;
+                document.getElementById('movie-genre-emoji').textContent = movieGenre.emoji;
+                document.getElementById('movie-genre-title').textContent =
+                    movieGenre.title[currentLang] || movieGenre.title.en;
+                document.getElementById('movie-genre-desc').textContent =
+                    movieGenre.desc[currentLang] || movieGenre.desc.en;
+            }
+
+            // Update Lucky Date section
+            if (results.luckyDate) {
+                const luckyDate = results.luckyDate;
+                document.getElementById('lucky-date-emoji').textContent = luckyDate.emoji;
+                document.getElementById('lucky-date-value').textContent =
+                    luckyDate.dateFormatted[currentLang] || luckyDate.dateFormatted.en;
+                document.getElementById('lucky-date-season-emoji').textContent = luckyDate.emoji;
+                document.getElementById('lucky-date-activity').textContent =
+                    luckyDate.activity[currentLang] || luckyDate.activity.en;
             }
         }
 

@@ -174,6 +174,12 @@ function calculateCompatibility(personA, personB) {
     // Get enhanced relationship type with animal couple
     const relationshipType = getEnhancedRelationshipType(overallScore, animalCouple);
 
+    // Get movie genre for this couple
+    const movieGenre = getMovieGenre(overallScore, categories, animalCouple, seed);
+
+    // Get lucky date
+    const luckyDate = getLuckyDate(personA, personB, seed);
+
     return {
         personA: {
             name: personA.name || 'Person A',
@@ -193,6 +199,8 @@ function calculateCompatibility(personA, personB) {
         categories,
         relationshipType,
         animalCouple,
+        movieGenre,
+        luckyDate,
         elementCompatibility: elementBase,
         seed // For verification/debugging
     };
@@ -1247,5 +1255,298 @@ function getEnhancedRelationshipType(score, animalCouple) {
         ...baseType,
         creativeLabels: creativeLabels[baseType.level] || creativeLabels.good,
         animalCouple
+    };
+}
+
+// ============================================
+// MOVIE GENRE MATCHING SYSTEM
+// ============================================
+
+/**
+ * Movie genres with descriptions for couple types
+ */
+const MOVIE_GENRES = {
+    romcom: {
+        emoji: '🎬',
+        title: {
+            en: 'Romantic Comedy', ko: '로맨틱 코미디',
+            ja: 'ロマンティックコメディ', zh: '浪漫喜剧', es: 'Comedia Romántica'
+        },
+        desc: {
+            en: 'Your love story is full of laughter and sweet moments!',
+            ko: '웃음과 달콤함이 가득한 사랑 이야기!',
+            ja: '笑いと甘い瞬間がいっぱいのラブストーリー！',
+            zh: '你们的爱情故事充满欢笑和甜蜜！',
+            es: '¡Tu historia de amor está llena de risas y momentos dulces!'
+        },
+        movies: ['When Harry Met Sally', 'The Proposal', 'Crazy Rich Asians']
+    },
+    epicRomance: {
+        emoji: '🎭',
+        title: {
+            en: 'Epic Romance', ko: '운명적 로맨스',
+            ja: '運命のロマンス', zh: '史诗爱情', es: 'Romance Épico'
+        },
+        desc: {
+            en: 'A love that transcends time and space!',
+            ko: '시간과 공간을 초월한 사랑!',
+            ja: '時間と空間を超えた愛！',
+            zh: '超越时空的爱情！',
+            es: '¡Un amor que trasciende el tiempo y el espacio!'
+        },
+        movies: ['Titanic', 'The Notebook', 'La La Land']
+    },
+    actionAdventure: {
+        emoji: '🦸',
+        title: {
+            en: 'Action Adventure', ko: '액션 어드벤처',
+            ja: 'アクションアドベンチャー', zh: '动作冒险', es: 'Acción y Aventura'
+        },
+        desc: {
+            en: 'Partners in crime, conquering the world together!',
+            ko: '함께 세상을 정복하는 파트너!',
+            ja: '一緒に世界を征服するパートナー！',
+            zh: '一起征服世界的搭档！',
+            es: '¡Socios en el crimen, conquistando el mundo juntos!'
+        },
+        movies: ['Mr. & Mrs. Smith', 'True Lies', 'The Incredibles']
+    },
+    fantasyMagic: {
+        emoji: '✨',
+        title: {
+            en: 'Fantasy Romance', ko: '판타지 로맨스',
+            ja: 'ファンタジーロマンス', zh: '奇幻爱情', es: 'Romance Fantástico'
+        },
+        desc: {
+            en: 'Your love is straight out of a fairy tale!',
+            ko: '동화에서 나온 것 같은 사랑!',
+            ja: 'おとぎ話から出てきたような愛！',
+            zh: '童话般的爱情！',
+            es: '¡Tu amor es sacado de un cuento de hadas!'
+        },
+        movies: ['Beauty and the Beast', 'Enchanted', 'The Shape of Water']
+    },
+    sliceOfLife: {
+        emoji: '🏠',
+        title: {
+            en: 'Slice of Life', ko: '일상 로맨스',
+            ja: '日常系ロマンス', zh: '生活片', es: 'Slice of Life'
+        },
+        desc: {
+            en: 'Finding magic in everyday moments together!',
+            ko: '일상 속 작은 행복을 함께 찾는 사랑!',
+            ja: '日常の中で魔法を見つける愛！',
+            zh: '在日常中发现爱的魔法！',
+            es: '¡Encontrando magia en los momentos cotidianos juntos!'
+        },
+        movies: ['Before Sunrise', '500 Days of Summer', 'About Time']
+    },
+    drama: {
+        emoji: '🎪',
+        title: {
+            en: 'K-Drama Style', ko: 'K-드라마 스타일',
+            ja: '韓ドラスタイル', zh: '韩剧风格', es: 'Estilo K-Drama'
+        },
+        desc: {
+            en: 'Intense emotions, plot twists, and destined love!',
+            ko: '강렬한 감정, 반전, 그리고 운명적 사랑!',
+            ja: '強烈な感情、どんでん返し、運命の愛！',
+            zh: '强烈的情感、剧情反转和命中注定的爱！',
+            es: '¡Emociones intensas, giros de trama y amor destinado!'
+        },
+        movies: ['Crash Landing on You', 'Goblin', 'Reply 1988']
+    },
+    mystery: {
+        emoji: '🔮',
+        title: {
+            en: 'Mysterious Romance', ko: '미스터리 로맨스',
+            ja: 'ミステリーロマンス', zh: '神秘爱情', es: 'Romance Misterioso'
+        },
+        desc: {
+            en: 'A love story full of intrigue and discovery!',
+            ko: '호기심과 발견으로 가득한 사랑!',
+            ja: '謎と発見に満ちたラブストーリー！',
+            zh: '充满悬念和发现的爱情！',
+            es: '¡Una historia de amor llena de intriga y descubrimiento!'
+        },
+        movies: ['Eternal Sunshine', 'Passengers', 'The Time Traveler\'s Wife']
+    },
+    animated: {
+        emoji: '🎨',
+        title: {
+            en: 'Animated Romance', ko: '애니메이션 로맨스',
+            ja: 'アニメロマンス', zh: '动画爱情', es: 'Romance Animado'
+        },
+        desc: {
+            en: 'Pure, heartwarming love like a Pixar movie!',
+            ko: '픽사 영화처럼 순수하고 따뜻한 사랑!',
+            ja: 'ピクサー映画のような純粋で心温まる愛！',
+            zh: '像皮克斯电影一样纯真温暖的爱！',
+            es: '¡Amor puro y conmovedor como una película de Pixar!'
+        },
+        movies: ['Up', 'WALL-E', 'Your Name']
+    }
+};
+
+/**
+ * Determine movie genre based on compatibility profile
+ */
+function getMovieGenre(score, categories, animalCouple, seed) {
+    // Calculate genre based on multiple factors
+    const avgCategoryScore = Object.values(categories).reduce((a, b) => a + b, 0) / 5;
+    const emotionalScore = categories.emotional;
+    const energyScore = categories.energy;
+    const growthScore = categories.growth;
+
+    // Determine genre based on personality profile
+    let genreKey;
+
+    if (score >= 90) {
+        // Perfect couples get epic romance
+        genreKey = 'epicRomance';
+    } else if (score >= 85 && emotionalScore >= 85) {
+        // High emotional = K-Drama
+        genreKey = 'drama';
+    } else if (energyScore >= 85 && score >= 75) {
+        // High energy = Action Adventure
+        genreKey = 'actionAdventure';
+    } else if (emotionalScore >= 80 && growthScore >= 80) {
+        // High emotional + growth = Fantasy
+        genreKey = 'fantasyMagic';
+    } else if (score >= 70 && energyScore < 75) {
+        // Good score but chill = Slice of Life
+        genreKey = 'sliceOfLife';
+    } else if (avgCategoryScore >= 75) {
+        // Well-balanced = Romcom
+        genreKey = 'romcom';
+    } else if (emotionalScore < 70 || score < 60) {
+        // Mystery for unusual patterns
+        genreKey = 'mystery';
+    } else {
+        // Default to animated for sweet, simple love
+        genreKey = 'animated';
+    }
+
+    // Use seed to add some variety within similar scores
+    const genreKeys = Object.keys(MOVIE_GENRES);
+    const seedVariation = seed % 100;
+    if (seedVariation < 15 && score >= 65 && score < 85) {
+        // 15% chance to get a different genre for mid-range scores
+        const altIndex = (genreKeys.indexOf(genreKey) + Math.floor(seed / 100)) % genreKeys.length;
+        genreKey = genreKeys[altIndex];
+    }
+
+    return {
+        key: genreKey,
+        ...MOVIE_GENRES[genreKey]
+    };
+}
+
+// ============================================
+// LUCKY DATE FEATURE
+// ============================================
+
+/**
+ * Calculate a lucky date for the couple based on their birthdays
+ */
+function getLuckyDate(personA, personB, seed) {
+    // Calculate lucky month (combination of both birth months)
+    const monthSum = personA.month + personB.month;
+    const luckyMonth = ((monthSum - 1) % 12) + 1;
+
+    // Calculate lucky day (based on seed and birth days)
+    const daySum = personA.day + personB.day;
+    const maxDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][luckyMonth - 1];
+    const luckyDay = ((daySum + seed) % maxDays) + 1;
+
+    // Get current year or next year
+    const today = new Date();
+    let luckyYear = today.getFullYear();
+    const luckyDate = new Date(luckyYear, luckyMonth - 1, luckyDay);
+    if (luckyDate < today) {
+        luckyYear++;
+    }
+
+    // Determine lucky activity based on season and compatibility
+    const season = luckyMonth <= 2 || luckyMonth === 12 ? 'winter' :
+                   luckyMonth <= 5 ? 'spring' :
+                   luckyMonth <= 8 ? 'summer' : 'fall';
+
+    const activities = {
+        winter: {
+            en: ['cozy cafe date', 'ice skating', 'watching movies at home', 'hot springs trip'],
+            ko: ['아늑한 카페 데이트', '아이스 스케이팅', '집에서 영화 보기', '온천 여행'],
+            ja: ['居心地の良いカフェデート', 'アイススケート', '家で映画鑑賞', '温泉旅行'],
+            zh: ['温馨咖啡厅约会', '滑冰', '在家看电影', '温泉之旅'],
+            es: ['cita en café acogedor', 'patinaje sobre hielo', 'ver películas en casa', 'viaje a aguas termales']
+        },
+        spring: {
+            en: ['cherry blossom picnic', 'hiking adventure', 'flower garden visit', 'outdoor brunch'],
+            ko: ['벚꽃 피크닉', '하이킹 모험', '꽃 정원 방문', '야외 브런치'],
+            ja: ['お花見ピクニック', 'ハイキング冒険', 'フラワーガーデン訪問', 'アウトドアブランチ'],
+            zh: ['赏樱野餐', '徒步探险', '花园参观', '户外早午餐'],
+            es: ['picnic de cerezos', 'aventura de senderismo', 'visita al jardín de flores', 'brunch al aire libre']
+        },
+        summer: {
+            en: ['beach getaway', 'night festival', 'rooftop dinner', 'road trip adventure'],
+            ko: ['해변 여행', '야간 축제', '루프탑 디너', '로드 트립'],
+            ja: ['ビーチ旅行', '夜のお祭り', 'ルーフトップディナー', 'ロードトリップ'],
+            zh: ['海滩度假', '夜间节日', '天台晚餐', '公路旅行'],
+            es: ['escapada a la playa', 'festival nocturno', 'cena en la azotea', 'viaje por carretera']
+        },
+        fall: {
+            en: ['autumn leaf viewing', 'wine tasting', 'cozy bookstore date', 'harvest festival'],
+            ko: ['단풍 구경', '와인 테이스팅', '아늑한 서점 데이트', '수확 축제'],
+            ja: ['紅葉狩り', 'ワインテイスティング', '居心地の良い書店デート', '収穫祭'],
+            zh: ['赏秋叶', '品酒', '温馨书店约会', '丰收节'],
+            es: ['ver hojas de otoño', 'cata de vinos', 'cita en librería acogedora', 'festival de cosecha']
+        }
+    };
+
+    const activityIndex = seed % 4;
+    const seasonActivities = activities[season];
+
+    // Format month names
+    const monthNames = {
+        en: ['January', 'February', 'March', 'April', 'May', 'June',
+             'July', 'August', 'September', 'October', 'November', 'December'],
+        ko: ['1월', '2월', '3월', '4월', '5월', '6월',
+             '7월', '8월', '9월', '10월', '11월', '12월'],
+        ja: ['1月', '2月', '3月', '4月', '5月', '6月',
+             '7月', '8月', '9月', '10月', '11月', '12月'],
+        zh: ['1月', '2月', '3月', '4月', '5月', '6月',
+             '7月', '8月', '9月', '10月', '11月', '12月'],
+        es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    };
+
+    return {
+        year: luckyYear,
+        month: luckyMonth,
+        day: luckyDay,
+        monthName: {
+            en: monthNames.en[luckyMonth - 1],
+            ko: monthNames.ko[luckyMonth - 1],
+            ja: monthNames.ja[luckyMonth - 1],
+            zh: monthNames.zh[luckyMonth - 1],
+            es: monthNames.es[luckyMonth - 1]
+        },
+        dateFormatted: {
+            en: `${monthNames.en[luckyMonth - 1]} ${luckyDay}, ${luckyYear}`,
+            ko: `${luckyYear}년 ${luckyMonth}월 ${luckyDay}일`,
+            ja: `${luckyYear}年${luckyMonth}月${luckyDay}日`,
+            zh: `${luckyYear}年${luckyMonth}月${luckyDay}日`,
+            es: `${luckyDay} de ${monthNames.es[luckyMonth - 1]} de ${luckyYear}`
+        },
+        activity: {
+            en: seasonActivities.en[activityIndex],
+            ko: seasonActivities.ko[activityIndex],
+            ja: seasonActivities.ja[activityIndex],
+            zh: seasonActivities.zh[activityIndex],
+            es: seasonActivities.es[activityIndex]
+        },
+        season,
+        emoji: season === 'winter' ? '❄️' : season === 'spring' ? '🌸' :
+               season === 'summer' ? '☀️' : '🍂'
     };
 }

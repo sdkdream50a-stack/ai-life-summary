@@ -298,6 +298,20 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
         ctx.textAlign = 'center';
     });
 
+    // Movie Genre Section (after category bars)
+    if (results.movieGenre) {
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cardX + 50, cardY + 1230);
+        ctx.lineTo(cardX + cardWidth - 50, cardY + 1230);
+        ctx.stroke();
+
+        ctx.fillStyle = colorScheme.gradient[0];
+        ctx.font = 'bold 24px Poppins, sans-serif';
+        ctx.fillText(`${results.movieGenre.emoji} Your Love Movie: ${results.movieGenre.title.en}`, centerX, cardY + 1280);
+    }
+
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '26px Inter, sans-serif';
@@ -325,9 +339,9 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
 
     // Main card
     const cardWidth = 950;
-    const cardHeight = 850;
+    const cardHeight = 880;
     const cardX = (config.width - cardWidth) / 2;
-    const cardY = 110;
+    const cardY = 100;
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
     roundRectCompat(ctx, cardX, cardY, cardWidth, cardHeight, 30);
@@ -420,6 +434,20 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
         ctx.fillStyle = '#6b7280';
         const desc = results.animalCouple.desc.en || '';
         ctx.fillText(desc.substring(0, 60) + (desc.length > 60 ? '...' : ''), centerX, cardY + 680);
+    }
+
+    // Movie Genre at bottom of card
+    if (results.movieGenre) {
+        ctx.fillStyle = colorScheme.gradient[0];
+        ctx.font = 'bold 18px Poppins, sans-serif';
+        ctx.fillText(`${results.movieGenre.emoji} Love Movie: ${results.movieGenre.title.en}`, centerX, cardY + 730);
+    }
+
+    // Lucky Date
+    if (results.luckyDate) {
+        ctx.fillStyle = '#9ca3af';
+        ctx.font = '16px Inter, sans-serif';
+        ctx.fillText(`${results.luckyDate.emoji} Lucky Date: ${results.luckyDate.dateFormatted.en}`, centerX, cardY + 770);
     }
 
     // Bottom info
