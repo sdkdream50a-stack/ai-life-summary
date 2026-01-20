@@ -197,28 +197,70 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
     ctx.fillStyle = '#6b7280';
     ctx.fillText(`${results.personA.zodiac} & ${results.personB.zodiac}`, centerX, cardY + 245);
 
-    // Divider
+    // Animal Couple Section
+    if (results.animalCouple) {
+        // Divider
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cardX + 50, cardY + 280);
+        ctx.lineTo(cardX + cardWidth - 50, cardY + 280);
+        ctx.stroke();
+
+        // Animal couple title
+        ctx.fillStyle = colorScheme.gradient[0];
+        ctx.font = 'bold 28px Poppins, sans-serif';
+        ctx.fillText('🐾 Animal Couple Type', centerX, cardY + 330);
+
+        // Animal emojis
+        ctx.font = '80px sans-serif';
+        const animalA = results.animalCouple.animalA?.emoji || '🦁';
+        const animalB = results.animalCouple.animalB?.emoji || '🐱';
+        const chemistry = results.animalCouple.chemistry || '💕';
+
+        ctx.fillText(animalA, centerX - 120, cardY + 430);
+        ctx.font = '50px sans-serif';
+        ctx.fillText(chemistry, centerX, cardY + 420);
+        ctx.font = '80px sans-serif';
+        ctx.fillText(animalB, centerX + 120, cardY + 430);
+
+        // Animal couple name
+        ctx.fillStyle = '#374151';
+        ctx.font = 'bold 32px Poppins, sans-serif';
+        const coupleTitle = results.animalCouple.title?.en || 'Unique Duo';
+        ctx.fillText(coupleTitle, centerX, cardY + 500);
+
+        // Animal couple description
+        ctx.font = '22px Inter, sans-serif';
+        ctx.fillStyle = '#6b7280';
+        const coupleDesc = results.animalCouple.desc?.en || '';
+        // Wrap text if too long
+        wrapTextCompat(ctx, coupleDesc, centerX, cardY + 540, 700, 28);
+    }
+
+    // Divider before score
     ctx.strokeStyle = '#e5e7eb';
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(cardX + 50, cardY + 280);
-    ctx.lineTo(cardX + cardWidth - 50, cardY + 280);
+    ctx.moveTo(cardX + 50, cardY + 590);
+    ctx.lineTo(cardX + cardWidth - 50, cardY + 590);
     ctx.stroke();
 
     // Score circle
-    const scoreY = cardY + 450;
-    drawScoreCircle(ctx, centerX, scoreY, 130, results.overallScore, colorScheme);
+    const scoreY = cardY + 750;
+    drawScoreCircle(ctx, centerX, scoreY, 110, results.overallScore, colorScheme);
 
-    // Relationship type
+    // Relationship type (use creative label if available)
     ctx.fillStyle = '#374151';
-    ctx.font = 'bold 36px Poppins, sans-serif';
-    ctx.fillText(`${results.relationshipType.emoji} ${results.relationshipType.labels.en}`, centerX, cardY + 630);
+    ctx.font = 'bold 32px Poppins, sans-serif';
+    const relLabel = results.relationshipType.creativeLabels?.en || results.relationshipType.labels.en;
+    ctx.fillText(`${results.relationshipType.emoji} ${relLabel}`, centerX, cardY + 890);
 
     // Category bars
-    const barStartY = cardY + 700;
+    const barStartY = cardY + 950;
     const barWidth = 700;
-    const barHeight = 24;
-    const barSpacing = 70;
+    const barHeight = 20;
+    const barSpacing = 55;
 
     const categories = ['communication', 'values', 'energy', 'emotional', 'growth'];
     const categoryLabels = ['Communication', 'Values', 'Energy', 'Emotional', 'Growth'];
@@ -258,13 +300,13 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
 
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-    ctx.font = '28px Inter, sans-serif';
-    ctx.fillText('#AICompatibility  #LoveTest', centerX, 1680);
+    ctx.font = '26px Inter, sans-serif';
+    ctx.fillText('#AICompatibility  #AnimalCouple', centerX, 1720);
 
     // URL
-    ctx.font = '24px Inter, sans-serif';
+    ctx.font = '22px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/compatibility', centerX, 1740);
+    ctx.fillText('smartaitest.com/compatibility', centerX, 1770);
     ctx.globalAlpha = 1;
 }
 
@@ -283,39 +325,60 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
 
     // Main card
     const cardWidth = 950;
-    const cardHeight = 820;
+    const cardHeight = 850;
     const cardX = (config.width - cardWidth) / 2;
-    const cardY = 120;
+    const cardY = 110;
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
     roundRectCompat(ctx, cardX, cardY, cardWidth, cardHeight, 30);
     ctx.fill();
 
-    // Names on sides with score in center
-    ctx.fillStyle = '#374151';
-    ctx.font = 'bold 28px Poppins, sans-serif';
-    ctx.fillText(results.personA.name || 'A', cardX + 150, cardY + 200);
-    ctx.fillText(results.personB.name || 'B', cardX + cardWidth - 150, cardY + 200);
+    // Animal couple at top (prominent feature)
+    if (results.animalCouple) {
+        ctx.font = '60px sans-serif';
+        const animalA = results.animalCouple.animalA?.emoji || '🦁';
+        const animalB = results.animalCouple.animalB?.emoji || '🐱';
+        const chemistry = results.animalCouple.chemistry || '💕';
+
+        ctx.fillText(animalA, centerX - 100, cardY + 80);
+        ctx.font = '40px sans-serif';
+        ctx.fillText(chemistry, centerX, cardY + 75);
+        ctx.font = '60px sans-serif';
+        ctx.fillText(animalB, centerX + 100, cardY + 80);
+
+        // Animal couple title
+        ctx.fillStyle = '#374151';
+        ctx.font = 'bold 24px Poppins, sans-serif';
+        const coupleTitle = results.animalCouple.title?.en || 'Unique Duo';
+        ctx.fillText(coupleTitle, centerX, cardY + 125);
+    }
+
+    // Names with score in center
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '22px Inter, sans-serif';
+    ctx.fillText(results.personA.name || 'A', cardX + 140, cardY + 210);
+    ctx.fillText(results.personB.name || 'B', cardX + cardWidth - 140, cardY + 210);
 
     // Central score circle
-    drawScoreCircle(ctx, centerX, cardY + 200, 100, results.overallScore, colorScheme);
+    drawScoreCircle(ctx, centerX, cardY + 210, 80, results.overallScore, colorScheme);
 
     // Zodiac
-    ctx.font = '20px Inter, sans-serif';
-    ctx.fillStyle = '#6b7280';
-    ctx.fillText(results.personA.zodiac, cardX + 150, cardY + 240);
-    ctx.fillText(results.personB.zodiac, cardX + cardWidth - 150, cardY + 240);
+    ctx.font = '16px Inter, sans-serif';
+    ctx.fillStyle = '#9ca3af';
+    ctx.fillText(results.personA.zodiac, cardX + 140, cardY + 240);
+    ctx.fillText(results.personB.zodiac, cardX + cardWidth - 140, cardY + 240);
 
-    // Relationship type
+    // Relationship type (use creative label)
     ctx.fillStyle = '#374151';
-    ctx.font = 'bold 28px Poppins, sans-serif';
-    ctx.fillText(`${results.relationshipType.emoji} ${results.relationshipType.labels.en}`, centerX, cardY + 350);
+    ctx.font = 'bold 24px Poppins, sans-serif';
+    const relLabel = results.relationshipType.creativeLabels?.en || results.relationshipType.labels.en;
+    ctx.fillText(`${results.relationshipType.emoji} ${relLabel}`, centerX, cardY + 320);
 
     // Category bars (compact)
-    const barStartY = cardY + 400;
-    const barWidth = 600;
-    const barHeight = 18;
-    const barSpacing = 55;
+    const barStartY = cardY + 380;
+    const barWidth = 580;
+    const barHeight = 16;
+    const barSpacing = 50;
 
     const categories = ['communication', 'values', 'energy', 'emotional', 'growth'];
     const categoryIcons = ['💬', '⚖️', '⚡', '💗', '🌱'];
@@ -326,39 +389,47 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
 
         // Icon and score
         ctx.fillStyle = '#374151';
-        ctx.font = '20px Inter, sans-serif';
+        ctx.font = '18px Inter, sans-serif';
         ctx.textAlign = 'left';
-        ctx.fillText(categoryIcons[index], cardX + 175, y);
+        ctx.fillText(categoryIcons[index], cardX + 180, y);
 
         ctx.textAlign = 'right';
         ctx.fillStyle = colorScheme.gradient[0];
-        ctx.font = 'bold 20px Inter, sans-serif';
-        ctx.fillText(`${score}%`, cardX + cardWidth - 175, y);
+        ctx.font = 'bold 18px Inter, sans-serif';
+        ctx.fillText(`${score}%`, cardX + cardWidth - 180, y);
 
         // Bar background
         ctx.fillStyle = '#e5e7eb';
-        roundRectCompat(ctx, cardX + 210, y - 12, barWidth, barHeight, 9);
+        roundRectCompat(ctx, cardX + 215, y - 10, barWidth, barHeight, 8);
         ctx.fill();
 
         // Bar fill
-        const gradient = ctx.createLinearGradient(cardX + 210, 0, cardX + 210 + barWidth, 0);
+        const gradient = ctx.createLinearGradient(cardX + 215, 0, cardX + 215 + barWidth, 0);
         gradient.addColorStop(0, colorScheme.gradient[0]);
         gradient.addColorStop(1, colorScheme.gradient[1]);
         ctx.fillStyle = gradient;
-        roundRectCompat(ctx, cardX + 210, y - 12, barWidth * (score / 100), barHeight, 9);
+        roundRectCompat(ctx, cardX + 215, y - 10, barWidth * (score / 100), barHeight, 8);
         ctx.fill();
 
         ctx.textAlign = 'center';
     });
 
+    // Animal couple description at bottom of card
+    if (results.animalCouple && results.animalCouple.desc) {
+        ctx.font = '16px Inter, sans-serif';
+        ctx.fillStyle = '#6b7280';
+        const desc = results.animalCouple.desc.en || '';
+        ctx.fillText(desc.substring(0, 60) + (desc.length > 60 ? '...' : ''), centerX, cardY + 680);
+    }
+
     // Bottom info
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-    ctx.font = '22px Inter, sans-serif';
-    ctx.fillText('#AICompatibility  #LoveTest', centerX, 1000);
+    ctx.font = '20px Inter, sans-serif';
+    ctx.fillText('#AICompatibility  #AnimalCouple', centerX, 1010);
 
-    ctx.font = '18px Inter, sans-serif';
+    ctx.font = '16px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/compatibility', centerX, 1035);
+    ctx.fillText('smartaitest.com/compatibility', centerX, 1045);
     ctx.globalAlpha = 1;
 }
 
@@ -424,6 +495,29 @@ function roundRectCompat(ctx, x, y, width, height, radius) {
     ctx.lineTo(x, y + radius);
     ctx.quadraticCurveTo(x, y, x + radius, y);
     ctx.closePath();
+}
+
+/**
+ * Wrap text to fit within maxWidth
+ */
+function wrapTextCompat(ctx, text, x, y, maxWidth, lineHeight) {
+    if (!text) return;
+    const words = text.split(' ');
+    let line = '';
+    let currentY = y;
+
+    for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && i > 0) {
+            ctx.fillText(line, x, currentY);
+            line = words[i] + ' ';
+            currentY += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    ctx.fillText(line, x, currentY);
 }
 
 /**

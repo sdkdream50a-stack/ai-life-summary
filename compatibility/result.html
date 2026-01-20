@@ -126,6 +126,24 @@
             animation: heartPulse 1.5s ease-in-out infinite;
         }
 
+        /* Animal bounce animation */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 2s ease-in-out infinite;
+        }
+
+        /* Animal card hover effect */
+        #animal-couple-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #animal-couple-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+
         /* Prevent word breaking in the middle for CJK languages */
         .word-keep {
             word-break: keep-all;
@@ -440,6 +458,61 @@
                         <span class="text-3xl">&#128105;</span>
                         <p id="person-b-name" class="font-heading font-bold text-lg mt-1">Person B</p>
                         <p id="person-b-zodiac" class="text-sm text-gray-500"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animal Couple Section - NEW VIRAL FEATURE -->
+        <section class="py-6 md:py-8">
+            <div class="max-w-2xl mx-auto px-4">
+                <div id="animal-couple-card" class="result-card bg-gradient-to-br from-pink-50 via-white to-rose-50 rounded-2xl shadow-xl p-6 md:p-8 border-2 border-pink-200 relative overflow-hidden">
+                    <!-- Decorative background elements -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-100 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-rose-100 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+
+                    <!-- Title -->
+                    <h2 class="font-heading text-lg md:text-xl font-bold text-center text-pink-600 mb-4 relative z-10">
+                        <span class="lang-en">🐾 Your Animal Couple Type</span>
+                        <span class="lang-ko">🐾 당신들의 동물 커플 유형</span>
+                        <span class="lang-ja">🐾 あなたたちの動物カップルタイプ</span>
+                        <span class="lang-zh">🐾 你们的动物情侣类型</span>
+                        <span class="lang-es">🐾 Su Tipo de Pareja Animal</span>
+                    </h2>
+
+                    <!-- Animal Emojis Display -->
+                    <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-4 relative z-10">
+                        <div class="text-center transform hover:scale-110 transition-transform">
+                            <span id="animal-a-emoji" class="text-6xl md:text-7xl inline-block animate-bounce-slow">🦁</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span id="animal-chemistry" class="text-3xl md:text-4xl mb-1">💕</span>
+                            <span class="text-pink-400 text-2xl">+</span>
+                        </div>
+                        <div class="text-center transform hover:scale-110 transition-transform">
+                            <span id="animal-b-emoji" class="text-6xl md:text-7xl inline-block animate-bounce-slow" style="animation-delay: 0.5s;">🐱</span>
+                        </div>
+                    </div>
+
+                    <!-- Animal Couple Title -->
+                    <h3 id="animal-couple-title" class="font-heading text-xl md:text-2xl font-bold text-center text-gray-800 mb-3 relative z-10">
+                        사자와 고양이 커플
+                    </h3>
+
+                    <!-- Animal Couple Description -->
+                    <p id="animal-couple-desc" class="text-center text-gray-600 text-sm md:text-base leading-relaxed relative z-10 max-w-md mx-auto">
+                        밖에선 카리스마, 집에선 애교쟁이! 보호자와 매력쟁이의 만남.
+                    </p>
+
+                    <!-- Fun tag -->
+                    <div class="mt-4 flex justify-center relative z-10">
+                        <span class="inline-flex items-center px-3 py-1 bg-pink-100 text-pink-600 text-xs font-medium rounded-full">
+                            <span class="lang-en">Share your animal couple! 📸</span>
+                            <span class="lang-ko">동물 커플 공유하기! 📸</span>
+                            <span class="lang-ja">動物カップルをシェア！📸</span>
+                            <span class="lang-zh">分享你的动物情侣！📸</span>
+                            <span class="lang-es">¡Comparte tu pareja animal! 📸</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -931,6 +1004,32 @@
                 document.getElementById('analysis-growth').textContent = analysis.growth;
                 document.getElementById('analysis-elements').textContent = analysis.elements;
             }, 1200);
+
+            // Animal couple display
+            if (results.animalCouple) {
+                const animalCouple = results.animalCouple;
+
+                // Set animal emojis
+                document.getElementById('animal-a-emoji').textContent = animalCouple.animalA.emoji;
+                document.getElementById('animal-b-emoji').textContent = animalCouple.animalB.emoji;
+
+                // Set chemistry emoji
+                document.getElementById('animal-chemistry').textContent = animalCouple.chemistry || '💕';
+
+                // Set title and description based on language
+                document.getElementById('animal-couple-title').textContent =
+                    animalCouple.title[currentLang] || animalCouple.title.en;
+                document.getElementById('animal-couple-desc').textContent =
+                    animalCouple.desc[currentLang] || animalCouple.desc.en;
+
+                // Update creative relationship label if available
+                if (results.relationshipType.creativeLabels) {
+                    const creativeLabel = results.relationshipType.creativeLabels[currentLang] ||
+                                         results.relationshipType.creativeLabels.en;
+                    document.getElementById('relationship-type').textContent =
+                        results.relationshipType.emoji + ' ' + creativeLabel;
+                }
+            }
         }
 
         // Mobile menu toggle
