@@ -203,21 +203,11 @@ function shareToLinkedIn(text) {
  * @param {string} description - Description for the pin
  */
 function shareToPinterest(description) {
-    const fullText = `${description}\n\n${SITE_URL}`;
-    navigator.clipboard.writeText(fullText).then(() => {
-        const lang = document.documentElement.lang || 'en';
-        const messages = {
-            en: '📋 Copied!\n\nOpening Pinterest - paste to create a pin.',
-            ko: '📋 복사되었습니다!\n\nPinterest가 열립니다 - 붙여넣기하여 핀을 만드세요.',
-            ja: '📋 コピーしました!\n\nPinterestが開きます - 貼り付けてピンを作成してください。',
-            zh: '📋 已复制!\n\n正在打开Pinterest - 粘贴以创建Pin。',
-            es: '📋 ¡Copiado!\n\nAbriendo Pinterest - pega para crear un pin.'
-        };
-        alert(messages[lang] || messages.en);
-        window.location.href = 'https://www.pinterest.com/pin-builder/';
-    }).catch(() => {
-        window.location.href = 'https://www.pinterest.com/pin-builder/';
-    });
+    const imageUrl = encodeURIComponent('https://smartaitest.com/assets/images/og-image.png');
+    const url = encodeURIComponent(SITE_URL);
+    const desc = encodeURIComponent(description);
+    const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${url}&media=${imageUrl}&description=${desc}`;
+    window.open(pinterestUrl, '_blank', 'width=750,height=600');
     trackShare('pinterest');
 }
 
