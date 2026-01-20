@@ -227,20 +227,49 @@ function shareToTelegram(text) {
 function shareToInstagram(text) {
     const fullText = `${text}\n\n🔗 ${SITE_URL}\n\n#AILifeSummary #PersonalityTest #BirthdayTest`;
     navigator.clipboard.writeText(fullText).then(() => {
-        alert('📋 Caption copied!\n\nOpen Instagram and paste to share your story or post.');
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Caption copied!\n\nOpen Instagram and paste to share your story or post.',
+            ko: '📋 복사되었습니다!\n\nInstagram을 열고 붙여넣기하여 스토리나 게시물을 공유하세요.',
+            ja: '📋 コピーしました!\n\nInstagramを開いて貼り付けてストーリーや投稿を共有してください。',
+            zh: '📋 已复制!\n\n打开Instagram粘贴以分享您的故事或帖子。',
+            es: '📋 ¡Copiado!\n\nAbre Instagram y pega para compartir tu historia o publicación.'
+        };
+        alert(messages[lang] || messages.en);
     }).catch(() => {
-        alert('Open Instagram to share your results!');
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: 'Open Instagram to share your results!',
+            ko: 'Instagram을 열어 결과를 공유하세요!',
+            ja: 'Instagramを開いて結果を共有してください!',
+            zh: '打开Instagram分享您的结果!',
+            es: '¡Abre Instagram para compartir tus resultados!'
+        };
+        alert(messages[lang] || messages.en);
     });
     trackShare('instagram');
 }
 
 /**
- * Share to Threads (Meta)
+ * Share to Threads (Meta) - copies text and opens Threads
  * @param {string} text - Text to share
  */
 function shareToThreads(text) {
-    const url = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + '\n\n' + SITE_URL)}`;
-    window.open(url, '_blank', 'width=600,height=600');
+    const fullText = `${text}\n\n${SITE_URL}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        const lang = document.documentElement.lang || 'en';
+        const messages = {
+            en: '📋 Text copied!\n\nOpening Threads - paste to share.',
+            ko: '📋 복사되었습니다!\n\nThreads가 열립니다 - 붙여넣기하여 공유하세요.',
+            ja: '📋 コピーしました!\n\nThreadsが開きます - 貼り付けて共有してください。',
+            zh: '📋 已复制!\n\n正在打开Threads - 粘贴以分享。',
+            es: '📋 ¡Copiado!\n\nAbriendo Threads - pega para compartir.'
+        };
+        alert(messages[lang] || messages.en);
+        window.open('https://www.threads.net', '_blank');
+    }).catch(() => {
+        window.open('https://www.threads.net', '_blank');
+    });
     trackShare('threads');
 }
 
