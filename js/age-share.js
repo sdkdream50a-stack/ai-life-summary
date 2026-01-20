@@ -117,6 +117,96 @@ function shareToKakao(results) {
 }
 
 /**
+ * Share to Telegram
+ */
+function shareToTelegram(results) {
+    const text = generateShareText(results, 'telegram');
+    const url = generateShareUrl(results);
+    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    window.open(telegramUrl, '_blank', 'width=600,height=400');
+}
+
+/**
+ * Share to Reddit
+ */
+function shareToReddit(results) {
+    const title = `My AI Age Results: Real ${results.realAge}, Mental ${results.mentalAge}, Energy ${results.energyAge}`;
+    const url = generateShareUrl(results);
+    const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+    window.open(redditUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Pinterest
+ */
+function shareToPinterest(results) {
+    const url = generateShareUrl(results);
+    const description = generateShareText(results, 'pinterest');
+    const imageUrl = 'https://smartaitest.com/assets/images/age-calculator-og.png';
+    const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+    window.open(pinterestUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to LinkedIn
+ */
+function shareToLinkedIn(results) {
+    const url = generateShareUrl(results);
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(linkedInUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Threads (Meta)
+ */
+function shareToThreads(results) {
+    const text = generateShareText(results, 'threads');
+    const url = generateShareUrl(results);
+    const threadsUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + '\n\n' + url)}`;
+    window.open(threadsUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Instagram (copies text for manual sharing)
+ */
+function shareToInstagram(results) {
+    const text = generateShareText(results, 'instagram');
+    const url = generateShareUrl(results);
+    const fullText = `${text}\n\n🔗 ${url}\n\n#MyAIAge #AgeCalculator #MentalAge #EnergyAge`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 Caption copied!\n\nOpen Instagram and paste to share your story or post.');
+    }).catch(() => {
+        alert('Open Instagram to share your results!');
+    });
+}
+
+/**
+ * Share to WeChat (Chinese)
+ */
+function shareToWeChat(results) {
+    const text = generateShareText(results, 'wechat');
+    const url = generateShareUrl(results);
+    const fullText = `${text}\n\n${url}`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 已复制!\n\n打开微信粘贴分享');
+    }).catch(() => {
+        alert('打开微信分享结果!');
+    });
+}
+
+/**
+ * Share to Weibo (Chinese)
+ */
+function shareToWeibo(results) {
+    const text = generateShareText(results, 'weibo');
+    const url = generateShareUrl(results);
+    const weiboUrl = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
+    window.open(weiboUrl, '_blank', 'width=600,height=600');
+}
+
+/**
  * Use Web Share API if available
  */
 async function shareNative(results) {
@@ -219,7 +309,19 @@ function generateShareText(results, platform = 'default') {
 
         case 'whatsapp':
         case 'line':
+        case 'telegram':
             return `${vibe}\n\nMy AI Age Calculator Results:\nReal Age: ${realAge} years\nMental Age: ${mentalAge} years (${getGapText(mentalGap)})\nEnergy Age: ${energyAge} years (${getGapText(energyGap)})\n\nTry it yourself!`;
+
+        case 'threads':
+        case 'instagram':
+            return `${vibe}\n\n🎂 Real Age: ${realAge}\n🧠 Mental Age: ${mentalAge} (${getGapText(mentalGap)})\n⚡ Energy Age: ${energyAge} (${getGapText(energyGap)})\n\nTry the AI Age Calculator!`;
+
+        case 'pinterest':
+            return `AI Age Calculator: Real ${realAge}, Mental ${mentalAge}, Energy ${energyAge}. Discover your mental and energy age!`;
+
+        case 'wechat':
+        case 'weibo':
+            return `${vibe}\n\nAI年龄计算器结果:\n实际年龄: ${realAge}岁\n心理年龄: ${mentalAge}岁 (${getGapTextZh(mentalGap)})\n能量年龄: ${energyAge}岁 (${getGapTextZh(energyGap)})\n\n快来测试你的AI年龄!`;
 
         case 'clipboard':
             return `My AI Age Results:\nReal Age: ${realAge}\nMental Age: ${mentalAge} (${getGapText(mentalGap)})\nEnergy Age: ${energyAge} (${getGapText(energyGap)})`;
@@ -239,6 +341,15 @@ function getGapText(gap) {
     if (gap < 0) return `${Math.abs(gap)} years younger`;
     if (gap > 0) return `${gap} years older`;
     return 'same as real age';
+}
+
+/**
+ * Get gap text in Chinese
+ */
+function getGapTextZh(gap) {
+    if (gap < 0) return `年轻${Math.abs(gap)}岁`;
+    if (gap > 0) return `年长${gap}岁`;
+    return '与实际年龄相同';
 }
 
 // ============================================

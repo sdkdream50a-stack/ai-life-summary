@@ -91,6 +91,66 @@ function initShareButtons(sentence, lang = 'en') {
         });
     }
 
+    // Instagram Share
+    const instagramBtn = getCachedElement('share-instagram');
+    if (instagramBtn) {
+        instagramBtn.addEventListener('click', () => shareToInstagram(shareText));
+    }
+
+    // Threads Share
+    const threadsBtn = getCachedElement('share-threads');
+    if (threadsBtn) {
+        threadsBtn.addEventListener('click', () => shareToThreads(shareText));
+    }
+
+    // Telegram Share
+    const telegramBtn = getCachedElement('share-telegram');
+    if (telegramBtn) {
+        telegramBtn.addEventListener('click', () => shareToTelegram(shareText));
+    }
+
+    // LINE Share
+    const lineBtn = getCachedElement('share-line');
+    if (lineBtn) {
+        lineBtn.addEventListener('click', () => shareToLine(shareText));
+    }
+
+    // KakaoTalk Share
+    const kakaoBtn = getCachedElement('share-kakao');
+    if (kakaoBtn) {
+        kakaoBtn.addEventListener('click', () => shareToKakao(shareText));
+    }
+
+    // Reddit Share
+    const redditBtn = getCachedElement('share-reddit');
+    if (redditBtn) {
+        redditBtn.addEventListener('click', () => shareToReddit(shareText));
+    }
+
+    // Pinterest Share
+    const pinterestBtn = getCachedElement('share-pinterest');
+    if (pinterestBtn) {
+        pinterestBtn.addEventListener('click', () => shareToPinterest(shareText));
+    }
+
+    // LinkedIn Share
+    const linkedinBtn = getCachedElement('share-linkedin');
+    if (linkedinBtn) {
+        linkedinBtn.addEventListener('click', () => shareToLinkedIn(shareText));
+    }
+
+    // WeChat Share
+    const wechatBtn = getCachedElement('share-wechat');
+    if (wechatBtn) {
+        wechatBtn.addEventListener('click', () => shareToWeChat(shareText));
+    }
+
+    // Weibo Share
+    const weiboBtn = getCachedElement('share-weibo');
+    if (weiboBtn) {
+        weiboBtn.addEventListener('click', () => shareToWeibo(shareText));
+    }
+
     // Native Share API (for mobile devices)
     if (navigator.share) {
         setupNativeShare(sentence);
@@ -158,6 +218,88 @@ function shareToTelegram(text) {
     const url = `https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${encodedText}`;
     window.open(url, '_blank');
     trackShare('telegram');
+}
+
+/**
+ * Share to Instagram (copies text for manual sharing)
+ * @param {string} text - Text to share
+ */
+function shareToInstagram(text) {
+    const fullText = `${text}\n\n🔗 ${SITE_URL}\n\n#AILifeSummary #PersonalityTest #BirthdayTest`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 Caption copied!\n\nOpen Instagram and paste to share your story or post.');
+    }).catch(() => {
+        alert('Open Instagram to share your results!');
+    });
+    trackShare('instagram');
+}
+
+/**
+ * Share to Threads (Meta)
+ * @param {string} text - Text to share
+ */
+function shareToThreads(text) {
+    const url = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + '\n\n' + SITE_URL)}`;
+    window.open(url, '_blank', 'width=600,height=600');
+    trackShare('threads');
+}
+
+/**
+ * Share to LINE
+ * @param {string} text - Text to share
+ */
+function shareToLine(text) {
+    const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(SITE_URL)}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    trackShare('line');
+}
+
+/**
+ * Share to KakaoTalk
+ * @param {string} text - Text to share
+ */
+function shareToKakao(text) {
+    const fullText = `${text}\n\n${SITE_URL}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 Copied!\n\nOpen KakaoTalk and paste to share.');
+    }).catch(() => {
+        alert('Open KakaoTalk to share your results!');
+    });
+    trackShare('kakao');
+}
+
+/**
+ * Share to Reddit
+ * @param {string} text - Text to share
+ */
+function shareToReddit(text) {
+    const url = `https://www.reddit.com/submit?url=${encodeURIComponent(SITE_URL)}&title=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'width=600,height=600');
+    trackShare('reddit');
+}
+
+/**
+ * Share to WeChat (Chinese)
+ * @param {string} text - Text to share
+ */
+function shareToWeChat(text) {
+    const fullText = `${text}\n\n${SITE_URL}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 已复制!\n\n打开微信粘贴分享');
+    }).catch(() => {
+        alert('打开微信分享结果!');
+    });
+    trackShare('wechat');
+}
+
+/**
+ * Share to Weibo (Chinese)
+ * @param {string} text - Text to share
+ */
+function shareToWeibo(text) {
+    const url = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(SITE_URL)}&title=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'width=600,height=600');
+    trackShare('weibo');
 }
 
 /**

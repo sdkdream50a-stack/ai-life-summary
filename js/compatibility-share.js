@@ -153,6 +153,98 @@ function shareToKakao() {
 }
 
 /**
+ * Share to Telegram
+ */
+function shareToTelegram() {
+    const text = generateShareText('telegram');
+    const url = generateShareUrl();
+    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    window.open(telegramUrl, '_blank', 'width=600,height=400');
+}
+
+/**
+ * Share to Reddit
+ */
+function shareToReddit() {
+    const results = window.compatibilityResults;
+    const title = results ? `Our AI Compatibility Score: ${results.overallScore}%! ${results.relationshipType.emoji}` : 'AI Compatibility Test Results';
+    const url = generateShareUrl();
+    const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+    window.open(redditUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Pinterest
+ */
+function shareToPinterest() {
+    const url = generateShareUrl();
+    const description = generateShareText('pinterest');
+    const imageUrl = 'https://smartaitest.com/assets/images/compatibility-og.png';
+    const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+    window.open(pinterestUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to LinkedIn
+ */
+function shareToLinkedIn() {
+    const url = generateShareUrl();
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(linkedInUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Threads (Meta)
+ */
+function shareToThreads() {
+    const text = generateShareText('threads');
+    const url = generateShareUrl();
+    // Threads uses web intent similar to Instagram
+    const threadsUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(text + '\n\n' + url)}`;
+    window.open(threadsUrl, '_blank', 'width=600,height=600');
+}
+
+/**
+ * Share to Instagram (copies text for manual sharing)
+ */
+function shareToInstagram() {
+    const text = generateShareText('instagram');
+    const url = generateShareUrl();
+    const fullText = `${text}\n\n🔗 ${url}\n\n#AICompatibility #LoveTest #CoupleTest #SoulmateTest`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 Caption copied!\n\nOpen Instagram and paste to share your story or post.');
+    }).catch(() => {
+        alert('Open Instagram to share your results!');
+    });
+}
+
+/**
+ * Share to WeChat (Chinese)
+ */
+function shareToWeChat() {
+    const text = generateShareText('wechat');
+    const url = generateShareUrl();
+    const fullText = `${text}\n\n${url}`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('📋 已复制!\n\n打开微信粘贴分享');
+    }).catch(() => {
+        alert('打开微信分享结果!');
+    });
+}
+
+/**
+ * Share to Weibo (Chinese)
+ */
+function shareToWeibo() {
+    const text = generateShareText('weibo');
+    const url = generateShareUrl();
+    const weiboUrl = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
+    window.open(weiboUrl, '_blank', 'width=600,height=600');
+}
+
+/**
  * Use Web Share API if available
  */
 async function shareNative() {
@@ -277,7 +369,19 @@ function generateShareText(platform = 'default') {
 
         case 'whatsapp':
         case 'line':
+        case 'telegram':
             return `${vibe}${relationshipType.emoji}\n\nAI Compatibility Test Results:\n${nameA} & ${nameB}\nScore: ${overallScore}%\nType: ${relationshipType.labels.en}\n\nTry it yourself!`;
+
+        case 'threads':
+        case 'instagram':
+            return `${vibe}${relationshipType.emoji}\n\n${nameA} & ${nameB}\n💕 Compatibility: ${overallScore}%\n✨ Type: ${relationshipType.labels.en}\n\nTry the AI Compatibility Test!`;
+
+        case 'pinterest':
+            return `AI Compatibility Test: ${nameA} & ${nameB} are ${overallScore}% compatible! ${relationshipType.emoji} Find your perfect match!`;
+
+        case 'wechat':
+        case 'weibo':
+            return `${vibe}${relationshipType.emoji}\n\nAI配对测试结果:\n${nameA} & ${nameB}\n配对度: ${overallScore}%\n类型: ${relationshipType.labels.zh || relationshipType.labels.en}\n\n快来测试你们的配对度!`;
 
         case 'clipboard':
             return `AI Compatibility Results:\n${nameA} & ${nameB}\nScore: ${overallScore}%\nType: ${relationshipType.labels.en} ${relationshipType.emoji}`;
