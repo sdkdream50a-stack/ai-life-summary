@@ -43,8 +43,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/">
-    <meta property="og:title" content="🔮 AI 심리테스트 - 1분만에 나를 분석해보세요">
-    <meta property="og:description" content="생년월일만 입력하면 AI가 당신의 성격, 인생, 궁합을 분석해드려요. 무료로 지금 바로 시작!">
+    <meta property="og:title" content="🦊 나의 AI 소울 타입은? - 무료 테스트">
+    <meta property="og:description" content="1분 만에 알아보는 나의 진짜 모습. 100만 명이 발견한 소울 타입!">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -55,9 +55,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/">
-    <meta name="twitter:title" content="🔮 AI 심리테스트 - 1분만에 나를 분석해보세요">
-    <meta name="twitter:description" content="생년월일만 입력하면 AI가 당신의 성격, 인생, 궁합을 분석해드려요!">
+    <meta name="twitter:title" content="🦊 나의 AI 소울 타입은? - 무료 테스트">
+    <meta name="twitter:description" content="1분 만에 알아보는 나의 진짜 모습. 100만 명이 발견한 소울 타입!">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/twitter-image.png">
+    <meta name="twitter:creator" content="@AITestLab">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -589,6 +590,9 @@
         switchLang(lang);
     });
     </script>
+    <!-- Gamification CSS -->
+    <link rel="stylesheet" href="./css/gamification.css">
+    <link rel="stylesheet" href="./css/popups.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -715,6 +719,13 @@
                             <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
                         </div>
                     </div>
+                    <!-- Profile Button -->
+                    <div id="header-profile" class="relative">
+                        <a href="/profile/" id="profile-btn" class="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50 transition">
+                            <span id="profile-avatar">👤</span>
+                            <span id="profile-level" class="hidden text-xs font-bold text-indigo-600">Lv.1</span>
+                        </a>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -779,6 +790,18 @@
                         <span class="lang-ja">お問い合わせ</span>
                         <span class="lang-zh">联系</span>
                         <span class="lang-es">Contacto</span>
+                    </a>
+                    <!-- Mobile Profile Link -->
+                    <a href="/profile/" id="mobile-profile-link" class="flex items-center space-x-2 text-indigo-600 hover:text-indigo-700 font-medium">
+                        <span id="mobile-profile-icon">👤</span>
+                        <span>
+                            <span class="lang-en">My Profile</span>
+                            <span class="lang-ko">내 프로필</span>
+                            <span class="lang-ja">マイプロフィール</span>
+                            <span class="lang-zh">我的档案</span>
+                            <span class="lang-es">Mi Perfil</span>
+                        </span>
+                        <span id="mobile-profile-level" class="text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded hidden">Lv.1</span>
                     </a>
                     <!-- Mobile Language Selector -->
                     <div class="pt-3 border-t mt-3">
@@ -927,6 +950,54 @@
                     <span class="lang-zh">每个测试都能为您提供关于性格和生活各方面的独特见解</span>
                     <span class="lang-es">Cada test ofrece perspectivas únicas sobre diferentes aspectos de tu personalidad y vida</span>
                 </p>
+
+                <!-- Daily Test Banner -->
+                <a href="/daily/" class="block mb-10 p-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <!-- Animated background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-indigo-500/20 animate-pulse"></div>
+                    <!-- Content -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="text-4xl">&#128197;</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded animate-pulse">NEW</span>
+                                    <span class="text-white/80 text-sm">
+                                        <span class="lang-en">Daily Test</span>
+                                        <span class="lang-ko">오늘의 테스트</span>
+                                        <span class="lang-ja">今日のテスト</span>
+                                        <span class="lang-zh">每日测试</span>
+                                        <span class="lang-es">Test Diario</span>
+                                    </span>
+                                </div>
+                                <h3 class="text-white font-bold text-xl md:text-2xl">
+                                    <span class="lang-en">Today's Question</span>
+                                    <span class="lang-ko">오늘의 질문</span>
+                                    <span class="lang-ja">今日の質問</span>
+                                    <span class="lang-zh">今日问题</span>
+                                    <span class="lang-es">Pregunta del Dia</span>
+                                </h3>
+                                <p class="text-white/80 text-sm mt-1">
+                                    <span class="lang-en">Answer one question daily and compare your choice with others!</span>
+                                    <span class="lang-ko">매일 하나의 질문에 답하고 다른 사람들과 비교해보세요!</span>
+                                    <span class="lang-ja">毎日1つの質問に答えて、他の人と比較しよう！</span>
+                                    <span class="lang-zh">每天回答一个问题，与他人比较你的选择！</span>
+                                    <span class="lang-es">Responde una pregunta diaria y compara tu eleccion!</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-6 rounded-xl transition group-hover:scale-105">
+                            <span class="lang-en">Join Now</span>
+                            <span class="lang-ko">참여하기</span>
+                            <span class="lang-ja">参加する</span>
+                            <span class="lang-zh">立即参与</span>
+                            <span class="lang-es">Unirse</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- AI Compatibility Card - FIRST (Highest Viral) - FEATURED -->
@@ -1162,6 +1233,123 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community & Features Section -->
+        <section class="py-12 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-3">
+                    <span class="lang-en">Explore <span class="gradient-text">More</span></span>
+                    <span class="lang-ko"><span class="gradient-text">더 둘러보기</span></span>
+                    <span class="lang-ja"><span class="gradient-text">もっと見る</span></span>
+                    <span class="lang-zh"><span class="gradient-text">探索更多</span></span>
+                    <span class="lang-es">Explorar <span class="gradient-text">Más</span></span>
+                </h2>
+                <p class="text-gray-600 text-center mb-8">
+                    <span class="lang-en">Join our community and discover more features</span>
+                    <span class="lang-ko">커뮤니티에 참여하고 다양한 기능을 만나보세요</span>
+                    <span class="lang-ja">コミュニティに参加して、もっと多くの機能を発見しよう</span>
+                    <span class="lang-zh">加入社区，发现更多功能</span>
+                    <span class="lang-es">Únete a nuestra comunidad y descubre más funciones</span>
+                </p>
+
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <!-- Community -->
+                    <a href="/community/" class="group bg-white rounded-xl p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-indigo-200 hover:-translate-y-1">
+                        <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">💬</div>
+                        <h3 class="font-semibold text-gray-800 text-sm">
+                            <span class="lang-en">Community</span>
+                            <span class="lang-ko">커뮤니티</span>
+                            <span class="lang-ja">コミュニティ</span>
+                            <span class="lang-zh">社区</span>
+                            <span class="lang-es">Comunidad</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <span class="lang-en">Share & Connect</span>
+                            <span class="lang-ko">공유 & 소통</span>
+                            <span class="lang-ja">共有 & 交流</span>
+                            <span class="lang-zh">分享交流</span>
+                            <span class="lang-es">Compartir</span>
+                        </p>
+                    </a>
+
+                    <!-- Ranking -->
+                    <a href="/ranking/" class="group bg-white rounded-xl p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-amber-200 hover:-translate-y-1">
+                        <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🏆</div>
+                        <h3 class="font-semibold text-gray-800 text-sm">
+                            <span class="lang-en">Ranking</span>
+                            <span class="lang-ko">랭킹</span>
+                            <span class="lang-ja">ランキング</span>
+                            <span class="lang-zh">排行榜</span>
+                            <span class="lang-es">Ranking</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <span class="lang-en">Leaderboards</span>
+                            <span class="lang-ko">순위 확인</span>
+                            <span class="lang-ja">リーダーボード</span>
+                            <span class="lang-zh">排名</span>
+                            <span class="lang-es">Clasificación</span>
+                        </p>
+                    </a>
+
+                    <!-- Events -->
+                    <a href="/events/" class="group bg-white rounded-xl p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-pink-200 hover:-translate-y-1">
+                        <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🎉</div>
+                        <h3 class="font-semibold text-gray-800 text-sm">
+                            <span class="lang-en">Events</span>
+                            <span class="lang-ko">이벤트</span>
+                            <span class="lang-ja">イベント</span>
+                            <span class="lang-zh">活动</span>
+                            <span class="lang-es">Eventos</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <span class="lang-en">Special Events</span>
+                            <span class="lang-ko">특별 이벤트</span>
+                            <span class="lang-ja">特別イベント</span>
+                            <span class="lang-zh">特别活动</span>
+                            <span class="lang-es">Especiales</span>
+                        </p>
+                    </a>
+
+                    <!-- Wrapped -->
+                    <a href="/wrapped/?preview=true" class="group bg-white rounded-xl p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-purple-200 hover:-translate-y-1">
+                        <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">✨</div>
+                        <h3 class="font-semibold text-gray-800 text-sm">
+                            <span class="lang-en">Wrapped</span>
+                            <span class="lang-ko">연말결산</span>
+                            <span class="lang-ja">まとめ</span>
+                            <span class="lang-zh">年度总结</span>
+                            <span class="lang-es">Resumen</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <span class="lang-en">Year Review</span>
+                            <span class="lang-ko">나의 한 해</span>
+                            <span class="lang-ja">年間レビュー</span>
+                            <span class="lang-zh">年度回顾</span>
+                            <span class="lang-es">Anual</span>
+                        </p>
+                    </a>
+
+                    <!-- Widget -->
+                    <a href="/widget/" class="group bg-white rounded-xl p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-cyan-200 hover:-translate-y-1">
+                        <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🔗</div>
+                        <h3 class="font-semibold text-gray-800 text-sm">
+                            <span class="lang-en">Widget</span>
+                            <span class="lang-ko">위젯</span>
+                            <span class="lang-ja">ウィジェット</span>
+                            <span class="lang-zh">小部件</span>
+                            <span class="lang-es">Widget</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">
+                            <span class="lang-en">Embed Code</span>
+                            <span class="lang-ko">임베드 코드</span>
+                            <span class="lang-ja">埋め込み</span>
+                            <span class="lang-zh">嵌入代码</span>
+                            <span class="lang-es">Insertar</span>
+                        </p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1865,6 +2053,67 @@
                 }, 15000 + Math.random() * 10000);
             }, 5000);
         })();
+    </script>
+
+    <!-- Gamification Scripts -->
+    <script src="./js/badges.js"></script>
+    <script src="./js/level-xp.js"></script>
+    <script src="./js/streak.js"></script>
+    <script src="./js/user-data.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/gamification-ui.js"></script>
+    <script src="./js/referral.js"></script>
+    <script>
+    // Initialize gamification on homepage
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update header profile display
+        function updateHeaderProfile() {
+            if (typeof userDataManager === 'undefined') return;
+
+            var userData = userDataManager.getUserData();
+            var profileAvatar = document.getElementById('profile-avatar');
+            var profileLevel = document.getElementById('profile-level');
+            var mobileProfileIcon = document.getElementById('mobile-profile-icon');
+            var mobileProfileLevel = document.getElementById('mobile-profile-level');
+
+            var level = userData.gamification ? userData.gamification.level : 1;
+            var streak = userData.gamification ? userData.gamification.currentStreak : 0;
+            var lang = document.documentElement.lang || 'ko';
+
+            // Desktop profile
+            if (profileAvatar && profileLevel) {
+                if (typeof levelXpSystem !== 'undefined') {
+                    var levelInfo = levelXpSystem.getLevelInfo(level);
+                    profileLevel.textContent = 'Lv.' + level;
+                    profileLevel.classList.remove('hidden');
+                    profileLevel.title = levelInfo.name[lang] || levelInfo.name.en;
+                }
+
+                if (streak > 0) {
+                    profileAvatar.textContent = streak >= 7 ? '🔥' : '✨';
+                } else {
+                    profileAvatar.textContent = '👤';
+                }
+            }
+
+            // Mobile profile
+            if (mobileProfileIcon && mobileProfileLevel) {
+                if (streak > 0) {
+                    mobileProfileIcon.textContent = streak >= 7 ? '🔥' : '✨';
+                } else {
+                    mobileProfileIcon.textContent = '👤';
+                }
+                mobileProfileLevel.textContent = 'Lv.' + level;
+                mobileProfileLevel.classList.remove('hidden');
+            }
+        }
+
+        // Initialize
+        setTimeout(updateHeaderProfile, 100);
+
+        // Listen for gamification updates
+        window.addEventListener('gamification-update', updateHeaderProfile);
+    });
     </script>
 </body>
 </html>
