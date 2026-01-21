@@ -277,9 +277,16 @@
 }
 
 .kick-navbar-links {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 8px;
+}
+
+/* Show navbar links on desktop */
+@media (min-width: 768px) {
+    .kick-navbar-links {
+        display: flex;
+    }
 }
 
 .kick-navbar-link {
