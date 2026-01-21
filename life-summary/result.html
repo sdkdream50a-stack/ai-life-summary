@@ -67,6 +67,10 @@
     <link rel="stylesheet" href="../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
     <link rel="stylesheet" href="../css/loading-enhanced.css">
+    <!-- Stage 2: Radar Chart -->
+    <link rel="stylesheet" href="../css/radar-chart.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -698,6 +702,21 @@
                             </span>
                         </div>
                     </div>
+
+                    <!-- Radar Chart Visualization -->
+                    <div id="radar-chart-container" class="radar-chart-container hidden">
+                        <div class="viral-header" id="viral-header">
+                            <span class="viral-header-text" id="viral-header-text"></span>
+                        </div>
+                        <h3 class="text-center text-white text-lg font-semibold mb-4">
+                            <span class="lang-en">Your Trait Analysis</span>
+                            <span class="lang-ko">당신의 성향 분석</span>
+                            <span class="lang-ja">あなたの特性分析</span>
+                            <span class="lang-zh">你的特质分析</span>
+                            <span class="lang-es">Tu Análisis de Rasgos</span>
+                        </h3>
+                        <div id="radar-chart-area"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1169,6 +1188,8 @@
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
     <script src="/js/loading-enhanced.js"></script>
+    <!-- Stage 2: Radar Chart & Viral Image -->
+    <script src="/js/radar-chart.js"></script>
 
     <!-- Initialize Page -->
     <script>
@@ -1368,6 +1389,27 @@
                 };
                 rarityText.textContent = rarityLabels[currentLang] || rarityLabels.en;
             }, Object.keys(traits).length * 200 + 800);
+
+            // Show Radar Chart after trait bars
+            setTimeout(() => {
+                const radarContainer = document.getElementById('radar-chart-container');
+                const radarArea = document.getElementById('radar-chart-area');
+                const viralHeader = document.getElementById('viral-header-text');
+
+                if (radarContainer && radarArea && typeof RadarChartManager !== 'undefined') {
+                    radarContainer.classList.remove('hidden');
+
+                    // Create radar chart manager
+                    const radarManager = new RadarChartManager({ lang: currentLang });
+
+                    // Set viral header text
+                    const viralCopy = radarManager.getViralCopy(currentSoulType);
+                    viralHeader.innerHTML = `<span class="viral-header-emoji">${viralCopy.emoji}</span>${viralCopy.text}`;
+
+                    // Create the radar chart
+                    radarManager.createChart('radar-chart-area', currentSoulType);
+                }
+            }, Object.keys(traits).length * 200 + 1500);
         }
 
         // Stage E: Share
@@ -1536,6 +1578,13 @@
 
         // Generate current share image
         async function generateCurrentShareImage() {
+            // Use ViralImageGenerator for story format with radar chart
+            if (currentImageFormat === 'story' && currentImageType === 'full' && typeof ViralImageGenerator !== 'undefined') {
+                const viralGen = new ViralImageGenerator({ lang: currentLang });
+                return viralGen.generateStoryImage(currentSoulType);
+            }
+
+            // Default to original share image generator
             if (currentImageType === 'teaser') {
                 return shareImageGenerator.generateTeaserImage(currentSoulType, currentImageFormat);
             } else {
