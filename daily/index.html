@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Test Lab - Daily Test</title>
+  <meta name="description" content="AI Test Lab">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Daily Test Styles -->
+  <link rel="stylesheet" href="../css/daily.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Test Lab - Daily Test">
+  <meta property="og:description" content="AI Test Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartaitest.com/daily/">
+  <meta property="og:image" content="https://smartaitest.com/images/daily-og.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Test Lab - Daily Test">
+  <meta name="twitter:description" content="AI Test Lab">
+
+  <style>
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="daily-container">
+  <!-- Header -->
+  <header class="daily-header">
+    <a href="../" class="back-link" aria-label="Back to home">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <div class="daily-logo">AI Test Lab</div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="daily-main">
+    <!-- Loading State -->
+    <div id="loading-state" class="daily-loading">
+      <div class="loading-spinner"></div>
+      <p class="loading-text" data-i18n="loading">Loading...</p>
+    </div>
+
+    <!-- Question State (hidden by default) -->
+    <div id="question-state" class="hidden">
+      <!-- Date Display -->
+      <div class="daily-date">
+        <div class="date-label" data-i18n="todayQuestion">Today's Question</div>
+        <div id="current-date" class="date-value"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="daily-question-card">
+        <div id="question-emoji" class="question-emoji"></div>
+        <h1 id="question-text" class="question-text"></h1>
+
+        <!-- Options -->
+        <div id="daily-options" class="daily-options"></div>
+      </div>
+    </div>
+
+    <!-- Result State (hidden by default) -->
+    <div id="result-state" class="hidden">
+      <!-- Completed Header -->
+      <div class="daily-completed">
+        <div class="completed-check">&#10004;</div>
+        <h2 class="completed-title" data-i18n="completedTitle">Participation Complete!</h2>
+        <p class="completed-message" data-i18n="completedMessage">Check your results below</p>
+      </div>
+
+      <!-- Result Card -->
+      <div class="daily-result-section">
+        <div class="result-card">
+          <div class="result-header">
+            <h2 id="result-option-text"></h2>
+            <span id="result-trait" class="result-trait"></span>
+          </div>
+
+          <!-- Stats Container -->
+          <div class="stats-container">
+            <div class="stats-header">
+              <span class="stats-title" data-i18n="liveStats">Live Statistics</span>
+              <span class="stats-live" data-i18n="updating">Updating</span>
+            </div>
+            <div id="stats-total" class="stats-total"></div>
+            <div id="stats-bars"></div>
+          </div>
+
+          <!-- User Ranking -->
+          <div id="user-ranking" class="user-ranking"></div>
+
+          <!-- Streak Display -->
+          <div id="streak-display" class="streak-display hidden">
+            <span class="streak-fire">&#128293;</span>
+            <span id="streak-count" class="streak-count"></span>
+            <span class="streak-label" data-i18n="dayStreak">Day Streak</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share Section -->
+      <div class="share-section">
+        <p class="share-title" data-i18n="shareResult">Share your result</p>
+        <div class="share-buttons">
+          <button id="btn-share-image" class="share-btn primary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span data-i18n="downloadImage">Download Image</span>
+          </button>
+          <button id="btn-copy-link" class="share-btn secondary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+            </svg>
+            <span data-i18n="copyLink">Copy Link</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Countdown to Next -->
+      <div class="countdown-section">
+        <p class="countdown-label" data-i18n="nextQuestion">Next question in</p>
+        <div id="countdown-timer" class="countdown-timer"></div>
+      </div>
+
+      <!-- Trait Analysis (if enough data) -->
+      <div id="trait-analysis" class="trait-analysis hidden">
+        <h3 class="trait-analysis-title">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          <span data-i18n="traitAnalysis">Your Trait Analysis</span>
+        </h3>
+        <div id="trait-list"></div>
+      </div>
+
+      <!-- Yesterday's Archive -->
+      <div id="archive-section" class="archive-section hidden">
+        <h3 class="archive-title">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span data-i18n="yesterday">Yesterday's Question</span>
+        </h3>
+        <div id="archive-content" class="archive-card"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Navigation -->
+  <nav class="daily-nav">
+    <a href="../" class="nav-link" data-i18n="home">Home</a>
+    <a href="../life-summary/" class="nav-link" data-i18n="lifeSummary">Life Summary</a>
+    <a href="../compatibility/" class="nav-link" data-i18n="compatibility">Compatibility</a>
+  </nav>
+
+  <!-- Image Preview Modal -->
+  <div id="image-preview-modal" class="image-preview-modal">
+    <button id="preview-close" class="preview-close">&times;</button>
+    <img id="preview-image" src="" alt="Share image preview">
+    <div class="image-preview-actions">
+      <button id="btn-download" class="share-btn primary" data-i18n="download">Download</button>
+      <button id="btn-share-native" class="share-btn secondary" data-i18n="share">Share</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/daily-questions.js"></script>
+  <script src="../js/daily-test.js"></script>
+  <script src="../js/daily-stats.js"></script>
+  <script src="../js/daily-share.js"></script>
+
+  <script>
+    // i18n translations
+    const i18n = {
+      ko: {
+        loading: '로딩 중...',
+        todayQuestion: '오늘의 질문',
+        completedTitle: '참여 완료!',
+        completedMessage: '아래에서 결과를 확인하세요',
+        liveStats: '실시간 통계',
+        updating: '실시간 업데이트',
+        shareResult: '결과 공유하기',
+        downloadImage: '이미지 저장',
+        copyLink: '링크 복사',
+        nextQuestion: '다음 질문까지',
+        traitAnalysis: '나의 성향 분석',
+        yesterday: '어제의 질문',
+        home: '홈',
+        lifeSummary: '인생 요약',
+        compatibility: '궁합 테스트',
+        download: '다운로드',
+        share: '공유하기',
+        dayStreak: '일 연속 참여',
+        majority: '다수파',
+        common: '일반적',
+        minority: '소수파',
+        rare: '희귀',
+        yourChoice: '당신의 선택',
+        participants: '명 참여 중',
+        copiedLink: '링크가 복사되었습니다!'
+      },
+      en: {
+        loading: 'Loading...',
+        todayQuestion: "Today's Question",
+        completedTitle: 'Participation Complete!',
+        completedMessage: 'Check your results below',
+        liveStats: 'Live Statistics',
+        updating: 'Updating',
+        shareResult: 'Share your result',
+        downloadImage: 'Download Image',
+        copyLink: 'Copy Link',
+        nextQuestion: 'Next question in',
+        traitAnalysis: 'Your Trait Analysis',
+        yesterday: "Yesterday's Question",
+        home: 'Home',
+        lifeSummary: 'Life Summary',
+        compatibility: 'Compatibility',
+        download: 'Download',
+        share: 'Share',
+        dayStreak: 'Day Streak',
+        majority: 'Majority',
+        common: 'Common',
+        minority: 'Minority',
+        rare: 'Rare',
+        yourChoice: 'Your choice',
+        participants: 'participants',
+        copiedLink: 'Link copied!'
+      }
+    };
+
+    // Current language
+    let currentLang = 'ko';
+
+    // Detect language
+    function detectLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam && i18n[langParam]) {
+        return langParam;
+      }
+      const browserLang = navigator.language.split('-')[0];
+      return i18n[browserLang] ? browserLang : 'ko';
+    }
+
+    // Get translation
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
+    }
+
+    // Apply translations
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+    }
+
+    // State management
+    let currentQuestion = null;
+    let currentStats = null;
+    let selectedOption = null;
+    let countdownTimer = null;
+    let statsUpdateInterval = null;
+
+    // Initialize
+    async function init() {
+      currentLang = detectLanguage();
+      applyTranslations();
+
+      // Check if already participated today
+      if (dailyTest.hasParticipatedToday()) {
+        showResult();
+      } else {
+        showQuestion();
+      }
+    }
+
+    // Show question
+    function showQuestion() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('question-state').classList.remove('hidden');
+      document.getElementById('result-state').classList.add('hidden');
+
+      currentQuestion = dailyTest.getTodayQuestion();
+
+      // Set date
+      document.getElementById('current-date').textContent = dailyTest.getTodayKST();
+
+      // Set question
+      const questionEmoji = currentQuestion.options.map(o => o.emoji).join('');
+      document.getElementById('question-emoji').textContent = questionEmoji.substring(0, 4);
+      document.getElementById('question-text').textContent =
+        currentQuestion.question[currentLang] || currentQuestion.question.ko;
+
+      // Render options
+      const optionsContainer = document.getElementById('daily-options');
+      optionsContainer.innerHTML = '';
+
+      currentQuestion.options.forEach(option => {
+        const optionEl = document.createElement('button');
+        optionEl.className = 'daily-option';
+        optionEl.innerHTML = `
+          <span class="option-emoji">${option.emoji}</span>
+          <span class="option-text">${option.text[currentLang] || option.text.ko}</span>
+        `;
+        optionEl.addEventListener('click', () => selectOption(option));
+        optionsContainer.appendChild(optionEl);
+      });
+    }
+
+    // Select option
+    function selectOption(option) {
+      // Visual feedback
+      document.querySelectorAll('.daily-option').forEach(el => {
+        el.classList.remove('selected');
+      });
+      event.currentTarget.classList.add('selected');
+
+      // Submit answer
+      setTimeout(() => {
+        const result = dailyTest.submitAnswer(option.id);
+        selectedOption = option;
+        showResult();
+      }, 300);
+    }
+
+    // Show result
+    function showResult() {
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('question-state').classList.add('hidden');
+      document.getElementById('result-state').classList.remove('hidden');
+
+      currentQuestion = dailyTest.getTodayQuestion();
+      const todayAnswer = dailyTest.getTodayAnswer();
+      selectedOption = currentQuestion.options.find(o => o.id === todayAnswer);
+      const resultType = currentQuestion.resultTypes[todayAnswer];
+
+      // Set result header
+      document.getElementById('result-option-text').textContent =
+        selectedOption.text[currentLang] || selectedOption.text.ko;
+      document.getElementById('result-trait').textContent =
+        currentLang === 'en' ? resultType.traitEn : resultType.trait;
+
+      // Get stats
+      const totalParticipants = dailyStats.getTodayParticipants();
+      currentStats = dailyStats.getOptionCounts(currentQuestion, totalParticipants, todayAnswer);
+
+      // Render stats
+      renderStats();
+
+      // Start live updates
+      startStatsUpdates();
+
+      // User ranking
+      const ranking = dailyStats.getUserRanking(todayAnswer, currentStats);
+      renderRanking(ranking);
+
+      // Streak
+      const userStats = dailyTest.getUserStats();
+      if (userStats.streak > 1) {
+        document.getElementById('streak-display').classList.remove('hidden');
+        document.getElementById('streak-count').textContent = userStats.streak;
+      }
+
+      // Start countdown
+      startCountdown();
+
+      // Trait analysis
+      const traitAnalysis = dailyTest.getTraitAnalysis();
+      if (traitAnalysis) {
+        renderTraitAnalysis(traitAnalysis);
+      }
+
+      // Yesterday's archive
+      const yesterday = dailyTest.getYesterdayResults();
+      if (yesterday) {
+        renderArchive(yesterday);
+      }
+
+      // Setup share buttons
+      setupShareButtons();
+    }
+
+    // Render stats bars
+    function renderStats() {
+      document.getElementById('stats-total').textContent =
+        dailyStats.formatNumber(currentStats.total, currentLang) + ' ' + t('participants');
+
+      const barsContainer = document.getElementById('stats-bars');
+      barsContainer.innerHTML = '';
+
+      currentQuestion.options.forEach(option => {
+        const percentage = currentStats.distribution[option.id] || 0;
+        const isSelected = option.id === selectedOption.id;
+
+        const barHtml = `
+          <div class="stat-bar-container">
+            <div class="stat-bar-header">
+              <span class="stat-bar-label ${isSelected ? 'selected' : ''}">
+                ${option.emoji} ${isSelected ? '(' + t('yourChoice') + ')' : ''}
+              </span>
+              <span class="stat-bar-percentage">${percentage}%</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-bar-fill ${isSelected ? 'selected' : ''} animate"
+                   style="width: ${percentage}%"></div>
+            </div>
+          </div>
+        `;
+        barsContainer.innerHTML += barHtml;
+      });
+    }
+
+    // Start live stats updates
+    function startStatsUpdates() {
+      if (statsUpdateInterval) clearInterval(statsUpdateInterval);
+
+      statsUpdateInterval = setInterval(() => {
+        currentStats = dailyStats.simulateLiveUpdate(currentStats);
+        renderStats();
+      }, 5000); // Update every 5 seconds
+    }
+
+    // Render user ranking
+    function renderRanking(ranking) {
+      const categoryText = ranking.category[currentLang] || ranking.category.ko;
+      let emoji = '';
+
+      if (ranking.percentage >= 40) emoji = '&#128077;';
+      else if (ranking.percentage >= 25) emoji = '&#128526;';
+      else if (ranking.percentage >= 15) emoji = '&#127775;';
+      else emoji = '&#128142;';
+
+      document.getElementById('user-ranking').innerHTML = `
+        <div class="ranking-badge">${emoji}</div>
+        <p class="ranking-text">
+          <strong>${ranking.percentage}%</strong> (${categoryText})
+          <br>
+          <span style="font-size: 0.875rem; color: #94a3b8;">
+            ${dailyStats.formatNumber(ranking.count, currentLang)}/${dailyStats.formatNumber(ranking.total, currentLang)}
+          </span>
+        </p>
+      `;
+    }
+
+    // Start countdown timer
+    function startCountdown() {
+      if (countdownTimer) countdownTimer.stop();
+
+      countdownTimer = new CountdownTimer(
+        (remaining) => {
+          document.getElementById('countdown-timer').innerHTML = `
+            <span>${String(remaining.hours).padStart(2, '0')}</span>
+            <span class="countdown-colon">:</span>
+            <span>${String(remaining.minutes).padStart(2, '0')}</span>
+            <span class="countdown-colon">:</span>
+            <span>${String(remaining.seconds).padStart(2, '0')}</span>
+          `;
+        },
+        () => {
+          // Refresh page when new question available
+          window.location.reload();
+        }
+      );
+      countdownTimer.start();
+    }
+
+    // Render trait analysis
+    function renderTraitAnalysis(analysis) {
+      document.getElementById('trait-analysis').classList.remove('hidden');
+      const listContainer = document.getElementById('trait-list');
+      listContainer.innerHTML = '';
+
+      analysis.topTraits.forEach(trait => {
+        listContainer.innerHTML += `
+          <div class="trait-item">
+            <span class="trait-name">${trait.trait}</span>
+            <div class="trait-bar">
+              <div class="trait-bar-fill" style="width: ${trait.percentage}%"></div>
+            </div>
+            <span class="trait-percentage">${trait.percentage}%</span>
+          </div>
+        `;
+      });
+    }
+
+    // Render yesterday's archive
+    function renderArchive(yesterday) {
+      document.getElementById('archive-section').classList.remove('hidden');
+      const content = document.getElementById('archive-content');
+
+      content.innerHTML = `
+        <p class="archive-question">
+          ${yesterday.question.question[currentLang] || yesterday.question.question.ko}
+        </p>
+        <p class="archive-answer">
+          ${yesterday.selectedOption.emoji}
+          ${yesterday.selectedOption.text[currentLang] || yesterday.selectedOption.text.ko}
+        </p>
+      `;
+    }
+
+    // Setup share buttons
+    function setupShareButtons() {
+      const btnShareImage = document.getElementById('btn-share-image');
+      const btnCopyLink = document.getElementById('btn-copy-link');
+      const modal = document.getElementById('image-preview-modal');
+      const previewImage = document.getElementById('preview-image');
+      const btnDownload = document.getElementById('btn-download');
+      const btnShareNative = document.getElementById('btn-share-native');
+      const btnClose = document.getElementById('preview-close');
+
+      let currentCanvas = null;
+
+      // Generate and show image
+      btnShareImage.addEventListener('click', async () => {
+        const resultType = currentQuestion.resultTypes[selectedOption.id];
+        currentCanvas = await dailyShareGenerator.generateResultImage(
+          currentQuestion,
+          selectedOption,
+          resultType,
+          currentStats,
+          'story',
+          currentLang
+        );
+
+        previewImage.src = currentCanvas.toDataURL('image/png');
+        modal.classList.add('active');
+      });
+
+      // Close modal
+      btnClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+
+      // Download image
+      btnDownload.addEventListener('click', async () => {
+        if (currentCanvas) {
+          await dailyShareGenerator.downloadImage(currentCanvas, `daily-result-${dailyTest.getTodayKST()}.png`);
+        }
+      });
+
+      // Native share
+      btnShareNative.addEventListener('click', async () => {
+        if (currentCanvas) {
+          const shared = await dailyShareGenerator.shareImage(
+            currentCanvas,
+            t('todayQuestion'),
+            `${currentQuestion.question[currentLang]} - smartaitest.com/daily`
+          );
+          if (!shared) {
+            // Fallback to download
+            await dailyShareGenerator.downloadImage(currentCanvas, `daily-result-${dailyTest.getTodayKST()}.png`);
+          }
+        }
+      });
+
+      // Copy link
+      btnCopyLink.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('https://smartaitest.com/daily/');
+          alert(t('copiedLink'));
+        } catch (e) {
+          console.error('Copy failed:', e);
+        }
+      });
+    }
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (countdownTimer) countdownTimer.stop();
+      if (statsUpdateInterval) clearInterval(statsUpdateInterval);
+    });
+
+    // Initialize when DOM ready
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_ID");
+  </script>
+
+  <!-- Google Analytics placeholder -->
+  <!-- Add your GA4 tracking code here -->
+</body>
+</html>
