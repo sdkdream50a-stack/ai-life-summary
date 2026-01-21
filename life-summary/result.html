@@ -101,6 +101,14 @@
         .gradient-bg {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
         }
+        /* Brighter pastel gradient for post-reveal sections */
+        .gradient-bg-bright {
+            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%);
+        }
+        /* Ultra bright warm pastel for share stage */
+        .gradient-bg-warm {
+            background: linear-gradient(to bottom, #fdfbfb 0%, #f8f4ff 50%, #fdf2f8 100%);
+        }
         .gradient-text {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
             -webkit-background-clip: text;
@@ -1362,7 +1370,7 @@
             });
         }
 
-        // Stage B: Card Reveal
+        // Stage B: Card Reveal (Enhanced timing)
         async function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
             const revealCard = document.getElementById('reveal-card');
@@ -1374,19 +1382,22 @@
                 const flipCard = () => {
                     revealCard.classList.add('flipped');
 
-                    // Show soul type on card back
-                    const typeName = getSoulTypeName(currentSoulType, currentLang);
-                    cardBack.innerHTML = `
-                        <div class="soul-type-reveal">
-                            <div class="emoji-large">${currentSoulType.emoji}</div>
-                            <div class="type-name">${typeName}</div>
-                        </div>
-                    `;
+                    // Show soul type on card back with slight delay for dramatic effect
+                    setTimeout(() => {
+                        const typeName = getSoulTypeName(currentSoulType, currentLang);
+                        cardBack.innerHTML = `
+                            <div class="soul-type-reveal">
+                                <div class="emoji-large">${currentSoulType.emoji}</div>
+                                <div class="type-name">${typeName}</div>
+                            </div>
+                        `;
+                    }, 400); // Show content after card is halfway flipped
 
-                    // Play confetti
-                    playConfetti();
+                    // Play confetti slightly after flip starts
+                    setTimeout(playConfetti, 600);
 
-                    setTimeout(resolve, 800);
+                    // Extended wait time (1.2s) for the slower bouncy animation
+                    setTimeout(resolve, 1200);
                 };
 
                 revealCard.addEventListener('click', flipCard, { once: true });
