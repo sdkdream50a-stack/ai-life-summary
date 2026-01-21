@@ -7,12 +7,21 @@
   <meta name="description" content="AI Test Lab - My Profile">
   <meta name="robots" content="noindex">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 
-  <!-- Pretendard Font -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Tailwind CSS (Local Build) -->
+  <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+  <!-- Global KICK Design System -->
+  <link rel="stylesheet" href="../css/global-kick.css">
   <!-- Gamification Styles -->
   <link rel="stylesheet" href="../css/gamification.css">
   <link rel="stylesheet" href="../css/popups.css">
@@ -20,33 +29,147 @@
 
   <style>
     body {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-      min-height: 100vh;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Language switching */
+    .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+    html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+    html[lang="ko"] .lang-ko { display: inline; }
+    html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+    html[lang="ja"] .lang-ja { display: inline; }
+    html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+    html[lang="zh"] .lang-zh { display: inline; }
+    html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+    html[lang="es"] .lang-es { display: inline; }
   </style>
+
+  <!-- Early Language Detection -->
+  <script>
+  (function() {
+    var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+    var saved = localStorage.getItem('ai-life-summary-lang');
+    var lang = 'ko';
+    if (saved && supportedLangs.indexOf(saved) !== -1) {
+      lang = saved;
+    } else {
+      var browserLangs = navigator.languages || [navigator.language];
+      var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
+      if (langCodes.indexOf('ko') !== -1) {
+        lang = 'ko';
+      } else {
+        for (var i = 0; i < langCodes.length; i++) {
+          if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
+        }
+      }
+    }
+    document.documentElement.lang = lang;
+  })();
+  </script>
+
+  <!-- Language Switching Script -->
+  <script>
+  var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+  var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+  function switchLang(lang) {
+    localStorage.setItem('ai-life-summary-lang', lang);
+    localStorage.setItem('preferredLanguage', lang);
+    document.documentElement.lang = lang;
+    var currentLangEl = document.getElementById('current-lang');
+    if (currentLangEl) {
+      currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+    }
+    var dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+    // Re-apply i18n translations
+    if (typeof applyTranslations === 'function') {
+      currentLang = lang;
+      applyTranslations();
+    }
+  }
+
+  function toggleLangDropdown() {
+    var dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) dropdown.classList.toggle('hidden');
+  }
+
+  document.addEventListener('click', function(e) {
+    var langSelector = document.getElementById('lang-selector');
+    var dropdown = document.getElementById('lang-dropdown');
+    if (langSelector && dropdown && !langSelector.contains(e.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+  </script>
 </head>
-<body>
-  <!-- Header -->
-  <header class="profile-header">
-    <a href="../" class="back-link" aria-label="Back to home">
-      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-      </svg>
+<body class="kick-mesh-bg text-white min-h-screen">
+  <!-- Floating Pill Navbar -->
+  <nav class="kick-navbar" id="floating-navbar">
+    <a href="/" class="kick-navbar-logo">
+      <span class="text-xl">🔮</span>
+      <span class="kick-gradient-text">AI Test Lab</span>
     </a>
-    <h1 class="header-title" data-i18n="profile">Profile</h1>
-    <div class="header-actions">
-      <button id="btn-settings" class="header-btn" aria-label="Settings">
-        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-      </button>
+    <div class="kick-navbar-links">
+      <a href="/compatibility/" class="kick-navbar-link">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합</span><span class="lang-ja">相性</span><span class="lang-zh">配对</span><span class="lang-es">Compatibilidad</span></a>
+      <a href="/life-summary/" class="kick-navbar-link">🔮 <span class="lang-en">Soul</span><span class="lang-ko">소울</span><span class="lang-ja">ソウル</span><span class="lang-zh">灵魂</span><span class="lang-es">Alma</span></a>
+      <a href="/age-calculator/" class="kick-navbar-link">⏳ <span class="lang-en">Age</span><span class="lang-ko">나이</span><span class="lang-ja">年齢</span><span class="lang-zh">年龄</span><span class="lang-es">Edad</span></a>
     </div>
-  </header>
+    <!-- Language Selector -->
+    <div id="lang-selector" class="relative">
+      <button onclick="toggleLangDropdown()" class="kick-navbar-link flex items-center gap-1">
+        <span id="current-lang">🇰🇷 한국어</span>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-2 w-28 bg-gray-900/95 backdrop-blur-lg rounded-xl border border-white/10 py-1 z-50">
+        <button onclick="switchLang('en')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+        <button onclick="switchLang('ko')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+        <button onclick="switchLang('ja')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+        <button onclick="switchLang('zh')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+        <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
+      </div>
+    </div>
+    <!-- Settings Button -->
+    <button id="btn-settings" class="kick-navbar-link" aria-label="Settings">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </button>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden text-white p-1">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
+    <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
+      <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+      <a href="/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합 테스트</span><span class="lang-ja">相性診断</span><span class="lang-zh">配对测试</span><span class="lang-es">Compatibilidad</span></a>
+      <a href="/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 <span class="lang-en">Soul Type</span><span class="lang-ko">소울 타입</span><span class="lang-ja">ソウルタイプ</span><span class="lang-zh">灵魂类型</span><span class="lang-es">Tipo de Alma</span></a>
+      <a href="/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ <span class="lang-en">Mental Age</span><span class="lang-ko">정신 나이</span><span class="lang-ja">精神年齢</span><span class="lang-zh">心理年龄</span><span class="lang-es">Edad Mental</span></a>
+      <div class="border-t border-white/20 w-48 my-4"></div>
+      <a href="/about.html" class="text-lg text-white/70 hover:text-white transition"><span class="lang-en">About</span><span class="lang-ko">소개</span><span class="lang-ja">概要</span><span class="lang-zh">关于</span><span class="lang-es">Acerca de</span></a>
+      <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
+      <a href="/profile/" class="text-lg text-purple-400 font-bold">👤 <span class="lang-en">Profile</span><span class="lang-ko">프로필</span><span class="lang-ja">プロフィール</span><span class="lang-zh">档案</span><span class="lang-es">Perfil</span></a>
+      <div class="flex gap-3 mt-4">
+        <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+        <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+        <button onclick="switchLang('ja'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+        <button onclick="switchLang('zh'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+        <button onclick="switchLang('es'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content -->
-  <main class="profile-main">
+  <main class="profile-main relative z-10 pt-20">
     <!-- Profile Card -->
     <section class="profile-card-section">
       <div class="profile-card">
@@ -243,13 +366,6 @@
       <button id="btn-logout" class="logout-btn" data-i18n="logout">Logout</button>
     </section>
   </main>
-
-  <!-- Navigation -->
-  <nav class="profile-nav">
-    <a href="../" class="nav-link" data-i18n="home">Home</a>
-    <a href="../daily/" class="nav-link" data-i18n="daily">Daily Test</a>
-    <a href="../life-summary/" class="nav-link" data-i18n="lifeSummary">Life Summary</a>
-  </nav>
 
   <!-- Scripts -->
   <script src="../js/badges.js"></script>
@@ -580,6 +696,21 @@
           window.location.reload();
         }
       });
+
+      // Mobile menu handlers
+      document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('hidden');
+      });
+
+      document.getElementById('mobile-menu-close')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+
+      // Update language display on load
+      var currentLangEl = document.getElementById('current-lang');
+      if (currentLangEl) {
+        currentLangEl.textContent = langFlags[currentLang] + ' ' + langNames[currentLang];
+      }
     }
 
     // Initialize when DOM ready
