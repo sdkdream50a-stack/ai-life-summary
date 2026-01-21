@@ -77,13 +77,6 @@
   padding: 2rem;
   perspective: 1200px;
   position: relative;
-  transition: justify-content 0.5s ease, padding-top 0.5s ease;
-}
-
-/* When card is flipped, position at top */
-.reveal-stage.card-revealed {
-  justify-content: flex-start;
-  padding-top: 3rem;
 }
 
 /* Ambient glow behind card - purple theme */
@@ -96,6 +89,12 @@
   filter: blur(40px);
   animation: ambientPulse 3s ease-in-out infinite;
   pointer-events: none;
+  transition: transform 1s ease-out, top 1s ease-out;
+}
+
+/* Move glow to top when card is revealed */
+.reveal-stage.card-revealed::before {
+  transform: translateY(-30vh);
 }
 
 @keyframes ambientPulse {
@@ -108,7 +107,7 @@
   height: 400px;
   position: relative;
   transform-style: preserve-3d;
-  /* Slower, bouncier transition */
+  /* Slower, bouncier transition for flip + position */
   transition: transform 1.0s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   cursor: pointer;
   z-index: 1;
@@ -119,13 +118,15 @@
   transition: transform 0.3s ease-out;
 }
 
+/* Flip and move to top */
 .reveal-card.flipped {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateY(-25vh);
+  transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Post-flip fade out effect for front card */
+/* Post-flip: slow fade out effect for front card */
 .reveal-card.flipped .card-front {
-  animation: cardFadeAway 1.5s ease-out 0.5s forwards;
+  animation: cardFadeAway 2.5s ease-out 1s forwards;
 }
 
 @keyframes cardFadeAway {
