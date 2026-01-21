@@ -1381,6 +1381,8 @@
             return new Promise((resolve) => {
                 const flipCard = () => {
                     revealCard.classList.add('flipped');
+                    // Move card to top position after flip
+                    revealStage.classList.add('card-revealed');
 
                     // Show soul type on card back with slight delay for dramatic effect
                     setTimeout(() => {
