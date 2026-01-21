@@ -219,6 +219,9 @@ const SmartShareManager = {
 
         const baseLang = locale.split('-')[0];
 
+        // Store options for later use in click handler
+        this._currentOptions = { locale, score, type: options.type, url };
+
         return priority.map((type, index) => {
             const config = buttonConfigs[type];
             if (!config) return '';
@@ -230,7 +233,11 @@ const SmartShareManager = {
             return `
                 <button
                     data-share-type="${type}"
-                    onclick="SmartShareManager.handleShare('${type}', ${JSON.stringify({ locale, score, type: options.type, url })})"
+                    data-locale="${locale}"
+                    data-score="${score || ''}"
+                    data-result-type="${options.type || ''}"
+                    data-url="${url}"
+                    onclick="SmartShareManager.handleShareClick(this)"
                     class="${config.class} ${sizeClass} rounded-lg transition flex items-center justify-center space-x-2"
                 >
                     <span>${config.icon}</span>
@@ -238,6 +245,20 @@ const SmartShareManager = {
                 </button>
             `;
         }).join('');
+    },
+
+    /**
+     * Handle share button click from data attributes
+     */
+    handleShareClick(button) {
+        const type = button.dataset.shareType;
+        const options = {
+            locale: button.dataset.locale,
+            score: button.dataset.score,
+            type: button.dataset.resultType,
+            url: button.dataset.url || window.location.href
+        };
+        this.handleShare(type, options);
     },
 
     /**
