@@ -1,0 +1,414 @@
+/* Widget Styles - Standalone minimal CSS */
+
+/* ==================== BASE ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background: transparent;
+  color: #f8fafc;
+}
+
+/* ==================== CARD WIDGET (300x200) ==================== */
+
+.widget-card {
+  width: 300px;
+  height: 200px;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.widget-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.widget-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.widget-card-emoji {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.widget-card-info {
+  flex: 1;
+}
+
+.widget-card-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.widget-card-type {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.widget-card-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.widget-card-stat {
+  flex: 1;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.widget-card-stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.widget-card-stat-label {
+  font-size: 0.625rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.widget-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.widget-card-cta:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== BADGE WIDGET (200x60) ==================== */
+
+.widget-badge {
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.widget-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.widget-badge-emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.widget-badge-info {
+  flex: 1;
+}
+
+.widget-badge-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+.widget-badge-type {
+  font-size: 0.625rem;
+  opacity: 0.8;
+}
+
+.widget-badge-arrow {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+/* ==================== MINI WIDGET (100x100) ==================== */
+
+.widget-mini {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.widget-mini:hover {
+  transform: scale(1.05);
+}
+
+.widget-mini-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 4px;
+}
+
+.widget-mini-name {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==================== GENERATOR PAGE ==================== */
+
+.generator-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  padding-bottom: 2rem;
+}
+
+.generator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.generator-header .back-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #f8fafc;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.generator-header .back-link:hover {
+  transform: translateX(-2px);
+}
+
+.generator-header .header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.generator-content {
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.generator-section {
+  margin-bottom: 2rem;
+}
+
+.generator-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Style Selector */
+.style-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.style-option {
+  padding: 1rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(99, 102, 241, 0.1);
+  border-radius: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.style-option:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.style-option.active {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.style-option-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.style-option-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.style-option-size {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* Type Selector */
+.type-selector {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.type-option {
+  padding: 0.75rem 0.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(99, 102, 241, 0.1);
+  border-radius: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.type-option:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.type-option.active {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.type-option-emoji {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.type-option-name {
+  font-size: 0.5rem;
+  color: #94a3b8;
+}
+
+/* Preview */
+.preview-area {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+}
+
+/* Code Output */
+.code-output {
+  position: relative;
+}
+
+.code-output pre {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  color: #a5b4fc;
+  line-height: 1.5;
+}
+
+.code-output code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #4f46e5;
+}
+
+.copy-btn.copied {
+  background: #22c55e;
+}
+
+/* ==================== GRADIENTS ==================== */
+
+.gradient-flame-fox { background: linear-gradient(135deg, #f97316, #ef4444); }
+.gradient-diamond-lion { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+.gradient-shadow-bear { background: linear-gradient(135deg, #6b7280, #374151); }
+.gradient-crystal-deer { background: linear-gradient(135deg, #22d3ee, #06b6d4); }
+.gradient-thunder-wolf { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.gradient-ocean-dolphin { background: linear-gradient(135deg, #3b82f6, #0ea5e9); }
+.gradient-forest-owl { background: linear-gradient(135deg, #22c55e, #10b981); }
+.gradient-star-phoenix { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+.gradient-moon-rabbit { background: linear-gradient(135deg, #c4b5fd, #a78bfa); }
+.gradient-earth-turtle { background: linear-gradient(135deg, #84cc16, #65a30d); }
+.gradient-wind-hawk { background: linear-gradient(135deg, #67e8f9, #22d3ee); }
+.gradient-mystic-dragon { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (min-width: 768px) {
+  .generator-content {
+    max-width: 700px;
+  }
+
+  .type-selector {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

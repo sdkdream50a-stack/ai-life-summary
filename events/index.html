@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>AI 소울 타입 이벤트 - 시즌 이벤트 및 특별 테스트 | AI Test Lab</title>
+  <meta name="description" content="AI 소울 타입 시즌 이벤트를 확인하세요! 발렌타인, 할로윈, 연말결산 등 특별 이벤트에서 한정 뱃지와 보너스 XP를 획득하세요.">
+  <meta name="keywords" content="AI 테스트 이벤트, 소울 타입 이벤트, 시즌 이벤트, 특별 테스트, 한정 뱃지">
+  <link rel="canonical" href="https://smartaitest.com/events/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI 소울 타입 이벤트 - 시즌 특별 이벤트">
+  <meta property="og:description" content="특별 이벤트에서 한정 뱃지와 보너스 XP를 획득하세요!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartaitest.com/events/">
+  <meta property="og:image" content="https://smartaitest.com/images/events-og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="AI Test Lab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 소울 타입 이벤트">
+  <meta name="twitter:description" content="시즌 특별 이벤트에 참여하세요!">
+  <meta name="twitter:image" content="https://smartaitest.com/images/events-og.png">
+
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="ko" href="https://smartaitest.com/events/">
+  <link rel="alternate" hreflang="en" href="https://smartaitest.com/events/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/events/">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/events.css">
+  <link rel="stylesheet" href="../css/gamification.css">
+
+  <style>
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "AI 소울 타입 이벤트",
+    "description": "시즌 이벤트에서 특별 테스트와 한정 뱃지를 획득하세요",
+    "url": "https://smartaitest.com/events/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "AI Test Lab",
+      "url": "https://smartaitest.com"
+    }
+  }
+  </script>
+</head>
+<body class="events-container">
+  <!-- Header -->
+  <header class="events-header">
+    <a href="../" class="back-link" aria-label="Back to home">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="header-title" data-i18n="events">Events</h1>
+    <div class="header-actions"></div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="events-main">
+    <!-- Active Event Banner -->
+    <div id="active-event-banner">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Active Events Section -->
+    <section class="events-section">
+      <h2 class="events-section-title">
+        <span></span>
+        <span data-i18n="activeEvents">Active Events</span>
+      </h2>
+      <div id="active-events-grid" class="events-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="events-section">
+      <h2 class="events-section-title">
+        <span></span>
+        <span data-i18n="upcomingEvents">Upcoming Events</span>
+      </h2>
+      <div id="upcoming-events-grid" class="events-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section class="events-section">
+      <h2 class="events-section-title">
+        <span></span>
+        <span data-i18n="pastEvents">Past Events</span>
+      </h2>
+      <div id="past-events-grid" class="events-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Navigation -->
+  <nav class="events-nav">
+    <a href="../" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="home">Home</span>
+    </a>
+    <a href="../daily/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="daily">Daily</span>
+    </a>
+    <a href="../community/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="community">Community</span>
+    </a>
+    <a href="../ranking/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="ranking">Ranking</span>
+    </a>
+    <a href="../profile/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="profile">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../js/events-system.js"></script>
+
+  <script>
+    // i18n translations
+    const i18n = {
+      ko: {
+        events: '이벤트',
+        activeEvents: '진행 중인 이벤트',
+        upcomingEvents: '예정된 이벤트',
+        pastEvents: '종료된 이벤트',
+        home: '홈',
+        daily: '일일',
+        community: '커뮤니티',
+        ranking: '랭킹',
+        profile: '프로필',
+        daysLeft: '일 남음',
+        daysUntil: '일 후 시작',
+        ended: '종료됨',
+        active: '진행중',
+        upcoming: '예정',
+        participate: '참여하기',
+        xpBonus: 'XP 보너스',
+        specialBadge: '특별 뱃지',
+        noActiveEvents: '현재 진행 중인 이벤트가 없어요',
+        noUpcomingEvents: '예정된 이벤트가 없어요',
+        noPastEvents: '종료된 이벤트가 없어요'
+      },
+      en: {
+        events: 'Events',
+        activeEvents: 'Active Events',
+        upcomingEvents: 'Upcoming Events',
+        pastEvents: 'Past Events',
+        home: 'Home',
+        daily: 'Daily',
+        community: 'Community',
+        ranking: 'Ranking',
+        profile: 'Profile',
+        daysLeft: 'days left',
+        daysUntil: 'days until',
+        ended: 'Ended',
+        active: 'Active',
+        upcoming: 'Upcoming',
+        participate: 'Participate',
+        xpBonus: 'XP Bonus',
+        specialBadge: 'Special Badge',
+        noActiveEvents: 'No active events',
+        noUpcomingEvents: 'No upcoming events',
+        noPastEvents: 'No past events'
+      },
+      ja: {
+        events: 'イベント',
+        activeEvents: '開催中のイベント',
+        upcomingEvents: '予定イベント',
+        pastEvents: '終了イベント',
+        home: 'ホーム',
+        daily: 'デイリー',
+        community: 'コミュニティ',
+        ranking: 'ランキング',
+        profile: 'プロフィール',
+        daysLeft: '日残り',
+        daysUntil: '日後開始',
+        ended: '終了',
+        active: '開催中',
+        upcoming: '予定',
+        participate: '参加する',
+        xpBonus: 'XPボーナス',
+        specialBadge: '特別バッジ',
+        noActiveEvents: '現在開催中のイベントはありません',
+        noUpcomingEvents: '予定イベントはありません',
+        noPastEvents: '終了イベントはありません'
+      },
+      zh: {
+        events: '活动',
+        activeEvents: '进行中的活动',
+        upcomingEvents: '即将到来的活动',
+        pastEvents: '已结束的活动',
+        home: '首页',
+        daily: '每日',
+        community: '社区',
+        ranking: '排行',
+        profile: '个人',
+        daysLeft: '天剩余',
+        daysUntil: '天后开始',
+        ended: '已结束',
+        active: '进行中',
+        upcoming: '即将',
+        participate: '参与',
+        xpBonus: 'XP加成',
+        specialBadge: '特别徽章',
+        noActiveEvents: '目前没有进行中的活动',
+        noUpcomingEvents: '没有即将到来的活动',
+        noPastEvents: '没有已结束的活动'
+      },
+      es: {
+        events: 'Eventos',
+        activeEvents: 'Eventos Activos',
+        upcomingEvents: 'Próximos Eventos',
+        pastEvents: 'Eventos Pasados',
+        home: 'Inicio',
+        daily: 'Diario',
+        community: 'Comunidad',
+        ranking: 'Ranking',
+        profile: 'Perfil',
+        daysLeft: 'días restantes',
+        daysUntil: 'días para empezar',
+        ended: 'Terminado',
+        active: 'Activo',
+        upcoming: 'Próximo',
+        participate: 'Participar',
+        xpBonus: 'Bono XP',
+        specialBadge: 'Insignia Especial',
+        noActiveEvents: 'No hay eventos activos',
+        noUpcomingEvents: 'No hay próximos eventos',
+        noPastEvents: 'No hay eventos pasados'
+      }
+    };
+
+    let currentLang = 'ko';
+
+    // Detect language
+    function detectLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam && i18n[langParam]) return langParam;
+
+      const saved = localStorage.getItem('ai-life-summary-lang');
+      if (saved && i18n[saved]) return saved;
+
+      const browserLang = navigator.language.split('-')[0];
+      return i18n[browserLang] ? browserLang : 'ko';
+    }
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+    }
+
+    // Render event card
+    function renderEventCard(event, status) {
+      const name = event.name[currentLang] || event.name.en;
+      const description = event.description[currentLang] || event.description.en;
+      const dateRange = eventsSystem.formatDateRange(event, currentLang);
+
+      let statusText = '';
+      let statusClass = status;
+
+      if (status === 'active') {
+        const daysLeft = eventsSystem.getDaysRemaining(event);
+        statusText = `${daysLeft} ${t('daysLeft')}`;
+      } else if (status === 'upcoming') {
+        const daysUntil = eventsSystem.getDaysUntilStart(event);
+        statusText = `${daysUntil} ${t('daysUntil')}`;
+      } else {
+        statusText = t('ended');
+      }
+
+      let rewards = '';
+      if (event.xpBonus > 1) {
+        rewards += `<div class="event-reward"><span></span><span>${event.xpBonus}x ${t('xpBonus')}</span></div>`;
+      }
+      if (event.badges && event.badges.length > 0) {
+        rewards += `<div class="event-reward"><span></span><span>${t('specialBadge')}</span></div>`;
+      }
+
+      return `
+        <article class="event-card ${statusClass}">
+          <div class="event-card-header">
+            <span class="event-card-emoji">${event.emoji}</span>
+            <div class="event-card-info">
+              <h3 class="event-card-title">${name}</h3>
+              <div class="event-card-dates">${dateRange}</div>
+              <p class="event-card-description">${description}</p>
+            </div>
+            <span class="event-card-status ${statusClass}">${t(status)}</span>
+          </div>
+          ${rewards ? `<div class="event-card-rewards">${rewards}</div>` : ''}
+        </article>
+      `;
+    }
+
+    // Render active event banner
+    function renderActiveBanner() {
+      const container = document.getElementById('active-event-banner');
+      const event = eventsSystem.getPrimaryEvent();
+
+      if (!event) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const name = event.name[currentLang] || event.name.en;
+      const description = event.description[currentLang] || event.description.en;
+      const dateRange = eventsSystem.formatDateRange(event, currentLang);
+      const daysRemaining = eventsSystem.getDaysRemaining(event);
+
+      container.innerHTML = `
+        <div class="event-banner" style="--event-primary: ${event.theme.primary}; --event-secondary: ${event.theme.secondary};">
+          <div class="event-banner-content">
+            <div class="event-banner-badge">
+              <span></span>
+              <span>${t('active')}</span>
+            </div>
+            <div class="event-banner-emoji">${event.emoji}</div>
+            <h2 class="event-banner-title">${name}</h2>
+            <p class="event-banner-description">${description}</p>
+            <div class="event-banner-dates">
+              <span></span>
+              <span>${dateRange}</span>
+              <span>•</span>
+              <span>${daysRemaining} ${t('daysLeft')}</span>
+            </div>
+            ${event.xpBonus > 1 ? `
+              <div class="event-countdown">
+                <div class="countdown-unit">
+                  <span class="countdown-value">${event.xpBonus}x</span>
+                  <span class="countdown-label">${t('xpBonus')}</span>
+                </div>
+              </div>
+            ` : ''}
+            <button class="event-banner-cta" onclick="window.location.href='../'">
+              ${t('participate')}
+              <span></span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render events
+    function renderEvents() {
+      const activeEvents = eventsSystem.getActiveEvents();
+      const upcomingEvents = eventsSystem.getUpcomingEvents(5);
+      const pastEvents = eventsSystem.getPastEvents(5);
+
+      // Active events
+      const activeGrid = document.getElementById('active-events-grid');
+      if (activeEvents.length === 0) {
+        activeGrid.innerHTML = `
+          <div class="events-empty">
+            <span class="events-empty-icon"></span>
+            <p class="events-empty-text">${t('noActiveEvents')}</p>
+          </div>
+        `;
+      } else {
+        activeGrid.innerHTML = activeEvents.map(e => renderEventCard(e, 'active')).join('');
+      }
+
+      // Upcoming events
+      const upcomingGrid = document.getElementById('upcoming-events-grid');
+      if (upcomingEvents.length === 0) {
+        upcomingGrid.innerHTML = `
+          <div class="events-empty">
+            <span class="events-empty-icon"></span>
+            <p class="events-empty-text">${t('noUpcomingEvents')}</p>
+          </div>
+        `;
+      } else {
+        upcomingGrid.innerHTML = upcomingEvents.map(e => renderEventCard(e, 'upcoming')).join('');
+      }
+
+      // Past events
+      const pastGrid = document.getElementById('past-events-grid');
+      if (pastEvents.length === 0) {
+        pastGrid.innerHTML = `
+          <div class="events-empty">
+            <span class="events-empty-icon"></span>
+            <p class="events-empty-text">${t('noPastEvents')}</p>
+          </div>
+        `;
+      } else {
+        pastGrid.innerHTML = pastEvents.map(e => renderEventCard(e, 'ended')).join('');
+      }
+    }
+
+    // Initialize
+    function init() {
+      currentLang = detectLanguage();
+      applyTranslations();
+      renderActiveBanner();
+      renderEvents();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_ID");
+  </script>
+</body>
+</html>

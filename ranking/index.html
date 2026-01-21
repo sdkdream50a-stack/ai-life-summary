@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>AI 소울 타입 랭킹 - 인기 타입, 베스트 궁합, 레벨 순위 | AI Test Lab</title>
+  <meta name="description" content="AI 소울 타입 랭킹을 확인하세요! 이번 주 인기 타입, 최고의 궁합 조합, 레벨 랭킹, 스트릭 챔피언 순위를 한눈에 볼 수 있어요.">
+  <meta name="keywords" content="AI 소울 타입 랭킹, 성격 유형 순위, 궁합 랭킹, 레벨 랭킹, 스트릭 순위">
+  <link rel="canonical" href="https://smartaitest.com/ranking/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI 소울 타입 랭킹 - 나는 몇 위일까?">
+  <meta property="og:description" content="이번 주 인기 타입, 베스트 궁합, 레벨 순위를 확인하세요!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartaitest.com/ranking/">
+  <meta property="og:image" content="https://smartaitest.com/images/ranking-og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="AI Test Lab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 소울 타입 랭킹">
+  <meta name="twitter:description" content="나는 몇 위일까? 소울 타입 랭킹 확인하기">
+  <meta name="twitter:image" content="https://smartaitest.com/images/ranking-og.png">
+
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="ko" href="https://smartaitest.com/ranking/">
+  <link rel="alternate" hreflang="en" href="https://smartaitest.com/ranking/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/ranking/">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/ranking.css">
+  <link rel="stylesheet" href="../css/gamification.css">
+
+  <style>
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "AI 소울 타입 랭킹",
+    "description": "AI 소울 타입 인기 순위, 궁합 랭킹, 레벨 순위를 확인하세요",
+    "url": "https://smartaitest.com/ranking/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "AI Test Lab",
+      "url": "https://smartaitest.com"
+    }
+  }
+  </script>
+</head>
+<body class="ranking-container">
+  <!-- Header -->
+  <header class="ranking-header">
+    <a href="../" class="back-link" aria-label="Back to home">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="header-title" data-i18n="ranking">Ranking</h1>
+    <div class="header-actions"></div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="ranking-tabs">
+    <button class="ranking-tab active" data-tab="types" data-i18n="popularTypes">Popular Types</button>
+    <button class="ranking-tab" data-tab="compatibility" data-i18n="bestCompatibility">Best Match</button>
+    <button class="ranking-tab" data-tab="level" data-i18n="levelRanking">Level</button>
+    <button class="ranking-tab" data-tab="streak" data-i18n="streakRanking">Streak</button>
+  </div>
+
+  <!-- Content -->
+  <main class="ranking-content">
+    <!-- Type Distribution Panel -->
+    <div class="ranking-panel active" data-panel="types">
+      <div id="type-distribution-content" class="type-distribution">
+        <!-- Content rendered by JS -->
+        <div class="ranking-loading">
+          <div class="ranking-loading-spinner"></div>
+          <span class="ranking-loading-text" data-i18n="loading">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compatibility Pairs Panel -->
+    <div class="ranking-panel" data-panel="compatibility">
+      <div id="compatibility-content" class="compatibility-list">
+        <!-- Content rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Level Leaderboard Panel -->
+    <div class="ranking-panel" data-panel="level">
+      <div id="level-content">
+        <!-- Content rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Streak Leaderboard Panel -->
+    <div class="ranking-panel" data-panel="streak">
+      <div id="streak-content">
+        <!-- Content rendered by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Navigation -->
+  <nav class="ranking-nav">
+    <a href="../" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="home">Home</span>
+    </a>
+    <a href="../daily/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="daily">Daily</span>
+    </a>
+    <a href="../community/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="community">Community</span>
+    </a>
+    <a href="#" class="nav-link active">
+      <span class="nav-icon"></span>
+      <span data-i18n="ranking">Ranking</span>
+    </a>
+    <a href="../profile/" class="nav-link">
+      <span class="nav-icon"></span>
+      <span data-i18n="profile">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../js/soul-types.js"></script>
+  <script src="../js/user-data.js"></script>
+  <script src="../js/badges.js"></script>
+  <script src="../js/level-xp.js"></script>
+  <script src="../js/ranking-data.js"></script>
+  <script src="../js/ranking-ui.js"></script>
+
+  <script>
+    // i18n translations
+    const i18n = {
+      ko: {
+        ranking: '랭킹',
+        popularTypes: '인기 타입',
+        bestCompatibility: '베스트 궁합',
+        levelRanking: '레벨 랭킹',
+        streakRanking: '스트릭 랭킹',
+        loading: '로딩 중...',
+        home: '홈',
+        daily: '일일',
+        community: '커뮤니티',
+        profile: '프로필'
+      },
+      en: {
+        ranking: 'Ranking',
+        popularTypes: 'Popular Types',
+        bestCompatibility: 'Best Match',
+        levelRanking: 'Level Ranking',
+        streakRanking: 'Streak Ranking',
+        loading: 'Loading...',
+        home: 'Home',
+        daily: 'Daily',
+        community: 'Community',
+        profile: 'Profile'
+      },
+      ja: {
+        ranking: 'ランキング',
+        popularTypes: '人気タイプ',
+        bestCompatibility: 'ベスト相性',
+        levelRanking: 'レベルランキング',
+        streakRanking: 'ストリークランキング',
+        loading: '読み込み中...',
+        home: 'ホーム',
+        daily: 'デイリー',
+        community: 'コミュニティ',
+        profile: 'プロフィール'
+      },
+      zh: {
+        ranking: '排行榜',
+        popularTypes: '热门类型',
+        bestCompatibility: '最佳配对',
+        levelRanking: '等级排行',
+        streakRanking: '连续天数排行',
+        loading: '加载中...',
+        home: '首页',
+        daily: '每日',
+        community: '社区',
+        profile: '个人'
+      },
+      es: {
+        ranking: 'Ranking',
+        popularTypes: 'Tipos Populares',
+        bestCompatibility: 'Mejor Pareja',
+        levelRanking: 'Ranking de Nivel',
+        streakRanking: 'Ranking de Racha',
+        loading: 'Cargando...',
+        home: 'Inicio',
+        daily: 'Diario',
+        community: 'Comunidad',
+        profile: 'Perfil'
+      }
+    };
+
+    let currentLang = 'ko';
+
+    // Detect language
+    function detectLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam && i18n[langParam]) return langParam;
+
+      const saved = localStorage.getItem('ai-life-summary-lang');
+      if (saved && i18n[saved]) return saved;
+
+      const browserLang = navigator.language.split('-')[0];
+      return i18n[browserLang] ? browserLang : 'ko';
+    }
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+    }
+
+    // Initialize
+    async function init() {
+      currentLang = detectLanguage();
+      applyTranslations();
+
+      // Initialize user data
+      if (typeof userDataManager !== 'undefined') {
+        await userDataManager.initialize();
+      }
+
+      // Initialize ranking UI
+      rankingUI.initialize(currentLang);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_ID");
+  </script>
+</body>
+</html>

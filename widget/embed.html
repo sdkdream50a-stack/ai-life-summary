@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Soul Widget</title>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Widget Styles -->
+  <link rel="stylesheet" href="../css/widget.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="widget-container"></div>
+
+  <!-- Soul Types Data (minimal inline for faster loading) -->
+  <script>
+    const SOUL_TYPES = [
+      { id: 'flame-fox', emoji: '🦊', nameKo: '플레임 폭스', nameEn: 'Flame Fox', gradient: 'from-orange-500 to-red-500' },
+      { id: 'diamond-lion', emoji: '🦁', nameKo: '다이아몬드 라이온', nameEn: 'Diamond Lion', gradient: 'from-amber-500 to-yellow-400' },
+      { id: 'shadow-bear', emoji: '🐻', nameKo: '섀도우 베어', nameEn: 'Shadow Bear', gradient: 'from-gray-500 to-gray-700' },
+      { id: 'crystal-deer', emoji: '🦌', nameKo: '크리스탈 디어', nameEn: 'Crystal Deer', gradient: 'from-cyan-400 to-cyan-600' },
+      { id: 'thunder-wolf', emoji: '🐺', nameKo: '썬더 울프', nameEn: 'Thunder Wolf', gradient: 'from-purple-500 to-violet-600' },
+      { id: 'ocean-dolphin', emoji: '🐬', nameKo: '오션 돌핀', nameEn: 'Ocean Dolphin', gradient: 'from-blue-500 to-sky-500' },
+      { id: 'forest-owl', emoji: '🦉', nameKo: '포레스트 아울', nameEn: 'Forest Owl', gradient: 'from-green-500 to-emerald-500' },
+      { id: 'star-phoenix', emoji: '🔥', nameKo: '스타 피닉스', nameEn: 'Star Phoenix', gradient: 'from-pink-500 to-rose-500' },
+      { id: 'moon-rabbit', emoji: '🐰', nameKo: '문 래빗', nameEn: 'Moon Rabbit', gradient: 'from-violet-300 to-purple-400' },
+      { id: 'earth-turtle', emoji: '🐢', nameKo: '어스 터틀', nameEn: 'Earth Turtle', gradient: 'from-lime-500 to-green-600' },
+      { id: 'wind-hawk', emoji: '🦅', nameKo: '윈드 호크', nameEn: 'Wind Hawk', gradient: 'from-cyan-300 to-cyan-500' },
+      { id: 'mystic-dragon', emoji: '🐉', nameKo: '미스틱 드래곤', nameEn: 'Mystic Dragon', gradient: 'from-indigo-500 to-purple-500' }
+    ];
+  </script>
+
+  <script src="../js/widget-embed.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      widgetEmbed.initialize();
+    });
+  </script>
+</body>
+</html>

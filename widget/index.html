@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>AI 소울 타입 위젯 - 블로그/SNS 프로필에 추가하기 | AI Test Lab</title>
+  <meta name="description" content="당신의 AI 소울 타입을 블로그나 SNS 프로필에 표시하세요! 카드, 배지, 미니 스타일 중 선택하여 임베드 코드를 생성할 수 있습니다.">
+  <meta name="keywords" content="AI 소울 타입 위젯, 프로필 위젯, 블로그 위젯, 소울 타입 배지">
+  <link rel="canonical" href="https://smartaitest.com/widget/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI 소울 타입 위젯 - 프로필에 추가하기">
+  <meta property="og:description" content="당신의 소울 타입을 블로그나 SNS에 표시하세요!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smartaitest.com/widget/">
+  <meta property="og:image" content="https://smartaitest.com/images/widget-og.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="AI Test Lab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 소울 타입 위젯">
+  <meta name="twitter:description" content="당신의 소울 타입을 프로필에 추가하세요!">
+  <meta name="twitter:image" content="https://smartaitest.com/images/widget-og.png">
+
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="ko" href="https://smartaitest.com/widget/">
+  <link rel="alternate" hreflang="en" href="https://smartaitest.com/widget/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/widget/">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/widget.css">
+
+  <style>
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "AI 소울 타입 위젯",
+    "description": "AI 소울 타입을 블로그나 SNS 프로필에 추가하는 위젯 생성기",
+    "url": "https://smartaitest.com/widget/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "AI Test Lab",
+      "url": "https://smartaitest.com"
+    }
+  }
+  </script>
+</head>
+<body class="generator-container">
+  <!-- Header -->
+  <header class="generator-header">
+    <a href="../" class="back-link" aria-label="Back to home">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="header-title" data-i18n="widgetGenerator">Widget Generator</h1>
+    <div style="width: 40px;"></div>
+  </header>
+
+  <!-- Content -->
+  <main class="generator-content">
+    <!-- Style Selector -->
+    <section class="generator-section">
+      <h2 class="generator-section-title">
+        <span>🎨</span>
+        <span data-i18n="selectStyle">Select Style</span>
+      </h2>
+      <div class="style-selector">
+        <button class="style-option active" data-style="card">
+          <div class="style-option-icon">🃏</div>
+          <div class="style-option-name" data-i18n="cardStyle">Card</div>
+          <div class="style-option-size">300×200</div>
+        </button>
+        <button class="style-option" data-style="badge">
+          <div class="style-option-icon">🏷️</div>
+          <div class="style-option-name" data-i18n="badgeStyle">Badge</div>
+          <div class="style-option-size">200×60</div>
+        </button>
+        <button class="style-option" data-style="mini">
+          <div class="style-option-icon">✨</div>
+          <div class="style-option-name" data-i18n="miniStyle">Mini</div>
+          <div class="style-option-size">100×100</div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Type Selector -->
+    <section class="generator-section">
+      <h2 class="generator-section-title">
+        <span>🦊</span>
+        <span data-i18n="selectType">Select Type</span>
+      </h2>
+      <div class="type-selector">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Preview -->
+    <section class="generator-section">
+      <h2 class="generator-section-title">
+        <span>👁️</span>
+        <span data-i18n="preview">Preview</span>
+      </h2>
+      <div class="preview-area">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Embed Code -->
+    <section class="generator-section">
+      <h2 class="generator-section-title">
+        <span>📋</span>
+        <span data-i18n="embedCode">Embed Code</span>
+      </h2>
+      <div class="code-output">
+        <button class="copy-btn" data-i18n="copy">Copy</button>
+        <pre><code><!-- Generated by JS --></code></pre>
+      </div>
+    </section>
+
+    <!-- Instructions -->
+    <section class="generator-section">
+      <h2 class="generator-section-title">
+        <span>ℹ️</span>
+        <span data-i18n="howToUse">How to Use</span>
+      </h2>
+      <div style="background: rgba(30, 41, 59, 0.6); border-radius: 1rem; padding: 1rem; color: #94a3b8; font-size: 0.875rem; line-height: 1.6;">
+        <p data-i18n="instructions">
+          1. Select your preferred widget style<br>
+          2. Choose your soul type<br>
+          3. Copy the embed code<br>
+          4. Paste it into your blog or website HTML
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/soul-types.js"></script>
+  <script src="../js/widget-embed.js"></script>
+
+  <script>
+    // i18n translations
+    const i18n = {
+      ko: {
+        widgetGenerator: '위젯 생성기',
+        selectStyle: '스타일 선택',
+        cardStyle: '카드',
+        badgeStyle: '배지',
+        miniStyle: '미니',
+        selectType: '타입 선택',
+        preview: '미리보기',
+        embedCode: '임베드 코드',
+        copy: '복사',
+        howToUse: '사용 방법',
+        instructions: '1. 원하는 위젯 스타일을 선택하세요<br>2. 소울 타입을 선택하세요<br>3. 임베드 코드를 복사하세요<br>4. 블로그나 웹사이트 HTML에 붙여넣기 하세요'
+      },
+      en: {
+        widgetGenerator: 'Widget Generator',
+        selectStyle: 'Select Style',
+        cardStyle: 'Card',
+        badgeStyle: 'Badge',
+        miniStyle: 'Mini',
+        selectType: 'Select Type',
+        preview: 'Preview',
+        embedCode: 'Embed Code',
+        copy: 'Copy',
+        howToUse: 'How to Use',
+        instructions: '1. Select your preferred widget style<br>2. Choose your soul type<br>3. Copy the embed code<br>4. Paste it into your blog or website HTML'
+      },
+      ja: {
+        widgetGenerator: 'ウィジェット作成',
+        selectStyle: 'スタイル選択',
+        cardStyle: 'カード',
+        badgeStyle: 'バッジ',
+        miniStyle: 'ミニ',
+        selectType: 'タイプ選択',
+        preview: 'プレビュー',
+        embedCode: '埋め込みコード',
+        copy: 'コピー',
+        howToUse: '使い方',
+        instructions: '1. お好みのウィジェットスタイルを選択<br>2. ソウルタイプを選択<br>3. 埋め込みコードをコピー<br>4. ブログやウェブサイトのHTMLに貼り付け'
+      },
+      zh: {
+        widgetGenerator: '小部件生成器',
+        selectStyle: '选择样式',
+        cardStyle: '卡片',
+        badgeStyle: '徽章',
+        miniStyle: '迷你',
+        selectType: '选择类型',
+        preview: '预览',
+        embedCode: '嵌入代码',
+        copy: '复制',
+        howToUse: '使用方法',
+        instructions: '1. 选择您喜欢的小部件样式<br>2. 选择您的灵魂类型<br>3. 复制嵌入代码<br>4. 将其粘贴到您的博客或网站HTML中'
+      },
+      es: {
+        widgetGenerator: 'Generador de Widget',
+        selectStyle: 'Seleccionar Estilo',
+        cardStyle: 'Tarjeta',
+        badgeStyle: 'Insignia',
+        miniStyle: 'Mini',
+        selectType: 'Seleccionar Tipo',
+        preview: 'Vista Previa',
+        embedCode: 'Código de Inserción',
+        copy: 'Copiar',
+        howToUse: 'Cómo Usar',
+        instructions: '1. Selecciona tu estilo de widget preferido<br>2. Elige tu tipo de alma<br>3. Copia el código de inserción<br>4. Pégalo en el HTML de tu blog o sitio web'
+      }
+    };
+
+    let currentLang = 'ko';
+
+    // Detect language
+    function detectLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam && i18n[langParam]) return langParam;
+
+      const saved = localStorage.getItem('ai-life-summary-lang');
+      if (saved && i18n[saved]) return saved;
+
+      const browserLang = navigator.language.split('-')[0];
+      return i18n[browserLang] ? browserLang : 'ko';
+    }
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.innerHTML = t(key);
+      });
+    }
+
+    // Initialize
+    function init() {
+      currentLang = detectLanguage();
+      applyTranslations();
+
+      // Initialize widget generator
+      widgetGenerator.initialize(currentLang);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_ID");
+  </script>
+</body>
+</html>
