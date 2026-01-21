@@ -759,49 +759,25 @@
                             <span class="lang-zh">&#128279; 分享链接</span>
                             <span class="lang-es">&#128279; Compartir Enlace</span>
                         </p>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="copyResultLink()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition text-sm font-medium border border-gray-300">
-                                <span class="lang-en">🔗 Copy</span>
-                                <span class="lang-ko">🔗 복사</span>
-                                <span class="lang-ja">🔗 コピー</span>
-                                <span class="lang-zh">🔗 复制</span>
-                                <span class="lang-es">🔗 Copiar</span>
-                            </button>
-                            <button onclick="shareToTwitter()" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition text-sm font-bold">
-                                𝕏
-                            </button>
-                            <button onclick="shareToFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
-                                Facebook
-                            </button>
-                            <button onclick="shareToInstagram()" class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:opacity-90 transition text-sm font-medium">
-                                Instagram
-                            </button>
-                            <button onclick="shareToThreads()" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition text-sm font-medium">
+                        <!-- Smart Share Buttons - Locale-prioritized -->
+                        <div id="smart-share-buttons" class="flex flex-wrap justify-center gap-2">
+                            <!-- Populated by SmartShareManager based on locale -->
+                        </div>
+                        <!-- Secondary share options -->
+                        <div class="flex flex-wrap justify-center gap-2 mt-3 pt-3 border-t border-gray-100">
+                            <button onclick="shareToThreads()" data-share-type="threads" class="bg-black text-white px-3 py-1.5 rounded-lg hover:bg-gray-800 transition text-xs font-medium">
                                 Threads
                             </button>
-                            <button onclick="shareToWhatsApp()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm font-medium">
-                                WhatsApp
-                            </button>
-                            <button onclick="shareToLine()" class="bg-green-400 text-white px-4 py-2 rounded-lg hover:bg-green-500 transition text-sm font-bold">
-                                LINE
-                            </button>
-                            <button onclick="shareToKakao()" class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition text-sm font-bold">
-                                <span class="lang-en">KakaoTalk</span>
-                                <span class="lang-ko">카카오톡</span>
-                                <span class="lang-ja">カカオトーク</span>
-                                <span class="lang-zh">KakaoTalk</span>
-                                <span class="lang-es">KakaoTalk</span>
-                            </button>
-                            <button onclick="shareToTelegram()" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition text-sm font-medium">
+                            <button onclick="shareToTelegram()" data-share-type="telegram" class="bg-sky-500 text-white px-3 py-1.5 rounded-lg hover:bg-sky-600 transition text-xs font-medium">
                                 Telegram
                             </button>
-                            <button onclick="shareToReddit()" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition text-sm font-medium">
+                            <button onclick="shareToReddit()" data-share-type="reddit" class="bg-orange-500 text-white px-3 py-1.5 rounded-lg hover:bg-orange-600 transition text-xs font-medium">
                                 Reddit
                             </button>
-                            <button onclick="shareToPinterest()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm font-medium">
+                            <button onclick="shareToPinterest()" data-share-type="pinterest" class="bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 transition text-xs font-medium">
                                 Pinterest
                             </button>
-                            <button onclick="shareToLinkedIn()" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition text-sm font-medium">
+                            <button onclick="shareToLinkedIn()" data-share-type="linkedin" class="bg-blue-700 text-white px-3 py-1.5 rounded-lg hover:bg-blue-800 transition text-xs font-medium">
                                 LinkedIn
                             </button>
                         </div>
@@ -1068,6 +1044,7 @@
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js"></script>
+    <script src="/js/localization.js"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1222,6 +1199,35 @@
                     testType: 'compatibility',
                     lang: currentLang
                 });
+            }
+
+            // Initialize Smart Share Buttons (locale-based prioritization)
+            if (typeof SmartShareManager !== 'undefined') {
+                SmartShareManager.init('smart-share-buttons', {
+                    locale: currentLang,
+                    score: results.overallScore,
+                    type: results.relationshipType?.labels?.[currentLang] || '',
+                    url: window.location.href
+                });
+            }
+
+            // Add Cultural Metaphor to analysis
+            if (typeof CulturalMetaphorManager !== 'undefined') {
+                const metaphor = CulturalMetaphorManager.getCompatibilityMetaphor(results.overallScore, currentLang);
+                const enhancement = CulturalMetaphorManager.getResultEnhancement(results, currentLang);
+
+                // Update analysis intro with cultural context
+                const analysisIntro = document.getElementById('analysis-intro');
+                if (analysisIntro && metaphor) {
+                    const originalText = analysisIntro.textContent;
+                    analysisIntro.innerHTML = `<span class="text-pink-600 font-semibold">${metaphor}</span><br><br>${originalText}`;
+                }
+
+                // Add enhancement suffix to elements section
+                const analysisElements = document.getElementById('analysis-elements');
+                if (analysisElements && enhancement.suffix) {
+                    analysisElements.textContent += ' ' + enhancement.suffix;
+                }
             }
         }
 

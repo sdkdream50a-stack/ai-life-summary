@@ -787,28 +787,17 @@
                     </button>
                 </div>
 
-                <!-- Share Buttons -->
-                <div class="share-buttons-grid">
-                    <button id="copy-link" class="share-button bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300">
-                        <span class="lang-en">🔗 Copy</span>
-                        <span class="lang-ko">🔗 복사</span>
-                        <span class="lang-ja">🔗 コピー</span>
-                        <span class="lang-zh">🔗 复制</span>
-                        <span class="lang-es">🔗 Copiar</span>
-                    </button>
-                    <button id="share-twitter" class="share-button bg-black text-white hover:bg-gray-800">𝕏</button>
-                    <button id="share-facebook" class="share-button bg-blue-600 text-white hover:bg-blue-700">Facebook</button>
-                    <button id="share-instagram" class="share-button bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white">Instagram</button>
-                    <button id="share-threads" class="share-button bg-black text-white hover:bg-gray-800">Threads</button>
-                    <button id="share-line" class="share-button bg-green-400 text-white hover:bg-green-500">LINE</button>
-                    <button id="share-kakao" class="share-button bg-yellow-400 hover:bg-yellow-500">
-                        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="KakaoTalk" class="h-5 w-auto">
-                    </button>
-                    <button id="share-whatsapp" class="share-button bg-green-500 text-white hover:bg-green-600">WhatsApp</button>
-                    <button id="share-telegram" class="share-button bg-sky-500 text-white hover:bg-sky-600">Telegram</button>
-                    <button id="share-reddit" class="share-button bg-orange-500 text-white hover:bg-orange-600">Reddit</button>
-                    <button id="share-pinterest" class="share-button bg-red-600 text-white hover:bg-red-700">Pinterest</button>
-                    <button id="share-linkedin" class="share-button bg-blue-700 text-white hover:bg-blue-800">LinkedIn</button>
+                <!-- Smart Share Buttons (Stage 4: Locale-prioritized) -->
+                <div id="smart-share-life" class="share-buttons-grid">
+                    <!-- Populated by SmartShareManager based on locale -->
+                </div>
+                <!-- Secondary share options -->
+                <div class="flex flex-wrap justify-center gap-2 mt-3">
+                    <button id="share-threads" class="share-button bg-black text-white hover:bg-gray-800 text-xs px-3 py-1.5">Threads</button>
+                    <button id="share-telegram" class="share-button bg-sky-500 text-white hover:bg-sky-600 text-xs px-3 py-1.5">Telegram</button>
+                    <button id="share-reddit" class="share-button bg-orange-500 text-white hover:bg-orange-600 text-xs px-3 py-1.5">Reddit</button>
+                    <button id="share-pinterest" class="share-button bg-red-600 text-white hover:bg-red-700 text-xs px-3 py-1.5">Pinterest</button>
+                    <button id="share-linkedin" class="share-button bg-blue-700 text-white hover:bg-blue-800 text-xs px-3 py-1.5">LinkedIn</button>
                 </div>
 
                 <!-- Try Again -->
@@ -1190,6 +1179,8 @@
     <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
+    <!-- Stage 4: Localization -->
+    <script src="/js/localization.js"></script>
 
     <!-- Initialize Page -->
     <script>
@@ -1388,6 +1379,18 @@
                     es: `Top ${rarityPercent}% Tipo`
                 };
                 rarityText.textContent = rarityLabels[currentLang] || rarityLabels.en;
+
+                // Add Cultural Metaphor (Stage 4)
+                if (typeof CulturalMetaphorManager !== 'undefined') {
+                    const culturalDesc = CulturalMetaphorManager.generateCulturalDescription(traits, currentLang);
+                    const enhancement = CulturalMetaphorManager.getResultEnhancement({}, currentLang);
+
+                    // Add cultural badge after rarity
+                    const culturalBadge = document.createElement('p');
+                    culturalBadge.className = 'text-sm text-white/80 mt-2 animate-fade-in';
+                    culturalBadge.textContent = culturalDesc;
+                    rarityBadge.parentNode.insertBefore(culturalBadge, rarityBadge.nextSibling);
+                }
             }, Object.keys(traits).length * 200 + 800);
 
             // Show Radar Chart after trait bars
@@ -1415,11 +1418,21 @@
         // Stage E: Share
         function stageE_Share() {
             const shareStage = document.getElementById('share-stage');
-            const shareButtons = shareStage.querySelectorAll('.share-button');
 
             shareStage.classList.remove('hidden');
 
+            // Initialize Smart Share Buttons (Stage 4: Locale-prioritized)
+            if (typeof SmartShareManager !== 'undefined') {
+                SmartShareManager.init('smart-share-life', {
+                    locale: currentLang,
+                    score: currentSoulType?.rarity || '',
+                    type: currentSoulType?.name?.[currentLang] || '',
+                    url: window.location.href
+                });
+            }
+
             // Animate buttons
+            const shareButtons = shareStage.querySelectorAll('.share-button');
             shareButtons.forEach((button, index) => {
                 setTimeout(() => {
                     button.classList.add('fade-in-up');
