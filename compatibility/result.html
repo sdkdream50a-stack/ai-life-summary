@@ -1441,34 +1441,45 @@
 
     // Initialize Viral CTA for sending to friends
     (function initViralCTA() {
-        if (typeof ViralCTAManager === 'undefined') {
+        // Wait for ViralLinkManager to be available
+        if (typeof ViralLinkManager === 'undefined') {
             setTimeout(initViralCTA, 100);
             return;
         }
 
-        // Get input data
-        const storedData = localStorage.getItem('compatibility-data');
-        if (!storedData) return;
-
-        const inputData = JSON.parse(storedData);
-        const lang = document.documentElement.lang || 'ko';
         const container = document.getElementById('viral-cta-container');
-
         if (!container) return;
 
-        // Create user data for viral link
-        const userData = {
-            year: inputData.personA?.year,
-            month: inputData.personA?.month,
-            day: inputData.personA?.day,
-            name: inputData.personA?.name || ''
-        };
+        // Get input data
+        const storedData = localStorage.getItem('compatibility-data');
+        let viralLink = window.location.href; // Default to current URL
 
-        // Generate viral comparison link
-        const viralLink = ViralLinkManager.generateComparisonLink(userData, {
-            basePath: '/compatibility/',
-            source: 'result_cta'
-        });
+        if (storedData) {
+            try {
+                const inputData = JSON.parse(storedData);
+                // Create user data for viral link
+                const userData = {
+                    year: inputData.personA?.year,
+                    month: inputData.personA?.month,
+                    day: inputData.personA?.day,
+                    name: inputData.personA?.name || ''
+                };
+
+                // Generate viral comparison link
+                if (userData.year && userData.month && userData.day) {
+                    viralLink = ViralLinkManager.generateComparisonLink(userData, {
+                        baseUrl: 'https://smartaitest.com/compatibility/',
+                        source: 'result_cta'
+                    });
+                }
+            } catch (e) {
+                console.error('Error generating viral link:', e);
+            }
+        }
+
+        // Store viral link globally for button handlers
+        window.currentViralLink = viralLink;
+        console.log('Viral link set:', viralLink);
 
         // Create CTA buttons - multiple share options
         const ctaHtml = `
@@ -1507,15 +1518,16 @@
         `;
 
         container.innerHTML = ctaHtml;
-
-        // Store viral link globally for button handlers
-        window.currentViralLink = viralLink;
     })();
 
     // Viral CTA button handlers
-    function copyViralLink() {
-        if (!window.currentViralLink) return;
+    function getViralLink() {
+        // Use currentViralLink or fallback to current page URL
+        return window.currentViralLink || window.location.href;
+    }
 
+    function copyViralLink() {
+        const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const messages = {
             ko: '나랑 궁합 테스트 해볼래? 🥰',
@@ -1525,35 +1537,30 @@
             es: '¿Quieres probar nuestra compatibilidad? 🥰'
         };
 
-        const textToCopy = messages[lang] + '\n' + window.currentViralLink;
+        const textToCopy = messages[lang] + '\n' + link;
 
         navigator.clipboard.writeText(textToCopy).then(() => {
-            // Show success feedback
-            const container = document.getElementById('viral-cta-container');
-            const feedback = document.createElement('p');
-            feedback.className = 'text-white font-semibold mt-3 animate-pulse';
-            feedback.innerHTML = `
-                <span class="lang-en">✅ Link copied! Send it to your friend!</span>
-                <span class="lang-ko">✅ 복사 완료! 친구에게 보내세요!</span>
-                <span class="lang-ja">✅ コピー完了！友達に送ろう！</span>
-                <span class="lang-zh">✅ 已复制！发送给朋友吧！</span>
-                <span class="lang-es">✅ ¡Enlace copiado! ¡Envíalo a tu amigo!</span>
-            `;
-            container.appendChild(feedback);
-
-            // Remove feedback after 3 seconds
-            setTimeout(() => feedback.remove(), 3000);
+            // Show alert for confirmation
+            const confirmMsg = {
+                ko: '✅ 복사 완료! 친구에게 보내세요!',
+                en: '✅ Link copied! Send it to your friend!',
+                ja: '✅ コピー完了！友達に送ろう！',
+                zh: '✅ 已复制！发送给朋友吧！',
+                es: '✅ ¡Enlace copiado!'
+            };
+            alert(confirmMsg[lang] || confirmMsg.en);
 
             // Track share for XP
             if (typeof gamificationUI !== 'undefined') {
                 gamificationUI.showXpToast(30, 'share_result', lang);
             }
+        }).catch(() => {
+            alert(lang === 'ko' ? '링크 복사에 실패했습니다.' : 'Failed to copy link.');
         });
     }
 
     function shareViralKakao() {
-        if (!window.currentViralLink) return;
-
+        const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const messages = {
             ko: '나랑 궁합 테스트 해볼래? 🥰',
@@ -1567,24 +1574,25 @@
         if (typeof Kakao !== 'undefined' && Kakao.isInitialized && Kakao.isInitialized()) {
             Kakao.Share.sendDefault({
                 objectType: 'text',
-                text: messages[lang] + '\n' + window.currentViralLink,
+                text: messages[lang] + '\n' + link,
                 link: {
-                    mobileWebUrl: window.currentViralLink,
-                    webUrl: window.currentViralLink
+                    mobileWebUrl: link,
+                    webUrl: link
                 }
             });
         } else {
             // Fallback: copy to clipboard and prompt
-            const textToCopy = messages[lang] + '\n' + window.currentViralLink;
+            const textToCopy = messages[lang] + '\n' + link;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 alert(lang === 'ko' ? '📋 복사되었습니다! 카카오톡을 열고 붙여넣기하세요.' : '📋 Copied! Open KakaoTalk and paste.');
+            }).catch(() => {
+                alert(lang === 'ko' ? '복사에 실패했습니다.' : 'Failed to copy.');
             });
         }
     }
 
     function shareViralTwitter() {
-        if (!window.currentViralLink) return;
-
+        const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const messages = {
             ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
@@ -1595,13 +1603,12 @@
         };
 
         const text = encodeURIComponent(messages[lang]);
-        const url = encodeURIComponent(window.currentViralLink);
+        const url = encodeURIComponent(link);
         window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=550,height=450');
     }
 
     function shareViralNative() {
-        if (!window.currentViralLink) return;
-
+        const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const messages = {
             ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
@@ -1615,7 +1622,7 @@
             navigator.share({
                 title: 'AI Compatibility Test',
                 text: messages[lang],
-                url: window.currentViralLink
+                url: link
             }).catch(() => {
                 // User cancelled or error - do nothing
             });
