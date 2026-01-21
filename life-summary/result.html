@@ -69,6 +69,8 @@
     <link rel="stylesheet" href="../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../css/radar-chart.css">
+    <!-- Stage 5: Monetization -->
+    <link rel="stylesheet" href="../css/monetization.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
@@ -551,6 +553,8 @@
                     <span class="lang-zh">正在分析您的答案...</span>
                     <span class="lang-es">Analizando tus respuestas...</span>
                 </p>
+                <!-- Stage 5: Interstitial Ad during loading -->
+                <div id="loading-ad-container"></div>
             </div>
         </section>
 
@@ -1181,6 +1185,8 @@
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
     <script src="/js/localization.js"></script>
+    <!-- Stage 5: Monetization -->
+    <script src="/js/monetization.js"></script>
 
     <!-- Initialize Page -->
     <script>
@@ -1252,9 +1258,17 @@
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation)
+        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
         async function stageA_Loading() {
             const loadingStage = document.getElementById('loading-stage');
+            let adWrapper = null;
+
+            // Show interstitial ad during loading (Stage 5: Monetization)
+            if (typeof InterstitialAdManager !== 'undefined') {
+                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
+                    lang: currentLang
+                });
+            }
 
             return new Promise((resolve) => {
                 // Use enhanced loading with fake terminal animation
@@ -1262,6 +1276,10 @@
                     lang: currentLang,
                     duration: 4000, // 4 seconds
                     onComplete: () => {
+                        // Remove ad before transitioning
+                        if (adWrapper) {
+                            InterstitialAdManager.removeLoadingAd(adWrapper);
+                        }
                         setTimeout(() => {
                             loadingStage.classList.add('hidden');
                             resolve();

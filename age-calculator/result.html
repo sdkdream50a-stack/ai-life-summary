@@ -344,6 +344,11 @@
         switchLang(lang);
     });
     </script>
+    <!-- Gamification CSS -->
+    <link rel="stylesheet" href="../css/gamification.css">
+    <link rel="stylesheet" href="../css/popups.css">
+    <!-- Stage 5: Monetization -->
+    <link rel="stylesheet" href="../css/monetization.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -755,6 +760,15 @@
             </div>
         </section>
 
+        <!-- Stage 5: Supplement Affiliate Section -->
+        <section class="py-8 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div id="supplement-affiliate-container">
+                    <!-- Populated by ContextualAffiliateManager -->
+                </div>
+            </div>
+        </section>
+
         <!-- Try More Tests -->
         <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div class="max-w-4xl mx-auto px-4">
@@ -946,6 +960,9 @@
     <script src="/js/age-calculator.js"></script>
     <script src="/js/age-share.js"></script>
     <script src="/js/age-image-generator.js"></script>
+    <script src="/js/result-enhancements.js"></script>
+    <!-- Stage 5: Monetization -->
+    <script src="/js/monetization.js"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1037,6 +1054,24 @@
             document.getElementById('mental-analysis').textContent = analysis.mental;
             document.getElementById('energy-analysis').textContent = analysis.energy;
             document.getElementById('overall-analysis').textContent = analysis.overall;
+
+            // Initialize result page enhancements (participant counter, animations)
+            if (window.ResultEnhancements) {
+                window.ResultEnhancements.initResultEnhancements({
+                    testType: 'age-calculator',
+                    lang: currentLang
+                });
+            }
+
+            // Stage 5: Add Supplement Affiliate Section
+            if (typeof ContextualAffiliateManager !== 'undefined') {
+                const supplementHtml = ContextualAffiliateManager.createSupplementAffiliateSection(
+                    realAge,
+                    mentalAge,
+                    currentLang
+                );
+                ContextualAffiliateManager.insertAffiliateSection('supplement-affiliate-container', supplementHtml);
+            }
         }
 
         // Share functions using age-share.js and age-image-generator.js
@@ -1156,6 +1191,114 @@
                 selectReaction(existingReaction);
             }
         })();
+    </script>
+
+    <!-- Gamification Scripts -->
+    <script src="../js/badges.js"></script>
+    <script src="../js/level-xp.js"></script>
+    <script src="../js/streak.js"></script>
+    <script src="../js/user-data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/gamification-ui.js"></script>
+    <script src="../js/referral.js"></script>
+    <script>
+    // Gamification integration for Age Calculator
+    (function initGamification() {
+        // Wait for userDataManager to be ready
+        if (typeof userDataManager === 'undefined') {
+            setTimeout(initGamification, 100);
+            return;
+        }
+
+        const birthdate = localStorage.getItem('age-calculator-birthdate');
+        if (!birthdate) return;
+
+        const lang = localStorage.getItem('ai-life-summary-lang') || 'ko';
+        const resultKey = 'age-calculator-' + birthdate;
+
+        // Check if XP already awarded for this result
+        const userData = userDataManager.getUserData();
+        const alreadyAwarded = userData.gamification?.awardedResults?.includes(resultKey);
+
+        if (!alreadyAwarded) {
+            // Record test in history
+            userDataManager.addTestHistory({
+                type: 'age-calculator',
+                birthdate: birthdate,
+                timestamp: Date.now()
+            });
+
+            // Award XP for completing test
+            const xpAmount = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.test_complete : 50;
+            const xpResult = userDataManager.addXp(xpAmount, 'test_complete');
+
+            // Mark as awarded
+            userDataManager.markResultAwarded(resultKey);
+
+            // Update streak
+            if (typeof streakSystem !== 'undefined') {
+                const streakResult = streakSystem.updateStreak();
+                if (streakResult.milestone && typeof gamificationUI !== 'undefined') {
+                    setTimeout(() => {
+                        gamificationUI.showStreakMilestonePopup(streakResult.milestone, lang);
+                    }, 1500);
+                }
+            }
+
+            // Check for badges
+            if (typeof badgeSystem !== 'undefined') {
+                const newBadges = badgeSystem.checkBadgeConditions(userDataManager.getUserData());
+                if (newBadges.length > 0) {
+                    userDataManager.addBadges(newBadges);
+                    if (typeof gamificationUI !== 'undefined' && typeof BADGES !== 'undefined') {
+                        setTimeout(() => {
+                            gamificationUI.showBadgePopup(BADGES[newBadges[0]], lang);
+                        }, 2000);
+                    }
+                }
+            }
+
+            // Show XP toast
+            if (typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showXpToast(xpAmount, 'test_complete', lang);
+                }, 500);
+            }
+
+            // Check for level up
+            if (xpResult && xpResult.leveledUp && typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showLevelUpPopup(xpResult.newLevel, lang);
+                }, 3000);
+            }
+
+            // Apply referral if any
+            if (typeof referralSystem !== 'undefined') {
+                referralSystem.applyReferral();
+            }
+        }
+
+        // Track share button clicks for XP
+        document.querySelectorAll('.share-btn, [data-share]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const shareKey = 'age-calculator-share-' + birthdate;
+                const alreadyShared = userData.gamification?.awardedResults?.includes(shareKey);
+
+                if (!alreadyShared) {
+                    const shareXp = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.share_result : 30;
+                    userDataManager.addXp(shareXp, 'share_result');
+                    userDataManager.markResultAwarded(shareKey);
+
+                    if (typeof gamificationUI !== 'undefined') {
+                        gamificationUI.showXpToast(shareXp, 'share_result', lang);
+                    }
+                }
+            });
+        });
+
+        // Dispatch event for other scripts
+        window.dispatchEvent(new CustomEvent('gamification-update'));
+    })();
     </script>
 </body>
 </html>

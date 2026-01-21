@@ -386,6 +386,8 @@
     <!-- Gamification CSS -->
     <link rel="stylesheet" href="../css/gamification.css">
     <link rel="stylesheet" href="../css/popups.css">
+    <!-- Stage 5: Monetization -->
+    <link rel="stylesheet" href="../css/monetization.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -945,6 +947,15 @@
             </div>
         </section>
 
+        <!-- Stage 5: Romance Movie Affiliate Section -->
+        <section class="py-8 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div id="movie-affiliate-container">
+                    <!-- Populated by ContextualAffiliateManager -->
+                </div>
+            </div>
+        </section>
+
         <!-- Try Again / More Tests -->
         <section class="py-10 bg-gradient-to-br from-pink-50 to-rose-50">
             <div class="max-w-2xl mx-auto px-4 text-center">
@@ -1045,6 +1056,7 @@
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js"></script>
     <script src="/js/localization.js"></script>
+    <script src="/js/monetization.js"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1228,6 +1240,15 @@
                 if (analysisElements && enhancement.suffix) {
                     analysisElements.textContent += ' ' + enhancement.suffix;
                 }
+            }
+
+            // Stage 5: Add Movie Affiliate Section
+            if (typeof ContextualAffiliateManager !== 'undefined') {
+                const movieHtml = ContextualAffiliateManager.createMovieAffiliateSection(
+                    results.overallScore,
+                    currentLang
+                );
+                ContextualAffiliateManager.insertAffiliateSection('movie-affiliate-container', movieHtml);
             }
         }
 

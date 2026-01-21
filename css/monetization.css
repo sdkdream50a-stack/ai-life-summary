@@ -1,0 +1,350 @@
+/**
+ * Monetization Styles for SmartAITest.com
+ * Stage 5: Ads & Affiliate Sections
+ */
+
+/* ===== Loading Interstitial Ad ===== */
+.loading-ad-wrapper {
+    margin-top: 2rem;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.loading-ad-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ad-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ad-slot-interstitial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+}
+
+.ad-placeholder {
+    width: 300px;
+    height: 250px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-placeholder-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+}
+
+.loading-ad-wrapper.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+/* ===== Affiliate Sections ===== */
+.affiliate-section {
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.movie-affiliate {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.supplement-affiliate {
+    background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+}
+
+.affiliate-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.affiliate-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.affiliate-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.affiliate-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Movie Cards Grid */
+.affiliate-movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.affiliate-movie-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.affiliate-movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.movie-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.movie-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.movie-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.movie-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.movie-cta:hover {
+    transform: scale(1.02);
+}
+
+.platform-logo {
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+/* Supplement Cards Grid */
+.affiliate-supplements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.affiliate-supplement-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.affiliate-supplement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.supplement-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.supplement-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.supplement-benefit {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.75rem;
+}
+
+.supplement-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.supplement-cta:hover {
+    transform: scale(1.02);
+}
+
+.affiliate-logo {
+    font-weight: 800;
+    font-size: 0.875rem;
+}
+
+/* Disclosure */
+.affiliate-disclosure {
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 1rem;
+}
+
+/* Language visibility */
+.affiliate-disclosure .lang-ko,
+.affiliate-disclosure .lang-ja,
+.affiliate-disclosure .lang-zh,
+.affiliate-disclosure .lang-es {
+    display: none;
+}
+
+html[lang="ko"] .affiliate-disclosure .lang-en,
+html[lang="ko"] .affiliate-disclosure .lang-ja,
+html[lang="ko"] .affiliate-disclosure .lang-zh,
+html[lang="ko"] .affiliate-disclosure .lang-es {
+    display: none;
+}
+html[lang="ko"] .affiliate-disclosure .lang-ko {
+    display: inline;
+}
+
+html[lang="ja"] .affiliate-disclosure .lang-en,
+html[lang="ja"] .affiliate-disclosure .lang-ko,
+html[lang="ja"] .affiliate-disclosure .lang-zh,
+html[lang="ja"] .affiliate-disclosure .lang-es {
+    display: none;
+}
+html[lang="ja"] .affiliate-disclosure .lang-ja {
+    display: inline;
+}
+
+html[lang="zh"] .affiliate-disclosure .lang-en,
+html[lang="zh"] .affiliate-disclosure .lang-ko,
+html[lang="zh"] .affiliate-disclosure .lang-ja,
+html[lang="zh"] .affiliate-disclosure .lang-es {
+    display: none;
+}
+html[lang="zh"] .affiliate-disclosure .lang-zh {
+    display: inline;
+}
+
+html[lang="es"] .affiliate-disclosure .lang-en,
+html[lang="es"] .affiliate-disclosure .lang-ko,
+html[lang="es"] .affiliate-disclosure .lang-ja,
+html[lang="es"] .affiliate-disclosure .lang-zh {
+    display: none;
+}
+html[lang="es"] .affiliate-disclosure .lang-es {
+    display: inline;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 640px) {
+    .affiliate-section {
+        padding: 1.5rem;
+        margin: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+
+    .affiliate-title {
+        font-size: 1.25rem;
+    }
+
+    .affiliate-movies-grid,
+    .affiliate-supplements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliate-movie-card,
+    .affiliate-supplement-card {
+        padding: 1rem;
+    }
+
+    .movie-emoji,
+    .supplement-emoji {
+        font-size: 2rem;
+    }
+
+    .loading-ad-wrapper {
+        margin-top: 1.5rem;
+    }
+
+    .ad-placeholder {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* ===== Result Page Ad Slot ===== */
+.result-ad-slot {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    max-width: 336px;
+    text-align: center;
+}
+
+.result-ad-slot .ad-label {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* White background variant */
+.result-ad-slot.light {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.result-ad-slot.light .ad-label {
+    color: #868e96;
+}
