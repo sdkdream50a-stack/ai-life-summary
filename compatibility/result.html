@@ -752,30 +752,25 @@
                 </div>
 
                 <!-- Card B: Go Viral - Pink Gradient Style -->
-                <div class="share-card rounded-[20px] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] bg-gradient-to-br from-[#FF6B8A] via-[#FF5A7E] to-[#FF4D6D] relative overflow-hidden">
+                <div class="share-card rounded-[20px] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] relative overflow-hidden" style="background: linear-gradient(135deg, #FF6B8A 0%, #FF5A7E 50%, #FF4D6D 100%);">
                     <!-- Decorative circles -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2" style="background: rgba(255,255,255,0.1);"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 rounded-full translate-y-1/2 -translate-x-1/2" style="background: rgba(255,255,255,0.1);"></div>
 
                     <!-- Envelope Icon -->
-                    <div class="flex justify-center mb-4">
-                        <div class="w-16 h-14 bg-white/90 rounded-lg relative shadow-lg">
-                            <div class="absolute inset-x-0 top-0 h-6 bg-white/90 rounded-t-lg" style="clip-path: polygon(0 100%, 50% 30%, 100% 100%);"></div>
-                            <div class="absolute top-1 left-1/2 -translate-x-1/2">
-                                <span class="text-2xl">❤️</span>
-                            </div>
-                        </div>
+                    <div class="flex justify-center mb-4 relative z-10">
+                        <div class="text-4xl">💌</div>
                     </div>
 
                     <!-- Title -->
-                    <h3 class="text-xl font-bold text-white text-center mb-2">
+                    <h3 class="text-xl font-bold text-center mb-2 relative z-10" style="color: white;">
                         <span class="lang-en">Send to a Friend!</span>
                         <span class="lang-ko">이 결과를 친구에게 보내 반응 보기!</span>
                         <span class="lang-ja">友達に送って反応を見よう！</span>
                         <span class="lang-zh">发给朋友看反应！</span>
                         <span class="lang-es">¡Envía a un amigo!</span>
                     </h3>
-                    <p class="text-sm text-white/90 text-center mb-6">
+                    <p class="text-sm text-center mb-6 relative z-10" style="color: rgba(255,255,255,0.9);">
                         <span class="lang-en">Your friend can take the test with your birthday! What result will they get?</span>
                         <span class="lang-ko">친구가 내 생일로 궁합 테스트를 바로 할 수 있어요! 어떤 결과가 나올까?</span>
                         <span class="lang-ja">友達があなたの誕生日でテストできます！どんな結果が出るかな？</span>
@@ -783,10 +778,10 @@
                         <span class="lang-es">¡Tu amigo puede probar con tu cumpleaños! ¿Qué resultado obtendrá?</span>
                     </p>
 
-                    <!-- 4 Action Buttons -->
-                    <div class="flex flex-wrap justify-center gap-3 mb-4">
+                    <!-- 3 Main Action Buttons -->
+                    <div class="flex flex-wrap justify-center gap-3 mb-4 relative z-10">
                         <!-- Copy Link -->
-                        <button onclick="copyViralLink()" class="h-[48px] px-5 flex items-center justify-center gap-2 bg-white text-[#FF5A7E] rounded-full font-semibold hover:bg-gray-50 transition-all shadow-md">
+                        <button onclick="copyViralLink()" class="h-[48px] px-5 flex items-center justify-center gap-2 bg-white rounded-full font-semibold hover:bg-gray-50 transition-all shadow-md" style="color: #FF5A7E;">
                             <span>📋</span>
                             <span class="lang-en">Copy Link</span>
                             <span class="lang-ko">링크 복사</span>
@@ -796,7 +791,7 @@
                         </button>
 
                         <!-- KakaoTalk -->
-                        <button onclick="shareViralKakao()" class="h-[48px] px-5 flex items-center justify-center gap-2 bg-[#FEE500] text-[#191919] rounded-full font-semibold hover:brightness-95 transition-all shadow-md">
+                        <button onclick="shareViralKakao()" class="h-[48px] px-5 flex items-center justify-center gap-2 rounded-full font-semibold hover:brightness-95 transition-all shadow-md" style="background: #FEE500; color: #191919;">
                             <span>💬</span>
                             <span class="lang-en lang-ja lang-zh lang-es">Kakao</span>
                             <span class="lang-ko">카카오톡</span>
@@ -808,71 +803,10 @@
                             <span class="lang-en lang-ja lang-zh lang-es">Twitter</span>
                             <span class="lang-ko">트위터</span>
                         </button>
-
-                        <!-- More Share -->
-                        <button onclick="toggleMoreShare()" class="h-[48px] px-5 flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#A855F7] text-white rounded-full font-semibold hover:opacity-90 transition-all shadow-md">
-                            <span>📤</span>
-                            <span class="lang-en">Share</span>
-                            <span class="lang-ko">공유</span>
-                            <span class="lang-ja">共有</span>
-                            <span class="lang-zh">分享</span>
-                            <span class="lang-es">Más</span>
-                        </button>
-                    </div>
-
-                    <!-- Expanded Share Options (Hidden by default) -->
-                    <div id="more-share-panel" class="hidden mt-4 p-4 bg-white rounded-2xl">
-                        <div class="flex flex-wrap justify-center gap-2 mb-3">
-                            <!-- Row 1 -->
-                            <button onclick="copyViralLink()" class="h-[40px] px-4 flex items-center gap-2 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-200 transition border border-gray-200">
-                                <span>🔗</span>
-                                <span class="lang-en">Copy Link</span>
-                                <span class="lang-ko">링크 복사</span>
-                                <span class="lang-ja">リンク</span>
-                                <span class="lang-zh">复制</span>
-                                <span class="lang-es">Copiar</span>
-                            </button>
-                            <button onclick="shareViralKakao()" class="h-[40px] px-4 flex items-center gap-2 bg-[#FEE500] text-[#191919] rounded-full text-sm font-semibold hover:brightness-95 transition">
-                                <span>💛</span>
-                                <span class="lang-en lang-ja lang-zh lang-es">Kakao</span>
-                                <span class="lang-ko">카카오톡</span>
-                            </button>
-                            <button onclick="shareViralTwitter()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition">
-                                <span class="font-bold">𝕏</span>
-                                <span class="lang-en lang-ja lang-zh lang-es">Twitter</span>
-                                <span class="lang-ko">트위터</span>
-                            </button>
-                            <button onclick="shareToFacebook()" class="h-[40px] px-4 flex items-center gap-2 bg-[#1877F2] text-white rounded-full text-sm font-semibold hover:bg-[#166FE5] transition">
-                                <span>📘</span>
-                                <span>Facebook</span>
-                            </button>
-                            <button onclick="shareToInstagram()" class="h-[40px] px-4 flex items-center gap-2 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white rounded-full text-sm font-semibold hover:opacity-90 transition">
-                                <span>📷</span>
-                                <span>Instagram</span>
-                            </button>
-                        </div>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <!-- Row 2 -->
-                            <button onclick="shareToThreads()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition">
-                                <span>Threads</span>
-                            </button>
-                            <button onclick="shareToTelegram()" class="h-[40px] px-4 flex items-center gap-2 bg-[#0088CC] text-white rounded-full text-sm font-semibold hover:bg-[#0077B5] transition">
-                                <span>Telegram</span>
-                            </button>
-                            <button onclick="shareToReddit()" class="h-[40px] px-4 flex items-center gap-2 bg-[#FF4500] text-white rounded-full text-sm font-semibold hover:bg-[#E03D00] transition">
-                                <span>Reddit</span>
-                            </button>
-                            <button onclick="shareToPinterest()" class="h-[40px] px-4 flex items-center gap-2 bg-[#E60023] text-white rounded-full text-sm font-semibold hover:bg-[#C8001E] transition">
-                                <span>Pinterest</span>
-                            </button>
-                            <button onclick="shareToLinkedIn()" class="h-[40px] px-4 flex items-center gap-2 bg-[#0A66C2] text-white rounded-full text-sm font-semibold hover:bg-[#004182] transition">
-                                <span>LinkedIn</span>
-                            </button>
-                        </div>
                     </div>
 
                     <!-- Bottom Stats -->
-                    <p class="text-sm text-white/80 text-center mt-4">
+                    <p class="text-sm text-center relative z-10" style="color: rgba(255,255,255,0.8);">
                         <span class="lang-en">🔥 Over 50,000 couples have tested their compatibility!</span>
                         <span class="lang-ko">🔥 5만 커플이 이미 궁합을 확인했어요!</span>
                         <span class="lang-ja">🔥 5万組以上が相性をチェック済み！</span>
@@ -881,13 +815,71 @@
                     </p>
 
                     <!-- Copy Feedback -->
-                    <p id="copy-feedback" class="text-center text-white font-semibold text-sm mt-3 hidden bg-white/20 rounded-full py-2">
+                    <p id="copy-feedback" class="text-center font-semibold text-sm mt-3 hidden rounded-full py-2 relative z-10" style="color: white; background: rgba(255,255,255,0.2);">
                         <span class="lang-en">✓ Link copied!</span>
                         <span class="lang-ko">✓ 링크가 복사되었습니다!</span>
                         <span class="lang-ja">✓ リンクをコピーしました！</span>
                         <span class="lang-zh">✓ 已复制链接！</span>
                         <span class="lang-es">✓ ¡Enlace copiado!</span>
                     </p>
+                </div>
+
+                <!-- Card C: All Share Options -->
+                <div class="share-card bg-white rounded-[20px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+                    <h4 class="text-sm font-semibold text-gray-500 text-center mb-4">
+                        <span class="lang-en">Share via</span>
+                        <span class="lang-ko">다른 방법으로 공유하기</span>
+                        <span class="lang-ja">他の方法で共有</span>
+                        <span class="lang-zh">其他分享方式</span>
+                        <span class="lang-es">Compartir por</span>
+                    </h4>
+                    <div class="flex flex-wrap justify-center gap-2 mb-3">
+                        <!-- Row 1 -->
+                        <button onclick="copyViralLink()" class="h-[40px] px-4 flex items-center gap-2 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-200 transition border border-gray-200">
+                            <span>🔗</span>
+                            <span class="lang-en">Copy Link</span>
+                            <span class="lang-ko">링크 복사</span>
+                            <span class="lang-ja">リンク</span>
+                            <span class="lang-zh">复制</span>
+                            <span class="lang-es">Copiar</span>
+                        </button>
+                        <button onclick="shareViralKakao()" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition" style="background: #FEE500; color: #191919;">
+                            <span>💛</span>
+                            <span class="lang-en lang-ja lang-zh lang-es">Kakao</span>
+                            <span class="lang-ko">카카오톡</span>
+                        </button>
+                        <button onclick="shareViralTwitter()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition">
+                            <span class="font-bold">𝕏</span>
+                            <span class="lang-en lang-ja lang-zh lang-es">Twitter</span>
+                            <span class="lang-ko">트위터</span>
+                        </button>
+                        <button onclick="shareToFacebook()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: #1877F2;">
+                            <span>📘</span>
+                            <span>Facebook</span>
+                        </button>
+                        <button onclick="shareToInstagram()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);">
+                            <span>📷</span>
+                            <span>Instagram</span>
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <!-- Row 2 -->
+                        <button onclick="shareToThreads()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition">
+                            <span>Threads</span>
+                        </button>
+                        <button onclick="shareToTelegram()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: #0088CC;">
+                            <span>Telegram</span>
+                        </button>
+                        <button onclick="shareToReddit()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: #FF4500;">
+                            <span>Reddit</span>
+                        </button>
+                        <button onclick="shareToPinterest()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: #E60023;">
+                            <span>Pinterest</span>
+                        </button>
+                        <button onclick="shareToLinkedIn()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition" style="background: #0A66C2;">
+                            <span>LinkedIn</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
