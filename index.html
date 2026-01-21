@@ -404,27 +404,128 @@
             50% { opacity: 0.5; transform: scale(1.2); }
         }
 
-        /* Mobile Cards Carousel */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .poster-cards-container {
-                display: flex;
-                gap: 1rem;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                padding: 1rem;
-                margin: -1rem;
-            }
-            .poster-cards-container::-webkit-scrollbar {
-                display: none;
-            }
-            .poster-card {
-                flex: 0 0 70%;
-                scroll-snap-align: center;
+            /* Hero Section Mobile */
+            .hero-mesh-bg {
+                padding-top: 2.5rem;
+                padding-bottom: 2.5rem;
             }
             .hero-orb {
+                width: 90px;
+                height: 90px;
+            }
+            .hero-orb::after {
+                inset: -12px;
+            }
+            .hero-title-bold {
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+            .hero-title-gradient {
+                display: inline;
+            }
+
+            /* Poster Cards - Horizontal Scroll (Override Tailwind grid) */
+            .poster-cards-container {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                grid-template-columns: none !important;
+                gap: 0.875rem !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding: 0.5rem 1rem 1rem;
+                margin-left: -1rem;
+                margin-right: -1rem;
+                max-width: none !important;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE/Edge */
+            }
+            .poster-cards-container::-webkit-scrollbar {
+                display: none; /* Chrome/Safari */
+            }
+            .poster-card {
+                flex: 0 0 auto !important;
+                width: 70vw !important;
+                min-width: 220px !important;
+                max-width: 260px !important;
+                scroll-snap-align: center;
+                aspect-ratio: 3/4;
+            }
+            .poster-emoji {
+                font-size: 3.5rem;
+            }
+            .poster-card-content {
+                padding: 0.875rem;
+            }
+            .poster-card-content h3 {
+                font-size: 1rem;
+            }
+            .poster-card-content p {
+                font-size: 0.8rem;
+            }
+            .poster-ribbon {
+                top: 12px;
+                right: -38px;
+                font-size: 9px;
+                padding: 5px 0;
                 width: 120px;
-                height: 120px;
+            }
+
+            /* Glass Stats Mobile */
+            .glass-stat {
+                padding: 0.75rem 1rem;
+                border-radius: 14px;
+            }
+            .glass-stat-number {
+                font-size: 1.25rem;
+            }
+            .glass-stat .text-3xl {
+                font-size: 1.25rem;
+            }
+
+            /* Live Ticker Mobile */
+            .live-ticker {
+                position: relative;
+            }
+            .ticker-content {
+                font-size: 0.7rem;
+                padding: 0.35rem 0.75rem;
+            }
+        }
+
+        /* Hide particles on mobile */
+        @media (max-width: 768px) {
+            .hero-particles {
+                display: none;
+            }
+        }
+
+        /* Small Mobile (< 375px) */
+        @media (max-width: 375px) {
+            .hero-title-bold {
+                font-size: 1.4rem;
+            }
+            .hero-orb {
+                width: 70px;
+                height: 70px;
+            }
+            .poster-card {
+                width: 75vw !important;
+                min-width: 200px !important;
+                max-width: 240px !important;
+            }
+            .poster-emoji {
+                font-size: 3rem;
+            }
+            .glass-stat {
+                padding: 0.625rem 0.875rem;
+            }
+            .glass-stat-number {
+                font-size: 1.25rem;
             }
         }
         .gradient-text {
@@ -1107,7 +1208,7 @@
                     <span class="text-white lang-zh">是什么?</span>
                 </h1>
 
-                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto">
+                <p class="text-base md:text-lg lg:text-xl text-white/80 mb-6 md:mb-10 max-w-xl mx-auto px-2">
                     <span class="lang-en">1-minute AI test that reveals personality insights millions have discovered</span>
                     <span class="lang-ko">100만 명이 발견한 1분 AI 테스트로 숨겨진 나를 찾아보세요</span>
                     <span class="lang-ja">100万人が発見した1分AIテストで本当の自分を見つけよう</span>
@@ -1116,7 +1217,7 @@
                 </p>
 
                 <!-- Interactive Poster Cards -->
-                <div class="poster-cards-container grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="poster-cards-container grid grid-cols-1 md:grid-cols-3 gap-6 md:max-w-4xl mx-auto mb-8 md:mb-12 px-4 md:px-0">
                     <!-- Compatibility Card -->
                     <a href="/compatibility/" class="poster-card compatibility block">
                         <div class="poster-ribbon">HOT</div>
