@@ -126,9 +126,18 @@
                     <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                     <a href="/contact.html" class="text-gray-600 hover:text-primary transition" data-i18n="nav.contact">Contact</a>
                     <!-- Language Toggle -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium bg-gray-100 rounded-lg hover:bg-gray-200 transition" id="lang-dropdown-btn">
+                            <span id="current-lang-display">EN</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-sm">EN</button>
+                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-sm">한국어</button>
+                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-sm">日本語</button>
+                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-sm">中文</button>
+                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-sm">ES</button>
+                        </div>
                     </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -156,7 +165,10 @@
                         <p class="text-xs text-gray-500 mb-2">Language</p>
                         <div class="flex flex-wrap gap-2">
                             <button onclick="switchLang('en')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">EN</button>
-                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
+                            <button onclick="switchLang('ko')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">한국어</button>
+                            <button onclick="switchLang('ja')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">日本語</button>
+                            <button onclick="switchLang('zh')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">中文</button>
+                            <button onclick="switchLang('es')" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">ES</button>
                         </div>
                     </div>
                 </div>
@@ -531,6 +543,9 @@
         </div>
     </footer>
 
+    <!-- i18n Script - Load FIRST -->
+    <script src="/js/i18n.js?v=5"></script>
+
     <!-- Language Switch Script -->
     <script>
         function switchLang(lang) {
@@ -538,69 +553,72 @@
             localStorage.setItem('preferredLanguage', lang);
             document.documentElement.lang = lang;
 
-            var enBtn = document.getElementById('lang-btn-en');
-            var koBtn = document.getElementById('lang-btn-ko');
-            if (enBtn && koBtn) {
-                if (lang === 'en') {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                } else {
-                    enBtn.className = 'px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200';
-                    koBtn.className = 'px-3 py-1.5 text-sm font-medium bg-primary text-white';
-                }
+            // Update language display
+            var langDisplay = document.getElementById('current-lang-display');
+            if (langDisplay) {
+                var langLabels = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+                langDisplay.textContent = langLabels[lang] || 'EN';
             }
 
+            // Apply translations using i18n.js
             if (typeof setLanguage === 'function') {
                 setLanguage(lang);
+            } else if (typeof applyTranslations === 'function') {
+                applyTranslations(lang);
+            }
+
+            // Update placeholders
+            updatePlaceholders(lang);
+        }
+
+        function updatePlaceholders(lang) {
+            if (typeof t === 'function') {
+                var yearInput = document.getElementById('search-year');
+                var monthInput = document.getElementById('search-month');
+                var dayInput = document.getElementById('search-day');
+                if (yearInput) yearInput.placeholder = t('form.year', lang);
+                if (monthInput) monthInput.placeholder = t('form.month', lang);
+                if (dayInput) dayInput.placeholder = t('form.day', lang);
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             var savedLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
-            switchLang(savedLang);
-        });
-    </script>
 
-    <script src="/js/i18n.js?v=5"></script>
-    <script>
-        // Ensure translations are applied including placeholders
-        if (typeof applyTranslations === 'function') {
-            applyTranslations();
-        }
+            // Apply language after a short delay to ensure i18n.js is ready
+            setTimeout(function() {
+                switchLang(savedLang);
+            }, 50);
 
-        // Manually set date placeholders
-        if (typeof t === 'function') {
-            document.getElementById('search-year').placeholder = t('form.year');
-            document.getElementById('search-month').placeholder = t('form.month');
-            document.getElementById('search-day').placeholder = t('form.day');
-        }
+            // Mobile menu
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+            // Search functionality
+            document.getElementById('search-btn').addEventListener('click', function() {
+                const year = document.getElementById('search-year').value;
+                const month = document.getElementById('search-month').value;
+                const day = document.getElementById('search-day').value;
+                if (year && month && day) {
+                    const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    localStorage.setItem('ai-life-summary-birthdate', date);
+                    localStorage.setItem('ai-life-summary-gender', 'prefer-not-to-say');
+                    window.location.href = '/generate.html';
+                }
+            });
 
-        document.getElementById('search-btn').addEventListener('click', function() {
-            const year = document.getElementById('search-year').value;
-            const month = document.getElementById('search-month').value;
-            const day = document.getElementById('search-day').value;
-            if (year && month && day) {
-                const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                localStorage.setItem('ai-life-summary-birthdate', date);
-                localStorage.setItem('ai-life-summary-gender', 'prefer-not-to-say');
-                window.location.href = '/generate.html';
-            }
-        });
-
-        // Decade button functionality
-        document.querySelectorAll('.decade-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.decade-btn').forEach(b => {
-                    b.classList.remove('active', 'bg-primary', 'text-white');
-                    b.classList.add('bg-gray-200', 'text-gray-700');
+            // Decade button functionality
+            document.querySelectorAll('.decade-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.decade-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-primary', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    document.getElementById('decade-display').textContent = this.dataset.decade + 's';
                 });
-                this.classList.add('active', 'bg-primary', 'text-white');
-                this.classList.remove('bg-gray-200', 'text-gray-700');
-                document.getElementById('decade-display').textContent = this.dataset.decade + 's';
             });
         });
     </script>
