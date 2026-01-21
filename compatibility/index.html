@@ -1095,5 +1095,46 @@
             }, 3000);
         })();
     </script>
+
+    <!-- Stage 3: Viral Link System -->
+    <script src="/js/viral-link.js"></script>
+    <script>
+        // Initialize referral system
+        document.addEventListener('DOMContentLoaded', function() {
+            const lang = document.documentElement.lang || 'ko';
+
+            // Check for referral parameters
+            if (typeof ComparisonLandingManager !== 'undefined') {
+                const hasReferral = ComparisonLandingManager.initialize(lang);
+
+                if (hasReferral) {
+                    // Track page view with referral
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'referral_landing', {
+                            'event_category': 'viral',
+                            'event_label': 'compatibility_referral'
+                        });
+                    }
+                }
+            }
+        });
+
+        // Override form submission to track referral conversion
+        const originalFormHandler = document.getElementById('compatibility-form').onsubmit;
+        document.getElementById('compatibility-form').addEventListener('submit', function(e) {
+            // Track conversion if this was a referral
+            if (typeof ComparisonLandingManager !== 'undefined' && ComparisonLandingManager.referralData) {
+                const formData = {
+                    personB: {
+                        name: document.getElementById('name-b').value.trim(),
+                        year: parseInt(document.getElementById('year-b').value),
+                        month: parseInt(document.getElementById('month-b').value),
+                        day: parseInt(document.getElementById('day-b').value)
+                    }
+                };
+                ComparisonLandingManager.onFormSubmit(formData);
+            }
+        });
+    </script>
 </body>
 </html>
