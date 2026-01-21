@@ -77,6 +77,12 @@
   padding: 2rem;
   perspective: 1200px;
   position: relative;
+  transition: min-height 1s ease-out 0.5s;
+}
+
+/* Shrink stage height after card flip to reveal content below */
+.reveal-stage.card-revealed {
+  min-height: 30vh;
 }
 
 /* Ambient glow behind card - purple theme */
@@ -94,7 +100,8 @@
 
 /* Move glow to top when card is revealed */
 .reveal-stage.card-revealed::before {
-  transform: translateY(-30vh);
+  transform: translateY(-15vh) scale(0.7);
+  opacity: 0.3;
 }
 
 @keyframes ambientPulse {
@@ -118,9 +125,9 @@
   transition: transform 0.3s ease-out;
 }
 
-/* Flip and move to top */
+/* Flip, move to top, and shrink */
 .reveal-card.flipped {
-  transform: rotateY(180deg) translateY(-25vh);
+  transform: rotateY(180deg) translateY(-15vh) scale(0.75);
   transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
