@@ -117,8 +117,12 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../css/global-kick.css">
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../css/reveal-animations.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -787,34 +791,34 @@
                     <span class="lang-es">Ingresa tu fecha de nacimiento y deja que nuestro algoritmo de IA revele una visión única de tu viaje de vida. ¡Comparte con amigos y compara resultados!</span>
                 </p>
 
-                <!-- Input Form -->
-                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-md mx-auto">
-                    <form id="life-summary-form" class="space-y-5">
+                <!-- Input Form - KICK Chunky Style -->
+                <div class="kick-glass-light rounded-3xl p-6 md:p-8 max-w-md mx-auto">
+                    <form id="life-summary-form" class="space-y-6">
                         <div>
-                            <label class="block text-left text-sm font-medium text-gray-700 mb-2">
-                                <span class="lang-en">Date of Birth</span>
-                                <span class="lang-ko">생년월일</span>
-                                <span class="lang-ja">生年月日</span>
-                                <span class="lang-zh">出生日期</span>
-                                <span class="lang-es">Fecha de Nacimiento</span>
+                            <label class="block text-left text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">
+                                <span class="lang-en">🎂 Date of Birth</span>
+                                <span class="lang-ko">🎂 생년월일</span>
+                                <span class="lang-ja">🎂 生年月日</span>
+                                <span class="lang-zh">🎂 出生日期</span>
+                                <span class="lang-es">🎂 Fecha de Nacimiento</span>
                             </label>
-                            <div class="flex space-x-2">
-                                <input type="number" id="birth-year" name="birth-year" required min="1900" max="2025" placeholder="YYYY" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
-                                <input type="number" id="birth-month" name="birth-month" required min="1" max="12" placeholder="MM" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
-                                <input type="number" id="birth-day" name="birth-day" required min="1" max="31" placeholder="DD" class="w-1/3 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg text-center">
+                            <div class="flex space-x-3">
+                                <input type="number" id="birth-year" name="birth-year" required min="1900" max="2025" placeholder="YYYY" class="kick-input-light w-1/3 text-center font-bold">
+                                <input type="number" id="birth-month" name="birth-month" required min="1" max="12" placeholder="MM" class="kick-input-light w-1/3 text-center font-bold">
+                                <input type="number" id="birth-day" name="birth-day" required min="1" max="31" placeholder="DD" class="kick-input-light w-1/3 text-center font-bold">
                             </div>
                             <input type="hidden" id="birthdate" name="birthdate">
                         </div>
 
                         <div>
-                            <label for="gender" class="block text-left text-sm font-medium text-gray-700 mb-2">
-                                <span class="lang-en">Gender (Optional)</span>
-                                <span class="lang-ko">성별 (선택)</span>
-                                <span class="lang-ja">性別（任意）</span>
-                                <span class="lang-zh">性别（可选）</span>
-                                <span class="lang-es">Género (Opcional)</span>
+                            <label for="gender" class="block text-left text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">
+                                <span class="lang-en">✨ Gender (Optional)</span>
+                                <span class="lang-ko">✨ 성별 (선택)</span>
+                                <span class="lang-ja">✨ 性別（任意）</span>
+                                <span class="lang-zh">✨ 性别（可选）</span>
+                                <span class="lang-es">✨ Género (Opcional)</span>
                             </label>
-                            <select id="gender" name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg">
+                            <select id="gender" name="gender" class="kick-input-light w-full font-semibold">
                                 <option value="prefer-not-to-say" data-en="Prefer not to say" data-ko="선택 안 함" data-ja="回答しない" data-zh="不想说" data-es="Prefiero no decir">Prefer not to say</option>
                                 <option value="male" data-en="Male" data-ko="남성" data-ja="男性" data-zh="男" data-es="Masculino">Male</option>
                                 <option value="female" data-en="Female" data-ko="여성" data-ja="女性" data-zh="女" data-es="Femenino">Female</option>
@@ -822,12 +826,12 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg btn-pulse">
-                            <span class="lang-en">Discover My Life Summary</span>
-                            <span class="lang-ko">나의 인생 요약 발견하기</span>
-                            <span class="lang-ja">私の人生サマリーを発見</span>
-                            <span class="lang-zh">发现我的人生总结</span>
-                            <span class="lang-es">Descubrir Mi Resumen de Vida</span>
+                        <button type="submit" class="kick-btn kick-btn-primary kick-btn-bounce w-full text-xl">
+                            <span class="lang-en">🔮 Discover My Soul Type</span>
+                            <span class="lang-ko">🔮 내 소울 타입 발견하기</span>
+                            <span class="lang-ja">🔮 ソウルタイプを発見</span>
+                            <span class="lang-zh">🔮 发现我的灵魂类型</span>
+                            <span class="lang-es">🔮 Descubrir Mi Tipo de Alma</span>
                         </button>
                     </form>
 

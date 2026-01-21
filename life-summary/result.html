@@ -63,6 +63,8 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../css/global-kick.css">
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
@@ -73,6 +75,8 @@
     <link rel="stylesheet" href="../css/monetization.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -2474,6 +2478,89 @@
 
         // Dispatch event for other scripts
         window.dispatchEvent(new CustomEvent('gamification-update'));
+    })();
+    </script>
+
+    <!-- KICK: Sticky Bottom Action Bar -->
+    <div class="kick-sticky-bar" id="sticky-action-bar">
+        <a href="/life-summary/" class="kick-sticky-bar-btn secondary">
+            <span class="lang-en">🔄 Test Again</span>
+            <span class="lang-ko">🔄 다시 테스트</span>
+            <span class="lang-ja">🔄 再テスト</span>
+            <span class="lang-zh">🔄 重新测试</span>
+            <span class="lang-es">🔄 Probar de Nuevo</span>
+        </a>
+        <button onclick="document.getElementById('share-copy')?.click()" class="kick-sticky-bar-btn primary">
+            <span class="lang-en">📤 Share Results</span>
+            <span class="lang-ko">📤 결과 공유</span>
+            <span class="lang-ja">📤 結果を共有</span>
+            <span class="lang-zh">📤 分享结果</span>
+            <span class="lang-es">📤 Compartir</span>
+        </button>
+    </div>
+
+    <!-- KICK: Confetti Celebration -->
+    <script>
+    (function() {
+        // Show confetti when result is revealed
+        function celebrateResult() {
+            if (typeof confetti === 'function') {
+                // First burst
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#8B5CF6', '#EC4899', '#06B6D4', '#FCD34D', '#F472B6']
+                });
+                // Second burst after delay
+                setTimeout(function() {
+                    confetti({
+                        particleCount: 50,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0, y: 0.7 },
+                        colors: ['#8B5CF6', '#EC4899', '#06B6D4']
+                    });
+                }, 250);
+                setTimeout(function() {
+                    confetti({
+                        particleCount: 50,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1, y: 0.7 },
+                        colors: ['#FCD34D', '#F472B6', '#8B5CF6']
+                    });
+                }, 400);
+            }
+        }
+
+        // Show sticky bar on scroll
+        var stickyBar = document.getElementById('sticky-action-bar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+
+        // Trigger confetti when page loads with results
+        window.addEventListener('load', function() {
+            setTimeout(celebrateResult, 1000);
+        });
+
+        // Also trigger when result stage becomes visible
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.target.id === 'result-stage' && !mutation.target.classList.contains('hidden')) {
+                    setTimeout(celebrateResult, 500);
+                }
+            });
+        });
+        var resultStage = document.getElementById('result-stage');
+        if (resultStage) {
+            observer.observe(resultStage, { attributes: true, attributeFilter: ['class'] });
+        }
     })();
     </script>
 </body>
