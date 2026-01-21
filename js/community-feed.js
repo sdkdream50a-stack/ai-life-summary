@@ -20,8 +20,8 @@ class CommunityFeed {
   initialize(lang = 'ko') {
     this.lang = lang;
 
-    // Initialize community data
-    communityData.initialize();
+    // Initialize community data with language
+    communityData.initialize(lang);
 
     // Render initial posts
     this.renderPosts(true);

@@ -1,31 +1,93 @@
 /**
  * Ranking Data Management
  * Sample leaderboard data generation and management
+ * Multilingual support: ko, en, ja, zh, es
  */
 
-// Sample names for ranking (same as community)
-const RANKING_NAMES = [
-  '별빛여행자', '달빛소울', '햇살가득', '바람돌이', '구름위산책',
-  '꿈꾸는나무', '숲속요정', '하늘정원', '무지개빛', '반짝별',
-  '고양이사랑', '강아지맘', '행복나무', '따뜻한봄', '시원한바람',
-  '별똥별', '은하수여행', '달콤한꿈', '푸른하늘', '노을빛',
-  '초록이끼', '보라빛향기', '분홍구름', '하얀눈꽃', '빨간장미',
-  '파도소리', '새벽이슬', '저녁노을', '아침햇살', '한밤의달',
-  '소울탐험가', '테스트러버', '궁합매니아', '일일챌린저', '스트릭마스터',
-  '호기심왕', '분석가', '감성파', '이성파', '직관형',
-  '민트초코', '딸기우유', '바닐라빈', '카라멜맛', '레몬에이드',
-  '봄바람', '여름태양', '가을단풍', '겨울눈꽃', '사계절',
-  '새벽별', '한낮태양', '석양빛', '달빛아래', '별빛속',
-  '산책러버', '요가마니아', '독서광', '음악가', '예술혼',
-  '카페인생', '맛집탐험', '여행러', '캠핑족', '홈트매니아'
-];
+// Sample names for ranking by language
+const RANKING_NAMES = {
+  ko: [
+    '별빛여행자', '달빛소울', '햇살가득', '바람돌이', '구름위산책',
+    '꿈꾸는나무', '숲속요정', '하늘정원', '무지개빛', '반짝별',
+    '고양이사랑', '강아지맘', '행복나무', '따뜻한봄', '시원한바람',
+    '별똥별', '은하수여행', '달콤한꿈', '푸른하늘', '노을빛',
+    '초록이끼', '보라빛향기', '분홍구름', '하얀눈꽃', '빨간장미',
+    '파도소리', '새벽이슬', '저녁노을', '아침햇살', '한밤의달',
+    '소울탐험가', '테스트러버', '궁합매니아', '일일챌린저', '스트릭마스터',
+    '호기심왕', '분석가', '감성파', '이성파', '직관형',
+    '민트초코', '딸기우유', '바닐라빈', '카라멜맛', '레몬에이드',
+    '봄바람', '여름태양', '가을단풍', '겨울눈꽃', '사계절'
+  ],
+  en: [
+    'StarTraveler', 'MoonlightSoul', 'SunshineVibes', 'WindWalker', 'CloudDreamer',
+    'DreamTree', 'ForestSpirit', 'SkyGarden', 'RainbowLight', 'TwinkleStar',
+    'CatLover', 'PuppyMom', 'HappyTree', 'WarmSpring', 'CoolBreeze',
+    'ShootingStar', 'GalaxyTrip', 'SweetDream', 'BlueSky', 'SunsetGlow',
+    'GreenMoss', 'PurpleScent', 'PinkCloud', 'WhiteSnow', 'RedRose',
+    'WaveSound', 'MorningDew', 'EveningGlow', 'MorningSun', 'MidnightMoon',
+    'SoulExplorer', 'TestLover', 'MatchMaster', 'DailyChallenger', 'StreakKing',
+    'CuriousKing', 'Analyst', 'FeelingsType', 'LogicType', 'IntuitiveType',
+    'MintChoco', 'StrawberryMilk', 'VanillaBean', 'CaramelFlavor', 'Lemonade',
+    'SpringBreeze', 'SummerSun', 'AutumnLeaves', 'WinterSnow', 'FourSeasons'
+  ],
+  ja: [
+    '星旅人', '月光ソウル', '陽光いっぱい', '風の子', '雲の上散歩',
+    '夢見る木', '森の妖精', '空の庭', '虹色', 'キラキラ星',
+    '猫好き', 'わんこママ', '幸せの木', '暖かい春', '涼しい風',
+    '流れ星', '銀河旅行', '甘い夢', '青空', '夕焼け',
+    '緑の苔', '紫の香り', 'ピンクの雲', '白い雪', '赤いバラ',
+    '波の音', '朝露', '夕暮れ', '朝日', '真夜中の月',
+    'ソウル探検家', 'テスト好き', '相性マニア', 'デイリー挑戦者', 'ストリークマスター',
+    '好奇心王', '分析家', '感性派', '理性派', '直感型',
+    'ミントチョコ', 'いちごミルク', 'バニラビーンズ', 'キャラメル味', 'レモネード',
+    '春風', '夏の太陽', '秋の紅葉', '冬の雪', '四季'
+  ],
+  zh: [
+    '星光旅者', '月光灵魂', '阳光满溢', '风之子', '云上漫步',
+    '梦想树', '森林精灵', '天空花园', '彩虹光', '闪亮星',
+    '爱猫人', '狗狗妈妈', '幸福树', '温暖春天', '凉爽微风',
+    '流星', '银河之旅', '甜蜜梦', '蓝天', '晚霞',
+    '绿苔', '紫色香气', '粉红云', '白雪', '红玫瑰',
+    '海浪声', '晨露', '黄昏', '朝阳', '午夜月',
+    '灵魂探索者', '测试爱好者', '配对达人', '日常挑战者', '连续大师',
+    '好奇王', '分析师', '感性派', '理性派', '直觉型',
+    '薄荷巧克力', '草莓牛奶', '香草豆', '焦糖味', '柠檬水',
+    '春风', '夏日阳光', '秋叶', '冬雪', '四季'
+  ],
+  es: [
+    'ViajeroDeLasEstrellas', 'AlmaLunar', 'LuzDelSol', 'CaminanteDelViento', 'SoñadorDeNubes',
+    'ÁrbolDeSueños', 'EspírituDelBosque', 'JardínDelCielo', 'LuzArcoíris', 'EstrellaFugaz',
+    'AmanteDeLosGatos', 'MamáPerro', 'ÁrbolFeliz', 'PrimaveraCálida', 'BrisaFresca',
+    'EstrellaFugaz', 'ViajeGaláctico', 'DulceSueño', 'CieloAzul', 'ResplandorDelAtardecer',
+    'MusgoVerde', 'AromaPúrpura', 'NubeRosa', 'NieveBlanca', 'RosaRoja',
+    'SonidoDelMar', 'RocíoMatutino', 'Atardecer', 'SolDeAmanecer', 'LunaDeMedianoche',
+    'ExploradorDeAlmas', 'AmanteDePruebas', 'MaestroDeCompatibilidad', 'RetadorDiario', 'MaestroDeRacha',
+    'ReyCurioso', 'Analista', 'TipoEmocional', 'TipoLógico', 'TipoIntuitivo',
+    'MentaChocolate', 'LecheDeFresa', 'VainillaBean', 'SaborCaramelo', 'Limonada',
+    'BrisaDePrimavera', 'SolDeVerano', 'HojasDeOtoño', 'NieveDeInvierno', 'CuatroEstaciones'
+  ]
+};
+
+/**
+ * Get names for a specific language with fallback
+ */
+function getLocalizedNames(lang) {
+  return RANKING_NAMES[lang] || RANKING_NAMES.en || RANKING_NAMES.ko;
+}
+
+/**
+ * Get random item from array
+ */
+function getRandomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 // Type distribution data (weekly)
 const generateTypeDistribution = () => {
   const types = [
-    'flame-fox', 'diamond-lion', 'ocean-bear', 'crystal-butterfly',
-    'storm-eagle', 'moonlit-wolf', 'golden-phoenix', 'jade-turtle',
-    'silver-swan', 'cosmic-owl', 'rainbow-dolphin', 'shadow-panther'
+    'flame-fox', 'diamond-lion', 'shadow-bear', 'crystal-deer',
+    'thunder-wolf', 'ocean-dolphin', 'forest-owl', 'star-phoenix',
+    'moon-rabbit', 'earth-turtle', 'wind-hawk', 'mystic-dragon'
   ];
 
   // Generate random percentages that sum to 100
@@ -58,9 +120,9 @@ const generateTypeDistribution = () => {
 // Generate compatibility pairs
 const generateCompatibilityPairs = (count = 10) => {
   const types = [
-    'flame-fox', 'diamond-lion', 'ocean-bear', 'crystal-butterfly',
-    'storm-eagle', 'moonlit-wolf', 'golden-phoenix', 'jade-turtle',
-    'silver-swan', 'cosmic-owl', 'rainbow-dolphin', 'shadow-panther'
+    'flame-fox', 'diamond-lion', 'shadow-bear', 'crystal-deer',
+    'thunder-wolf', 'ocean-dolphin', 'forest-owl', 'star-phoenix',
+    'moon-rabbit', 'earth-turtle', 'wind-hawk', 'mystic-dragon'
   ];
 
   const pairs = [];
@@ -95,13 +157,14 @@ const generateCompatibilityPairs = (count = 10) => {
 };
 
 // Generate level leaderboard
-const generateLevelLeaderboard = (count = 100) => {
+const generateLevelLeaderboard = (count = 100, lang = 'ko') => {
   const types = [
-    'flame-fox', 'diamond-lion', 'ocean-bear', 'crystal-butterfly',
-    'storm-eagle', 'moonlit-wolf', 'golden-phoenix', 'jade-turtle',
-    'silver-swan', 'cosmic-owl', 'rainbow-dolphin', 'shadow-panther'
+    'flame-fox', 'diamond-lion', 'shadow-bear', 'crystal-deer',
+    'thunder-wolf', 'ocean-dolphin', 'forest-owl', 'star-phoenix',
+    'moon-rabbit', 'earth-turtle', 'wind-hawk', 'mystic-dragon'
   ];
 
+  const names = getLocalizedNames(lang);
   const users = [];
 
   for (let i = 0; i < count; i++) {
@@ -112,7 +175,7 @@ const generateLevelLeaderboard = (count = 100) => {
 
     users.push({
       id: `user_${i}`,
-      name: RANKING_NAMES[i % RANKING_NAMES.length],
+      name: names[i % names.length],
       type,
       level: Math.min(10, level),
       totalXp: (level * 500) + Math.floor(Math.random() * 500)
@@ -126,13 +189,14 @@ const generateLevelLeaderboard = (count = 100) => {
 };
 
 // Generate streak leaderboard
-const generateStreakLeaderboard = (count = 100) => {
+const generateStreakLeaderboard = (count = 100, lang = 'ko') => {
   const types = [
-    'flame-fox', 'diamond-lion', 'ocean-bear', 'crystal-butterfly',
-    'storm-eagle', 'moonlit-wolf', 'golden-phoenix', 'jade-turtle',
-    'silver-swan', 'cosmic-owl', 'rainbow-dolphin', 'shadow-panther'
+    'flame-fox', 'diamond-lion', 'shadow-bear', 'crystal-deer',
+    'thunder-wolf', 'ocean-dolphin', 'forest-owl', 'star-phoenix',
+    'moon-rabbit', 'earth-turtle', 'wind-hawk', 'mystic-dragon'
   ];
 
+  const names = getLocalizedNames(lang);
   const users = [];
 
   for (let i = 0; i < count; i++) {
@@ -143,7 +207,7 @@ const generateStreakLeaderboard = (count = 100) => {
 
     users.push({
       id: `user_${i}`,
-      name: RANKING_NAMES[i % RANKING_NAMES.length],
+      name: names[i % names.length],
       type,
       currentStreak: Math.max(1, streak),
       longestStreak: Math.max(1, streak + Math.floor(Math.random() * 10))
@@ -161,16 +225,23 @@ class RankingDataManager {
   constructor() {
     this.storageKey = 'smartaitest_ranking_cache';
     this.cacheExpiry = 5 * 60 * 1000; // 5 minutes
+    this.lang = 'ko';
   }
 
   /**
    * Initialize ranking data
    */
-  initialize() {
+  initialize(lang = 'ko') {
+    this.lang = lang;
     const cached = this.getCachedData();
 
-    if (!cached || this.isCacheExpired(cached)) {
-      const data = this.generateAllData();
+    // Check if we need to regenerate for different language or expired cache
+    const needsRegenerate = !cached ||
+                           this.isCacheExpired(cached) ||
+                           cached.data?.lang !== lang;
+
+    if (needsRegenerate) {
+      const data = this.generateAllData(lang);
       this.cacheData(data);
       return data;
     }
@@ -181,12 +252,13 @@ class RankingDataManager {
   /**
    * Generate all ranking data
    */
-  generateAllData() {
+  generateAllData(lang = 'ko') {
     return {
       typeDistribution: generateTypeDistribution(),
       compatibilityPairs: generateCompatibilityPairs(10),
-      levelLeaderboard: generateLevelLeaderboard(100),
-      streakLeaderboard: generateStreakLeaderboard(100),
+      levelLeaderboard: generateLevelLeaderboard(100, lang),
+      streakLeaderboard: generateStreakLeaderboard(100, lang),
+      lang: lang,
       generatedAt: Date.now()
     };
   }
@@ -229,7 +301,7 @@ class RankingDataManager {
    * Get type distribution
    */
   getTypeDistribution() {
-    const data = this.initialize();
+    const data = this.initialize(this.lang);
     return data.typeDistribution;
   }
 
@@ -237,7 +309,7 @@ class RankingDataManager {
    * Get compatibility pairs
    */
   getCompatibilityPairs() {
-    const data = this.initialize();
+    const data = this.initialize(this.lang);
     return data.compatibilityPairs;
   }
 
@@ -245,7 +317,7 @@ class RankingDataManager {
    * Get level leaderboard
    */
   getLevelLeaderboard(limit = 100) {
-    const data = this.initialize();
+    const data = this.initialize(this.lang);
     return data.levelLeaderboard.slice(0, limit);
   }
 
@@ -253,7 +325,7 @@ class RankingDataManager {
    * Get streak leaderboard
    */
   getStreakLeaderboard(limit = 100) {
-    const data = this.initialize();
+    const data = this.initialize(this.lang);
     return data.streakLeaderboard.slice(0, limit);
   }
 
@@ -332,10 +404,18 @@ class RankingDataManager {
       }
     }
 
-    // Create user entry
+    // Create user entry with localized name
+    const youLabel = {
+      ko: '나',
+      en: 'You',
+      ja: 'あなた',
+      zh: '你',
+      es: 'Tú'
+    };
+
     const userEntry = {
       id: 'current_user',
-      name: userData.displayName || (userData.lang === 'ko' ? '나' : 'You'),
+      name: userData.displayName || youLabel[this.lang] || youLabel.en,
       type: userData.soulType || 'flame-fox',
       [valueKey]: userValue,
       isCurrentUser: true
@@ -354,9 +434,9 @@ class RankingDataManager {
   /**
    * Refresh data
    */
-  refreshData() {
+  refreshData(lang = 'ko') {
     localStorage.removeItem(this.storageKey);
-    return this.initialize();
+    return this.initialize(lang);
   }
 }
 

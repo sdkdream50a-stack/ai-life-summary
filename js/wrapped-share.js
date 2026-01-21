@@ -41,6 +41,36 @@ class WrappedShareManager {
         days: 'd',
         myResult: 'My Soul Type is',
         tagline: 'Check yours at smartaitest.com'
+      },
+      ja: {
+        yearWrapped: '年末まとめ',
+        tests: 'テスト',
+        streak: 'ストリーク',
+        level: 'レベル',
+        badges: 'バッジ',
+        days: '日',
+        myResult: '私のソウルタイプは',
+        tagline: 'smartaitest.comで確認しよう'
+      },
+      zh: {
+        yearWrapped: '年终总结',
+        tests: '测试',
+        streak: '连续',
+        level: '等级',
+        badges: '徽章',
+        days: '天',
+        myResult: '我的灵魂类型是',
+        tagline: '在smartaitest.com查看你的'
+      },
+      es: {
+        yearWrapped: 'Resumen del Año',
+        tests: 'Tests',
+        streak: 'Racha',
+        level: 'Nivel',
+        badges: 'Insignias',
+        days: 'd',
+        myResult: 'Mi Tipo de Alma es',
+        tagline: 'Descubre el tuyo en smartaitest.com'
       }
     };
 

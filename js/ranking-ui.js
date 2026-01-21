@@ -21,8 +21,8 @@ class RankingUI {
       this.userData = userDataManager.getUserData();
     }
 
-    // Initialize ranking data
-    rankingData.initialize();
+    // Initialize ranking data with language
+    rankingData.initialize(lang);
 
     // Render initial tab
     this.renderCurrentTab();
@@ -508,6 +508,42 @@ class RankingUI {
         level: 'Level',
         streak: 'Streak',
         myRank: 'My Rank',
+        top: 'Top'
+      },
+      ja: {
+        weeklyTypes: '今週の人気タイプ',
+        yourType: 'あなたのタイプ',
+        bestMatch: 'ベスト相性',
+        tests: '回テスト',
+        rank: '順位',
+        user: 'ユーザー',
+        level: 'レベル',
+        streak: 'ストリーク',
+        myRank: '私の順位',
+        top: '上位'
+      },
+      zh: {
+        weeklyTypes: '本周热门类型',
+        yourType: '你的类型',
+        bestMatch: '最佳配对',
+        tests: '次测试',
+        rank: '排名',
+        user: '用户',
+        level: '等级',
+        streak: '连续',
+        myRank: '我的排名',
+        top: '前'
+      },
+      es: {
+        weeklyTypes: 'Tipos Populares Esta Semana',
+        yourType: 'Tu tipo',
+        bestMatch: 'Mejor Pareja',
+        tests: 'pruebas',
+        rank: 'Rango',
+        user: 'Usuario',
+        level: 'Nivel',
+        streak: 'Racha',
+        myRank: 'Mi Ranking',
         top: 'Top'
       }
     };
