@@ -1,21 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 19,
-      "publish_date": "2026-01-21",
-      "title_ko": "배포란 무엇인가? 비전공자를 위한 3분 완벽 정리",
-      "title_en": "What Is Deployment? A 3-Minute Complete Guide for Non-Tech People",
-      "description_ko": "IT 비전공자도 이해하기 쉬운 '배포'의 개념 정리. 매장 오픈에 비유하여 롤백, 핫픽스 등 실무 용어를 설명합니다.",
-      "description_en": "Easy-to-understand explanation of 'deployment' for non-tech people. We use a store opening analogy to explain terms like rollback and hotfix.",
-      "emoji": "🚀",
-      "gradient": "from-amber-400 to-orange-500",
-      "files": {
-        "ko": "post-19-ko.html",
-        "en": "post-19-en.html",
-        "default": "post-19.html"
-      }
-    },
-    {
       "episode": 20,
       "publish_date": "2026-01-22",
       "title_ko": "프론트엔드와 백엔드의 차이: 50대 비전공자를 위한 완벽 가이드",
