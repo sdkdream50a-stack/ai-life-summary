@@ -225,6 +225,251 @@
             align-items: center;
             gap: 8px;
         }
+
+        /* Question Flow Styles */
+        .question-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .question-card-container {
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .question-card-wrapper {
+            perspective: 1000px;
+        }
+
+        .question-card-inner {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card-inner:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-number {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .option-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(6, 182, 212, 0.4) 100%);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+
+        .option-btn.selected::after {
+            content: '✓';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.25rem;
+            animation: checkPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .option-emoji {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .feedback-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .feedback-toast.show {
+            opacity: 1;
+        }
+
+        .progress-bar-container {
+            max-width: 300px;
+            margin: 0 auto 2rem;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes checkPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutToLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        .slide-in {
+            animation: slideInFromRight 0.4s ease forwards;
+        }
+
+        .slide-out {
+            animation: slideOutToLeft 0.3s ease forwards;
+        }
+
+        /* Interstitial Screen */
+        .interstitial-screen {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .interstitial-screen.visible {
+            opacity: 1;
+        }
+
+        .interstitial-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .interstitial-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        .interstitial-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .interstitial-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .interstitial-button {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .interstitial-button:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
 
     <!-- Schema.org Structured Data -->
@@ -598,427 +843,39 @@
                         </div>
                     </div>
 
-                    <!-- Step 2: Lifestyle (4 Questions) -->
+                    <!-- Step 2: Question Flow (7 Questions shown one at a time) -->
                     <div id="step2" class="step-section">
-                        <div class="kick-glass rounded-2xl p-6 md:p-8">
-                            <div class="text-center mb-6">
-                                <span class="text-4xl">&#127968;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">
-                                    <span class="lang-en">Lifestyle Questions</span>
-                                    <span class="lang-ko">생활 습관 질문</span>
-                                    <span class="lang-ja">ライフスタイル質問</span>
-                                    <span class="lang-zh">生活方式问题</span>
-                                    <span class="lang-es">Preguntas de Estilo de Vida</span>
-                                </h2>
-                            </div>
+                        <section id="question-section" class="question-section">
+                            <div class="question-card-container">
+                                <!-- Progress Bar -->
+                                <div class="progress-bar-container">
+                                    <div id="question-progress" class="progress-bar-fill" style="width: 0%"></div>
+                                </div>
 
-                            <!-- Q1: Weekend Wake-up Time -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q1. What time do you usually wake up on weekends?</span>
-                                    <span class="lang-ko">Q1. 주말 아침에 보통 몇 시에 일어나시나요?</span>
-                                    <span class="lang-ja">Q1. 週末は普段何時に起きますか？</span>
-                                    <span class="lang-zh">Q1. 周末你通常几点起床？</span>
-                                    <span class="lang-es">Q1. ¿A qué hora sueles despertar los fines de semana?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q1" value="early" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Before 7 AM</span>
-                                            <span class="font-medium lang-ko">오전 7시 이전</span>
-                                            <span class="font-medium lang-ja">午前7時前</span>
-                                            <span class="font-medium lang-zh">早上7点前</span>
-                                            <span class="font-medium lang-es">Antes de las 7 AM</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q1" value="morning">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">7-9 AM</span>
-                                            <span class="font-medium lang-ko">오전 7-9시</span>
-                                            <span class="font-medium lang-ja">午前7-9時</span>
-                                            <span class="font-medium lang-zh">早上7-9点</span>
-                                            <span class="font-medium lang-es">7-9 AM</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q1" value="late">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">9-11 AM</span>
-                                            <span class="font-medium lang-ko">오전 9-11시</span>
-                                            <span class="font-medium lang-ja">午前9-11時</span>
-                                            <span class="font-medium lang-zh">早上9-11点</span>
-                                            <span class="font-medium lang-es">9-11 AM</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q1" value="noon">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">After 11 AM</span>
-                                            <span class="font-medium lang-ko">오전 11시 이후</span>
-                                            <span class="font-medium lang-ja">午前11時以降</span>
-                                            <span class="font-medium lang-zh">上午11点后</span>
-                                            <span class="font-medium lang-es">Después de las 11 AM</span>
-                                        </div>
-                                    </label>
+                                <!-- Step Indicator -->
+                                <div id="step-indicator" class="step-indicator">
+                                    <!-- Steps will be added dynamically -->
+                                </div>
+
+                                <!-- Question Card -->
+                                <div class="question-card-wrapper">
+                                    <div id="question-card" class="question-card-inner">
+                                        <!-- Question content will be inserted here -->
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Q2: New Technology Adoption -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q2. How do you react to new apps or technology?</span>
-                                    <span class="lang-ko">Q2. 새로운 앱이나 기술에 어떻게 반응하시나요?</span>
-                                    <span class="lang-ja">Q2. 新しいアプリや技術にどう反応しますか？</span>
-                                    <span class="lang-zh">Q2. 你对新应用或技术的反应是？</span>
-                                    <span class="lang-es">Q2. ¿Cómo reaccionas a nuevas apps o tecnología?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q2" value="eager" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Try immediately!</span>
-                                            <span class="font-medium lang-ko">바로 사용해봄!</span>
-                                            <span class="font-medium lang-ja">すぐ試す！</span>
-                                            <span class="font-medium lang-zh">立即尝试！</span>
-                                            <span class="font-medium lang-es">¡Probar inmediatamente!</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q2" value="curious">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Wait for reviews first</span>
-                                            <span class="font-medium lang-ko">리뷰 보고 결정</span>
-                                            <span class="font-medium lang-ja">レビューを待つ</span>
-                                            <span class="font-medium lang-zh">先看评价</span>
-                                            <span class="font-medium lang-es">Esperar reseñas primero</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q2" value="cautious">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Use if necessary</span>
-                                            <span class="font-medium lang-ko">필요하면 사용</span>
-                                            <span class="font-medium lang-ja">必要なら使う</span>
-                                            <span class="font-medium lang-zh">需要时使用</span>
-                                            <span class="font-medium lang-es">Usar si es necesario</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q2" value="resistant">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Prefer what I know</span>
-                                            <span class="font-medium lang-ko">익숙한 것이 좋아</span>
-                                            <span class="font-medium lang-ja">慣れたものが好き</span>
-                                            <span class="font-medium lang-zh">喜欢熟悉的</span>
-                                            <span class="font-medium lang-es">Prefiero lo conocido</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
+                            <!-- Feedback Toast -->
+                            <div id="feedback-toast" class="feedback-toast"></div>
+                        </section>
 
-                            <!-- Q3: Stress Relief -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q3. How do you usually relieve stress?</span>
-                                    <span class="lang-ko">Q3. 스트레스를 어떻게 해소하시나요?</span>
-                                    <span class="lang-ja">Q3. 普段どのようにストレスを解消しますか？</span>
-                                    <span class="lang-zh">Q3. 你通常如何缓解压力？</span>
-                                    <span class="lang-es">Q3. ¿Cómo sueles aliviar el estrés?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q3" value="active" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Exercise / Sports</span>
-                                            <span class="font-medium lang-ko">운동 / 스포츠</span>
-                                            <span class="font-medium lang-ja">運動 / スポーツ</span>
-                                            <span class="font-medium lang-zh">运动 / 体育</span>
-                                            <span class="font-medium lang-es">Ejercicio / Deportes</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q3" value="social">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Meet friends</span>
-                                            <span class="font-medium lang-ko">친구 만나기</span>
-                                            <span class="font-medium lang-ja">友達と会う</span>
-                                            <span class="font-medium lang-zh">见朋友</span>
-                                            <span class="font-medium lang-es">Reunirme con amigos</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q3" value="passive">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Watch TV / Movies</span>
-                                            <span class="font-medium lang-ko">TV / 영화 시청</span>
-                                            <span class="font-medium lang-ja">テレビ / 映画を見る</span>
-                                            <span class="font-medium lang-zh">看电视 / 电影</span>
-                                            <span class="font-medium lang-es">Ver TV / Películas</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q3" value="rest">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Sleep / Rest</span>
-                                            <span class="font-medium lang-ko">수면 / 휴식</span>
-                                            <span class="font-medium lang-ja">睡眠 / 休息</span>
-                                            <span class="font-medium lang-zh">睡觉 / 休息</span>
-                                            <span class="font-medium lang-es">Dormir / Descansar</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Q4: 10 Years from Now -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q4. How do you feel about 10 years from now?</span>
-                                    <span class="lang-ko">Q4. 10년 후 미래에 대해 어떻게 생각하시나요?</span>
-                                    <span class="lang-ja">Q4. 10年後についてどう感じますか？</span>
-                                    <span class="lang-zh">Q4. 你对10年后的未来有什么感觉？</span>
-                                    <span class="lang-es">Q4. ¿Cómo te sientes sobre dentro de 10 años?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q4" value="excited" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Excited & Optimistic</span>
-                                            <span class="font-medium lang-ko">설레고 기대된다</span>
-                                            <span class="font-medium lang-ja">ワクワク＆楽観的</span>
-                                            <span class="font-medium lang-zh">兴奋且乐观</span>
-                                            <span class="font-medium lang-es">Emocionado y Optimista</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q4" value="neutral">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Haven't thought much</span>
-                                            <span class="font-medium lang-ko">별로 생각 안 해봄</span>
-                                            <span class="font-medium lang-ja">あまり考えてない</span>
-                                            <span class="font-medium lang-zh">没怎么想过</span>
-                                            <span class="font-medium lang-es">No lo he pensado mucho</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q4" value="worried">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">A bit worried</span>
-                                            <span class="font-medium lang-ko">조금 걱정된다</span>
-                                            <span class="font-medium lang-ja">少し心配</span>
-                                            <span class="font-medium lang-zh">有点担心</span>
-                                            <span class="font-medium lang-es">Un poco preocupado</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q4" value="anxious">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Quite anxious</span>
-                                            <span class="font-medium lang-ko">많이 불안하다</span>
-                                            <span class="font-medium lang-ja">かなり不安</span>
-                                            <span class="font-medium lang-zh">很焦虑</span>
-                                            <span class="font-medium lang-es">Bastante ansioso</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-3">
-                                <button type="button" onclick="goToStep(1)"
-                                    class="flex-1 bg-white/10 text-white border border-white/30 font-semibold py-4 px-6 rounded-lg hover:bg-white/20 transition text-lg">
-                                    &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span><span class="lang-ja">戻る</span><span class="lang-zh">返回</span><span class="lang-es">Atrás</span>
-                                </button>
-                                <button type="button" onclick="goToStep(3)"
-                                    class="flex-1 kick-btn kick-btn-primary kick-btn-bounce py-4 px-6 text-lg">
-                                    <span class="lang-en">Next: Mindset</span><span class="lang-ko">다음: 마인드셋</span><span class="lang-ja">次へ: マインドセット</span><span class="lang-zh">下一步: 心态</span><span class="lang-es">Siguiente: Mentalidad</span> &#8594;
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Mindset (3 Questions) -->
-                    <div id="step3" class="step-section">
-                        <div class="kick-glass rounded-2xl p-6 md:p-8">
-                            <div class="text-center mb-6">
-                                <span class="text-4xl">&#129504;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">
-                                    <span class="lang-en">Mindset Questions</span>
-                                    <span class="lang-ko">마인드셋 질문</span>
-                                    <span class="lang-ja">マインドセット質問</span>
-                                    <span class="lang-zh">心态问题</span>
-                                    <span class="lang-es">Preguntas de Mentalidad</span>
-                                </h2>
-                            </div>
-
-                            <!-- Q5: "Kids these days" -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q5. How often do you say "Kids these days..." or "Back in my day..."?</span>
-                                    <span class="lang-ko">Q5. "요즘 애들은..." 또는 "예전에는..." 이런 말을 얼마나 자주 하시나요?</span>
-                                    <span class="lang-ja">Q5.「最近の若者は…」や「昔は…」とどれくらい言いますか？</span>
-                                    <span class="lang-zh">Q5. 你多久说一次"现在的年轻人..."或"我那时候..."？</span>
-                                    <span class="lang-es">Q5. ¿Con qué frecuencia dices "Los jóvenes de hoy..." o "En mis tiempos..."?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q5" value="never" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Never</span>
-                                            <span class="font-medium lang-ko">거의 안 함</span>
-                                            <span class="font-medium lang-ja">ほとんど言わない</span>
-                                            <span class="font-medium lang-zh">几乎不说</span>
-                                            <span class="font-medium lang-es">Nunca</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q5" value="rarely">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Occasionally</span>
-                                            <span class="font-medium lang-ko">가끔</span>
-                                            <span class="font-medium lang-ja">たまに</span>
-                                            <span class="font-medium lang-zh">偶尔</span>
-                                            <span class="font-medium lang-es">Ocasionalmente</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q5" value="often">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Often</span>
-                                            <span class="font-medium lang-ko">자주</span>
-                                            <span class="font-medium lang-ja">よく言う</span>
-                                            <span class="font-medium lang-zh">经常</span>
-                                            <span class="font-medium lang-es">A menudo</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q5" value="always">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">All the time</span>
-                                            <span class="font-medium lang-ko">매우 자주</span>
-                                            <span class="font-medium lang-ja">いつも言う</span>
-                                            <span class="font-medium lang-zh">总是说</span>
-                                            <span class="font-medium lang-es">Todo el tiempo</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Q6: Late Night Call from Friend -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q6. A friend calls at 11 PM to hang out. Your reaction?</span>
-                                    <span class="lang-ko">Q6. 친구가 밤 11시에 놀자고 전화하면?</span>
-                                    <span class="lang-ja">Q6. 友達が夜11時に遊びに誘ってきたら？</span>
-                                    <span class="lang-zh">Q6. 朋友晚上11点打电话约你出去，你的反应是？</span>
-                                    <span class="lang-es">Q6. Un amigo te llama a las 11 PM para salir. ¿Tu reacción?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q6" value="excited" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">"Let's go!"</span>
-                                            <span class="font-medium lang-ko">"가자!"</span>
-                                            <span class="font-medium lang-ja">「行こう！」</span>
-                                            <span class="font-medium lang-zh">"走吧！"</span>
-                                            <span class="font-medium lang-es">"¡Vamos!"</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q6" value="maybe">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">"Depends on tomorrow"</span>
-                                            <span class="font-medium lang-ko">"내일 일정에 따라"</span>
-                                            <span class="font-medium lang-ja">「明日の予定による」</span>
-                                            <span class="font-medium lang-zh">"看明天的安排"</span>
-                                            <span class="font-medium lang-es">"Depende de mañana"</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q6" value="reluctant">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">"Too late for me"</span>
-                                            <span class="font-medium lang-ko">"너무 늦었어"</span>
-                                            <span class="font-medium lang-ja">「遅すぎる」</span>
-                                            <span class="font-medium lang-zh">"太晚了"</span>
-                                            <span class="font-medium lang-es">"Muy tarde para mí"</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q6" value="asleep">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">"Already in bed"</span>
-                                            <span class="font-medium lang-ko">"이미 자고 있어"</span>
-                                            <span class="font-medium lang-ja">「もう寝てる」</span>
-                                            <span class="font-medium lang-zh">"已经睡了"</span>
-                                            <span class="font-medium lang-es">"Ya estoy en la cama"</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Q7: New Year's Resolution -->
-                            <div class="mb-8">
-                                <p class="font-medium text-white mb-3">
-                                    <span class="lang-en">Q7. Your typical New Year's resolution style?</span>
-                                    <span class="lang-ko">Q7. 새해 목표를 어떻게 세우시나요?</span>
-                                    <span class="lang-ja">Q7. 新年の抱負のスタイルは？</span>
-                                    <span class="lang-zh">Q7. 你的新年目标风格是？</span>
-                                    <span class="lang-es">Q7. ¿Tu estilo típico de propósitos de Año Nuevo?</span>
-                                </p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q7" value="ambitious" required>
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Big dreams & plans</span>
-                                            <span class="font-medium lang-ko">큰 꿈과 계획</span>
-                                            <span class="font-medium lang-ja">大きな夢と計画</span>
-                                            <span class="font-medium lang-zh">大梦想和计划</span>
-                                            <span class="font-medium lang-es">Grandes sueños y planes</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q7" value="practical">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Small achievable goals</span>
-                                            <span class="font-medium lang-ko">실현 가능한 목표</span>
-                                            <span class="font-medium lang-ja">達成可能な小さな目標</span>
-                                            <span class="font-medium lang-zh">可实现的小目标</span>
-                                            <span class="font-medium lang-es">Metas pequeñas y alcanzables</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q7" value="none">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Don't make resolutions</span>
-                                            <span class="font-medium lang-ko">목표 안 세움</span>
-                                            <span class="font-medium lang-ja">目標は立てない</span>
-                                            <span class="font-medium lang-zh">不立目标</span>
-                                            <span class="font-medium lang-es">No hago propósitos</span>
-                                        </div>
-                                    </label>
-                                    <label class="option-card border-2 border-white/30 rounded-xl p-4 flex items-center text-white">
-                                        <input type="radio" name="q7" value="same">
-                                        <div class="ml-3">
-                                            <span class="font-medium lang-en">Same as last year...</span>
-                                            <span class="font-medium lang-ko">작년과 똑같은...</span>
-                                            <span class="font-medium lang-ja">去年と同じ...</span>
-                                            <span class="font-medium lang-zh">和去年一样...</span>
-                                            <span class="font-medium lang-es">Lo mismo del año pasado...</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-3">
-                                <button type="button" onclick="goToStep(2)"
-                                    class="flex-1 bg-white/10 text-white border border-white/30 font-semibold py-4 px-6 rounded-lg hover:bg-white/20 transition text-lg">
-                                    &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span><span class="lang-ja">戻る</span><span class="lang-zh">返回</span><span class="lang-es">Atrás</span>
-                                </button>
-                                <button type="submit"
-                                    class="flex-1 kick-btn kick-btn-primary kick-btn-bounce py-4 px-6 text-lg">
-                                    &#128302; <span class="lang-en">Calculate My Age</span><span class="lang-ko">내 나이 계산하기</span><span class="lang-ja">年齢を計算</span><span class="lang-zh">计算我的年龄</span><span class="lang-es">Calcular Mi Edad</span>
-                                </button>
+                        <!-- Interstitial Screen -->
+                        <div id="interstitial-screen" class="interstitial-screen hidden">
+                            <div class="interstitial-content">
+                                <div id="interstitial-emoji" class="interstitial-emoji"></div>
+                                <h2 id="interstitial-title" class="interstitial-title"></h2>
+                                <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
+                                <button id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
@@ -1219,150 +1076,580 @@
 
     <!-- JavaScript -->
     <script>
-        // Current step
+        // Current step (1 = basic info, 2 = questions)
         let currentStep = 1;
 
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-
-        // Option card selection
-        document.querySelectorAll('.option-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const name = this.querySelector('input').name;
-                document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
-                    input.closest('.option-card').classList.remove('selected');
-                });
-                this.classList.add('selected');
-                this.querySelector('input').checked = true;
-            });
+        document.getElementById('mobile-menu-close')?.addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('hidden');
         });
+
+        // Question Flow State
+        const questionFlow = {
+            currentQuestion: 0,
+            answers: [],
+            birthYear: null,
+            birthMonth: null,
+            birthDay: null,
+            lang: document.documentElement.lang || 'ko',
+
+            // 7 questions for age calculation
+            questions: {
+                ko: [
+                    {
+                        text: '주말 아침에 보통 몇 시에 일어나시나요?',
+                        options: [
+                            { emoji: '🌅', text: '오전 7시 이전', value: 'early' },
+                            { emoji: '☀️', text: '오전 7-9시', value: 'morning' },
+                            { emoji: '🌤️', text: '오전 9-11시', value: 'late' },
+                            { emoji: '😴', text: '오전 11시 이후', value: 'noon' }
+                        ]
+                    },
+                    {
+                        text: '새로운 앱이나 기술에 어떻게 반응하시나요?',
+                        options: [
+                            { emoji: '🚀', text: '바로 사용해봄!', value: 'eager' },
+                            { emoji: '🤔', text: '리뷰 보고 결정', value: 'curious' },
+                            { emoji: '⏳', text: '필요하면 사용', value: 'cautious' },
+                            { emoji: '🏠', text: '익숙한 것이 좋아', value: 'resistant' }
+                        ]
+                    },
+                    {
+                        text: '스트레스를 어떻게 해소하시나요?',
+                        options: [
+                            { emoji: '🏃', text: '운동 / 스포츠', value: 'active' },
+                            { emoji: '👥', text: '친구 만나기', value: 'social' },
+                            { emoji: '📺', text: 'TV / 영화 시청', value: 'passive' },
+                            { emoji: '😴', text: '수면 / 휴식', value: 'rest' }
+                        ]
+                    },
+                    {
+                        text: '10년 후 미래에 대해 어떻게 생각하시나요?',
+                        options: [
+                            { emoji: '✨', text: '설레고 기대된다', value: 'excited' },
+                            { emoji: '😐', text: '별로 생각 안 해봄', value: 'neutral' },
+                            { emoji: '😟', text: '조금 걱정된다', value: 'worried' },
+                            { emoji: '😰', text: '많이 불안하다', value: 'anxious' }
+                        ]
+                    },
+                    {
+                        text: '"요즘 애들은..." 또는 "예전에는..." 얼마나 자주 하시나요?',
+                        options: [
+                            { emoji: '🙅', text: '거의 안 함', value: 'never' },
+                            { emoji: '🤷', text: '가끔', value: 'rarely' },
+                            { emoji: '💬', text: '자주', value: 'often' },
+                            { emoji: '📢', text: '매우 자주', value: 'always' }
+                        ]
+                    },
+                    {
+                        text: '친구가 밤 11시에 놀자고 전화하면?',
+                        options: [
+                            { emoji: '🎉', text: '"가자!"', value: 'excited' },
+                            { emoji: '📅', text: '"내일 일정에 따라"', value: 'maybe' },
+                            { emoji: '🌙', text: '"너무 늦었어"', value: 'reluctant' },
+                            { emoji: '😴', text: '"이미 자고 있어"', value: 'asleep' }
+                        ]
+                    },
+                    {
+                        text: '새해 목표를 어떻게 세우시나요?',
+                        options: [
+                            { emoji: '🌟', text: '큰 꿈과 계획', value: 'ambitious' },
+                            { emoji: '📝', text: '실현 가능한 목표', value: 'practical' },
+                            { emoji: '❌', text: '목표 안 세움', value: 'none' },
+                            { emoji: '🔄', text: '작년과 똑같은...', value: 'same' }
+                        ]
+                    }
+                ],
+                en: [
+                    {
+                        text: 'What time do you usually wake up on weekends?',
+                        options: [
+                            { emoji: '🌅', text: 'Before 7 AM', value: 'early' },
+                            { emoji: '☀️', text: '7-9 AM', value: 'morning' },
+                            { emoji: '🌤️', text: '9-11 AM', value: 'late' },
+                            { emoji: '😴', text: 'After 11 AM', value: 'noon' }
+                        ]
+                    },
+                    {
+                        text: 'How do you react to new apps or technology?',
+                        options: [
+                            { emoji: '🚀', text: 'Try immediately!', value: 'eager' },
+                            { emoji: '🤔', text: 'Wait for reviews first', value: 'curious' },
+                            { emoji: '⏳', text: 'Use if necessary', value: 'cautious' },
+                            { emoji: '🏠', text: 'Prefer what I know', value: 'resistant' }
+                        ]
+                    },
+                    {
+                        text: 'How do you usually relieve stress?',
+                        options: [
+                            { emoji: '🏃', text: 'Exercise / Sports', value: 'active' },
+                            { emoji: '👥', text: 'Meet friends', value: 'social' },
+                            { emoji: '📺', text: 'Watch TV / Movies', value: 'passive' },
+                            { emoji: '😴', text: 'Sleep / Rest', value: 'rest' }
+                        ]
+                    },
+                    {
+                        text: 'How do you feel about 10 years from now?',
+                        options: [
+                            { emoji: '✨', text: 'Excited & Optimistic', value: 'excited' },
+                            { emoji: '😐', text: "Haven't thought much", value: 'neutral' },
+                            { emoji: '😟', text: 'A bit worried', value: 'worried' },
+                            { emoji: '😰', text: 'Quite anxious', value: 'anxious' }
+                        ]
+                    },
+                    {
+                        text: 'How often do you say "Kids these days..." or "Back in my day..."?',
+                        options: [
+                            { emoji: '🙅', text: 'Never', value: 'never' },
+                            { emoji: '🤷', text: 'Occasionally', value: 'rarely' },
+                            { emoji: '💬', text: 'Often', value: 'often' },
+                            { emoji: '📢', text: 'All the time', value: 'always' }
+                        ]
+                    },
+                    {
+                        text: 'A friend calls at 11 PM to hang out. Your reaction?',
+                        options: [
+                            { emoji: '🎉', text: '"Let\'s go!"', value: 'excited' },
+                            { emoji: '📅', text: '"Depends on tomorrow"', value: 'maybe' },
+                            { emoji: '🌙', text: '"Too late for me"', value: 'reluctant' },
+                            { emoji: '😴', text: '"Already in bed"', value: 'asleep' }
+                        ]
+                    },
+                    {
+                        text: 'Your typical New Year\'s resolution style?',
+                        options: [
+                            { emoji: '🌟', text: 'Big dreams & plans', value: 'ambitious' },
+                            { emoji: '📝', text: 'Small achievable goals', value: 'practical' },
+                            { emoji: '❌', text: "Don't make resolutions", value: 'none' },
+                            { emoji: '🔄', text: 'Same as last year...', value: 'same' }
+                        ]
+                    }
+                ],
+                ja: [
+                    {
+                        text: '週末は普段何時に起きますか？',
+                        options: [
+                            { emoji: '🌅', text: '午前7時前', value: 'early' },
+                            { emoji: '☀️', text: '午前7-9時', value: 'morning' },
+                            { emoji: '🌤️', text: '午前9-11時', value: 'late' },
+                            { emoji: '😴', text: '午前11時以降', value: 'noon' }
+                        ]
+                    },
+                    {
+                        text: '新しいアプリや技術にどう反応しますか？',
+                        options: [
+                            { emoji: '🚀', text: 'すぐ試す！', value: 'eager' },
+                            { emoji: '🤔', text: 'レビューを待つ', value: 'curious' },
+                            { emoji: '⏳', text: '必要なら使う', value: 'cautious' },
+                            { emoji: '🏠', text: '慣れたものが好き', value: 'resistant' }
+                        ]
+                    },
+                    {
+                        text: '普段どのようにストレスを解消しますか？',
+                        options: [
+                            { emoji: '🏃', text: '運動 / スポーツ', value: 'active' },
+                            { emoji: '👥', text: '友達と会う', value: 'social' },
+                            { emoji: '📺', text: 'テレビ / 映画を見る', value: 'passive' },
+                            { emoji: '😴', text: '睡眠 / 休息', value: 'rest' }
+                        ]
+                    },
+                    {
+                        text: '10年後についてどう感じますか？',
+                        options: [
+                            { emoji: '✨', text: 'ワクワク＆楽観的', value: 'excited' },
+                            { emoji: '😐', text: 'あまり考えてない', value: 'neutral' },
+                            { emoji: '😟', text: '少し心配', value: 'worried' },
+                            { emoji: '😰', text: 'かなり不安', value: 'anxious' }
+                        ]
+                    },
+                    {
+                        text: '「最近の若者は…」や「昔は…」とどれくらい言いますか？',
+                        options: [
+                            { emoji: '🙅', text: 'ほとんど言わない', value: 'never' },
+                            { emoji: '🤷', text: 'たまに', value: 'rarely' },
+                            { emoji: '💬', text: 'よく言う', value: 'often' },
+                            { emoji: '📢', text: 'いつも言う', value: 'always' }
+                        ]
+                    },
+                    {
+                        text: '友達が夜11時に遊びに誘ってきたら？',
+                        options: [
+                            { emoji: '🎉', text: '「行こう！」', value: 'excited' },
+                            { emoji: '📅', text: '「明日の予定による」', value: 'maybe' },
+                            { emoji: '🌙', text: '「遅すぎる」', value: 'reluctant' },
+                            { emoji: '😴', text: '「もう寝てる」', value: 'asleep' }
+                        ]
+                    },
+                    {
+                        text: '新年の抱負のスタイルは？',
+                        options: [
+                            { emoji: '🌟', text: '大きな夢と計画', value: 'ambitious' },
+                            { emoji: '📝', text: '達成可能な小さな目標', value: 'practical' },
+                            { emoji: '❌', text: '目標は立てない', value: 'none' },
+                            { emoji: '🔄', text: '去年と同じ...', value: 'same' }
+                        ]
+                    }
+                ],
+                zh: [
+                    {
+                        text: '周末你通常几点起床？',
+                        options: [
+                            { emoji: '🌅', text: '早上7点前', value: 'early' },
+                            { emoji: '☀️', text: '早上7-9点', value: 'morning' },
+                            { emoji: '🌤️', text: '早上9-11点', value: 'late' },
+                            { emoji: '😴', text: '上午11点后', value: 'noon' }
+                        ]
+                    },
+                    {
+                        text: '你对新应用或技术的反应是？',
+                        options: [
+                            { emoji: '🚀', text: '立即尝试！', value: 'eager' },
+                            { emoji: '🤔', text: '先看评价', value: 'curious' },
+                            { emoji: '⏳', text: '需要时使用', value: 'cautious' },
+                            { emoji: '🏠', text: '喜欢熟悉的', value: 'resistant' }
+                        ]
+                    },
+                    {
+                        text: '你通常如何缓解压力？',
+                        options: [
+                            { emoji: '🏃', text: '运动 / 体育', value: 'active' },
+                            { emoji: '👥', text: '见朋友', value: 'social' },
+                            { emoji: '📺', text: '看电视 / 电影', value: 'passive' },
+                            { emoji: '😴', text: '睡觉 / 休息', value: 'rest' }
+                        ]
+                    },
+                    {
+                        text: '你对10年后的未来有什么感觉？',
+                        options: [
+                            { emoji: '✨', text: '兴奋且乐观', value: 'excited' },
+                            { emoji: '😐', text: '没怎么想过', value: 'neutral' },
+                            { emoji: '😟', text: '有点担心', value: 'worried' },
+                            { emoji: '😰', text: '很焦虑', value: 'anxious' }
+                        ]
+                    },
+                    {
+                        text: '你多久说一次"现在的年轻人..."或"我那时候..."？',
+                        options: [
+                            { emoji: '🙅', text: '几乎不说', value: 'never' },
+                            { emoji: '🤷', text: '偶尔', value: 'rarely' },
+                            { emoji: '💬', text: '经常', value: 'often' },
+                            { emoji: '📢', text: '总是说', value: 'always' }
+                        ]
+                    },
+                    {
+                        text: '朋友晚上11点打电话约你出去，你的反应是？',
+                        options: [
+                            { emoji: '🎉', text: '"走吧！"', value: 'excited' },
+                            { emoji: '📅', text: '"看明天的安排"', value: 'maybe' },
+                            { emoji: '🌙', text: '"太晚了"', value: 'reluctant' },
+                            { emoji: '😴', text: '"已经睡了"', value: 'asleep' }
+                        ]
+                    },
+                    {
+                        text: '你的新年目标风格是？',
+                        options: [
+                            { emoji: '🌟', text: '大梦想和计划', value: 'ambitious' },
+                            { emoji: '📝', text: '可实现的小目标', value: 'practical' },
+                            { emoji: '❌', text: '不立目标', value: 'none' },
+                            { emoji: '🔄', text: '和去年一样...', value: 'same' }
+                        ]
+                    }
+                ],
+                es: [
+                    {
+                        text: '¿A qué hora sueles despertar los fines de semana?',
+                        options: [
+                            { emoji: '🌅', text: 'Antes de las 7 AM', value: 'early' },
+                            { emoji: '☀️', text: '7-9 AM', value: 'morning' },
+                            { emoji: '🌤️', text: '9-11 AM', value: 'late' },
+                            { emoji: '😴', text: 'Después de las 11 AM', value: 'noon' }
+                        ]
+                    },
+                    {
+                        text: '¿Cómo reaccionas a nuevas apps o tecnología?',
+                        options: [
+                            { emoji: '🚀', text: '¡Probar inmediatamente!', value: 'eager' },
+                            { emoji: '🤔', text: 'Esperar reseñas primero', value: 'curious' },
+                            { emoji: '⏳', text: 'Usar si es necesario', value: 'cautious' },
+                            { emoji: '🏠', text: 'Prefiero lo conocido', value: 'resistant' }
+                        ]
+                    },
+                    {
+                        text: '¿Cómo sueles aliviar el estrés?',
+                        options: [
+                            { emoji: '🏃', text: 'Ejercicio / Deportes', value: 'active' },
+                            { emoji: '👥', text: 'Reunirme con amigos', value: 'social' },
+                            { emoji: '📺', text: 'Ver TV / Películas', value: 'passive' },
+                            { emoji: '😴', text: 'Dormir / Descansar', value: 'rest' }
+                        ]
+                    },
+                    {
+                        text: '¿Cómo te sientes sobre dentro de 10 años?',
+                        options: [
+                            { emoji: '✨', text: 'Emocionado y Optimista', value: 'excited' },
+                            { emoji: '😐', text: 'No lo he pensado mucho', value: 'neutral' },
+                            { emoji: '😟', text: 'Un poco preocupado', value: 'worried' },
+                            { emoji: '😰', text: 'Bastante ansioso', value: 'anxious' }
+                        ]
+                    },
+                    {
+                        text: '¿Con qué frecuencia dices "Los jóvenes de hoy..." o "En mis tiempos..."?',
+                        options: [
+                            { emoji: '🙅', text: 'Nunca', value: 'never' },
+                            { emoji: '🤷', text: 'Ocasionalmente', value: 'rarely' },
+                            { emoji: '💬', text: 'A menudo', value: 'often' },
+                            { emoji: '📢', text: 'Todo el tiempo', value: 'always' }
+                        ]
+                    },
+                    {
+                        text: 'Un amigo te llama a las 11 PM para salir. ¿Tu reacción?',
+                        options: [
+                            { emoji: '🎉', text: '"¡Vamos!"', value: 'excited' },
+                            { emoji: '📅', text: '"Depende de mañana"', value: 'maybe' },
+                            { emoji: '🌙', text: '"Muy tarde para mí"', value: 'reluctant' },
+                            { emoji: '😴', text: '"Ya estoy en la cama"', value: 'asleep' }
+                        ]
+                    },
+                    {
+                        text: '¿Tu estilo típico de propósitos de Año Nuevo?',
+                        options: [
+                            { emoji: '🌟', text: 'Grandes sueños y planes', value: 'ambitious' },
+                            { emoji: '📝', text: 'Metas pequeñas y alcanzables', value: 'practical' },
+                            { emoji: '❌', text: 'No hago propósitos', value: 'none' },
+                            { emoji: '🔄', text: 'Lo mismo del año pasado...', value: 'same' }
+                        ]
+                    }
+                ]
+            },
+
+            interstitials: {
+                ko: { emoji: '🎯', title: '절반 완료!', subtitle: '마인드셋 질문이 남았어요', button: '계속하기' },
+                en: { emoji: '🎯', title: 'Halfway Done!', subtitle: 'Mindset questions coming up', button: 'Continue' },
+                ja: { emoji: '🎯', title: '半分完了！', subtitle: 'マインドセット質問が残っています', button: '続ける' },
+                zh: { emoji: '🎯', title: '完成一半！', subtitle: '心态问题即将到来', button: '继续' },
+                es: { emoji: '🎯', title: '¡Mitad Completada!', subtitle: 'Vienen las preguntas de mentalidad', button: 'Continuar' }
+            },
+
+            feedbacks: {
+                ko: ['좋은 선택이에요! 💪', '흥미로운 답변이네요! ✨', '당신다운 선택이에요! 🎯'],
+                en: ['Great choice! 💪', 'Interesting answer! ✨', 'That\'s so you! 🎯'],
+                ja: ['いい選択ですね! 💪', '興味深い回答です! ✨', 'あなたらしい選択です! 🎯'],
+                zh: ['好选择! 💪', '有趣的回答! ✨', '这很像你! 🎯'],
+                es: ['¡Gran elección! 💪', '¡Respuesta interesante! ✨', '¡Muy tú! 🎯']
+            }
+        };
 
         // Go to specific step
         function goToStep(step) {
-            // Validate current step before proceeding
-            if (step > currentStep && !validateStep(currentStep)) {
-                return;
-            }
-
-            // Hide current step
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-
-            // Show new step
-            currentStep = step;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-
-            // Update progress
-            updateProgress();
-
-            // Scroll to top of form
-            window.scrollTo({ top: 200, behavior: 'smooth' });
-        }
-
-        // Validate step
-        function validateStep(step) {
-            if (step === 1) {
+            if (step === 2) {
+                // Validate step 1 (basic info)
                 const year = document.getElementById('birth-year').value;
                 const month = document.getElementById('birth-month').value;
                 const day = document.getElementById('birth-day').value;
 
                 if (!year || !month || !day) {
-                    document.getElementById('birthday-error').textContent = 'Please enter your complete date of birth.';
                     document.getElementById('birthday-error').classList.remove('hidden');
-                    return false;
+                    return;
                 }
 
                 const birthDate = new Date(year, month - 1, day);
                 const today = new Date();
 
                 if (birthDate > today || year < 1920) {
-                    document.getElementById('birthday-error').textContent = 'Please enter a valid date of birth.';
                     document.getElementById('birthday-error').classList.remove('hidden');
-                    return false;
+                    return;
                 }
 
                 document.getElementById('birthday-error').classList.add('hidden');
-                return true;
+
+                // Store birth data
+                questionFlow.birthYear = year;
+                questionFlow.birthMonth = month;
+                questionFlow.birthDay = day;
+                questionFlow.lang = document.documentElement.lang || 'ko';
+
+                // Hide step 1
+                document.getElementById('step1').classList.remove('active');
+                // Show step 2 (question flow)
+                document.getElementById('step2').classList.add('active');
+                currentStep = 2;
+
+                // Hide progress bar section
+                document.querySelector('.kick-glass.sticky')?.classList.add('hidden');
+
+                // Initialize question flow
+                initStepIndicators();
+                renderQuestion();
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-
-            if (step === 2) {
-                const q1 = document.querySelector('input[name="q1"]:checked');
-                const q2 = document.querySelector('input[name="q2"]:checked');
-                const q3 = document.querySelector('input[name="q3"]:checked');
-                const q4 = document.querySelector('input[name="q4"]:checked');
-
-                if (!q1 || !q2 || !q3 || !q4) {
-                    alert('Please answer all questions before proceeding.');
-                    return false;
-                }
-                return true;
-            }
-
-            return true;
         }
 
-        // Update progress bar and labels
-        function updateProgress() {
-            const progressBar = document.getElementById('progress-bar');
-            const progressText = document.getElementById('progress-text');
-            const labels = ['step1-label', 'step2-label', 'step3-label'];
+        // Initialize step indicators
+        function initStepIndicators() {
+            const container = document.getElementById('step-indicator');
+            const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+            container.innerHTML = '';
 
-            const progress = (currentStep / 3) * 100;
-            progressBar.style.width = progress + '%';
-            progressText.textContent = `Step ${currentStep} of 3`;
+            for (let i = 0; i < totalQuestions; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'step-dot' + (i === 0 ? ' active' : '');
+                container.appendChild(dot);
+            }
+        }
 
-            labels.forEach((label, index) => {
-                const el = document.getElementById(label);
-                if (index < currentStep) {
-                    el.classList.add('text-age-primary', 'font-medium');
-                    el.classList.remove('text-gray-500');
-                } else {
-                    el.classList.remove('text-age-primary', 'font-medium');
-                    el.classList.add('text-gray-500');
+        // Update progress
+        function updateQuestionProgress() {
+            const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+            const progress = ((questionFlow.currentQuestion) / totalQuestions) * 100;
+            document.getElementById('question-progress').style.width = progress + '%';
+
+            // Update step dots
+            const dots = document.querySelectorAll('.step-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index < questionFlow.currentQuestion) {
+                    dot.classList.add('completed');
+                } else if (index === questionFlow.currentQuestion) {
+                    dot.classList.add('active');
                 }
             });
         }
 
-        // Form submission
-        document.getElementById('age-calculator-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Render current question
+        function renderQuestion() {
+            const questions = questionFlow.questions[questionFlow.lang];
+            const question = questions[questionFlow.currentQuestion];
+            const totalQuestions = questions.length;
 
-            // Validate final step
-            const q5 = document.querySelector('input[name="q5"]:checked');
-            const q6 = document.querySelector('input[name="q6"]:checked');
-            const q7 = document.querySelector('input[name="q7"]:checked');
+            const card = document.getElementById('question-card');
+            card.innerHTML = `
+                <div class="question-number">Q${questionFlow.currentQuestion + 1} / ${totalQuestions}</div>
+                <h3 class="question-title">${question.text}</h3>
+                <div class="option-grid">
+                    ${question.options.map((opt, i) => `
+                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
+                            <span class="option-emoji">${opt.emoji}</span>
+                            <span class="option-text">${opt.text}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
 
-            if (!q5 || !q6 || !q7) {
-                alert('Please answer all questions before calculating.');
-                return;
-            }
+            // Add click handlers
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => handleOptionSelect(btn));
+            });
 
+            updateQuestionProgress();
+        }
+
+        // Handle option selection
+        function handleOptionSelect(btn) {
+            // Add selected state
+            btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            // Store answer
+            questionFlow.answers[questionFlow.currentQuestion] = btn.dataset.value;
+
+            // Show feedback
+            showFeedback();
+
+            // Move to next after delay
+            setTimeout(() => {
+                questionFlow.currentQuestion++;
+                const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+
+                // Check for interstitial (after question 4 - halfway)
+                if (questionFlow.currentQuestion === 4 && questionFlow.currentQuestion < totalQuestions) {
+                    showInterstitial();
+                } else if (questionFlow.currentQuestion >= totalQuestions) {
+                    // Complete - go to results
+                    completeQuestions();
+                } else {
+                    // Next question with animation
+                    transitionToNextQuestion();
+                }
+            }, 600);
+        }
+
+        // Show feedback toast
+        function showFeedback() {
+            const feedbacks = questionFlow.feedbacks[questionFlow.lang];
+            const feedback = feedbacks[Math.floor(Math.random() * feedbacks.length)];
+            const toast = document.getElementById('feedback-toast');
+            toast.textContent = feedback;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 500);
+        }
+
+        // Transition to next question
+        function transitionToNextQuestion() {
+            const card = document.getElementById('question-card');
+            card.classList.add('slide-out');
+
+            setTimeout(() => {
+                renderQuestion();
+                card.classList.remove('slide-out');
+                card.classList.add('slide-in');
+
+                setTimeout(() => {
+                    card.classList.remove('slide-in');
+                }, 400);
+            }, 300);
+        }
+
+        // Show interstitial screen
+        function showInterstitial() {
+            const interstitial = questionFlow.interstitials[questionFlow.lang];
+            const screen = document.getElementById('interstitial-screen');
+
+            document.getElementById('interstitial-emoji').textContent = interstitial.emoji;
+            document.getElementById('interstitial-title').textContent = interstitial.title;
+            document.getElementById('interstitial-subtitle').textContent = interstitial.subtitle;
+            document.getElementById('interstitial-button').textContent = interstitial.button;
+
+            screen.classList.remove('hidden');
+            setTimeout(() => screen.classList.add('visible'), 50);
+
+            document.getElementById('interstitial-button').onclick = () => {
+                screen.classList.remove('visible');
+                setTimeout(() => {
+                    screen.classList.add('hidden');
+                    transitionToNextQuestion();
+                }, 300);
+            };
+        }
+
+        // Complete questions and go to results
+        function completeQuestions() {
             // Collect all data
             const formData = {
-                birthYear: document.getElementById('birth-year').value,
-                birthMonth: document.getElementById('birth-month').value,
-                birthDay: document.getElementById('birth-day').value,
-                q1: document.querySelector('input[name="q1"]:checked').value,
-                q2: document.querySelector('input[name="q2"]:checked').value,
-                q3: document.querySelector('input[name="q3"]:checked').value,
-                q4: document.querySelector('input[name="q4"]:checked').value,
-                q5: document.querySelector('input[name="q5"]:checked').value,
-                q6: document.querySelector('input[name="q6"]:checked').value,
-                q7: document.querySelector('input[name="q7"]:checked').value
+                birthYear: questionFlow.birthYear,
+                birthMonth: questionFlow.birthMonth,
+                birthDay: questionFlow.birthDay,
+                q1: questionFlow.answers[0],
+                q2: questionFlow.answers[1],
+                q3: questionFlow.answers[2],
+                q4: questionFlow.answers[3],
+                q5: questionFlow.answers[4],
+                q6: questionFlow.answers[5],
+                q7: questionFlow.answers[6]
             };
 
             // Store in localStorage
             localStorage.setItem('age-calculator-data', JSON.stringify(formData));
 
-            // Redirect to result page
+            // Navigate to results
             window.location.href = '/age-calculator/result.html';
-        });
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        }
     </script>
 
     <!-- Social Proof Toast Script -->
