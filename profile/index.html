@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Test Lab - Profile</title>
+  <meta name="description" content="AI Test Lab - My Profile">
+  <meta name="robots" content="noindex">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Gamification Styles -->
+  <link rel="stylesheet" href="../css/gamification.css">
+  <link rel="stylesheet" href="../css/popups.css">
+  <link rel="stylesheet" href="../css/profile.css">
+
+  <style>
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="profile-header">
+    <a href="../" class="back-link" aria-label="Back to home">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="header-title" data-i18n="profile">Profile</h1>
+    <div class="header-actions">
+      <button id="btn-settings" class="header-btn" aria-label="Settings">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="profile-main">
+    <!-- Profile Card -->
+    <section class="profile-card-section">
+      <div class="profile-card">
+        <div class="profile-header-info">
+          <div id="profile-avatar" class="profile-avatar">
+            <span id="avatar-emoji">😊</span>
+          </div>
+          <div class="profile-info">
+            <h2 id="profile-name" class="profile-name">Guest User</h2>
+            <div class="profile-level">
+              <span id="level-badge" class="level-badge">
+                Lv.<span id="level-number">1</span>
+              </span>
+              <span id="level-name" class="level-name">Soul Newbie</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- XP Bar -->
+        <div class="xp-bar-container">
+          <div class="xp-bar-header">
+            <span id="xp-text">0 / 100 XP</span>
+            <span id="xp-next" class="text-xs text-gray-400">Next: Lv.2</span>
+          </div>
+          <div class="xp-bar">
+            <div id="xp-bar-fill" class="xp-bar-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-icon">🔥</span>
+            <div>
+              <span id="stat-streak" class="stat-value">0</span>
+              <span class="stat-label" data-i18n="streak">Day Streak</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📊</span>
+            <div>
+              <span id="stat-tests" class="stat-value">0</span>
+              <span class="stat-label" data-i18n="tests">Tests</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🏆</span>
+            <div>
+              <span id="stat-badges" class="stat-value">0</span>
+              <span class="stat-label" data-i18n="badges">Badges</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📤</span>
+            <div>
+              <span id="stat-shares" class="stat-value">0</span>
+              <span class="stat-label" data-i18n="shares">Shares</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Prompt (for guests) -->
+      <div id="login-prompt" class="login-prompt-banner hidden">
+        <div class="login-prompt-text">
+          <span data-i18n="loginPrompt">Login to save your progress!</span>
+        </div>
+        <button id="btn-login" class="login-prompt-btn" data-i18n="login">Login</button>
+      </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section class="profile-section">
+      <div class="section-header">
+        <h3 class="section-title">
+          <span>🏅</span>
+          <span data-i18n="myBadges">My Badges</span>
+          <span id="badge-count" class="badge-count">(0/0)</span>
+        </h3>
+        <a href="#all-badges" class="section-link" data-i18n="viewAll">View All</a>
+      </div>
+
+      <div id="earned-badges" class="badge-grid">
+        <!-- Badges will be populated by JS -->
+      </div>
+
+      <div class="locked-badges-header">
+        <span data-i18n="lockedBadges">Locked Badges</span>
+        <span id="locked-count">(0)</span>
+      </div>
+      <div id="locked-badges" class="badge-grid badge-grid-locked">
+        <!-- Locked badges will be populated by JS -->
+      </div>
+    </section>
+
+    <!-- Streak Section -->
+    <section class="profile-section">
+      <div class="section-header">
+        <h3 class="section-title">
+          <span>🔥</span>
+          <span data-i18n="streakStatus">Streak Status</span>
+        </h3>
+      </div>
+
+      <div class="streak-card">
+        <div class="streak-info">
+          <div class="streak-current">
+            <span id="streak-emoji" class="streak-fire">🔥</span>
+            <span id="streak-count" class="streak-count">0</span>
+            <span class="streak-label" data-i18n="currentStreak">Current Streak</span>
+          </div>
+          <div class="streak-best">
+            <span class="streak-best-label" data-i18n="longestStreak">Longest:</span>
+            <span id="streak-best" class="streak-best-value">0</span>
+            <span data-i18n="days">days</span>
+          </div>
+        </div>
+
+        <div id="streak-week" class="streak-week">
+          <!-- Week display will be populated by JS -->
+        </div>
+
+        <div id="streak-next-milestone" class="streak-milestone">
+          <!-- Next milestone info -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Test History Section -->
+    <section class="profile-section">
+      <div class="section-header">
+        <h3 class="section-title">
+          <span>📊</span>
+          <span data-i18n="testHistory">Test History</span>
+        </h3>
+      </div>
+
+      <div id="most-common-type" class="most-common-type hidden">
+        <span data-i18n="mostCommon">Most Common Type:</span>
+        <span id="common-type-name" class="type-name"></span>
+        <span id="common-type-count" class="type-count"></span>
+      </div>
+
+      <div id="test-history-list" class="test-history-list">
+        <!-- Test history will be populated by JS -->
+        <div class="empty-state">
+          <span>📝</span>
+          <span data-i18n="noTests">No tests yet</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invite Section -->
+    <section class="profile-section">
+      <div class="invite-section">
+        <h3 class="invite-title" data-i18n="inviteFriends">Invite Friends</h3>
+        <p class="invite-subtitle" data-i18n="inviteSubtitle">Get 100 XP when friends join!</p>
+
+        <div class="invite-link-box">
+          <input type="text" id="invite-link" class="invite-link-input" readonly>
+          <button id="btn-copy-invite" class="invite-copy-btn" data-i18n="copy">Copy</button>
+        </div>
+
+        <div class="invite-share-buttons">
+          <button id="btn-share-kakao" class="invite-share-btn kakao">
+            <span>💬</span>
+            <span>KakaoTalk</span>
+          </button>
+          <button id="btn-share-line" class="invite-share-btn line">
+            <span>💚</span>
+            <span>LINE</span>
+          </button>
+          <button id="btn-share-copy" class="invite-share-btn copy">
+            <span>🔗</span>
+            <span data-i18n="copyLink">Copy Link</span>
+          </button>
+        </div>
+
+        <div class="invite-stats">
+          <div class="invite-stat">
+            <span id="invite-count" class="invite-stat-value">0</span>
+            <span class="invite-stat-label" data-i18n="friendsJoined">Friends Joined</span>
+          </div>
+          <div class="invite-stat">
+            <span id="invite-xp" class="invite-stat-value">0</span>
+            <span class="invite-stat-label" data-i18n="xpEarned">XP Earned</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logout Button (for logged in users) -->
+    <section id="logout-section" class="profile-section hidden">
+      <button id="btn-logout" class="logout-btn" data-i18n="logout">Logout</button>
+    </section>
+  </main>
+
+  <!-- Navigation -->
+  <nav class="profile-nav">
+    <a href="../" class="nav-link" data-i18n="home">Home</a>
+    <a href="../daily/" class="nav-link" data-i18n="daily">Daily Test</a>
+    <a href="../life-summary/" class="nav-link" data-i18n="lifeSummary">Life Summary</a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../js/badges.js"></script>
+  <script src="../js/level-xp.js"></script>
+  <script src="../js/streak.js"></script>
+  <script src="../js/user-data.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/referral.js"></script>
+  <script src="../js/gamification-ui.js"></script>
+
+  <script>
+    // i18n translations
+    const i18n = {
+      ko: {
+        profile: '프로필',
+        streak: '일 연속',
+        tests: '테스트',
+        badges: '뱃지',
+        shares: '공유',
+        loginPrompt: '로그인하면 기록이 저장돼요!',
+        login: '로그인',
+        myBadges: '나의 뱃지',
+        viewAll: '전체 보기',
+        lockedBadges: '미획득 뱃지',
+        streakStatus: '스트릭 현황',
+        currentStreak: '현재 연속',
+        longestStreak: '최장:',
+        days: '일',
+        testHistory: '테스트 기록',
+        mostCommon: '가장 많이 나온 타입:',
+        noTests: '아직 테스트 기록이 없어요',
+        inviteFriends: '친구 초대하기',
+        inviteSubtitle: '친구가 가입하면 100 XP!',
+        copy: '복사',
+        copyLink: '링크 복사',
+        friendsJoined: '명 가입',
+        xpEarned: 'XP 획득',
+        logout: '로그아웃',
+        home: '홈',
+        daily: '일일 테스트',
+        lifeSummary: '인생 요약',
+        copied: '복사됨!',
+        nextMilestone: '다음 마일스톤까지',
+        daysLeft: '일 남음'
+      },
+      en: {
+        profile: 'Profile',
+        streak: 'Day Streak',
+        tests: 'Tests',
+        badges: 'Badges',
+        shares: 'Shares',
+        loginPrompt: 'Login to save your progress!',
+        login: 'Login',
+        myBadges: 'My Badges',
+        viewAll: 'View All',
+        lockedBadges: 'Locked Badges',
+        streakStatus: 'Streak Status',
+        currentStreak: 'Current Streak',
+        longestStreak: 'Longest:',
+        days: 'days',
+        testHistory: 'Test History',
+        mostCommon: 'Most Common Type:',
+        noTests: 'No tests yet',
+        inviteFriends: 'Invite Friends',
+        inviteSubtitle: 'Get 100 XP when friends join!',
+        copy: 'Copy',
+        copyLink: 'Copy Link',
+        friendsJoined: 'Friends Joined',
+        xpEarned: 'XP Earned',
+        logout: 'Logout',
+        home: 'Home',
+        daily: 'Daily Test',
+        lifeSummary: 'Life Summary',
+        copied: 'Copied!',
+        nextMilestone: 'Until next milestone',
+        daysLeft: 'days left'
+      }
+    };
+
+    let currentLang = 'ko';
+
+    // Detect language
+    function detectLanguage() {
+      const saved = localStorage.getItem('ai-life-summary-lang');
+      if (saved) return saved;
+      const browserLang = navigator.language.split('-')[0];
+      return i18n[browserLang] ? browserLang : 'ko';
+    }
+
+    function t(key) {
+      return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+    }
+
+    // Initialize page
+    async function init() {
+      currentLang = detectLanguage();
+      applyTranslations();
+
+      // Initialize systems
+      await userDataManager.initialize();
+      gamificationUI.initialize(currentLang);
+      referralSystem.initialize();
+
+      // Load profile data
+      loadProfileData();
+      loadBadges();
+      loadStreak();
+      loadTestHistory();
+      loadInviteSection();
+
+      // Setup event listeners
+      setupEventListeners();
+    }
+
+    function loadProfileData() {
+      const userData = userDataManager.getUserData();
+      const stats = userDataManager.getStatsSummary();
+
+      // Profile info
+      document.getElementById('profile-name').textContent = userData.displayName || (currentLang === 'ko' ? '게스트 사용자' : 'Guest User');
+
+      // Avatar
+      if (userData.photoURL) {
+        document.getElementById('avatar-emoji').innerHTML = `<img src="${userData.photoURL}" alt="Avatar">`;
+      }
+
+      // Level
+      document.getElementById('level-number').textContent = stats.level;
+      document.getElementById('level-name').textContent = levelXPSystem.getLevelName(stats.level, currentLang);
+
+      // XP Bar
+      const progress = levelXPSystem.getXpProgress(stats.totalXp);
+      document.getElementById('xp-text').textContent = progress.isMaxLevel
+        ? 'MAX LEVEL'
+        : `${progress.currentXp} / ${progress.maxXp} XP`;
+      document.getElementById('xp-bar-fill').style.width = `${progress.percentage}%`;
+
+      if (!progress.isMaxLevel) {
+        document.getElementById('xp-next').textContent = `Next: Lv.${stats.level + 1}`;
+      } else {
+        document.getElementById('xp-next').textContent = '';
+      }
+
+      // Stats
+      document.getElementById('stat-streak').textContent = stats.currentStreak;
+      document.getElementById('stat-tests').textContent = stats.testCount;
+      document.getElementById('stat-badges').textContent = stats.badgeCount;
+      document.getElementById('stat-shares').textContent = stats.shareCount;
+
+      // Show login prompt for guests
+      if (stats.isGuest) {
+        document.getElementById('login-prompt').classList.remove('hidden');
+        document.getElementById('logout-section').classList.add('hidden');
+      } else {
+        document.getElementById('login-prompt').classList.add('hidden');
+        document.getElementById('logout-section').classList.remove('hidden');
+      }
+    }
+
+    function loadBadges() {
+      const userData = userDataManager.getUserData();
+      const earnedBadgeIds = userData.gamification?.badges || [];
+      const allBadges = badgeSystem.getAllBadges();
+
+      const earnedContainer = document.getElementById('earned-badges');
+      const lockedContainer = document.getElementById('locked-badges');
+
+      earnedContainer.innerHTML = '';
+      lockedContainer.innerHTML = '';
+
+      const earnedBadges = allBadges.filter(b => earnedBadgeIds.includes(b.id));
+      const lockedBadges = allBadges.filter(b => !earnedBadgeIds.includes(b.id));
+
+      // Update counts
+      document.getElementById('badge-count').textContent = `(${earnedBadges.length}/${allBadges.length})`;
+      document.getElementById('locked-count').textContent = `(${lockedBadges.length})`;
+
+      // Render earned badges
+      earnedBadges.forEach(badge => {
+        const badgeEl = createBadgeElement(badge, false);
+        earnedContainer.appendChild(badgeEl);
+      });
+
+      if (earnedBadges.length === 0) {
+        earnedContainer.innerHTML = `<div class="empty-state"><span>🏅</span><span>${currentLang === 'ko' ? '아직 획득한 뱃지가 없어요' : 'No badges earned yet'}</span></div>`;
+      }
+
+      // Render locked badges (first 8)
+      lockedBadges.slice(0, 8).forEach(badge => {
+        const badgeEl = createBadgeElement(badge, true);
+        lockedContainer.appendChild(badgeEl);
+      });
+    }
+
+    function createBadgeElement(badge, isLocked) {
+      const el = document.createElement('div');
+      el.className = `badge-item rarity-${badge.rarity} ${isLocked ? 'locked' : ''}`;
+      el.innerHTML = `
+        <span class="badge-emoji">${isLocked ? '❓' : badge.emoji}</span>
+        <span class="badge-name">${badgeSystem.getBadgeName(badge.id, currentLang)}</span>
+        <span class="badge-rarity ${badge.rarity}">${badgeSystem.getRarityConfig(badge.rarity).label[currentLang]}</span>
+      `;
+
+      if (!isLocked) {
+        el.addEventListener('click', () => {
+          gamificationUI.showBadgePopup(badge, currentLang);
+        });
+      }
+
+      return el;
+    }
+
+    function loadStreak() {
+      const userData = userDataManager.getUserData();
+      const gamification = userData.gamification || {};
+
+      // Current streak
+      document.getElementById('streak-count').textContent = gamification.currentStreak || 0;
+      document.getElementById('streak-emoji').textContent = streakSystem.getStreakEmoji(gamification.currentStreak || 0);
+      document.getElementById('streak-best').textContent = gamification.longestStreak || 0;
+
+      // Week display
+      const weekData = streakSystem.getWeekDisplay({
+        lastParticipationDate: gamification.lastParticipationDate,
+        history: userData.dailyHistory || []
+      });
+
+      const weekContainer = document.getElementById('streak-week');
+      weekContainer.innerHTML = weekData.map(day => `
+        <div class="streak-day ${day.participated ? 'completed' : ''} ${day.isToday ? 'today' : ''} ${day.isFuture ? 'future' : ''}">
+          <span class="streak-day-name">${currentLang === 'ko' ? day.dayName : day.dayNameEn}</span>
+          <span class="streak-day-icon">${day.participated ? '🔥' : '○'}</span>
+        </div>
+      `).join('');
+
+      // Next milestone
+      const nextMilestone = streakSystem.getNextMilestone(gamification.currentStreak || 0);
+      const milestoneContainer = document.getElementById('streak-next-milestone');
+
+      if (nextMilestone) {
+        milestoneContainer.innerHTML = `
+          <span>${t('nextMilestone')}: ${nextMilestone.days}${t('days')}</span>
+          <span class="milestone-remaining">${nextMilestone.daysRemaining} ${t('daysLeft')}</span>
+        `;
+      } else {
+        milestoneContainer.innerHTML = `<span>🎉 ${currentLang === 'ko' ? '모든 마일스톤 달성!' : 'All milestones achieved!'}</span>`;
+      }
+    }
+
+    function loadTestHistory() {
+      const userData = userDataManager.getUserData();
+      const history = userData.testHistory || [];
+      const container = document.getElementById('test-history-list');
+
+      // Most common type
+      const mostCommon = userDataManager.getMostCommonType();
+      if (mostCommon) {
+        document.getElementById('most-common-type').classList.remove('hidden');
+        document.getElementById('common-type-name').textContent = mostCommon.type;
+        document.getElementById('common-type-count').textContent = `(${mostCommon.count}${currentLang === 'ko' ? '회' : 'x'})`;
+      }
+
+      // Recent tests
+      if (history.length === 0) {
+        return; // Keep empty state
+      }
+
+      const recentTests = history.slice(-10).reverse();
+      container.innerHTML = recentTests.map(test => `
+        <div class="history-item">
+          <span class="history-date">${test.date}</span>
+          <span class="history-type">${test.testType}</span>
+          ${test.result?.summary ? `<span class="history-summary">${test.result.summary}</span>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function loadInviteSection() {
+      const link = referralSystem.getReferralLink();
+      document.getElementById('invite-link').value = link || '';
+
+      const stats = referralSystem.getReferralStats();
+      document.getElementById('invite-count').textContent = stats.count;
+      document.getElementById('invite-xp').textContent = stats.xpEarned;
+    }
+
+    function setupEventListeners() {
+      // Login button
+      document.getElementById('btn-login')?.addEventListener('click', () => {
+        gamificationUI.showLoginPrompt(currentLang);
+      });
+
+      // Copy invite link
+      document.getElementById('btn-copy-invite')?.addEventListener('click', async () => {
+        const success = await referralSystem.copyReferralLink();
+        if (success) {
+          gamificationUI.showToast('✅', t('copied'));
+        }
+      });
+
+      // Share buttons
+      document.getElementById('btn-share-kakao')?.addEventListener('click', () => {
+        referralSystem.shareViaPlatform('kakao', currentLang);
+      });
+
+      document.getElementById('btn-share-line')?.addEventListener('click', () => {
+        referralSystem.shareViaPlatform('line', currentLang);
+      });
+
+      document.getElementById('btn-share-copy')?.addEventListener('click', async () => {
+        const success = await referralSystem.copyReferralLink();
+        if (success) {
+          gamificationUI.showToast('✅', t('copied'));
+        }
+      });
+
+      // Logout
+      document.getElementById('btn-logout')?.addEventListener('click', async () => {
+        if (confirm(currentLang === 'ko' ? '로그아웃 하시겠습니까?' : 'Are you sure you want to logout?')) {
+          await authSystem.signOut();
+          window.location.reload();
+        }
+      });
+    }
+
+    // Initialize when DOM ready
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
