@@ -1,0 +1,669 @@
+/**
+ * Global KICK Design System
+ * "Interactive Playground for Gen Z"
+ * SmartAITest.com 2026
+ */
+
+/* ============================================
+   1. CSS VARIABLES & BASE
+   ============================================ */
+:root {
+    --kick-primary: #8B5CF6;
+    --kick-secondary: #EC4899;
+    --kick-accent: #06B6D4;
+    --kick-neon-pink: #FF2D92;
+    --kick-neon-blue: #00D4FF;
+    --kick-neon-purple: #A855F7;
+    --kick-dark: #0F0C29;
+    --kick-glass-bg: rgba(255, 255, 255, 0.08);
+    --kick-glass-border: rgba(255, 255, 255, 0.15);
+    --kick-glass-light: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   2. LIVING BACKGROUND - Mesh Gradient
+   ============================================ */
+.kick-mesh-bg {
+    position: relative;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.kick-mesh-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 60% 80%, rgba(6, 182, 214, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 30% 90%, rgba(255, 45, 146, 0.25) 0%, transparent 50%);
+    animation: meshMove 20s ease-in-out infinite;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes meshMove {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    25% { transform: scale(1.1) translate(3%, 2%); }
+    50% { transform: scale(1.05) translate(-2%, 3%); }
+    75% { transform: scale(1.1) translate(2%, -2%); }
+}
+
+/* Light mode mesh for certain pages */
+.kick-mesh-light {
+    background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 50%, #f5f3ff 100%);
+}
+
+.kick-mesh-light::before {
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 60% 80%, rgba(6, 182, 214, 0.1) 0%, transparent 50%);
+    filter: blur(80px);
+}
+
+/* ============================================
+   3. GLASSMORPHISM
+   ============================================ */
+.kick-glass {
+    background: var(--kick-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--kick-glass-border);
+    border-radius: 24px;
+}
+
+.kick-glass-light {
+    background: var(--kick-glass-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   4. TYPOGRAPHY WITH ATTITUDE
+   ============================================ */
+.kick-heading {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.kick-gradient-text {
+    background: linear-gradient(135deg, #fff 0%, #fcd34d 30%, #f472b6 60%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.kick-gradient-text-rainbow {
+    background: linear-gradient(90deg, #ff2d92, #fcd34d, #00d4ff, #a855f7, #ff2d92);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 3s linear infinite;
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ============================================
+   5. MARQUEE / NEWS TICKER
+   ============================================ */
+.kick-marquee {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.kick-marquee-content {
+    display: inline-flex;
+    animation: marqueeScroll 30s linear infinite;
+    padding: 12px 0;
+}
+
+.kick-marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.kick-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 40px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.kick-marquee-item::after {
+    content: '✦';
+    margin-left: 40px;
+    color: var(--kick-neon-pink);
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   6. BENTO GRID
+   ============================================ */
+.kick-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kick-bento-item {
+    background: var(--kick-glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--kick-glass-border);
+    border-radius: 24px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Bento item sizes */
+.kick-bento-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.kick-bento-item.wide {
+    grid-column: span 2;
+}
+
+.kick-bento-item.tall {
+    grid-row: span 2;
+}
+
+/* Hover glow effect */
+.kick-bento-item::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--kick-neon-pink), var(--kick-neon-blue), var(--kick-neon-purple));
+    border-radius: 26px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.kick-bento-item:hover::before {
+    opacity: 1;
+}
+
+.kick-bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Bento Grid */
+@media (max-width: 768px) {
+    .kick-bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .kick-bento-item.large {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    .kick-bento-item.tall {
+        grid-row: span 1;
+    }
+}
+
+/* ============================================
+   7. 3D TILT EFFECT (Applied via JS)
+   ============================================ */
+.kick-tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+.kick-tilt-inner {
+    transform: translateZ(30px);
+}
+
+/* ============================================
+   8. FLOATING PILL NAVBAR
+   ============================================ */
+.kick-navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(15, 12, 41, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.kick-navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.kick-navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.kick-navbar-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.kick-navbar-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.kick-navbar-link.active {
+    color: white;
+    background: linear-gradient(135deg, var(--kick-primary), var(--kick-secondary));
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+    .kick-navbar {
+        top: auto;
+        bottom: 20px;
+        padding: 10px 16px;
+        gap: 12px;
+        max-width: calc(100% - 32px);
+    }
+    .kick-navbar-links {
+        gap: 4px;
+    }
+    .kick-navbar-link {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    .kick-navbar-logo span:last-child {
+        display: none;
+    }
+}
+
+/* ============================================
+   9. CHUNKY INPUTS
+   ============================================ */
+.kick-input {
+    width: 100%;
+    padding: 20px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.kick-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.kick-input:focus {
+    border-color: var(--kick-neon-pink);
+    box-shadow:
+        0 0 0 4px rgba(255, 45, 146, 0.2),
+        0 0 30px rgba(255, 45, 146, 0.3);
+}
+
+.kick-input-light {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #1f2937;
+}
+
+.kick-input-light:focus {
+    border-color: var(--kick-primary);
+    box-shadow:
+        0 0 0 4px rgba(139, 92, 246, 0.2),
+        0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+/* ============================================
+   10. BUTTONS WITH JUICE
+   ============================================ */
+.kick-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 36px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.kick-btn-primary {
+    background: linear-gradient(135deg, var(--kick-primary), var(--kick-secondary));
+    color: white;
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+.kick-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+}
+
+.kick-btn-primary:active {
+    transform: scale(0.95);
+}
+
+/* Jelly bounce effect */
+.kick-btn-bounce:active {
+    animation: jellyBounce 0.5s ease;
+}
+
+@keyframes jellyBounce {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.9); }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+/* Particle burst on click (pseudo) */
+.kick-btn-burst::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0);
+}
+
+.kick-btn-burst:active::after {
+    animation: burstEffect 0.4s ease-out;
+}
+
+@keyframes burstEffect {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* ============================================
+   11. STICKY BOTTOM ACTION BAR
+   ============================================ */
+.kick-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(15, 12, 41, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kick-sticky-bar.visible {
+    transform: translateY(0);
+}
+
+.kick-sticky-bar-btn {
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kick-sticky-bar-btn.primary {
+    background: linear-gradient(135deg, var(--kick-primary), var(--kick-secondary));
+    color: white;
+}
+
+.kick-sticky-bar-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   12. WITTY FOOTER
+   ============================================ */
+.kick-footer {
+    position: relative;
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 12, 41, 0.95) 30%);
+    padding: 80px 24px 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.kick-footer-logo-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 300px;
+    opacity: 0.03;
+    pointer-events: none;
+    user-select: none;
+}
+
+.kick-footer-content {
+    position: relative;
+    z-index: 1;
+}
+
+.kick-footer-tagline {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+}
+
+.kick-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.kick-footer-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.kick-footer-link:hover {
+    color: white;
+}
+
+.kick-footer-copyright {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   13. CONFETTI (canvas-confetti integration)
+   ============================================ */
+/* Confetti is handled via JS, but we add the canvas positioning */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ============================================
+   14. LOADING ANIMATIONS
+   ============================================ */
+.kick-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.kick-loader-orbs {
+    display: flex;
+    gap: 12px;
+}
+
+.kick-loader-orb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--kick-neon-pink), var(--kick-neon-blue));
+    animation: orbPulse 1.4s ease-in-out infinite;
+}
+
+.kick-loader-orb:nth-child(2) { animation-delay: 0.2s; }
+.kick-loader-orb:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes orbPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* Neural network animation */
+.kick-neural {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.kick-neural-node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--kick-neon-pink);
+    animation: nodePulse 2s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+    0%, 100% { box-shadow: 0 0 10px var(--kick-neon-pink); }
+    50% { box-shadow: 0 0 30px var(--kick-neon-pink), 0 0 60px var(--kick-neon-blue); }
+}
+
+/* ============================================
+   15. UTILITY ANIMATIONS
+   ============================================ */
+.kick-fade-in {
+    animation: kickFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes kickFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.kick-scale-in {
+    animation: kickScaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes kickScaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.kick-float {
+    animation: kickFloat 4s ease-in-out infinite;
+}
+
+@keyframes kickFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* ============================================
+   16. RESPONSIVE HELPERS
+   ============================================ */
+@media (max-width: 768px) {
+    .kick-heading {
+        font-size: 2rem !important;
+    }
+
+    .kick-input {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+
+    .kick-btn {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+
+    .kick-sticky-bar {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .kick-sticky-bar-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .kick-footer-logo-bg {
+        font-size: 150px;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

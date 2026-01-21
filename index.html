@@ -152,6 +152,10 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="./css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="./css/global-kick.css">
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -930,285 +934,108 @@
     <link rel="stylesheet" href="./css/popups.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="flex items-center space-x-2">
-                    <span class="text-2xl">🔮</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
-                </a>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-primary font-medium transition">
-                        <span class="lang-en">Home</span>
-                        <span class="lang-ko">홈</span>
-                        <span class="lang-ja">ホーム</span>
-                        <span class="lang-zh">首页</span>
-                        <span class="lang-es">Inicio</span>
-                    </a>
-                    <!-- Tests Dropdown -->
-                    <div class="relative group">
-                        <button class="flex items-center space-x-1 text-gray-600 hover:text-primary transition">
-                            <span class="lang-en">Tests</span>
-                            <span class="lang-ko">테스트</span>
-                            <span class="lang-ja">テスト</span>
-                            <span class="lang-zh">测试</span>
-                            <span class="lang-es">Tests</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </button>
-                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <a href="/compatibility/" class="block px-4 py-3 hover:bg-pink-50 transition bg-pink-50/50">
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-xl">&#128149;</span>
-                                    <div>
-                                        <p class="font-medium text-gray-800">
-                                            <span class="lang-en">AI Compatibility</span>
-                                            <span class="lang-ko">AI 궁합 테스트</span>
-                                            <span class="lang-ja">AI相性診断</span>
-                                            <span class="lang-zh">AI配对测试</span>
-                                            <span class="lang-es">Compatibilidad IA</span>
-                                            <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded ml-1 animate-pulse">HOT</span>
-                                        </p>
-                                        <p class="text-xs text-gray-500">
-                                            <span class="lang-en">Animal couple & Love movie</span>
-                                            <span class="lang-ko">동물 커플 & 사랑 영화</span>
-                                            <span class="lang-ja">動物カップル＆恋愛映画</span>
-                                            <span class="lang-zh">动物情侣 & 爱情电影</span>
-                                            <span class="lang-es">Pareja animal y película</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/life-summary/" class="block px-4 py-3 hover:bg-gray-50 transition">
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-xl">&#10024;</span>
-                                    <div>
-                                        <p class="font-medium text-gray-800">
-                                            <span class="lang-en">AI Life Summary</span>
-                                            <span class="lang-ko">AI 인생 요약</span>
-                                            <span class="lang-ja">AI人生サマリー</span>
-                                            <span class="lang-zh">AI人生总结</span>
-                                            <span class="lang-es">Resumen de Vida IA</span>
-                                        </p>
-                                        <p class="text-xs text-gray-500">
-                                            <span class="lang-en">Your life in one sentence</span>
-                                            <span class="lang-ko">한 문장으로 보는 인생</span>
-                                            <span class="lang-ja">一文であなたの人生</span>
-                                            <span class="lang-zh">一句话概括你的人生</span>
-                                            <span class="lang-es">Tu vida en una frase</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/age-calculator/" class="block px-4 py-3 hover:bg-gray-50 transition">
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-xl">&#127874;</span>
-                                    <div>
-                                        <p class="font-medium text-gray-800">
-                                            <span class="lang-en">AI Age Calculator</span>
-                                            <span class="lang-ko">AI 나이 계산기</span>
-                                            <span class="lang-ja">AI年齢計算機</span>
-                                            <span class="lang-zh">AI年龄计算器</span>
-                                            <span class="lang-es">Calculadora de Edad IA</span>
-                                        </p>
-                                        <p class="text-xs text-gray-500">
-                                            <span class="lang-en">Real vs Mental vs Energy Age</span>
-                                            <span class="lang-ko">실제 vs 정신 vs 에너지 나이</span>
-                                            <span class="lang-ja">実年齢 vs 精神年齢 vs エネルギー年齢</span>
-                                            <span class="lang-zh">实际 vs 心理 vs 能量年龄</span>
-                                            <span class="lang-es">Edad Real vs Mental vs Energía</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
-                        <span class="lang-en">About</span>
-                        <span class="lang-ko">소개</span>
-                        <span class="lang-ja">概要</span>
-                        <span class="lang-zh">关于</span>
-                        <span class="lang-es">Acerca de</span>
-                    </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
-                        <span class="lang-en">Contact</span>
-                        <span class="lang-ko">문의</span>
-                        <span class="lang-ja">お問い合わせ</span>
-                        <span class="lang-zh">联系</span>
-                        <span class="lang-es">Contacto</span>
-                    </a>
-                    <!-- Language Dropdown -->
-                    <div id="lang-selector" class="relative">
-                        <button onclick="toggleLangDropdown()" class="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50">
-                            <span id="current-lang">🇺🇸 EN</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                            <button onclick="switchLang('en')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇺🇸 EN</button>
-                            <button onclick="switchLang('ko')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇰🇷 한국어</button>
-                            <button onclick="switchLang('ja')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇯🇵 日本語</button>
-                            <button onclick="switchLang('zh')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇨🇳 中文</button>
-                            <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
-                        </div>
-                    </div>
-                    <!-- Profile Button -->
-                    <div id="header-profile" class="relative">
-                        <a href="/profile/" id="profile-btn" class="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium border rounded-lg hover:bg-gray-50 transition">
-                            <span id="profile-avatar">👤</span>
-                            <span class="lang-en">Profile</span>
-                            <span class="lang-ko">프로필</span>
-                            <span class="lang-ja">プロフィール</span>
-                            <span class="lang-zh">个人资料</span>
-                            <span class="lang-es">Perfil</span>
-                            <span id="profile-level" class="hidden text-xs font-bold bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded">Lv.1</span>
-                        </a>
-                    </div>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+    <!-- Floating Pill Navbar -->
+    <nav class="kick-navbar" id="floating-navbar">
+        <a href="/" class="kick-navbar-logo">
+            <span class="text-xl">🔮</span>
+            <span class="kick-gradient-text">AI Test Lab</span>
+        </a>
+        <div class="kick-navbar-links hidden md:flex">
+            <a href="/compatibility/" class="kick-navbar-link">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합</span><span class="lang-ja">相性</span><span class="lang-zh">配对</span><span class="lang-es">Compatibilidad</span></a>
+            <a href="/life-summary/" class="kick-navbar-link">🔮 <span class="lang-en">Soul</span><span class="lang-ko">소울</span><span class="lang-ja">ソウル</span><span class="lang-zh">灵魂</span><span class="lang-es">Alma</span></a>
+            <a href="/age-calculator/" class="kick-navbar-link">⏳ <span class="lang-en">Age</span><span class="lang-ko">나이</span><span class="lang-ja">年齢</span><span class="lang-zh">年龄</span><span class="lang-es">Edad</span></a>
+        </div>
+        <!-- Language Selector -->
+        <div id="lang-selector" class="relative">
+            <button onclick="toggleLangDropdown()" class="kick-navbar-link flex items-center gap-1">
+                <span id="current-lang">🇺🇸</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-2 w-28 bg-gray-900/95 backdrop-blur-lg rounded-xl border border-white/10 py-1 z-50">
+                <button onclick="switchLang('en')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+                <button onclick="switchLang('ko')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+                <button onclick="switchLang('ja')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+                <button onclick="switchLang('zh')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+                <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
             </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-primary font-medium">
-                        <span class="lang-en">Home</span>
-                        <span class="lang-ko">홈</span>
-                        <span class="lang-ja">ホーム</span>
-                        <span class="lang-zh">首页</span>
-                        <span class="lang-es">Inicio</span>
-                    </a>
-                    <p class="text-xs text-gray-500 mt-2">
-                        <span class="lang-en">TESTS</span>
-                        <span class="lang-ko">테스트</span>
-                        <span class="lang-ja">テスト</span>
-                        <span class="lang-zh">测试</span>
-                        <span class="lang-es">TESTS</span>
-                    </p>
-                    <a href="/compatibility/" class="flex items-center space-x-2 text-pink-600 hover:text-pink-700 transition pl-2 font-medium">
-                        <span>&#128149;</span>
-                        <span class="lang-en">AI Compatibility</span>
-                        <span class="lang-ko">AI 궁합 테스트</span>
-                        <span class="lang-ja">AI相性診断</span>
-                        <span class="lang-zh">AI配对测试</span>
-                        <span class="lang-es">Compatibilidad IA</span>
-                        <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded animate-pulse">HOT</span>
-                    </a>
-                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#10024;</span>
-                        <span class="lang-en">AI Life Summary</span>
-                        <span class="lang-ko">AI 인생 요약</span>
-                        <span class="lang-ja">AI人生サマリー</span>
-                        <span class="lang-zh">AI人生总结</span>
-                        <span class="lang-es">Resumen de Vida IA</span>
-                    </a>
-                    <a href="/age-calculator/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
-                        <span>&#127874;</span>
-                        <span class="lang-en">AI Age Calculator</span>
-                        <span class="lang-ko">AI 나이 계산기</span>
-                        <span class="lang-ja">AI年齢計算機</span>
-                        <span class="lang-zh">AI年龄计算器</span>
-                        <span class="lang-es">Calculadora de Edad IA</span>
-                    </a>
-                    <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
-                        <span class="lang-en">About</span>
-                        <span class="lang-ko">소개</span>
-                        <span class="lang-ja">概要</span>
-                        <span class="lang-zh">关于</span>
-                        <span class="lang-es">Acerca de</span>
-                    </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
-                        <span class="lang-en">Contact</span>
-                        <span class="lang-ko">문의</span>
-                        <span class="lang-ja">お問い合わせ</span>
-                        <span class="lang-zh">联系</span>
-                        <span class="lang-es">Contacto</span>
-                    </a>
-                    <!-- Mobile Profile Link -->
-                    <a href="/profile/" id="mobile-profile-link" class="flex items-center space-x-2 text-indigo-600 hover:text-indigo-700 font-medium">
-                        <span id="mobile-profile-icon">👤</span>
-                        <span>
-                            <span class="lang-en">My Profile</span>
-                            <span class="lang-ko">내 프로필</span>
-                            <span class="lang-ja">マイプロフィール</span>
-                            <span class="lang-zh">我的档案</span>
-                            <span class="lang-es">Mi Perfil</span>
-                        </span>
-                        <span id="mobile-profile-level" class="text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded hidden">Lv.1</span>
-                    </a>
-                    <!-- Mobile Language Selector -->
-                    <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">
-                            <span class="lang-en">Language</span>
-                            <span class="lang-ko">언어</span>
-                            <span class="lang-ja">言語</span>
-                            <span class="lang-zh">语言</span>
-                            <span class="lang-es">Idioma</span>
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">🇺🇸 EN</button>
-                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇰🇷 한국어</button>
-                            <button onclick="switchLang('ja')" data-lang="ja" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇯🇵 日本語</button>
-                            <button onclick="switchLang('zh')" data-lang="zh" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇨🇳 中文</button>
-                            <button onclick="switchLang('es')" data-lang="es" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">🇪🇸 ES</button>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <!-- Profile -->
+        <a href="/profile/" id="profile-btn" class="kick-navbar-link">
+            <span id="profile-avatar">👤</span>
+            <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
+        </a>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white p-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
+        <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
+            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+            <a href="/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합 테스트</span><span class="lang-ja">相性診断</span><span class="lang-zh">配对测试</span><span class="lang-es">Compatibilidad</span></a>
+            <a href="/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 <span class="lang-en">Soul Type</span><span class="lang-ko">소울 타입</span><span class="lang-ja">ソウルタイプ</span><span class="lang-zh">灵魂类型</span><span class="lang-es">Tipo de Alma</span></a>
+            <a href="/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ <span class="lang-en">Mental Age</span><span class="lang-ko">정신 나이</span><span class="lang-ja">精神年齢</span><span class="lang-zh">心理年龄</span><span class="lang-es">Edad Mental</span></a>
+            <div class="border-t border-white/20 w-48 my-4"></div>
+            <a href="/about.html" class="text-lg text-white/70 hover:text-white transition"><span class="lang-en">About</span><span class="lang-ko">소개</span><span class="lang-ja">概要</span><span class="lang-zh">关于</span><span class="lang-es">Acerca de</span></a>
+            <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
+            <a href="/profile/" class="text-lg text-white/70 hover:text-white transition">👤 <span class="lang-en">Profile</span><span class="lang-ko">프로필</span><span class="lang-ja">プロフィール</span><span class="lang-zh">档案</span><span class="lang-es">Perfil</span></a>
+            <div class="flex gap-3 mt-4">
+                <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
             </div>
-        </nav>
-    </header>
+        </div>
+    </div>
 
     <main>
-        <!-- Hero Section - Redesigned Trendy & Viral -->
-        <section class="hero-mesh-bg py-16 md:py-24 relative overflow-hidden">
-            <!-- Live Ticker -->
-            <div class="live-ticker absolute top-0 left-0 right-0 z-20" id="live-ticker">
-                <div class="ticker-content max-w-5xl mx-auto justify-center text-sm text-white/90">
-                    <span class="ticker-dot"></span>
-                    <span id="ticker-text">🇺🇸 Someone from USA just completed the test!</span>
-                </div>
+        <!-- Marquee Ticker -->
+        <div class="kick-marquee">
+            <div class="kick-marquee-content" id="marquee-content">
+                <span class="kick-marquee-item">🔥 <span id="marquee-count">96,402</span><span class="lang-en">people discovered their destiny</span><span class="lang-ko">명이 운명을 확인했습니다</span><span class="lang-ja">人が運命を確認しました</span><span class="lang-zh">人已确认命运</span><span class="lang-es">personas descubrieron su destino</span></span>
+                <span class="kick-marquee-item">🔮 <span class="lang-en">AI is analyzing your subconscious...</span><span class="lang-ko">AI가 당신의 무의식을 분석 중입니다...</span><span class="lang-ja">AIがあなたの無意識を分析中...</span><span class="lang-zh">AI正在分析你的潜意识...</span><span class="lang-es">La IA analiza tu subconsciente...</span></span>
+                <span class="kick-marquee-item">❤️‍🔥 <span class="lang-en">New couple matched 3 seconds ago</span><span class="lang-ko">3초 전 새로운 커플 탄생</span><span class="lang-ja">3秒前に新しいカップル誕生</span><span class="lang-zh">3秒前新情侣诞生</span><span class="lang-es">Nueva pareja hace 3 segundos</span></span>
+                <span class="kick-marquee-item">✨ <span class="lang-en">Your soul type is waiting to be revealed...</span><span class="lang-ko">당신의 소울 타입이 공개를 기다리고 있습니다...</span><span class="lang-ja">あなたのソウルタイプが公開を待っています...</span><span class="lang-zh">你的灵魂类型等待揭晓...</span><span class="lang-es">Tu tipo de alma espera ser revelado...</span></span>
+                <!-- Duplicate for seamless loop -->
+                <span class="kick-marquee-item">🔥 <span>96,402</span><span class="lang-en">people discovered their destiny</span><span class="lang-ko">명이 운명을 확인했습니다</span><span class="lang-ja">人が運命を確認しました</span><span class="lang-zh">人已确认命运</span><span class="lang-es">personas descubrieron su destino</span></span>
+                <span class="kick-marquee-item">🔮 <span class="lang-en">AI is analyzing your subconscious...</span><span class="lang-ko">AI가 당신의 무의식을 분석 중입니다...</span><span class="lang-ja">AIがあなたの無意識を分析中...</span><span class="lang-zh">AI正在分析你的潜意识...</span><span class="lang-es">La IA analiza tu subconsciente...</span></span>
+                <span class="kick-marquee-item">❤️‍🔥 <span class="lang-en">New couple matched 3 seconds ago</span><span class="lang-ko">3초 전 새로운 커플 탄생</span><span class="lang-ja">3秒前に新しいカップル誕生</span><span class="lang-zh">3秒前新情侣诞生</span><span class="lang-es">Nueva pareja hace 3 segundos</span></span>
+                <span class="kick-marquee-item">✨ <span class="lang-en">Your soul type is waiting to be revealed...</span><span class="lang-ko">당신의 소울 타입이 공개를 기다리고 있습니다...</span><span class="lang-ja">あなたのソウルタイプが公開を待っています...</span><span class="lang-zh">你的灵魂类型等待揭晓...</span><span class="lang-es">Tu tipo de alma espera ser revelado...</span></span>
             </div>
+        </div>
 
-            <!-- Floating Particles (subtle) -->
-            <div class="hero-particles">
-                <span class="particle" style="opacity: 0.3;">✨</span>
-                <span class="particle" style="opacity: 0.2;">💫</span>
-                <span class="particle" style="opacity: 0.25;">⭐</span>
-                <span class="particle" style="opacity: 0.2;">✨</span>
-            </div>
-
-            <div class="max-w-6xl mx-auto px-4 text-center relative z-10 pt-8">
+        <!-- Hero Section - KICK Redesign -->
+        <section class="kick-mesh-bg py-20 md:py-28 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 text-center relative z-10 pt-12">
                 <!-- Floating 3D Orb -->
                 <div class="flex justify-center mb-8">
-                    <div class="hero-orb"></div>
+                    <div class="hero-orb kick-float"></div>
                 </div>
 
                 <!-- Bold Headline -->
-                <h1 class="font-heading hero-title-bold text-4xl md:text-5xl lg:text-6xl mb-4">
+                <h1 class="kick-heading text-4xl md:text-5xl lg:text-7xl mb-4">
                     <span class="text-white lang-en">What's Your </span>
                     <span class="text-white lang-ko">AI가 분석한 당신의 </span>
                     <span class="text-white lang-ja">AIが分析した </span>
                     <span class="text-white lang-zh">AI分析的 </span>
                     <span class="text-white lang-es">¿Cuál es tu </span>
                     <br class="md:hidden">
-                    <span class="hero-title-gradient lang-en">True Self?</span>
-                    <span class="hero-title-gradient lang-ko">진짜 모습</span>
-                    <span class="hero-title-gradient lang-ja">本当の自分</span>
-                    <span class="hero-title-gradient lang-zh">真实自我</span>
-                    <span class="hero-title-gradient lang-es">Verdadero Yo?</span>
+                    <span class="kick-gradient-text lang-en">True Self?</span>
+                    <span class="kick-gradient-text lang-ko">진짜 모습</span>
+                    <span class="kick-gradient-text lang-ja">本当の自分</span>
+                    <span class="kick-gradient-text lang-zh">真实自我</span>
+                    <span class="kick-gradient-text lang-es">Verdadero Yo?</span>
                     <span class="text-white lang-ko">은?</span>
                     <span class="text-white lang-ja">とは?</span>
                     <span class="text-white lang-zh">是什么?</span>
                 </h1>
 
-                <p class="text-base md:text-lg lg:text-xl text-white/80 mb-6 md:mb-10 max-w-xl mx-auto px-2">
+                <p class="text-base md:text-xl text-white/70 mb-12 max-w-2xl mx-auto">
                     <span class="lang-en">1-minute AI test that reveals personality insights millions have discovered</span>
                     <span class="lang-ko">100만 명이 발견한 1분 AI 테스트로 숨겨진 나를 찾아보세요</span>
                     <span class="lang-ja">100万人が発見した1分AIテストで本当の自分を見つけよう</span>
@@ -1216,75 +1043,99 @@
                     <span class="lang-es">Test de IA de 1 minuto que millones han descubierto</span>
                 </p>
 
-                <!-- Interactive Poster Cards -->
-                <div class="poster-cards-container grid grid-cols-1 md:grid-cols-3 gap-6 md:max-w-4xl mx-auto mb-8 md:mb-12 px-4 md:px-0">
-                    <!-- Compatibility Card -->
-                    <a href="/compatibility/" class="poster-card compatibility block">
-                        <div class="poster-ribbon">HOT</div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="poster-emoji">❤️‍🔥</span>
-                        </div>
-                        <div class="poster-card-content text-left">
-                            <h3 class="text-white font-bold text-xl mb-1">
-                                <span class="lang-en">Love Compatibility</span>
-                                <span class="lang-ko">AI 궁합 테스트</span>
-                                <span class="lang-ja">相性診断</span>
-                                <span class="lang-zh">配对测试</span>
-                                <span class="lang-es">Compatibilidad</span>
-                            </h3>
-                            <p class="text-white/70 text-sm">
-                                <span class="lang-en">Find your perfect match</span>
-                                <span class="lang-ko">운명의 상대를 찾아보세요</span>
-                                <span class="lang-ja">運命の相手を探そう</span>
-                                <span class="lang-zh">寻找你的完美伴侣</span>
-                                <span class="lang-es">Encuentra tu pareja ideal</span>
-                            </p>
-                        </div>
-                    </a>
-
-                    <!-- Life Summary Card -->
-                    <a href="/life-summary/" class="poster-card life-summary block">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="poster-emoji">🔮</span>
-                        </div>
-                        <div class="poster-card-content text-left">
-                            <h3 class="text-white font-bold text-xl mb-1">
-                                <span class="lang-en">Soul Type</span>
-                                <span class="lang-ko">소울 타입</span>
-                                <span class="lang-ja">ソウルタイプ</span>
-                                <span class="lang-zh">灵魂类型</span>
-                                <span class="lang-es">Tipo de Alma</span>
-                            </h3>
-                            <p class="text-white/70 text-sm">
-                                <span class="lang-en">Discover your true essence</span>
-                                <span class="lang-ko">나의 진짜 모습 발견하기</span>
-                                <span class="lang-ja">本当の自分を発見</span>
-                                <span class="lang-zh">发现你的真实本质</span>
-                                <span class="lang-es">Descubre tu esencia</span>
-                            </p>
+                <!-- Bento Grid Test Cards -->
+                <div class="kick-bento-grid px-4 md:px-0 mb-12" id="bento-grid">
+                    <!-- Compatibility Card - Large -->
+                    <a href="/compatibility/" class="kick-bento-item large kick-tilt" data-tilt>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full animate-pulse">HOT 🔥</div>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-7xl md:text-8xl mb-4 kick-tilt-inner">❤️‍🔥</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-2xl md:text-3xl mb-2">
+                                    <span class="lang-en">Love Compatibility</span>
+                                    <span class="lang-ko">AI 궁합 테스트</span>
+                                    <span class="lang-ja">相性診断</span>
+                                    <span class="lang-zh">配对测试</span>
+                                    <span class="lang-es">Compatibilidad</span>
+                                </h3>
+                                <p class="text-white/60 text-sm md:text-base">
+                                    <span class="lang-en">Discover your destiny with AI-powered matching</span>
+                                    <span class="lang-ko">AI가 분석하는 운명의 궁합</span>
+                                    <span class="lang-ja">AIが分析する運命の相性</span>
+                                    <span class="lang-zh">AI分析的命中注定</span>
+                                    <span class="lang-es">Descubre tu destino con IA</span>
+                                </p>
+                            </div>
                         </div>
                     </a>
 
-                    <!-- Age Calculator Card -->
-                    <a href="/age-calculator/" class="poster-card age-calc block">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="poster-emoji">⏳</span>
+                    <!-- Soul Type Card -->
+                    <a href="/life-summary/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🔮</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+                                    <span class="lang-en">Soul Type</span>
+                                    <span class="lang-ko">소울 타입</span>
+                                    <span class="lang-ja">ソウルタイプ</span>
+                                    <span class="lang-zh">灵魂类型</span>
+                                    <span class="lang-es">Tipo de Alma</span>
+                                </h3>
+                                <p class="text-white/60 text-xs">
+                                    <span class="lang-en">12 unique types</span>
+                                    <span class="lang-ko">12가지 타입</span>
+                                    <span class="lang-ja">12種類</span>
+                                    <span class="lang-zh">12种类型</span>
+                                    <span class="lang-es">12 tipos únicos</span>
+                                </p>
+                            </div>
                         </div>
-                        <div class="poster-card-content text-left">
-                            <h3 class="text-white font-bold text-xl mb-1">
-                                <span class="lang-en">Mental Age</span>
-                                <span class="lang-ko">정신 나이</span>
-                                <span class="lang-ja">精神年齢</span>
-                                <span class="lang-zh">心理年龄</span>
-                                <span class="lang-es">Edad Mental</span>
-                            </h3>
-                            <p class="text-white/70 text-sm">
-                                <span class="lang-en">How old is your mind?</span>
-                                <span class="lang-ko">당신의 정신 나이는?</span>
-                                <span class="lang-ja">あなたの精神年齢は?</span>
-                                <span class="lang-zh">你的心理年龄是?</span>
-                                <span class="lang-es">¿Cuántos años tiene tu mente?</span>
-                            </p>
+                    </a>
+
+                    <!-- Mental Age Card -->
+                    <a href="/age-calculator/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">⏳</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+                                    <span class="lang-en">Mental Age</span>
+                                    <span class="lang-ko">정신 나이</span>
+                                    <span class="lang-ja">精神年齢</span>
+                                    <span class="lang-zh">心理年龄</span>
+                                    <span class="lang-es">Edad Mental</span>
+                                </h3>
+                                <p class="text-white/60 text-xs">
+                                    <span class="lang-en">How old is your mind?</span>
+                                    <span class="lang-ko">마음의 나이는?</span>
+                                    <span class="lang-ja">心の年齢は?</span>
+                                    <span class="lang-zh">你的心理年龄?</span>
+                                    <span class="lang-es">¿Tu edad mental?</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Daily Test Card - Wide -->
+                    <a href="/daily/" class="kick-bento-item wide kick-tilt" data-tilt>
+                        <div class="h-full flex items-center gap-4">
+                            <div class="text-4xl md:text-5xl kick-tilt-inner">🎯</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-lg mb-1">
+                                    <span class="lang-en">Daily Questions</span>
+                                    <span class="lang-ko">오늘의 질문</span>
+                                    <span class="lang-ja">今日の質問</span>
+                                    <span class="lang-zh">每日问题</span>
+                                    <span class="lang-es">Pregunta Diaria</span>
+                                    <span class="ml-2 text-xs bg-green-500/30 text-green-300 px-2 py-0.5 rounded-full">NEW</span>
+                                </h3>
+                                <p class="text-white/60 text-xs">
+                                    <span class="lang-en">Earn XP & level up daily</span>
+                                    <span class="lang-ko">매일 XP 획득 & 레벨업</span>
+                                    <span class="lang-ja">毎日XP獲得&レベルアップ</span>
+                                    <span class="lang-zh">每日获取XP和升级</span>
+                                    <span class="lang-es">Gana XP y sube de nivel</span>
+                                </p>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -2190,150 +2041,100 @@
     <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <span class="text-2xl">🔮</span>
-                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
-                        <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
-                        <span class="lang-ja">AIによる性格テストで自分を発見。楽しく、洞察力があり、無料です。</span>
-                        <span class="lang-zh">通过AI性格测试发现自己。有趣、有洞察力、免费。</span>
-                        <span class="lang-es">Descúbrete con tests de personalidad con IA. Divertido, perspicaz y gratis.</span>
-                    </p>
-                </div>
+    <!-- KICK Footer -->
+    <footer class="kick-footer">
+        <!-- Faded Background Logo -->
+        <div class="kick-footer-logo-bg">🔮</div>
 
-                <div>
-                    <h4 class="font-semibold text-white mb-4">
-                        <span class="lang-en">Tests</span>
-                        <span class="lang-ko">테스트</span>
-                        <span class="lang-ja">テスト</span>
-                        <span class="lang-zh">测试</span>
-                        <span class="lang-es">Tests</span>
-                    </h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/compatibility/" class="hover:text-white transition">
-                            <span class="lang-en">AI Compatibility &#128293;</span>
-                            <span class="lang-ko">AI 궁합 테스트 &#128293;</span>
-                            <span class="lang-ja">AI 相性診断 &#128293;</span>
-                            <span class="lang-zh">AI 配对测试 &#128293;</span>
-                            <span class="lang-es">Compatibilidad IA &#128293;</span>
-                        </a></li>
-                        <li><a href="/life-summary/" class="hover:text-white transition">
-                            <span class="lang-en">AI Life Summary</span>
-                            <span class="lang-ko">AI 인생 요약</span>
-                            <span class="lang-ja">AI ライフサマリー</span>
-                            <span class="lang-zh">AI 人生总结</span>
-                            <span class="lang-es">Resumen de Vida IA</span>
-                        </a></li>
-                        <li><a href="/age-calculator/" class="hover:text-white transition">
-                            <span class="lang-en">AI Age Calculator</span>
-                            <span class="lang-ko">AI 나이 계산기</span>
-                            <span class="lang-ja">AI 年齢計算機</span>
-                            <span class="lang-zh">AI 年龄计算器</span>
-                            <span class="lang-es">Calculadora de Edad IA</span>
-                        </a></li>
-                    </ul>
-                </div>
+        <div class="kick-footer-content max-w-4xl mx-auto">
+            <!-- Witty Tagline -->
+            <p class="kick-footer-tagline text-lg md:text-xl mb-6">
+                <span class="lang-en">Made with 💖 & 🧠 by AI Test Lab</span>
+                <span class="lang-ko">AI Test Lab이 💖와 🧠로 만들었습니다</span>
+                <span class="lang-ja">AI Test Labが💖と🧠で作りました</span>
+                <span class="lang-zh">AI Test Lab用💖和🧠制作</span>
+                <span class="lang-es">Hecho con 💖 y 🧠 por AI Test Lab</span>
+            </p>
 
-                <div>
-                    <h4 class="font-semibold text-white mb-4">
-                        <span class="lang-en">Quick Links</span>
-                        <span class="lang-ko">빠른 링크</span>
-                        <span class="lang-ja">クイックリンク</span>
-                        <span class="lang-zh">快速链接</span>
-                        <span class="lang-es">Enlaces Rápidos</span>
-                    </h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">
-                            <span class="lang-en">Home</span>
-                            <span class="lang-ko">홈</span>
-                            <span class="lang-ja">ホーム</span>
-                            <span class="lang-zh">首页</span>
-                            <span class="lang-es">Inicio</span>
-                        </a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">
-                            <span class="lang-en">About</span>
-                            <span class="lang-ko">소개</span>
-                            <span class="lang-ja">について</span>
-                            <span class="lang-zh">关于</span>
-                            <span class="lang-es">Acerca de</span>
-                        </a></li>
-                        <li><a href="/blog.html" class="hover:text-white transition">
-                            <span class="lang-en">Blog</span>
-                            <span class="lang-ko">블로그</span>
-                            <span class="lang-ja">ブログ</span>
-                            <span class="lang-zh">博客</span>
-                            <span class="lang-es">Blog</span>
-                        </a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">
-                            <span class="lang-en">Contact</span>
-                            <span class="lang-ko">문의</span>
-                            <span class="lang-ja">お問い合わせ</span>
-                            <span class="lang-zh">联系</span>
-                            <span class="lang-es">Contacto</span>
-                        </a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-white mb-4">
-                        <span class="lang-en">Legal</span>
-                        <span class="lang-ko">법적 정보</span>
-                        <span class="lang-ja">法的情報</span>
-                        <span class="lang-zh">法律信息</span>
-                        <span class="lang-es">Legal</span>
-                    </h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">
-                            <span class="lang-en">Privacy Policy</span>
-                            <span class="lang-ko">개인정보처리방침</span>
-                            <span class="lang-ja">プライバシーポリシー</span>
-                            <span class="lang-zh">隐私政策</span>
-                            <span class="lang-es">Política de Privacidad</span>
-                        </a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">
-                            <span class="lang-en">Terms of Service</span>
-                            <span class="lang-ko">이용약관</span>
-                            <span class="lang-ja">利用規約</span>
-                            <span class="lang-zh">服务条款</span>
-                            <span class="lang-es">Términos de Servicio</span>
-                        </a></li>
-                    </ul>
-                </div>
+            <!-- Quick Links -->
+            <div class="kick-footer-links flex-wrap">
+                <a href="/compatibility/" class="kick-footer-link">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합</span><span class="lang-ja">相性</span><span class="lang-zh">配对</span><span class="lang-es">Compatibilidad</span></a>
+                <a href="/life-summary/" class="kick-footer-link">🔮 <span class="lang-en">Soul Type</span><span class="lang-ko">소울 타입</span><span class="lang-ja">ソウル</span><span class="lang-zh">灵魂</span><span class="lang-es">Alma</span></a>
+                <a href="/age-calculator/" class="kick-footer-link">⏳ <span class="lang-en">Age</span><span class="lang-ko">나이</span><span class="lang-ja">年齢</span><span class="lang-zh">年龄</span><span class="lang-es">Edad</span></a>
+                <a href="/about.html" class="kick-footer-link"><span class="lang-en">About</span><span class="lang-ko">소개</span><span class="lang-ja">概要</span><span class="lang-zh">关于</span><span class="lang-es">Acerca de</span></a>
+                <a href="/blog.html" class="kick-footer-link">Blog</a>
+                <a href="/privacy-policy.html" class="kick-footer-link"><span class="lang-en">Privacy</span><span class="lang-ko">개인정보</span><span class="lang-ja">プライバシー</span><span class="lang-zh">隐私</span><span class="lang-es">Privacidad</span></a>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab.
-                    <span class="lang-en">All rights reserved.</span>
-                    <span class="lang-ko">모든 권리 보유.</span>
-                    <span class="lang-ja">全著作権所有。</span>
-                    <span class="lang-zh">版权所有。</span>
-                    <span class="lang-es">Todos los derechos reservados.</span>
-                </p>
-                <p class="mt-2">
-                    <span class="lang-en">All tests are for entertainment purposes only.</span>
-                    <span class="lang-ko">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</span>
-                    <span class="lang-ja">すべてのテストはエンターテインメント目的のみです。</span>
-                    <span class="lang-zh">所有测试仅供娱乐目的。</span>
-                    <span class="lang-es">Todos los tests son solo con fines de entretenimiento.</span>
-                </p>
-            </div>
+            <!-- Fun Stats -->
+            <p class="text-white/40 text-sm mb-6">
+                <span class="lang-en">🌍 Loved by users in 150+ countries</span>
+                <span class="lang-ko">🌍 150개국 이상에서 사랑받는 중</span>
+                <span class="lang-ja">🌍 150カ国以上で愛されています</span>
+                <span class="lang-zh">🌍 深受150多个国家用户喜爱</span>
+                <span class="lang-es">🌍 Amado en más de 150 países</span>
+            </p>
+
+            <!-- Copyright -->
+            <p class="kick-footer-copyright">
+                &copy; 2026 AI Test Lab ·
+                <span class="lang-en">Entertainment only</span>
+                <span class="lang-ko">엔터테인먼트 전용</span>
+                <span class="lang-ja">エンタメ専用</span>
+                <span class="lang-zh">仅供娱乐</span>
+                <span class="lang-es">Solo entretenimiento</span>
+                 · ✨
+            </p>
         </div>
     </footer>
 
     <!-- i18n Script -->
     <script src="/js/i18n.js?v=5"></script>
 
-    <!-- Mobile Menu Script -->
+    <!-- KICK Interactive Scripts -->
     <script>
+        // Mobile Menu Toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.remove('hidden');
         });
+        document.getElementById('mobile-menu-close').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+
+        // 3D Tilt Effect for Bento Grid Items
+        document.querySelectorAll('.kick-tilt').forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                var rect = card.getBoundingClientRect();
+                var x = e.clientX - rect.left;
+                var y = e.clientY - rect.top;
+                var centerX = rect.width / 2;
+                var centerY = rect.height / 2;
+                var rotateX = (y - centerY) / 15;
+                var rotateY = (centerX - x) / 15;
+                card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
+
+        // Jelly Bounce Effect for Buttons
+        document.querySelectorAll('.kick-btn, .kick-bento-item').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(function() {
+                    btn.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Marquee count increment
+        var marqueeCount = 96402;
+        setInterval(function() {
+            marqueeCount += Math.floor(Math.random() * 3) + 1;
+            var countEl = document.getElementById('marquee-count');
+            if (countEl) countEl.textContent = marqueeCount.toLocaleString() + ' ';
+        }, 5000);
     </script>
 
     <!-- Counter Animation Script -->
