@@ -312,6 +312,9 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
         ctx.fillText(`${results.movieGenre.emoji} Your Love Movie: ${results.movieGenre.title.en}`, centerX, cardY + 1280);
     }
 
+    // Rarity badge
+    drawCompatRarityBadge(ctx, config, results, 1650);
+
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '26px Inter, sans-serif';
@@ -451,6 +454,35 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
         ctx.fillText(`${results.luckyDate.emoji} Lucky Date: ${results.luckyDate.dateFormatted.en}`, centerX, cardY + 770);
     }
 
+    // Rarity badge for square (adjust y position for smaller canvas)
+    ctx.font = 'bold 20px Inter, sans-serif';
+    const lang = document.documentElement.lang || 'en';
+    const rarityPercent = calculateCompatRarity(results);
+    const rarityLabel = '\u2B50 ' + getCompatRarityLabel(rarityPercent, lang);
+    const badgeWidth = ctx.measureText(rarityLabel).width + 40;
+    const badgeHeight = 32;
+    const badgeX = (config.width - badgeWidth) / 2;
+    const badgeY = cardY + 810;
+
+    const gradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+    gradient.addColorStop(0, '#fbbf24');
+    gradient.addColorStop(1, '#f59e0b');
+    ctx.fillStyle = gradient;
+
+    ctx.beginPath();
+    const badgeRadius = badgeHeight / 2;
+    ctx.moveTo(badgeX + badgeRadius, badgeY);
+    ctx.lineTo(badgeX + badgeWidth - badgeRadius, badgeY);
+    ctx.arc(badgeX + badgeWidth - badgeRadius, badgeY + badgeRadius, badgeRadius, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(badgeX + badgeRadius, badgeY + badgeHeight);
+    ctx.arc(badgeX + badgeRadius, badgeY + badgeRadius, badgeRadius, Math.PI / 2, -Math.PI / 2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.fillText(rarityLabel, centerX, badgeY + 22);
+
     // Bottom info
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '20px Inter, sans-serif';
@@ -559,4 +591,77 @@ function getCompatColorScheme(score) {
     if (score >= 60) return COMPAT_COLOR_SCHEMES.good;
     if (score >= 50) return COMPAT_COLOR_SCHEMES.average;
     return COMPAT_COLOR_SCHEMES.low;
+}
+
+/**
+ * Calculate rarity for compatibility result
+ * @param {Object} results - Compatibility results
+ * @returns {number} - Rarity percentage (5-30)
+ */
+function calculateCompatRarity(results) {
+    const str = (results.personA?.name || 'A') + (results.personB?.name || 'B') + results.overallScore;
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash = hash & hash;
+    }
+    const normalized = Math.abs(hash % 100);
+    if (normalized < 10) return 5;
+    if (normalized < 25) return 8;
+    if (normalized < 45) return 12;
+    if (normalized < 65) return 18;
+    if (normalized < 85) return 23;
+    return 30;
+}
+
+/**
+ * Get rarity label for compatibility
+ */
+function getCompatRarityLabel(percent, lang = 'en') {
+    const labels = {
+        en: `Top ${percent}% Couple`,
+        ko: `\uC0C1\uC704 ${percent}% \uCEE4\uD50C`,
+        ja: `\u4E0A\u4F4D ${percent}% \u30AB\u30C3\u30D7\u30EB`,
+        zh: `\u524D ${percent}% \u60C5\u4FA3`,
+        es: `Top ${percent}% Pareja`
+    };
+    return labels[lang] || labels.en;
+}
+
+/**
+ * Draw rarity badge on canvas
+ */
+function drawCompatRarityBadge(ctx, config, results, y) {
+    const centerX = config.width / 2;
+    const lang = document.documentElement.lang || 'en';
+    const rarityPercent = calculateCompatRarity(results);
+    const rarityLabel = getCompatRarityLabel(rarityPercent, lang);
+
+    ctx.font = 'bold 24px Inter, sans-serif';
+    const badgeWidth = ctx.measureText(rarityLabel).width + 50;
+    const badgeHeight = 40;
+    const badgeX = (config.width - badgeWidth) / 2;
+    const badgeY = y - 25;
+
+    // Golden gradient background
+    const gradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+    gradient.addColorStop(0, '#fbbf24');
+    gradient.addColorStop(1, '#f59e0b');
+    ctx.fillStyle = gradient;
+
+    // Rounded pill shape
+    ctx.beginPath();
+    const radius = badgeHeight / 2;
+    ctx.moveTo(badgeX + radius, badgeY);
+    ctx.lineTo(badgeX + badgeWidth - radius, badgeY);
+    ctx.arc(badgeX + badgeWidth - radius, badgeY + radius, radius, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(badgeX + radius, badgeY + badgeHeight);
+    ctx.arc(badgeX + radius, badgeY + radius, radius, Math.PI / 2, -Math.PI / 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw text
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2B50 ' + rarityLabel, centerX, y);
 }

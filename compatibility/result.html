@@ -712,30 +712,22 @@
             </div>
         </section>
 
-        <!-- Share Buttons -->
+        <!-- Share Section - Consolidated -->
         <section class="py-6">
             <div class="max-w-2xl mx-auto px-4">
                 <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="font-heading font-semibold text-lg mb-4 text-center">
-                        <span class="lang-en">Share Your Results</span>
-                        <span class="lang-ko">결과 공유하기</span>
-                        <span class="lang-ja">結果を共有する</span>
-                        <span class="lang-zh">分享您的结果</span>
-                        <span class="lang-es">Comparte Tus Resultados</span>
-                    </h3>
-
                     <!-- Image Download Options -->
-                    <div class="mb-4">
-                        <p class="text-sm text-gray-600 text-center mb-3">
-                            <span class="lang-en">&#128247; Save as Image</span>
-                            <span class="lang-ko">&#128247; 이미지로 저장</span>
-                            <span class="lang-ja">&#128247; 画像として保存</span>
-                            <span class="lang-zh">&#128247; 保存为图片</span>
-                            <span class="lang-es">&#128247; Guardar como Imagen</span>
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-600 text-center mb-3 font-medium">
+                            <span class="lang-en">📷 Save as Image</span>
+                            <span class="lang-ko">📷 이미지로 저장하기</span>
+                            <span class="lang-ja">📷 画像として保存</span>
+                            <span class="lang-zh">📷 保存为图片</span>
+                            <span class="lang-es">📷 Guardar como Imagen</span>
                         </p>
                         <div class="flex justify-center gap-3">
                             <button onclick="downloadImage('story')" class="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-3 rounded-lg hover:opacity-90 transition">
-                                <span>&#128241;</span>
+                                <span>📱</span>
                                 <span class="lang-en">Story (9:16)</span>
                                 <span class="lang-ko">스토리 (9:16)</span>
                                 <span class="lang-ja">ストーリー (9:16)</span>
@@ -743,7 +735,7 @@
                                 <span class="lang-es">Historia (9:16)</span>
                             </button>
                             <button onclick="downloadImage('square')" class="flex items-center space-x-2 bg-gradient-to-r from-rose-500 to-red-500 text-white px-4 py-3 rounded-lg hover:opacity-90 transition">
-                                <span>&#128444;</span>
+                                <span>🖼</span>
                                 <span class="lang-en">Square (1:1)</span>
                                 <span class="lang-ko">정사각형 (1:1)</span>
                                 <span class="lang-ja">正方形 (1:1)</span>
@@ -753,85 +745,96 @@
                         </div>
                     </div>
 
-                    <div class="border-t pt-4">
-                        <p class="text-sm text-gray-600 text-center mb-3">
-                            <span class="lang-en">&#128279; Share Link</span>
-                            <span class="lang-ko">&#128279; 링크 공유</span>
-                            <span class="lang-ja">&#128279; リンクを共有</span>
-                            <span class="lang-zh">&#128279; 分享链接</span>
-                            <span class="lang-es">&#128279; Compartir Enlace</span>
+                    <!-- Link Share Options -->
+                    <div class="border-t pt-5">
+                        <p class="text-sm text-gray-600 text-center mb-3 font-medium">
+                            <span class="lang-en">🔗 Share Link</span>
+                            <span class="lang-ko">🔗 링크 공유하기</span>
+                            <span class="lang-ja">🔗 リンクを共有</span>
+                            <span class="lang-zh">🔗 分享链接</span>
+                            <span class="lang-es">🔗 Compartir Enlace</span>
                         </p>
-                        <!-- Smart Share Buttons - Locale-prioritized -->
-                        <div id="smart-share-buttons" class="flex flex-wrap justify-center gap-2">
-                            <!-- Populated by SmartShareManager based on locale -->
+                        <!-- SNS Share Buttons - 6 buttons only -->
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="copyResultLink()" class="flex items-center space-x-1.5 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg hover:bg-gray-200 transition text-sm font-semibold border border-gray-300">
+                                <span>🔗</span>
+                                <span class="lang-en">Copy Link</span>
+                                <span class="lang-ko">링크 복사</span>
+                                <span class="lang-ja">リンクコピー</span>
+                                <span class="lang-zh">复制链接</span>
+                                <span class="lang-es">Copiar</span>
+                            </button>
+                            <button onclick="shareToKakao()" class="flex items-center space-x-1.5 bg-yellow-400 text-yellow-900 px-4 py-2.5 rounded-lg hover:bg-yellow-500 transition text-sm font-semibold">
+                                <span>💛</span>
+                                <span class="lang-en">KakaoTalk</span>
+                                <span class="lang-ko">카카오톡</span>
+                                <span class="lang-ja">カカオ</span>
+                                <span class="lang-zh">KakaoTalk</span>
+                                <span class="lang-es">Kakao</span>
+                            </button>
+                            <button onclick="shareToTwitter()" class="flex items-center space-x-1.5 bg-black text-white px-4 py-2.5 rounded-lg hover:bg-gray-800 transition text-sm font-semibold">
+                                <span>𝕏</span>
+                                <span class="lang-en">Twitter</span>
+                                <span class="lang-ko">트위터</span>
+                                <span class="lang-ja">ツイート</span>
+                                <span class="lang-zh">推特</span>
+                                <span class="lang-es">Twitter</span>
+                            </button>
+                            <button onclick="shareToFacebook()" class="flex items-center space-x-1.5 bg-blue-600 text-white px-4 py-2.5 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+                                <span>📘</span>
+                                <span>Facebook</span>
+                            </button>
+                            <button onclick="shareToInstagram()" class="flex items-center space-x-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-4 py-2.5 rounded-lg hover:opacity-90 transition text-sm font-semibold">
+                                <span>📷</span>
+                                <span>Instagram</span>
+                            </button>
+                            <button onclick="shareToThreads()" class="flex items-center space-x-1.5 bg-black text-white px-4 py-2.5 rounded-lg hover:bg-gray-800 transition text-sm font-semibold">
+                                <span>🧵</span>
+                                <span>Threads</span>
+                            </button>
                         </div>
-                        <!-- Secondary share options -->
-                        <div class="flex flex-wrap justify-center gap-2 mt-3 pt-3 border-t border-gray-100">
-                            <button onclick="shareToThreads()" data-share-type="threads" class="bg-black text-white px-3 py-1.5 rounded-lg hover:bg-gray-800 transition text-xs font-medium">
-                                Threads
-                            </button>
-                            <button onclick="shareToTelegram()" data-share-type="telegram" class="bg-sky-500 text-white px-3 py-1.5 rounded-lg hover:bg-sky-600 transition text-xs font-medium">
-                                Telegram
-                            </button>
-                            <button onclick="shareToReddit()" data-share-type="reddit" class="bg-orange-500 text-white px-3 py-1.5 rounded-lg hover:bg-orange-600 transition text-xs font-medium">
-                                Reddit
-                            </button>
-                            <button onclick="shareToPinterest()" data-share-type="pinterest" class="bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 transition text-xs font-medium">
-                                Pinterest
-                            </button>
-                            <button onclick="shareToLinkedIn()" data-share-type="linkedin" class="bg-blue-700 text-white px-3 py-1.5 rounded-lg hover:bg-blue-800 transition text-xs font-medium">
-                                LinkedIn
-                            </button>
-                        </div>
+                        <p id="copy-feedback" class="text-center text-green-600 text-sm mt-3 hidden">
+                            <span class="lang-en">Link copied to clipboard!</span>
+                            <span class="lang-ko">클립보드에 복사되었습니다!</span>
+                            <span class="lang-ja">クリップボードにコピーしました！</span>
+                            <span class="lang-zh">已复制到剪贴板！</span>
+                            <span class="lang-es">Enlace copiado al portapapeles!</span>
+                        </p>
                     </div>
-                    <p id="copy-feedback" class="text-center text-green-600 text-sm mt-3 hidden">
-                        <span class="lang-en">Link copied to clipboard!</span>
-                        <span class="lang-ko">클립보드에 복사되었습니다!</span>
-                        <span class="lang-ja">クリップボードにコピーしました！</span>
-                        <span class="lang-zh">已复制到剪贴板！</span>
-                        <span class="lang-es">Enlace copiado al portapapeles!</span>
-                    </p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Viral CTA Section - Send to Friend -->
-        <section id="viral-cta-section" class="py-8">
-            <div class="max-w-2xl mx-auto px-4">
-                <div class="bg-gradient-to-br from-pink-500 via-rose-500 to-red-500 rounded-2xl shadow-2xl p-6 md:p-8 relative overflow-hidden">
-                    <!-- Decorative elements -->
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
-
-                    <div class="relative z-10 text-center">
-                        <span class="text-5xl mb-4 inline-block animate-bounce">💌</span>
-                        <h3 class="font-heading text-xl md:text-2xl font-bold text-white mb-3">
-                            <span class="lang-en">Share This Result With a Friend!</span>
-                            <span class="lang-ko">이 결과를 친구에게 보내 반응 보기!</span>
-                            <span class="lang-ja">この結果を友達に送って反応を見よう！</span>
-                            <span class="lang-zh">把这个结果发给朋友看看反应！</span>
-                            <span class="lang-es">¡Envía este resultado a un amigo!</span>
-                        </h3>
-                        <p class="text-white/90 text-sm md:text-base mb-6">
-                            <span class="lang-en">See what they think about your compatibility! They can take the test with you pre-filled.</span>
-                            <span class="lang-ko">친구가 내 생일로 궁합 테스트를 바로 할 수 있어요! 어떤 결과가 나올까?</span>
-                            <span class="lang-ja">友達があなたの誕生日で相性テストできます！どんな結果になるかな？</span>
-                            <span class="lang-zh">朋友可以用你的生日直接测试！会有什么结果呢？</span>
-                            <span class="lang-es">¡Tu amigo puede hacer el test con tu fecha ya incluida!</span>
-                        </p>
-
-                        <!-- Viral CTA Button Container -->
-                        <div id="viral-cta-container" class="flex flex-col sm:flex-row justify-center gap-3">
-                            <!-- Buttons will be generated by ViralCTAManager -->
+                    <!-- Invite Friend Section - Integrated -->
+                    <div class="border-t mt-5 pt-5">
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-gray-800 mb-1">
+                                <span class="lang-en">💌 Send to a Friend!</span>
+                                <span class="lang-ko">💌 친구에게 보내서 반응 보기!</span>
+                                <span class="lang-ja">💌 友達に送って反応を見よう！</span>
+                                <span class="lang-zh">💌 发给朋友看反应！</span>
+                                <span class="lang-es">💌 ¡Envía a un amigo!</span>
+                            </p>
+                            <p class="text-sm text-gray-600 mb-4">
+                                <span class="lang-en">Your friend can take the test with your info pre-filled!</span>
+                                <span class="lang-ko">친구가 내 생일로 바로 테스트할 수 있어요!</span>
+                                <span class="lang-ja">友達があなたの情報で直接テストできます！</span>
+                                <span class="lang-zh">朋友可以用你的信息直接测试！</span>
+                                <span class="lang-es">¡Tu amigo puede hacer el test con tu info!</span>
+                            </p>
+                            <button onclick="copyViralLink()" class="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-xl hover:opacity-90 transition font-semibold shadow-lg">
+                                <span>📋</span>
+                                <span class="lang-en">Copy Invite Link</span>
+                                <span class="lang-ko">초대 링크 복사</span>
+                                <span class="lang-ja">招待リンクをコピー</span>
+                                <span class="lang-zh">复制邀请链接</span>
+                                <span class="lang-es">Copiar Enlace de Invitación</span>
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">
+                                <span class="lang-en">🔥 Over 50,000 couples have tested their compatibility!</span>
+                                <span class="lang-ko">🔥 5만 커플이 이미 궁합을 확인했어요!</span>
+                                <span class="lang-ja">🔥 5万組以上が相性をチェック済み！</span>
+                                <span class="lang-zh">🔥 超过5万对情侣已测试兼容性！</span>
+                                <span class="lang-es">🔥 ¡Más de 50,000 parejas probaron su compatibilidad!</span>
+                            </p>
                         </div>
-
-                        <p class="text-white/70 text-xs mt-4">
-                            <span class="lang-en">🔥 Over 50,000 couples have tested their compatibility!</span>
-                            <span class="lang-ko">🔥 5만 커플이 이미 궁합을 확인했어요!</span>
-                            <span class="lang-ja">🔥 5万組以上が相性をチェック済み！</span>
-                            <span class="lang-zh">🔥 超过5万对情侣已测试兼容性！</span>
-                            <span class="lang-es">🔥 ¡Más de 50,000 parejas ya probaron su compatibilidad!</span>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -1213,16 +1216,6 @@
                 });
             }
 
-            // Initialize Smart Share Buttons (locale-based prioritization)
-            if (typeof SmartShareManager !== 'undefined') {
-                SmartShareManager.init('smart-share-buttons', {
-                    locale: currentLang,
-                    score: results.overallScore,
-                    type: results.relationshipType?.labels?.[currentLang] || '',
-                    url: window.location.href
-                });
-            }
-
             // Add Cultural Metaphor to analysis
             if (typeof CulturalMetaphorManager !== 'undefined') {
                 const metaphor = CulturalMetaphorManager.getCompatibilityMetaphor(results.overallScore, currentLang);
@@ -1439,16 +1432,13 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
 
-    // Initialize Viral CTA for sending to friends
-    (function initViralCTA() {
+    // Initialize Viral Link for invite friend button
+    (function initViralLink() {
         // Wait for ViralLinkManager to be available
         if (typeof ViralLinkManager === 'undefined') {
-            setTimeout(initViralCTA, 100);
+            setTimeout(initViralLink, 100);
             return;
         }
-
-        const container = document.getElementById('viral-cta-container');
-        if (!container) return;
 
         // Get input data
         const storedData = localStorage.getItem('compatibility-data');
@@ -1479,45 +1469,6 @@
 
         // Store viral link globally for button handlers
         window.currentViralLink = viralLink;
-        console.log('Viral link set:', viralLink);
-
-        // Create CTA buttons - multiple share options
-        const ctaHtml = `
-            <button onclick="copyViralLink()" class="flex items-center justify-center space-x-2 bg-white text-pink-600 font-semibold px-5 py-3 rounded-xl hover:bg-pink-50 transition shadow-lg">
-                <span>📋</span>
-                <span class="lang-en">Copy Link</span>
-                <span class="lang-ko">링크 복사</span>
-                <span class="lang-ja">リンクコピー</span>
-                <span class="lang-zh">复制链接</span>
-                <span class="lang-es">Copiar</span>
-            </button>
-            <button onclick="shareViralKakao()" class="flex items-center justify-center space-x-2 bg-yellow-400 text-yellow-900 font-semibold px-5 py-3 rounded-xl hover:bg-yellow-300 transition shadow-lg">
-                <span>💬</span>
-                <span class="lang-en">KakaoTalk</span>
-                <span class="lang-ko">카카오톡</span>
-                <span class="lang-ja">カカオ</span>
-                <span class="lang-zh">KakaoTalk</span>
-                <span class="lang-es">Kakao</span>
-            </button>
-            <button onclick="shareViralTwitter()" class="flex items-center justify-center space-x-2 bg-black text-white font-semibold px-5 py-3 rounded-xl hover:bg-gray-800 transition shadow-lg">
-                <span>𝕏</span>
-                <span class="lang-en">Twitter</span>
-                <span class="lang-ko">트위터</span>
-                <span class="lang-ja">ツイート</span>
-                <span class="lang-zh">推特</span>
-                <span class="lang-es">Twitter</span>
-            </button>
-            <button onclick="shareViralNative()" class="flex items-center justify-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold px-5 py-3 rounded-xl hover:opacity-90 transition shadow-lg">
-                <span>📤</span>
-                <span class="lang-en">Share</span>
-                <span class="lang-ko">공유</span>
-                <span class="lang-ja">共有</span>
-                <span class="lang-zh">分享</span>
-                <span class="lang-es">Compartir</span>
-            </button>
-        `;
-
-        container.innerHTML = ctaHtml;
     })();
 
     // Viral CTA button handlers
@@ -1559,78 +1510,6 @@
         });
     }
 
-    function shareViralKakao() {
-        const link = getViralLink();
-        const lang = document.documentElement.lang || 'ko';
-        const messages = {
-            ko: '나랑 궁합 테스트 해볼래? 🥰',
-            en: 'Want to test our compatibility? 🥰',
-            ja: '相性テストしてみない？🥰',
-            zh: '要测试我们的配对吗？🥰',
-            es: '¿Quieres probar nuestra compatibilidad? 🥰'
-        };
-
-        // Check if Kakao SDK is available
-        if (typeof Kakao !== 'undefined' && Kakao.isInitialized && Kakao.isInitialized()) {
-            Kakao.Share.sendDefault({
-                objectType: 'text',
-                text: messages[lang] + '\n' + link,
-                link: {
-                    mobileWebUrl: link,
-                    webUrl: link
-                }
-            });
-        } else {
-            // Fallback: copy to clipboard and prompt
-            const textToCopy = messages[lang] + '\n' + link;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert(lang === 'ko' ? '📋 복사되었습니다! 카카오톡을 열고 붙여넣기하세요.' : '📋 Copied! Open KakaoTalk and paste.');
-            }).catch(() => {
-                alert(lang === 'ko' ? '복사에 실패했습니다.' : 'Failed to copy.');
-            });
-        }
-    }
-
-    function shareViralTwitter() {
-        const link = getViralLink();
-        const lang = document.documentElement.lang || 'ko';
-        const messages = {
-            ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
-            en: 'Want to test our AI compatibility? 🥰',
-            ja: 'AI相性テストしてみない？🥰',
-            zh: '要测试我们的AI配对吗？🥰',
-            es: '¿Quieres probar nuestra compatibilidad IA? 🥰'
-        };
-
-        const text = encodeURIComponent(messages[lang]);
-        const url = encodeURIComponent(link);
-        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=550,height=450');
-    }
-
-    function shareViralNative() {
-        const link = getViralLink();
-        const lang = document.documentElement.lang || 'ko';
-        const messages = {
-            ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
-            en: 'Want to test our AI compatibility? 🥰',
-            ja: 'AI相性テストしてみない？🥰',
-            zh: '要测试我们的AI配对吗？🥰',
-            es: '¿Quieres probar nuestra compatibilidad IA? 🥰'
-        };
-
-        if (navigator.share) {
-            navigator.share({
-                title: 'AI Compatibility Test',
-                text: messages[lang],
-                url: link
-            }).catch(() => {
-                // User cancelled or error - do nothing
-            });
-        } else {
-            // Fallback to copy
-            copyViralLink();
-        }
-    }
     </script>
 </body>
 </html>

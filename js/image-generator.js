@@ -40,10 +40,51 @@ const imageDimensions = new Map([
 
 // ===== Performance: Map for O(1) text size lookup (instead of switch) =====
 const textSizesMap = new Map([
-    ['story', { title: 64, emoji: 80, quote: 48, watermark: 28, decoration: 36 }],
-    ['square', { title: 56, emoji: 70, quote: 40, watermark: 24, decoration: 32 }],
-    ['landscape', { title: 40, emoji: 50, quote: 32, watermark: 20, decoration: 24 }]
+    ['story', { title: 64, emoji: 80, quote: 48, watermark: 28, decoration: 36, rarity: 32 }],
+    ['square', { title: 56, emoji: 70, quote: 40, watermark: 24, decoration: 32, rarity: 28 }],
+    ['landscape', { title: 40, emoji: 50, quote: 32, watermark: 20, decoration: 24, rarity: 22 }]
 ]);
+
+// ===== Rarity calculation for share images =====
+/**
+ * Calculate rarity percentage based on sentence hash
+ * @param {string} sentence - The life summary sentence
+ * @returns {number} - Rarity percentage (5-30)
+ */
+function calculateImageRarity(sentence) {
+    let hash = 0;
+    for (let i = 0; i < sentence.length; i++) {
+        const char = sentence.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    const normalized = Math.abs(hash % 100);
+
+    if (normalized < 10) return 5;
+    if (normalized < 25) return 8;
+    if (normalized < 45) return 12;
+    if (normalized < 65) return 18;
+    if (normalized < 85) return 23;
+    return 30;
+}
+
+/**
+ * Get rarity label in specified language
+ * @param {number} percent - Rarity percentage
+ * @param {string} lang - Language code
+ * @returns {string} - Formatted label
+ */
+function getRarityLabelForImage(percent, lang) {
+    const labels = new Map([
+        ['en', `Top ${percent}% Type`],
+        ['ko', `\uC0C1\uC704 ${percent}% \uD0C0\uC785`],
+        ['ja', `\u4E0A\u4F4D ${percent}% \u30BF\u30A4\u30D7`],
+        ['zh', `\u524D ${percent}% \u7C7B\u578B`],
+        ['es', `Top ${percent}% Tipo`]
+    ]);
+    return labels.get(lang) || labels.get('en');
+}
 
 // ===== Performance: Hash cache to avoid recomputation =====
 const hashCache = new Map();
@@ -261,11 +302,46 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
         ctx.fillText(line, width / 2, startY + index * lineHeight);
     });
 
+    // Draw rarity badge
+    const rarityPercent = calculateImageRarity(sentence);
+    const rarityLabel = getRarityLabelForImage(rarityPercent, lang);
+    const rarityY = format === 'story' ? height * 0.75 : height * 0.72;
+
+    // Draw rarity badge background
+    ctx.globalAlpha = 0.9;
+    const badgeWidth = ctx.measureText(rarityLabel).width + 60;
+    const badgeHeight = sizes.rarity + 20;
+    const badgeX = (width - badgeWidth) / 2;
+    const badgeY = rarityY - sizes.rarity;
+
+    // Golden gradient background for rarity
+    const badgeGradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+    badgeGradient.addColorStop(0, '#fbbf24');
+    badgeGradient.addColorStop(1, '#f59e0b');
+    ctx.fillStyle = badgeGradient;
+
+    // Rounded rectangle for badge
+    ctx.beginPath();
+    const radius = badgeHeight / 2;
+    ctx.moveTo(badgeX + radius, badgeY);
+    ctx.lineTo(badgeX + badgeWidth - radius, badgeY);
+    ctx.arc(badgeX + badgeWidth - radius, badgeY + radius, radius, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(badgeX + radius, badgeY + badgeHeight);
+    ctx.arc(badgeX + radius, badgeY + radius, radius, Math.PI / 2, -Math.PI / 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw rarity text
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${sizes.rarity}px "Inter", sans-serif`;
+    ctx.fillText('\u2B50 ' + rarityLabel, width / 2, rarityY);
+
     // Draw watermark
     ctx.globalAlpha = 0.7;
     ctx.font = `${sizes.watermark}px "Inter", sans-serif`;
-    const watermarkY = format === 'story' ? height * 0.92 : height * 0.9;
-    ctx.fillText('ailifesummary.com', width / 2, watermarkY);
+    const watermarkY = format === 'story' ? height * 0.92 : height * 0.88;
+    ctx.fillText('smartaitest.com', width / 2, watermarkY);
 
     // Draw bottom decoration
     ctx.globalAlpha = 0.5;

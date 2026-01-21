@@ -117,6 +117,8 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Stage 2: Reveal Animations -->
+    <link rel="stylesheet" href="../css/reveal-animations.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -263,6 +265,189 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+        }
+
+        /* Stage 2: Question Flow Styles */
+        .question-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .question-card-container {
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .question-card-wrapper {
+            perspective: 1000px;
+        }
+
+        .question-card-inner {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card-inner:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-number {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .option-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(236, 72, 153, 0.4) 100%);
+            border-color: rgba(236, 72, 153, 0.6);
+        }
+
+        .option-btn.selected::after {
+            content: '✓';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.25rem;
+            animation: checkPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .option-emoji {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .feedback-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .feedback-toast.show {
+            opacity: 1;
+        }
+
+        .progress-bar-container {
+            max-width: 300px;
+            margin: 0 auto 2rem;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes checkPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutToLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        .slide-in {
+            animation: slideInFromRight 0.4s ease forwards;
+        }
+
+        .slide-out {
+            animation: slideOutToLeft 0.3s ease forwards;
         }
     </style>
 
@@ -665,6 +850,41 @@
                 </div>
             </div>
         </section>
+
+        <!-- Stage 2: Question Flow Section (Hidden by default) -->
+        <section id="question-section" class="gradient-bg question-section hidden">
+            <div class="question-card-container">
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div id="question-progress" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+
+                <!-- Step Indicator -->
+                <div id="step-indicator" class="step-indicator">
+                    <!-- Steps will be added dynamically -->
+                </div>
+
+                <!-- Question Card -->
+                <div class="question-card-wrapper">
+                    <div id="question-card" class="question-card-inner">
+                        <!-- Question content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Toast -->
+            <div id="feedback-toast" class="feedback-toast"></div>
+        </section>
+
+        <!-- Interstitial Screen -->
+        <div id="interstitial-screen" class="interstitial-screen hidden">
+            <div class="interstitial-content">
+                <div id="interstitial-emoji" class="interstitial-emoji"></div>
+                <h2 id="interstitial-title" class="interstitial-title"></h2>
+                <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
+                <button id="interstitial-button" class="interstitial-button"></button>
+            </div>
+        </div>
 
         <!-- Example Sentences Section -->
         <section class="py-16 bg-white">
@@ -1188,8 +1408,459 @@
         });
     </script>
 
-    <!-- Form Submission Script -->
+    <!-- Stage 2: Soul Types -->
+    <script src="/js/soul-types.js"></script>
+
+    <!-- Form Submission & Question Flow Script -->
     <script>
+        // Question Flow State
+        const questionFlow = {
+            currentQuestion: 0,
+            answers: [],
+            birthdate: null,
+            gender: null,
+            lang: 'ko',
+
+            // Questions for soul type determination (6 questions in 2 sections)
+            questions: {
+                ko: [
+                    {
+                        text: '혼자만의 시간과 사람들과 함께하는 시간 중 어떤 것을 더 선호하나요?',
+                        options: [
+                            { emoji: '🧘', text: '혼자만의 조용한 시간을 더 좋아해요', value: 'introvert' },
+                            { emoji: '🎉', text: '사람들과 함께할 때 에너지를 얻어요', value: 'extrovert' },
+                            { emoji: '⚖️', text: '상황에 따라 달라요', value: 'ambivert' }
+                        ]
+                    },
+                    {
+                        text: '중요한 결정을 내릴 때 어떤 것을 더 중요시하나요?',
+                        options: [
+                            { emoji: '💭', text: '논리와 분석', value: 'logic' },
+                            { emoji: '💝', text: '감정과 직관', value: 'emotion' },
+                            { emoji: '🔄', text: '둘 다 균형있게', value: 'balanced' }
+                        ]
+                    },
+                    {
+                        text: '새로운 도전에 대해 어떻게 느끼나요?',
+                        options: [
+                            { emoji: '🚀', text: '설레고 흥분돼요!', value: 'adventurous' },
+                            { emoji: '🤔', text: '신중하게 생각해요', value: 'cautious' },
+                            { emoji: '🌊', text: '자연스럽게 받아들여요', value: 'adaptive' }
+                        ]
+                    },
+                    {
+                        text: '스트레스를 받을 때 어떻게 해소하나요?',
+                        options: [
+                            { emoji: '🎨', text: '창의적인 활동으로', value: 'creative' },
+                            { emoji: '🏃', text: '운동이나 활동적인 것으로', value: 'active' },
+                            { emoji: '📚', text: '조용히 생각하거나 쉬면서', value: 'reflective' }
+                        ]
+                    },
+                    {
+                        text: '가장 가치 있다고 생각하는 것은?',
+                        options: [
+                            { emoji: '🤝', text: '사람들과의 깊은 관계', value: 'connection' },
+                            { emoji: '🎯', text: '목표 달성과 성공', value: 'achievement' },
+                            { emoji: '🌱', text: '개인적인 성장과 자유', value: 'growth' }
+                        ]
+                    },
+                    {
+                        text: '당신의 강점은 무엇인가요?',
+                        options: [
+                            { emoji: '🦁', text: '리더십과 결단력', value: 'leadership' },
+                            { emoji: '💖', text: '공감과 배려', value: 'empathy' },
+                            { emoji: '💡', text: '창의성과 상상력', value: 'creativity' },
+                            { emoji: '🔍', text: '분석력과 통찰력', value: 'insight' }
+                        ]
+                    }
+                ],
+                en: [
+                    {
+                        text: 'Do you prefer alone time or time with others?',
+                        options: [
+                            { emoji: '🧘', text: 'I prefer quiet time alone', value: 'introvert' },
+                            { emoji: '🎉', text: 'I get energy from being with people', value: 'extrovert' },
+                            { emoji: '⚖️', text: 'It depends on the situation', value: 'ambivert' }
+                        ]
+                    },
+                    {
+                        text: 'When making important decisions, what do you value more?',
+                        options: [
+                            { emoji: '💭', text: 'Logic and analysis', value: 'logic' },
+                            { emoji: '💝', text: 'Emotions and intuition', value: 'emotion' },
+                            { emoji: '🔄', text: 'A balance of both', value: 'balanced' }
+                        ]
+                    },
+                    {
+                        text: 'How do you feel about new challenges?',
+                        options: [
+                            { emoji: '🚀', text: 'Excited and thrilled!', value: 'adventurous' },
+                            { emoji: '🤔', text: 'I think carefully first', value: 'cautious' },
+                            { emoji: '🌊', text: 'I adapt naturally', value: 'adaptive' }
+                        ]
+                    },
+                    {
+                        text: 'How do you relieve stress?',
+                        options: [
+                            { emoji: '🎨', text: 'Through creative activities', value: 'creative' },
+                            { emoji: '🏃', text: 'Through exercise or physical activity', value: 'active' },
+                            { emoji: '📚', text: 'By reflecting quietly or resting', value: 'reflective' }
+                        ]
+                    },
+                    {
+                        text: 'What do you value most?',
+                        options: [
+                            { emoji: '🤝', text: 'Deep connections with people', value: 'connection' },
+                            { emoji: '🎯', text: 'Achieving goals and success', value: 'achievement' },
+                            { emoji: '🌱', text: 'Personal growth and freedom', value: 'growth' }
+                        ]
+                    },
+                    {
+                        text: 'What is your strength?',
+                        options: [
+                            { emoji: '🦁', text: 'Leadership and decisiveness', value: 'leadership' },
+                            { emoji: '💖', text: 'Empathy and care', value: 'empathy' },
+                            { emoji: '💡', text: 'Creativity and imagination', value: 'creativity' },
+                            { emoji: '🔍', text: 'Analysis and insight', value: 'insight' }
+                        ]
+                    }
+                ],
+                ja: [
+                    {
+                        text: '一人の時間と人と一緒の時間、どちらが好きですか？',
+                        options: [
+                            { emoji: '🧘', text: '一人の静かな時間が好きです', value: 'introvert' },
+                            { emoji: '🎉', text: '人と一緒の時にエネルギーを得ます', value: 'extrovert' },
+                            { emoji: '⚖️', text: '状況によります', value: 'ambivert' }
+                        ]
+                    },
+                    {
+                        text: '重要な決定をするとき、何を重視しますか？',
+                        options: [
+                            { emoji: '💭', text: '論理と分析', value: 'logic' },
+                            { emoji: '💝', text: '感情と直感', value: 'emotion' },
+                            { emoji: '🔄', text: '両方のバランス', value: 'balanced' }
+                        ]
+                    },
+                    {
+                        text: '新しい挑戦についてどう感じますか？',
+                        options: [
+                            { emoji: '🚀', text: 'ワクワクして興奮します！', value: 'adventurous' },
+                            { emoji: '🤔', text: '慎重に考えます', value: 'cautious' },
+                            { emoji: '🌊', text: '自然に適応します', value: 'adaptive' }
+                        ]
+                    },
+                    {
+                        text: 'ストレスをどう解消しますか？',
+                        options: [
+                            { emoji: '🎨', text: '創造的な活動で', value: 'creative' },
+                            { emoji: '🏃', text: '運動や体を動かすことで', value: 'active' },
+                            { emoji: '📚', text: '静かに考えたり休んだり', value: 'reflective' }
+                        ]
+                    },
+                    {
+                        text: '最も大切にしていることは？',
+                        options: [
+                            { emoji: '🤝', text: '人との深いつながり', value: 'connection' },
+                            { emoji: '🎯', text: '目標達成と成功', value: 'achievement' },
+                            { emoji: '🌱', text: '個人的な成長と自由', value: 'growth' }
+                        ]
+                    },
+                    {
+                        text: 'あなたの強みは何ですか？',
+                        options: [
+                            { emoji: '🦁', text: 'リーダーシップと決断力', value: 'leadership' },
+                            { emoji: '💖', text: '共感と思いやり', value: 'empathy' },
+                            { emoji: '💡', text: '創造性と想像力', value: 'creativity' },
+                            { emoji: '🔍', text: '分析力と洞察力', value: 'insight' }
+                        ]
+                    }
+                ],
+                zh: [
+                    {
+                        text: '你更喜欢独处还是与人相处？',
+                        options: [
+                            { emoji: '🧘', text: '我更喜欢安静的独处时光', value: 'introvert' },
+                            { emoji: '🎉', text: '和人在一起时我充满能量', value: 'extrovert' },
+                            { emoji: '⚖️', text: '视情况而定', value: 'ambivert' }
+                        ]
+                    },
+                    {
+                        text: '做重要决定时，你更看重什么？',
+                        options: [
+                            { emoji: '💭', text: '逻辑和分析', value: 'logic' },
+                            { emoji: '💝', text: '情感和直觉', value: 'emotion' },
+                            { emoji: '🔄', text: '两者的平衡', value: 'balanced' }
+                        ]
+                    },
+                    {
+                        text: '面对新挑战时你有什么感觉？',
+                        options: [
+                            { emoji: '🚀', text: '兴奋和激动！', value: 'adventurous' },
+                            { emoji: '🤔', text: '我会仔细思考', value: 'cautious' },
+                            { emoji: '🌊', text: '自然地适应', value: 'adaptive' }
+                        ]
+                    },
+                    {
+                        text: '你如何缓解压力？',
+                        options: [
+                            { emoji: '🎨', text: '通过创意活动', value: 'creative' },
+                            { emoji: '🏃', text: '通过运动或身体活动', value: 'active' },
+                            { emoji: '📚', text: '安静地思考或休息', value: 'reflective' }
+                        ]
+                    },
+                    {
+                        text: '你最看重什么？',
+                        options: [
+                            { emoji: '🤝', text: '与人的深层联系', value: 'connection' },
+                            { emoji: '🎯', text: '实现目标和成功', value: 'achievement' },
+                            { emoji: '🌱', text: '个人成长和自由', value: 'growth' }
+                        ]
+                    },
+                    {
+                        text: '你的优势是什么？',
+                        options: [
+                            { emoji: '🦁', text: '领导力和决断力', value: 'leadership' },
+                            { emoji: '💖', text: '同理心和关怀', value: 'empathy' },
+                            { emoji: '💡', text: '创造力和想象力', value: 'creativity' },
+                            { emoji: '🔍', text: '分析力和洞察力', value: 'insight' }
+                        ]
+                    }
+                ],
+                es: [
+                    {
+                        text: '¿Prefieres tiempo a solas o con otros?',
+                        options: [
+                            { emoji: '🧘', text: 'Prefiero tiempo tranquilo a solas', value: 'introvert' },
+                            { emoji: '🎉', text: 'Me energizo estando con gente', value: 'extrovert' },
+                            { emoji: '⚖️', text: 'Depende de la situación', value: 'ambivert' }
+                        ]
+                    },
+                    {
+                        text: 'Al tomar decisiones importantes, ¿qué valoras más?',
+                        options: [
+                            { emoji: '💭', text: 'Lógica y análisis', value: 'logic' },
+                            { emoji: '💝', text: 'Emociones e intuición', value: 'emotion' },
+                            { emoji: '🔄', text: 'Un balance de ambos', value: 'balanced' }
+                        ]
+                    },
+                    {
+                        text: '¿Cómo te sientes ante nuevos desafíos?',
+                        options: [
+                            { emoji: '🚀', text: '¡Emocionado y entusiasmado!', value: 'adventurous' },
+                            { emoji: '🤔', text: 'Pienso cuidadosamente primero', value: 'cautious' },
+                            { emoji: '🌊', text: 'Me adapto naturalmente', value: 'adaptive' }
+                        ]
+                    },
+                    {
+                        text: '¿Cómo alivias el estrés?',
+                        options: [
+                            { emoji: '🎨', text: 'A través de actividades creativas', value: 'creative' },
+                            { emoji: '🏃', text: 'Con ejercicio o actividad física', value: 'active' },
+                            { emoji: '📚', text: 'Reflexionando tranquilamente o descansando', value: 'reflective' }
+                        ]
+                    },
+                    {
+                        text: '¿Qué valoras más?',
+                        options: [
+                            { emoji: '🤝', text: 'Conexiones profundas con personas', value: 'connection' },
+                            { emoji: '🎯', text: 'Lograr metas y éxito', value: 'achievement' },
+                            { emoji: '🌱', text: 'Crecimiento personal y libertad', value: 'growth' }
+                        ]
+                    },
+                    {
+                        text: '¿Cuál es tu fortaleza?',
+                        options: [
+                            { emoji: '🦁', text: 'Liderazgo y determinación', value: 'leadership' },
+                            { emoji: '💖', text: 'Empatía y cuidado', value: 'empathy' },
+                            { emoji: '💡', text: 'Creatividad e imaginación', value: 'creativity' },
+                            { emoji: '🔍', text: 'Análisis y perspicacia', value: 'insight' }
+                        ]
+                    }
+                ]
+            },
+
+            // Interstitial messages
+            interstitials: {
+                ko: { emoji: '✨', title: '잘하고 있어요!', subtitle: '당신의 소울 타입이 조금씩 보이기 시작해요... 🦊❓', button: '계속하기 →' },
+                en: { emoji: '✨', title: "You're doing great!", subtitle: 'Your soul type is starting to emerge... 🦊❓', button: 'Continue →' },
+                ja: { emoji: '✨', title: '順調ですよ！', subtitle: 'あなたのソウルタイプが見え始めています... 🦊❓', button: '続ける →' },
+                zh: { emoji: '✨', title: '做得很好！', subtitle: '你的灵魂类型开始显现了... 🦊❓', button: '继续 →' },
+                es: { emoji: '✨', title: '¡Lo estás haciendo genial!', subtitle: 'Tu tipo de alma está empezando a surgir... 🦊❓', button: 'Continuar →' }
+            },
+
+            // Feedback messages
+            feedbacks: {
+                ko: ['좋은 선택이에요! 💪', '흥미로운 답변이네요! ✨', '당신다운 선택이에요! 🎯'],
+                en: ['Great choice! 💪', 'Interesting answer! ✨', "That's so you! 🎯"],
+                ja: ['いい選択ですね! 💪', '興味深い回答です! ✨', 'あなたらしい選択です! 🎯'],
+                zh: ['好选择! 💪', '有趣的回答! ✨', '这很像你! 🎯'],
+                es: ['¡Gran elección! 💪', '¡Respuesta interesante! ✨', '¡Muy tú! 🎯']
+            }
+        };
+
+        // Initialize step indicators
+        function initStepIndicators() {
+            const container = document.getElementById('step-indicator');
+            const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+            container.innerHTML = '';
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'step-dot' + (i === 0 ? ' active' : '');
+                container.appendChild(dot);
+            }
+        }
+
+        // Update progress
+        function updateProgress() {
+            const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+            const progress = ((questionFlow.currentQuestion) / totalQuestions) * 100;
+            document.getElementById('question-progress').style.width = progress + '%';
+
+            // Update step dots
+            const dots = document.querySelectorAll('.step-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index < questionFlow.currentQuestion) {
+                    dot.classList.add('completed');
+                } else if (index === questionFlow.currentQuestion) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        // Render current question
+        function renderQuestion() {
+            const questions = questionFlow.questions[questionFlow.lang];
+            const question = questions[questionFlow.currentQuestion];
+            const totalQuestions = questions.length;
+
+            const card = document.getElementById('question-card');
+            card.innerHTML = `
+                <div class="question-number">Q${questionFlow.currentQuestion + 1} / ${totalQuestions}</div>
+                <h3 class="question-title">${question.text}</h3>
+                <div class="option-grid">
+                    ${question.options.map((opt, i) => `
+                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
+                            <span class="option-emoji">${opt.emoji}</span>
+                            <span class="option-text">${opt.text}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
+            // Add click handlers
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => handleOptionSelect(btn));
+            });
+
+            updateProgress();
+        }
+
+        // Handle option selection
+        function handleOptionSelect(btn) {
+            // Add selected state
+            btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            // Store answer
+            questionFlow.answers[questionFlow.currentQuestion] = btn.dataset.value;
+
+            // Show feedback
+            showFeedback();
+
+            // Move to next after delay
+            setTimeout(() => {
+                questionFlow.currentQuestion++;
+                const totalQuestions = questionFlow.questions[questionFlow.lang].length;
+
+                // Check for interstitial (after question 3)
+                if (questionFlow.currentQuestion === 3 && questionFlow.currentQuestion < totalQuestions) {
+                    showInterstitial();
+                } else if (questionFlow.currentQuestion >= totalQuestions) {
+                    // Complete - go to results
+                    completeQuestions();
+                } else {
+                    // Next question with animation
+                    transitionToNextQuestion();
+                }
+            }, 600);
+        }
+
+        // Show feedback toast
+        function showFeedback() {
+            const feedbacks = questionFlow.feedbacks[questionFlow.lang];
+            const feedback = feedbacks[Math.floor(Math.random() * feedbacks.length)];
+            const toast = document.getElementById('feedback-toast');
+            toast.textContent = feedback;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 500);
+        }
+
+        // Transition to next question
+        function transitionToNextQuestion() {
+            const card = document.getElementById('question-card');
+            card.classList.add('slide-out');
+
+            setTimeout(() => {
+                renderQuestion();
+                card.classList.remove('slide-out');
+                card.classList.add('slide-in');
+
+                setTimeout(() => {
+                    card.classList.remove('slide-in');
+                }, 400);
+            }, 300);
+        }
+
+        // Show interstitial screen
+        function showInterstitial() {
+            const interstitial = questionFlow.interstitials[questionFlow.lang];
+            const screen = document.getElementById('interstitial-screen');
+
+            document.getElementById('interstitial-emoji').textContent = interstitial.emoji;
+            document.getElementById('interstitial-title').textContent = interstitial.title;
+            document.getElementById('interstitial-subtitle').textContent = interstitial.subtitle;
+            document.getElementById('interstitial-button').textContent = interstitial.button;
+
+            screen.classList.remove('hidden');
+            setTimeout(() => screen.classList.add('visible'), 50);
+
+            document.getElementById('interstitial-button').onclick = () => {
+                screen.classList.remove('visible');
+                setTimeout(() => {
+                    screen.classList.add('hidden');
+                    transitionToNextQuestion();
+                }, 300);
+            };
+        }
+
+        // Complete questions and go to results
+        function completeQuestions() {
+            // Save answers to localStorage
+            localStorage.setItem('ai-life-summary-answers', JSON.stringify(questionFlow.answers));
+
+            // Navigate to results
+            window.location.href = '/life-summary/result.html';
+        }
+
+        // Start question flow
+        function startQuestionFlow() {
+            // Hide hero section and show question section
+            document.querySelector('section.gradient-bg').style.display = 'none';
+
+            const questionSection = document.getElementById('question-section');
+            questionSection.classList.remove('hidden');
+
+            initStepIndicators();
+            renderQuestion();
+        }
+
+        // Form submission - start question flow instead of going directly to results
         document.getElementById('life-summary-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const year = document.getElementById('birth-year').value;
@@ -1200,9 +1871,17 @@
             if (year && month && day) {
                 const birthdate = `${year}-${month}-${day}`;
                 document.getElementById('birthdate').value = birthdate;
+
+                // Store data
+                questionFlow.birthdate = birthdate;
+                questionFlow.gender = gender;
+                questionFlow.lang = document.documentElement.lang || 'ko';
+
                 localStorage.setItem('ai-life-summary-birthdate', birthdate);
                 localStorage.setItem('ai-life-summary-gender', gender);
-                window.location.href = '/life-summary/result.html';
+
+                // Start question flow
+                startQuestionFlow();
             }
         });
     </script>

@@ -232,6 +232,9 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     ctx.font = '80px sans-serif';
     ctx.fillText(getResultEmoji(avgGap), centerX, cardY + 980);
 
+    // Rarity badge
+    drawAgeRarityBadge(ctx, config, results, 1530);
+
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '28px Inter, sans-serif';
@@ -312,6 +315,35 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
     // Emoji
     ctx.font = '60px sans-serif';
     ctx.fillText(getResultEmoji(avgGap), centerX, cardY + 650);
+
+    // Rarity badge (smaller for square)
+    ctx.font = 'bold 20px Inter, sans-serif';
+    const lang = document.documentElement.lang || 'en';
+    const rarityPercent = calculateAgeRarity(results);
+    const rarityLabel = '\u2B50 ' + getAgeRarityLabel(rarityPercent, lang);
+    const badgeWidth = ctx.measureText(rarityLabel).width + 40;
+    const badgeHeight = 32;
+    const badgeX = (config.width - badgeWidth) / 2;
+    const badgeY = 915;
+
+    const badgeGradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+    badgeGradient.addColorStop(0, '#fbbf24');
+    badgeGradient.addColorStop(1, '#f59e0b');
+    ctx.fillStyle = badgeGradient;
+
+    ctx.beginPath();
+    const badgeRadius = badgeHeight / 2;
+    ctx.moveTo(badgeX + badgeRadius, badgeY);
+    ctx.lineTo(badgeX + badgeWidth - badgeRadius, badgeY);
+    ctx.arc(badgeX + badgeWidth - badgeRadius, badgeY + badgeRadius, badgeRadius, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(badgeX + badgeRadius, badgeY + badgeHeight);
+    ctx.arc(badgeX + badgeRadius, badgeY + badgeRadius, badgeRadius, Math.PI / 2, -Math.PI / 2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.fillText(rarityLabel, centerX, badgeY + 22);
 
     // Bottom info
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
@@ -446,6 +478,77 @@ function getResultEmoji(avgGap) {
     if (avgGap <= 3) return '⚖️';
     if (avgGap <= 7) return '🧘';
     return '📚';
+}
+
+/**
+ * Calculate rarity for age result
+ */
+function calculateAgeRarity(results) {
+    const str = String(results.realAge) + String(results.mentalAge) + String(results.energyAge);
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash = hash & hash;
+    }
+    const normalized = Math.abs(hash % 100);
+    if (normalized < 10) return 5;
+    if (normalized < 25) return 8;
+    if (normalized < 45) return 12;
+    if (normalized < 65) return 18;
+    if (normalized < 85) return 23;
+    return 30;
+}
+
+/**
+ * Get rarity label for age
+ */
+function getAgeRarityLabel(percent, lang = 'en') {
+    const labels = {
+        en: `Top ${percent}% Profile`,
+        ko: `\uC0C1\uC704 ${percent}% \uD504\uB85C\uD544`,
+        ja: `\u4E0A\u4F4D ${percent}% \u30D7\u30ED\u30D5\u30A3\u30FC\u30EB`,
+        zh: `\u524D ${percent}% \u6863\u6848`,
+        es: `Top ${percent}% Perfil`
+    };
+    return labels[lang] || labels.en;
+}
+
+/**
+ * Draw rarity badge for age images
+ */
+function drawAgeRarityBadge(ctx, config, results, y) {
+    const centerX = config.width / 2;
+    const lang = document.documentElement.lang || 'en';
+    const rarityPercent = calculateAgeRarity(results);
+    const rarityLabel = '\u2B50 ' + getAgeRarityLabel(rarityPercent, lang);
+
+    ctx.font = 'bold 24px Inter, sans-serif';
+    const badgeWidth = ctx.measureText(rarityLabel).width + 50;
+    const badgeHeight = 40;
+    const badgeX = (config.width - badgeWidth) / 2;
+    const badgeY = y - 25;
+
+    // Golden gradient
+    const gradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+    gradient.addColorStop(0, '#fbbf24');
+    gradient.addColorStop(1, '#f59e0b');
+    ctx.fillStyle = gradient;
+
+    // Pill shape
+    ctx.beginPath();
+    const radius = badgeHeight / 2;
+    ctx.moveTo(badgeX + radius, badgeY);
+    ctx.lineTo(badgeX + badgeWidth - radius, badgeY);
+    ctx.arc(badgeX + badgeWidth - radius, badgeY + radius, radius, -Math.PI / 2, Math.PI / 2);
+    ctx.lineTo(badgeX + radius, badgeY + badgeHeight);
+    ctx.arc(badgeX + radius, badgeY + radius, radius, Math.PI / 2, -Math.PI / 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // Text
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.fillText(rarityLabel, centerX, y);
 }
 
 // ============================================
