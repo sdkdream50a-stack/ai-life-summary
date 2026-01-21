@@ -228,18 +228,18 @@
 
         /* Question Flow Styles */
         .question-section {
-            min-height: 80vh;
+            min-height: auto;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 2rem 1rem;
+            justify-content: flex-start;
+            padding: 1rem;
         }
 
         .step-indicator {
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .step-dot {
@@ -371,7 +371,7 @@
 
         .progress-bar-container {
             max-width: 300px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1rem;
             height: 6px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
@@ -662,8 +662,8 @@
     </div>
 
     <main class="relative z-10">
-        <!-- Hero Section -->
-        <section class="py-12 md:py-16 relative overflow-hidden">
+        <!-- Hero Section - Compact -->
+        <section class="pt-4 pb-2 md:pt-6 md:pb-4 relative overflow-hidden">
             <!-- Floating Particles -->
             <div class="hero-particles">
                 <span class="particle">🎂</span>
@@ -674,18 +674,8 @@
                 <span class="particle">💫</span>
             </div>
             <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                <a href="/" class="inline-flex items-center space-x-2 text-white/70 hover:text-white mb-6 transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
-                    <span class="lang-en">Back to Tests</span>
-                    <span class="lang-ko">테스트 목록으로</span>
-                    <span class="lang-ja">テスト一覧へ</span>
-                    <span class="lang-zh">返回测试</span>
-                    <span class="lang-es">Volver a Tests</span>
-                </a>
-                <div class="text-6xl md:text-7xl mb-4">⏳</div>
-                <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                <div class="text-4xl md:text-5xl mb-2">⏳</div>
+                <h1 class="kick-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
                     <span class="kick-gradient-text">
                         <span class="lang-en">AI Age Calculator</span>
                         <span class="lang-ko">AI 나이 계산기</span>
@@ -694,27 +684,19 @@
                         <span class="lang-es">Calculadora de Edad IA</span>
                     </span>
                 </h1>
-                <p class="text-lg md:text-xl text-white/80 mb-6">
+                <p class="text-base md:text-lg text-white/80 mb-3">
                     <span class="lang-en">Discover your TRUE age - Real vs Mental vs Energy</span>
                     <span class="lang-ko">진짜 나이를 발견하세요 - 실제 vs 정신 vs 에너지</span>
                     <span class="lang-ja">本当の年齢を発見 - 実年齢 vs 精神年齢 vs エネルギー年齢</span>
                     <span class="lang-zh">发现你的真实年龄 - 实际 vs 心理 vs 能量</span>
                     <span class="lang-es">Descubre tu VERDADERA edad - Real vs Mental vs Energía</span>
                 </p>
-                <div class="kick-glass inline-flex items-center gap-2 px-5 py-2 text-white/90 text-sm">
-                    <span>🔥</span>
-                    <span class="lang-en">200,000+ ages calculated</span>
-                    <span class="lang-ko">20만+ 나이 계산 완료</span>
-                    <span class="lang-ja">20万件以上の年齢計算</span>
-                    <span class="lang-zh">已计算20万+年龄</span>
-                    <span class="lang-es">200,000+ edades calculadas</span>
-                </div>
             </div>
         </section>
 
         <!-- Progress Bar -->
-        <div class="kick-glass mx-4 md:mx-auto md:max-w-4xl rounded-xl sticky top-20 z-40 mt-4">
-            <div class="px-4 py-3">
+        <div class="kick-glass mx-4 md:mx-auto md:max-w-2xl rounded-xl sticky top-20 z-40 mt-2">
+            <div class="px-4 py-2">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-white/70">
                         <span class="lang-en">Progress</span>
@@ -755,16 +737,16 @@
         </div>
 
         <!-- Form Section -->
-        <section class="py-8 md:py-12">
+        <section class="py-4 md:py-6">
             <div class="max-w-2xl mx-auto px-4">
                 <form id="age-calculator-form">
 
                     <!-- Step 1: Basic Info -->
                     <div id="step1" class="step-section active">
-                        <div class="kick-glass rounded-2xl p-6 md:p-8">
-                            <div class="text-center mb-6">
-                                <span class="text-4xl">&#128197;</span>
-                                <h2 class="font-heading text-2xl font-bold mt-2">
+                        <div class="kick-glass rounded-2xl p-5 md:p-6">
+                            <div class="text-center mb-4">
+                                <span class="text-3xl">&#128197;</span>
+                                <h2 class="font-heading text-xl font-bold mt-1">
                                     <span class="lang-en">Basic Information</span>
                                     <span class="lang-ko">기본 정보</span>
                                     <span class="lang-ja">基本情報</span>
