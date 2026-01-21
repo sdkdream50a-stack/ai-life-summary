@@ -598,7 +598,7 @@
 
     <main class="relative z-10 pt-8">
         <!-- Hero Section -->
-        <section class="py-16 md:py-24 relative overflow-hidden">
+        <section id="hero-section" class="py-16 md:py-24 relative overflow-hidden">
             <!-- Floating Particles -->
             <div class="hero-particles">
                 <span class="particle">✨</span>
@@ -1705,7 +1705,7 @@
         // Start question flow
         function startQuestionFlow() {
             // Hide hero section and show question section
-            document.querySelector('section.gradient-bg').style.display = 'none';
+            document.getElementById('hero-section').style.display = 'none';
 
             const questionSection = document.getElementById('question-section');
             questionSection.classList.remove('hidden');
