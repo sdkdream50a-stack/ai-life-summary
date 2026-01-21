@@ -63,6 +63,10 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Stage 2: Reveal Animations -->
+    <link rel="stylesheet" href="../css/reveal-animations.css">
+    <!-- Stage 1: Enhanced Loading -->
+    <link rel="stylesheet" href="../css/loading-enhanced.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -310,6 +314,9 @@
         switchLang(lang, true);
     });
     </script>
+    <!-- Gamification CSS -->
+    <link rel="stylesheet" href="../css/gamification.css">
+    <link rel="stylesheet" href="../css/popups.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->
@@ -523,110 +530,270 @@
     </header>
 
     <main>
-        <!-- Result Section -->
-        <section class="gradient-bg py-16 md:py-20">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <div class="animate-fade-in-up">
-                    <span class="text-5xl sparkle inline-block mb-6">&#10024;</span>
-                    <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
-                        <span class="lang-en">Your Life Summary</span>
-                        <span class="lang-ko">당신의 인생 요약</span>
-                        <span class="lang-ja">あなたの人生サマリー</span>
-                        <span class="lang-zh">您的人生总结</span>
-                        <span class="lang-es">Tu Resumen de Vida</span>
-                    </h1>
-                    <p class="text-white/70 mb-8">
-                        <span class="lang-en">Based on your birthday analysis</span>
-                        <span class="lang-ko">생년월일 분석 기반</span>
-                        <span class="lang-ja">誕生日分析に基づく</span>
-                        <span class="lang-zh">基于您的生日分析</span>
-                        <span class="lang-es">Basado en el análisis de tu cumpleaños</span>
-                    </p>
+        <!-- Confetti Container -->
+        <div id="confetti-container"></div>
+
+        <!-- Stage A: Loading Section -->
+        <section id="loading-stage" class="gradient-bg py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
+            <div class="loading-stage">
+                <div class="loading-spinner"></div>
+                <div class="loading-progress-container">
+                    <div id="loading-progress" class="loading-progress-bar"></div>
+                </div>
+                <p id="loading-text" class="loading-text">
+                    <span class="lang-en">Analyzing your answers...</span>
+                    <span class="lang-ko">당신의 답변을 분석하고 있어요...</span>
+                    <span class="lang-ja">あなたの回答を分析しています...</span>
+                    <span class="lang-zh">正在分析您的答案...</span>
+                    <span class="lang-es">Analizando tus respuestas...</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Stage B: Reveal Section -->
+        <section id="reveal-stage" class="gradient-bg py-16 md:py-20 hidden">
+            <div class="reveal-stage">
+                <div id="reveal-card" class="reveal-card">
+                    <div id="card-front" class="card-face card-front">
+                        <div class="reveal-icon">?</div>
+                        <p id="reveal-text" class="reveal-text">
+                            <span class="lang-en">TAP TO REVEAL</span>
+                            <span class="lang-ko">탭해서 확인하기</span>
+                            <span class="lang-ja">タップして確認</span>
+                            <span class="lang-zh">点击查看</span>
+                            <span class="lang-es">TOCA PARA REVELAR</span>
+                        </p>
+                    </div>
+                    <div id="card-back" class="card-face card-back">
+                        <!-- Soul type will be revealed here -->
+                    </div>
+                </div>
+                <div class="tap-hint">
+                    <span class="lang-en">Click or tap the card</span>
+                    <span class="lang-ko">카드를 클릭하거나 탭하세요</span>
+                    <span class="lang-ja">カードをクリックまたはタップ</span>
+                    <span class="lang-zh">点击卡片</span>
+                    <span class="lang-es">Haz clic o toca la tarjeta</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage C: Character Section -->
+        <section id="character-stage" class="gradient-bg py-8 hidden">
+            <div class="character-stage">
+                <div class="sparkle-container">
+                    <div class="character-container">
+                        <div id="character-image" class="character-image">
+                            <!-- Emoji will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+                <p id="slogan-text" class="slogan-text"></p>
+            </div>
+        </section>
+
+        <!-- Stage D: Analysis Section -->
+        <section id="analysis-stage" class="gradient-bg py-8 hidden">
+            <div class="max-w-md mx-auto px-4">
+                <p id="scroll-prompt" class="scroll-prompt hidden">
+                    <span class="lang-en">Scroll to see more ↓</span>
+                    <span class="lang-ko">스크롤하여 더 보기 ↓</span>
+                    <span class="lang-ja">スクロールして詳細を見る ↓</span>
+                    <span class="lang-zh">向下滚动查看更多 ↓</span>
+                    <span class="lang-es">Desplázate para ver más ↓</span>
+                </p>
+
+                <!-- Trait Bars -->
+                <div class="analysis-stage">
+                    <div id="trait-intuition" class="trait-item">
+                        <div class="trait-header">
+                            <span class="trait-label">
+                                <span class="lang-en">Intuition</span>
+                                <span class="lang-ko">직관력</span>
+                                <span class="lang-ja">直感力</span>
+                                <span class="lang-zh">直觉力</span>
+                                <span class="lang-es">Intuición</span>
+                            </span>
+                            <span class="trait-value" id="trait-intuition-value">0%</span>
+                        </div>
+                        <div class="trait-bar-container">
+                            <div class="trait-bar intuition" data-value="0"></div>
+                        </div>
+                    </div>
+
+                    <div id="trait-passion" class="trait-item">
+                        <div class="trait-header">
+                            <span class="trait-label">
+                                <span class="lang-en">Passion</span>
+                                <span class="lang-ko">열정</span>
+                                <span class="lang-ja">情熱</span>
+                                <span class="lang-zh">热情</span>
+                                <span class="lang-es">Pasión</span>
+                            </span>
+                            <span class="trait-value" id="trait-passion-value">0%</span>
+                        </div>
+                        <div class="trait-bar-container">
+                            <div class="trait-bar passion" data-value="0"></div>
+                        </div>
+                    </div>
+
+                    <div id="trait-empathy" class="trait-item">
+                        <div class="trait-header">
+                            <span class="trait-label">
+                                <span class="lang-en">Empathy</span>
+                                <span class="lang-ko">공감력</span>
+                                <span class="lang-ja">共感力</span>
+                                <span class="lang-zh">共情力</span>
+                                <span class="lang-es">Empatía</span>
+                            </span>
+                            <span class="trait-value" id="trait-empathy-value">0%</span>
+                        </div>
+                        <div class="trait-bar-container">
+                            <div class="trait-bar empathy" data-value="0"></div>
+                        </div>
+                    </div>
+
+                    <div id="trait-logic" class="trait-item">
+                        <div class="trait-header">
+                            <span class="trait-label">
+                                <span class="lang-en">Logic</span>
+                                <span class="lang-ko">논리력</span>
+                                <span class="lang-ja">論理力</span>
+                                <span class="lang-zh">逻辑力</span>
+                                <span class="lang-es">Lógica</span>
+                            </span>
+                            <span class="trait-value" id="trait-logic-value">0%</span>
+                        </div>
+                        <div class="trait-bar-container">
+                            <div class="trait-bar logic" data-value="0"></div>
+                        </div>
+                    </div>
+
+                    <div id="trait-creativity" class="trait-item">
+                        <div class="trait-header">
+                            <span class="trait-label">
+                                <span class="lang-en">Creativity</span>
+                                <span class="lang-ko">창의력</span>
+                                <span class="lang-ja">創造力</span>
+                                <span class="lang-zh">创造力</span>
+                                <span class="lang-es">Creatividad</span>
+                            </span>
+                            <span class="trait-value" id="trait-creativity-value">0%</span>
+                        </div>
+                        <div class="trait-bar-container">
+                            <div class="trait-bar creativity" data-value="0"></div>
+                        </div>
+                    </div>
+
+                    <!-- Rarity Badge -->
+                    <div class="text-center">
+                        <div id="rarity-badge" class="rarity-badge hidden">
+                            <span id="rarity-icon">🏆</span>
+                            <span id="rarity-text">
+                                <span class="lang-en">Top 5% Type</span>
+                                <span class="lang-ko">상위 5% 타입</span>
+                                <span class="lang-ja">上位5%タイプ</span>
+                                <span class="lang-zh">前5%类型</span>
+                                <span class="lang-es">Tipo Top 5%</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage E: Share Section -->
+        <section id="share-stage" class="gradient-bg py-8 hidden">
+            <div class="share-stage max-w-md mx-auto px-4">
+                <p id="share-encouragement" class="share-encouragement">
+                    <span class="lang-en">Let your friends try the test too!</span>
+                    <span class="lang-ko">친구도 테스트해보게 하세요!</span>
+                    <span class="lang-ja">友達にもテストを勧めましょう!</span>
+                    <span class="lang-zh">让朋友也来测试吧!</span>
+                    <span class="lang-es">¡Deja que tus amigos también lo prueben!</span>
+                </p>
+
+                <!-- Share Image Format Selection -->
+                <div class="share-format-buttons mb-4">
+                    <button id="format-story" class="format-button">
+                        <span class="lang-en">Story (9:16)</span>
+                        <span class="lang-ko">스토리 (9:16)</span>
+                        <span class="lang-ja">ストーリー (9:16)</span>
+                        <span class="lang-zh">故事 (9:16)</span>
+                        <span class="lang-es">Historia (9:16)</span>
+                    </button>
+                    <button id="format-square" class="format-button active">
+                        <span class="lang-en">Feed (1:1)</span>
+                        <span class="lang-ko">피드 (1:1)</span>
+                        <span class="lang-ja">フィード (1:1)</span>
+                        <span class="lang-zh">信息流 (1:1)</span>
+                        <span class="lang-es">Feed (1:1)</span>
+                    </button>
                 </div>
 
-                <!-- Main Result Card -->
-                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 animate-fade-in-up delay-100">
-                    <div id="result-container">
-                        <p id="life-summary" class="quote-text text-2xl md:text-3xl text-gray-800 italic leading-relaxed mb-8">
-                            Loading your life summary...
-                        </p>
-                        <p id="birthday-info" class="text-gray-500 mb-6"></p>
-                    </div>
+                <!-- Image Type Selection -->
+                <div class="share-format-buttons mb-4">
+                    <button id="img-teaser" class="format-button">
+                        <span class="lang-en">Teaser</span>
+                        <span class="lang-ko">티저</span>
+                        <span class="lang-ja">ティーザー</span>
+                        <span class="lang-zh">预告</span>
+                        <span class="lang-es">Teaser</span>
+                    </button>
+                    <button id="img-full" class="format-button active">
+                        <span class="lang-en">Full</span>
+                        <span class="lang-ko">전체</span>
+                        <span class="lang-ja">フル</span>
+                        <span class="lang-zh">完整</span>
+                        <span class="lang-es">Completo</span>
+                    </button>
+                </div>
 
-                    <!-- Share Buttons -->
-                    <div class="border-t pt-6">
-                        <p class="text-gray-600 mb-4 font-medium">
-                            <span class="lang-en">Share your result:</span>
-                            <span class="lang-ko">결과 공유하기:</span>
-                            <span class="lang-ja">結果を共有:</span>
-                            <span class="lang-zh">分享您的结果:</span>
-                            <span class="lang-es">Comparte tu resultado:</span>
-                        </p>
-                        <!-- Row 1 -->
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <button id="copy-link" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition text-sm font-medium border border-gray-300">
-                                <span class="lang-en">🔗 Copy</span>
-                                <span class="lang-ko">🔗 복사</span>
-                                <span class="lang-ja">🔗 コピー</span>
-                                <span class="lang-zh">🔗 复制</span>
-                                <span class="lang-es">🔗 Copiar</span>
-                            </button>
-                            <button id="share-twitter" class="bg-black text-white px-8 py-2 rounded-lg hover:bg-gray-800 transition text-sm font-bold">
-                                𝕏
-                            </button>
-                            <button id="share-facebook" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
-                                Facebook
-                            </button>
-                            <button id="share-instagram" class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:opacity-90 transition text-sm font-medium">
-                                Instagram
-                            </button>
-                            <button id="share-threads" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition text-sm font-medium">
-                                Threads
-                            </button>
-                            <button id="share-line" class="bg-green-400 text-white px-4 py-2 rounded-lg hover:bg-green-500 transition text-sm font-bold">
-                                LINE
-                            </button>
-                            <button id="share-kakao" class="bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-500 transition flex items-center justify-center">
-                                <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="KakaoTalk" class="h-6 w-auto">
-                            </button>
-                        </div>
-                        <!-- Row 2 -->
-                        <div class="flex flex-wrap justify-center gap-2 mt-2">
-                            <button id="share-whatsapp" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm font-medium">
-                                WhatsApp
-                            </button>
-                            <button id="share-telegram" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition text-sm font-medium">
-                                Telegram
-                            </button>
-                            <button id="share-reddit" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition text-sm font-medium">
-                                Reddit
-                            </button>
-                            <button id="share-pinterest" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm font-medium">
-                                Pinterest
-                            </button>
-                            <button id="share-linkedin" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition text-sm font-medium">
-                                LinkedIn
-                            </button>
-                        </div>
+                <!-- Share Preview (LCP Optimized) -->
+                <div class="share-preview-container text-center mb-6">
+                    <img id="share-preview-image" class="share-preview-image mx-auto" src="" alt="Share preview" loading="eager" fetchpriority="high" decoding="async">
+                </div>
 
-                        <!-- Image Download -->
-                        <div class="mt-6">
-                            <button id="download-image" class="inline-flex items-center space-x-2 gradient-bg text-white px-6 py-3 rounded-lg hover:opacity-90 transition">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                <span class="lang-en">Download as Image</span>
-                                <span class="lang-ko">이미지로 다운로드</span>
-                                <span class="lang-ja">画像でダウンロード</span>
-                                <span class="lang-zh">下载为图片</span>
-                                <span class="lang-es">Descargar como Imagen</span>
-                            </button>
-                        </div>
-                    </div>
+                <!-- Download Button -->
+                <div class="text-center mb-6">
+                    <button id="download-share-image" class="inline-flex items-center space-x-2 bg-white text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-100 transition font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="lang-en">Download Image</span>
+                        <span class="lang-ko">이미지 다운로드</span>
+                        <span class="lang-ja">画像をダウンロード</span>
+                        <span class="lang-zh">下载图片</span>
+                        <span class="lang-es">Descargar Imagen</span>
+                    </button>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="share-buttons-grid">
+                    <button id="copy-link" class="share-button bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300">
+                        <span class="lang-en">🔗 Copy</span>
+                        <span class="lang-ko">🔗 복사</span>
+                        <span class="lang-ja">🔗 コピー</span>
+                        <span class="lang-zh">🔗 复制</span>
+                        <span class="lang-es">🔗 Copiar</span>
+                    </button>
+                    <button id="share-twitter" class="share-button bg-black text-white hover:bg-gray-800">𝕏</button>
+                    <button id="share-facebook" class="share-button bg-blue-600 text-white hover:bg-blue-700">Facebook</button>
+                    <button id="share-instagram" class="share-button bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white">Instagram</button>
+                    <button id="share-threads" class="share-button bg-black text-white hover:bg-gray-800">Threads</button>
+                    <button id="share-line" class="share-button bg-green-400 text-white hover:bg-green-500">LINE</button>
+                    <button id="share-kakao" class="share-button bg-yellow-400 hover:bg-yellow-500">
+                        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="KakaoTalk" class="h-5 w-auto">
+                    </button>
+                    <button id="share-whatsapp" class="share-button bg-green-500 text-white hover:bg-green-600">WhatsApp</button>
+                    <button id="share-telegram" class="share-button bg-sky-500 text-white hover:bg-sky-600">Telegram</button>
+                    <button id="share-reddit" class="share-button bg-orange-500 text-white hover:bg-orange-600">Reddit</button>
+                    <button id="share-pinterest" class="share-button bg-red-600 text-white hover:bg-red-700">Pinterest</button>
+                    <button id="share-linkedin" class="share-button bg-blue-700 text-white hover:bg-blue-800">LinkedIn</button>
                 </div>
 
                 <!-- Try Again -->
-                <div class="mt-8 animate-fade-in-up delay-200">
+                <div class="mt-8 text-center">
                     <a href="/life-summary/" class="inline-flex items-center space-x-2 text-white hover:text-white/80 transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -637,6 +804,18 @@
                         <span class="lang-zh">尝试其他生日</span>
                         <span class="lang-es">Probar otra Fecha</span>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legacy Result Section (hidden, for backward compatibility) -->
+        <section id="legacy-result" class="hidden py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div id="result-container">
+                    <p id="life-summary" class="quote-text text-2xl md:text-3xl text-gray-800 italic leading-relaxed mb-8">
+                        Loading your life summary...
+                    </p>
+                    <p id="birthday-info" class="text-gray-500 mb-6"></p>
                 </div>
             </div>
         </section>
@@ -983,39 +1162,386 @@
     <script src="/js/main.js"></script>
     <script src="/js/share.js"></script>
     <script src="/js/image-generator.js"></script>
+    <script src="/js/result-enhancements.js"></script>
+    <!-- Stage 2: Soul Type System -->
+    <script src="/js/soul-types.js"></script>
+    <script src="/js/reveal-sequence.js"></script>
+    <script src="/js/share-image-generator.js"></script>
+    <!-- Stage 1: Enhanced Loading -->
+    <script src="/js/loading-enhanced.js"></script>
 
     <!-- Initialize Page -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Global state
+        let currentSoulType = null;
+        let currentLang = 'ko';
+        let shareImageGenerator = null;
+        let currentImageFormat = 'square';
+        let currentImageType = 'full';
+
+        document.addEventListener('DOMContentLoaded', async function() {
             const birthdate = localStorage.getItem('ai-life-summary-birthdate');
             const gender = localStorage.getItem('ai-life-summary-gender') || 'prefer-not-to-say';
-            const lang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+            currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'ko';
 
             if (!birthdate) {
                 window.location.href = '/life-summary/';
                 return;
             }
 
-            // Generate and display the life summary with language support
-            const result = generateLifeSummary(birthdate, gender, lang);
+            // Get soul type from birthday
+            currentSoulType = getSoulTypeFromBirthday(birthdate);
 
-            // Format sentence with line breaks for better readability
-            const formattedSentence = formatSentenceWithLineBreaks(result.sentence, lang);
+            // Initialize share image generator
+            shareImageGenerator = new ShareImageGenerator({ lang: currentLang });
+
+            // Generate and display the legacy life summary (for backward compatibility)
+            const result = generateLifeSummary(birthdate, gender, currentLang);
+            const formattedSentence = formatSentenceWithLineBreaks(result.sentence, currentLang);
             document.getElementById('life-summary').textContent = '"' + formattedSentence + '"';
-            document.getElementById('birthday-info').textContent = getBirthdayLabel(lang) + formatDate(birthdate, lang);
-            document.getElementById('core-trait').textContent = translateCoreTrait(result.coreTrait, lang);
-            document.getElementById('life-phase').textContent = translateLifePhase(result.lifePhase, lang);
-            document.getElementById('lucky-element').textContent = translateElement(result.element, lang);
-
-            // Translate UI labels and descriptions
-            translateUILabels(lang);
-
-            // Save result to localStorage
+            document.getElementById('birthday-info').textContent = getBirthdayLabel(currentLang) + formatDate(birthdate, currentLang);
+            document.getElementById('core-trait').textContent = translateCoreTrait(result.coreTrait, currentLang);
+            document.getElementById('life-phase').textContent = translateLifePhase(result.lifePhase, currentLang);
+            document.getElementById('lucky-element').textContent = translateElement(result.element, currentLang);
+            translateUILabels(currentLang);
             saveResult(birthdate, result);
 
-            // Initialize share buttons with language
-            initShareButtons(result.sentence, lang);
+            // Start the soul type reveal sequence
+            await startSoulTypeReveal();
+
+            // Initialize share buttons
+            initShareButtons(result.sentence, currentLang);
+            initShareImageControls();
+
+            // Initialize result page enhancements
+            if (window.ResultEnhancements) {
+                window.ResultEnhancements.initResultEnhancements({
+                    testType: 'life-summary',
+                    lang: currentLang
+                });
+            }
         });
+
+        // Soul Type Reveal Sequence
+        async function startSoulTypeReveal() {
+            // Stage A: Loading animation
+            await stageA_Loading();
+
+            // Stage B: Card reveal
+            await stageB_Reveal();
+
+            // Stage C: Character appearance
+            await stageC_Character();
+
+            // Stage D: Analysis
+            stageD_Analysis();
+
+            // Stage E: Share
+            stageE_Share();
+        }
+
+        // Stage A: Loading (Enhanced with Fake Terminal Animation)
+        async function stageA_Loading() {
+            const loadingStage = document.getElementById('loading-stage');
+
+            return new Promise((resolve) => {
+                // Use enhanced loading with fake terminal animation
+                const loadingManager = new EnhancedLoadingManager({
+                    lang: currentLang,
+                    duration: 4000, // 4 seconds
+                    onComplete: () => {
+                        setTimeout(() => {
+                            loadingStage.classList.add('hidden');
+                            resolve();
+                        }, 300);
+                    }
+                });
+
+                loadingManager.run(loadingStage);
+            });
+        }
+
+        // Stage B: Card Reveal
+        async function stageB_Reveal() {
+            const revealStage = document.getElementById('reveal-stage');
+            const revealCard = document.getElementById('reveal-card');
+            const cardBack = document.getElementById('card-back');
+
+            revealStage.classList.remove('hidden');
+
+            return new Promise((resolve) => {
+                const flipCard = () => {
+                    revealCard.classList.add('flipped');
+
+                    // Show soul type on card back
+                    const typeName = getSoulTypeName(currentSoulType, currentLang);
+                    cardBack.innerHTML = `
+                        <div class="soul-type-reveal">
+                            <div class="emoji-large">${currentSoulType.emoji}</div>
+                            <div class="type-name">${typeName}</div>
+                        </div>
+                    `;
+
+                    // Play confetti
+                    playConfetti();
+
+                    setTimeout(resolve, 800);
+                };
+
+                revealCard.addEventListener('click', flipCard, { once: true });
+                revealCard.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    flipCard();
+                }, { once: true, passive: false });
+            });
+        }
+
+        // Stage C: Character Appearance
+        async function stageC_Character() {
+            const characterStage = document.getElementById('character-stage');
+            const characterImage = document.getElementById('character-image');
+            const sloganText = document.getElementById('slogan-text');
+
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    characterStage.classList.remove('hidden');
+                    characterStage.classList.add('fade-in-up');
+
+                    // Display emoji in character area
+                    characterImage.innerHTML = currentSoulType.emoji;
+
+                    // Type out slogan
+                    const slogan = getSoulTypeSlogan(currentSoulType, currentLang);
+                    typeText(sloganText, slogan, 40);
+
+                    // Add sparkles
+                    playSparkles(characterStage);
+
+                    setTimeout(resolve, 1500);
+                }, 500);
+            });
+        }
+
+        // Stage D: Analysis
+        function stageD_Analysis() {
+            const analysisStage = document.getElementById('analysis-stage');
+            const scrollPrompt = document.getElementById('scroll-prompt');
+            const rarityBadge = document.getElementById('rarity-badge');
+            const rarityText = document.getElementById('rarity-text');
+
+            analysisStage.classList.remove('hidden');
+            scrollPrompt.classList.remove('hidden');
+
+            // Set trait values
+            const traits = currentSoulType.traits;
+            Object.keys(traits).forEach((trait, index) => {
+                const bar = document.querySelector(`.trait-bar.${trait}`);
+                const valueEl = document.getElementById(`trait-${trait}-value`);
+
+                if (bar && valueEl) {
+                    bar.dataset.value = traits[trait];
+                    valueEl.textContent = traits[trait] + '%';
+
+                    // Animate bars with delay
+                    setTimeout(() => {
+                        bar.style.width = traits[trait] + '%';
+                        bar.classList.add('animate-fill');
+                    }, index * 200 + 500);
+                }
+            });
+
+            // Show rarity badge
+            setTimeout(() => {
+                const rarityPercent = currentSoulType.rarity;
+                const tier = getRarityTier(rarityPercent);
+
+                rarityBadge.classList.remove('hidden');
+                rarityBadge.classList.add('pop-in', tier);
+
+                // Update rarity text based on language
+                const rarityLabels = {
+                    ko: `상위 ${rarityPercent}% 타입`,
+                    en: `Top ${rarityPercent}% Type`,
+                    ja: `上位${rarityPercent}%タイプ`,
+                    zh: `前${rarityPercent}%类型`,
+                    es: `Top ${rarityPercent}% Tipo`
+                };
+                rarityText.textContent = rarityLabels[currentLang] || rarityLabels.en;
+            }, Object.keys(traits).length * 200 + 800);
+        }
+
+        // Stage E: Share
+        function stageE_Share() {
+            const shareStage = document.getElementById('share-stage');
+            const shareButtons = shareStage.querySelectorAll('.share-button');
+
+            shareStage.classList.remove('hidden');
+
+            // Animate buttons
+            shareButtons.forEach((button, index) => {
+                setTimeout(() => {
+                    button.classList.add('fade-in-up');
+                }, index * 50);
+            });
+
+            // Generate initial share preview
+            updateSharePreview();
+
+            // Add Thumb Zone sticky buttons for mobile
+            if (window.innerWidth <= 768 && typeof thumbZone !== 'undefined') {
+                const downloadText = {
+                    ko: '이미지 저장',
+                    en: 'Save Image',
+                    ja: '画像を保存',
+                    zh: '保存图片',
+                    es: 'Guardar Imagen'
+                };
+                const shareText = {
+                    ko: '공유하기',
+                    en: 'Share',
+                    ja: '共有する',
+                    zh: '分享',
+                    es: 'Compartir'
+                };
+
+                thumbZone.createStickyContainer({
+                    className: 'gradient-bg-sticky',
+                    buttons: [
+                        {
+                            text: downloadText[currentLang] || downloadText.en,
+                            icon: '📥',
+                            onClick: () => {
+                                const btn = document.getElementById('download-share-image');
+                                if (btn) btn.click();
+                            }
+                        },
+                        {
+                            text: shareText[currentLang] || shareText.en,
+                            icon: '🔗',
+                            className: 'secondary',
+                            onClick: () => {
+                                const copyBtn = document.getElementById('copy-link');
+                                if (copyBtn) copyBtn.click();
+                            }
+                        }
+                    ]
+                });
+            }
+        }
+
+        // Typing effect
+        function typeText(element, text, speed = 50) {
+            element.textContent = '';
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            };
+            type();
+        }
+
+        // Confetti effect
+        function playConfetti() {
+            const container = document.getElementById('confetti-container');
+            if (!container) return;
+
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
+                container.appendChild(confetti);
+            }
+
+            setTimeout(() => container.innerHTML = '', 3000);
+        }
+
+        // Sparkle effect
+        function playSparkles(container) {
+            const sparkleContainer = container.querySelector('.sparkle-container') || container;
+
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 1 + 's';
+                sparkleContainer.appendChild(sparkle);
+            }
+
+            setTimeout(() => {
+                sparkleContainer.querySelectorAll('.sparkle').forEach(s => s.remove());
+            }, 3000);
+        }
+
+        // Share image controls
+        function initShareImageControls() {
+            const formatStory = document.getElementById('format-story');
+            const formatSquare = document.getElementById('format-square');
+            const imgTeaser = document.getElementById('img-teaser');
+            const imgFull = document.getElementById('img-full');
+            const downloadBtn = document.getElementById('download-share-image');
+
+            formatStory?.addEventListener('click', () => {
+                currentImageFormat = 'story';
+                formatStory.classList.add('active');
+                formatSquare.classList.remove('active');
+                updateSharePreview();
+            });
+
+            formatSquare?.addEventListener('click', () => {
+                currentImageFormat = 'square';
+                formatSquare.classList.add('active');
+                formatStory.classList.remove('active');
+                updateSharePreview();
+            });
+
+            imgTeaser?.addEventListener('click', () => {
+                currentImageType = 'teaser';
+                imgTeaser.classList.add('active');
+                imgFull.classList.remove('active');
+                updateSharePreview();
+            });
+
+            imgFull?.addEventListener('click', () => {
+                currentImageType = 'full';
+                imgFull.classList.add('active');
+                imgTeaser.classList.remove('active');
+                updateSharePreview();
+            });
+
+            downloadBtn?.addEventListener('click', async () => {
+                const dataUrl = await generateCurrentShareImage();
+                const typeName = getSoulTypeName(currentSoulType, currentLang).replace(/\s/g, '-');
+                shareImageGenerator.downloadImage(dataUrl, `soul-type-${typeName}`);
+            });
+        }
+
+        // Update share preview
+        async function updateSharePreview() {
+            const previewImg = document.getElementById('share-preview-image');
+            if (!previewImg || !currentSoulType) return;
+
+            const dataUrl = await generateCurrentShareImage();
+            previewImg.src = dataUrl;
+            previewImg.style.maxHeight = currentImageFormat === 'story' ? '300px' : '200px';
+        }
+
+        // Generate current share image
+        async function generateCurrentShareImage() {
+            if (currentImageType === 'teaser') {
+                return shareImageGenerator.generateTeaserImage(currentSoulType, currentImageFormat);
+            } else {
+                return shareImageGenerator.generateFullResultImage(currentSoulType, currentImageFormat);
+            }
+        }
 
         function getBirthdayLabel(lang) {
             const labels = {
@@ -1444,6 +1970,117 @@
                 selectReaction(existingReaction);
             }
         })();
+    </script>
+
+    <!-- Gamification Scripts -->
+    <script src="../js/badges.js"></script>
+    <script src="../js/level-xp.js"></script>
+    <script src="../js/streak.js"></script>
+    <script src="../js/user-data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/gamification-ui.js"></script>
+    <script src="../js/referral.js"></script>
+    <script>
+    // Gamification integration for Life Summary
+    (function initGamification() {
+        // Wait for userDataManager to be ready
+        if (typeof userDataManager === 'undefined') {
+            setTimeout(initGamification, 100);
+            return;
+        }
+
+        const birthdate = localStorage.getItem('ai-life-summary-birthdate');
+        if (!birthdate) return;
+
+        const lang = localStorage.getItem('ai-life-summary-lang') || 'ko';
+        const resultKey = 'life-summary-' + birthdate;
+
+        // Check if XP already awarded for this result
+        const userData = userDataManager.getUserData();
+        const alreadyAwarded = userData.gamification?.awardedResults?.includes(resultKey);
+
+        if (!alreadyAwarded) {
+            // Record test in history
+            const soulType = typeof currentSoulType !== 'undefined' ? currentSoulType : null;
+            userDataManager.addTestHistory({
+                type: 'life-summary',
+                birthdate: birthdate,
+                soulType: soulType ? soulType.id : null,
+                timestamp: Date.now()
+            });
+
+            // Award XP for completing test
+            const xpAmount = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.test_complete : 50;
+            const xpResult = userDataManager.addXp(xpAmount, 'test_complete');
+
+            // Mark as awarded
+            userDataManager.markResultAwarded(resultKey);
+
+            // Update streak
+            if (typeof streakSystem !== 'undefined') {
+                const streakResult = streakSystem.updateStreak();
+                if (streakResult.milestone && typeof gamificationUI !== 'undefined') {
+                    setTimeout(() => {
+                        gamificationUI.showStreakMilestonePopup(streakResult.milestone, lang);
+                    }, 1500);
+                }
+            }
+
+            // Check for badges
+            if (typeof badgeSystem !== 'undefined') {
+                const newBadges = badgeSystem.checkBadgeConditions(userDataManager.getUserData());
+                if (newBadges.length > 0) {
+                    userDataManager.addBadges(newBadges);
+                    // Show badge popup for first new badge
+                    if (typeof gamificationUI !== 'undefined' && typeof BADGES !== 'undefined') {
+                        setTimeout(() => {
+                            gamificationUI.showBadgePopup(BADGES[newBadges[0]], lang);
+                        }, 2000);
+                    }
+                }
+            }
+
+            // Show XP toast
+            if (typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showXpToast(xpAmount, 'test_complete', lang);
+                }, 500);
+            }
+
+            // Check for level up
+            if (xpResult && xpResult.leveledUp && typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showLevelUpPopup(xpResult.newLevel, lang);
+                }, 3000);
+            }
+
+            // Apply referral if any
+            if (typeof referralSystem !== 'undefined') {
+                referralSystem.applyReferral();
+            }
+        }
+
+        // Track share button clicks for XP
+        document.querySelectorAll('.share-btn, [data-share]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const shareKey = 'life-summary-share-' + birthdate;
+                const alreadyShared = userData.gamification?.awardedResults?.includes(shareKey);
+
+                if (!alreadyShared) {
+                    const shareXp = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.share_result : 30;
+                    userDataManager.addXp(shareXp, 'share_result');
+                    userDataManager.markResultAwarded(shareKey);
+
+                    if (typeof gamificationUI !== 'undefined') {
+                        gamificationUI.showXpToast(shareXp, 'share_result', lang);
+                    }
+                }
+            });
+        });
+
+        // Dispatch event for other scripts
+        window.dispatchEvent(new CustomEvent('gamification-update'));
+    })();
     </script>
 </body>
 </html>

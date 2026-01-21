@@ -1,0 +1,306 @@
+/**
+ * Enhanced Loading Screen CSS
+ * SmartAITest.com - Stage 1 UX Optimization
+ */
+
+/* ===== Fake Log Terminal Animation ===== */
+.loading-terminal {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #00ff00;
+  text-align: left;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loading-terminal-header {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loading-terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.loading-terminal-dot.red { background: #ff5f56; }
+.loading-terminal-dot.yellow { background: #ffbd2e; }
+.loading-terminal-dot.green { background: #27ca40; }
+
+.loading-log-container {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-log-scroll {
+  animation: logScroll 4s linear;
+}
+
+@keyframes logScroll {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+.loading-log-line {
+  opacity: 0;
+  animation: logLineAppear 0.15s ease forwards;
+  margin-bottom: 0.25rem;
+}
+
+.loading-log-line::before {
+  content: '> ';
+  color: #6366f1;
+}
+
+.loading-log-line.success::before {
+  content: '✓ ';
+  color: #10b981;
+}
+
+.loading-log-line.processing::before {
+  content: '◉ ';
+  color: #f59e0b;
+  animation: processingPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes processingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes logLineAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.loading-log-line .highlight {
+  color: #ec4899;
+}
+
+.loading-log-line .data {
+  color: #60a5fa;
+}
+
+.loading-log-line .success-text {
+  color: #10b981;
+}
+
+.loading-log-line .warning-text {
+  color: #f59e0b;
+}
+
+/* Progress indicator below terminal */
+.loading-terminal-progress {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loading-terminal-progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-terminal-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #ec4899, #6366f1);
+  background-size: 200% 100%;
+  animation: progressGradient 1s linear infinite;
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
+@keyframes progressGradient {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.loading-terminal-status {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== Thumb Zone Optimization ===== */
+.thumb-zone-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 70%, transparent 100%);
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.thumb-zone-sticky.visible {
+  transform: translateY(0);
+}
+
+.thumb-zone-sticky.gradient-bg-sticky {
+  background: linear-gradient(to top,
+    rgba(99, 102, 241, 0.98) 0%,
+    rgba(99, 102, 241, 0.9) 50%,
+    transparent 100%
+  );
+}
+
+.thumb-zone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.thumb-zone-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+}
+
+.thumb-zone-btn:active {
+  transform: scale(0.98);
+}
+
+.thumb-zone-btn.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.thumb-zone-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Share buttons in thumb zone */
+.thumb-zone-share {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.thumb-zone-share-btn {
+  flex: 1;
+  min-width: 100px;
+  max-width: 150px;
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.thumb-zone-share-btn:hover {
+  transform: translateY(-2px);
+}
+
+.thumb-zone-share-btn.download {
+  background: white;
+  color: #1f2937;
+}
+
+.thumb-zone-share-btn.share {
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  color: white;
+}
+
+/* Desktop: hide thumb zone sticky */
+@media (min-width: 769px) {
+  .thumb-zone-sticky {
+    display: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .loading-terminal {
+    max-width: 100%;
+    padding: 1rem;
+    font-size: 0.7rem;
+    border-radius: 8px;
+  }
+
+  .loading-log-container {
+    height: 150px;
+  }
+
+  .thumb-zone-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+}
+
+/* ===== Loading Stage Enhanced ===== */
+.loading-stage-enhanced {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 2rem 1rem;
+}
+
+.loading-stage-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.loading-stage-emoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
