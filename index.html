@@ -193,6 +193,240 @@
         .gradient-bg {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
         }
+
+        /* ===== HERO REDESIGN: Mesh Gradient Background ===== */
+        .hero-mesh-bg {
+            position: relative;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            overflow: hidden;
+        }
+        .hero-mesh-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(120, 0, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255, 0, 128, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 60% 80%, rgba(0, 200, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 30% 90%, rgba(255, 100, 200, 0.25) 0%, transparent 50%);
+            animation: meshMove 15s ease-in-out infinite;
+            filter: blur(40px);
+        }
+        @keyframes meshMove {
+            0%, 100% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.1) translate(2%, 3%); }
+            50% { transform: scale(1.05) translate(-2%, 2%); }
+            75% { transform: scale(1.1) translate(3%, -2%); }
+        }
+
+        /* Floating 3D Orb */
+        .hero-orb {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(255, 100, 200, 0.4) 0%, transparent 30%),
+                linear-gradient(135deg, #8E2DE2 0%, #4A00E0 50%, #00d4ff 100%);
+            box-shadow:
+                0 0 60px rgba(142, 45, 226, 0.6),
+                0 0 120px rgba(0, 212, 255, 0.3),
+                inset 0 0 60px rgba(255, 255, 255, 0.1);
+            animation: orbFloat 4s ease-in-out infinite, orbGlow 3s ease-in-out infinite alternate;
+            position: relative;
+        }
+        .hero-orb::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 30%;
+            height: 20%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), transparent);
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+        .hero-orb::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes orbGlow {
+            0% { box-shadow: 0 0 60px rgba(142, 45, 226, 0.6), 0 0 120px rgba(0, 212, 255, 0.3); }
+            100% { box-shadow: 0 0 80px rgba(142, 45, 226, 0.8), 0 0 160px rgba(0, 212, 255, 0.5); }
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        /* Bold Hero Title */
+        .hero-title-bold {
+            font-weight: 900;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+        .hero-title-gradient {
+            background: linear-gradient(135deg, #fff 0%, #f0abfc 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 10px rgba(192, 132, 252, 0.5));
+        }
+
+        /* Interactive Poster Cards */
+        .poster-card {
+            aspect-ratio: 3/4;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .poster-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+        .poster-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(236, 72, 153, 0.3);
+        }
+        .poster-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            z-index: 2;
+        }
+        .poster-emoji {
+            font-size: 5rem;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+            transition: transform 0.4s ease;
+        }
+        .poster-card:hover .poster-emoji {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        /* HOT Ribbon for Cards */
+        .poster-ribbon {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            width: 130px;
+            padding: 8px 0;
+            background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            z-index: 3;
+            letter-spacing: 1px;
+        }
+
+        /* Card-specific Gradients */
+        .poster-card.compatibility {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(239, 68, 68, 0.2) 100%), rgba(255, 255, 255, 0.05);
+        }
+        .poster-card.life-summary {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(99, 102, 241, 0.2) 100%), rgba(255, 255, 255, 0.05);
+        }
+        .poster-card.age-calc {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.2) 100%), rgba(255, 255, 255, 0.05);
+        }
+
+        /* Glassmorphism Stats */
+        .glass-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
+        }
+        .glass-stat:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .glass-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #f0abfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Real-time Ticker */
+        .live-ticker {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            animation: tickerSlide 0.5s ease-out;
+        }
+        @keyframes tickerSlide {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .ticker-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: tickerPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes tickerPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Mobile Cards Carousel */
+        @media (max-width: 768px) {
+            .poster-cards-container {
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding: 1rem;
+                margin: -1rem;
+            }
+            .poster-cards-container::-webkit-scrollbar {
+                display: none;
+            }
+            .poster-card {
+                flex: 0 0 70%;
+                scroll-snap-align: center;
+            }
+            .hero-orb {
+                width: 120px;
+                height: 120px;
+            }
+        }
         .gradient-text {
             background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
             -webkit-background-clip: text;
@@ -831,75 +1065,136 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="gradient-bg py-20 md:py-28 relative overflow-hidden">
-            <!-- Floating Particles -->
-            <div class="hero-particles">
-                <span class="particle">💕</span>
-                <span class="particle">✨</span>
-                <span class="particle">🌟</span>
-                <span class="particle">💫</span>
-                <span class="particle">❤️</span>
-                <span class="particle">🎯</span>
-                <span class="particle">💖</span>
-                <span class="particle">⭐</span>
+        <!-- Hero Section - Redesigned Trendy & Viral -->
+        <section class="hero-mesh-bg py-16 md:py-24 relative overflow-hidden">
+            <!-- Live Ticker -->
+            <div class="live-ticker absolute top-0 left-0 right-0 z-20" id="live-ticker">
+                <div class="ticker-content max-w-5xl mx-auto justify-center text-sm text-white/90">
+                    <span class="ticker-dot"></span>
+                    <span id="ticker-text">🇺🇸 Someone from USA just completed the test!</span>
+                </div>
             </div>
-            <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
-                <div class="float-animation inline-block text-6xl md:text-7xl mb-6">&#129302;</div>
-                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                    <span class="lang-en">Discover Yourself with AI</span>
-                    <span class="lang-ko">AI로 나를 발견하세요</span>
-                    <span class="lang-ja">AIで自分を発見しよう</span>
-                    <span class="lang-zh">用AI发现自己</span>
-                    <span class="lang-es">Descúbrete con IA</span>
+
+            <!-- Floating Particles (subtle) -->
+            <div class="hero-particles">
+                <span class="particle" style="opacity: 0.3;">✨</span>
+                <span class="particle" style="opacity: 0.2;">💫</span>
+                <span class="particle" style="opacity: 0.25;">⭐</span>
+                <span class="particle" style="opacity: 0.2;">✨</span>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 text-center relative z-10 pt-8">
+                <!-- Floating 3D Orb -->
+                <div class="flex justify-center mb-8">
+                    <div class="hero-orb"></div>
+                </div>
+
+                <!-- Bold Headline -->
+                <h1 class="font-heading hero-title-bold text-4xl md:text-5xl lg:text-6xl mb-4">
+                    <span class="text-white lang-en">What's Your </span>
+                    <span class="text-white lang-ko">AI가 분석한 당신의 </span>
+                    <span class="text-white lang-ja">AIが分析した </span>
+                    <span class="text-white lang-zh">AI分析的 </span>
+                    <span class="text-white lang-es">¿Cuál es tu </span>
+                    <br class="md:hidden">
+                    <span class="hero-title-gradient lang-en">True Self?</span>
+                    <span class="hero-title-gradient lang-ko">진짜 모습</span>
+                    <span class="hero-title-gradient lang-ja">本当の自分</span>
+                    <span class="hero-title-gradient lang-zh">真实自我</span>
+                    <span class="hero-title-gradient lang-es">Verdadero Yo?</span>
+                    <span class="text-white lang-ko">은?</span>
+                    <span class="text-white lang-ja">とは?</span>
+                    <span class="text-white lang-zh">是什么?</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-white/90 mb-4">
-                    <span class="lang-en">Fun personality tests powered by AI</span>
-                    <span class="lang-ko">AI 기반 재미있는 성격 테스트</span>
-                    <span class="lang-ja">AIで楽しい性格テスト</span>
-                    <span class="lang-zh">AI驱动的有趣性格测试</span>
-                    <span class="lang-es">Tests de personalidad divertidos con IA</span>
-                </p>
-                <p class="text-white/70 mb-10 max-w-2xl mx-auto text-lg">
-                    <span class="lang-en">Explore our collection of AI-powered tests to learn more about yourself. Get instant insights, share with friends, and have fun!</span>
-                    <span class="lang-ko">AI 테스트 컬렉션으로 자신에 대해 더 알아보세요. 즉시 결과를 확인하고, 친구들과 공유하며, 재미있게 즐기세요!</span>
-                    <span class="lang-ja">AIテストで自分をもっと知りましょう。すぐに結果を確認し、友達とシェアして楽しもう！</span>
-                    <span class="lang-zh">探索我们的AI测试系列，更好地了解自己。即时获取结果，与朋友分享，享受乐趣！</span>
-                    <span class="lang-es">Explora nuestra colección de tests con IA para conocerte mejor. ¡Obtén resultados al instante, comparte con amigos y diviértete!</span>
+
+                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto">
+                    <span class="lang-en">1-minute AI test that reveals personality insights millions have discovered</span>
+                    <span class="lang-ko">100만 명이 발견한 1분 AI 테스트로 숨겨진 나를 찾아보세요</span>
+                    <span class="lang-ja">100万人が発見した1分AIテストで本当の自分を見つけよう</span>
+                    <span class="lang-zh">百万人已发现的1分钟AI测试，揭示你的个性</span>
+                    <span class="lang-es">Test de IA de 1 minuto que millones han descubierto</span>
                 </p>
 
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="/compatibility/" class="ripple-effect bounce-hover bg-white text-pink-600 font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-lg shadow-lg inline-flex items-center gap-2">
-                        <span class="lang-en">💕 Compatibility</span>
-                        <span class="lang-ko">💕 궁합 테스트</span>
-                        <span class="lang-ja">💕 相性診断</span>
-                        <span class="lang-zh">💕 配对测试</span>
-                        <span class="lang-es">💕 Compatibilidad</span>
-                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded animate-pulse">HOT</span>
+                <!-- Interactive Poster Cards -->
+                <div class="poster-cards-container grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                    <!-- Compatibility Card -->
+                    <a href="/compatibility/" class="poster-card compatibility block">
+                        <div class="poster-ribbon">HOT</div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="poster-emoji">❤️‍🔥</span>
+                        </div>
+                        <div class="poster-card-content text-left">
+                            <h3 class="text-white font-bold text-xl mb-1">
+                                <span class="lang-en">Love Compatibility</span>
+                                <span class="lang-ko">AI 궁합 테스트</span>
+                                <span class="lang-ja">相性診断</span>
+                                <span class="lang-zh">配对测试</span>
+                                <span class="lang-es">Compatibilidad</span>
+                            </h3>
+                            <p class="text-white/70 text-sm">
+                                <span class="lang-en">Find your perfect match</span>
+                                <span class="lang-ko">운명의 상대를 찾아보세요</span>
+                                <span class="lang-ja">運命の相手を探そう</span>
+                                <span class="lang-zh">寻找你的完美伴侣</span>
+                                <span class="lang-es">Encuentra tu pareja ideal</span>
+                            </p>
+                        </div>
                     </a>
-                    <a href="/life-summary/" class="ripple-effect bounce-hover bg-white/20 text-white font-semibold py-4 px-8 rounded-lg hover:bg-white/30 transition text-lg border-2 border-white/50">
-                        <span class="lang-en">&#10024; Life Summary</span>
-                        <span class="lang-ko">&#10024; 인생 요약 테스트</span>
-                        <span class="lang-ja">&#10024; ライフサマリー</span>
-                        <span class="lang-zh">&#10024; 人生总结</span>
-                        <span class="lang-es">&#10024; Resumen de Vida</span>
+
+                    <!-- Life Summary Card -->
+                    <a href="/life-summary/" class="poster-card life-summary block">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="poster-emoji">🔮</span>
+                        </div>
+                        <div class="poster-card-content text-left">
+                            <h3 class="text-white font-bold text-xl mb-1">
+                                <span class="lang-en">Soul Type</span>
+                                <span class="lang-ko">소울 타입</span>
+                                <span class="lang-ja">ソウルタイプ</span>
+                                <span class="lang-zh">灵魂类型</span>
+                                <span class="lang-es">Tipo de Alma</span>
+                            </h3>
+                            <p class="text-white/70 text-sm">
+                                <span class="lang-en">Discover your true essence</span>
+                                <span class="lang-ko">나의 진짜 모습 발견하기</span>
+                                <span class="lang-ja">本当の自分を発見</span>
+                                <span class="lang-zh">发现你的真实本质</span>
+                                <span class="lang-es">Descubre tu esencia</span>
+                            </p>
+                        </div>
                     </a>
-                    <a href="/age-calculator/" class="ripple-effect bounce-hover bg-white/20 text-white font-semibold py-4 px-8 rounded-lg hover:bg-white/30 transition text-lg border-2 border-white/50">
-                        <span class="lang-en">🎂 Age Calculator</span>
-                        <span class="lang-ko">🎂 나이 계산기</span>
-                        <span class="lang-ja">🎂 年齢計算機</span>
-                        <span class="lang-zh">🎂 年龄计算器</span>
-                        <span class="lang-es">🎂 Calculadora de Edad</span>
+
+                    <!-- Age Calculator Card -->
+                    <a href="/age-calculator/" class="poster-card age-calc block">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="poster-emoji">⏳</span>
+                        </div>
+                        <div class="poster-card-content text-left">
+                            <h3 class="text-white font-bold text-xl mb-1">
+                                <span class="lang-en">Mental Age</span>
+                                <span class="lang-ko">정신 나이</span>
+                                <span class="lang-ja">精神年齢</span>
+                                <span class="lang-zh">心理年龄</span>
+                                <span class="lang-es">Edad Mental</span>
+                            </h3>
+                            <p class="text-white/70 text-sm">
+                                <span class="lang-en">How old is your mind?</span>
+                                <span class="lang-ko">당신의 정신 나이는?</span>
+                                <span class="lang-ja">あなたの精神年齢は?</span>
+                                <span class="lang-zh">你的心理年龄是?</span>
+                                <span class="lang-es">¿Cuántos años tiene tu mente?</span>
+                            </p>
+                        </div>
                     </a>
                 </div>
 
-                <!-- Animated Stats Counter -->
-                <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                <!-- Glassmorphism Stats -->
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <div class="glass-stat flex items-center gap-3">
                         <span class="text-3xl">🔥</span>
                         <div class="text-left">
-                            <div class="text-2xl md:text-3xl font-bold text-white glow-pulse" id="test-counter">1,000,000+</div>
-                            <div class="text-white/70 text-sm">
+                            <div class="glass-stat-number" id="test-counter">1,000,000+</div>
+                            <div class="text-white/60 text-sm">
                                 <span class="lang-en">Tests completed</span>
                                 <span class="lang-ko">테스트 완료</span>
                                 <span class="lang-ja">テスト完了</span>
@@ -908,11 +1203,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                    <div class="glass-stat flex items-center gap-3">
                         <span class="text-3xl">🌍</span>
                         <div class="text-left">
-                            <div class="text-2xl md:text-3xl font-bold text-white glow-pulse">150+</div>
-                            <div class="text-white/70 text-sm">
+                            <div class="glass-stat-number">150+</div>
+                            <div class="text-white/60 text-sm">
                                 <span class="lang-en">Countries</span>
                                 <span class="lang-ko">국가</span>
                                 <span class="lang-ja">ヵ国</span>
@@ -921,11 +1216,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+                    <div class="glass-stat flex items-center gap-3">
                         <span class="text-3xl">⭐</span>
                         <div class="text-left">
-                            <div class="text-2xl md:text-3xl font-bold text-white glow-pulse">4.9</div>
-                            <div class="text-white/70 text-sm">
+                            <div class="glass-stat-number">4.9</div>
+                            <div class="text-white/60 text-sm">
                                 <span class="lang-en">User rating</span>
                                 <span class="lang-ko">사용자 평점</span>
                                 <span class="lang-ja">ユーザー評価</span>
@@ -2119,6 +2414,80 @@
         // Listen for gamification updates
         window.addEventListener('gamification-update', updateHeaderProfile);
     });
+    </script>
+
+    <!-- Live Ticker Script -->
+    <script>
+    (function() {
+        var tickerMessages = {
+            en: [
+                { flag: '🇺🇸', country: 'USA', action: 'just completed the compatibility test!' },
+                { flag: '🇬🇧', country: 'UK', action: 'discovered their soul type!' },
+                { flag: '🇨🇦', country: 'Canada', action: 'took the mental age test!' },
+                { flag: '🇦🇺', country: 'Australia', action: 'shared their results!' },
+                { flag: '🇩🇪', country: 'Germany', action: 'found their perfect match!' },
+                { flag: '🇫🇷', country: 'France', action: 'just started the test!' },
+                { flag: '🇯🇵', country: 'Japan', action: 'completed the soul type test!' },
+                { flag: '🇧🇷', country: 'Brazil', action: 'discovered their true self!' }
+            ],
+            ko: [
+                { flag: '🇰🇷', country: '한국', action: '궁합 테스트를 완료했습니다!' },
+                { flag: '🇺🇸', country: '미국', action: '소울 타입을 발견했습니다!' },
+                { flag: '🇯🇵', country: '일본', action: '정신 나이 테스트를 했습니다!' },
+                { flag: '🇨🇳', country: '중국', action: '결과를 공유했습니다!' },
+                { flag: '🇬🇧', country: '영국', action: '테스트를 시작했습니다!' },
+                { flag: '🇩🇪', country: '독일', action: '완벽한 짝을 찾았습니다!' },
+                { flag: '🇫🇷', country: '프랑스', action: '진짜 모습을 발견했습니다!' },
+                { flag: '🇧🇷', country: '브라질', action: '소울 타입 테스트를 완료했습니다!' }
+            ],
+            ja: [
+                { flag: '🇯🇵', country: '日本', action: '相性テストを完了しました！' },
+                { flag: '🇺🇸', country: 'アメリカ', action: 'ソウルタイプを発見！' },
+                { flag: '🇰🇷', country: '韓国', action: '精神年齢テストを実施！' },
+                { flag: '🇨🇳', country: '中国', action: '結果をシェアしました！' }
+            ],
+            zh: [
+                { flag: '🇨🇳', country: '中国', action: '完成了配对测试！' },
+                { flag: '🇺🇸', country: '美国', action: '发现了灵魂类型！' },
+                { flag: '🇯🇵', country: '日本', action: '完成了心理年龄测试！' },
+                { flag: '🇰🇷', country: '韩国', action: '分享了结果！' }
+            ],
+            es: [
+                { flag: '🇪🇸', country: 'España', action: 'completó la prueba de compatibilidad!' },
+                { flag: '🇲🇽', country: 'México', action: 'descubrió su tipo de alma!' },
+                { flag: '🇦🇷', country: 'Argentina', action: 'hizo la prueba de edad mental!' },
+                { flag: '🇺🇸', country: 'EE.UU.', action: 'compartió sus resultados!' }
+            ]
+        };
+
+        var tickerEl = document.getElementById('ticker-text');
+        var tickerContainer = document.getElementById('live-ticker');
+        if (!tickerEl || !tickerContainer) return;
+
+        function updateTicker() {
+            var lang = document.documentElement.lang || 'en';
+            var messages = tickerMessages[lang] || tickerMessages.en;
+            var msg = messages[Math.floor(Math.random() * messages.length)];
+
+            tickerEl.style.opacity = '0';
+            tickerEl.style.transform = 'translateY(-10px)';
+
+            setTimeout(function() {
+                tickerEl.textContent = msg.flag + ' ' + (lang === 'ko' ? msg.country + '에서 누군가 ' + msg.action : 'Someone from ' + msg.country + ' ' + msg.action);
+                tickerEl.style.opacity = '1';
+                tickerEl.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        // Initial update
+        setTimeout(updateTicker, 2000);
+
+        // Update every 5-8 seconds
+        setInterval(updateTicker, 5000 + Math.random() * 3000);
+
+        // Add transition style
+        tickerEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    })();
     </script>
 </body>
 </html>
