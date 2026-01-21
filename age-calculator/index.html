@@ -66,6 +66,8 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- KICK Design System -->
+    <link rel="stylesheet" href="../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -353,17 +355,17 @@
     });
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
+    <header class="kick-glass sticky top-4 mx-4 md:mx-auto md:max-w-6xl rounded-2xl z-50">
+        <nav class="px-4 py-3">
             <div class="flex items-center justify-between">
                 <a href="/" class="flex items-center space-x-2">
                     <span class="text-2xl">🔮</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                    <span class="font-heading font-bold text-xl kick-gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
@@ -448,15 +450,15 @@
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/about.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">About</span>
                         <span class="lang-ko">소개</span>
                         <span class="lang-ja">概要</span>
                         <span class="lang-zh">关于</span>
                         <span class="lang-es">Acerca de</span>
                     </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/blog.html" class="text-white/70 hover:text-white transition">Blog</a>
+                    <a href="/contact.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Contact</span>
                         <span class="lang-ko">문의</span>
                         <span class="lang-ja">お問い合わせ</span>
@@ -486,7 +488,7 @@
             </div>
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
@@ -500,7 +502,7 @@
                         <span class="lang-zh">测试</span>
                         <span class="lang-es">TESTS</span>
                     </p>
-                    <a href="/compatibility/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                    <a href="/compatibility/" class="flex items-center space-x-2 text-white/70 hover:text-white transition pl-2">
                         <span>💕</span>
                         <span class="lang-en">AI Compatibility</span>
                         <span class="lang-ko">AI 궁합 테스트</span>
@@ -509,7 +511,7 @@
                         <span class="lang-es">Compatibilidad IA</span>
                         <span class="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded animate-pulse">HOT</span>
                     </a>
-                    <a href="/life-summary/" class="flex items-center space-x-2 text-gray-600 hover:text-primary transition pl-2">
+                    <a href="/life-summary/" class="flex items-center space-x-2 text-white/70 hover:text-white transition pl-2">
                         <span>✨</span>
                         <span class="lang-en">AI Life Summary</span>
                         <span class="lang-ko">AI 인생 요약</span>
@@ -526,15 +528,15 @@
                         <span class="lang-es">Calculadora de Edad IA</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/about.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">About</span>
                         <span class="lang-ko">소개</span>
                         <span class="lang-ja">概要</span>
                         <span class="lang-zh">关于</span>
                         <span class="lang-es">Acerca de</span>
                     </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/blog.html" class="text-white/70 hover:text-white transition">Blog</a>
+                    <a href="/contact.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Contact</span>
                         <span class="lang-ko">문의</span>
                         <span class="lang-ja">お問い合わせ</span>
@@ -562,9 +564,9 @@
         </nav>
     </header>
 
-    <main>
+    <main class="relative z-10">
         <!-- Hero Section -->
-        <section class="age-gradient-bg py-10 md:py-14 relative overflow-hidden">
+        <section class="py-12 md:py-16 relative overflow-hidden">
             <!-- Floating Particles -->
             <div class="hero-particles">
                 <span class="particle">🎂</span>
@@ -575,7 +577,7 @@
                 <span class="particle">💫</span>
             </div>
             <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                <a href="/" class="inline-flex items-center space-x-2 text-white/80 hover:text-white mb-4 transition">
+                <a href="/" class="inline-flex items-center space-x-2 text-white/70 hover:text-white mb-6 transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -585,17 +587,24 @@
                     <span class="lang-zh">返回测试</span>
                     <span class="lang-es">Volver a Tests</span>
                 </a>
-                <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                    🎂 <span class="lang-en">AI Age Calculator</span><span class="lang-ko">AI 나이 계산기</span><span class="lang-ja">AI年齢計算機</span><span class="lang-zh">AI年龄计算器</span><span class="lang-es">Calculadora de Edad IA</span>
+                <div class="text-6xl md:text-7xl mb-4">⏳</div>
+                <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="kick-gradient-text">
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
+                    </span>
                 </h1>
-                <p class="text-lg md:text-xl text-white/90 mb-4">
+                <p class="text-lg md:text-xl text-white/80 mb-6">
                     <span class="lang-en">Discover your TRUE age - Real vs Mental vs Energy</span>
                     <span class="lang-ko">진짜 나이를 발견하세요 - 실제 vs 정신 vs 에너지</span>
                     <span class="lang-ja">本当の年齢を発見 - 実年齢 vs 精神年齢 vs エネルギー年齢</span>
                     <span class="lang-zh">发现你的真实年龄 - 实际 vs 心理 vs 能量</span>
                     <span class="lang-es">Descubre tu VERDADERA edad - Real vs Mental vs Energía</span>
                 </p>
-                <div class="stats-badge text-white/90 text-sm">
+                <div class="kick-glass inline-flex items-center gap-2 px-5 py-2 text-white/90 text-sm">
                     <span>🔥</span>
                     <span class="lang-en">200,000+ ages calculated</span>
                     <span class="lang-ko">20만+ 나이 계산 완료</span>
@@ -607,22 +616,22 @@
         </section>
 
         <!-- Progress Bar -->
-        <div class="bg-white border-b sticky top-[72px] z-40">
-            <div class="max-w-4xl mx-auto px-4 py-4">
+        <div class="kick-glass mx-4 md:mx-auto md:max-w-4xl rounded-xl sticky top-20 z-40 mt-4">
+            <div class="px-4 py-3">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-gray-600">
+                    <span class="text-sm font-medium text-white/70">
                         <span class="lang-en">Progress</span>
                         <span class="lang-ko">진행률</span>
                         <span class="lang-ja">進捗</span>
                         <span class="lang-zh">进度</span>
                         <span class="lang-es">Progreso</span>
                     </span>
-                    <span id="progress-text" class="text-sm font-medium text-age-primary"></span>
+                    <span id="progress-text" class="text-sm font-medium text-cyan-400"></span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-3">
-                    <div id="progress-bar" class="progress-bar age-gradient-bg h-3 rounded-full" style="width: 33%"></div>
+                <div class="w-full bg-white/20 rounded-full h-3">
+                    <div id="progress-bar" class="progress-bar bg-gradient-to-r from-emerald-400 to-cyan-400 h-3 rounded-full" style="width: 33%"></div>
                 </div>
-                <div class="flex justify-between mt-2 text-xs text-gray-500">
+                <div class="flex justify-between mt-2 text-xs text-white/60">
                     <span id="step1-label" class="text-age-primary font-medium">
                         <span class="lang-en">Basic Info</span>
                         <span class="lang-ko">기본 정보</span>
@@ -655,7 +664,7 @@
 
                     <!-- Step 1: Basic Info -->
                     <div id="step1" class="step-section active">
-                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <div class="kick-glass rounded-2xl p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#128197;</span>
                                 <h2 class="font-heading text-2xl font-bold mt-2">
@@ -727,7 +736,7 @@
                             </div>
 
                             <button type="button" onclick="goToStep(2)"
-                                class="w-full mt-8 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                class="w-full mt-8 kick-btn kick-btn-primary kick-btn-bounce py-4 px-6 text-lg">
                                 <span class="lang-en">Next: Lifestyle Questions</span>
                                 <span class="lang-ko">다음: 생활 습관 질문</span>
                                 <span class="lang-ja">次へ: ライフスタイル質問</span>
@@ -739,7 +748,7 @@
 
                     <!-- Step 2: Lifestyle (4 Questions) -->
                     <div id="step2" class="step-section">
-                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <div class="kick-glass rounded-2xl p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#127968;</span>
                                 <h2 class="font-heading text-2xl font-bold mt-2">
@@ -969,7 +978,7 @@
                                     &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span><span class="lang-ja">戻る</span><span class="lang-zh">返回</span><span class="lang-es">Atrás</span>
                                 </button>
                                 <button type="button" onclick="goToStep(3)"
-                                    class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                    class="flex-1 kick-btn kick-btn-primary kick-btn-bounce py-4 px-6 text-lg">
                                     <span class="lang-en">Next: Mindset</span><span class="lang-ko">다음: 마인드셋</span><span class="lang-ja">次へ: マインドセット</span><span class="lang-zh">下一步: 心态</span><span class="lang-es">Siguiente: Mentalidad</span> &#8594;
                                 </button>
                             </div>
@@ -978,7 +987,7 @@
 
                     <!-- Step 3: Mindset (3 Questions) -->
                     <div id="step3" class="step-section">
-                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <div class="kick-glass rounded-2xl p-6 md:p-8">
                             <div class="text-center mb-6">
                                 <span class="text-4xl">&#129504;</span>
                                 <h2 class="font-heading text-2xl font-bold mt-2">
@@ -1155,7 +1164,7 @@
                                     &#8592; <span class="lang-en">Back</span><span class="lang-ko">이전</span><span class="lang-ja">戻る</span><span class="lang-zh">返回</span><span class="lang-es">Atrás</span>
                                 </button>
                                 <button type="submit"
-                                    class="flex-1 age-gradient-bg text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition text-lg">
+                                    class="flex-1 kick-btn kick-btn-primary kick-btn-bounce py-4 px-6 text-lg">
                                     &#128302; <span class="lang-en">Calculate My Age</span><span class="lang-ko">내 나이 계산하기</span><span class="lang-ja">年齢を計算</span><span class="lang-zh">计算我的年龄</span><span class="lang-es">Calcular Mi Edad</span>
                                 </button>
                             </div>
@@ -1166,11 +1175,11 @@
         </section>
 
         <!-- Ad Slot -->
-        <section class="py-8 bg-gray-100">
+        <section class="py-8">
             <div class="max-w-4xl mx-auto px-4">
-                <div class="bg-gray-200 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
-                    <p class="text-gray-500 text-sm">Advertisement</p>
-                    <div class="h-24 flex items-center justify-center text-gray-400">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
                         [Ad Slot - 728x90 Leaderboard]
                     </div>
                 </div>
@@ -1178,10 +1187,10 @@
         </section>
 
         <!-- Did You Know Section -->
-        <section class="py-12 bg-white">
+        <section class="py-12">
             <div class="max-w-4xl mx-auto px-4">
-                <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-6 md:p-8 border border-emerald-100">
-                    <h3 class="font-heading text-xl font-bold mb-4 flex items-center">
+                <div class="kick-glass rounded-2xl p-6 md:p-8">
+                    <h3 class="font-heading text-xl font-bold mb-4 flex items-center text-white">
                         <span class="text-2xl mr-2">&#128161;</span>
                         <span class="lang-en">Did You Know?</span>
                         <span class="lang-ko">알고 계셨나요?</span>
@@ -1189,7 +1198,7 @@
                         <span class="lang-zh">你知道吗？</span>
                         <span class="lang-es">¿Sabías que?</span>
                     </h3>
-                    <div class="space-y-4 text-gray-700">
+                    <div class="space-y-4 text-white/80">
                         <p class="lang-en">
                             <strong>Mental Age</strong> is different from your chronological age. It reflects how you think, feel, and perceive the world around you. Some people have a mental age younger than their actual age, meaning they maintain a youthful outlook and adaptability.
                         </p>
@@ -1220,7 +1229,7 @@
                         <p class="lang-es">
                             La <strong>Edad de Energía</strong> mide tu vitalidad y niveles de energía física basados en tus elecciones de estilo de vida. ¡El ejercicio regular, las conexiones sociales y el manejo positivo del estrés pueden mantener tu edad de energía mucho más joven que tu edad real!
                         </p>
-                        <p class="text-sm text-gray-500 mt-4">
+                        <p class="text-sm text-white/50 mt-4">
                             <span class="lang-en">&#8251; This test is for entertainment purposes only and is not a scientific measurement.</span>
                             <span class="lang-ko">&#8251; 이 테스트는 오락 목적으로만 제공되며 과학적 측정이 아닙니다.</span>
                             <span class="lang-ja">&#8251; このテストはエンターテインメント目的のみであり、科学的な測定ではありません。</span>
@@ -1237,7 +1246,7 @@
     <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
+    <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
@@ -1245,7 +1254,7 @@
                         <span class="text-2xl">🔮</span>
                         <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
                     </div>
-                    <p class="text-gray-400 text-sm">
+                    <p class="text-white/60 text-sm">
                         <span class="lang-en">Discover yourself with AI-powered personality tests. Fun, insightful, and free.</span>
                         <span class="lang-ko">AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.</span>
                         <span class="lang-ja">AI搭載の性格テストで自分を発見しましょう。楽しく、洞察力があり、無料です。</span>
