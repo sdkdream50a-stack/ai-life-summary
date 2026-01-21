@@ -51,6 +51,8 @@
     
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -350,17 +352,17 @@
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../css/monetization.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
+    <header class="kick-glass sticky top-4 mx-4 md:mx-auto md:max-w-6xl rounded-2xl z-50">
+        <nav class="px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="/" class="flex items-center space-x-2">
                     <span class="text-2xl">🔮</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                    <span class="font-heading font-bold text-xl kick-gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="/age-calculator/" class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1">
+                    <a href="/age-calculator/" class="text-white/70 hover:text-white transition flex items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
@@ -384,7 +386,7 @@
                             <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
                         </div>
                     </div>
-                    <button id="share-btn" class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition">
+                    <button id="share-btn" class="kick-btn kick-btn-primary px-4 py-2 text-sm flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                         </svg>
@@ -396,7 +398,7 @@
                     </button>
                 </div>
                 <div class="flex md:hidden items-center space-x-2">
-                    <button id="share-btn-mobile" class="age-gradient-bg text-white p-2 rounded-lg">
+                    <button id="share-btn-mobile" class="kick-btn kick-btn-primary p-2 rounded-xl">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                         </svg>
@@ -408,9 +410,9 @@
                     </button>
                 </div>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
@@ -452,17 +454,19 @@
         </nav>
     </header>
 
-    <main>
+    <main class="relative z-10 pt-8">
         <!-- Result Hero -->
-        <section class="age-gradient-bg py-10 md:py-14">
+        <section class="py-10 md:py-14">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <span class="text-5xl mb-4 inline-block">&#127874;</span>
-                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
-                    <span class="lang-en">Your Age Results</span>
-                    <span class="lang-ko">당신의 나이 결과</span>
-                    <span class="lang-ja">あなたの年齢結果</span>
-                    <span class="lang-zh">您的年龄结果</span>
-                    <span class="lang-es">Tus Resultados de Edad</span>
+                <span class="text-6xl mb-4 inline-block kick-float">&#127874;</span>
+                <h1 class="kick-heading text-3xl md:text-5xl font-bold mb-2">
+                    <span class="kick-gradient-text">
+                        <span class="lang-en">Your Age Results</span>
+                        <span class="lang-ko">당신의 나이 결과</span>
+                        <span class="lang-ja">あなたの年齢結果</span>
+                        <span class="lang-zh">您的年龄结果</span>
+                        <span class="lang-es">Tus Resultados de Edad</span>
+                    </span>
                 </h1>
             </div>
         </section>
@@ -470,18 +474,18 @@
         <!-- Main Results Card -->
         <section class="py-8 md:py-12">
             <div class="max-w-2xl mx-auto px-4">
-                <div class="result-card bg-white rounded-2xl shadow-xl p-6 md:p-8 glow-card">
+                <div class="kick-glass rounded-2xl p-6 md:p-8">
                     <!-- Real Age -->
-                    <div class="text-center mb-8 pb-6 border-b">
-                        <p class="text-gray-500 text-sm mb-1">
+                    <div class="text-center mb-8 pb-6 border-b border-white/10">
+                        <p class="text-white/60 text-sm mb-1">
                             <span class="lang-en">&#128197; Real Age</span>
                             <span class="lang-ko">&#128197; 실제 나이</span>
                             <span class="lang-ja">&#128197; 実年齢</span>
                             <span class="lang-zh">&#128197; 实际年龄</span>
                             <span class="lang-es">&#128197; Edad Real</span>
                         </p>
-                        <p id="real-age" class="age-number font-heading text-5xl md:text-6xl font-bold text-gray-800">--</p>
-                        <p class="text-gray-500">
+                        <p id="real-age" class="age-number font-heading text-5xl md:text-6xl font-bold kick-gradient-text">--</p>
+                        <p class="text-white/60">
                             <span class="lang-en">years old</span>
                             <span class="lang-ko">세</span>
                             <span class="lang-ja">歳</span>
@@ -494,40 +498,40 @@
                     <div class="grid grid-cols-2 gap-6">
                         <!-- Mental Age -->
                         <div class="text-center">
-                            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-4 md:p-6">
-                                <p class="text-gray-600 text-sm mb-1">
+                            <div class="bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-xl p-4 md:p-6 border border-purple-500/30">
+                                <p class="text-white/70 text-sm mb-1">
                                     <span class="lang-en">&#129504; Mental Age</span>
                                     <span class="lang-ko">&#129504; 정신 나이</span>
                                     <span class="lang-ja">&#129504; 精神年齢</span>
                                     <span class="lang-zh">&#129504; 心理年龄</span>
                                     <span class="lang-es">&#129504; Edad Mental</span>
                                 </p>
-                                <p id="mental-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-indigo-600">--</p>
-                                <p id="mental-gap" class="text-sm mt-2 font-medium text-indigo-500">--</p>
+                                <p id="mental-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-purple-300">--</p>
+                                <p id="mental-gap" class="text-sm mt-2 font-medium text-purple-400">--</p>
                             </div>
-                            <p id="mental-short-desc" class="text-sm text-gray-600 mt-3 px-2 word-keep"></p>
+                            <p id="mental-short-desc" class="text-sm text-white/70 mt-3 px-2 word-keep"></p>
                         </div>
 
                         <!-- Energy Age -->
                         <div class="text-center">
-                            <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-xl p-4 md:p-6">
-                                <p class="text-gray-600 text-sm mb-1">
+                            <div class="bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-xl p-4 md:p-6 border border-emerald-500/30">
+                                <p class="text-white/70 text-sm mb-1">
                                     <span class="lang-en">&#9889; Energy Age</span>
                                     <span class="lang-ko">&#9889; 에너지 나이</span>
                                     <span class="lang-ja">&#9889; エネルギー年齢</span>
                                     <span class="lang-zh">&#9889; 能量年龄</span>
                                     <span class="lang-es">&#9889; Edad de Energía</span>
                                 </p>
-                                <p id="energy-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-emerald-600">--</p>
-                                <p id="energy-gap" class="text-sm mt-2 font-medium text-emerald-500">--</p>
+                                <p id="energy-age" class="age-number font-heading text-4xl md:text-5xl font-bold text-emerald-300">--</p>
+                                <p id="energy-gap" class="text-sm mt-2 font-medium text-emerald-400">--</p>
                             </div>
-                            <p id="energy-short-desc" class="text-sm text-gray-600 mt-3 px-2 word-keep"></p>
+                            <p id="energy-short-desc" class="text-sm text-white/70 mt-3 px-2 word-keep"></p>
                         </div>
                     </div>
 
                     <!-- Age Gap Summary -->
-                    <div id="age-gap-summary" class="mt-8 p-4 bg-gray-50 rounded-xl text-center">
-                        <p class="text-gray-700 font-medium" id="overall-summary"></p>
+                    <div id="age-gap-summary" class="mt-8 p-4 bg-white/5 rounded-xl text-center border border-white/10">
+                        <p class="text-white/80 font-medium" id="overall-summary"></p>
                     </div>
                 </div>
             </div>
@@ -536,8 +540,8 @@
         <!-- Share Buttons -->
         <section class="py-6">
             <div class="max-w-2xl mx-auto px-4">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h3 class="font-heading font-semibold text-lg mb-4 text-center">
+                <div class="kick-glass rounded-xl p-6">
+                    <h3 class="font-heading font-semibold text-lg mb-4 text-center text-white">
                         <span class="lang-en">Share Your Results</span>
                         <span class="lang-ko">결과 공유하기</span>
                         <span class="lang-ja">結果を共有する</span>
@@ -547,7 +551,7 @@
 
                     <!-- Image Download Options -->
                     <div class="mb-4">
-                        <p class="text-sm text-gray-600 text-center mb-3">
+                        <p class="text-sm text-white/60 text-center mb-3">
                             <span class="lang-en">&#128247; Save as Image</span>
                             <span class="lang-ko">&#128247; 이미지로 저장</span>
                             <span class="lang-ja">&#128247; 画像として保存</span>
@@ -555,7 +559,7 @@
                             <span class="lang-es">&#128247; Guardar como Imagen</span>
                         </p>
                         <div class="flex justify-center gap-3">
-                            <button onclick="downloadImage('story')" class="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-3 rounded-lg hover:opacity-90 transition">
+                            <button onclick="downloadImage('story')" class="kick-btn kick-btn-primary flex items-center space-x-2 px-4 py-3 rounded-xl">
                                 <span>&#128241;</span>
                                 <span class="lang-en">Story (9:16)</span>
                                 <span class="lang-ko">스토리 (9:16)</span>
@@ -574,8 +578,8 @@
                         </div>
                     </div>
 
-                    <div class="border-t pt-4">
-                        <p class="text-sm text-gray-600 text-center mb-3">
+                    <div class="border-t border-white/10 pt-4">
+                        <p class="text-sm text-white/60 text-center mb-3">
                             <span class="lang-en">&#128279; Share Link</span>
                             <span class="lang-ko">&#128279; 링크 공유</span>
                             <span class="lang-ja">&#128279; リンクを共有</span>
@@ -583,7 +587,7 @@
                             <span class="lang-es">&#128279; Compartir Enlace</span>
                         </p>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="copyResultLink()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition text-sm font-medium border border-gray-300">
+                            <button onclick="copyResultLink()" class="bg-white/10 text-white px-4 py-2 rounded-lg hover:bg-white/20 transition text-sm font-medium border border-white/20">
                                 <span class="lang-en">🔗 Copy</span>
                                 <span class="lang-ko">🔗 복사</span>
                                 <span class="lang-ja">🔗 コピー</span>

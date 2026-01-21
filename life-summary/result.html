@@ -336,17 +336,17 @@
     <link rel="stylesheet" href="../css/gamification.css">
     <link rel="stylesheet" href="../css/popups.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
+    <header class="kick-glass sticky top-4 mx-4 md:mx-auto md:max-w-6xl rounded-2xl z-50">
+        <nav class="px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="/" class="flex items-center space-x-2">
                     <span class="text-2xl">🔮</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+                    <span class="font-heading font-bold text-xl kick-gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
@@ -432,15 +432,15 @@
                             </a>
                         </div>
                     </div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/about.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">About</span>
                         <span class="lang-ko">소개</span>
                         <span class="lang-ja">概要</span>
                         <span class="lang-zh">关于</span>
                         <span class="lang-es">Acerca de</span>
                     </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/blog.html" class="text-white/70 hover:text-white transition">Blog</a>
+                    <a href="/contact.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Contact</span>
                         <span class="lang-ko">문의</span>
                         <span class="lang-ja">お問い合わせ</span>
@@ -471,7 +471,7 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
@@ -511,15 +511,15 @@
                         <span class="lang-es">Calculadora de Edad IA</span>
                     </a>
                     <div class="border-t my-2"></div>
-                    <a href="/about.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/about.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">About</span>
                         <span class="lang-ko">소개</span>
                         <span class="lang-ja">概要</span>
                         <span class="lang-zh">关于</span>
                         <span class="lang-es">Acerca de</span>
                     </a>
-                    <a href="/blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                    <a href="/contact.html" class="text-gray-600 hover:text-primary transition">
+                    <a href="/blog.html" class="text-white/70 hover:text-white transition">Blog</a>
+                    <a href="/contact.html" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Contact</span>
                         <span class="lang-ko">문의</span>
                         <span class="lang-ja">お問い合わせ</span>
@@ -547,12 +547,12 @@
         </nav>
     </header>
 
-    <main>
+    <main class="relative z-10 pt-8">
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
         <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="gradient-bg py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
+        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
             <div class="loading-stage">
                 <div class="loading-spinner"></div>
                 <div class="loading-progress-container">
@@ -571,7 +571,7 @@
         </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="gradient-bg py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-16 md:py-20 hidden">
             <div class="reveal-stage">
                 <div id="reveal-card" class="reveal-card">
                     <div id="card-front" class="card-face card-front">
@@ -599,7 +599,7 @@
         </section>
 
         <!-- Stage C: Character Section -->
-        <section id="character-stage" class="gradient-bg py-8 hidden">
+        <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
                 <div class="sparkle-container">
                     <div class="character-container">
@@ -613,7 +613,7 @@
         </section>
 
         <!-- Stage D: Analysis Section -->
-        <section id="analysis-stage" class="gradient-bg py-8 hidden">
+        <section id="analysis-stage" class="py-8 hidden">
             <div class="max-w-md mx-auto px-4">
                 <p id="scroll-prompt" class="scroll-prompt hidden">
                     <span class="lang-en">Scroll to see more ↓</span>
@@ -738,7 +738,7 @@
         </section>
 
         <!-- Stage E: Share Section - One-Click Viral -->
-        <section id="share-stage" class="gradient-bg py-8 hidden">
+        <section id="share-stage" class="py-8 hidden">
             <div class="share-stage max-w-md mx-auto px-4">
                 <p id="share-encouragement" class="share-encouragement">
                     <span class="lang-en">Share your result with friends!</span>
@@ -769,7 +769,7 @@
 
                 <!-- All Share Buttons - Row 1 -->
                 <div class="flex flex-wrap justify-center gap-2 mb-3">
-                    <button id="share-copy" class="h-[40px] px-4 flex items-center gap-2 bg-white text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition shadow-md border border-gray-200">
+                    <button id="share-copy" class="h-[40px] px-4 flex items-center gap-2 bg-white/10 text-white rounded-full text-sm font-semibold hover:bg-white/20 transition shadow-md border border-white/20">
                         <span>🔗</span>
                         <span class="lang-en">Copy Link</span>
                         <span class="lang-ko">링크 복사</span>

@@ -51,6 +51,8 @@
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 0; transition: opacity 0.1s; }
@@ -389,17 +391,17 @@
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../css/monetization.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
+    <header class="kick-glass sticky top-4 mx-4 md:mx-auto md:max-w-6xl rounded-2xl z-50">
+        <nav class="px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="/" class="flex items-center space-x-2">
                     <span class="text-2xl">🔮</span>
                     <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="/compatibility/" class="text-gray-600 hover:text-pink-500 transition flex items-center space-x-1">
+                    <a href="/compatibility/" class="text-white/70 hover:text-white transition flex items-center space-x-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
@@ -423,7 +425,7 @@
                             <button onclick="switchLang('es')" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">🇪🇸 ES</button>
                         </div>
                     </div>
-                    <button id="share-btn" class="love-gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition">
+                    <button id="share-btn" class="kick-btn kick-btn-primary px-4 py-2 text-sm flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                         </svg>
@@ -435,7 +437,7 @@
                     </button>
                 </div>
                 <div class="flex md:hidden items-center space-x-2">
-                    <button id="share-btn-mobile" class="love-gradient-bg text-white p-2 rounded-lg">
+                    <button id="share-btn-mobile" class="kick-btn kick-btn-primary p-2 rounded-xl">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                         </svg>
@@ -447,16 +449,16 @@
                     </button>
                 </div>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
                 <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
+                    <a href="/" class="text-white/70 hover:text-white transition">
                         <span class="lang-en">Home</span>
                         <span class="lang-ko">홈</span>
                         <span class="lang-ja">ホーム</span>
                         <span class="lang-zh">首页</span>
                         <span class="lang-es">Inicio</span>
                     </a>
-                    <a href="/compatibility/" class="text-pink-500 font-medium">
+                    <a href="/compatibility/" class="text-pink-400 font-medium">
                         <span class="lang-en">New Test</span>
                         <span class="lang-ko">새 테스트</span>
                         <span class="lang-ja">新しいテスト</span>
@@ -484,35 +486,39 @@
         </nav>
     </header>
 
-    <main>
+    <main class="relative z-10 pt-8">
         <!-- Result Hero -->
-        <section class="love-gradient-bg py-10 md:py-14">
+        <section class="py-10 md:py-14">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <span class="text-5xl mb-4 inline-block heart-pulse">&#128149;</span>
-                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
-                    <span class="lang-en">Compatibility Results</span>
-                    <span class="lang-ko">궁합 결과</span>
-                    <span class="lang-ja">相性診断結果</span>
-                    <span class="lang-zh">配对结果</span>
-                    <span class="lang-es">Resultados de Compatibilidad</span>
+                <span class="text-6xl mb-4 inline-block heart-pulse kick-float">&#128149;</span>
+                <h1 class="kick-heading text-3xl md:text-5xl font-bold mb-2">
+                    <span class="kick-gradient-text">
+                        <span class="lang-en">Compatibility Results</span>
+                        <span class="lang-ko">궁합 결과</span>
+                        <span class="lang-ja">相性診断結果</span>
+                        <span class="lang-zh">配对结果</span>
+                        <span class="lang-es">Resultados de Compatibilidad</span>
+                    </span>
                 </h1>
             </div>
         </section>
 
         <!-- Names Display -->
-        <section class="py-6 bg-white border-b">
+        <section class="py-6">
             <div class="max-w-4xl mx-auto px-4">
-                <div class="flex items-center justify-center space-x-4 md:space-x-8">
-                    <div class="text-center">
-                        <span class="text-3xl">&#128104;</span>
-                        <p id="person-a-name" class="font-heading font-bold text-lg mt-1">Person A</p>
-                        <p id="person-a-zodiac" class="text-sm text-gray-500"></p>
-                    </div>
-                    <span class="text-3xl text-pink-500 heart-pulse">&#128151;</span>
-                    <div class="text-center">
-                        <span class="text-3xl">&#128105;</span>
-                        <p id="person-b-name" class="font-heading font-bold text-lg mt-1">Person B</p>
-                        <p id="person-b-zodiac" class="text-sm text-gray-500"></p>
+                <div class="kick-glass rounded-2xl p-6">
+                    <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                        <div class="text-center">
+                            <span class="text-3xl">&#128104;</span>
+                            <p id="person-a-name" class="font-heading font-bold text-lg mt-1 text-white">Person A</p>
+                            <p id="person-a-zodiac" class="text-sm text-white/60"></p>
+                        </div>
+                        <span class="text-3xl text-pink-400 heart-pulse">&#128151;</span>
+                        <div class="text-center">
+                            <span class="text-3xl">&#128105;</span>
+                            <p id="person-b-name" class="font-heading font-bold text-lg mt-1 text-white">Person B</p>
+                            <p id="person-b-zodiac" class="text-sm text-white/60"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -521,13 +527,13 @@
         <!-- Animal Couple Section - NEW VIRAL FEATURE -->
         <section class="py-6 md:py-8">
             <div class="max-w-2xl mx-auto px-4">
-                <div id="animal-couple-card" class="result-card bg-gradient-to-br from-pink-50 via-white to-rose-50 rounded-2xl shadow-xl p-6 md:p-8 border-2 border-pink-200 relative overflow-hidden">
+                <div id="animal-couple-card" class="kick-glass rounded-2xl p-6 md:p-8 relative overflow-hidden">
                     <!-- Decorative background elements -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-100 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-rose-100 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-xl"></div>
 
                     <!-- Title -->
-                    <h2 class="font-heading text-lg md:text-xl font-bold text-center text-pink-600 mb-4 relative z-10">
+                    <h2 class="font-heading text-lg md:text-xl font-bold text-center text-pink-400 mb-4 relative z-10">
                         <span class="lang-en">🐾 Your Animal Couple Type</span>
                         <span class="lang-ko">🐾 당신들의 동물 커플 유형</span>
                         <span class="lang-ja">🐾 あなたたちの動物カップルタイプ</span>
@@ -550,18 +556,18 @@
                     </div>
 
                     <!-- Animal Couple Title -->
-                    <h3 id="animal-couple-title" class="font-heading text-xl md:text-2xl font-bold text-center text-gray-800 mb-3 relative z-10">
+                    <h3 id="animal-couple-title" class="font-heading text-xl md:text-2xl font-bold text-center text-white mb-3 relative z-10">
                         사자와 고양이 커플
                     </h3>
 
                     <!-- Animal Couple Description -->
-                    <p id="animal-couple-desc" class="text-center text-gray-600 text-sm md:text-base leading-relaxed relative z-10 max-w-md mx-auto">
+                    <p id="animal-couple-desc" class="text-center text-white/70 text-sm md:text-base leading-relaxed relative z-10 max-w-md mx-auto">
                         밖에선 카리스마, 집에선 애교쟁이! 보호자와 매력쟁이의 만남.
                     </p>
 
                     <!-- Fun tag -->
                     <div class="mt-4 flex justify-center relative z-10">
-                        <span class="inline-flex items-center px-3 py-1 bg-pink-100 text-pink-600 text-xs font-medium rounded-full">
+                        <span class="inline-flex items-center px-3 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium rounded-full">
                             <span class="lang-en">Share your animal couple! 📸</span>
                             <span class="lang-ko">동물 커플 공유하기! 📸</span>
                             <span class="lang-ja">動物カップルをシェア！📸</span>
@@ -578,45 +584,45 @@
             <div class="max-w-3xl mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Movie Genre Card -->
-                    <div id="movie-genre-card" class="result-card bg-gradient-to-br from-purple-50 via-white to-indigo-50 rounded-2xl shadow-lg p-5 md:p-6 border border-purple-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div id="movie-genre-card" class="kick-glass rounded-2xl p-5 md:p-6 hover:-translate-y-1 transition-all duration-300">
                         <div class="text-center">
-                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full mb-3">
+                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-3">
                                 <span id="movie-genre-emoji" class="text-2xl">🎬</span>
                             </div>
-                            <h3 class="font-heading text-sm text-gray-500 mb-1">
+                            <h3 class="font-heading text-sm text-white/60 mb-1">
                                 <span class="lang-en">Your Love Movie Genre</span>
                                 <span class="lang-ko">당신들의 사랑 영화 장르</span>
                                 <span class="lang-ja">あなたたちの恋愛映画ジャンル</span>
                                 <span class="lang-zh">你们的爱情电影类型</span>
                                 <span class="lang-es">Tu Género de Película de Amor</span>
                             </h3>
-                            <p id="movie-genre-title" class="font-heading text-lg font-bold text-purple-700 mb-2">Romantic Comedy</p>
-                            <p id="movie-genre-desc" class="text-gray-600 text-sm leading-relaxed">Your love story is full of laughter!</p>
+                            <p id="movie-genre-title" class="font-heading text-lg font-bold text-purple-300 mb-2">Romantic Comedy</p>
+                            <p id="movie-genre-desc" class="text-white/70 text-sm leading-relaxed">Your love story is full of laughter!</p>
                         </div>
                     </div>
 
                     <!-- Lucky Date Card -->
-                    <div id="lucky-date-card" class="result-card bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-2xl shadow-lg p-5 md:p-6 border border-amber-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div id="lucky-date-card" class="kick-glass rounded-2xl p-5 md:p-6 hover:-translate-y-1 transition-all duration-300">
                         <div class="text-center">
                             <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mb-3">
                                 <span id="lucky-date-emoji" class="text-2xl">📅</span>
                             </div>
-                            <h3 class="font-heading text-sm text-gray-500 mb-1">
+                            <h3 class="font-heading text-sm text-white/60 mb-1">
                                 <span class="lang-en">Your Lucky Date</span>
                                 <span class="lang-ko">당신들의 럭키 데이트</span>
                                 <span class="lang-ja">ラッキーデート</span>
                                 <span class="lang-zh">你们的幸运日期</span>
                                 <span class="lang-es">Tu Fecha de la Suerte</span>
                             </h3>
-                            <p id="lucky-date-value" class="font-heading text-lg font-bold text-amber-700 mb-1">January 15, 2026</p>
-                            <p class="text-gray-600 text-sm">
+                            <p id="lucky-date-value" class="font-heading text-lg font-bold text-amber-300 mb-1">January 15, 2026</p>
+                            <p class="text-white/70 text-sm">
                                 <span id="lucky-date-season-emoji">🌸</span>
                                 <span class="lang-en">Perfect for: </span>
                                 <span class="lang-ko">추천 데이트: </span>
                                 <span class="lang-ja">おすすめ: </span>
                                 <span class="lang-zh">推荐活动: </span>
                                 <span class="lang-es">Perfecto para: </span>
-                                <span id="lucky-date-activity" class="font-medium text-amber-600">cherry blossom picnic</span>
+                                <span id="lucky-date-activity" class="font-medium text-amber-400">cherry blossom picnic</span>
                             </p>
                         </div>
                     </div>
@@ -627,12 +633,12 @@
         <!-- Main Results Card -->
         <section class="py-8 md:py-12">
             <div class="max-w-2xl mx-auto px-4">
-                <div class="result-card bg-white rounded-2xl shadow-xl p-6 md:p-8 glow-card">
+                <div class="kick-glass rounded-2xl p-6 md:p-8">
                     <!-- Overall Score Circle -->
                     <div class="flex flex-col items-center mb-8">
                         <div class="score-circle">
                             <svg width="200" height="200">
-                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f3f4f6" stroke-width="12"/>
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12"/>
                                 <circle id="score-ring" cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGradient)" stroke-width="12"
                                     stroke-linecap="round" class="progress-ring"
                                     stroke-dasharray="565.48" stroke-dashoffset="565.48"/>
@@ -644,11 +650,11 @@
                                 </defs>
                             </svg>
                             <div class="score-value">
-                                <span id="score-number" class="font-heading text-5xl font-bold love-gradient-text">--</span>
-                                <span class="text-gray-500 text-lg">%</span>
+                                <span id="score-number" class="font-heading text-5xl font-bold kick-gradient-text">--</span>
+                                <span class="text-white/60 text-lg">%</span>
                             </div>
                         </div>
-                        <p id="relationship-type" class="mt-4 text-xl font-semibold text-gray-700">--</p>
+                        <p id="relationship-type" class="mt-4 text-xl font-semibold text-white/80">--</p>
                     </div>
 
                     <!-- Category Bars -->
@@ -656,55 +662,55 @@
                         <!-- Communication -->
                         <div class="category-item">
                             <div class="flex justify-between items-center mb-1">
-                                <span id="communication-name" class="font-medium text-gray-700">&#128172; Communication</span>
-                                <span id="communication-score" class="text-pink-600 font-bold">--%</span>
+                                <span id="communication-name" class="font-medium text-white/80">&#128172; Communication</span>
+                                <span id="communication-score" class="text-pink-400 font-bold">--%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div id="communication-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="communication-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
 
                         <!-- Values -->
                         <div class="category-item">
                             <div class="flex justify-between items-center mb-1">
-                                <span id="values-name" class="font-medium text-gray-700">&#9878;&#65039; Values</span>
-                                <span id="values-score" class="text-pink-600 font-bold">--%</span>
+                                <span id="values-name" class="font-medium text-white/80">&#9878;&#65039; Values</span>
+                                <span id="values-score" class="text-pink-400 font-bold">--%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div id="values-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="values-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
 
                         <!-- Energy -->
                         <div class="category-item">
                             <div class="flex justify-between items-center mb-1">
-                                <span id="energy-name" class="font-medium text-gray-700">&#9889; Energy</span>
-                                <span id="energy-score" class="text-pink-600 font-bold">--%</span>
+                                <span id="energy-name" class="font-medium text-white/80">&#9889; Energy</span>
+                                <span id="energy-score" class="text-pink-400 font-bold">--%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div id="energy-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="energy-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
 
                         <!-- Emotional -->
                         <div class="category-item">
                             <div class="flex justify-between items-center mb-1">
-                                <span id="emotional-name" class="font-medium text-gray-700">&#128151; Emotional</span>
-                                <span id="emotional-score" class="text-pink-600 font-bold">--%</span>
+                                <span id="emotional-name" class="font-medium text-white/80">&#128151; Emotional</span>
+                                <span id="emotional-score" class="text-pink-400 font-bold">--%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div id="emotional-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="emotional-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
 
                         <!-- Growth -->
                         <div class="category-item">
                             <div class="flex justify-between items-center mb-1">
-                                <span id="growth-name" class="font-medium text-gray-700">&#127793; Growth</span>
-                                <span id="growth-score" class="text-pink-600 font-bold">--%</span>
+                                <span id="growth-name" class="font-medium text-white/80">&#127793; Growth</span>
+                                <span id="growth-score" class="text-pink-400 font-bold">--%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div id="growth-bar" class="category-bar love-gradient-bg h-3 rounded-full" style="width: 0%"></div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="growth-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
                     </div>
@@ -713,12 +719,12 @@
         </section>
 
         <!-- Share Section - Clean & Viral Design -->
-        <section class="py-8 bg-gray-50">
+        <section class="py-8">
             <div class="max-w-xl mx-auto px-4 space-y-6">
 
                 <!-- Card A: Make It Visual -->
-                <div class="share-card bg-white rounded-[20px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
-                    <h3 class="text-lg font-bold text-gray-900 text-center mb-4">
+                <div class="kick-glass rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white text-center mb-4">
                         <span class="lang-en">Save Result Image</span>
                         <span class="lang-ko">결과 이미지 저장</span>
                         <span class="lang-ja">結果画像を保存</span>
@@ -726,7 +732,7 @@
                         <span class="lang-es">Guardar Imagen</span>
                     </h3>
                     <div class="flex gap-3">
-                        <button onclick="downloadImage('story')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-800 rounded-xl font-semibold hover:border-pink-400 hover:bg-pink-50 transition-all">
+                        <button onclick="downloadImage('story')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
                             <span class="text-xl">📱</span>
                             <span>
                                 <span class="lang-en">Story</span>
@@ -737,7 +743,7 @@
                             </span>
                             <span class="text-xs text-gray-400 ml-1">9:16</span>
                         </button>
-                        <button onclick="downloadImage('square')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-800 rounded-xl font-semibold hover:border-pink-400 hover:bg-pink-50 transition-all">
+                        <button onclick="downloadImage('square')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
                             <span class="text-xl">🖼️</span>
                             <span>
                                 <span class="lang-en">Feed</span>
@@ -881,7 +887,7 @@
                 <!-- Category Details -->
                 <div class="space-y-6">
                     <!-- Communication -->
-                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128172;</span>
                             <h3 class="font-heading font-semibold text-lg">
@@ -892,11 +898,11 @@
                                 <span class="lang-es">Comunicacion</span>
                             </h3>
                         </div>
-                        <p id="communication-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="communication-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Values -->
-                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9878;&#65039;</span>
                             <h3 class="font-heading font-semibold text-lg">
@@ -907,11 +913,11 @@
                                 <span class="lang-es">Valores</span>
                             </h3>
                         </div>
-                        <p id="values-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="values-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Energy -->
-                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9889;</span>
                             <h3 class="font-heading font-semibold text-lg">
@@ -922,11 +928,11 @@
                                 <span class="lang-es">Energia</span>
                             </h3>
                         </div>
-                        <p id="energy-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="energy-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Emotional -->
-                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128151;</span>
                             <h3 class="font-heading font-semibold text-lg">
@@ -937,11 +943,11 @@
                                 <span class="lang-es">Conexion Emocional</span>
                             </h3>
                         </div>
-                        <p id="emotional-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="emotional-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Growth -->
-                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#127793;</span>
                             <h3 class="font-heading font-semibold text-lg">
@@ -952,14 +958,14 @@
                                 <span class="lang-es">Potencial de Crecimiento</span>
                             </h3>
                         </div>
-                        <p id="growth-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="growth-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Stage 5: Romance Movie Affiliate Section -->
-        <section class="py-8 bg-gray-50">
+        <section class="py-8">
             <div class="max-w-4xl mx-auto px-4">
                 <div id="movie-affiliate-container">
                     <!-- Populated by ContextualAffiliateManager -->
@@ -968,10 +974,10 @@
         </section>
 
         <!-- Try Again / More Tests -->
-        <section class="py-10 bg-gradient-to-br from-pink-50 to-rose-50">
+        <section class="py-10">
             <div class="max-w-2xl mx-auto px-4 text-center">
-                <span class="text-4xl mb-4 inline-block">&#128149;</span>
-                <h2 class="font-heading text-2xl font-bold mb-4">
+                <span class="text-4xl mb-4 inline-block kick-float">&#128149;</span>
+                <h2 class="kick-heading text-2xl font-bold mb-4 text-white">
                     <span class="lang-en">Try More Tests</span>
                     <span class="lang-ko">더 많은 테스트</span>
                     <span class="lang-ja">他のテストを試す</span>
@@ -979,7 +985,7 @@
                     <span class="lang-es">Prueba Mas Tests</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/compatibility/" class="love-gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition inline-flex items-center justify-center space-x-2">
+                    <a href="/compatibility/" class="kick-btn kick-btn-primary kick-btn-bounce font-semibold py-3 px-6 rounded-xl inline-flex items-center justify-center space-x-2">
                         <span>&#8634;</span>
                         <span class="lang-en">Test Again</span>
                         <span class="lang-ko">다시 테스트</span>
@@ -987,7 +993,7 @@
                         <span class="lang-zh">再次测试</span>
                         <span class="lang-es">Probar de Nuevo</span>
                     </a>
-                    <a href="/life-summary/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
+                    <a href="/life-summary/" class="bg-white/10 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
                         <span>&#10024;</span>
                         <span class="lang-en">AI Life Summary</span>
                         <span class="lang-ko">AI 인생 요약</span>
