@@ -15,8 +15,8 @@ const SmartShareManager = {
         'zh-TW': ['twitter', 'facebook', 'copy', 'line', 'instagram'],
         // Chinese Simplified - WeChat would be ideal but not available, use copy
         zh: ['copy', 'weibo', 'twitter', 'facebook', 'instagram'],
-        // Korean - KakaoTalk is king
-        ko: ['kakao', 'copy', 'twitter', 'facebook', 'instagram'],
+        // Korean - Link copy first, then KakaoTalk
+        ko: ['copy', 'kakao', 'twitter', 'facebook', 'instagram'],
         // Spanish - WhatsApp dominant in Latin America & Spain
         es: ['whatsapp', 'twitter', 'facebook', 'copy', 'instagram'],
         // Portuguese - WhatsApp dominant in Brazil
@@ -224,14 +224,14 @@ const SmartShareManager = {
             if (!config) return '';
 
             const label = config.label[baseLang] || config.label.en;
-            const isPrimary = index === 0;
-            const sizeClass = isPrimary ? 'px-6 py-3 text-base font-bold' : 'px-4 py-2 text-sm font-medium';
+            // All buttons same size for consistent appearance
+            const sizeClass = 'px-4 py-2.5 text-sm font-semibold';
 
             return `
                 <button
                     data-share-type="${type}"
                     onclick="SmartShareManager.handleShare('${type}', ${JSON.stringify({ locale, score, type: options.type, url })})"
-                    class="${config.class} ${sizeClass} rounded-lg transition flex items-center justify-center space-x-2 ${isPrimary ? 'ring-2 ring-offset-2 ring-pink-400' : ''}"
+                    class="${config.class} ${sizeClass} rounded-lg transition flex items-center justify-center space-x-2"
                 >
                     <span>${config.icon}</span>
                     <span>${label}</span>
