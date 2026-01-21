@@ -911,42 +911,77 @@
                     </div>
                 </div>
 
-                <!-- Extended Insights - Accordion Style -->
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-                    <button id="insights-toggle" onclick="toggleInsights()" class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition">
-                        <h3 id="what-means-label" class="font-heading font-semibold text-xl">
-                            <span class="lang-en">What This Means For You</span>
-                            <span class="lang-ko">당신에게 이것이 의미하는 것</span>
-                            <span class="lang-ja">あなたにとっての意味</span>
-                            <span class="lang-zh">这对你意味着什么</span>
-                            <span class="lang-es">Qué significa para ti</span>
-                        </h3>
-                        <div class="flex items-center gap-2 text-primary">
-                            <span id="insights-toggle-text" class="text-sm font-medium">
-                                <span class="lang-en">View Details</span>
-                                <span class="lang-ko">상세 분석 보기</span>
-                                <span class="lang-ja">詳細を見る</span>
-                                <span class="lang-zh">查看详情</span>
-                                <span class="lang-es">Ver detalles</span>
-                            </span>
-                            <svg id="insights-toggle-icon" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                <!-- Extended Insights - Accordion Style (Enhanced) -->
+                <div class="rounded-2xl shadow-lg overflow-hidden" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid rgba(99, 102, 241, 0.1);">
+                    <button id="insights-toggle" onclick="toggleInsights()" class="w-full flex items-center justify-between p-6 text-left transition-all group" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+                                ✨
+                            </div>
+                            <h3 id="what-means-label" class="font-heading font-bold text-xl text-gray-800">
+                                <span class="lang-en">What This Means For You</span>
+                                <span class="lang-ko">당신에게 이것이 의미하는 것</span>
+                                <span class="lang-ja">あなたにとっての意味</span>
+                                <span class="lang-zh">这对你意味着什么</span>
+                                <span class="lang-es">Qué significa para ti</span>
+                            </h3>
+                        </div>
+                        <div id="insights-toggle-text" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all" style="background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+                            <span class="lang-en">View Details</span>
+                            <span class="lang-ko">상세 분석 보기</span>
+                            <span class="lang-ja">詳細を見る</span>
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-es">Ver detalles</span>
+                            <svg id="insights-toggle-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                     </button>
-                    <div id="extended-insights" class="hidden px-6 pb-6 text-gray-700 space-y-4 border-t">
-                        <p id="insight-p1" class="pt-4">
-                            Based on the unique numerical patterns derived from your birth date, our algorithm has identified key personality traits and life themes that resonate with your journey. While this analysis is primarily for entertainment, many people find meaningful connections in these insights.
-                        </p>
-                        <p id="insight-p2">
-                            Your core trait reflects the fundamental strength that guides you through life's challenges. This characteristic often manifests in how you approach problems, relate to others, and pursue your goals. Embracing this trait can help you navigate difficult situations with greater confidence and clarity.
-                        </p>
-                        <p id="insight-p3">
-                            The life phase indicator suggests the general theme of your current life chapter. Understanding this can provide perspective on the opportunities and challenges you might be experiencing, helping you make decisions that align with your natural rhythm.
-                        </p>
-                        <p id="insight-p4">
-                            Your lucky element represents a deeper connection to natural forces that ancient traditions believed influenced human destiny. Whether you take this literally or metaphorically, many find that reflecting on elemental connections brings a sense of grounding and purpose.
-                        </p>
+                    <div id="extended-insights" class="hidden px-6 pb-6 space-y-4" style="border-top: 1px solid rgba(99, 102, 241, 0.1);">
+                        <!-- Insight Card 1 -->
+                        <div class="pt-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0" style="background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);">
+                                    🔮
+                                </div>
+                                <p id="insight-p1" class="text-gray-700 leading-relaxed">
+                                    Based on the unique numerical patterns derived from your birth date, our algorithm has identified key personality traits and life themes that resonate with your journey. While this analysis is primarily for entertainment, many people find meaningful connections in these insights.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Insight Card 2 -->
+                        <div class="p-4 rounded-xl bg-white shadow-sm border border-gray-100">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0" style="background: linear-gradient(135deg, #f472b6 0%, #fb7185 100%);">
+                                    💎
+                                </div>
+                                <p id="insight-p2" class="text-gray-700 leading-relaxed">
+                                    Your core trait reflects the fundamental strength that guides you through life's challenges. This characteristic often manifests in how you approach problems, relate to others, and pursue your goals. Embracing this trait can help you navigate difficult situations with greater confidence and clarity.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Insight Card 3 -->
+                        <div class="p-4 rounded-xl bg-white shadow-sm border border-gray-100">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0" style="background: linear-gradient(135deg, #34d399 0%, #2dd4bf 100%);">
+                                    🌱
+                                </div>
+                                <p id="insight-p3" class="text-gray-700 leading-relaxed">
+                                    The life phase indicator suggests the general theme of your current life chapter. Understanding this can provide perspective on the opportunities and challenges you might be experiencing, helping you make decisions that align with your natural rhythm.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Insight Card 4 -->
+                        <div class="p-4 rounded-xl bg-white shadow-sm border border-gray-100">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0" style="background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);">
+                                    🌟
+                                </div>
+                                <p id="insight-p4" class="text-gray-700 leading-relaxed">
+                                    Your lucky element represents a deeper connection to natural forces that ancient traditions believed influenced human destiny. Whether you take this literally or metaphorically, many find that reflecting on elemental connections brings a sense of grounding and purpose.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2090,20 +2125,11 @@
         // Toggle Insights Accordion
         function toggleInsights() {
             const content = document.getElementById('extended-insights');
-            const icon = document.getElementById('insights-toggle-icon');
             const toggleText = document.getElementById('insights-toggle-text');
 
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-                // Update toggle text
-                const hideLabels = {
-                    ko: '접기',
-                    en: 'Hide',
-                    ja: '閉じる',
-                    zh: '收起',
-                    es: 'Ocultar'
-                };
+                // Update toggle button to "Hide" state
                 if (toggleText) {
                     toggleText.innerHTML = `
                         <span class="lang-en">Hide</span>
@@ -2111,12 +2137,15 @@
                         <span class="lang-ja">閉じる</span>
                         <span class="lang-zh">收起</span>
                         <span class="lang-es">Ocultar</span>
+                        <svg id="insights-toggle-icon" class="w-4 h-4 transition-transform" style="transform: rotate(180deg);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
                     `;
+                    toggleText.style.background = 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)';
                 }
             } else {
                 content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-                // Restore toggle text
+                // Restore toggle button to "View Details" state
                 if (toggleText) {
                     toggleText.innerHTML = `
                         <span class="lang-en">View Details</span>
@@ -2124,7 +2153,11 @@
                         <span class="lang-ja">詳細を見る</span>
                         <span class="lang-zh">查看详情</span>
                         <span class="lang-es">Ver detalles</span>
+                        <svg id="insights-toggle-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
                     `;
+                    toggleText.style.background = 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)';
                 }
             }
         }
