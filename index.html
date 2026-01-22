@@ -360,8 +360,8 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 1.25rem 1.75rem;
+            border-radius: 14px;
+            padding: 0.875rem 1.25rem;
             transition: all 0.3s ease;
         }
         .glass-stat:hover {
@@ -370,12 +370,15 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         .glass-stat-number {
-            font-size: 2rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff, #f0abfc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        .glass-stat .text-3xl {
+            font-size: 1.5rem;
         }
 
         /* Real-time Ticker */
@@ -481,14 +484,14 @@
 
             /* Glass Stats Mobile */
             .glass-stat {
-                padding: 0.75rem 1rem;
-                border-radius: 14px;
+                padding: 0.5rem 0.75rem;
+                border-radius: 10px;
             }
             .glass-stat-number {
-                font-size: 1.25rem;
+                font-size: 1rem;
             }
             .glass-stat .text-3xl {
-                font-size: 1.25rem;
+                font-size: 1rem;
             }
 
             /* Live Ticker Mobile */
@@ -1141,7 +1144,7 @@
                 </div>
 
                 <!-- Glassmorphism Stats -->
-                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
                     <div class="glass-stat flex items-center gap-3">
                         <span class="text-3xl">🔥</span>
                         <div class="text-left">
