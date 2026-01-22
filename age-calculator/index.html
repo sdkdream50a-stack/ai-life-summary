@@ -857,7 +857,7 @@
                                 <div id="interstitial-emoji" class="interstitial-emoji"></div>
                                 <h2 id="interstitial-title" class="interstitial-title"></h2>
                                 <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
-                                <button id="interstitial-button" class="interstitial-button"></button>
+                                <button type="button" id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
@@ -1513,7 +1513,7 @@
                 <h3 class="question-title">${question.text}</h3>
                 <div class="option-grid">
                     ${question.options.map((opt, i) => `
-                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
+                        <button type="button" class="option-btn" data-value="${opt.value}" data-index="${i}">
                             <span class="option-emoji">${opt.emoji}</span>
                             <span class="option-text">${opt.text}</span>
                         </button>
