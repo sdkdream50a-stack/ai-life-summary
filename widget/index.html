@@ -43,6 +43,214 @@
     body {
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
+
+    /* Share options grid */
+    .share-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .share-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(99, 102, 241, 0.1);
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .share-option:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+    }
+
+    .share-option.active {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .share-option-icon {
+      font-size: 1.5rem;
+    }
+
+    .share-option-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .share-option-desc {
+      font-size: 0.625rem;
+      color: #64748b;
+      text-align: center;
+    }
+
+    /* Code area */
+    .code-area {
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .code-area pre {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 1rem;
+      padding: 1rem;
+      padding-right: 5rem;
+      overflow-x: auto;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      color: #6366f1;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .code-area .copy-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .code-area .copy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .code-area .copy-btn.copied {
+      background: linear-gradient(135deg, #22c55e, #10b981);
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+    }
+
+    /* Direct link input */
+    .link-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .link-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 0.75rem;
+      font-size: 0.75rem;
+      color: #6366f1;
+      outline: none;
+    }
+
+    .link-input:focus {
+      border-color: #6366f1;
+    }
+
+    /* Download button */
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      border: none;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Hero banner */
+    .widget-hero {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .widget-hero-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .widget-hero-desc {
+      font-size: 0.875rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Help box */
+    .help-box {
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .help-box-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .help-box-content {
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.8;
+    }
+
+    .help-box-content ol {
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+
+    .help-box-content li {
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .share-options {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
   <!-- Structured Data -->
@@ -75,6 +283,15 @@
 
   <!-- Content -->
   <main class="generator-content">
+    <!-- Hero Banner -->
+    <div class="widget-hero">
+      <div class="widget-hero-title" data-i18n="heroTitle">Show Your Soul Type!</div>
+      <div class="widget-hero-desc" data-i18n="heroDesc">
+        Display your AI Soul Type on your blog, Notion, or website.<br>
+        Create a widget and share your unique personality!
+      </div>
+    </div>
+
     <!-- Style Selector -->
     <section class="generator-section">
       <h2 class="generator-section-title">
@@ -117,37 +334,109 @@
         <span>👁️</span>
         <span data-i18n="preview">Preview</span>
       </h2>
-      <div class="preview-area">
+      <div class="preview-area" id="preview-area">
         <!-- Rendered by JS -->
       </div>
     </section>
 
-    <!-- Embed Code -->
+    <!-- Share Options -->
     <section class="generator-section">
       <h2 class="generator-section-title">
-        <span>📋</span>
-        <span data-i18n="embedCode">Embed Code</span>
+        <span>📤</span>
+        <span data-i18n="shareMethod">How to Share</span>
       </h2>
-      <div class="code-output">
-        <button class="copy-btn" data-i18n="copy">Copy</button>
-        <pre><code><!-- Generated by JS --></code></pre>
+      <div class="share-options">
+        <button class="share-option active" data-share="embed">
+          <div class="share-option-icon">🔗</div>
+          <div class="share-option-name" data-i18n="embedOption">Embed Code</div>
+          <div class="share-option-desc" data-i18n="embedDesc">For blogs & websites</div>
+        </button>
+        <button class="share-option" data-share="link">
+          <div class="share-option-icon">🌐</div>
+          <div class="share-option-name" data-i18n="linkOption">Direct Link</div>
+          <div class="share-option-desc" data-i18n="linkDesc">Copy & share anywhere</div>
+        </button>
+        <button class="share-option" data-share="image">
+          <div class="share-option-icon">🖼️</div>
+          <div class="share-option-name" data-i18n="imageOption">Save Image</div>
+          <div class="share-option-desc" data-i18n="imageDesc">Download as PNG</div>
+        </button>
+        <button class="share-option" data-share="sns">
+          <div class="share-option-icon">📱</div>
+          <div class="share-option-name" data-i18n="snsOption">Share to SNS</div>
+          <div class="share-option-desc" data-i18n="snsDesc">Twitter, Facebook</div>
+        </button>
+      </div>
+
+      <!-- Embed Code (default) -->
+      <div id="share-embed" class="share-content">
+        <div class="code-area">
+          <button class="copy-btn" data-copy="embed" data-i18n="copy">Copy</button>
+          <pre><code id="embed-code"><!-- Generated by JS --></code></pre>
+        </div>
+      </div>
+
+      <!-- Direct Link -->
+      <div id="share-link" class="share-content" style="display: none;">
+        <div class="link-input-group">
+          <input type="text" class="link-input" id="direct-link" readonly>
+          <button class="copy-btn" data-copy="link" data-i18n="copy">Copy</button>
+        </div>
+      </div>
+
+      <!-- Image Download -->
+      <div id="share-image" class="share-content" style="display: none;">
+        <button class="download-btn" id="download-btn">
+          <span>📥</span>
+          <span data-i18n="downloadImage">Download as Image</span>
+        </button>
+        <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 0.75rem;" data-i18n="imageNote">
+          Save as PNG and use on Instagram, KakaoTalk profile, etc.
+        </p>
+      </div>
+
+      <!-- SNS Share -->
+      <div id="share-sns" class="share-content" style="display: none;">
+        <div style="display: flex; gap: 0.75rem; justify-content: center;">
+          <button class="download-btn" style="flex: 1; max-width: 150px;" id="share-twitter">
+            <span>🐦</span>
+            <span>Twitter</span>
+          </button>
+          <button class="download-btn" style="flex: 1; max-width: 150px;" id="share-facebook">
+            <span>📘</span>
+            <span>Facebook</span>
+          </button>
+        </div>
       </div>
     </section>
 
     <!-- Instructions -->
     <section class="generator-section">
-      <h2 class="generator-section-title">
-        <span>ℹ️</span>
-        <span data-i18n="howToUse">How to Use</span>
-      </h2>
-      <div style="background: rgba(30, 41, 59, 0.6); border-radius: 1rem; padding: 1rem; color: #94a3b8; font-size: 0.875rem; line-height: 1.6;">
-        <p data-i18n="instructions">
-          1. Select your preferred widget style<br>
-          2. Choose your soul type<br>
-          3. Copy the embed code<br>
-          4. Paste it into your blog or website HTML
-        </p>
+      <div class="help-box">
+        <div class="help-box-title">
+          <span>💡</span>
+          <span data-i18n="howToUse">How to Use</span>
+        </div>
+        <div class="help-box-content">
+          <ol data-i18n-html="instructionsList">
+            <li>Select your preferred widget style (Card/Badge/Mini)</li>
+            <li>Choose your soul type from the test result</li>
+            <li>Pick a sharing method and copy or download</li>
+            <li>Paste into your blog, Notion, or website!</li>
+          </ol>
+        </div>
       </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="generator-section" style="text-align: center;">
+      <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1rem;" data-i18n="ctaText">
+        Don't know your soul type yet?
+      </p>
+      <a href="../soul-type/" class="download-btn" style="display: inline-flex; text-decoration: none;">
+        <span>✨</span>
+        <span data-i18n="ctaButton">Take the Soul Type Test</span>
+      </a>
     </section>
   </main>
 
@@ -155,77 +444,156 @@
   <script src="../js/soul-types.js"></script>
   <script src="../js/widget-embed.js"></script>
 
+  <!-- html2canvas for image download -->
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
   <script>
     // i18n translations
     const i18n = {
       ko: {
         widgetGenerator: '위젯 생성기',
+        heroTitle: '나만의 소울 타입을 뽐내보세요!',
+        heroDesc: '블로그, 노션, 웹사이트에 AI 소울 타입을 표시하세요.<br>위젯을 만들어 나만의 개성을 공유해보세요!',
         selectStyle: '스타일 선택',
         cardStyle: '카드',
         badgeStyle: '배지',
         miniStyle: '미니',
         selectType: '타입 선택',
         preview: '미리보기',
-        embedCode: '임베드 코드',
+        shareMethod: '공유 방법',
+        embedOption: '임베드 코드',
+        embedDesc: '블로그/웹사이트용',
+        linkOption: '직접 링크',
+        linkDesc: '어디서든 공유 가능',
+        imageOption: '이미지 저장',
+        imageDesc: 'PNG로 다운로드',
+        snsOption: 'SNS 공유',
+        snsDesc: '트위터, 페이스북',
         copy: '복사',
+        downloadImage: '이미지로 다운로드',
+        imageNote: 'PNG로 저장해서 인스타그램, 카카오톡 프로필 등에 사용하세요.',
         howToUse: '사용 방법',
-        instructions: '1. 원하는 위젯 스타일을 선택하세요<br>2. 소울 타입을 선택하세요<br>3. 임베드 코드를 복사하세요<br>4. 블로그나 웹사이트 HTML에 붙여넣기 하세요'
+        instructionsList: '<li>원하는 위젯 스타일을 선택하세요 (카드/배지/미니)</li><li>테스트 결과에서 나온 소울 타입을 선택하세요</li><li>공유 방법을 선택하고 복사하거나 다운로드하세요</li><li>블로그, 노션, 웹사이트에 붙여넣기 하세요!</li>',
+        ctaText: '아직 소울 타입을 모르시나요?',
+        ctaButton: '소울 타입 테스트 하러 가기',
+        copied: '복사됨!'
       },
       en: {
         widgetGenerator: 'Widget Generator',
+        heroTitle: 'Show Off Your Soul Type!',
+        heroDesc: 'Display your AI Soul Type on your blog, Notion, or website.<br>Create a widget and share your unique personality!',
         selectStyle: 'Select Style',
         cardStyle: 'Card',
         badgeStyle: 'Badge',
         miniStyle: 'Mini',
         selectType: 'Select Type',
         preview: 'Preview',
-        embedCode: 'Embed Code',
+        shareMethod: 'How to Share',
+        embedOption: 'Embed Code',
+        embedDesc: 'For blogs & websites',
+        linkOption: 'Direct Link',
+        linkDesc: 'Copy & share anywhere',
+        imageOption: 'Save Image',
+        imageDesc: 'Download as PNG',
+        snsOption: 'Share to SNS',
+        snsDesc: 'Twitter, Facebook',
         copy: 'Copy',
+        downloadImage: 'Download as Image',
+        imageNote: 'Save as PNG and use on Instagram, KakaoTalk profile, etc.',
         howToUse: 'How to Use',
-        instructions: '1. Select your preferred widget style<br>2. Choose your soul type<br>3. Copy the embed code<br>4. Paste it into your blog or website HTML'
+        instructionsList: '<li>Select your preferred widget style (Card/Badge/Mini)</li><li>Choose your soul type from the test result</li><li>Pick a sharing method and copy or download</li><li>Paste into your blog, Notion, or website!</li>',
+        ctaText: "Don't know your soul type yet?",
+        ctaButton: 'Take the Soul Type Test',
+        copied: 'Copied!'
       },
       ja: {
         widgetGenerator: 'ウィジェット作成',
+        heroTitle: 'あなたのソウルタイプを見せよう！',
+        heroDesc: 'ブログ、Notion、ウェブサイトにAIソウルタイプを表示しましょう。<br>ウィジェットを作成して、あなたの個性を共有しましょう！',
         selectStyle: 'スタイル選択',
         cardStyle: 'カード',
         badgeStyle: 'バッジ',
         miniStyle: 'ミニ',
         selectType: 'タイプ選択',
         preview: 'プレビュー',
-        embedCode: '埋め込みコード',
+        shareMethod: '共有方法',
+        embedOption: '埋め込みコード',
+        embedDesc: 'ブログ/ウェブサイト用',
+        linkOption: 'ダイレクトリンク',
+        linkDesc: 'どこでも共有可能',
+        imageOption: '画像を保存',
+        imageDesc: 'PNGでダウンロード',
+        snsOption: 'SNSで共有',
+        snsDesc: 'Twitter、Facebook',
         copy: 'コピー',
+        downloadImage: '画像でダウンロード',
+        imageNote: 'PNGで保存してInstagram、LINEプロフィールなどに使用できます。',
         howToUse: '使い方',
-        instructions: '1. お好みのウィジェットスタイルを選択<br>2. ソウルタイプを選択<br>3. 埋め込みコードをコピー<br>4. ブログやウェブサイトのHTMLに貼り付け'
+        instructionsList: '<li>お好みのウィジェットスタイルを選択（カード/バッジ/ミニ）</li><li>テスト結果から出たソウルタイプを選択</li><li>共有方法を選んでコピーまたはダウンロード</li><li>ブログ、Notion、ウェブサイトに貼り付け！</li>',
+        ctaText: 'まだソウルタイプを知らない？',
+        ctaButton: 'ソウルタイプテストを受ける',
+        copied: 'コピーしました！'
       },
       zh: {
         widgetGenerator: '小部件生成器',
+        heroTitle: '展示你的灵魂类型！',
+        heroDesc: '在博客、Notion或网站上显示您的AI灵魂类型。<br>创建小部件，分享您独特的个性！',
         selectStyle: '选择样式',
         cardStyle: '卡片',
         badgeStyle: '徽章',
         miniStyle: '迷你',
         selectType: '选择类型',
         preview: '预览',
-        embedCode: '嵌入代码',
+        shareMethod: '分享方式',
+        embedOption: '嵌入代码',
+        embedDesc: '博客/网站用',
+        linkOption: '直接链接',
+        linkDesc: '随处可分享',
+        imageOption: '保存图片',
+        imageDesc: 'PNG下载',
+        snsOption: 'SNS分享',
+        snsDesc: 'Twitter, Facebook',
         copy: '复制',
+        downloadImage: '下载图片',
+        imageNote: '保存为PNG，可用于Instagram、微信头像等。',
         howToUse: '使用方法',
-        instructions: '1. 选择您喜欢的小部件样式<br>2. 选择您的灵魂类型<br>3. 复制嵌入代码<br>4. 将其粘贴到您的博客或网站HTML中'
+        instructionsList: '<li>选择您喜欢的小部件样式（卡片/徽章/迷你）</li><li>选择测试结果中的灵魂类型</li><li>选择分享方式并复制或下载</li><li>粘贴到博客、Notion或网站！</li>',
+        ctaText: '还不知道你的灵魂类型？',
+        ctaButton: '去做灵魂类型测试',
+        copied: '已复制！'
       },
       es: {
         widgetGenerator: 'Generador de Widget',
+        heroTitle: '¡Muestra tu Tipo de Alma!',
+        heroDesc: 'Muestra tu Tipo de Alma AI en tu blog, Notion o sitio web.<br>¡Crea un widget y comparte tu personalidad única!',
         selectStyle: 'Seleccionar Estilo',
         cardStyle: 'Tarjeta',
         badgeStyle: 'Insignia',
         miniStyle: 'Mini',
         selectType: 'Seleccionar Tipo',
         preview: 'Vista Previa',
-        embedCode: 'Código de Inserción',
+        shareMethod: 'Cómo Compartir',
+        embedOption: 'Código Embed',
+        embedDesc: 'Para blogs y sitios web',
+        linkOption: 'Enlace Directo',
+        linkDesc: 'Copia y comparte en cualquier lugar',
+        imageOption: 'Guardar Imagen',
+        imageDesc: 'Descargar como PNG',
+        snsOption: 'Compartir en SNS',
+        snsDesc: 'Twitter, Facebook',
         copy: 'Copiar',
+        downloadImage: 'Descargar como Imagen',
+        imageNote: 'Guarda como PNG y úsalo en Instagram, perfil de WhatsApp, etc.',
         howToUse: 'Cómo Usar',
-        instructions: '1. Selecciona tu estilo de widget preferido<br>2. Elige tu tipo de alma<br>3. Copia el código de inserción<br>4. Pégalo en el HTML de tu blog o sitio web'
+        instructionsList: '<li>Selecciona tu estilo de widget preferido (Tarjeta/Insignia/Mini)</li><li>Elige tu tipo de alma del resultado del test</li><li>Selecciona un método de compartir y copia o descarga</li><li>¡Pégalo en tu blog, Notion o sitio web!</li>',
+        ctaText: '¿Aún no conoces tu tipo de alma?',
+        ctaButton: 'Hacer el Test de Tipo de Alma',
+        copied: '¡Copiado!'
       }
     };
 
     let currentLang = 'ko';
+    let selectedShareMethod = 'embed';
 
     // Detect language
     function detectLanguage() {
@@ -249,7 +617,118 @@
         const key = el.getAttribute('data-i18n');
         el.innerHTML = t(key);
       });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        el.innerHTML = t(key);
+      });
     }
+
+    // Share method switching
+    function setupShareOptions() {
+      document.querySelectorAll('.share-option').forEach(option => {
+        option.addEventListener('click', () => {
+          const method = option.dataset.share;
+          selectedShareMethod = method;
+
+          // Update UI
+          document.querySelectorAll('.share-option').forEach(o => o.classList.remove('active'));
+          option.classList.add('active');
+
+          // Show/hide content
+          document.querySelectorAll('.share-content').forEach(c => c.style.display = 'none');
+          document.getElementById(`share-${method}`).style.display = 'block';
+        });
+      });
+    }
+
+    // Copy functionality
+    function setupCopyButtons() {
+      document.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const type = btn.dataset.copy;
+          let text = '';
+
+          if (type === 'embed') {
+            text = document.getElementById('embed-code').textContent;
+          } else if (type === 'link') {
+            text = document.getElementById('direct-link').value;
+          }
+
+          try {
+            await navigator.clipboard.writeText(text);
+            const originalText = btn.textContent;
+            btn.textContent = t('copied');
+            btn.classList.add('copied');
+
+            setTimeout(() => {
+              btn.textContent = t('copy');
+              btn.classList.remove('copied');
+            }, 2000);
+          } catch (err) {
+            console.error('Copy failed:', err);
+          }
+        });
+      });
+    }
+
+    // Image download
+    function setupImageDownload() {
+      document.getElementById('download-btn')?.addEventListener('click', async () => {
+        const previewArea = document.getElementById('preview-area');
+        const widget = previewArea.querySelector('.widget-card, .widget-badge, .widget-mini');
+
+        if (!widget) return;
+
+        try {
+          const canvas = await html2canvas(widget, {
+            backgroundColor: null,
+            scale: 2
+          });
+
+          const link = document.createElement('a');
+          link.download = `my-soul-type-${widgetGenerator.selectedType}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch (err) {
+          console.error('Download failed:', err);
+          alert('이미지 다운로드에 실패했습니다. 다시 시도해주세요.');
+        }
+      });
+    }
+
+    // SNS share
+    function setupSNSShare() {
+      const shareUrl = 'https://smartaitest.com/soul-type/';
+      const shareText = currentLang === 'ko'
+        ? '나의 AI 소울 타입을 확인해보세요!'
+        : 'Check out my AI Soul Type!';
+
+      document.getElementById('share-twitter')?.addEventListener('click', () => {
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+        window.open(url, '_blank', 'width=550,height=420');
+      });
+
+      document.getElementById('share-facebook')?.addEventListener('click', () => {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        window.open(url, '_blank', 'width=550,height=420');
+      });
+    }
+
+    // Update direct link
+    function updateDirectLink() {
+      const soulType = widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType);
+      if (!soulType) return;
+
+      const embedUrl = `https://smartaitest.com/widget/embed.html?type=${widgetGenerator.selectedType}&style=${widgetGenerator.selectedStyle}&lang=${currentLang}`;
+      document.getElementById('direct-link').value = embedUrl;
+    }
+
+    // Override updateCode to also update direct link
+    const originalUpdateCode = WidgetGenerator.prototype.updateCode;
+    WidgetGenerator.prototype.updateCode = function() {
+      originalUpdateCode.call(this);
+      updateDirectLink();
+    };
 
     // Initialize
     function init() {
@@ -258,6 +737,13 @@
 
       // Initialize widget generator
       widgetGenerator.initialize(currentLang);
+
+      // Setup additional features
+      setupShareOptions();
+      setupCopyButtons();
+      setupImageDownload();
+      setupSNSShare();
+      updateDirectLink();
     }
 
     document.addEventListener('DOMContentLoaded', init);
