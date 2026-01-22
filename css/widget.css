@@ -1,4 +1,4 @@
-/* Widget Styles - Standalone minimal CSS */
+/* Widget Styles - Bright Holographic Theme */
 
 /* ==================== BASE ==================== */
 
@@ -11,7 +11,7 @@
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   background: transparent;
-  color: #f8fafc;
+  color: #1e293b;
 }
 
 /* ==================== CARD WIDGET (300x200) ==================== */
@@ -57,11 +57,13 @@ body {
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 2px;
+  color: #fff;
 }
 
 .widget-card-type {
   font-size: 0.75rem;
   opacity: 0.8;
+  color: #fff;
 }
 
 .widget-card-stats {
@@ -83,12 +85,14 @@ body {
 .widget-card-stat-value {
   font-size: 1rem;
   font-weight: 700;
+  color: #fff;
 }
 
 .widget-card-stat-label {
   font-size: 0.625rem;
   opacity: 0.7;
   text-transform: uppercase;
+  color: #fff;
 }
 
 .widget-card-cta {
@@ -144,16 +148,19 @@ body {
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 1px;
+  color: #fff;
 }
 
 .widget-badge-type {
   font-size: 0.625rem;
   opacity: 0.8;
+  color: #fff;
 }
 
 .widget-badge-arrow {
   font-size: 1rem;
   opacity: 0.6;
+  color: #fff;
 }
 
 /* ==================== MINI WIDGET (100x100) ==================== */
@@ -187,14 +194,53 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fff;
 }
 
-/* ==================== GENERATOR PAGE ==================== */
+/* ==================== GENERATOR PAGE - BRIGHT THEME ==================== */
 
 .generator-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #e0e7ff 50%, #fce7f3 100%);
   padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aurora floating orbs */
+.generator-container::before {
+  content: '';
+  position: fixed;
+  top: 10%;
+  left: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-orb 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.generator-container::after {
+  content: '';
+  position: fixed;
+  bottom: 10%;
+  right: -10%;
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-orb 25s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10%, 10%) scale(1.1); }
+  50% { transform: translate(5%, -5%) scale(0.95); }
+  75% { transform: translate(-5%, 5%) scale(1.05); }
 }
 
 .generator-header {
@@ -202,9 +248,10 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -216,25 +263,33 @@ body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: #f8fafc;
+  color: #6366f1;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  transition: all 0.2s ease;
 }
 
 .generator-header .back-link:hover {
   transform: translateX(-2px);
+  background: rgba(99, 102, 241, 0.2);
 }
 
 .generator-header .header-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #f8fafc;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .generator-content {
   padding: 1.5rem;
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .generator-section {
@@ -244,14 +299,14 @@ body {
 .generator-section-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #1e293b;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Style Selector */
+/* Style Selector - Glassmorphism */
 .style-selector {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -260,21 +315,43 @@ body {
 
 .style-option {
   padding: 1rem;
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(99, 102, 241, 0.1);
   border-radius: 1rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.style-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.style-option:hover::before {
+  left: 100%;
 }
 
 .style-option:hover {
   border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
 }
 
 .style-option.active {
   border-color: #6366f1;
   background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
 }
 
 .style-option-icon {
@@ -285,12 +362,12 @@ body {
 .style-option-name {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #1e293b;
 }
 
 .style-option-size {
   font-size: 0.625rem;
-  color: #94a3b8;
+  color: #64748b;
   margin-top: 0.25rem;
 }
 
@@ -303,21 +380,25 @@ body {
 
 .type-option {
   padding: 0.75rem 0.5rem;
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(99, 102, 241, 0.1);
   border-radius: 0.75rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .type-option:hover {
   border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
 }
 
 .type-option.active {
   border-color: #6366f1;
   background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
 }
 
 .type-option-emoji {
@@ -327,34 +408,71 @@ body {
 
 .type-option-name {
   font-size: 0.5rem;
-  color: #94a3b8;
+  color: #64748b;
 }
 
-/* Preview */
+/* Preview - Glassmorphism with Animation */
 .preview-area {
-  background: rgba(30, 41, 59, 0.6);
-  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
   padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 250px;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Code Output */
+/* Preview shimmer animation */
+.preview-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: preview-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes preview-shimmer {
+  0% { left: -150%; }
+  50%, 100% { left: 150%; }
+}
+
+/* Preview widget pulse animation */
+.preview-area .widget-card,
+.preview-area .widget-badge,
+.preview-area .widget-mini {
+  animation: widget-float 4s ease-in-out infinite;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes widget-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Code Output - Bright Theme */
 .code-output {
   position: relative;
 }
 
 .code-output pre {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 1rem;
   padding: 1rem;
   overflow-x: auto;
   font-family: 'SF Mono', Monaco, Consolas, monospace;
   font-size: 0.75rem;
-  color: #a5b4fc;
+  color: #6366f1;
   line-height: 1.5;
 }
 
@@ -365,28 +483,56 @@ body {
 
 .copy-btn {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.75rem;
+  right: 0.75rem;
   padding: 0.5rem 1rem;
-  background: #6366f1;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #fff;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .copy-btn:hover {
-  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
 .copy-btn.copied {
-  background: #22c55e;
+  background: linear-gradient(135deg, #22c55e, #10b981);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
-/* ==================== GRADIENTS ==================== */
+/* Instructions/Help Text */
+.generator-help {
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.generator-help-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.generator-help-text {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ==================== GRADIENTS (keep for actual widgets) ==================== */
 
 .gradient-flame-fox { background: linear-gradient(135deg, #f97316, #ef4444); }
 .gradient-diamond-lion { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
@@ -410,5 +556,23 @@ body {
 
   .type-selector {
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .preview-area {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .style-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .type-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .generator-header .header-title {
+    font-size: 1rem;
   }
 }
