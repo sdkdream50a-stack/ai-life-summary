@@ -1,21 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 22,
-      "publish_date": "2026-01-24",
-      "title_ko": "초보자를 위한 웹 앱 아이디어: 50대 경험을 돈으로 바꾸는 법",
-      "title_en": "Web App Ideas for Beginners: Turn Your 50s Experience Into Profit",
-      "description_ko": "코딩 기술 없이도 50대의 풍부한 경험과 일상의 불편함을 활용해 혁신적인 앱 주제를 찾는 실전 노하우를 공개합니다.",
-      "description_en": "Discover practical tips to find innovative app concepts using your rich life experience and everyday frustrations - no coding required.",
-      "emoji": "💡",
-      "gradient": "from-violet-400 to-fuchsia-500",
-      "files": {
-        "ko": "post-22-ko.html",
-        "en": "post-22-en.html",
-        "default": "post-22.html"
-      }
-    },
-    {
       "episode": 23,
       "publish_date": "2026-01-25",
       "title_ko": "심플 웹 앱 로드맵: 비전공 50대를 위한 7단계 실전 가이드",
