@@ -1,21 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 23,
-      "publish_date": "2026-01-25",
-      "title_ko": "심플 웹 앱 로드맵: 비전공 50대를 위한 7단계 실전 가이드",
-      "title_en": "Simple Web App Roadmap: A 7-Step Practical Guide for Non-Tech 50s",
-      "description_ko": "아이디어 구상부터 현실적인 첫 앱 완성까지, 기술 없이도 따라 할 수 있는 7단계 실전 가이드를 확인하세요.",
-      "description_en": "From idea conception to completing your first realistic app - a 7-step practical guide you can follow without technical skills.",
-      "emoji": "🗺️",
-      "gradient": "from-sky-400 to-indigo-500",
-      "files": {
-        "ko": "post-23-ko.html",
-        "en": "post-23-en.html",
-        "default": "post-23.html"
-      }
-    },
-    {
       "episode": 24,
       "publish_date": "2026-01-26",
       "title_ko": "50대 초보자를 위한 첫 번째 웹 앱 계획: 실패 없는 7단계 가이드",
