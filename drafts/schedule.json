@@ -1,21 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 24,
-      "publish_date": "2026-01-26",
-      "title_ko": "50대 초보자를 위한 첫 번째 웹 앱 계획: 실패 없는 7단계 가이드",
-      "title_en": "Your First Web App Plan: A Fail-Proof 7-Step Guide for Beginners in Their 50s",
-      "description_ko": "복잡한 코딩 없이 종이와 펜만으로 아이디어를 구체화하고, 실패 없는 앱 개발을 시작하는 실전 노하우를 확인하세요.",
-      "description_en": "Turn ideas into reality with just paper and pen - no complex coding required. A practical guide to fail-proof app development.",
-      "emoji": "📝",
-      "gradient": "from-pink-400 to-rose-500",
-      "files": {
-        "ko": "post-24-ko.html",
-        "en": "post-24-en.html",
-        "default": "post-24.html"
-      }
-    },
-    {
       "episode": 25,
       "publish_date": "2026-01-27",
       "title_ko": "초보자 웹 앱 여정: 50대 비개발자를 위한 3단계 가이드",
