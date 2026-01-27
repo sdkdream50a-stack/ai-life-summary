@@ -1,21 +1,6 @@
 {
   "scheduled_posts": [
     {
-      "episode": 25,
-      "publish_date": "2026-01-27",
-      "title_ko": "초보자 웹 앱 여정: 50대 비개발자를 위한 3단계 가이드",
-      "title_en": "Beginner's Web App Journey: A 3-Step Guide for Non-Tech People in Their 50s",
-      "description_ko": "초보자 웹 앱 여정을 시작하시나요? 50대 비개발자도 할 수 있는 아이디어 구체화, 노코드 도구 활용, 첫 배포까지의 현실적인 3단계 로드맵을 확인하세요.",
-      "description_en": "Starting your beginner's web app journey? Discover a realistic 3-step roadmap from idea refinement to no-code tools and first deployment.",
-      "emoji": "🗺️",
-      "gradient": "from-green-400 to-lime-500",
-      "files": {
-        "ko": "post-25-ko.html",
-        "en": "post-25-en.html",
-        "default": "post-25.html"
-      }
-    },
-    {
       "episode": 26,
       "publish_date": "2026-01-28",
       "title_ko": "50대의 웹 앱 개발: 늦지 않았다는 4가지 증거",
