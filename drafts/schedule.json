@@ -1,19 +1,3 @@
 {
-  "scheduled_posts": [
-    {
-      "episode": 27,
-      "publish_date": "2026-01-29",
-      "title_ko": "노코드 웹 앱: 50대 초보자가 30분 만에 나만의 앱 만드는 법",
-      "title_en": "No-Code Web Apps: How Beginners in Their 50s Can Build Their Own App in 30 Minutes",
-      "description_ko": "50대 비전공자를 위한 노코드 웹 앱 제작 가이드입니다. 복잡한 코딩 없이 엑셀 경험만으로 현실적인 문제를 해결하는 5단계 방법과 추천 도구를 확인하세요.",
-      "description_en": "A no-code web app guide for non-developers in their 50s. Discover 5 steps and recommended tools to solve real problems without complex coding.",
-      "emoji": "🛠️",
-      "gradient": "from-blue-400 to-cyan-500",
-      "files": {
-        "ko": "post-27-ko.html",
-        "en": "post-27-en.html",
-        "default": "post-27.html"
-      }
-    }
-  ]
+  "scheduled_posts": []
 }
