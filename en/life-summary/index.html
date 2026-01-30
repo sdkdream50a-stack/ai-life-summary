@@ -462,11 +462,17 @@
     var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
     var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
-    function switchLang(lang) {
+    function switchLang(lang, event) {
+        if (event) event.stopPropagation();
+        // Show loading feedback
+        var btn = event && event.target;
+        if (btn) btn.style.opacity = '0.5';
+        document.body.style.cursor = 'wait';
+        // Save preference
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        // Navigate to the language-specific version of this page
-        window.location.href = '/' + lang + '/life-summary/';
+        // Navigate immediately
+        window.location.replace('/' + lang + '/life-summary/');
     }
 
     function toggleLangDropdown() {
@@ -525,11 +531,11 @@
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-2 w-28 bg-gray-900/95 backdrop-blur-lg rounded-xl border border-white/10 py-1 z-50">
-                <button onclick="switchLang('en')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
-                <button onclick="switchLang('ko')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
-                <button onclick="switchLang('ja')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
-                <button onclick="switchLang('zh')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
-                <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
+                <button onclick="switchLang('en', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+                <button onclick="switchLang('ko', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+                <button onclick="switchLang('ja', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+                <button onclick="switchLang('zh', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+                <button onclick="switchLang('es', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
             </div>
         </div>
         <!-- Profile -->
@@ -557,11 +563,11 @@
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
             <a href="/en/profile/" class="text-lg text-white/70 hover:text-white transition">👤 Profile</a>
             <div class="flex gap-3 mt-4">
-                <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
-                <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
-                <button onclick="switchLang('ja'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
-                <button onclick="switchLang('zh'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
-                <button onclick="switchLang('es'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+                <button onclick="switchLang('en', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
             </div>
         </div>
     </div>

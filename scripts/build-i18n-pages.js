@@ -458,11 +458,17 @@ function updateSwitchLangFunction(html, pageSlug) {
     const pathSuffix = pageSlug ? `/${pageSlug}/` : '/';
 
     // Replace the switchLang function to navigate to language subdirectory
-    const newSwitchLang = `function switchLang(lang) {
+    const newSwitchLang = `function switchLang(lang, event) {
+        if (event) event.stopPropagation();
+        // Show loading feedback
+        var btn = event && event.target;
+        if (btn) btn.style.opacity = '0.5';
+        document.body.style.cursor = 'wait';
+        // Save preference
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        // Navigate to the language-specific version of this page
-        window.location.href = '/' + lang + '${pathSuffix}';
+        // Navigate immediately
+        window.location.replace('/' + lang + '${pathSuffix}');
     }`;
 
     // Find and replace the entire switchLang function (from "function switchLang" to the next "function" or closing script)
@@ -481,6 +487,10 @@ function updateSwitchLangFunction(html, pageSlug) {
         /\/\/ Initialize on load\s*\n\s*document\.addEventListener\('DOMContentLoaded',\s*function\(\)\s*\{[^}]*switchLang\(lang\);[^}]*\}\);/g,
         '// Language is set statically for this page'
     );
+
+    // Update onclick handlers to pass event for stopPropagation
+    result = result.replace(/onclick="switchLang\('(\w+)'\)"/g, 'onclick="switchLang(\'$1\', event)"');
+    result = result.replace(/onclick="switchLang\('(\w+)'\);/g, 'onclick="switchLang(\'$1\', event);');
 
     return result;
 }
