@@ -345,20 +345,20 @@
         <button
         id="mobile-menu-btn"
         aria-label="Open menu"
-        onclick="(function(){var scrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+scrollY+'px';document.body.style.width='100%';document.body.dataset.scrollY=scrollY;document.getElementById('mobile-menu').classList.remove('hidden');})()"
+        aria-expanded="false"
         style="position:relative;z-index:1001;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;"
         class="md:hidden"
     >
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:transform 0.2s;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:opacity 0.2s;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:transform 0.2s;"></span>
     </button>
     </nav>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
         <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
-            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" onclick="(function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()">×</button>
+            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/ko/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 궁합 테스트</a>
             <a href="/ko/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 소울 타입</a>
             <a href="/ko/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 정신 나이</a>
@@ -367,11 +367,11 @@
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
             <a href="/ko/profile/" class="text-lg text-white/70 hover:text-white transition">👤 프로필</a>
             <div class="flex gap-3 mt-4">
-                <button onclick="switchLang('en', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
-                <button onclick="switchLang('ko', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
-                <button onclick="switchLang('ja', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
-                <button onclick="switchLang('zh', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
-                <button onclick="switchLang('es', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+                <button onclick="switchLang('en', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
             </div>
         </div>
     </div>
@@ -873,6 +873,75 @@
     </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('mobile-menu-btn');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var closeBtn = document.getElementById('mobile-menu-close');
+        var isOpen = false;
+        var scrollY = 0;
+
+        function openMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (isOpen) return;
+            isOpen = true;
+            scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + scrollY + 'px';
+            document.body.style.width = '100%';
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('active');
+            menuBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (!isOpen) return;
+            isOpen = false;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollY);
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('active');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', openMenu);
+            menuBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                openMenu(e);
+            }, {passive: false});
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+                closeBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    closeMenu(e);
+                }, {passive: false});
+            }
+
+            // Close when clicking menu background
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) closeMenu(e);
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isOpen) closeMenu(e);
+            });
+
+            // Close menu after language switch
+            var langBtns = mobileMenu.querySelectorAll('[data-close-menu]');
+            langBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setTimeout(closeMenu, 100);
+                });
+            });
+        }
+    });
+    </script>
     <script>
     // Add js-ready class after DOM is ready for progressive enhancement
     if (document.readyState === 'loading') {

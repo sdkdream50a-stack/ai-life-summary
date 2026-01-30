@@ -772,30 +772,20 @@ function addJsReadyScript(html) {
 }
 
 /**
- * Fix mobile menu by adding onclick handlers with scroll lock
+ * Fix mobile menu with robust event handling
  */
 function fixMobileMenu(html) {
-    // Add onclick handler with scroll lock for mobile menu button
-    const openMenuScript = `(function(){` +
-        `var scrollY=window.scrollY;` +
-        `document.body.style.position='fixed';` +
-        `document.body.style.top='-'+scrollY+'px';` +
-        `document.body.style.width='100%';` +
-        `document.body.dataset.scrollY=scrollY;` +
-        `document.getElementById('mobile-menu').classList.remove('hidden');` +
-        `})()`;
-
-    // Replace entire mobile menu button with improved accessible version
+    // Replace mobile menu button with improved accessible version (no onclick)
     const newMenuButton = `<button
         id="mobile-menu-btn"
         aria-label="Open menu"
-        onclick="${openMenuScript}"
+        aria-expanded="false"
         style="position:relative;z-index:1001;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;"
         class="md:hidden"
     >
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
-        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:transform 0.2s;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:opacity 0.2s;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;transition:transform 0.2s;"></span>
     </button>`;
 
     html = html.replace(
@@ -803,32 +793,97 @@ function fixMobileMenu(html) {
         newMenuButton
     );
 
-    // Add onclick handler with scroll restore for close button
-    const closeMenuScript = `(function(){` +
-        `var scrollY=document.body.dataset.scrollY||0;` +
-        `document.body.style.position='';` +
-        `document.body.style.top='';` +
-        `document.body.style.width='';` +
-        `window.scrollTo(0,parseInt(scrollY));` +
-        `document.getElementById('mobile-menu').classList.add('hidden');` +
-        `})()`;
-
+    // Update close button (remove inline onclick)
     html = html.replace(
         /<button id="mobile-menu-close" class="([^"]*)">[^<]*<\/button>/g,
-        `<button id="mobile-menu-close" class="$1" onclick="${closeMenuScript}">×</button>`
+        `<button id="mobile-menu-close" class="$1" aria-label="Close menu">×</button>`
     );
 
-    // Update mobile menu language buttons to also close menu properly
+    // Remove old inline onclick from language buttons in mobile menu
     html = html.replace(
         /onclick="switchLang\('(\w+)', event\); document\.getElementById\('mobile-menu'\)\.classList\.add\('hidden'\);"/g,
-        `onclick="switchLang('$1', event); ${closeMenuScript}"`
+        `onclick="switchLang('$1', event)" data-close-menu="true"`
     );
 
-    // Remove the old script block entirely since we're using onclick now
+    // Remove old script block
     html = html.replace(
         /<!-- Mobile Menu Script -->\s*<script>[\s\S]*?document\.getElementById\('mobile-menu-btn'\)[\s\S]*?<\/script>/g,
-        '<!-- Mobile Menu: using inline onclick handlers with scroll lock -->'
+        ''
     );
+
+    // Add comprehensive mobile menu script before </body>
+    const mobileMenuScript = `
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('mobile-menu-btn');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var closeBtn = document.getElementById('mobile-menu-close');
+        var isOpen = false;
+        var scrollY = 0;
+
+        function openMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (isOpen) return;
+            isOpen = true;
+            scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + scrollY + 'px';
+            document.body.style.width = '100%';
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('active');
+            menuBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (!isOpen) return;
+            isOpen = false;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollY);
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('active');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', openMenu);
+            menuBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                openMenu(e);
+            }, {passive: false});
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+                closeBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    closeMenu(e);
+                }, {passive: false});
+            }
+
+            // Close when clicking menu background
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) closeMenu(e);
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isOpen) closeMenu(e);
+            });
+
+            // Close menu after language switch
+            var langBtns = mobileMenu.querySelectorAll('[data-close-menu]');
+            langBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setTimeout(closeMenu, 100);
+                });
+            });
+        }
+    });
+    </script>`;
+
+    html = html.replace('</body>', mobileMenuScript + '</body>');
 
     return html;
 }
