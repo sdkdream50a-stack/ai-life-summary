@@ -226,35 +226,11 @@
     /**
      * 6. Scroll Direction Detection
      * For showing/hiding nav on scroll
+     * DISABLED: Navbar should always be visible for language access
      */
     function initScrollDirectionDetection() {
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                requestAnimationFrame(function() {
-                    const currentScrollY = window.scrollY;
-                    const direction = currentScrollY > lastScrollY ? 'down' : 'up';
-
-                    document.body.setAttribute('data-scroll-direction', direction);
-
-                    // Show/hide floating elements based on scroll
-                    const floatingNav = document.querySelector('.kick-navbar');
-                    if (floatingNav) {
-                        if (direction === 'down' && currentScrollY > 200) {
-                            floatingNav.style.transform = 'translateX(-50%) translateY(calc(100% + 40px))';
-                        } else {
-                            floatingNav.style.transform = 'translateX(-50%)';
-                        }
-                    }
-
-                    lastScrollY = currentScrollY;
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
+        // Disabled - navbar should always be visible
+        // Users need constant access to language selector
     }
 
     /**
