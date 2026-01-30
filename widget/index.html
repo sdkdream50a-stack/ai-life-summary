@@ -602,40 +602,25 @@
       const originalHTML = btn.innerHTML;
 
       try {
+        btn.innerHTML = `<span>⏳</span><span>...</span>`;
+
         const canvas = await html2canvas(widget, {
-          backgroundColor: null,
-          scale: 2
+          backgroundColor: '#1a1a2e',
+          scale: 2,
+          useCORS: true
         });
 
         const dataUrl = canvas.toDataURL('image/png');
         const fileName = `soul-type-${widgetGenerator.selectedType}.png`;
 
-        // iOS Safari detection
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        // Mobile detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        if (isIOS || isSafari) {
-          // iOS/Safari: Open image in new tab for long-press save
-          const newTab = window.open();
-          if (newTab) {
-            newTab.document.write(`
-              <html>
-              <head><title>${fileName}</title></head>
-              <body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f0f0f0;">
-                <div style="text-align:center;">
-                  <p style="margin-bottom:10px;font-family:sans-serif;color:#666;">이미지를 길게 눌러 저장하세요 / Long press to save</p>
-                  <img src="${dataUrl}" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-                </div>
-              </body>
-              </html>
-            `);
-            newTab.document.close();
-          } else {
-            // Popup blocked - try direct link
-            window.location.href = dataUrl;
-          }
+        if (isMobile) {
+          // Mobile: Show image in modal for long-press save
+          showImageModal(dataUrl, fileName);
         } else {
-          // Desktop/Android: Normal download
+          // Desktop: Normal download
           const link = document.createElement('a');
           link.download = fileName;
           link.href = dataUrl;
@@ -652,8 +637,64 @@
         }, 2000);
       } catch (err) {
         console.error('Download failed:', err);
-        alert('Download failed. Please try again.');
+        btn.innerHTML = originalHTML;
+        alert(currentLang === 'ko' ? '저장에 실패했습니다.' : 'Save failed.');
       }
+    }
+
+    // Show image modal for mobile save
+    function showImageModal(dataUrl, fileName) {
+      // Remove existing modal if any
+      const existing = document.getElementById('save-image-modal');
+      if (existing) existing.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'save-image-modal';
+      modal.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.9);
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      `;
+
+      modal.innerHTML = `
+        <button id="close-save-modal" style="
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: rgba(255,255,255,0.2);
+          border: none;
+          color: white;
+          font-size: 24px;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          cursor: pointer;
+        ">&times;</button>
+        <p style="color: white; margin-bottom: 16px; text-align: center; font-size: 14px;">
+          ${currentLang === 'ko' ? '👇 이미지를 길게 눌러 저장하세요' : '👇 Long press image to save'}
+        </p>
+        <img src="${dataUrl}" style="
+          max-width: 90%;
+          max-height: 60vh;
+          border-radius: 16px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        " alt="Widget">
+        <p style="color: rgba(255,255,255,0.6); margin-top: 16px; font-size: 12px;">
+          ${fileName}
+        </p>
+      `;
+
+      document.body.appendChild(modal);
+
+      // Close handlers
+      document.getElementById('close-save-modal').onclick = () => modal.remove();
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
     }
 
     // Show embed modal
@@ -692,36 +733,55 @@
       }
     }
 
-    // Share
+    // Share with image
     async function shareWidget() {
-      const shareUrl = `https://smartaitest.com/widget/embed.html?type=${widgetGenerator.selectedType}&style=${widgetGenerator.selectedStyle}&lang=${currentLang}`;
-      const soulType = widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType);
-      const shareText = currentLang === 'ko'
-        ? `나의 AI 소울 타입: ${soulType?.nameKo || ''}`
-        : `My AI Soul Type: ${soulType?.nameEn || ''}`;
-
+      const widget = getWidgetElement();
       const btn = document.getElementById('btn-share');
       const originalHTML = btn.innerHTML;
 
-      // Try Web Share API first (works best on mobile)
-      if (navigator.share) {
-        try {
+      const soulType = widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType);
+      const shareText = currentLang === 'ko'
+        ? `나의 AI 소울 타입: ${soulType?.nameKo || ''} ✨`
+        : `My AI Soul Type: ${soulType?.nameEn || ''} ✨`;
+      const shareUrl = 'https://smartaitest.com/life-summary/';
+
+      btn.innerHTML = `<span>⏳</span><span>...</span>`;
+
+      try {
+        // Generate image
+        const canvas = await html2canvas(widget, {
+          backgroundColor: '#1a1a2e',
+          scale: 2,
+          useCORS: true
+        });
+
+        // Convert to blob
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const file = new File([blob], `soul-type-${widgetGenerator.selectedType}.png`, { type: 'image/png' });
+
+        // Try Web Share API with file (mobile)
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'AI Soul Type',
+            text: shareText,
+            files: [file]
+          });
+          btn.innerHTML = originalHTML;
+          return;
+        }
+
+        // Fallback: Web Share without file
+        if (navigator.share) {
           await navigator.share({
             title: 'AI Soul Type',
             text: shareText,
             url: shareUrl
           });
+          btn.innerHTML = originalHTML;
           return;
-        } catch (err) {
-          // User cancelled or error - try clipboard fallback
-          if (err.name !== 'AbortError') {
-            console.log('Share failed, trying clipboard');
-          }
         }
-      }
 
-      // Fallback: copy link to clipboard
-      try {
+        // Last fallback: copy link
         await navigator.clipboard.writeText(shareUrl);
         btn.innerHTML = `<span>✅</span><span>${t('copied')}</span>`;
         btn.classList.add('success');
@@ -729,9 +789,20 @@
           btn.innerHTML = originalHTML;
           btn.classList.remove('success');
         }, 2000);
+
       } catch (err) {
-        // Last resort: show URL in prompt
-        prompt('Copy this link:', shareUrl);
+        console.log('Share error:', err);
+        btn.innerHTML = originalHTML;
+        // If user cancelled, don't show error
+        if (err.name !== 'AbortError') {
+          // Show save modal as fallback
+          try {
+            const canvas = await html2canvas(widget, { backgroundColor: '#1a1a2e', scale: 2 });
+            showImageModal(canvas.toDataURL('image/png'), `soul-type-${widgetGenerator.selectedType}.png`);
+          } catch (e) {
+            alert(currentLang === 'ko' ? '공유에 실패했습니다.' : 'Share failed.');
+          }
+        }
       }
     }
 
