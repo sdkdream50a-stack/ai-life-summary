@@ -5,6 +5,37 @@
  */
 
 /* ============================================
+   0. GLOBAL WORD BREAK PREVENTION
+   Prevent words from splitting in the middle
+   ============================================ */
+body, html {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+}
+
+/* Ensure all text elements don't break mid-word */
+p, h1, h2, h3, h4, h5, h6,
+span, a, li, td, th,
+label, button, div,
+.text-sm, .text-base, .text-lg, .text-xl,
+.text-2xl, .text-3xl, .text-4xl, .text-5xl,
+.kick-heading, .kick-gradient-text {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
+/* Special handling for long URLs or codes - allow breaking */
+a[href^="http"], code, pre, .code-block {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+}
+
+/* ============================================
    1. TOUCH RIPPLE EFFECT
    Material Design-inspired touch feedback
    ============================================ */

@@ -20,6 +20,14 @@
     --kick-glass-light: rgba(255, 255, 255, 0.7);
 }
 
+/* Global word-break prevention */
+.kick-mesh-bg, .kick-mesh-light {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
 /* ============================================
    2. LIVING BACKGROUND - Mesh Gradient
    ============================================ */

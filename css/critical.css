@@ -1,0 +1,388 @@
+/**
+ * Critical CSS for Above-the-Fold Rendering
+ * SmartAITest.com - Core Web Vitals Optimization
+ * Size target: ~12KB
+ */
+
+/* ============================================
+   1. CSS CUSTOM PROPERTIES (from global-kick.css)
+   ============================================ */
+:root {
+    --kick-primary: #8B5CF6;
+    --kick-secondary: #EC4899;
+    --kick-accent: #06B6D4;
+    --kick-neon-pink: #FF2D92;
+    --kick-neon-blue: #00D4FF;
+    --kick-neon-purple: #A855F7;
+    --kick-dark: #0F0C29;
+    --kick-glass-bg: rgba(255, 255, 255, 0.08);
+    --kick-glass-border: rgba(255, 255, 255, 0.15);
+    --kick-glass-light: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   2. FONT DISPLAY FALLBACKS
+   ============================================ */
+@font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    src: local('Inter');
+}
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap;
+    src: local('Poppins');
+}
+
+/* ============================================
+   3. BODY VISIBILITY (Prevent CLS with i18n)
+   ============================================ */
+body {
+    opacity: 0;
+    transition: opacity 0.1s;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+}
+html.lang-ready body { opacity: 1; }
+@keyframes showBody { to { opacity: 1; } }
+body { animation: showBody 0s 0.3s forwards; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================
+   4. HEADER/NAV FIXED DIMENSIONS (CLS Prevention)
+   ============================================ */
+header.bg-white { min-height: 72px; }
+header nav { min-height: 56px; }
+header .flex.items-center.justify-between { min-height: 40px; }
+header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+#lang-selector button { min-width: 90px; min-height: 36px; }
+#current-lang { display: inline-block; min-width: 60px; }
+
+/* ============================================
+   5. MESH GRADIENT BACKGROUND
+   ============================================ */
+.kick-mesh-bg {
+    position: relative;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.kick-mesh-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 60% 80%, rgba(6, 182, 214, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 30% 90%, rgba(255, 45, 146, 0.25) 0%, transparent 50%);
+    animation: meshMove 20s ease-in-out infinite;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes meshMove {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    25% { transform: scale(1.1) translate(3%, 2%); }
+    50% { transform: scale(1.05) translate(-2%, 3%); }
+    75% { transform: scale(1.1) translate(2%, -2%); }
+}
+
+/* ============================================
+   6. GRADIENT BACKGROUNDS
+   ============================================ */
+.gradient-bg {
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+}
+.gradient-bg-bright {
+    background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%);
+}
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   7. CORE LAYOUT UTILITIES (Subset of Tailwind)
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Display */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none !important; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+
+/* Flex utilities */
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-start { justify-content: flex-start; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.space-x-2 > * + * { margin-left: 0.5rem; }
+.space-x-4 > * + * { margin-left: 1rem; }
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.flex-1 { flex: 1 1 0%; }
+
+/* Positioning */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+.inset-0 { inset: 0; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.z-10 { z-index: 10; }
+.z-50 { z-index: 50; }
+.z-\[1000\] { z-index: 1000; }
+
+/* Sizing */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.h-full { height: 100%; }
+.h-auto { height: auto; }
+.min-h-screen { min-height: 100vh; }
+.max-w-4xl { max-width: 56rem; }
+.max-w-7xl { max-width: 80rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-lg { max-width: 32rem; }
+.max-w-xl { max-width: 36rem; }
+
+/* Margin */
+.m-0 { margin: 0; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-4 { margin-top: 1rem; margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.ml-2 { margin-left: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+
+/* Padding */
+.p-0 { padding: 0; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.pt-20 { padding-top: 5rem; }
+.pt-24 { padding-top: 6rem; }
+.pb-8 { padding-bottom: 2rem; }
+
+/* Text */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.leading-tight { line-height: 1.25; }
+.leading-relaxed { line-height: 1.625; }
+.tracking-tight { letter-spacing: -0.025em; }
+
+/* Colors */
+.text-white { color: #fff; }
+.text-black { color: #000; }
+.text-gray-500 { color: rgb(107 114 128); }
+.text-gray-600 { color: rgb(75 85 99); }
+.text-gray-700 { color: rgb(55 65 81); }
+.text-gray-800 { color: rgb(31 41 55); }
+.text-gray-900 { color: rgb(17 24 39); }
+.text-indigo-600 { color: rgb(79 70 229); }
+.text-purple-600 { color: rgb(147 51 234); }
+.bg-white { background-color: #fff; }
+.bg-black { background-color: #000; }
+.bg-transparent { background-color: transparent; }
+.bg-gray-50 { background-color: rgb(249 250 251); }
+.bg-gray-100 { background-color: rgb(243 244 246); }
+.bg-gray-900 { background-color: rgb(17 24 39); }
+
+/* Borders */
+.border { border-width: 1px; }
+.border-0 { border-width: 0; }
+.border-2 { border-width: 2px; }
+.border-gray-200 { border-color: rgb(229 231 235); }
+.border-gray-300 { border-color: rgb(209 213 219); }
+.border-transparent { border-color: transparent; }
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+.rounded-full { border-radius: 9999px; }
+
+/* Shadows */
+.shadow { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-auto { overflow-y: auto; }
+
+/* Transitions */
+.transition { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.duration-200 { transition-duration: 200ms; }
+.duration-300 { transition-duration: 300ms; }
+
+/* Opacity */
+.opacity-0 { opacity: 0; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+
+/* Pointer events */
+.pointer-events-none { pointer-events: none; }
+
+/* Object fit */
+.object-contain { object-fit: contain; }
+.object-cover { object-fit: cover; }
+
+/* Aspect ratio */
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-square { aspect-ratio: 1 / 1; }
+
+/* ============================================
+   8. RESPONSIVE BREAKPOINTS (Critical Only)
+   ============================================ */
+@media (min-width: 640px) {
+    .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    .sm\:text-5xl { font-size: 3rem; line-height: 1; }
+    .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+@media (min-width: 768px) {
+    .md\:flex { display: flex; }
+    .md\:hidden { display: none; }
+    .md\:block { display: block; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .md\:text-5xl { font-size: 3rem; line-height: 1; }
+    .md\:text-6xl { font-size: 3.75rem; line-height: 1; }
+    .md\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .md\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+    .md\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+}
+
+@media (min-width: 1024px) {
+    .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ============================================
+   9. GLASSMORPHISM (Used in hero areas)
+   ============================================ */
+.kick-glass {
+    background: var(--kick-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--kick-glass-border);
+    border-radius: 24px;
+}
+
+/* ============================================
+   10. LANGUAGE SWITCHING (5 languages)
+   ============================================ */
+.lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+html[lang="ko"] .lang-ko { display: inline; }
+html[lang="ko"] span.lang-ko { display: inline; }
+html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+html[lang="ja"] .lang-ja { display: inline; }
+html[lang="ja"] span.lang-ja { display: inline; }
+html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+html[lang="zh"] .lang-zh { display: inline; }
+html[lang="zh"] span.lang-zh { display: inline; }
+html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+html[lang="es"] .lang-es { display: inline; }
+html[lang="es"] span.lang-es { display: inline; }
+html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+
+/* Prevent word breaking globally - words should not split in the middle */
+body {
+    word-break: keep-all;      /* Prevents breaking words in the middle */
+    overflow-wrap: break-word; /* Only break if word is too long for container */
+    hyphens: none;             /* No automatic hyphenation */
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+}
+
+/* Apply to all text elements */
+p, h1, h2, h3, h4, h5, h6, span, a, li, td, th, label, button,
+.text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
+/* ============================================
+   11. CLS PREVENTION - AD CONTAINERS
+   ============================================ */
+.ad-container { min-height: 90px; }
+.ad-container-rectangle { min-height: 250px; }
+
+/* ============================================
+   12. REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

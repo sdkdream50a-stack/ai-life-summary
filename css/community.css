@@ -255,7 +255,8 @@
   font-size: 0.9375rem;
   line-height: 1.7;
   margin-bottom: 1rem;
-  word-break: break-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .post-content .highlight {
