@@ -228,15 +228,56 @@ const i18n = {
 
         const toggle = langSelector.querySelector('button');
         const dropdown = document.getElementById('lang-dropdown');
+        let isOpen = false;
+
+        const showDropdown = () => {
+            if (!dropdown) return;
+            isOpen = true;
+            dropdown.classList.remove('hidden');
+            dropdown.style.display = 'block';
+            dropdown.style.visibility = 'visible';
+            dropdown.style.opacity = '1';
+            dropdown.style.zIndex = '9999999';
+            dropdown.setAttribute('aria-hidden', 'false');
+            if (toggle) toggle.setAttribute('aria-expanded', 'true');
+        };
+
+        const hideDropdown = () => {
+            if (!dropdown) return;
+            isOpen = false;
+            dropdown.classList.add('hidden');
+            dropdown.style.display = 'none';
+            dropdown.style.visibility = 'hidden';
+            dropdown.style.opacity = '0';
+            dropdown.setAttribute('aria-hidden', 'true');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        };
+
+        const toggleDropdown = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isOpen) {
+                hideDropdown();
+            } else {
+                showDropdown();
+            }
+        };
 
         if (toggle && dropdown) {
-            toggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('hidden');
-            });
+            // Click event
+            toggle.addEventListener('click', toggleDropdown);
 
-            document.addEventListener('click', () => {
-                dropdown.classList.add('hidden');
+            // Touch event for mobile
+            toggle.addEventListener('touchend', (e) => {
+                e.preventDefault(); // Prevent ghost clicks
+                toggleDropdown(e);
+            }, { passive: false });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isOpen && !dropdown.contains(e.target) && !toggle.contains(e.target)) {
+                    hideDropdown();
+                }
             });
         }
 
@@ -246,9 +287,7 @@ const i18n = {
                 e.preventDefault();
                 const lang = btn.getAttribute('data-lang');
                 this.setLanguage(lang);
-                if (dropdown) {
-                    dropdown.classList.add('hidden');
-                }
+                hideDropdown();
             });
         });
     }
