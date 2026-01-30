@@ -785,9 +785,22 @@ function fixMobileMenu(html) {
         `document.getElementById('mobile-menu').classList.remove('hidden');` +
         `})()`;
 
+    // Replace entire mobile menu button with improved accessible version
+    const newMenuButton = `<button
+        id="mobile-menu-btn"
+        aria-label="Open menu"
+        onclick="${openMenuScript}"
+        style="position:relative;z-index:1001;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;"
+        class="md:hidden"
+    >
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+    </button>`;
+
     html = html.replace(
-        /<button id="mobile-menu-btn" class="([^"]*)">/g,
-        `<button id="mobile-menu-btn" class="$1" onclick="${openMenuScript}">`
+        /<button id="mobile-menu-btn"[^>]*>[\s\S]*?<\/button>/g,
+        newMenuButton
     );
 
     // Add onclick handler with scroll restore for close button

@@ -961,11 +961,17 @@
             <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
         </a>
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-1" onclick="(function(){var scrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+scrollY+'px';document.body.style.width='100%';document.body.dataset.scrollY=scrollY;document.getElementById('mobile-menu').classList.remove('hidden');})()">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
+        <button
+        id="mobile-menu-btn"
+        aria-label="Open menu"
+        onclick="(function(){var scrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+scrollY+'px';document.body.style.width='100%';document.body.dataset.scrollY=scrollY;document.getElementById('mobile-menu').classList.remove('hidden');})()"
+        style="position:relative;z-index:1001;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;"
+        class="md:hidden"
+    >
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+        <span style="display:block;width:20px;height:2px;background:white;border-radius:1px;"></span>
+    </button>
     </nav>
 
     <!-- Mobile Menu Overlay -->
