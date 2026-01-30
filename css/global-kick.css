@@ -35,34 +35,67 @@ button, a, input, select, textarea, [role="button"], [onclick] {
 }
 
 /* ============================================
-   HAMBURGER MENU BUTTON FIX
+   HAMBURGER MENU BUTTON - PC/MOBILE VISIBILITY
    ============================================ */
-#mobile-menu-btn {
-    display: none; /* Hidden by default (desktop) */
-    position: relative !important;
-    z-index: 1001 !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+
+/* Hide hamburger menu on PC (768px and above) */
+@media screen and (min-width: 768px) {
+    #mobile-menu-btn,
+    .hamburger-menu,
+    .mobile-menu-button,
+    [class*="hamburger"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Hide mobile menu overlay on desktop */
+    #mobile-menu {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Show desktop navigation */
+    .kick-navbar-links,
+    .desktop-nav {
+        display: flex !important;
+    }
 }
 
-@media (max-width: 768px) {
+/* Show hamburger only on mobile (below 768px) */
+@media screen and (max-width: 767px) {
     #mobile-menu-btn {
-        display: flex !important; /* Show on mobile */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 1001 !important;
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Hide desktop navigation on mobile */
+    .kick-navbar-links,
+    .desktop-nav {
+        display: none !important;
+    }
+
+    #mobile-menu-btn:active {
+        opacity: 0.7;
     }
 }
 
 /* Ensure nothing overlaps the menu button */
 .kick-navbar > * {
     position: relative;
-}
-
-#mobile-menu-btn:active {
-    opacity: 0.7;
 }
 
 /* ============================================
