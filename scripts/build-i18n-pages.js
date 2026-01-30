@@ -793,6 +793,13 @@ function fixMobileMenu(html) {
         newMenuButton
     );
 
+    // Clean up mobile-menu element - remove conflicting Tailwind classes
+    // Our CSS handles positioning with transform and pointer-events
+    html = html.replace(
+        /<div id="mobile-menu" class="[^"]*">/g,
+        `<div id="mobile-menu" class="hidden">`
+    );
+
     // Update close button (remove inline onclick)
     html = html.replace(
         /<button id="mobile-menu-close" class="([^"]*)">[^<]*<\/button>/g,
