@@ -674,3 +674,130 @@
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ============================================
+   17. MOBILE TOUCH TARGET OPTIMIZATION
+   Ensures minimum 44x44px touch targets (iOS HIG)
+   ============================================ */
+
+/* Global touch target minimum */
+@media (pointer: coarse) {
+    button,
+    a,
+    [role="button"],
+    input[type="submit"],
+    input[type="button"],
+    .kick-btn,
+    .kick-navbar-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Language selector dropdown items - fix undersized buttons */
+.lang-dropdown-item,
+[onclick^="switchLang"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Mobile menu language selector buttons */
+.mobile-lang-btn,
+.lang-toggle-btn {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 10px 14px !important;
+}
+
+/* Share buttons - ensure adequate size */
+.share-btn,
+[id^="share-"] {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Mobile share button in navbar */
+#share-btn-mobile {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 10px !important;
+}
+
+/* ============================================
+   18. iOS SAFARI SPECIFIC FIXES
+   ============================================ */
+
+/* Prevent zoom on input focus (iOS) */
+@supports (-webkit-touch-callout: none) {
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* Remove iOS button styling */
+button,
+input[type="submit"],
+input[type="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Prevent double-tap zoom on interactive elements */
+.kick-btn,
+.kick-navbar-link,
+button,
+a {
+    touch-action: manipulation;
+}
+
+/* Prevent text selection on buttons */
+button,
+.kick-btn,
+[role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Fix iOS Safari fixed positioning issues */
+@supports (-webkit-touch-callout: none) {
+    .kick-navbar,
+    .kick-sticky-bar {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Safe area insets for notched devices */
+.kick-sticky-bar {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 768px) {
+    .kick-navbar {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+/* ============================================
+   19. TOUCH FEEDBACK
+   ============================================ */
+
+/* Active state feedback for touch */
+@media (pointer: coarse) {
+    .kick-btn:active,
+    button:active,
+    a:active {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+
+    /* Prevent sticky hover states on mobile */
+    .kick-btn:hover,
+    button:hover {
+        transform: none;
+    }
+}

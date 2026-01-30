@@ -3,6 +3,11 @@
 User-agent: *
 Allow: /
 
+# Disallow internal/draft directories
+Disallow: /drafts/
+Disallow: /scripts/
+Disallow: /node_modules/
+
 # AI Crawlers - Explicitly Allowed
 User-agent: GPTBot
 Allow: /
@@ -26,6 +31,14 @@ User-agent: Applebot-Extended
 Allow: /
 
 User-agent: GoogleOther
+Allow: /
+
+# Naver Search Bot
+User-agent: Yeti
+Allow: /
+
+# Bing Bot
+User-agent: bingbot
 Allow: /
 
 # Sitemaps

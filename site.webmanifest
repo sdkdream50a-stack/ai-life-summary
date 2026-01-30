@@ -1,19 +1,59 @@
 {
-    "name": "AI Test Lab",
+    "name": "AI Test Lab - AI Personality Tests",
     "short_name": "AI Test",
+    "description": "Discover yourself with AI-powered personality tests. Life Summary, Compatibility, Mental Age Calculator. Free & instant results!",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ],
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
     "theme_color": "#6366f1",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "background_color": "#0f0c29",
+    "lang": "en",
+    "dir": "ltr",
+    "categories": ["entertainment", "lifestyle", "personalization"],
+    "screenshots": [
+        {
+            "src": "/assets/images/screenshot-home.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Life Summary",
+            "short_name": "Soul Type",
+            "description": "Discover your AI-generated life summary",
+            "url": "/en/life-summary/",
+            "icons": [{ "src": "/assets/images/icon-life-summary.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Compatibility Test",
+            "short_name": "Love Match",
+            "description": "Check your compatibility with someone",
+            "url": "/en/compatibility/",
+            "icons": [{ "src": "/assets/images/icon-compatibility.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Age Calculator",
+            "short_name": "Mental Age",
+            "description": "Find your mental and energy age",
+            "url": "/en/age-calculator/",
+            "icons": [{ "src": "/assets/images/icon-age.png", "sizes": "96x96" }]
+        }
+    ]
 }

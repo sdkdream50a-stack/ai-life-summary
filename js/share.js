@@ -523,14 +523,33 @@ function getShareStats() {
 }
 
 /**
- * Generate shareable URL with encoded parameters
- * @param {string} birthdate - Birthdate to encode
+ * Simple XOR-based obfuscation for URL parameters
+ * NOTE: This is obfuscation, NOT encryption. For true security, use server-side tokens.
+ * @param {string} str - String to obfuscate
+ * @param {number} key - XOR key
+ * @returns {string} - Obfuscated string
+ */
+function xorObfuscate(str, key = 42) {
+    return str.split('').map((char, i) =>
+        String.fromCharCode(char.charCodeAt(0) ^ (key + i % 10))
+    ).join('');
+}
+
+/**
+ * Generate shareable URL with obfuscated parameters
+ * @param {string} birthdate - Birthdate to encode (format: YYYY-MM-DD)
  * @returns {string} - Shareable URL
  */
 function generateShareableUrl(birthdate) {
-    // Simple encoding for sharing (not for security)
-    const encoded = btoa(birthdate);
-    return `${SITE_URL}/generate?d=${encoded}`;
+    // Multi-layer obfuscation: XOR + reverse + Base64
+    // NOTE: This is NOT encryption - it's obfuscation to prevent casual inspection
+    // For sensitive data, use server-side URL shortening instead
+    const obfuscated = xorObfuscate(birthdate, 73);
+    const reversed = obfuscated.split('').reverse().join('');
+    const encoded = btoa(reversed);
+    // URL-safe Base64 (replace +/= with URL-friendly chars)
+    const urlSafe = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+    return `${SITE_URL}/generate?d=${urlSafe}`;
 }
 
 /**
@@ -539,13 +558,24 @@ function generateShareableUrl(birthdate) {
  */
 function parseShareableUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    const encodedDate = urlParams.get('d');
+    let encodedDate = urlParams.get('d');
 
     if (encodedDate) {
         try {
-            return atob(encodedDate);
+            // Restore URL-safe Base64
+            encodedDate = encodedDate.replace(/-/g, '+').replace(/_/g, '/');
+            // Add padding if needed
+            while (encodedDate.length % 4) encodedDate += '=';
+            const reversed = atob(encodedDate);
+            const obfuscated = reversed.split('').reverse().join('');
+            return xorObfuscate(obfuscated, 73);
         } catch (e) {
-            return null;
+            // Fallback: try legacy Base64 decode for backwards compatibility
+            try {
+                return atob(encodedDate);
+            } catch (e2) {
+                return null;
+            }
         }
     }
 

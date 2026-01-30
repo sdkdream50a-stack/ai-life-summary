@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QDH2KJQT9Y');
+    </script>
+        <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "v3dwlpj2g5");
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+    <link rel="manifest" href="../../../site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Compatibility Results - AI Compatibility Test | AI Test Lab</title>
+    <meta name="description" content="Your AI Compatibility Test results. See your love match score, relationship analysis, and compatibility breakdown.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartaitest.com/en/compatibility/result/">
+    <meta property="og:title" content="Our AI Compatibility Results - AI Test Lab">
+    <meta property="og:description" content="We just discovered our compatibility score! Try the AI Compatibility Test.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/compatibility-og.png">
+
+    <!-- Tailwind CSS -->
+    <!-- Google Fonts with Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../../../css/global-kick.css">
+<style>
+        /* Prevent CLS - with fallback */
+        body { opacity: 0; transition: opacity 0.1s; }
+        html.lang-ready body { opacity: 1; }
+        @keyframes showBody { to { opacity: 1; } }
+        body { animation: showBody 0s 0.3s forwards; }
+
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+        /* Fixed header height */
+        header.bg-white { min-height: 72px; }
+        header nav { min-height: 56px; }
+        header .flex.items-center.justify-between { min-height: 40px; }
+        header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+        #lang-selector button { min-width: 90px; min-height: 36px; }
+        #current-lang { display: inline-block; min-width: 60px; }
+        .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .love-gradient-bg { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+        .love-gradient-text {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Result animations */
+        .result-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.5); }
+        }
+        .glow-card {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Score circle */
+        .score-circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+        .score-circle .progress-ring {
+            transition: stroke-dashoffset 1s ease-out;
+        }
+        .score-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Category bar animation */
+        .category-bar {
+            transition: width 1s ease-out;
+        }
+
+        /* Heart animation */
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .heart-pulse {
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        /* Animal bounce animation */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 2s ease-in-out infinite;
+        }
+
+        /* Animal card hover effect */
+        #animal-couple-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #animal-couple-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        /* Prevent word breaking in the middle for CJK languages */
+        .word-keep {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Language classes - CSS-based switching for 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] span.lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] div.lang-ko { display: block; }
+        html[lang="ko"] a.lang-ko { display: inline-flex; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] span.lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] div.lang-ja { display: block; }
+        html[lang="ja"] a.lang-ja { display: inline-flex; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] span.lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] div.lang-zh { display: block; }
+        html[lang="zh"] a.lang-zh { display: inline-flex; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] span.lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] li.lang-es, html[lang="es"] div.lang-es { display: block; }
+        html[lang="es"] a.lang-es { display: inline-flex; }
+
+        /* Emoji Reaction Styles */
+        .reaction-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 16px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        .reaction-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .reaction-btn.selected {
+            border-color: #ec4899;
+            background: linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(244,63,94,0.1) 100%);
+        }
+        .reaction-btn .emoji {
+            font-size: 2rem;
+            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+        .reaction-btn:hover .emoji {
+            transform: scale(1.2);
+        }
+        .reaction-btn .label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .reaction-stats {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .reaction-stats.show {
+            display: block;
+        }
+    </style>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AI Compatibility Test Results",
+        "description": "Your AI Compatibility Test results. See your love match score, relationship analysis, and compatibility breakdown.",
+        "isPartOf": {
+            "@type": "WebApplication",
+            "name": "AI Compatibility Test",
+            "url": "https://smartaitest.com/compatibility/"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://smartaitest.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "AI Compatibility Test",
+                    "item": "https://smartaitest.com/compatibility/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Results"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Language is set statically -->
+
+    <!-- Language Switching -->
+    <script>
+    var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
+    var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
+
+    function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        mobileBtns.forEach(function(btn) {
+            var btnLang = btn.getAttribute('data-lang');
+            btn.style.background = (btnLang === lang) ? '#ec4899' : '#f3f4f6';
+            btn.style.color = (btnLang === lang) ? 'white' : '#374151';
+        });
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+
+        document.documentElement.classList.add('lang-ready');
+
+        // Update dynamic content
+        if (window.compatibilityResults) {
+            updateDynamicContent(lang);
+        }
+    }
+
+    function toggleLangDropdown() {
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(e) {
+        var langSelector = document.getElementById('lang-selector');
+        var dropdown = document.getElementById('lang-dropdown');
+        if (langSelector && dropdown && !langSelector.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    function updateDynamicContent(lang) {
+        var results = window.compatibilityResults;
+        if (!results) return;
+
+        // Update relationship type label
+        var typeLabel = document.getElementById('relationship-type');
+        if (typeLabel && results.relationshipType) {
+            typeLabel.textContent = results.relationshipType.emoji + ' ' + results.relationshipType.labels[lang];
+        }
+
+        // Update category descriptions
+        ['communication', 'values', 'energy', 'emotional', 'growth'].forEach(function(cat) {
+            var descEl = document.getElementById(cat + '-desc');
+            if (descEl) {
+                descEl.textContent = getCategoryDescription(cat, results.categories[cat], lang);
+            }
+            var nameEl = document.getElementById(cat + '-name');
+            if (nameEl) {
+                var info = getCategoryInfo(cat, lang);
+                nameEl.textContent = info.icon + ' ' + info.name;
+            }
+        });
+
+        // Update overall analysis
+        var analysis = generateOverallAnalysis(results, lang);
+        var introEl = document.getElementById('analysis-intro');
+        var typeEl = document.getElementById('analysis-type');
+        var strengthEl = document.getElementById('analysis-strength');
+        var growthEl = document.getElementById('analysis-growth');
+        var elementsEl = document.getElementById('analysis-elements');
+
+        if (introEl) introEl.textContent = analysis.intro;
+        if (typeEl) typeEl.textContent = analysis.type;
+        if (strengthEl) strengthEl.textContent = analysis.strength;
+        if (growthEl) growthEl.textContent = analysis.growth;
+        if (elementsEl) elementsEl.textContent = analysis.elements;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang || 'ko';
+        switchLang(lang);
+    });
+    </script>
+    <!-- Gamification CSS -->
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
+    <!-- Viral Hooks CSS -->
+    <link rel="stylesheet" href="../../../css/viral-hooks.css">
+    <!-- Stage 5: Monetization -->
+    <link rel="stylesheet" href="../../../css/monetization.css">
+    <link rel="stylesheet" href="../../../css/ads.css">
+</head>
+<body class="kick-mesh-bg text-white min-h-screen" data-result-page>
+    <!-- Floating Pill Navbar -->
+    <nav class="kick-navbar" id="floating-navbar">
+        <a href="/en/" class="kick-navbar-logo">
+            <span class="text-xl">🔮</span>
+            <span class="kick-gradient-text">AI Test Lab</span>
+        </a>
+        <div class="kick-navbar-links">
+            <a href="/en/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 Compatibility</a>
+            <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
+            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a>
+        </div>
+        <!-- Language Selector -->
+        <div id="lang-selector" class="relative">
+            <button onclick="toggleLangDropdown()" class="kick-navbar-link flex items-center gap-1">
+                <span id="current-lang">🇺🇸</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-2 w-28 bg-gray-900/95 backdrop-blur-lg rounded-xl border border-white/10 py-1 z-50">
+                <button onclick="switchLang('en')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+                <button onclick="switchLang('ko')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+                <button onclick="switchLang('ja')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+                <button onclick="switchLang('zh')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+                <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
+            </div>
+        </div>
+        <!-- Share Button -->
+        <button id="share-btn" class="kick-btn kick-btn-primary px-3 py-1.5 text-sm hidden md:flex items-center gap-1">
+            Share
+        </button>
+        <!-- Mobile Share & Menu -->
+        <button id="share-btn-mobile" class="md:hidden kick-btn kick-btn-primary p-1.5 rounded-lg">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden text-white p-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
+        <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
+            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+            <a href="/en/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 Compatibility</a>
+            <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
+            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
+            <div class="border-t border-white/20 w-48 my-4"></div>
+            <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
+            <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
+            <div class="flex gap-3 mt-4">
+                <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="relative z-10 pt-8">
+        <!-- Result Hero -->
+        <section class="py-10 md:py-14">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-6xl mb-4 inline-block heart-pulse kick-float">&#128149;</span>
+                <h1 class="kick-heading text-3xl md:text-5xl font-bold mb-2">
+                    <span class="kick-gradient-text">
+                        Compatibility Results
+
+                    </span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- Names Display -->
+        <section class="py-6">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-2xl p-6">
+                    <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                        <div class="text-center">
+                            <span class="text-3xl">&#128104;</span>
+                            <p id="person-a-name" class="font-heading font-bold text-lg mt-1 text-white">Person A</p>
+                            <p id="person-a-zodiac" class="text-sm text-white/60"></p>
+                        </div>
+                        <span class="text-3xl text-pink-400 heart-pulse">&#128151;</span>
+                        <div class="text-center">
+                            <span class="text-3xl">&#128105;</span>
+                            <p id="person-b-name" class="font-heading font-bold text-lg mt-1 text-white">Person B</p>
+                            <p id="person-b-zodiac" class="text-sm text-white/60"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animal Couple Section - NEW VIRAL FEATURE -->
+        <section class="py-6 md:py-8">
+            <div class="max-w-2xl mx-auto px-4">
+                <div id="animal-couple-card" class="kick-glass rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                    <!-- Decorative background elements -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-xl"></div>
+
+                    <!-- Title -->
+                    <h2 class="font-heading text-lg md:text-xl font-bold text-center text-pink-400 mb-4 relative z-10">
+                        🐾 Your Animal Couple Type
+
+                    </h2>
+
+                    <!-- Animal Emojis Display -->
+                    <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-4 relative z-10">
+                        <div class="text-center transform hover:scale-110 transition-transform">
+                            <span id="animal-a-emoji" class="text-6xl md:text-7xl inline-block animate-bounce-slow">🦁</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span id="animal-chemistry" class="text-3xl md:text-4xl mb-1">💕</span>
+                            <span class="text-pink-400 text-2xl">+</span>
+                        </div>
+                        <div class="text-center transform hover:scale-110 transition-transform">
+                            <span id="animal-b-emoji" class="text-6xl md:text-7xl inline-block animate-bounce-slow" style="animation-delay: 0.5s;">🐱</span>
+                        </div>
+                    </div>
+
+                    <!-- Animal Couple Title -->
+                    <h3 id="animal-couple-title" class="font-heading text-xl md:text-2xl font-bold text-center text-white mb-3 relative z-10">
+                        사자와 고양이 커플
+                    </h3>
+
+                    <!-- Animal Couple Description -->
+                    <p id="animal-couple-desc" class="text-center text-white/70 text-sm md:text-base leading-relaxed relative z-10 max-w-md mx-auto">
+                        밖에선 카리스마, 집에선 애교쟁이! 보호자와 매력쟁이의 만남.
+                    </p>
+
+                    <!-- Fun tag -->
+                    <div class="mt-4 flex justify-center relative z-10">
+                        <span class="inline-flex items-center px-3 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium rounded-full">
+                            Share your animal couple! 📸
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Genre & Lucky Date Section -->
+        <section class="py-4 md:py-6">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Movie Genre Card -->
+                    <div id="movie-genre-card" class="kick-glass rounded-2xl p-5 md:p-6 hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-3">
+                                <span id="movie-genre-emoji" class="text-2xl">🎬</span>
+                            </div>
+                            <h3 class="font-heading text-sm text-white/60 mb-1">
+                                Your Love Movie Genre
+
+                            </h3>
+                            <p id="movie-genre-title" class="font-heading text-lg font-bold text-purple-300 mb-2">Romantic Comedy</p>
+                            <p id="movie-genre-desc" class="text-white/70 text-sm leading-relaxed">Your love story is full of laughter!</p>
+                        </div>
+                    </div>
+
+                    <!-- Lucky Date Card -->
+                    <div id="lucky-date-card" class="kick-glass rounded-2xl p-5 md:p-6 hover:-translate-y-1 transition-all duration-300">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mb-3">
+                                <span id="lucky-date-emoji" class="text-2xl">📅</span>
+                            </div>
+                            <h3 class="font-heading text-sm text-white/60 mb-1">
+                                Your Lucky Date
+
+                            </h3>
+                            <p id="lucky-date-value" class="font-heading text-lg font-bold text-amber-300 mb-1">January 15, 2026</p>
+                            <p class="text-white/70 text-sm">
+                                <span id="lucky-date-season-emoji">🌸</span>
+                                Perfect for: 
+
+                                <span id="lucky-date-activity" class="font-medium text-amber-400">cherry blossom picnic</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Results Card -->
+        <section class="py-8 md:py-12">
+            <div class="max-w-2xl mx-auto px-4">
+                <div class="kick-glass rounded-2xl p-6 md:p-8">
+                    <!-- Overall Score Circle -->
+                    <div class="flex flex-col items-center mb-8">
+                        <div class="score-circle">
+                            <svg width="200" height="200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12"/>
+                                <circle id="score-ring" cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGradient)" stroke-width="12"
+                                    stroke-linecap="round" class="progress-ring"
+                                    stroke-dasharray="565.48" stroke-dashoffset="565.48"/>
+                                <defs>
+                                    <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ec4899"/>
+                                        <stop offset="100%" stop-color="#f43f5e"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="score-value">
+                                <span id="score-number" class="font-heading text-5xl font-bold kick-gradient-text">--</span>
+                                <span class="text-white/60 text-lg">%</span>
+                            </div>
+                        </div>
+                        <p id="relationship-type" class="mt-4 text-xl font-semibold text-white/80">--</p>
+                    </div>
+
+                    <!-- Category Bars -->
+                    <div class="space-y-4">
+                        <!-- Communication -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="communication-name" class="font-medium text-white/80">&#128172; Communication</span>
+                                <span id="communication-score" class="text-pink-400 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="communication-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Values -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="values-name" class="font-medium text-white/80">&#9878;&#65039; Values</span>
+                                <span id="values-score" class="text-pink-400 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="values-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Energy -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="energy-name" class="font-medium text-white/80">&#9889; Energy</span>
+                                <span id="energy-score" class="text-pink-400 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="energy-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Emotional -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="emotional-name" class="font-medium text-white/80">&#128151; Emotional</span>
+                                <span id="emotional-score" class="text-pink-400 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="emotional-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Growth -->
+                        <div class="category-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span id="growth-name" class="font-medium text-white/80">&#127793; Growth</span>
+                                <span id="growth-score" class="text-pink-400 font-bold">--%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div id="growth-bar" class="category-bar bg-gradient-to-r from-pink-500 to-rose-500 h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share Section - Clean & Viral Design -->
+        <section class="py-8" data-share-section>
+            <div class="max-w-xl mx-auto px-4 space-y-6">
+
+                <!-- Card A: Make It Visual -->
+                <div class="kick-glass rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white text-center mb-4">
+                        Save Result Image
+
+                    </h3>
+                    <div class="flex gap-3">
+                        <button onclick="downloadImage('story')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
+                            <span class="text-xl">📱</span>
+                            <span>
+                                Story
+
+                            </span>
+                            <span class="text-xs text-gray-400 ml-1">9:16</span>
+                        </button>
+                        <button onclick="downloadImage('square')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
+                            <span class="text-xl">🖼️</span>
+                            <span>
+                                Feed
+
+                            </span>
+                            <span class="text-xs text-gray-400 ml-1">1:1</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card B: Go Viral - Pink Gradient Style -->
+                <div class="share-card rounded-[20px] p-8 shadow-[0_4px_20px_rgba(0,0,0,0.1)] relative overflow-hidden" style="background: linear-gradient(135deg, #FF6B8A 0%, #FF5A7E 50%, #FF4D6D 100%);">
+                    <!-- Decorative circles -->
+                    <div class="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2" style="background: rgba(255,255,255,0.1);"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 rounded-full translate-y-1/2 -translate-x-1/2" style="background: rgba(255,255,255,0.1);"></div>
+
+                    <!-- Envelope Icon -->
+                    <div class="flex justify-center mb-4 relative z-10">
+                        <div class="text-4xl">💌</div>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-xl font-bold text-center mb-2 relative z-10" style="color: white;">
+                        Send to a Friend!
+
+                    </h3>
+                    <p class="text-sm text-center mb-6 relative z-10" style="color: rgba(255,255,255,0.9);">
+                        Your friend can take the test with your birthday! What result will they get?
+
+                    </p>
+
+                    <!-- All Share Buttons - Row 1 -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-3 relative z-10">
+                        <button onclick="copyViralLink()" class="h-[40px] px-4 flex items-center gap-2 bg-white text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition shadow-md border border-gray-200">
+                            <span>🔗</span>
+                            Copy Link
+
+                        </button>
+                        <button onclick="shareViralKakao()" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #FEE500; color: #191919;">
+                            <span>💛</span>
+                            <span class="lang-en lang-ja lang-zh lang-es">Kakao</span>
+
+                        </button>
+                        <button onclick="shareViralTwitter()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition shadow-md">
+                            <span class="font-bold">𝕏</span>
+                            <span class="lang-en lang-ja lang-zh lang-es">Twitter</span>
+
+                        </button>
+                        <button onclick="shareToFacebook()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #1877F2;">
+                            <span>📘</span>
+                            <span>Facebook</span>
+                        </button>
+                        <button onclick="shareToInstagram()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);">
+                            <span>📷</span>
+                            <span>Instagram</span>
+                        </button>
+                    </div>
+                    <!-- All Share Buttons - Row 2 -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-4 relative z-10">
+                        <button onclick="shareToThreads()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition shadow-md">
+                            <span>Threads</span>
+                        </button>
+                        <button onclick="shareToTelegram()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #0088CC;">
+                            <span>Telegram</span>
+                        </button>
+                        <button onclick="shareToReddit()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #FF4500;">
+                            <span>Reddit</span>
+                        </button>
+                        <button onclick="shareToPinterest()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #E60023;">
+                            <span>Pinterest</span>
+                        </button>
+                        <button onclick="shareToLinkedIn()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #0A66C2;">
+                            <span>LinkedIn</span>
+                        </button>
+                    </div>
+
+                    <!-- Bottom Stats -->
+                    <p class="text-sm text-center relative z-10" style="color: rgba(255,255,255,0.8);">
+                        🔥 Over 50,000 couples have tested their compatibility!
+
+                    </p>
+
+                    <!-- Copy Feedback -->
+                    <p id="copy-feedback" class="text-center font-semibold text-sm mt-3 hidden rounded-full py-2 relative z-10" style="color: white; background: rgba(255,255,255,0.2);">
+                        ✓ Link copied!
+
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400"><ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Analysis -->
+        <section class="py-10 bg-white">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+                    &#128214; Detailed Analysis
+
+                </h2>
+
+                <!-- Overall Analysis -->
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6 mb-8 border border-pink-100">
+                    <p id="analysis-intro" class="text-gray-700 mb-3 font-medium"></p>
+                    <p id="analysis-type" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-strength" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-growth" class="text-gray-700 mb-3"></p>
+                    <p id="analysis-elements" class="text-gray-600 text-sm"></p>
+                </div>
+
+                <!-- Category Details -->
+                <div class="space-y-6">
+                    <!-- Communication -->
+                    <div class="kick-glass rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#128172;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Communication
+
+                            </h3>
+                        </div>
+                        <p id="communication-desc" class="text-white/70 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Values -->
+                    <div class="kick-glass rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#9878;&#65039;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Values
+
+                            </h3>
+                        </div>
+                        <p id="values-desc" class="text-white/70 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="kick-glass rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#9889;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Energy
+
+                            </h3>
+                        </div>
+                        <p id="energy-desc" class="text-white/70 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Emotional -->
+                    <div class="kick-glass rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#128151;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Emotional Connection
+
+                            </h3>
+                        </div>
+                        <p id="emotional-desc" class="text-white/70 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Growth -->
+                    <div class="kick-glass rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <span class="text-2xl">&#127793;</span>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Growth Potential
+
+                            </h3>
+                        </div>
+                        <p id="growth-desc" class="text-white/70 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 5: Romance Movie Affiliate Section -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div id="movie-affiliate-container">
+                    <!-- Populated by ContextualAffiliateManager -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Try Again / More Tests -->
+        <section class="py-10">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <span class="text-4xl mb-4 inline-block kick-float">&#128149;</span>
+                <h2 class="kick-heading text-2xl font-bold mb-4 text-white">
+                    Try More Tests
+
+                </h2>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="/en/compatibility/" class="kick-btn kick-btn-primary kick-btn-bounce font-semibold py-3 px-6 rounded-xl inline-flex items-center justify-center space-x-2">
+                        <span>&#8634;</span>
+                        Test Again
+
+                    </a>
+                    <a href="/en/life-summary/" class="bg-white/10 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
+                        <span>&#10024;</span>
+                        AI Life Summary
+
+                    </a>
+                    <a href="/en/age-calculator/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
+                        <span>&#127874;</span>
+                        AI Age Calculator
+
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">🔮</span>
+                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-gray-400 text-sm lang-en">Discover yourself with AI-powered personality tests.</p>
+                    <p class="text-gray-400 text-sm lang-ko">AI 기반 성격 테스트로 자신을 발견하세요.</p>
+                    <p class="text-gray-400 text-sm lang-ja">AI搭載の性格テストで自分を発見しましょう。</p>
+                    <p class="text-gray-400 text-sm lang-zh">通过AI驱动的性格测试发现自己。</p>
+                    <p class="text-gray-400 text-sm lang-es">Descubrete con tests de personalidad con IA.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">
+                        Tests
+
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/en/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
+                        <li><a href="/en/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                        <li><a href="/en/compatibility/" class="hover:text-white transition">AI Compatibility</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/en/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/en/about/" class="hover:text-white transition">About</a></li>
+                        <li><a href="/en/contact/" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/en/privacy-policy/" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/en/terms-of-service/" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
+                <p class="mt-2">All tests are for entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/compatibility.js"></script>
+    <script src="/js/compatibility-share.js"></script>
+    <script src="/js/compatibility-image.js"></script>
+    <script src="/js/result-enhancements.js"></script>
+    <script src="/js/viral-link.js"></script>
+    <script src="/js/localization.js"></script>
+    <script src="/js/monetization.js"></script>
+
+    <!-- Result Page Script -->
+    <script>
+        // Check for URL parameters first (shared link)
+        const urlParams = new URLSearchParams(window.location.search);
+        let inputData = null;
+
+        if (urlParams.has('a') && urlParams.has('b')) {
+            // Parse from URL (shared link format: ?a=YYYYMMDD&b=YYYYMMDD&na=Name&nb=Name)
+            const birthdayA = urlParams.get('a');
+            const birthdayB = urlParams.get('b');
+            const nameA = urlParams.get('na') || '';
+            const nameB = urlParams.get('nb') || '';
+
+            if (birthdayA.length === 8 && birthdayB.length === 8) {
+                inputData = {
+                    personA: {
+                        name: decodeURIComponent(nameA),
+                        year: parseInt(birthdayA.substring(0, 4)),
+                        month: parseInt(birthdayA.substring(4, 6)),
+                        day: parseInt(birthdayA.substring(6, 8))
+                    },
+                    personB: {
+                        name: decodeURIComponent(nameB),
+                        year: parseInt(birthdayB.substring(0, 4)),
+                        month: parseInt(birthdayB.substring(4, 6)),
+                        day: parseInt(birthdayB.substring(6, 8))
+                    }
+                };
+            }
+        }
+
+        // Fall back to localStorage
+        if (!inputData) {
+            const storedData = localStorage.getItem('compatibility-data');
+            if (storedData) {
+                inputData = JSON.parse(storedData);
+            }
+        }
+
+        if (!inputData) {
+            // No data, redirect to input page
+            window.location.href = '/compatibility/';
+        } else {
+            // Get current language
+            const currentLang = localStorage.getItem('ai-life-summary-lang') || 'en';
+
+            // Calculate compatibility
+            const results = calculateCompatibility(inputData.personA, inputData.personB);
+            window.compatibilityResults = results;
+
+            // Display names and zodiac
+            document.getElementById('person-a-name').textContent = results.personA.name;
+            document.getElementById('person-b-name').textContent = results.personB.name;
+            document.getElementById('person-a-zodiac').textContent = results.personA.zodiac + ' ' + results.personA.element;
+            document.getElementById('person-b-zodiac').textContent = results.personB.zodiac + ' ' + results.personB.element;
+
+            // Animate score display
+            setTimeout(() => {
+                // Score circle animation
+                const scoreRing = document.getElementById('score-ring');
+                const circumference = 2 * Math.PI * 90;
+                const offset = circumference - (results.overallScore / 100) * circumference;
+                scoreRing.style.strokeDashoffset = offset;
+
+                // Score number
+                document.getElementById('score-number').textContent = results.overallScore;
+
+                // Relationship type
+                document.getElementById('relationship-type').textContent =
+                    results.relationshipType.emoji + ' ' + results.relationshipType.labels[currentLang];
+            }, 300);
+
+            // Animate category bars
+            setTimeout(() => {
+                ['communication', 'values', 'energy', 'emotional', 'growth'].forEach((cat, index) => {
+                    setTimeout(() => {
+                        const score = results.categories[cat];
+                        document.getElementById(cat + '-score').textContent = score + '%';
+                        document.getElementById(cat + '-bar').style.width = score + '%';
+
+                        // Update category name with icon
+                        const info = getCategoryInfo(cat, currentLang);
+                        document.getElementById(cat + '-name').textContent = info.icon + ' ' + info.name;
+
+                        // Update description
+                        document.getElementById(cat + '-desc').textContent = getCategoryDescription(cat, score, currentLang);
+                    }, index * 150);
+                });
+            }, 600);
+
+            // Overall analysis
+            setTimeout(() => {
+                const analysis = generateOverallAnalysis(results, currentLang);
+                document.getElementById('analysis-intro').textContent = analysis.intro;
+                document.getElementById('analysis-type').textContent = analysis.type;
+                document.getElementById('analysis-strength').textContent = analysis.strength;
+                document.getElementById('analysis-growth').textContent = analysis.growth;
+                document.getElementById('analysis-elements').textContent = analysis.elements;
+            }, 1200);
+
+            // Animal couple display
+            if (results.animalCouple) {
+                const animalCouple = results.animalCouple;
+
+                // Set animal emojis
+                document.getElementById('animal-a-emoji').textContent = animalCouple.animalA.emoji;
+                document.getElementById('animal-b-emoji').textContent = animalCouple.animalB.emoji;
+
+                // Set chemistry emoji
+                document.getElementById('animal-chemistry').textContent = animalCouple.chemistry || '💕';
+
+                // Set title and description based on language
+                document.getElementById('animal-couple-title').textContent =
+                    animalCouple.title[currentLang] || animalCouple.title.en;
+                document.getElementById('animal-couple-desc').textContent =
+                    animalCouple.desc[currentLang] || animalCouple.desc.en;
+
+                // Update creative relationship label if available
+                if (results.relationshipType.creativeLabels) {
+                    const creativeLabel = results.relationshipType.creativeLabels[currentLang] ||
+                                         results.relationshipType.creativeLabels.en;
+                    document.getElementById('relationship-type').textContent =
+                        results.relationshipType.emoji + ' ' + creativeLabel;
+                }
+            }
+
+            // Update Movie Genre section
+            if (results.movieGenre) {
+                const movieGenre = results.movieGenre;
+                document.getElementById('movie-genre-emoji').textContent = movieGenre.emoji;
+                document.getElementById('movie-genre-title').textContent =
+                    movieGenre.title[currentLang] || movieGenre.title.en;
+                document.getElementById('movie-genre-desc').textContent =
+                    movieGenre.desc[currentLang] || movieGenre.desc.en;
+            }
+
+            // Update Lucky Date section
+            if (results.luckyDate) {
+                const luckyDate = results.luckyDate;
+                document.getElementById('lucky-date-emoji').textContent = luckyDate.emoji;
+                document.getElementById('lucky-date-value').textContent =
+                    luckyDate.dateFormatted[currentLang] || luckyDate.dateFormatted.en;
+                document.getElementById('lucky-date-season-emoji').textContent = luckyDate.emoji;
+                document.getElementById('lucky-date-activity').textContent =
+                    luckyDate.activity[currentLang] || luckyDate.activity.en;
+            }
+
+            // Initialize result page enhancements (participant counter, animations)
+            if (window.ResultEnhancements) {
+                window.ResultEnhancements.initResultEnhancements({
+                    testType: 'compatibility',
+                    lang: currentLang
+                });
+            }
+
+            // Initialize viral hooks with couple match alert for high scores
+            if (typeof viralHooks !== 'undefined') {
+                setTimeout(() => {
+                    viralHooks.init({
+                        compatibilityScore: results.overallScore,
+                        socialProofDelay: 10000
+                    });
+                }, 2000); // Delay to let animations complete
+            }
+
+            // Add Cultural Metaphor to analysis
+            if (typeof CulturalMetaphorManager !== 'undefined') {
+                const metaphor = CulturalMetaphorManager.getCompatibilityMetaphor(results.overallScore, currentLang);
+                const enhancement = CulturalMetaphorManager.getResultEnhancement(results, currentLang);
+
+                // Update analysis intro with cultural context
+                const analysisIntro = document.getElementById('analysis-intro');
+                if (analysisIntro && metaphor) {
+                    const originalText = analysisIntro.textContent;
+                    analysisIntro.innerHTML = `<span class="text-pink-600 font-semibold">${metaphor}</span><br><br>${originalText}`;
+                }
+
+                // Add enhancement suffix to elements section
+                const analysisElements = document.getElementById('analysis-elements');
+                if (analysisElements && enhancement.suffix) {
+                    analysisElements.textContent += ' ' + enhancement.suffix;
+                }
+            }
+
+            // Stage 5: Add Movie Affiliate Section
+            if (typeof ContextualAffiliateManager !== 'undefined') {
+                const movieHtml = ContextualAffiliateManager.createMovieAffiliateSection(
+                    results.overallScore,
+                    currentLang
+                );
+                ContextualAffiliateManager.insertAffiliateSection('movie-affiliate-container', movieHtml);
+            }
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Share button click handlers
+        document.getElementById('share-btn').addEventListener('click', async function() {
+            const shared = await shareNative();
+            if (!shared) {
+                copyResultLink();
+            }
+        });
+
+        const shareBtnMobile = document.getElementById('share-btn-mobile');
+        if (shareBtnMobile) {
+            shareBtnMobile.addEventListener('click', async function() {
+                const shared = await shareNative();
+                if (!shared) {
+                    copyResultLink();
+                }
+            });
+        }
+
+        // Emoji Reaction Handler
+        function selectReaction(reaction) {
+            // Check if already reacted
+            const storageKey = 'compatibility_reaction_' + window.location.search;
+            if (localStorage.getItem(storageKey)) {
+                return; // Already reacted
+            }
+
+            // Save reaction
+            localStorage.setItem(storageKey, reaction);
+
+            // Visual feedback - highlight selected button
+            const buttons = document.querySelectorAll('.reaction-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.dataset.reaction === reaction) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Generate fake stats (deterministic based on URL)
+            const urlHash = window.location.search.split('').reduce((a, b) => {
+                a = ((a << 5) - a) + b.charCodeAt(0);
+                return a & a;
+            }, 0);
+            const basePercent = 94 + Math.abs(urlHash % 5); // 94-98%
+
+            // Update stats display
+            document.getElementById('stat-percent').textContent = basePercent;
+            document.getElementById('stat-percent-ko').textContent = basePercent;
+            document.getElementById('stat-percent-ja').textContent = basePercent;
+            document.getElementById('stat-percent-zh').textContent = basePercent;
+            document.getElementById('stat-percent-es').textContent = basePercent;
+
+            // Show stats section
+            document.getElementById('reaction-stats').classList.add('show');
+
+            // Disable buttons after selection
+            buttons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = btn.classList.contains('selected') ? '1' : '0.5';
+            });
+        }
+
+        // Check for existing reaction on page load
+        (function checkExistingReaction() {
+            const storageKey = 'compatibility_reaction_' + window.location.search;
+            const existingReaction = localStorage.getItem(storageKey);
+            if (existingReaction) {
+                selectReaction(existingReaction);
+            }
+        })();
+    </script>
+
+    <!-- Gamification Scripts -->
+    <script src="../../../js/badges.js"></script>
+    <script src="../../../js/level-xp.js"></script>
+    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/user-data.js"></script>
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/gamification-ui.js"></script>
+    <script src="../../../js/referral.js"></script>
+    <script>
+    // Gamification integration for Compatibility Test
+    (function initGamification() {
+        // Wait for userDataManager to be ready
+        if (typeof userDataManager === 'undefined') {
+            setTimeout(initGamification, 100);
+            return;
+        }
+
+        const person1Birth = localStorage.getItem('compatibility-person1-birth');
+        const person2Birth = localStorage.getItem('compatibility-person2-birth');
+        if (!person1Birth || !person2Birth) return;
+
+        const lang = localStorage.getItem('ai-life-summary-lang') || 'ko';
+        const resultKey = 'compatibility-' + person1Birth + '-' + person2Birth;
+
+        // Check if XP already awarded for this result
+        const userData = userDataManager.getUserData();
+        const alreadyAwarded = userData.gamification?.awardedResults?.includes(resultKey);
+
+        if (!alreadyAwarded) {
+            // Record test in history
+            userDataManager.addTestHistory({
+                type: 'compatibility',
+                person1Birth: person1Birth,
+                person2Birth: person2Birth,
+                score: window.compatibilityResults?.score || null,
+                timestamp: Date.now()
+            });
+
+            // Award XP for completing test
+            const xpAmount = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.test_complete : 50;
+            const xpResult = userDataManager.addXp(xpAmount, 'test_complete');
+
+            // Mark as awarded
+            userDataManager.markResultAwarded(resultKey);
+
+            // Update streak
+            if (typeof streakSystem !== 'undefined') {
+                const streakResult = streakSystem.updateStreak();
+                if (streakResult.milestone && typeof gamificationUI !== 'undefined') {
+                    setTimeout(() => {
+                        gamificationUI.showStreakMilestonePopup(streakResult.milestone, lang);
+                    }, 1500);
+                }
+            }
+
+            // Check for badges
+            if (typeof badgeSystem !== 'undefined') {
+                const newBadges = badgeSystem.checkBadgeConditions(userDataManager.getUserData());
+                if (newBadges.length > 0) {
+                    userDataManager.addBadges(newBadges);
+                    if (typeof gamificationUI !== 'undefined' && typeof BADGES !== 'undefined') {
+                        setTimeout(() => {
+                            gamificationUI.showBadgePopup(BADGES[newBadges[0]], lang);
+                        }, 2000);
+                    }
+                }
+            }
+
+            // Show XP toast
+            if (typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showXpToast(xpAmount, 'test_complete', lang);
+                }, 500);
+            }
+
+            // Check for level up
+            if (xpResult && xpResult.leveledUp && typeof gamificationUI !== 'undefined') {
+                setTimeout(() => {
+                    gamificationUI.showLevelUpPopup(xpResult.newLevel, lang);
+                }, 3000);
+            }
+
+            // Apply referral if any
+            if (typeof referralSystem !== 'undefined') {
+                referralSystem.applyReferral();
+            }
+        }
+
+        // Track share button clicks for XP
+        document.querySelectorAll('.share-btn, [data-share]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const shareKey = 'compatibility-share-' + person1Birth + '-' + person2Birth;
+                const alreadyShared = userData.gamification?.awardedResults?.includes(shareKey);
+
+                if (!alreadyShared) {
+                    const shareXp = typeof XP_REWARDS !== 'undefined' ? XP_REWARDS.share_result : 30;
+                    userDataManager.addXp(shareXp, 'share_result');
+                    userDataManager.markResultAwarded(shareKey);
+
+                    if (typeof gamificationUI !== 'undefined') {
+                        gamificationUI.showXpToast(shareXp, 'share_result', lang);
+                    }
+                }
+            });
+        });
+
+        // Dispatch event for other scripts
+        window.dispatchEvent(new CustomEvent('gamification-update'));
+    })();
+
+    // Initialize Viral Link for invite friend button
+    (function initViralLink() {
+        // Wait for ViralLinkManager to be available
+        if (typeof ViralLinkManager === 'undefined') {
+            setTimeout(initViralLink, 100);
+            return;
+        }
+
+        // Get input data
+        const storedData = localStorage.getItem('compatibility-data');
+        let viralLink = window.location.href; // Default to current URL
+
+        if (storedData) {
+            try {
+                const inputData = JSON.parse(storedData);
+                // Create user data for viral link
+                const userData = {
+                    year: inputData.personA?.year,
+                    month: inputData.personA?.month,
+                    day: inputData.personA?.day,
+                    name: inputData.personA?.name || ''
+                };
+
+                // Generate viral comparison link
+                if (userData.year && userData.month && userData.day) {
+                    viralLink = ViralLinkManager.generateComparisonLink(userData, {
+                        baseUrl: 'https://smartaitest.com/compatibility/',
+                        source: 'result_cta'
+                    });
+                }
+            } catch (e) {
+                console.error('Error generating viral link:', e);
+            }
+        }
+
+        // Store viral link globally for button handlers
+        window.currentViralLink = viralLink;
+    })();
+
+    // Viral CTA button handlers
+    function getViralLink() {
+        // Use currentViralLink or fallback to current page URL
+        return window.currentViralLink || window.location.href;
+    }
+
+    function copyViralLink() {
+        const link = getViralLink();
+        const lang = document.documentElement.lang || 'ko';
+        const messages = {
+            ko: '나랑 궁합 테스트 해볼래? 🥰',
+            en: 'Want to test our compatibility? 🥰',
+            ja: '相性テストしてみない？🥰',
+            zh: '要测试我们的配对吗？🥰',
+            es: '¿Quieres probar nuestra compatibilidad? 🥰'
+        };
+
+        const textToCopy = messages[lang] + '\n' + link;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Show alert for confirmation
+            const confirmMsg = {
+                ko: '✅ 복사 완료! 친구에게 보내세요!',
+                en: '✅ Link copied! Send it to your friend!',
+                ja: '✅ コピー完了！友達に送ろう！',
+                zh: '✅ 已复制！发送给朋友吧！',
+                es: '✅ ¡Enlace copiado!'
+            };
+            alert(confirmMsg[lang] || confirmMsg.en);
+
+            // Track share for XP
+            if (typeof gamificationUI !== 'undefined') {
+                gamificationUI.showXpToast(30, 'share_result', lang);
+            }
+        }).catch(() => {
+            alert(lang === 'ko' ? '링크 복사에 실패했습니다.' : 'Failed to copy link.');
+        });
+    }
+
+    // Share to KakaoTalk
+    function shareViralKakao() {
+        const link = getViralLink();
+        const lang = document.documentElement.lang || 'ko';
+        const messages = {
+            ko: '나랑 궁합 테스트 해볼래? 🥰',
+            en: 'Want to test our compatibility? 🥰',
+            ja: '相性テストしてみない？🥰',
+            zh: '要测试我们的配对吗？🥰',
+            es: '¿Quieres probar nuestra compatibilidad? 🥰'
+        };
+
+        // Copy to clipboard and prompt for KakaoTalk
+        const textToCopy = messages[lang] + '\n' + link;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const confirmMsg = {
+                ko: '📋 복사 완료!\n\n카카오톡을 열고 붙여넣기하세요.',
+                en: '📋 Copied!\n\nOpen KakaoTalk and paste.',
+                ja: '📋 コピー完了！\n\nカカオトークを開いて貼り付けてください。',
+                zh: '📋 已复制！\n\n打开KakaoTalk粘贴。',
+                es: '📋 ¡Copiado!\n\nAbre KakaoTalk y pega.'
+            };
+            alert(confirmMsg[lang] || confirmMsg.en);
+            showCopyFeedback();
+        }).catch(() => {
+            alert(lang === 'ko' ? '복사에 실패했습니다.' : 'Failed to copy.');
+        });
+    }
+
+    // Share to Twitter/X
+    function shareViralTwitter() {
+        const link = getViralLink();
+        const lang = document.documentElement.lang || 'ko';
+        const messages = {
+            ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
+            en: 'Want to test our AI compatibility? 🥰',
+            ja: 'AI相性テストしてみない？🥰',
+            zh: '要测试我们的AI配对吗？🥰',
+            es: '¿Quieres probar nuestra compatibilidad IA? 🥰'
+        };
+
+        const text = encodeURIComponent(messages[lang]);
+        const url = encodeURIComponent(link);
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=550,height=450');
+    }
+
+    // Native Share API (with fallback to copy)
+    function shareViralNative() {
+        const link = getViralLink();
+        const lang = document.documentElement.lang || 'ko';
+        const titles = {
+            ko: 'AI 궁합 테스트',
+            en: 'AI Compatibility Test',
+            ja: 'AI相性テスト',
+            zh: 'AI配对测试',
+            es: 'Test de Compatibilidad IA'
+        };
+        const messages = {
+            ko: '우리 궁합은 몇 점일까? 지금 확인해보세요!',
+            en: 'What\'s our compatibility score? Find out now!',
+            ja: '私たちの相性は何点？今すぐチェック！',
+            zh: '我们的配对分数是多少？现在查看！',
+            es: '¿Cuál es nuestra puntuación? ¡Descúbrelo ahora!'
+        };
+
+        const shareData = {
+            title: titles[lang] || titles.en,
+            text: messages[lang] || messages.en,
+            url: link
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch((err) => {
+                if (err.name !== 'AbortError') {
+                    // Fallback to copy if share fails
+                    copyToClipboardFallback(link, lang);
+                }
+            });
+        } else {
+            // PC fallback - copy link
+            copyToClipboardFallback(link, lang);
+        }
+    }
+
+    // Fallback copy function for native share
+    function copyToClipboardFallback(link, lang) {
+        const messages = {
+            ko: '나랑 궁합 테스트 해볼래? 🥰',
+            en: 'Want to test our compatibility? 🥰',
+            ja: '相性テストしてみない？🥰',
+            zh: '要测试我们的配对吗？🥰',
+            es: '¿Quieres probar nuestra compatibilidad? 🥰'
+        };
+        const textToCopy = messages[lang] + '\n' + link;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showCopyFeedback();
+            const confirmMsg = {
+                ko: '✅ 링크가 복사되었습니다!',
+                en: '✅ Link copied!',
+                ja: '✅ リンクをコピーしました！',
+                zh: '✅ 已复制链接！',
+                es: '✅ ¡Enlace copiado!'
+            };
+            alert(confirmMsg[lang] || confirmMsg.en);
+        }).catch(() => {
+            alert(lang === 'ko' ? '복사에 실패했습니다.' : 'Failed to copy.');
+        });
+    }
+
+    // Show copy feedback message
+    function showCopyFeedback() {
+        const feedback = document.getElementById('copy-feedback');
+        if (feedback) {
+            feedback.classList.remove('hidden');
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+            }, 3000);
+        }
+    }
+
+    // Toggle more share options panel
+    function toggleMoreShare() {
+        const panel = document.getElementById('more-share-panel');
+        if (panel) {
+            panel.classList.toggle('hidden');
+            // Smooth scroll to panel if showing
+            if (!panel.classList.contains('hidden')) {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    }
+
+    </script>
+    <!-- Viral Hooks -->
+    <script src="../../../js/viral-hooks.js" defer></script>
+    <script src="../../../js/consent-manager.js"></script>
+    <script src="../../../js/analytics-events.js" defer></script>
+    <script src="../../../js/ads-manager.js" defer></script>
+</body>
+</html>

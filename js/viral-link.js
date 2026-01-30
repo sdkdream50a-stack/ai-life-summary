@@ -334,30 +334,58 @@ const ComparisonLandingManager = {
     const formContainer = document.querySelector('#compatibility-form');
     if (!formContainer) return;
 
-    // Create banner
+    // Sanitize user input to prevent XSS
+    const sanitize = (str) => {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    };
+
+    // Create banner with sanitized content
     const banner = document.createElement('div');
     banner.id = 'referral-banner';
     banner.className = 'mb-6 p-4 rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-300/30';
-    banner.innerHTML = `
-      <div class="flex items-center gap-3 mb-2">
-        <span class="text-2xl">🎉</span>
-        <p class="text-white font-semibold">${this.t('friendInfo')}</p>
-      </div>
-      <div class="flex items-center gap-2 text-white/80 text-sm">
-        <span>👤</span>
-        <span>${ref.name || this.t('friendBirthday')}: ${ref.year}.${ref.month}.${ref.day}</span>
-      </div>
-      <p class="mt-3 text-white/90 text-sm">${this.t('yourTurn')}</p>
-    `;
+
+    // Build DOM safely without innerHTML for user data
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'flex items-center gap-3 mb-2';
+    const emoji = document.createElement('span');
+    emoji.className = 'text-2xl';
+    emoji.textContent = '🎉';
+    const headerText = document.createElement('p');
+    headerText.className = 'text-white font-semibold';
+    headerText.textContent = this.t('friendInfo');
+    headerDiv.appendChild(emoji);
+    headerDiv.appendChild(headerText);
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'flex items-center gap-2 text-white/80 text-sm';
+    const userIcon = document.createElement('span');
+    userIcon.textContent = '👤';
+    const infoText = document.createElement('span');
+    // Safely display user-provided name
+    const safeName = sanitize(ref.name) || this.t('friendBirthday');
+    infoText.textContent = `${safeName}: ${ref.year}.${ref.month}.${ref.day}`;
+    infoDiv.appendChild(userIcon);
+    infoDiv.appendChild(infoText);
+
+    const turnText = document.createElement('p');
+    turnText.className = 'mt-3 text-white/90 text-sm';
+    turnText.textContent = this.t('yourTurn');
+
+    banner.appendChild(headerDiv);
+    banner.appendChild(infoDiv);
+    banner.appendChild(turnText);
 
     // Insert at the beginning of the form
     formContainer.insertBefore(banner, formContainer.firstChild);
 
-    // Update submit button text
+    // Update submit button text (safe - no user data)
     const submitBtn = formContainer.querySelector('button[type="submit"]');
     if (submitBtn) {
       const btnTextSpan = submitBtn.querySelector('span') || submitBtn;
-      btnTextSpan.innerHTML = `💕 ${this.t('checkCompatibility')}`;
+      btnTextSpan.textContent = '💕 ' + this.t('checkCompatibility');
     }
 
     // Add visual highlight to Person B section
@@ -455,28 +483,39 @@ const ViralCTAManager = {
   /**
    * Create viral CTA section for result page
    */
+  /**
+   * Escape HTML special characters to prevent XSS
+   */
+  escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  },
+
   createViralCTA(userData, containerId = 'viral-cta-container') {
     const container = document.getElementById(containerId);
     if (!container) return null;
 
     const link = ViralLinkManager.generateComparisonLink(userData);
+    // Escape the link to prevent XSS via attribute injection
+    const safeLink = this.escapeHtml(link);
 
+    // Use textContent for user-facing text, escaped values for attributes
     container.innerHTML = `
       <div class="viral-cta-section mt-8 p-6 rounded-2xl bg-gradient-to-r from-yellow-400/20 to-orange-400/20 border-2 border-yellow-400/40">
         <div class="text-center mb-4">
-          <h3 class="text-xl font-bold text-white mb-2">${this.t('shareTitle')}</h3>
-          <p class="text-white/80 text-sm">${this.t('shareDesc')}</p>
+          <h3 class="text-xl font-bold text-white mb-2"></h3>
+          <p class="text-white/80 text-sm"></p>
         </div>
 
         <div class="flex flex-col gap-3">
           <!-- Copy Link Button -->
           <div class="relative">
-            <input type="text" value="${link}" readonly
+            <input type="text" value="" readonly
                    class="w-full px-4 py-3 pr-24 rounded-lg bg-white/10 text-white text-sm border border-white/20 focus:outline-none"
                    id="viral-link-input">
             <button id="copy-viral-link"
                     class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-white text-gray-800 rounded-md text-sm font-medium hover:bg-gray-100 transition">
-              ${this.t('copyLink')}
             </button>
           </div>
 
@@ -506,6 +545,12 @@ const ViralCTAManager = {
         </div>
       </div>
     `;
+
+    // Set text content safely after DOM creation (prevents XSS)
+    container.querySelector('h3').textContent = this.t('shareTitle');
+    container.querySelector('p').textContent = this.t('shareDesc');
+    container.querySelector('#viral-link-input').value = link;
+    container.querySelector('#copy-viral-link').textContent = this.t('copyLink');
 
     // Attach event listeners
     this.attachEventListeners(link);

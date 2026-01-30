@@ -70,11 +70,26 @@ class UserDataManager {
   }
 
   /**
+   * Generate cryptographically secure random string
+   */
+  secureRandomString(length) {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+    const array = new Uint32Array(length);
+    crypto.getRandomValues(array);
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars[array[i] % chars.length];
+    }
+    return result;
+  }
+
+  /**
    * Create a new guest user
    */
   createGuestUser() {
     const now = new Date().toISOString();
-    const guestId = 'guest_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    // Use cryptographically secure random generation
+    const guestId = 'guest_' + this.secureRandomString(12) + '_' + Date.now();
 
     return {
       ...DEFAULT_USER_DATA,
@@ -90,13 +105,15 @@ class UserDataManager {
   }
 
   /**
-   * Generate unique referral code
+   * Generate unique referral code (cryptographically secure)
    */
   generateReferralCode() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    const array = new Uint32Array(6);
+    crypto.getRandomValues(array);
     let code = '';
     for (let i = 0; i < 6; i++) {
-      code += chars.charAt(Math.floor(Math.random() * chars.length));
+      code += chars[array[i] % chars.length];
     }
     return code;
   }

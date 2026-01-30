@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-QDH2KJQT9Y');
-    </script>
-        <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "v3dwlpj2g5");
-    </script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"
-         crossorigin="anonymous"></script>
+    <!-- Analytics/Ads loaded via consent-manager.js -->
     <meta charset="UTF-8">
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -191,7 +175,7 @@
     <main class="py-12">
         <div class="max-w-4xl mx-auto px-4">
             <h1 class="font-heading text-4xl font-bold mb-2 gradient-text" data-i18n="privacy.title">Privacy Policy</h1>
-            <p class="text-gray-500 mb-8" data-i18n="privacy.last_updated">Last updated: January 2025</p>
+            <p class="text-gray-500 mb-8" data-i18n="privacy.last_updated">Last updated: January 30, 2026</p>
 
             <div class="prose prose-lg max-w-none text-gray-700 space-y-8">
                 <!-- Introduction -->
@@ -270,9 +254,11 @@
                         We may share your information with third-party service providers that perform services on our behalf, including:
                     </p>
                     <ul class="list-disc pl-6 space-y-2">
-                        <li data-i18n="privacy.disclosure.third.ga"><strong>Google Analytics:</strong> We use Google Analytics to help us understand how visitors engage with our Site. Google Analytics uses cookies to collect information about your use of the Site. This information is transmitted to and stored by Google on servers in the United States. Google may use this information for various purposes as described in the Google Privacy Policy.</li>
-                        <li data-i18n="privacy.disclosure.third.adsense"><strong>Google AdSense:</strong> We use Google AdSense to display advertisements on our Site. Google AdSense may use cookies and similar technologies to serve ads based on your prior visits to our Site or other websites. You can opt out of personalized advertising by visiting Google Ads Settings.</li>
-                        <li data-i18n="privacy.disclosure.third.cloudflare"><strong>Cloudflare:</strong> Our Site is hosted on Cloudflare Pages, which provides content delivery and security services. Cloudflare may collect certain technical information to provide these services as described in the Cloudflare Privacy Policy.</li>
+                        <li data-i18n="privacy.disclosure.third.ga"><strong>Google Analytics:</strong> We use Google Analytics to help us understand how visitors engage with our Site. Google Analytics uses cookies to collect information about your use of the Site. This information is transmitted to and stored by Google on servers in the United States. Google may use this information for various purposes as described in the <a href="https://policies.google.com/privacy" class="text-primary hover:underline" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+                        <li data-i18n="privacy.disclosure.third.clarity"><strong>Microsoft Clarity:</strong> We use Microsoft Clarity to understand how users interact with our Site through session recordings and heatmaps. Clarity may collect device and usage data, but masks sensitive information. See the <a href="https://privacy.microsoft.com/privacystatement" class="text-primary hover:underline" target="_blank" rel="noopener">Microsoft Privacy Statement</a> for more details.</li>
+                        <li data-i18n="privacy.disclosure.third.adsense"><strong>Google AdSense:</strong> We use Google AdSense to display advertisements on our Site. Google AdSense may use cookies and similar technologies to serve ads based on your prior visits to our Site or other websites. You can opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" class="text-primary hover:underline" target="_blank" rel="noopener">Google Ads Settings</a>.</li>
+                        <li data-i18n="privacy.disclosure.third.cloudflare"><strong>Cloudflare:</strong> Our Site is hosted on Cloudflare Pages, which provides content delivery and security services. Cloudflare may collect certain technical information to provide these services as described in the <a href="https://www.cloudflare.com/privacypolicy/" class="text-primary hover:underline" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</li>
+                        <li data-i18n="privacy.disclosure.third.kakao"><strong>Kakao (Korean users):</strong> We use Kakao SDK to enable social sharing for Korean users. See the <a href="https://www.kakao.com/policy/privacy" class="text-primary hover:underline" target="_blank" rel="noopener">Kakao Privacy Policy</a>.</li>
                     </ul>
 
                     <h3 class="font-heading text-xl font-medium text-gray-800 mb-3 mt-6" data-i18n="privacy.disclosure.legal.title">Legal Requirements</h3>
@@ -335,6 +321,23 @@
                     </p>
                 </section>
 
+                <!-- Data Retention -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.retention.title">Data Retention</h2>
+                    <p data-i18n="privacy.retention.p1">
+                        We retain your information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li><strong>Test Results (Local Storage):</strong> Stored on your device until you clear your browser data. We do not retain this on our servers.</li>
+                        <li><strong>Analytics Data:</strong> Google Analytics data is retained for 14 months. Microsoft Clarity data is retained for 30 days.</li>
+                        <li><strong>Consent Preferences:</strong> Stored on your device until you withdraw consent or clear browser data.</li>
+                        <li><strong>Server Logs:</strong> Automatically deleted after 30 days.</li>
+                    </ul>
+                    <p class="mt-4" data-i18n="privacy.retention.p2">
+                        You can request deletion of any data we hold about you by contacting us at the address below.
+                    </p>
+                </section>
+
                 <!-- Children's Privacy -->
                 <section>
                     <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.children.title">Children's Privacy</h2>
@@ -359,12 +362,21 @@
 
                 <!-- California Privacy Rights -->
                 <section>
-                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.california.title">California Privacy Rights</h2>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4" data-i18n="privacy.california.title">California Privacy Rights (CCPA/CPRA)</h2>
                     <p data-i18n="privacy.california.p1">
-                        If you are a California resident, you have specific rights regarding your personal information under the California Consumer Privacy Act (CCPA). These include the right to know what personal information is being collected, the right to know whether your personal information is sold or disclosed and to whom, the right to say no to the sale of personal information, the right to access your personal information, and the right to equal service and price.
+                        If you are a California resident, you have specific rights regarding your personal information under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):
                     </p>
-                    <p data-i18n="privacy.california.p2">
-                        To exercise your rights under the CCPA, please contact us using the information provided below.
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li><strong>Right to Know:</strong> You can request information about what personal data we collect and how it's used.</li>
+                        <li><strong>Right to Delete:</strong> You can request deletion of your personal information.</li>
+                        <li><strong>Right to Opt-Out of Sale:</strong> We do not sell your personal information in the traditional sense. However, targeted advertising may constitute a "sale" under CCPA. You can opt out using our cookie settings.</li>
+                        <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights.</li>
+                    </ul>
+                    <p class="mt-4">
+                        <strong>Do Not Sell or Share My Personal Information:</strong> To opt out of the sharing of your information for targeted advertising, click "Reject All" or customize your preferences in our cookie consent banner, or contact us directly.
+                    </p>
+                    <p class="mt-4" data-i18n="privacy.california.p2">
+                        To exercise your rights under the CCPA, please contact us at 50adreamfire@gmail.com. We will respond within 45 days.
                     </p>
                 </section>
 
@@ -374,8 +386,55 @@
                     <p data-i18n="privacy.gdpr.p1">
                         If you are a resident of the European Economic Area (EEA), you have certain data protection rights under the General Data Protection Regulation (GDPR). We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your personal information.
                     </p>
-                    <p data-i18n="privacy.gdpr.p2">
-                        The legal basis for processing your information includes your consent, our legitimate interests in operating and improving our Service, and compliance with legal obligations.
+                    <p data-i18n="privacy.gdpr.p2" class="mt-4">
+                        <strong>Legal Basis for Processing:</strong>
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mt-2">
+                        <li><strong>Consent:</strong> For analytics and marketing cookies, we obtain your explicit consent before processing.</li>
+                        <li><strong>Legitimate Interests:</strong> For operating and improving our Service, preventing fraud, and ensuring security.</li>
+                        <li><strong>Legal Obligation:</strong> Where required to comply with applicable laws.</li>
+                    </ul>
+                    <p class="mt-4" data-i18n="privacy.gdpr.p3">
+                        <strong>Your GDPR Rights:</strong> Right to access, rectification, erasure ("right to be forgotten"), restriction of processing, data portability, and the right to object. To exercise these rights, contact us using the information below.
+                    </p>
+                    <p class="mt-4" data-i18n="privacy.gdpr.p4">
+                        <strong>Data Transfers:</strong> Your data may be transferred to servers in the United States. We rely on Standard Contractual Clauses approved by the European Commission for such transfers.
+                    </p>
+                </section>
+
+                <!-- Korean Users (PIPA) -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4">한국 이용자 (개인정보 보호법)</h2>
+                    <p>
+                        대한민국 「개인정보 보호법」에 따라 다음 사항을 안내드립니다:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li><strong>수집하는 개인정보:</strong> 생년월일(서비스 제공 목적), 기기/브라우저 정보(분석 목적)</li>
+                        <li><strong>처리 목적:</strong> AI 테스트 결과 생성, 서비스 개선, 맞춤형 광고 제공</li>
+                        <li><strong>보유 기간:</strong> 브라우저 로컬 스토리지(사용자 삭제 시까지), 분석 데이터(14개월)</li>
+                        <li><strong>제3자 제공:</strong> Google(미국), Microsoft(미국), Cloudflare(미국)에 분석 및 서비스 제공 목적으로 정보가 전송됩니다.</li>
+                        <li><strong>국외 이전:</strong> 위 제3자 서비스 이용을 위해 미국 소재 서버로 데이터가 이전됩니다.</li>
+                        <li><strong>동의 철회:</strong> 쿠키 설정에서 언제든지 동의를 철회할 수 있습니다.</li>
+                    </ul>
+                    <p class="mt-4">
+                        <strong>개인정보 보호 문의:</strong> 50adreamfire@gmail.com
+                    </p>
+                </section>
+
+                <!-- Japanese Users (APPI) -->
+                <section>
+                    <h2 class="font-heading text-2xl font-semibold text-gray-900 mb-4">日本のユーザー様へ (個人情報保護法)</h2>
+                    <p>
+                        日本の「個人情報の保護に関する法律」に基づき、以下の事項をお知らせします：
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li><strong>取得する個人情報:</strong> 生年月日、デバイス・ブラウザ情報</li>
+                        <li><strong>利用目的:</strong> AIテスト結果の生成、サービス改善、パーソナライズ広告の配信</li>
+                        <li><strong>第三者提供:</strong> Google、Microsoft、Cloudflareに分析目的で情報を提供します</li>
+                        <li><strong>海外移転:</strong> 米国のサーバーにデータが転送されます</li>
+                    </ul>
+                    <p class="mt-4">
+                        <strong>お問い合わせ:</strong> 50adreamfire@gmail.com
                     </p>
                 </section>
 
@@ -542,5 +601,7 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
+    <!-- Consent Manager (loads analytics/ads only after consent) -->
+    <script src="/js/consent-manager.js"></script>
 </body>
 </html>
