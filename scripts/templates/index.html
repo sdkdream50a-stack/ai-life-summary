@@ -843,7 +843,7 @@
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
         var saved = localStorage.getItem('ai-life-summary-lang');
-        var lang = 'ko'; // default
+        var lang = 'en'; // Default to English // default
 
         if (saved && supportedLangs.indexOf(saved) !== -1) {
             lang = saved;

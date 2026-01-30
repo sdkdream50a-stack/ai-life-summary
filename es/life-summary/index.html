@@ -431,7 +431,7 @@
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
         var saved = localStorage.getItem('ai-life-summary-lang');
-        var lang = 'ko';
+        var lang = 'en'; // Default to English
         if (saved && supportedLangs.indexOf(saved) !== -1) {
             lang = saved;
         } else {
@@ -441,16 +441,16 @@
                 var code = urlLang.split('-')[0].toLowerCase();
                 if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
             } else {
+                // Detect browser language - matches user's region/language setting
                 var browserLangs = navigator.languages || [navigator.language];
                 var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
-                // Prioritize Korean for Korean mobile users
-                if (langCodes.indexOf('ko') !== -1) {
-                    lang = 'ko';
-                } else {
-                    for (var i = 0; i < langCodes.length; i++) {
-                        if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
+                for (var i = 0; i < langCodes.length; i++) {
+                    if (supportedLangs.indexOf(langCodes[i]) !== -1) {
+                        lang = langCodes[i];
+                        break;
                     }
                 }
+                // If no supported language found, default is 'en'
             }
         }
         document.documentElement.lang = lang;
