@@ -772,25 +772,49 @@ function addJsReadyScript(html) {
 }
 
 /**
- * Fix mobile menu by adding onclick handlers directly to elements
+ * Fix mobile menu by adding onclick handlers with scroll lock
  */
 function fixMobileMenu(html) {
-    // Add onclick handler directly to the mobile menu button
+    // Add onclick handler with scroll lock for mobile menu button
+    const openMenuScript = `(function(){` +
+        `var scrollY=window.scrollY;` +
+        `document.body.style.position='fixed';` +
+        `document.body.style.top='-'+scrollY+'px';` +
+        `document.body.style.width='100%';` +
+        `document.body.dataset.scrollY=scrollY;` +
+        `document.getElementById('mobile-menu').classList.remove('hidden');` +
+        `})()`;
+
     html = html.replace(
         /<button id="mobile-menu-btn" class="([^"]*)">/g,
-        '<button id="mobile-menu-btn" class="$1" onclick="document.getElementById(\'mobile-menu\').classList.remove(\'hidden\');">'
+        `<button id="mobile-menu-btn" class="$1" onclick="${openMenuScript}">`
     );
 
-    // Add onclick handler to close button
+    // Add onclick handler with scroll restore for close button
+    const closeMenuScript = `(function(){` +
+        `var scrollY=document.body.dataset.scrollY||0;` +
+        `document.body.style.position='';` +
+        `document.body.style.top='';` +
+        `document.body.style.width='';` +
+        `window.scrollTo(0,parseInt(scrollY));` +
+        `document.getElementById('mobile-menu').classList.add('hidden');` +
+        `})()`;
+
     html = html.replace(
         /<button id="mobile-menu-close" class="([^"]*)">[^<]*<\/button>/g,
-        '<button id="mobile-menu-close" class="$1" onclick="document.getElementById(\'mobile-menu\').classList.add(\'hidden\');">×</button>'
+        `<button id="mobile-menu-close" class="$1" onclick="${closeMenuScript}">×</button>`
+    );
+
+    // Update mobile menu language buttons to also close menu properly
+    html = html.replace(
+        /onclick="switchLang\('(\w+)', event\); document\.getElementById\('mobile-menu'\)\.classList\.add\('hidden'\);"/g,
+        `onclick="switchLang('$1', event); ${closeMenuScript}"`
     );
 
     // Remove the old script block entirely since we're using onclick now
     html = html.replace(
         /<!-- Mobile Menu Script -->\s*<script>[\s\S]*?document\.getElementById\('mobile-menu-btn'\)[\s\S]*?<\/script>/g,
-        '<!-- Mobile Menu: using inline onclick handlers -->'
+        '<!-- Mobile Menu: using inline onclick handlers with scroll lock -->'
     );
 
     return html;

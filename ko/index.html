@@ -961,7 +961,7 @@
             <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
         </a>
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-1" onclick="document.getElementById('mobile-menu').classList.remove('hidden');">
+        <button id="mobile-menu-btn" class="md:hidden text-white p-1" onclick="(function(){var scrollY=window.scrollY;document.body.style.position='fixed';document.body.style.top='-'+scrollY+'px';document.body.style.width='100%';document.body.dataset.scrollY=scrollY;document.getElementById('mobile-menu').classList.remove('hidden');})()">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -971,7 +971,7 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
         <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
-            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" onclick="document.getElementById('mobile-menu').classList.add('hidden');">×</button>
+            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" onclick="(function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()">×</button>
             <a href="/ko/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 궁합 테스트</a>
             <a href="/ko/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 소울 타입</a>
             <a href="/ko/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 정신 나이</a>
@@ -980,11 +980,11 @@
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
             <a href="/ko/profile/" class="text-lg text-white/70 hover:text-white transition">👤 프로필</a>
             <div class="flex gap-3 mt-4">
-                <button onclick="switchLang('en', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
-                <button onclick="switchLang('ko', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
-                <button onclick="switchLang('ja', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
-                <button onclick="switchLang('zh', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
-                <button onclick="switchLang('es', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+                <button onclick="switchLang('en', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es', event); (function(){var scrollY=document.body.dataset.scrollY||0;document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,parseInt(scrollY));document.getElementById('mobile-menu').classList.add('hidden');})()" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
             </div>
         </div>
     </div>
