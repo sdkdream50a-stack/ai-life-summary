@@ -749,12 +749,49 @@ function fixMobileNavbar(html) {
  * Fix mobile menu by adding close button handler
  */
 function fixMobileMenu(html) {
-    // Find the mobile menu script and add close button handler
-    const oldScript = `document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    // Find the mobile menu script and replace with improved version
+    const oldScript = `<script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
-        });`;
+        });
+    </script>`;
 
-    const newScript = `document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    const newScript = `<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuBtn = document.getElementById('mobile-menu-btn');
+            var menu = document.getElementById('mobile-menu');
+            var closeBtn = document.getElementById('mobile-menu-close');
+
+            if (menuBtn && menu) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    menu.classList.remove('hidden');
+                });
+            }
+
+            if (closeBtn && menu) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menu.classList.add('hidden');
+                });
+            }
+
+            if (menu) {
+                menu.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>`;
+
+    html = html.replace(oldScript, newScript);
+
+    // Also try to replace the already-modified version
+    const alreadyModifiedScript = `<script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.remove('hidden');
         });
         document.getElementById('mobile-menu-close').addEventListener('click', function() {
@@ -765,9 +802,10 @@ function fixMobileMenu(html) {
             if (e.target === this) {
                 this.classList.add('hidden');
             }
-        });`;
+        });
+    </script>`;
 
-    html = html.replace(oldScript, newScript);
+    html = html.replace(alreadyModifiedScript, newScript);
 
     return html;
 }

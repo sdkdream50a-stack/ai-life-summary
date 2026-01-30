@@ -1091,16 +1091,32 @@
 
     <!-- Mobile Menu Script -->
     <script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.remove('hidden');
-        });
-        document.getElementById('mobile-menu-close').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
-        // Close menu when clicking outside
-        document.getElementById('mobile-menu').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuBtn = document.getElementById('mobile-menu-btn');
+            var menu = document.getElementById('mobile-menu');
+            var closeBtn = document.getElementById('mobile-menu-close');
+
+            if (menuBtn && menu) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    menu.classList.remove('hidden');
+                });
+            }
+
+            if (closeBtn && menu) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menu.classList.add('hidden');
+                });
+            }
+
+            if (menu) {
+                menu.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.add('hidden');
+                    }
+                });
             }
         });
     </script>
