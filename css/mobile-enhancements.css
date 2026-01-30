@@ -1,0 +1,627 @@
+/**
+ * Mobile Enhancements CSS
+ * Advanced mobile-first optimizations for SmartAITest.com
+ * 2026
+ */
+
+/* ============================================
+   1. TOUCH RIPPLE EFFECT
+   Material Design-inspired touch feedback
+   ============================================ */
+.touch-ripple {
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.touch-ripple:active::after {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+    transition: width 0.3s ease-out, height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.touch-ripple-dark::after {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   2. MOBILE SCROLL OPTIMIZATION
+   Smooth scrolling & scroll snap
+   ============================================ */
+
+/* Smooth momentum scrolling for iOS */
+.scroll-container,
+.mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+/* Horizontal scroll snap for carousels */
+.scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-snap-x::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-snap-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   3. MOBILE-FIRST SKELETON LOADING
+   Shimmer effect for loading states
+   ============================================ */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 25%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+.skeleton-light {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+    height: 1em;
+    margin-bottom: 0.5em;
+}
+
+.skeleton-circle {
+    border-radius: 50%;
+}
+
+.skeleton-card {
+    min-height: 200px;
+}
+
+/* ============================================
+   4. BOTTOM SHEET (iOS-style)
+   Native-feel modal from bottom
+   ============================================ */
+.bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(15, 12, 41, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px 24px 0 0;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.bottom-sheet.active {
+    transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+    width: 40px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin: 0 auto 20px;
+}
+
+.bottom-sheet-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.bottom-sheet-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================================
+   5. MOBILE FORM ENHANCEMENTS
+   Better input UX on mobile
+   ============================================ */
+
+/* Larger touch targets for form elements */
+@media (pointer: coarse) {
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    input[type="tel"],
+    select,
+    textarea {
+        min-height: 48px;
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents iOS zoom */
+    }
+
+    /* Radio and checkbox containers */
+    label:has(input[type="radio"]),
+    label:has(input[type="checkbox"]) {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+    }
+
+    /* Custom styled radio/checkbox */
+    input[type="radio"],
+    input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+}
+
+/* Input focus glow on mobile */
+@media (max-width: 768px) {
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    }
+}
+
+/* Date input styling (mobile native picker) */
+input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 44px;
+}
+
+/* ============================================
+   6. SWIPE GESTURES SUPPORT
+   Enable native-feel swipe interactions
+   ============================================ */
+.swipeable {
+    touch-action: pan-x pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.swipe-to-dismiss {
+    touch-action: pan-y;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.swipe-to-dismiss.swiping {
+    transition: none;
+}
+
+/* ============================================
+   7. MOBILE NAVIGATION PATTERNS
+   Thumb-friendly bottom navigation
+   ============================================ */
+.mobile-nav-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 12, 41, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+    z-index: 1000;
+}
+
+.mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px;
+    min-width: 64px;
+    min-height: 48px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 11px;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-item.active {
+    color: #8B5CF6;
+}
+
+.mobile-nav-item svg,
+.mobile-nav-item .icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+/* ============================================
+   8. PULL TO REFRESH STYLING
+   ============================================ */
+.pull-indicator {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    padding: 16px;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+}
+
+.pull-indicator.visible {
+    transform: translateX(-50%) translateY(20px);
+}
+
+.pull-indicator-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(139, 92, 246, 0.2);
+    border-top-color: #8B5CF6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   9. MOBILE CARD INTERACTIONS
+   Touch-optimized card components
+   ============================================ */
+@media (pointer: coarse) {
+    .card-interactive {
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card-interactive:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Disable hover effects on touch devices */
+    .card-interactive:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* ============================================
+   10. FLOATING ACTION BUTTON (FAB)
+   Mobile-friendly action trigger
+   ============================================ */
+.fab {
+    position: fixed;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    color: white;
+    border: none;
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fab:active {
+    transform: scale(0.9);
+    box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
+}
+
+.fab svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ============================================
+   11. MOBILE TYPOGRAPHY SCALING
+   Fluid typography for mobile readability
+   ============================================ */
+@media (max-width: 480px) {
+    html {
+        font-size: 15px;
+    }
+
+    h1, .text-4xl, .text-5xl {
+        font-size: 1.75rem !important;
+        line-height: 1.2;
+    }
+
+    h2, .text-3xl {
+        font-size: 1.5rem !important;
+    }
+
+    h3, .text-2xl {
+        font-size: 1.25rem !important;
+    }
+
+    p, .text-base {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+    }
+}
+
+/* Small phones (iPhone SE, etc) */
+@media (max-width: 375px) {
+    html {
+        font-size: 14px;
+    }
+
+    .kick-btn {
+        padding: 12px 20px !important;
+        font-size: 14px !important;
+    }
+
+    .kick-input {
+        padding: 14px 16px !important;
+    }
+}
+
+/* ============================================
+   12. MOBILE SPACING UTILITIES
+   Consistent spacing on mobile
+   ============================================ */
+@media (max-width: 768px) {
+    .mobile-px-4 { padding-left: 16px; padding-right: 16px; }
+    .mobile-px-5 { padding-left: 20px; padding-right: 20px; }
+    .mobile-py-4 { padding-top: 16px; padding-bottom: 16px; }
+    .mobile-py-6 { padding-top: 24px; padding-bottom: 24px; }
+    .mobile-gap-3 { gap: 12px; }
+    .mobile-gap-4 { gap: 16px; }
+    .mobile-mb-4 { margin-bottom: 16px; }
+    .mobile-mb-6 { margin-bottom: 24px; }
+    .mobile-mt-4 { margin-top: 16px; }
+    .mobile-mt-6 { margin-top: 24px; }
+
+    /* Container padding */
+    .container,
+    .max-w-4xl,
+    .max-w-5xl,
+    .max-w-6xl {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* ============================================
+   13. MOBILE VISIBILITY UTILITIES
+   ============================================ */
+@media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 769px) {
+    .show-mobile-only { display: none !important; }
+}
+
+/* ============================================
+   14. LAZY LOADING PLACEHOLDER
+   Low-res image placeholders
+   ============================================ */
+.lazy-image {
+    background-color: rgba(139, 92, 246, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+.lazy-image.loading {
+    opacity: 0.5;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+}
+
+/* ============================================
+   15. MOBILE KEYBOARD HANDLING
+   Adjust layout when keyboard is visible
+   ============================================ */
+@media (max-height: 500px) and (max-width: 768px) {
+    /* Keyboard likely visible - adjust fixed elements */
+    .kick-navbar {
+        display: none;
+    }
+
+    .kick-sticky-bar {
+        padding: 8px 12px;
+    }
+
+    .bottom-sheet {
+        max-height: 70vh;
+    }
+}
+
+/* ============================================
+   16. MOBILE PERFORMANCE OPTIMIZATIONS
+   GPU acceleration & will-change hints
+   ============================================ */
+@media (pointer: coarse) {
+    /* GPU accelerate animated elements */
+    .kick-btn,
+    .card-interactive,
+    .bottom-sheet,
+    .kick-navbar {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* Disable complex shadows on low-end devices */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            box-shadow: none !important;
+        }
+    }
+}
+
+/* ============================================
+   17. ORIENTATION HANDLING
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+    /* Landscape phone mode */
+    .hero-section {
+        min-height: auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .kick-navbar {
+        top: 10px;
+        bottom: auto;
+    }
+}
+
+/* ============================================
+   18. NOTCH/DYNAMIC ISLAND SAFE AREAS
+   ============================================ */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .safe-top {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .safe-left {
+        padding-left: env(safe-area-inset-left);
+    }
+
+    .safe-right {
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .safe-all {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+}
+
+/* ============================================
+   19. MOBILE SHARE SHEET
+   Native-feel share interface
+   ============================================ */
+.share-sheet {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 20px;
+}
+
+.share-sheet-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    min-height: 80px;
+    transition: background 0.2s ease;
+}
+
+.share-sheet-item:active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.share-sheet-item .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   20. DARK/LIGHT MODE MOBILE ADJUSTMENTS
+   ============================================ */
+@media (prefers-color-scheme: light) {
+    .bottom-sheet {
+        background: rgba(255, 255, 255, 0.98);
+    }
+
+    .bottom-sheet-handle {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .mobile-nav-bottom {
+        background: rgba(255, 255, 255, 0.95);
+        border-top-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-nav-item {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-nav-item.active {
+        color: #8B5CF6;
+    }
+}

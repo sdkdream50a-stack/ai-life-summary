@@ -602,6 +602,31 @@ function addCSPHeader(html) {
 }
 
 /**
+ * Add mobile enhancement CSS and JS
+ */
+function addMobileEnhancements(html, depth) {
+    const prefix = '../'.repeat(depth);
+
+    // Add mobile CSS before closing </head>
+    const mobileCSS = `    <link rel="stylesheet" href="${prefix}css/mobile-enhancements.css">\n`;
+
+    // Add mobile JS before closing </body>
+    const mobileJS = `    <script src="${prefix}js/mobile-enhancements.js" defer></script>\n`;
+
+    // Insert CSS if not already present
+    if (!html.includes('mobile-enhancements.css')) {
+        html = html.replace('</head>', `${mobileCSS}</head>`);
+    }
+
+    // Insert JS if not already present
+    if (!html.includes('mobile-enhancements.js')) {
+        html = html.replace('</body>', `${mobileJS}</body>`);
+    }
+
+    return html;
+}
+
+/**
  * Remove auto-loading analytics/ads scripts (now handled by consent manager)
  */
 function removeAutoLoadScripts(html) {
@@ -663,6 +688,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = addQuizSchema(html, pageName, lang);
     html = removeAutoLoadScripts(html);
     html = addCSPHeader(html);
+    html = addMobileEnhancements(html, depth);
 
     return html;
 }
