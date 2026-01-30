@@ -475,6 +475,33 @@ function updateSwitchLangFunction(html, pageSlug) {
 }
 
 /**
+ * Update language indicator to show correct flag for current language
+ */
+function updateLanguageIndicator(html, lang) {
+    const langFlags = {
+        en: '🇺🇸 EN',
+        ko: '🇰🇷 한국어',
+        ja: '🇯🇵 日本語',
+        zh: '🇨🇳 中文',
+        es: '🇪🇸 Español'
+    };
+
+    // Replace the default language indicator
+    let result = html.replace(
+        /<span id="current-lang">[^<]*<\/span>/g,
+        `<span id="current-lang">${langFlags[lang]}</span>`
+    );
+
+    // Also update any initialization script that sets the wrong language
+    result = result.replace(
+        /currentLangEl\.textContent\s*=\s*langFlags\[currentLang\][^;]*;/g,
+        `currentLangEl.textContent = '${langFlags[lang]}';`
+    );
+
+    return result;
+}
+
+/**
  * Add Quiz schema for test pages
  */
 function addQuizSchema(html, pageName, lang) {
@@ -710,6 +737,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = removeLanguageDetection(html);
     html = updateNavLinks(html, lang);
     html = updateSwitchLangFunction(html, pageSlug);
+    html = updateLanguageIndicator(html, lang);
     html = addQuizSchema(html, pageName, lang);
     html = removeAutoLoadScripts(html);
     html = addCSPHeader(html);
@@ -778,6 +806,7 @@ function build() {
             html = removeLanguageDetection(html);
             html = updateNavLinks(html, lang);
             html = updateSwitchLangFunction(html, page.slug);
+            html = updateLanguageIndicator(html, lang);
 
             // Update canonical and OG URLs for result pages
             const resultUrl = `${BASE_URL}/${lang}/${page.slug}/`;
