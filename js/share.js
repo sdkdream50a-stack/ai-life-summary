@@ -505,6 +505,52 @@ function trackShare(platform) {
     // Store share count locally - Use cached localStorage
     const shareCount = parseInt(getCachedStorage('ai-life-summary-shares') || '0');
     setCachedStorage('ai-life-summary-shares', (shareCount + 1).toString());
+
+    // === Share Bonus System ===
+    // Award XP and update gamification stats
+    if (typeof userDataManager !== 'undefined') {
+        // Increment share count in user data
+        userDataManager.incrementShareCount();
+
+        // Award XP (30 XP for sharing)
+        const XP_AMOUNT = 30;
+        const result = userDataManager.addXp(XP_AMOUNT, 'share_result');
+
+        // Show XP toast notification
+        if (typeof gamificationUI !== 'undefined') {
+            gamificationUI.showXpToast(XP_AMOUNT, 'share_result');
+
+            // Show level up popup if leveled up
+            if (result && result.leveledUp && typeof levelXPSystem !== 'undefined') {
+                const levelData = levelXPSystem.getLevelInfo(result.newLevel);
+                const lang = document.documentElement.lang || 'ko';
+                setTimeout(() => {
+                    gamificationUI.showLevelUpPopup(result.newLevel, levelData, null, lang);
+                }, 2000);
+            }
+        }
+
+        // Check for new badges (first-share, share-10, share-50, share-100)
+        if (typeof badgeSystem !== 'undefined') {
+            const newBadges = badgeSystem.checkBadgeConditions(userDataManager.getUserData());
+            if (newBadges.length > 0) {
+                userDataManager.addBadges(newBadges);
+
+                // Show badge popup for each new badge
+                if (typeof gamificationUI !== 'undefined' && typeof BADGES !== 'undefined') {
+                    const lang = document.documentElement.lang || 'ko';
+                    newBadges.forEach((badgeId, index) => {
+                        const badge = BADGES[badgeId];
+                        if (badge) {
+                            setTimeout(() => {
+                                gamificationUI.showBadgePopup(badge, lang);
+                            }, 2500 + (index * 1500));
+                        }
+                    });
+                }
+            }
+        }
+    }
 }
 
 /**
