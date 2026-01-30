@@ -468,23 +468,6 @@
         // Navigate to the language-specific version of this page
         window.location.href = '/' + lang + '/life-summary/';
     }
-    
-
-        // Update select options text
-        var selects = document.querySelectorAll('select');
-        selects.forEach(function(select) {
-            var options = select.querySelectorAll('option[data-' + lang + ']');
-            options.forEach(function(option) {
-                option.textContent = option.getAttribute('data-' + lang);
-            });
-        });
-
-        var dropdown = document.getElementById('lang-dropdown');
-        if (dropdown) dropdown.classList.add('hidden');
-
-        // Mark language as ready (prevents CLS)
-        document.documentElement.classList.add('lang-ready');
-    }
 
     function toggleLangDropdown() {
         var dropdown = document.getElementById('lang-dropdown');

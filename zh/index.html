@@ -878,30 +878,6 @@
         // Navigate to the language-specific version of this page
         window.location.href = '/' + lang + '/';
     }
-    
-
-        // Update dropdown display
-        var currentLangEl = document.getElementById('current-lang');
-        if (currentLangEl) {
-            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
-        }
-
-        // Update mobile buttons
-        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
-        for (var i = 0; i < mobileBtns.length; i++) {
-            var btn = mobileBtns[i];
-            var isActive = btn.getAttribute('data-lang') === lang;
-            btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
-            btn.style.color = isActive ? 'white' : '#374151';
-        }
-
-        // Close dropdown if open
-        var dropdown = document.getElementById('lang-dropdown');
-        if (dropdown) dropdown.classList.add('hidden');
-
-        // Mark language as ready to show content (prevents CLS)
-        document.documentElement.classList.add('lang-ready');
-    }
 
     function toggleLangDropdown() {
         var dropdown = document.getElementById('lang-dropdown');

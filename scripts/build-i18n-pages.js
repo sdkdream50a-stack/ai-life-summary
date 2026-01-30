@@ -465,10 +465,14 @@ function updateSwitchLangFunction(html, pageSlug) {
         window.location.href = '/' + lang + '${pathSuffix}';
     }`;
 
-    // Replace the old switchLang function
-    const result = html.replace(
-        /function switchLang\(lang\)\s*\{[\s\S]*?localStorage\.setItem\('preferredLanguage', lang\);[\s\S]*?(?=\n\s*function|\n\s*\/\/|\n\s*<\/script>)/,
-        newSwitchLang + '\n    '
+    // Find and replace the entire switchLang function (from "function switchLang" to the next "function" or closing script)
+    // Match the function and all its content including nested braces
+    let result = html;
+
+    // Match from "function switchLang(lang)" to "function toggleLangDropdown"
+    result = result.replace(
+        /function switchLang\(lang\)\s*\{[\s\S]*?\n\s*function toggleLangDropdown/,
+        newSwitchLang + '\n\n    function toggleLangDropdown'
     );
 
     return result;
