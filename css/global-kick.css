@@ -99,7 +99,7 @@ button, a, input, select, textarea, [role="button"], [onclick] {
 }
 
 /* ============================================
-   MOBILE MENU BUTTON
+   MOBILE MENU BUTTON - Base styles (no display property!)
    ============================================ */
 #mobile-menu-btn {
     position: relative;
@@ -109,7 +109,7 @@ button, a, input, select, textarea, [role="button"], [onclick] {
     touch-action: manipulation;
     width: 44px;
     height: 44px;
-    display: flex;
+    /* display is controlled by media queries above */
     align-items: center;
     justify-content: center;
     background: transparent;
