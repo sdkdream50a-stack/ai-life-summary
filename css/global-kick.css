@@ -320,11 +320,16 @@
 /* Mobile navbar */
 @media (max-width: 768px) {
     .kick-navbar {
-        top: auto;
-        bottom: 20px;
+        top: auto !important;
+        bottom: 20px !important;
+        left: 16px !important;
+        right: auto !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: calc(100vw - 32px) !important;
         padding: 10px 16px;
         gap: 12px;
-        max-width: calc(100% - 32px);
+        justify-content: flex-start;
     }
     .kick-navbar-links {
         gap: 4px;
@@ -334,6 +339,10 @@
         font-size: 12px;
     }
     .kick-navbar-logo span:last-child {
+        display: none;
+    }
+    /* Hide profile button on mobile - use mobile menu instead */
+    #profile-btn {
         display: none;
     }
     /* Language dropdown opens upward on mobile (navbar is at bottom) */
@@ -779,11 +788,11 @@ button,
 
 /* Fix iOS Safari fixed positioning issues */
 @supports (-webkit-touch-callout: none) {
-    .kick-navbar,
     .kick-sticky-bar {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
+    /* Note: kick-navbar on mobile uses left/right positioning, not transform */
 }
 
 /* Safe area insets for notched devices */
@@ -793,7 +802,7 @@ button,
 
 @media (max-width: 768px) {
     .kick-navbar {
-        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
     }
 }
 

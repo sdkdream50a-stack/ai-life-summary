@@ -713,6 +713,39 @@ function addMobileEnhancements(html, depth) {
 }
 
 /**
+ * Fix mobile navbar positioning by adding inline styles
+ * This ensures the navbar is positioned on the left on mobile devices
+ */
+function fixMobileNavbar(html) {
+    // Add inline style to navbar for mobile positioning
+    // Using a <style> tag with high specificity that will be injected into head
+    const mobileNavbarCSS = `
+    <style id="mobile-navbar-fix">
+    @media screen and (max-width: 768px) {
+        nav.kick-navbar,
+        .kick-navbar,
+        #floating-navbar {
+            position: fixed !important;
+            top: auto !important;
+            bottom: 20px !important;
+            left: 16px !important;
+            right: auto !important;
+            inset: auto auto 20px 16px !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+            margin: 0 !important;
+        }
+    }
+    </style>
+`;
+
+    // Insert right before </head> to ensure it loads last
+    html = html.replace('</head>', `${mobileNavbarCSS}</head>`);
+
+    return html;
+}
+
+/**
  * Remove auto-loading analytics/ads scripts (now handled by consent manager)
  */
 function removeAutoLoadScripts(html) {
@@ -777,6 +810,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = removeAutoLoadScripts(html);
     html = addCSPHeader(html);
     html = addMobileEnhancements(html, depth);
+    html = fixMobileNavbar(html);
 
     return html;
 }
@@ -842,6 +876,7 @@ function build() {
             html = updateNavLinks(html, lang);
             html = updateSwitchLangFunction(html, page.slug);
             html = updateLanguageIndicator(html, lang);
+            html = fixMobileNavbar(html);
 
             // Update canonical and OG URLs for result pages
             const resultUrl = `${BASE_URL}/${lang}/${page.slug}/`;

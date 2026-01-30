@@ -351,6 +351,24 @@
     <link rel="stylesheet" href="../../../css/monetization.css">
     <!-- Mobile Enhancements -->
     <link rel="stylesheet" href="../../../css/mobile-enhancements.css">
+
+    <style id="mobile-navbar-fix">
+    @media screen and (max-width: 768px) {
+        nav.kick-navbar,
+        .kick-navbar,
+        #floating-navbar {
+            position: fixed !important;
+            top: auto !important;
+            bottom: 20px !important;
+            left: 16px !important;
+            right: auto !important;
+            inset: auto auto 20px 16px !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+            margin: 0 !important;
+        }
+    }
+    </style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen" data-result-page>
     <!-- Floating Pill Navbar -->

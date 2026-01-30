@@ -36,6 +36,26 @@ a[href^="http"], code, pre, .code-block {
 }
 
 /* ============================================
+   0.5. MOBILE NAVBAR POSITIONING FIX
+   Force navbar to left side on mobile
+   ============================================ */
+@media screen and (max-width: 768px) {
+    nav.kick-navbar,
+    .kick-navbar,
+    #floating-navbar {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 20px !important;
+        left: 16px !important;
+        right: auto !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+        width: auto !important;
+        max-width: calc(100vw - 32px) !important;
+    }
+}
+
+/* ============================================
    1. TOUCH RIPPLE EFFECT
    Material Design-inspired touch feedback
    ============================================ */
@@ -535,12 +555,12 @@ input[type="date"] {
     /* GPU accelerate animated elements */
     .kick-btn,
     .card-interactive,
-    .bottom-sheet,
-    .kick-navbar {
+    .bottom-sheet {
         will-change: transform;
         transform: translateZ(0);
         backface-visibility: hidden;
     }
+    /* Note: kick-navbar excluded - uses left/right positioning on mobile */
 
     /* Disable complex shadows on low-end devices */
     @media (prefers-reduced-motion: reduce) {
@@ -654,5 +674,29 @@ input[type="date"] {
 
     .mobile-nav-item.active {
         color: #8B5CF6;
+    }
+}
+
+/* ============================================
+   CRITICAL: FINAL MOBILE NAVBAR OVERRIDE
+   This MUST be at the end of the file to win CSS cascade
+   ============================================ */
+@media screen and (max-width: 768px) {
+    html body nav.kick-navbar,
+    html body .kick-navbar,
+    html body #floating-navbar,
+    nav[class*="kick-navbar"],
+    [id="floating-navbar"] {
+        position: fixed !important;
+        top: auto !important;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+        left: 16px !important;
+        right: auto !important;
+        transform: none !important;
+        -webkit-transform: none !important;
+        -ms-transform: none !important;
+        width: auto !important;
+        max-width: calc(100vw - 32px) !important;
+        margin: 0 !important;
     }
 }
