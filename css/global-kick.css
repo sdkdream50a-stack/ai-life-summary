@@ -101,6 +101,11 @@ button, a, input, select, textarea, [role="button"], [onclick] {
 /* ============================================
    MOBILE MENU BUTTON - Base styles (no display property!)
    ============================================ */
+/* Language dropdown - must be above mobile menu */
+#lang-dropdown {
+    z-index: 1050 !important;
+}
+
 #mobile-menu-btn {
     position: relative;
     z-index: 999999; /* Highest - always clickable */
@@ -621,6 +626,7 @@ section, header, footer, main, article, aside, nav {
         bottom: 100% !important;
         margin-top: 0 !important;
         margin-bottom: 8px !important;
+        z-index: 1050 !important;
     }
 }
 
