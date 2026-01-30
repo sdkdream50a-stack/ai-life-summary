@@ -101,9 +101,26 @@ button, a, input, select, textarea, [role="button"], [onclick] {
 /* ============================================
    MOBILE MENU BUTTON - Base styles (no display property!)
    ============================================ */
-/* Language dropdown - must be above mobile menu */
+/* Language dropdown - CRITICAL: must be above everything */
 #lang-dropdown {
-    z-index: 1050 !important;
+    z-index: 999999 !important;
+    background-color: #1a1a2e !important;
+    background: rgba(26, 26, 46, 0.98) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+}
+
+#lang-dropdown.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
 #mobile-menu-btn {
@@ -622,11 +639,17 @@ section, header, footer, main, article, aside, nav {
     }
     /* Language dropdown opens upward on mobile (navbar is at bottom) */
     #lang-dropdown {
+        position: fixed !important;
+        bottom: 80px !important;
         top: auto !important;
-        bottom: 100% !important;
-        margin-top: 0 !important;
-        margin-bottom: 8px !important;
-        z-index: 1050 !important;
+        right: 16px !important;
+        left: auto !important;
+        margin: 0 !important;
+        z-index: 9999999 !important;
+        min-width: 120px !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 }
 
