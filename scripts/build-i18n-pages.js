@@ -484,8 +484,8 @@ function updateSwitchLangFunction(html, pageSlug) {
     // CRITICAL: Remove DOMContentLoaded handler that calls switchLang
     // This would cause infinite redirect loop since switchLang now redirects
     result = result.replace(
-        /\/\/ Initialize on load\s*\n\s*document\.addEventListener\('DOMContentLoaded',\s*function\(\)\s*\{[^}]*switchLang\(lang\);[^}]*\}\);/g,
-        '// Language is set statically for this page'
+        /document\.addEventListener\('DOMContentLoaded',\s*function\(\)\s*\{\s*var lang = document\.documentElement\.lang[^}]*switchLang\(lang\);?\s*\}\);/g,
+        '// Language is set statically for this page - no auto-switch needed'
     );
 
     // Update onclick handlers to pass event for stopPropagation
