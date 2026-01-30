@@ -681,7 +681,11 @@ section, header, footer, main, article, aside, nav {
     #profile-btn {
         display: none;
     }
-    /* Language dropdown opens upward on mobile (navbar is at bottom) */
+    /* Hide language selector on mobile - use mobile menu instead */
+    #lang-selector {
+        display: none !important;
+    }
+    /* Language dropdown (kept for reference but hidden via parent) */
     #lang-dropdown {
         position: fixed !important;
         bottom: 80px !important;
