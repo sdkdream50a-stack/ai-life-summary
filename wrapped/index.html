@@ -245,39 +245,61 @@
 
     // Initialize
     async function init() {
-      currentLang = detectLanguage();
-      applyTranslations();
+      try {
+        currentLang = detectLanguage();
+        applyTranslations();
 
-      // Initialize user data
-      if (typeof userDataManager !== 'undefined') {
-        await userDataManager.initialize();
-      }
+        // Initialize user data
+        if (typeof userDataManager !== 'undefined') {
+          await userDataManager.initialize();
+        }
 
-      // Initialize wrapped data
-      wrappedDataManager.initialize(currentLang);
+        // Check if wrapped managers exist
+        if (typeof wrappedDataManager === 'undefined') {
+          console.error('wrappedDataManager not loaded');
+          throw new Error('Required scripts not loaded');
+        }
 
-      // Check availability (for demo, always show)
-      const isAvailable = wrappedDataManager.isAvailable();
-      const forceShow = new URLSearchParams(window.location.search).get('preview') === 'true';
+        // Initialize wrapped data
+        wrappedDataManager.initialize(currentLang);
 
-      // Hide loading
-      document.getElementById('wrapped-loading').style.display = 'none';
+        // Check availability (for demo, always show)
+        const isAvailable = wrappedDataManager.isAvailable();
+        const forceShow = new URLSearchParams(window.location.search).get('preview') === 'true';
 
-      if (isAvailable || forceShow) {
-        // Show wrapped
-        document.getElementById('wrapped-main').style.display = 'block';
+        // Hide loading
+        document.getElementById('wrapped-loading').style.display = 'none';
 
-        // Get stats
-        const stats = wrappedDataManager.getStats();
+        if (isAvailable || forceShow) {
+          // Show wrapped
+          document.getElementById('wrapped-main').style.display = 'block';
 
-        // Initialize slides
-        wrappedSlides.initialize(stats, currentLang);
+          // Get stats
+          const stats = wrappedDataManager.getStats();
 
-        // Initialize share
-        wrappedShare.initialize(stats, currentLang);
-      } else {
-        // Show not available
+          // Initialize slides
+          if (typeof wrappedSlides !== 'undefined') {
+            wrappedSlides.initialize(stats, currentLang);
+          }
+
+          // Initialize share
+          if (typeof wrappedShare !== 'undefined') {
+            wrappedShare.initialize(stats, currentLang);
+          }
+        } else {
+          // Show not available
+          document.getElementById('wrapped-not-available').style.display = 'flex';
+        }
+      } catch (error) {
+        console.error('Wrapped init error:', error);
+        // Hide loading and show error state
+        document.getElementById('wrapped-loading').style.display = 'none';
         document.getElementById('wrapped-not-available').style.display = 'flex';
+        document.querySelector('[data-i18n="notAvailableTitle"]').textContent = 'Oops!';
+        document.querySelector('[data-i18n="notAvailableText"]').textContent =
+          currentLang === 'ko'
+            ? '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
+            : 'Something went wrong. Please try again later.';
       }
     }
 
