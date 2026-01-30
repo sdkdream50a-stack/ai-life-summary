@@ -21,6 +21,24 @@
 }
 
 /* ============================================
+   MOBILE SCROLL FIX
+   ============================================ */
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    touch-action: pan-y;
+}
+
+@media (max-width: 768px) {
+    body {
+        position: static !important;
+        overflow: visible !important;
+    }
+}
+
+/* ============================================
    ANTI-FLICKERING & PERFORMANCE
    ============================================ */
 /* Prevent flickering - but not on all elements (causes issues) */
