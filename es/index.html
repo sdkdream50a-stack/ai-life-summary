@@ -1865,13 +1865,7 @@
 
     <!-- KICK Interactive Scripts -->
     <script>
-        // Mobile Menu Toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.remove('hidden');
-        });
-        document.getElementById('mobile-menu-close').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
+        // Mobile Menu is handled by injected script at end of body
 
         // 3D Tilt Effect for Bento Grid Items
         document.querySelectorAll('.kick-tilt').forEach(function(card) {

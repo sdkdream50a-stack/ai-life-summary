@@ -922,13 +922,7 @@
         // Current step (1 = basic info, 2 = questions)
         let currentStep = 1;
 
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-        document.getElementById('mobile-menu-close')?.addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
+        // Mobile menu handled by build script injection
 
         // Question Flow State
         const questionFlow = {
