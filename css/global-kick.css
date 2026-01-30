@@ -83,6 +83,26 @@ html, body {
 }
 
 /* ============================================
+   RENDERING PERFORMANCE
+   ============================================ */
+/* Reduce paint areas with CSS containment */
+section, header, footer, main, article, aside, nav {
+    contain: layout style paint;
+}
+
+/* Fix for Chrome rendering bug */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .animated-element,
+    .kick-marquee-content,
+    .kick-bento-item,
+    .particle,
+    [class*="animation"] {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* ============================================
    ANTI-FLICKERING & PERFORMANCE
    ============================================ */
 /* Prevent flickering - but not on all elements (causes issues) */
