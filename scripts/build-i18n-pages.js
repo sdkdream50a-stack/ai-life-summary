@@ -746,66 +746,26 @@ function fixMobileNavbar(html) {
 }
 
 /**
- * Fix mobile menu by adding close button handler
+ * Fix mobile menu by adding onclick handlers directly to elements
  */
 function fixMobileMenu(html) {
-    // Find the mobile menu script and replace with improved version
-    const oldScript = `<script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-    </script>`;
+    // Add onclick handler directly to the mobile menu button
+    html = html.replace(
+        /<button id="mobile-menu-btn" class="([^"]*)">/g,
+        '<button id="mobile-menu-btn" class="$1" onclick="document.getElementById(\'mobile-menu\').classList.remove(\'hidden\');">'
+    );
 
-    const newScript = `<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var menuBtn = document.getElementById('mobile-menu-btn');
-            var menu = document.getElementById('mobile-menu');
-            var closeBtn = document.getElementById('mobile-menu-close');
+    // Add onclick handler to close button
+    html = html.replace(
+        /<button id="mobile-menu-close" class="([^"]*)">[^<]*<\/button>/g,
+        '<button id="mobile-menu-close" class="$1" onclick="document.getElementById(\'mobile-menu\').classList.add(\'hidden\');">×</button>'
+    );
 
-            if (menuBtn && menu) {
-                menuBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    menu.classList.remove('hidden');
-                });
-            }
-
-            if (closeBtn && menu) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    menu.classList.add('hidden');
-                });
-            }
-
-            if (menu) {
-                menu.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.add('hidden');
-                    }
-                });
-            }
-        });
-    </script>`;
-
-    html = html.replace(oldScript, newScript);
-
-    // Also try to replace the already-modified version
-    const alreadyModifiedScript = `<script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.remove('hidden');
-        });
-        document.getElementById('mobile-menu-close').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        });
-        // Close menu when clicking outside
-        document.getElementById('mobile-menu').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
-        });
-    </script>`;
-
-    html = html.replace(alreadyModifiedScript, newScript);
+    // Remove the old script block entirely since we're using onclick now
+    html = html.replace(
+        /<!-- Mobile Menu Script -->\s*<script>[\s\S]*?document\.getElementById\('mobile-menu-btn'\)[\s\S]*?<\/script>/g,
+        '<!-- Mobile Menu: using inline onclick handlers -->'
+    );
 
     return html;
 }

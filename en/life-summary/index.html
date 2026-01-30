@@ -562,7 +562,7 @@
             <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
         </a>
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-1">
+        <button id="mobile-menu-btn" class="md:hidden text-white p-1" onclick="document.getElementById('mobile-menu').classList.remove('hidden');">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -572,7 +572,7 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
         <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
-            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+            <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" onclick="document.getElementById('mobile-menu').classList.add('hidden');">×</button>
             <a href="/en/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="text-2xl text-purple-400 font-bold">🔮 Soul Type</a>
             <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
@@ -1089,37 +1089,7 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var menuBtn = document.getElementById('mobile-menu-btn');
-            var menu = document.getElementById('mobile-menu');
-            var closeBtn = document.getElementById('mobile-menu-close');
-
-            if (menuBtn && menu) {
-                menuBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    menu.classList.remove('hidden');
-                });
-            }
-
-            if (closeBtn && menu) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    menu.classList.add('hidden');
-                });
-            }
-
-            if (menu) {
-                menu.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.add('hidden');
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- Mobile Menu: using inline onclick handlers -->
 
     <!-- Stage 2: Soul Types -->
     <script src="/js/soul-types.js"></script>
