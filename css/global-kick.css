@@ -99,33 +99,59 @@ button, a, input, select, textarea, [role="button"], [onclick] {
 }
 
 /* ============================================
-   MOBILE MENU OVERLAY
+   MOBILE MENU BUTTON
+   ============================================ */
+#mobile-menu-btn {
+    position: relative;
+    z-index: 1001; /* Above menu panel */
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+}
+
+/* ============================================
+   MOBILE MENU OVERLAY - SLIDE FROM RIGHT
    ============================================ */
 #mobile-menu {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0; /* Slide from right */
+    width: 80%;
+    max-width: 300px;
     height: 100vh;
-    height: 100dvh; /* Dynamic viewport height for mobile */
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9999;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    pointer-events: none; /* Allow clicks to pass through when closed */
+    background: rgba(20, 20, 40, 0.98);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
-#mobile-menu.active {
+#mobile-menu.active,
+#mobile-menu[style*="translateX(0)"] {
     transform: translateX(0);
-    pointer-events: auto; /* Enable clicks when open */
+    opacity: 1;
+    visibility: visible;
+    display: block;
 }
 
 /* Hide with hidden class as fallback */
 #mobile-menu.hidden {
-    transform: translateX(-100%);
-    pointer-events: none;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* ============================================
