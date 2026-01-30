@@ -1532,5 +1532,16 @@
         })();
     </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
+
+    <script>
+    // Add js-ready class after DOM is ready for progressive enhancement
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.classList.add('js-ready');
+        });
+    } else {
+        document.documentElement.classList.add('js-ready');
+    }
+    </script>
 </body>
 </html>

@@ -23,26 +23,48 @@
 /* ============================================
    ANTI-FLICKERING & PERFORMANCE
    ============================================ */
-/* Prevent flickering on all elements */
-*, *::before, *::after {
+/* Prevent flickering - but not on all elements (causes issues) */
+.kick-marquee,
+.kick-marquee-content,
+.kick-navbar,
+.kick-bento-item {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-/* Optimize animations */
-.marquee-container,
-.kick-marquee,
+/* Marquee: Start paused, JS will enable after hydration */
 .kick-marquee-content {
     will-change: transform;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    animation-play-state: paused;
+}
+
+/* Enable animation after page is ready */
+.js-ready .kick-marquee-content {
+    animation-play-state: running;
+}
+
+/* Static fallback for marquee (shown before JS) */
+.kick-marquee .static-fallback {
+    display: block;
+}
+.js-ready .kick-marquee .static-fallback {
+    display: none;
 }
 
 /* Stop animation on hover to prevent CPU spike */
 @media (prefers-reduced-motion: no-preference) {
-    .kick-marquee-content:hover,
-    .marquee-content:hover {
+    .js-ready .kick-marquee-content:hover,
+    .js-ready .marquee-content:hover {
         animation-play-state: paused;
+    }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .kick-marquee-content {
+        animation: none !important;
     }
 }
 

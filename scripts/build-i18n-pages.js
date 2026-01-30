@@ -751,6 +751,27 @@ function fixMobileNavbar(html) {
 }
 
 /**
+ * Add js-ready class for progressive enhancement (marquee, animations)
+ */
+function addJsReadyScript(html) {
+    const jsReadyScript = `
+    <script>
+    // Add js-ready class after DOM is ready for progressive enhancement
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.classList.add('js-ready');
+        });
+    } else {
+        document.documentElement.classList.add('js-ready');
+    }
+    </script>
+`;
+    // Insert at end of body
+    html = html.replace('</body>', `${jsReadyScript}</body>`);
+    return html;
+}
+
+/**
  * Fix mobile menu by adding onclick handlers directly to elements
  */
 function fixMobileMenu(html) {
@@ -842,6 +863,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = addMobileEnhancements(html, depth);
     html = fixMobileNavbar(html);
     html = fixMobileMenu(html);
+    html = addJsReadyScript(html);
 
     return html;
 }
