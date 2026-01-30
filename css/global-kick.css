@@ -21,6 +21,36 @@
 }
 
 /* ============================================
+   MOBILE MENU OVERLAY
+   ============================================ */
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    pointer-events: none; /* Allow clicks to pass through when closed */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#mobile-menu.active {
+    transform: translateX(0);
+    pointer-events: auto; /* Enable clicks when open */
+}
+
+/* Hide with hidden class as fallback */
+#mobile-menu.hidden {
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+/* ============================================
    MOBILE SCROLL FIX
    ============================================ */
 html, body {
