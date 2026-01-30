@@ -21,6 +21,20 @@
 }
 
 /* ============================================
+   TOUCH RESPONSIVENESS
+   ============================================ */
+/* Prevent 300ms delay on touch */
+html {
+    touch-action: manipulation;
+}
+
+/* Ensure all interactive elements are touchable */
+button, a, input, select, textarea, [role="button"], [onclick] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
    MOBILE MENU OVERLAY
    ============================================ */
 #mobile-menu {
