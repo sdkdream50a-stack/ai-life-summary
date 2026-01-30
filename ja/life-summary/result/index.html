@@ -53,45 +53,70 @@
     <meta name="twitter:description" content="I just discovered my AI-generated life summary. Try it yourself!">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/twitter-image.png">
 
-    <!-- Google Fonts with Preload - Optimized weights -->
+    <!-- Tailwind CSS -->
+    <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Critical CSS - Load First (LCP Optimization) -->
-    <link rel="stylesheet" href="../../../css/critical.css" fetchpriority="high">
-
-    <!-- Async CSS Loading (Non-blocking) -->
-    <link rel="stylesheet" href="../../../css/tailwind.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/global-kick.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/reveal-animations.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/radar-chart.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/monetization.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="../../../css/mobile-enhancements.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="../../../css/tailwind.css">
-        <link rel="stylesheet" href="../../../css/global-kick.css">
-        <link rel="stylesheet" href="../../../css/reveal-animations.css">
-        <link rel="stylesheet" href="../../../css/loading-enhanced.css">
-        <link rel="stylesheet" href="../../../css/radar-chart.css">
-        <link rel="stylesheet" href="../../../css/monetization.css">
-        <link rel="stylesheet" href="../../../css/mobile-enhancements.css">
-    </noscript>
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
+    <!-- Global KICK Design System -->
+    <link rel="stylesheet" href="../../../css/global-kick.css">
+    <!-- Stage 2: Reveal Animations -->
+    <link rel="stylesheet" href="../../../css/reveal-animations.css">
+    <!-- Stage 1: Enhanced Loading -->
+    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
+    <!-- Stage 2: Radar Chart -->
+    <link rel="stylesheet" href="../../../css/radar-chart.css">
+    <!-- Stage 5: Monetization -->
+    <link rel="stylesheet" href="../../../css/monetization.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
-        /* Page-specific styles (critical styles now in critical.css) */
+        /* Prevent CLS - with fallback */
+        body { opacity: 1; }
+        
+        
+        
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
         .quote-text {
             font-family: 'Merriweather', Georgia, serif;
             white-space: pre-line;
         }
+
+        /* Fixed header height */
+        header.bg-white { min-height: 72px; }
+        header nav { min-height: 56px; }
+        header .flex.items-center.justify-between { min-height: 40px; }
+        header a.flex.items-center.space-x-2 { min-width: 140px; min-height: 32px; }
+        #lang-selector button { min-width: 90px; min-height: 36px; }
+        #current-lang { display: inline-block; min-width: 60px; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+        }
+        /* Brighter pastel gradient for post-reveal sections */
+        .gradient-bg-bright {
+            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%);
+        }
         /* Ultra bright warm pastel for share stage */
         .gradient-bg-warm {
             background: linear-gradient(to bottom, #fdfbfb 0%, #f8f4ff 50%, #fdf2f8 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -262,8 +287,6 @@
     <!-- Gamification CSS -->
     <link rel="stylesheet" href="../../../css/gamification.css">
     <link rel="stylesheet" href="../../../css/popups.css">
-    <!-- Viral Hooks CSS -->
-    <link rel="stylesheet" href="../../../css/viral-hooks.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -283,7 +306,7 @@
     }
     </style>
 </head>
-<body class="kick-mesh-bg text-white min-h-screen" data-result-page>
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
     <nav class="kick-navbar" id="floating-navbar">
         <a href="/ja/" class="kick-navbar-logo">
@@ -512,7 +535,7 @@
         </section>
 
         <!-- Stage E: Share Section - One-Click Viral -->
-        <section id="share-stage" class="py-8 hidden" data-share-section>
+        <section id="share-stage" class="py-8 hidden">
             <div class="share-stage max-w-md mx-auto px-4">
                 <p id="share-encouragement" class="share-encouragement">
 
@@ -521,11 +544,8 @@
                 </p>
 
                 <!-- Share Preview (Auto-generated Story format) -->
-                <!-- CLS FIX: Wrapper with aspect-ratio to reserve space -->
                 <div class="share-preview-container text-center mb-6">
-                    <div style="width: 100%; max-width: 225px; aspect-ratio: 9/16; margin: 0 auto; background: rgba(255,255,255,0.05); border-radius: 1rem;">
-                        <img id="share-preview-image" class="share-preview-image mx-auto rounded-2xl shadow-2xl" src="" alt="Share preview" loading="eager" fetchpriority="high" decoding="async" width="225" height="400" style="width: 100%; height: auto; object-fit: contain;">
-                    </div>
+                    <img id="share-preview-image" class="share-preview-image mx-auto rounded-2xl shadow-2xl" src="" alt="Share preview" loading="eager" fetchpriority="high" decoding="async" style="max-height: 400px;">
                 </div>
 
                 <!-- Main Download Button - Large & Prominent -->
@@ -599,16 +619,6 @@
                     <button id="format-square" class="format-button"></button>
                     <button id="img-teaser" class="format-button"></button>
                     <button id="img-full" class="format-button active"></button>
-                </div>
-
-                <!-- Compare with Friend CTA -->
-                <div class="mt-6 text-center">
-                    <button onclick="viralHooks.openCompareModal()" class="viral-compare-cta">
-                        <span>👯</span>
-
-                        友達と比較
-
-                    </button>
                 </div>
 
                 <!-- Try Again -->
@@ -2318,9 +2328,5 @@
         }
     })();
     </script>
-    <!-- Viral Hooks -->
-    <script src="../../../js/viral-hooks.js" defer></script>
-    <!-- Mobile Enhancements -->
-    <script src="../../../js/mobile-enhancements.js" defer></script>
 </body>
 </html>

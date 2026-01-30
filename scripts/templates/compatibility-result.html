@@ -22,11 +22,11 @@
          crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
-    <link rel="manifest" href="../../../site.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO Meta Tags -->
@@ -36,7 +36,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://smartaitest.com/en/compatibility/result/">
+    <meta property="og:url" content="https://smartaitest.com/compatibility/result.html">
     <meta property="og:title" content="Our AI Compatibility Results - AI Test Lab">
     <meta property="og:description" content="We just discovered our compatibility score! Try the AI Compatibility Test.">
     <meta property="og:image" content="https://smartaitest.com/assets/images/compatibility-og.png">
@@ -48,16 +48,17 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+
     <!-- Tailwind CSS (Local Build) -->
-    <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
+    <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="stylesheet" href="../../../css/global-kick.css">
+    <link rel="stylesheet" href="../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
-        body { opacity: 1; }
-        
-        
-        
+        body { opacity: 0; transition: opacity 0.1s; }
+        html.lang-ready body { opacity: 1; }
+        @keyframes showBody { to { opacity: 1; } }
+        body { animation: showBody 0s 0.3s forwards; }
 
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
@@ -266,24 +267,66 @@
     }
     </script>
 
-    <!-- Language is set statically -->
+    <!-- Early Language Detection -->
+    <script>
+    (function() {
+        var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        var saved = localStorage.getItem('ai-life-summary-lang');
+        var lang = 'ko';
+        if (saved && supportedLangs.indexOf(saved) !== -1) { lang = saved; }
+        else {
+            var params = new URLSearchParams(window.location.search);
+            var urlLang = params.get('lang') || params.get('hl');
+            if (urlLang) {
+                var code = urlLang.split('-')[0].toLowerCase();
+                if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
+            } else {
+                var browserLangs = navigator.languages || [navigator.language];
+                var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
+                if (langCodes.indexOf('ko') !== -1) {
+                    lang = 'ko';
+                } else {
+                    for (var i = 0; i < langCodes.length; i++) {
+                        if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
+                    }
+                }
+            }
+        }
+        document.documentElement.lang = lang;
+    })();
+    </script>
 
     <!-- Language Switching -->
     <script>
     var langNames = { en: 'EN', ko: '한국어', ja: '日本語', zh: '中文', es: 'ES' };
     var langFlags = { en: '🇺🇸', ko: '🇰🇷', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸' };
 
-    function switchLang(lang, event) {
-        if (event) event.stopPropagation();
-        // Show loading feedback
-        var btn = event && event.target;
-        if (btn) btn.style.opacity = '0.5';
-        document.body.style.cursor = 'wait';
-        // Save preference
+    function switchLang(lang) {
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        // Navigate immediately
-        window.location.replace('/' + lang + '/compatibility/result/');
+        document.documentElement.lang = lang;
+
+        var currentLangEl = document.getElementById('current-lang');
+        if (currentLangEl) {
+            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
+        }
+
+        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
+        mobileBtns.forEach(function(btn) {
+            var btnLang = btn.getAttribute('data-lang');
+            btn.style.background = (btnLang === lang) ? '#ec4899' : '#f3f4f6';
+            btn.style.color = (btnLang === lang) ? 'white' : '#374151';
+        });
+
+        var dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+
+        document.documentElement.classList.add('lang-ready');
+
+        // Update dynamic content
+        if (window.compatibilityResults) {
+            updateDynamicContent(lang);
+        }
     }
 
     function toggleLangDropdown() {
@@ -337,61 +380,46 @@
         if (elementsEl) elementsEl.textContent = analysis.elements;
     }
 
-    // Language is set statically for this page - no auto-switch needed
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang || 'ko';
+        switchLang(lang);
+    });
     </script>
     <!-- Gamification CSS -->
-    <link rel="stylesheet" href="../../../css/gamification.css">
-    <link rel="stylesheet" href="../../../css/popups.css">
+    <link rel="stylesheet" href="../css/gamification.css">
+    <link rel="stylesheet" href="../css/popups.css">
     <!-- Stage 5: Monetization -->
-    <link rel="stylesheet" href="../../../css/monetization.css">
-
-    <style id="mobile-navbar-fix">
-    @media screen and (max-width: 768px) {
-        nav.kick-navbar,
-        .kick-navbar,
-        #floating-navbar {
-            position: fixed !important;
-            top: auto !important;
-            bottom: 20px !important;
-            left: 16px !important;
-            right: auto !important;
-            inset: auto auto 20px 16px !important;
-            transform: none !important;
-            -webkit-transform: none !important;
-            margin: 0 !important;
-        }
-    }
-    </style>
+    <link rel="stylesheet" href="../css/monetization.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
     <nav class="kick-navbar" id="floating-navbar">
-        <a href="/en/" class="kick-navbar-logo">
+        <a href="/" class="kick-navbar-logo">
             <span class="text-xl">🔮</span>
             <span class="kick-gradient-text">AI Test Lab</span>
         </a>
         <div class="kick-navbar-links">
-            <a href="/en/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 Compatibility</a>
-            <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
-            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a>
+            <a href="/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합</span><span class="lang-ja">相性</span><span class="lang-zh">配对</span><span class="lang-es">Compatibilidad</span></a>
+            <a href="/life-summary/" class="kick-navbar-link">🔮 <span class="lang-en">Soul</span><span class="lang-ko">소울</span><span class="lang-ja">ソウル</span><span class="lang-zh">灵魂</span><span class="lang-es">Alma</span></a>
+            <a href="/age-calculator/" class="kick-navbar-link">⏳ <span class="lang-en">Age</span><span class="lang-ko">나이</span><span class="lang-ja">年齢</span><span class="lang-zh">年龄</span><span class="lang-es">Edad</span></a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
             <button onclick="toggleLangDropdown()" class="kick-navbar-link flex items-center gap-1">
-                <span id="current-lang">🇺🇸 EN</span>
+                <span id="current-lang">🇺🇸</span>
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-2 w-28 bg-gray-900/95 backdrop-blur-lg rounded-xl border border-white/10 py-1 z-50">
-                <button onclick="switchLang('en', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
-                <button onclick="switchLang('ko', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
-                <button onclick="switchLang('ja', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
-                <button onclick="switchLang('zh', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
-                <button onclick="switchLang('es', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
+                <button onclick="switchLang('en')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+                <button onclick="switchLang('ko')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+                <button onclick="switchLang('ja')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+                <button onclick="switchLang('zh')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+                <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
             </div>
         </div>
         <!-- Share Button -->
         <button id="share-btn" class="kick-btn kick-btn-primary px-3 py-1.5 text-sm hidden md:flex items-center gap-1">
-            Share
+            <span class="lang-en">Share</span><span class="lang-ko">공유</span><span class="lang-ja">共有</span><span class="lang-zh">分享</span><span class="lang-es">Compartir</span>
         </button>
         <!-- Mobile Share & Menu -->
         <button id="share-btn-mobile" class="md:hidden kick-btn kick-btn-primary p-1.5 rounded-lg">
@@ -408,18 +436,18 @@
     <div id="mobile-menu" class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl">
         <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-            <a href="/en/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 Compatibility</a>
-            <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
-            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
+            <a href="/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 <span class="lang-en">Compatibility</span><span class="lang-ko">궁합 테스트</span><span class="lang-ja">相性診断</span><span class="lang-zh">配对测试</span><span class="lang-es">Compatibilidad</span></a>
+            <a href="/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 <span class="lang-en">Soul Type</span><span class="lang-ko">소울 타입</span><span class="lang-ja">ソウルタイプ</span><span class="lang-zh">灵魂类型</span><span class="lang-es">Tipo de Alma</span></a>
+            <a href="/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ <span class="lang-en">Mental Age</span><span class="lang-ko">정신 나이</span><span class="lang-ja">精神年齢</span><span class="lang-zh">心理年龄</span><span class="lang-es">Edad Mental</span></a>
             <div class="border-t border-white/20 w-48 my-4"></div>
-            <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
+            <a href="/about.html" class="text-lg text-white/70 hover:text-white transition"><span class="lang-en">About</span><span class="lang-ko">소개</span><span class="lang-ja">概要</span><span class="lang-zh">关于</span><span class="lang-es">Acerca de</span></a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
             <div class="flex gap-3 mt-4">
-                <button onclick="switchLang('en', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
-                <button onclick="switchLang('ko', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
-                <button onclick="switchLang('ja', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
-                <button onclick="switchLang('zh', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
-                <button onclick="switchLang('es', event); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
+                <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
+                <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
+                <button onclick="switchLang('ja'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇯🇵</button>
+                <button onclick="switchLang('zh'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇨🇳</button>
+                <button onclick="switchLang('es'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇪🇸</button>
             </div>
         </div>
     </div>
@@ -431,8 +459,11 @@
                 <span class="text-6xl mb-4 inline-block heart-pulse kick-float">&#128149;</span>
                 <h1 class="kick-heading text-3xl md:text-5xl font-bold mb-2">
                     <span class="kick-gradient-text">
-                        Compatibility Results
-
+                        <span class="lang-en">Compatibility Results</span>
+                        <span class="lang-ko">궁합 결과</span>
+                        <span class="lang-ja">相性診断結果</span>
+                        <span class="lang-zh">配对结果</span>
+                        <span class="lang-es">Resultados de Compatibilidad</span>
                     </span>
                 </h1>
             </div>
@@ -469,8 +500,11 @@
 
                     <!-- Title -->
                     <h2 class="font-heading text-lg md:text-xl font-bold text-center text-pink-400 mb-4 relative z-10">
-                        🐾 Your Animal Couple Type
-
+                        <span class="lang-en">🐾 Your Animal Couple Type</span>
+                        <span class="lang-ko">🐾 당신들의 동물 커플 유형</span>
+                        <span class="lang-ja">🐾 あなたたちの動物カップルタイプ</span>
+                        <span class="lang-zh">🐾 你们的动物情侣类型</span>
+                        <span class="lang-es">🐾 Su Tipo de Pareja Animal</span>
                     </h2>
 
                     <!-- Animal Emojis Display -->
@@ -500,8 +534,11 @@
                     <!-- Fun tag -->
                     <div class="mt-4 flex justify-center relative z-10">
                         <span class="inline-flex items-center px-3 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium rounded-full">
-                            Share your animal couple! 📸
-
+                            <span class="lang-en">Share your animal couple! 📸</span>
+                            <span class="lang-ko">동물 커플 공유하기! 📸</span>
+                            <span class="lang-ja">動物カップルをシェア！📸</span>
+                            <span class="lang-zh">分享你的动物情侣！📸</span>
+                            <span class="lang-es">¡Comparte tu pareja animal! 📸</span>
                         </span>
                     </div>
                 </div>
@@ -519,8 +556,11 @@
                                 <span id="movie-genre-emoji" class="text-2xl">🎬</span>
                             </div>
                             <h3 class="font-heading text-sm text-white/60 mb-1">
-                                Your Love Movie Genre
-
+                                <span class="lang-en">Your Love Movie Genre</span>
+                                <span class="lang-ko">당신들의 사랑 영화 장르</span>
+                                <span class="lang-ja">あなたたちの恋愛映画ジャンル</span>
+                                <span class="lang-zh">你们的爱情电影类型</span>
+                                <span class="lang-es">Tu Género de Película de Amor</span>
                             </h3>
                             <p id="movie-genre-title" class="font-heading text-lg font-bold text-purple-300 mb-2">Romantic Comedy</p>
                             <p id="movie-genre-desc" class="text-white/70 text-sm leading-relaxed">Your love story is full of laughter!</p>
@@ -534,14 +574,20 @@
                                 <span id="lucky-date-emoji" class="text-2xl">📅</span>
                             </div>
                             <h3 class="font-heading text-sm text-white/60 mb-1">
-                                Your Lucky Date
-
+                                <span class="lang-en">Your Lucky Date</span>
+                                <span class="lang-ko">당신들의 럭키 데이트</span>
+                                <span class="lang-ja">ラッキーデート</span>
+                                <span class="lang-zh">你们的幸运日期</span>
+                                <span class="lang-es">Tu Fecha de la Suerte</span>
                             </h3>
                             <p id="lucky-date-value" class="font-heading text-lg font-bold text-amber-300 mb-1">January 15, 2026</p>
                             <p class="text-white/70 text-sm">
                                 <span id="lucky-date-season-emoji">🌸</span>
-                                Perfect for: 
-
+                                <span class="lang-en">Perfect for: </span>
+                                <span class="lang-ko">추천 데이트: </span>
+                                <span class="lang-ja">おすすめ: </span>
+                                <span class="lang-zh">推荐活动: </span>
+                                <span class="lang-es">Perfecto para: </span>
                                 <span id="lucky-date-activity" class="font-medium text-amber-400">cherry blossom picnic</span>
                             </p>
                         </div>
@@ -645,23 +691,32 @@
                 <!-- Card A: Make It Visual -->
                 <div class="kick-glass rounded-2xl p-6">
                     <h3 class="text-lg font-bold text-white text-center mb-4">
-                        Save Result Image
-
+                        <span class="lang-en">Save Result Image</span>
+                        <span class="lang-ko">결과 이미지 저장</span>
+                        <span class="lang-ja">結果画像を保存</span>
+                        <span class="lang-zh">保存结果图片</span>
+                        <span class="lang-es">Guardar Imagen</span>
                     </h3>
                     <div class="flex gap-3">
                         <button onclick="downloadImage('story')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
                             <span class="text-xl">📱</span>
                             <span>
-                                Story
-
+                                <span class="lang-en">Story</span>
+                                <span class="lang-ko">스토리용</span>
+                                <span class="lang-ja">ストーリー</span>
+                                <span class="lang-zh">故事</span>
+                                <span class="lang-es">Historia</span>
                             </span>
                             <span class="text-xs text-gray-400 ml-1">9:16</span>
                         </button>
                         <button onclick="downloadImage('square')" class="flex-1 h-[52px] flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 hover:border-pink-400 transition-all">
                             <span class="text-xl">🖼️</span>
                             <span>
-                                Feed
-
+                                <span class="lang-en">Feed</span>
+                                <span class="lang-ko">피드용</span>
+                                <span class="lang-ja">フィード</span>
+                                <span class="lang-zh">帖子</span>
+                                <span class="lang-es">Feed</span>
                             </span>
                             <span class="text-xs text-gray-400 ml-1">1:1</span>
                         </button>
@@ -681,30 +736,39 @@
 
                     <!-- Title -->
                     <h3 class="text-xl font-bold text-center mb-2 relative z-10" style="color: white;">
-                        Send to a Friend!
-
+                        <span class="lang-en">Send to a Friend!</span>
+                        <span class="lang-ko">이 결과를 친구에게 보내 반응 보기!</span>
+                        <span class="lang-ja">友達に送って反応を見よう！</span>
+                        <span class="lang-zh">发给朋友看反应！</span>
+                        <span class="lang-es">¡Envía a un amigo!</span>
                     </h3>
                     <p class="text-sm text-center mb-6 relative z-10" style="color: rgba(255,255,255,0.9);">
-                        Your friend can take the test with your birthday! What result will they get?
-
+                        <span class="lang-en">Your friend can take the test with your birthday! What result will they get?</span>
+                        <span class="lang-ko">친구가 내 생일로 궁합 테스트를 바로 할 수 있어요! 어떤 결과가 나올까?</span>
+                        <span class="lang-ja">友達があなたの誕生日でテストできます！どんな結果が出るかな？</span>
+                        <span class="lang-zh">朋友可以用你的生日测试！会得到什么结果？</span>
+                        <span class="lang-es">¡Tu amigo puede probar con tu cumpleaños! ¿Qué resultado obtendrá?</span>
                     </p>
 
                     <!-- All Share Buttons - Row 1 -->
                     <div class="flex flex-wrap justify-center gap-2 mb-3 relative z-10">
                         <button onclick="copyViralLink()" class="h-[40px] px-4 flex items-center gap-2 bg-white text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition shadow-md border border-gray-200">
                             <span>🔗</span>
-                            Copy Link
-
+                            <span class="lang-en">Copy Link</span>
+                            <span class="lang-ko">링크 복사</span>
+                            <span class="lang-ja">リンク</span>
+                            <span class="lang-zh">复制</span>
+                            <span class="lang-es">Copiar</span>
                         </button>
                         <button onclick="shareViralKakao()" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #FEE500; color: #191919;">
                             <span>💛</span>
                             <span class="lang-en lang-ja lang-zh lang-es">Kakao</span>
-
+                            <span class="lang-ko">카카오톡</span>
                         </button>
                         <button onclick="shareViralTwitter()" class="h-[40px] px-4 flex items-center gap-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-gray-800 transition shadow-md">
                             <span class="font-bold">𝕏</span>
                             <span class="lang-en lang-ja lang-zh lang-es">Twitter</span>
-
+                            <span class="lang-ko">트위터</span>
                         </button>
                         <button onclick="shareToFacebook()" class="h-[40px] px-4 flex items-center gap-2 text-white rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md" style="background: #1877F2;">
                             <span>📘</span>
@@ -736,14 +800,20 @@
 
                     <!-- Bottom Stats -->
                     <p class="text-sm text-center relative z-10" style="color: rgba(255,255,255,0.8);">
-                        🔥 Over 50,000 couples have tested their compatibility!
-
+                        <span class="lang-en">🔥 Over 50,000 couples have tested their compatibility!</span>
+                        <span class="lang-ko">🔥 5만 커플이 이미 궁합을 확인했어요!</span>
+                        <span class="lang-ja">🔥 5万組以上が相性をチェック済み！</span>
+                        <span class="lang-zh">🔥 超过5万对情侣已测试！</span>
+                        <span class="lang-es">🔥 ¡Más de 50,000 parejas lo probaron!</span>
                     </p>
 
                     <!-- Copy Feedback -->
                     <p id="copy-feedback" class="text-center font-semibold text-sm mt-3 hidden rounded-full py-2 relative z-10" style="color: white; background: rgba(255,255,255,0.2);">
-                        ✓ Link copied!
-
+                        <span class="lang-en">✓ Link copied!</span>
+                        <span class="lang-ko">✓ 링크가 복사되었습니다!</span>
+                        <span class="lang-ja">✓ リンクをコピーしました！</span>
+                        <span class="lang-zh">✓ 已复制链接！</span>
+                        <span class="lang-es">✓ ¡Enlace copiado!</span>
                     </p>
                 </div>
 
@@ -764,8 +834,11 @@
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
                 <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
-                    &#128214; Detailed Analysis
-
+                    <span class="lang-en">&#128214; Detailed Analysis</span>
+                    <span class="lang-ko">&#128214; 상세 분석</span>
+                    <span class="lang-ja">&#128214; 詳細分析</span>
+                    <span class="lang-zh">&#128214; 详细分析</span>
+                    <span class="lang-es">&#128214; Analisis Detallado</span>
                 </h2>
 
                 <!-- Overall Analysis -->
@@ -784,8 +857,11 @@
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128172;</span>
                             <h3 class="font-heading font-semibold text-lg">
-                                Communication
-
+                                <span class="lang-en">Communication</span>
+                                <span class="lang-ko">소통</span>
+                                <span class="lang-ja">コミュニケーション</span>
+                                <span class="lang-zh">沟通</span>
+                                <span class="lang-es">Comunicacion</span>
                             </h3>
                         </div>
                         <p id="communication-desc" class="text-white/70 leading-relaxed"></p>
@@ -796,8 +872,11 @@
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9878;&#65039;</span>
                             <h3 class="font-heading font-semibold text-lg">
-                                Values
-
+                                <span class="lang-en">Values</span>
+                                <span class="lang-ko">가치관</span>
+                                <span class="lang-ja">価値観</span>
+                                <span class="lang-zh">价值观</span>
+                                <span class="lang-es">Valores</span>
                             </h3>
                         </div>
                         <p id="values-desc" class="text-white/70 leading-relaxed"></p>
@@ -808,8 +887,11 @@
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9889;</span>
                             <h3 class="font-heading font-semibold text-lg">
-                                Energy
-
+                                <span class="lang-en">Energy</span>
+                                <span class="lang-ko">에너지</span>
+                                <span class="lang-ja">エネルギー</span>
+                                <span class="lang-zh">能量</span>
+                                <span class="lang-es">Energia</span>
                             </h3>
                         </div>
                         <p id="energy-desc" class="text-white/70 leading-relaxed"></p>
@@ -820,8 +902,11 @@
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128151;</span>
                             <h3 class="font-heading font-semibold text-lg">
-                                Emotional Connection
-
+                                <span class="lang-en">Emotional Connection</span>
+                                <span class="lang-ko">정서적 유대</span>
+                                <span class="lang-ja">感情的つながり</span>
+                                <span class="lang-zh">情感联系</span>
+                                <span class="lang-es">Conexion Emocional</span>
                             </h3>
                         </div>
                         <p id="emotional-desc" class="text-white/70 leading-relaxed"></p>
@@ -832,8 +917,11 @@
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#127793;</span>
                             <h3 class="font-heading font-semibold text-lg">
-                                Growth Potential
-
+                                <span class="lang-en">Growth Potential</span>
+                                <span class="lang-ko">성장 가능성</span>
+                                <span class="lang-ja">成長の可能性</span>
+                                <span class="lang-zh">成长潜力</span>
+                                <span class="lang-es">Potencial de Crecimiento</span>
                             </h3>
                         </div>
                         <p id="growth-desc" class="text-white/70 leading-relaxed"></p>
@@ -856,24 +944,36 @@
             <div class="max-w-2xl mx-auto px-4 text-center">
                 <span class="text-4xl mb-4 inline-block kick-float">&#128149;</span>
                 <h2 class="kick-heading text-2xl font-bold mb-4 text-white">
-                    Try More Tests
-
+                    <span class="lang-en">Try More Tests</span>
+                    <span class="lang-ko">더 많은 테스트</span>
+                    <span class="lang-ja">他のテストを試す</span>
+                    <span class="lang-zh">尝试更多测试</span>
+                    <span class="lang-es">Prueba Mas Tests</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/en/compatibility/" class="kick-btn kick-btn-primary kick-btn-bounce font-semibold py-3 px-6 rounded-xl inline-flex items-center justify-center space-x-2">
+                    <a href="/compatibility/" class="kick-btn kick-btn-primary kick-btn-bounce font-semibold py-3 px-6 rounded-xl inline-flex items-center justify-center space-x-2">
                         <span>&#8634;</span>
-                        Test Again
-
+                        <span class="lang-en">Test Again</span>
+                        <span class="lang-ko">다시 테스트</span>
+                        <span class="lang-ja">もう一度テスト</span>
+                        <span class="lang-zh">再次测试</span>
+                        <span class="lang-es">Probar de Nuevo</span>
                     </a>
-                    <a href="/en/life-summary/" class="bg-white/10 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
+                    <a href="/life-summary/" class="bg-white/10 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
                         <span>&#10024;</span>
-                        AI Life Summary
-
+                        <span class="lang-en">AI Life Summary</span>
+                        <span class="lang-ko">AI 인생 요약</span>
+                        <span class="lang-ja">AI人生サマリー</span>
+                        <span class="lang-zh">AI人生总结</span>
+                        <span class="lang-es">Resumen de Vida IA</span>
                     </a>
-                    <a href="/en/age-calculator/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
+                    <a href="/age-calculator/" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
                         <span>&#127874;</span>
-                        AI Age Calculator
-
+                        <span class="lang-en">AI Age Calculator</span>
+                        <span class="lang-ko">AI 나이 계산기</span>
+                        <span class="lang-ja">AI年齢計算機</span>
+                        <span class="lang-zh">AI年龄计算器</span>
+                        <span class="lang-es">Calculadora de Edad IA</span>
                     </a>
                 </div>
             </div>
@@ -897,28 +997,31 @@
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-4">
-                        Tests
-
+                        <span class="lang-en">Tests</span>
+                        <span class="lang-ko">테스트</span>
+                        <span class="lang-ja">テスト</span>
+                        <span class="lang-zh">测试</span>
+                        <span class="lang-es">Tests</span>
                     </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/en/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
-                        <li><a href="/en/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
-                        <li><a href="/en/compatibility/" class="hover:text-white transition">AI Compatibility</a></li>
+                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
+                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
+                        <li><a href="/compatibility/" class="hover:text-white transition">AI Compatibility</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/en/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/en/about/" class="hover:text-white transition">About</a></li>
-                        <li><a href="/en/contact/" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
+                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-4">Legal</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/en/privacy-policy/" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/en/terms-of-service/" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1200,13 +1303,13 @@
     </script>
 
     <!-- Gamification Scripts -->
-    <script src="../../../js/badges.js"></script>
-    <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
-    <script src="../../../js/user-data.js"></script>
-    <script src="../../../js/auth.js"></script>
-    <script src="../../../js/gamification-ui.js"></script>
-    <script src="../../../js/referral.js"></script>
+    <script src="../js/badges.js"></script>
+    <script src="../js/level-xp.js"></script>
+    <script src="../js/streak.js"></script>
+    <script src="../js/user-data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/gamification-ui.js"></script>
+    <script src="../js/referral.js"></script>
     <script>
     // Gamification integration for Compatibility Test
     (function initGamification() {

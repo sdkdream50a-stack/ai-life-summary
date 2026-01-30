@@ -342,12 +342,8 @@
     <!-- Gamification CSS -->
     <link rel="stylesheet" href="../../../css/gamification.css">
     <link rel="stylesheet" href="../../../css/popups.css">
-    <!-- Viral Hooks CSS -->
-    <link rel="stylesheet" href="../../../css/viral-hooks.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
-    <!-- Mobile Enhancements -->
-    <link rel="stylesheet" href="../../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -367,7 +363,7 @@
     }
     </style>
 </head>
-<body class="kick-mesh-bg text-white min-h-screen" data-result-page>
+<body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
     <nav class="kick-navbar" id="floating-navbar">
         <a href="/es/" class="kick-navbar-logo">
@@ -643,7 +639,7 @@
         </section>
 
         <!-- Share Section - Clean & Viral Design -->
-        <section class="py-8" data-share-section>
+        <section class="py-8">
             <div class="max-w-xl mx-auto px-4 space-y-6">
 
                 <!-- Card A: Make It Visual -->
@@ -1097,16 +1093,6 @@
                 });
             }
 
-            // Initialize viral hooks with couple match alert for high scores
-            if (typeof viralHooks !== 'undefined') {
-                setTimeout(() => {
-                    viralHooks.init({
-                        compatibilityScore: results.overallScore,
-                        socialProofDelay: 10000
-                    });
-                }, 2000); // Delay to let animations complete
-            }
-
             // Add Cultural Metaphor to analysis
             if (typeof CulturalMetaphorManager !== 'undefined') {
                 const metaphor = CulturalMetaphorManager.getCompatibilityMetaphor(results.overallScore, currentLang);
@@ -1535,9 +1521,5 @@
     }
 
     </script>
-    <!-- Viral Hooks -->
-    <script src="../../../js/viral-hooks.js" defer></script>
-    <!-- Mobile Enhancements -->
-    <script src="../../../js/mobile-enhancements.js" defer></script>
 </body>
 </html>

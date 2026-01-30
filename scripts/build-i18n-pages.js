@@ -158,19 +158,19 @@ const OG_LOCALES = {
     es: 'es_ES'
 };
 
-// Pages to generate
+// Pages to generate (use templates folder to avoid conflict with redirectors)
 const PAGES = [
-    { template: 'index.html', slug: '', name: 'home' },
-    { template: 'life-summary/index.html', slug: 'life-summary', name: 'life-summary' },
-    { template: 'compatibility/index.html', slug: 'compatibility', name: 'compatibility' },
-    { template: 'age-calculator/index.html', slug: 'age-calculator', name: 'age-calculator' }
+    { template: 'scripts/templates/index.html', slug: '', name: 'home' },
+    { template: 'scripts/templates/life-summary.html', slug: 'life-summary', name: 'life-summary' },
+    { template: 'scripts/templates/compatibility.html', slug: 'compatibility', name: 'compatibility' },
+    { template: 'scripts/templates/age-calculator.html', slug: 'age-calculator', name: 'age-calculator' }
 ];
 
-// Result pages (need special handling)
+// Result pages (need special handling) - use templates folder
 const RESULT_PAGES = [
-    { template: 'life-summary/result.html', slug: 'life-summary/result' },
-    { template: 'compatibility/result.html', slug: 'compatibility/result' },
-    { template: 'age-calculator/result.html', slug: 'age-calculator/result' }
+    { template: 'scripts/templates/life-summary-result.html', slug: 'life-summary/result' },
+    { template: 'scripts/templates/compatibility-result.html', slug: 'compatibility/result' },
+    { template: 'scripts/templates/age-calculator-result.html', slug: 'age-calculator/result' }
 ];
 
 /**
