@@ -169,13 +169,46 @@ section, header, footer, main, article, aside, nav {
 /* ============================================
    ANTI-FLICKERING & PERFORMANCE
    ============================================ */
-/* Prevent flickering - but not on all elements (causes issues) */
+/* Prevent flickering - Hardware acceleration */
+.hero-section,
+.gradient-sphere,
+.marquee-container,
+.animated-background,
 .kick-marquee,
 .kick-marquee-content,
 .kick-navbar,
-.kick-bento-item {
+.kick-bento-item,
+.kick-mesh-bg::before {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    will-change: transform;
+}
+
+/* Fix gradient sphere flicker */
+.gradient-sphere,
+.kick-mesh-bg::before {
+    contain: layout style paint;
+}
+
+/* Optimize marquee animation */
+.marquee-text,
+.kick-marquee-content {
+    white-space: nowrap;
+    will-change: transform;
+}
+
+/* Stop animation when not visible (performance) */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-text,
+    .kick-marquee-content,
+    .animated-background,
+    .gradient-sphere {
+        animation: none !important;
+    }
 }
 
 /* Marquee: Start paused, JS will enable after hydration */
