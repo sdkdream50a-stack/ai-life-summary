@@ -475,6 +475,13 @@ function updateSwitchLangFunction(html, pageSlug) {
         newSwitchLang + '\n\n    function toggleLangDropdown'
     );
 
+    // CRITICAL: Remove DOMContentLoaded handler that calls switchLang
+    // This would cause infinite redirect loop since switchLang now redirects
+    result = result.replace(
+        /\/\/ Initialize on load\s*\n\s*document\.addEventListener\('DOMContentLoaded',\s*function\(\)\s*\{[^}]*switchLang\(lang\);[^}]*\}\);/g,
+        '// Language is set statically for this page'
+    );
+
     return result;
 }
 
