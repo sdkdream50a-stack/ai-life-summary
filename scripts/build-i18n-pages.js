@@ -885,6 +885,32 @@ function fixMobileMenu(html) {
                 });
             });
         }
+
+        // TOUCH SCROLL FIX: Remove any automatic scroll-to-top on touch
+        var touchStartY = 0;
+        var isScrolling = false;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            isScrolling = true;
+        }, {passive: true});
+
+        document.addEventListener('touchend', function(e) {
+            isScrolling = false;
+        }, {passive: true});
+
+        // Prevent scroll jump on orientation change
+        window.addEventListener('resize', function() {
+            if (window.innerWidth < 768) return;
+        });
+
+        // Fix iOS rubber-band effect causing jumps
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.mobile-menu-panel')) return;
+            if (window.scrollY === 0 && e.touches[0].clientY > touchStartY) {
+                e.preventDefault();
+            }
+        }, {passive: false});
     });
     </script>`;
 
