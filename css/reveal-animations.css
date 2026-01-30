@@ -77,12 +77,17 @@
   padding: 2rem;
   perspective: 1200px;
   position: relative;
-  transition: min-height 1s ease-out 0.5s;
+  /* CLS FIX: Remove min-height transition - use transform instead */
 }
 
-/* Shrink stage height after card flip to reveal content below */
+/* CLS FIX: Keep same min-height, use transform on card instead */
 .reveal-stage.card-revealed {
-  min-height: 30vh;
+  min-height: 60vh;
+}
+
+/* CLS FIX: Apply transform to card content when revealed */
+.reveal-stage.card-revealed .reveal-card {
+  transform: rotateY(180deg) translateY(-10vh) scale(0.85);
 }
 
 /* Ambient glow behind card - purple theme */
@@ -125,9 +130,9 @@
   transition: transform 0.3s ease-out;
 }
 
-/* Flip, move to top, and shrink */
+/* Flip, move to top, and shrink - CLS FIX: Using transform instead of height change */
 .reveal-card.flipped {
-  transform: rotateY(180deg) translateY(-15vh) scale(0.75);
+  transform: rotateY(180deg) translateY(-10vh) scale(0.85);
   transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
@@ -468,9 +473,10 @@
   animation: bounceDown 1.5s ease-in-out infinite;
 }
 
-/* Trait bars */
+/* Trait bars - CLS FIX: Add min-height reservations */
 .trait-item {
   margin-bottom: 1.25rem;
+  min-height: 48px;
 }
 
 .trait-header {
@@ -491,6 +497,7 @@
 
 .trait-bar-container {
   height: 10px;
+  min-height: 10px; /* CLS FIX: Explicit min-height */
   background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   overflow: hidden;
@@ -658,6 +665,11 @@
 }
 
 /* ===== Question Card UI ===== */
+/* CLS FIX: Add min-height reservations for question cards */
+.question-card-container { min-height: 480px; }
+.question-card-inner { min-height: 400px; }
+.option-grid { min-height: 200px; }
+
 .question-container {
   max-width: 500px;
   margin: 0 auto;
