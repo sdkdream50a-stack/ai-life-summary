@@ -465,12 +465,10 @@
     function switchLang(lang) {
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        document.documentElement.lang = lang;
-
-        var currentLangEl = document.getElementById('current-lang');
-        if (currentLangEl) {
-            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
-        }
+        // Navigate to the language-specific version of this page
+        window.location.href = '/' + lang + '/life-summary/';
+    }
+    
 
         // Update select options text
         var selects = document.querySelectorAll('select');

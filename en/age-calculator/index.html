@@ -501,26 +501,10 @@
     function switchLang(lang) {
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        document.documentElement.lang = lang;
-
-        var currentLangEl = document.getElementById('current-lang');
-        if (currentLangEl) {
-            currentLangEl.textContent = langFlags[lang] + ' ' + langNames[lang];
-        }
-
-        var mobileBtns = document.querySelectorAll('.mobile-lang-btn');
-        for (var i = 0; i < mobileBtns.length; i++) {
-            var btn = mobileBtns[i];
-            var isActive = btn.getAttribute('data-lang') === lang;
-            btn.style.background = isActive ? '#6366f1' : '#f3f4f6';
-            btn.style.color = isActive ? 'white' : '#374151';
-        }
-
-        var dropdown = document.getElementById('lang-dropdown');
-        if (dropdown) dropdown.classList.add('hidden');
-
-        document.documentElement.classList.add('lang-ready');
+        // Navigate to the language-specific version of this page
+        window.location.href = '/' + lang + '/age-calculator/';
     }
+    
 
     function toggleLangDropdown() {
         var dropdown = document.getElementById('lang-dropdown');

@@ -451,6 +451,30 @@ function updateNavLinks(html, lang) {
 }
 
 /**
+ * Replace switchLang function to redirect to language subdirectories
+ */
+function updateSwitchLangFunction(html, pageSlug) {
+    // Build the path pattern based on current page
+    const pathSuffix = pageSlug ? `/${pageSlug}/` : '/';
+
+    // Replace the switchLang function to navigate to language subdirectory
+    const newSwitchLang = `function switchLang(lang) {
+        localStorage.setItem('ai-life-summary-lang', lang);
+        localStorage.setItem('preferredLanguage', lang);
+        // Navigate to the language-specific version of this page
+        window.location.href = '/' + lang + '${pathSuffix}';
+    }`;
+
+    // Replace the old switchLang function
+    const result = html.replace(
+        /function switchLang\(lang\)\s*\{[\s\S]*?localStorage\.setItem\('preferredLanguage', lang\);[\s\S]*?(?=\n\s*function|\n\s*\/\/|\n\s*<\/script>)/,
+        newSwitchLang + '\n    '
+    );
+
+    return result;
+}
+
+/**
  * Add Quiz schema for test pages
  */
 function addQuizSchema(html, pageName, lang) {
@@ -685,6 +709,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = fixAssetPaths(html, depth);
     html = removeLanguageDetection(html);
     html = updateNavLinks(html, lang);
+    html = updateSwitchLangFunction(html, pageSlug);
     html = addQuizSchema(html, pageName, lang);
     html = removeAutoLoadScripts(html);
     html = addCSPHeader(html);
@@ -752,6 +777,7 @@ function build() {
             html = fixAssetPaths(html, depth);
             html = removeLanguageDetection(html);
             html = updateNavLinks(html, lang);
+            html = updateSwitchLangFunction(html, page.slug);
 
             // Update canonical and OG URLs for result pages
             const resultUrl = `${BASE_URL}/${lang}/${page.slug}/`;

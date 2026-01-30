@@ -875,7 +875,10 @@
     function switchLang(lang) {
         localStorage.setItem('ai-life-summary-lang', lang);
         localStorage.setItem('preferredLanguage', lang);
-        document.documentElement.lang = lang;
+        // Navigate to the language-specific version of this page
+        window.location.href = '/' + lang + '/';
+    }
+    
 
         // Update dropdown display
         var currentLangEl = document.getElementById('current-lang');
