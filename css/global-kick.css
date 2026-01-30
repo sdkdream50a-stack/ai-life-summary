@@ -123,6 +123,34 @@ button, a, input, select, textarea, [role="button"], [onclick] {
     opacity: 0 !important;
 }
 
+/* Language selector - select element fix for iOS/mobile */
+select[name="language"],
+.language-selector select,
+#lang-selector select {
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1002 !important;
+    -webkit-appearance: menulist !important;
+    appearance: menulist !important;
+    background-color: #2d2d44 !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 32px 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    touch-action: manipulation !important;
+    pointer-events: auto !important;
+}
+
+/* iOS specific fix for dropdown options */
+select option {
+    background-color: #1a1a2e !important;
+    color: #ffffff !important;
+    padding: 10px !important;
+    font-size: 16px !important; /* iOS zoom prevention */
+}
+
 #mobile-menu-btn {
     position: relative;
     z-index: 999999; /* Highest - always clickable */
