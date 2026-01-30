@@ -746,6 +746,33 @@ function fixMobileNavbar(html) {
 }
 
 /**
+ * Fix mobile menu by adding close button handler
+ */
+function fixMobileMenu(html) {
+    // Find the mobile menu script and add close button handler
+    const oldScript = `document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });`;
+
+    const newScript = `document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('hidden');
+        });
+        document.getElementById('mobile-menu-close').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });
+        // Close menu when clicking outside
+        document.getElementById('mobile-menu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });`;
+
+    html = html.replace(oldScript, newScript);
+
+    return html;
+}
+
+/**
  * Remove auto-loading analytics/ads scripts (now handled by consent manager)
  */
 function removeAutoLoadScripts(html) {
@@ -811,6 +838,7 @@ function processPage(templatePath, pageName, pageSlug, lang) {
     html = addCSPHeader(html);
     html = addMobileEnhancements(html, depth);
     html = fixMobileNavbar(html);
+    html = fixMobileMenu(html);
 
     return html;
 }
