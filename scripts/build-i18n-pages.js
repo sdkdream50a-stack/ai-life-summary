@@ -492,6 +492,20 @@ function updateSwitchLangFunction(html, pageSlug) {
     result = result.replace(/onclick="switchLang\('(\w+)'\)"/g, 'onclick="switchLang(\'$1\', event)"');
     result = result.replace(/onclick="switchLang\('(\w+)'\);/g, 'onclick="switchLang(\'$1\', event);');
 
+    // Remove body opacity:0 flash - pages are already in correct language
+    result = result.replace(
+        /body\s*\{\s*opacity:\s*0;[^}]*\}/g,
+        'body { opacity: 1; }'
+    );
+    result = result.replace(
+        /html\.lang-ready body\s*\{\s*opacity:\s*1;\s*\}/g,
+        '/* lang-ready not needed - static language page */'
+    );
+    result = result.replace(
+        /@keyframes showBody[^}]*\{[^}]*\}/g,
+        '/* showBody animation not needed */'
+    );
+
     return result;
 }
 
