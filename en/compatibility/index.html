@@ -196,93 +196,89 @@
     document.addEventListener('DOMContentLoaded', function() {
         var menuBtn = document.getElementById('mobile-menu-btn');
         var mobileMenu = document.getElementById('mobile-menu');
-        var closeBtn = document.getElementById('mobile-menu-close');
-        var isOpen = false;
-        var scrollY = 0;
+        var body = document.body;
 
-        function openMenu(e) {
-            if (e) { e.preventDefault(); e.stopPropagation(); }
-            if (isOpen) return;
-            isOpen = true;
-            scrollY = window.scrollY;
-            document.body.classList.add('menu-open');
-            document.body.style.top = '-' + scrollY + 'px';
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('active');
-            menuBtn.setAttribute('aria-expanded', 'true');
-        }
+        if (!menuBtn || !mobileMenu) return;
 
-        function closeMenu(e) {
-            if (e) { e.preventDefault(); e.stopPropagation(); }
-            if (!isOpen) return;
-            isOpen = false;
-            document.body.classList.remove('menu-open');
-            document.body.style.top = '';
-            window.scrollTo(0, scrollY);
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-        }
+        var isMenuOpen = false;
 
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', openMenu);
-            menuBtn.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                openMenu(e);
-            }, {passive: false});
+        // Use both click and touchend for maximum compatibility
+        var toggleMenu = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeMenu);
-                closeBtn.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    closeMenu(e);
-                }, {passive: false});
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                // Open menu
+                mobileMenu.style.display = 'block';
+                mobileMenu.style.visibility = 'visible';
+                mobileMenu.style.opacity = '1';
+                mobileMenu.style.transform = 'translateX(0)';
+                mobileMenu.setAttribute('aria-hidden', 'false');
+
+                // Lock body scroll
+                body.style.overflow = 'hidden';
+                body.style.position = 'fixed';
+                body.style.width = '100%';
+                body.style.top = '-' + window.scrollY + 'px';
+                body.classList.add('menu-open');
+
+                // Focus trap for accessibility
+                menuBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                // Close menu
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateX(100%)';
+                mobileMenu.setAttribute('aria-hidden', 'true');
+
+                // Unlock body scroll - RESTORE POSITION
+                var scrollY = body.style.top;
+                body.style.overflow = '';
+                body.style.position = '';
+                body.style.width = '';
+                body.style.top = '';
+                body.classList.remove('menu-open');
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+                menuBtn.setAttribute('aria-expanded', 'false');
+
+                // Hide after transition
+                setTimeout(function() {
+                    if (!isMenuOpen) {
+                        mobileMenu.style.display = 'none';
+                        mobileMenu.style.visibility = 'hidden';
+                    }
+                }, 300);
             }
+        };
 
-            // Close when clicking menu background
-            mobileMenu.addEventListener('click', function(e) {
-                if (e.target === mobileMenu) closeMenu(e);
-            });
+        // Bind events with capture phase to ensure firing
+        menuBtn.addEventListener('click', toggleMenu, {capture: true});
+        menuBtn.addEventListener('touchend', function(e) {
+            e.preventDefault(); // Prevent mouse emulation delay
+            toggleMenu(e);
+        }, {passive: false});
 
-            // Close on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isOpen) closeMenu(e);
-            });
-
-            // Close menu after language switch
-            var langBtns = mobileMenu.querySelectorAll('[data-close-menu]');
-            langBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    setTimeout(closeMenu, 100);
-                });
-            });
-        }
-
-        // TOUCH SCROLL FIX: Remove any automatic scroll-to-top on touch
-        var touchStartY = 0;
-        var isScrolling = false;
-
-        document.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            isScrolling = true;
-        }, {passive: true});
-
-        document.addEventListener('touchend', function(e) {
-            isScrolling = false;
-        }, {passive: true});
-
-        // Prevent scroll jump on orientation change
-        window.addEventListener('resize', function() {
-            if (window.innerWidth < 768) return;
+        // Close when clicking menu items
+        var menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', toggleMenu);
         });
 
-        // Fix iOS rubber-band effect causing jumps
-        document.addEventListener('touchmove', function(e) {
-            if (e.target.closest('.mobile-menu-panel')) return;
-            if (window.scrollY === 0 && e.touches[0].clientY > touchStartY) {
-                e.preventDefault();
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                toggleMenu(e);
             }
-        }, {passive: false});
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenu(e);
+            }
+        });
     });
     </script>
     <script>
