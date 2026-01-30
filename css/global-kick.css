@@ -640,6 +640,15 @@ section, header, footer, main, article, aside, nav {
 
 /* Mobile navbar */
 @media (max-width: 768px) {
+    /* Remove backdrop blur on mobile - causes transparency issues */
+    .kick-navbar,
+    header,
+    .navbar,
+    #lang-dropdown {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
     .kick-navbar {
         top: auto !important;
         bottom: 20px !important;
@@ -654,6 +663,9 @@ section, header, footer, main, article, aside, nav {
         overflow: visible !important; /* Allow dropdown to overflow */
         position: fixed !important;
         z-index: 1000 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(15, 12, 41, 0.95) !important;
     }
     .kick-navbar-links {
         gap: 4px;
