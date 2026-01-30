@@ -554,6 +554,16 @@
       const btn = document.getElementById('btn-copy-image');
       const originalHTML = btn.innerHTML;
 
+      // iOS/Safari detection - clipboard API is limited
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (isIOS || (isSafari && !navigator.clipboard?.write)) {
+        // iOS/Safari: Download instead since clipboard is limited
+        downloadImage();
+        return;
+      }
+
       try {
         const canvas = await html2canvas(widget, {
           backgroundColor: null,
@@ -578,7 +588,8 @@
         }, 'image/png');
       } catch (err) {
         console.error('Copy failed:', err);
-        alert(t('copyFailed'));
+        // Fallback: download instead
+        downloadImage();
       }
     }
 
@@ -587,18 +598,61 @@
       const widget = getWidgetElement();
       if (!widget) return;
 
+      const btn = document.getElementById('btn-download');
+      const originalHTML = btn.innerHTML;
+
       try {
         const canvas = await html2canvas(widget, {
           backgroundColor: null,
           scale: 2
         });
 
-        const link = document.createElement('a');
-        link.download = `soul-type-${widgetGenerator.selectedType}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        const dataUrl = canvas.toDataURL('image/png');
+        const fileName = `soul-type-${widgetGenerator.selectedType}.png`;
+
+        // iOS Safari detection
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isIOS || isSafari) {
+          // iOS/Safari: Open image in new tab for long-press save
+          const newTab = window.open();
+          if (newTab) {
+            newTab.document.write(`
+              <html>
+              <head><title>${fileName}</title></head>
+              <body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f0f0f0;">
+                <div style="text-align:center;">
+                  <p style="margin-bottom:10px;font-family:sans-serif;color:#666;">이미지를 길게 눌러 저장하세요 / Long press to save</p>
+                  <img src="${dataUrl}" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+                </div>
+              </body>
+              </html>
+            `);
+            newTab.document.close();
+          } else {
+            // Popup blocked - try direct link
+            window.location.href = dataUrl;
+          }
+        } else {
+          // Desktop/Android: Normal download
+          const link = document.createElement('a');
+          link.download = fileName;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+
+        btn.innerHTML = `<span>✅</span><span>${t('copied')}</span>`;
+        btn.classList.add('success');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('success');
+        }, 2000);
       } catch (err) {
         console.error('Download failed:', err);
+        alert('Download failed. Please try again.');
       }
     }
 
@@ -639,44 +693,74 @@
     }
 
     // Share
-    function shareWidget() {
+    async function shareWidget() {
       const shareUrl = `https://smartaitest.com/widget/embed.html?type=${widgetGenerator.selectedType}&style=${widgetGenerator.selectedStyle}&lang=${currentLang}`;
+      const soulType = widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType);
       const shareText = currentLang === 'ko'
-        ? `나의 AI 소울 타입: ${widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType)?.nameKo || ''}`
-        : `My AI Soul Type: ${widgetGenerator.soulTypes?.find(t => t.id === widgetGenerator.selectedType)?.nameEn || ''}`;
+        ? `나의 AI 소울 타입: ${soulType?.nameKo || ''}`
+        : `My AI Soul Type: ${soulType?.nameEn || ''}`;
 
+      const btn = document.getElementById('btn-share');
+      const originalHTML = btn.innerHTML;
+
+      // Try Web Share API first (works best on mobile)
       if (navigator.share) {
-        navigator.share({
-          title: 'AI Soul Type',
-          text: shareText,
-          url: shareUrl
-        }).catch(() => {});
-      } else {
-        // Fallback: copy link
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          const btn = document.getElementById('btn-share');
-          const originalHTML = btn.innerHTML;
-          btn.innerHTML = `<span>✅</span><span>${t('copied')}</span>`;
-          setTimeout(() => {
-            btn.innerHTML = originalHTML;
-          }, 2000);
-        });
+        try {
+          await navigator.share({
+            title: 'AI Soul Type',
+            text: shareText,
+            url: shareUrl
+          });
+          return;
+        } catch (err) {
+          // User cancelled or error - try clipboard fallback
+          if (err.name !== 'AbortError') {
+            console.log('Share failed, trying clipboard');
+          }
+        }
+      }
+
+      // Fallback: copy link to clipboard
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        btn.innerHTML = `<span>✅</span><span>${t('copied')}</span>`;
+        btn.classList.add('success');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('success');
+        }, 2000);
+      } catch (err) {
+        // Last resort: show URL in prompt
+        prompt('Copy this link:', shareUrl);
       }
     }
 
     // Setup event listeners
     function setupEventListeners() {
-      document.getElementById('btn-copy-image').addEventListener('click', copyImageToClipboard);
-      document.getElementById('btn-download').addEventListener('click', downloadImage);
-      document.getElementById('btn-embed').addEventListener('click', showEmbedModal);
-      document.getElementById('btn-share').addEventListener('click', shareWidget);
-      document.getElementById('btn-copy-code').addEventListener('click', copyEmbedCode);
+      // Helper to add both click and touch events
+      function addButtonListener(id, handler) {
+        const btn = document.getElementById(id);
+        if (!btn) return;
 
-      document.getElementById('close-modal').addEventListener('click', () => {
+        btn.addEventListener('click', handler);
+        // Touch support for mobile
+        btn.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          handler(e);
+        }, { passive: false });
+      }
+
+      addButtonListener('btn-copy-image', copyImageToClipboard);
+      addButtonListener('btn-download', downloadImage);
+      addButtonListener('btn-embed', showEmbedModal);
+      addButtonListener('btn-share', shareWidget);
+      addButtonListener('btn-copy-code', copyEmbedCode);
+
+      document.getElementById('close-modal')?.addEventListener('click', () => {
         document.getElementById('embed-modal').classList.remove('show');
       });
 
-      document.getElementById('embed-modal').addEventListener('click', (e) => {
+      document.getElementById('embed-modal')?.addEventListener('click', (e) => {
         if (e.target.id === 'embed-modal') {
           document.getElementById('embed-modal').classList.remove('show');
         }
