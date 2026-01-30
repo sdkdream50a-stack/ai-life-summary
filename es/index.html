@@ -2299,20 +2299,9 @@
             toggleMenu(e);
         }, {passive: false});
 
-        // Close when clicking menu items (except language buttons which navigate)
-        var menuLinks = mobileMenu.querySelectorAll('a:not([onclick*="switchLang"])');
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', toggleMenu);
-        });
-
-        // For language buttons, just let them navigate (page will reload anyway)
-        var langButtons = mobileMenu.querySelectorAll('[onclick*="switchLang"], button[onclick*="switchLang"]');
-        langButtons.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                // Don't close menu - let switchLang handle navigation
-                e.stopPropagation();
-            });
-        });
+        // Let all links and buttons navigate naturally
+        // Don't add click handlers that would prevent navigation
+        // The page will change and menu closes automatically
 
         // Close on outside click
         document.addEventListener('click', function(e) {
