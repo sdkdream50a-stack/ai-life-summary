@@ -1866,6 +1866,7 @@
 
         // Handle option selection
         function handleOptionSelect(btn) {
+            console.log('handleOptionSelect called!', btn.dataset.value);
             // Add selected state
             btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
