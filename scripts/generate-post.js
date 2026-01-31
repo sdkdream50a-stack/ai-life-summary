@@ -171,7 +171,7 @@ function createHTML(post, content, lang) {
 
                 <section id="section2" class="mb-8">
                     <h2>1. ${content.section2}</h2>
-                    <p>Harvard Medical School 연구에 따르면, 50대 이후의 뇌는 새로운 정보를 처리하는 방식이 젊은 뇌와 다릅니다. 하지만 이것이 반드시 불리한 것은 아닙니다.</p>
+                    <p>신경과학 연구들에 따르면, 50대 이후의 뇌는 새로운 정보를 처리하는 방식이 젊은 뇌와 다릅니다. 하지만 이것이 반드시 불리한 것은 아닙니다.</p>
                     <p>50대의 뇌는 패턴 인식과 맥락적 이해에서 오히려 강점을 보입니다. 수십 년간 축적된 경험이 새로운 개념을 기존 지식과 연결하는 데 도움을 주기 때문입니다.</p>
                     <div class="insight-box">
                         <h3 class="font-semibold text-blue-800 mb-2">50대에게 주는 조언</h3>
