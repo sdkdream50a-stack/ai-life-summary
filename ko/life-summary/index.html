@@ -1866,7 +1866,6 @@
 
         // Handle option selection
         function handleOptionSelect(btn) {
-            console.log('handleOptionSelect called!', btn.dataset.value);
             // Add selected state
             btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
@@ -1881,11 +1880,9 @@
             setTimeout(() => {
                 questionFlow.currentQuestion++;
                 const totalQuestions = questionFlow.questions[questionFlow.lang].length;
-                console.log('currentQuestion:', questionFlow.currentQuestion, 'totalQuestions:', totalQuestions);
 
                 // Check for interstitial (after question 3)
                 if (questionFlow.currentQuestion === 3 && questionFlow.currentQuestion < totalQuestions) {
-                    console.log('Showing interstitial');
                     showInterstitial();
                 } else if (questionFlow.currentQuestion >= totalQuestions) {
                     // Complete - go to results
@@ -1928,24 +1925,16 @@
 
         // Show interstitial screen
         function showInterstitial() {
-            console.log('showInterstitial called, lang:', questionFlow.lang);
-            try {
-                const interstitial = questionFlow.interstitials[questionFlow.lang];
-                console.log('interstitial data:', interstitial);
-                const screen = document.getElementById('interstitial-screen');
-                console.log('screen element:', screen);
+            const interstitial = questionFlow.interstitials[questionFlow.lang];
+            const screen = document.getElementById('interstitial-screen');
 
-                document.getElementById('interstitial-emoji').textContent = interstitial.emoji;
-                document.getElementById('interstitial-title').textContent = interstitial.title;
-                document.getElementById('interstitial-subtitle').textContent = interstitial.subtitle;
-                document.getElementById('interstitial-button').textContent = interstitial.button;
+            document.getElementById('interstitial-emoji').textContent = interstitial.emoji;
+            document.getElementById('interstitial-title').textContent = interstitial.title;
+            document.getElementById('interstitial-subtitle').textContent = interstitial.subtitle;
+            document.getElementById('interstitial-button').textContent = interstitial.button;
 
-                screen.classList.remove('hidden');
-                console.log('hidden removed');
-                setTimeout(() => {
-                    screen.classList.add('visible');
-                    console.log('visible added');
-                }, 50);
+            screen.classList.remove('hidden');
+            setTimeout(() => screen.classList.add('visible'), 50);
 
             document.getElementById('interstitial-button').onclick = () => {
                 screen.classList.remove('visible');
@@ -1954,9 +1943,6 @@
                     transitionToNextQuestion();
                 }, 300);
             };
-            } catch (e) {
-                console.error('showInterstitial error:', e);
-            }
         }
 
         // Complete questions and go to results
