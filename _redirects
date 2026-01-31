@@ -1,0 +1,51 @@
+# 301 Redirects - Old Episodes to New Pillar Guides
+# Cloudflare Pages redirect rules
+
+# Episodes 1-5, 11-12, 26 -> Web Development Roadmap
+/blog/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-3.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-4.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-5.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-11.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-12.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-26.html /blog/web-development-roadmap-50s-complete-guide.html 301
+
+# Episodes 16-20, 27 -> Web Architecture Basics
+/blog/post-16.html /blog/web-architecture-basics-non-developers.html 301
+/blog/post-17.html /blog/web-architecture-basics-non-developers.html 301
+/blog/post-18.html /blog/web-architecture-basics-non-developers.html 301
+/blog/post-19.html /blog/web-architecture-basics-non-developers.html 301
+/blog/post-20.html /blog/web-architecture-basics-non-developers.html 301
+/blog/post-27.html /blog/web-architecture-basics-non-developers.html 301
+
+# Episodes 21-25 -> Product Management
+/blog/post-21.html /blog/product-management-50s-beginners.html 301
+/blog/post-22.html /blog/product-management-50s-beginners.html 301
+/blog/post-23.html /blog/product-management-50s-beginners.html 301
+/blog/post-24.html /blog/product-management-50s-beginners.html 301
+/blog/post-25.html /blog/product-management-50s-beginners.html 301
+
+# Episodes 6-10, 13-15 -> Career Transition Portfolio
+/blog/post-6.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-7.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-8.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-9.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-10.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-13.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-14.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/post-15.html /blog/career-transition-tech-portfolio-50s.html 301
+
+# Korean translated versions
+/blog/ko/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/ko/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/ko/post-3.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/ko/post-4.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/ko/post-5.html /blog/web-development-roadmap-50s-complete-guide.html 301
+
+# English translated versions
+/blog/en/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-3.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-4.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-5.html /blog/web-development-roadmap-50s-complete-guide.html 301

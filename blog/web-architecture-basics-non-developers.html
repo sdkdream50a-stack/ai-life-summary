@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QDH2KJQT9Y');
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>비개발자를 위한 웹 아키텍처 기초: 레스토랑 비유로 이해하기 | AI Test Lab</title>
+    <meta name="description" content="웹사이트가 어떻게 작동하는지 레스토랑 비유로 쉽게 설명합니다. 서버, 프론트엔드, 백엔드, API, 배포의 개념을 비개발자도 이해할 수 있도록 안내합니다.">
+    <meta name="keywords" content="웹 아키텍처, 서버란, 프론트엔드 백엔드, API 설명, 웹 개발 기초, 비개발자 기술">
+    <meta name="author" content="이상혁">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://smartaitest.com/blog/web-architecture-basics-non-developers.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://smartaitest.com/blog/web-architecture-basics-non-developers.html">
+    <meta property="og:title" content="비개발자를 위한 웹 아키텍처 기초: 레스토랑 비유로 이해하기">
+    <meta property="og:description" content="웹사이트가 어떻게 작동하는지 레스토랑 비유로 쉽게 설명합니다.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/og-blog-arch.png">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="article:published_time" content="2026-01-31">
+    <meta property="article:modified_time" content="2026-01-31">
+    <meta property="article:author" content="이상혁">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="비개발자를 위한 웹 아키텍처 기초">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/tailwind.css">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "비개발자를 위한 웹 아키텍처 기초: 레스토랑 비유로 이해하기",
+        "description": "웹사이트가 어떻게 작동하는지 레스토랑 비유로 쉽게 설명합니다.",
+        "image": "https://smartaitest.com/assets/images/og-blog-arch.png",
+        "datePublished": "2026-01-31",
+        "dateModified": "2026-01-31",
+        "author": {
+            "@type": "Person",
+            "name": "이상혁",
+            "url": "https://smartaitest.com/authors/lee-sanghyuk.html"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI Test Lab",
+            "logo": {"@type": "ImageObject", "url": "https://smartaitest.com/favicon.svg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://smartaitest.com/blog/web-architecture-basics-non-developers.html"},
+        "wordCount": "2200"
+    }
+    </script>
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .ascii-diagram { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; }
+        .ascii-diagram pre { margin: 0; font-family: 'Fira Code', monospace; font-size: 0.875rem; line-height: 1.6; }
+        .toc-link:hover { color: #6366f1; padding-left: 8px; }
+        html { scroll-behavior: smooth; }
+        .restaurant-card { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <span class="text-2xl">🔮</span>
+                    <span class="font-bold text-xl gradient-text">AI Test Lab</span>
+                </a>
+                <a href="/blog.html" class="text-gray-600 hover:text-indigo-600">← 블로그</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <article itemscope itemtype="https://schema.org/Article">
+            <header class="mb-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">TECHNICAL GUIDE</span>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-gray-500 text-sm">읽는 시간: 12분</span>
+                </div>
+                <h1 itemprop="headline" class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                    비개발자를 위한 웹 아키텍처 기초:<br>레스토랑 비유로 이해하기
+                </h1>
+                <p itemprop="description" class="text-xl text-gray-600 mb-6">
+                    "서버가 뭐야?", "API가 대체 뭔데?" 이런 질문에 당당하게 답할 수 있도록,
+                    레스토랑 운영에 비유해서 웹의 모든 구성 요소를 설명합니다.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
+                    <time itemprop="datePublished" datetime="2026-01-31">2026년 1월 31일</time>
+                    <span>•</span>
+                    <time itemprop="dateModified" datetime="2026-01-31">최종 수정: 2026년 1월 31일</time>
+                </div>
+
+                <!-- Author Box -->
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">이</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg" itemprop="name">이상혁</h3>
+                            <p class="text-gray-600 text-sm" itemprop="jobTitle">시니어 개발자 & 테크 에듀케이터</p>
+                            <p class="text-gray-500 text-sm mt-2">
+                                복잡한 기술 개념을 쉬운 비유로 설명하는 것이 전문입니다.
+                                비개발자 대상 기술 교육 7년 경력.
+                            </p>
+                            <a href="/authors/lee-sanghyuk.html" class="text-blue-600 text-sm hover:underline mt-2 inline-block" itemprop="url">저자 프로필 →</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Table of Contents -->
+            <nav class="bg-gray-100 rounded-xl p-6 mb-8">
+                <h2 class="font-bold text-lg mb-4">📑 목차</h2>
+                <ul class="space-y-2 text-gray-700">
+                    <li><a href="#analogy" class="toc-link block">1. 핵심 비유: 웹사이트는 레스토랑이다</a></li>
+                    <li><a href="#frontend" class="toc-link block">2. 프론트엔드: 레스토랑의 홀</a></li>
+                    <li><a href="#backend" class="toc-link block">3. 백엔드: 레스토랑의 주방</a></li>
+                    <li><a href="#server" class="toc-link block">4. 서버: 레스토랑 건물 자체</a></li>
+                    <li><a href="#api" class="toc-link block">5. API: 홀과 주방을 연결하는 주문서</a></li>
+                    <li><a href="#database" class="toc-link block">6. 데이터베이스: 식재료 창고</a></li>
+                    <li><a href="#deployment" class="toc-link block">7. 배포: 레스토랑 오픈하기</a></li>
+                    <li><a href="#summary" class="toc-link block">8. 전체 흐름 정리</a></li>
+                </ul>
+            </nav>
+
+            <!-- Article Content -->
+            <div itemprop="articleBody" class="prose prose-lg max-w-none">
+
+                <!-- Restaurant Analogy -->
+                <section id="analogy" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🍽️</span>
+                        1. 핵심 비유: 웹사이트는 레스토랑이다
+                    </h2>
+
+                    <div class="restaurant-card rounded-xl p-6 mb-6 border border-yellow-300">
+                        <p class="text-lg font-medium text-yellow-900 mb-4">
+                            웹사이트를 이해하는 가장 쉬운 방법은 <strong>레스토랑</strong>에 비유하는 것입니다.
+                        </p>
+                        <ul class="space-y-2 text-yellow-800">
+                            <li>🏠 <strong>레스토랑 건물</strong> = 서버</li>
+                            <li>🪑 <strong>홀 (손님 공간)</strong> = 프론트엔드</li>
+                            <li>🍳 <strong>주방</strong> = 백엔드</li>
+                            <li>📝 <strong>주문서</strong> = API</li>
+                            <li>🧊 <strong>식재료 창고</strong> = 데이터베이스</li>
+                            <li>👨‍🍳 <strong>직원들</strong> = 코드</li>
+                        </ul>
+                    </div>
+
+                    <p class="mb-4">
+                        손님(사용자)이 레스토랑(웹사이트)에 들어오면, 먼저 <strong>홀(프론트엔드)</strong>에서
+                        메뉴를 보고 주문합니다. 주문서(API)가 <strong>주방(백엔드)</strong>으로 전달되면,
+                        요리사(코드)가 <strong>창고(데이터베이스)</strong>에서 재료를 꺼내 요리를 만들어
+                        다시 홀로 가져다줍니다.
+                    </p>
+
+                    <p class="mb-4">
+                        이 비유를 기억하면, 앞으로 나오는 모든 기술 용어가 쉽게 이해될 것입니다.
+                    </p>
+                </section>
+
+                <!-- Frontend Section -->
+                <section id="frontend" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🪑</span>
+                        2. 프론트엔드: 레스토랑의 홀
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>프론트엔드(Frontend)</strong>는 사용자가 <strong>직접 보고 상호작용하는 부분</strong>입니다.
+                        레스토랑으로 치면 손님이 앉는 홀, 메뉴판, 테이블 장식 등입니다.
+                    </p>
+
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 mb-6">
+                        <h3 class="font-bold text-lg mb-4">프론트엔드의 3요소</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-orange-50 rounded-lg p-4">
+                                <h4 class="font-bold text-orange-700 mb-2">HTML</h4>
+                                <p class="text-sm text-gray-600">
+                                    레스토랑의 <strong>뼈대</strong>. 벽, 테이블, 의자의 배치.
+                                    "여기에 제목, 여기에 버튼"을 정의합니다.
+                                </p>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-bold text-blue-700 mb-2">CSS</h4>
+                                <p class="text-sm text-gray-600">
+                                    레스토랑의 <strong>인테리어</strong>. 색상, 조명, 가구 스타일.
+                                    보기 좋게 꾸미는 역할입니다.
+                                </p>
+                            </div>
+                            <div class="bg-yellow-50 rounded-lg p-4">
+                                <h4 class="font-bold text-yellow-700 mb-2">JavaScript</h4>
+                                <p class="text-sm text-gray-600">
+                                    레스토랑의 <strong>직원</strong>. 주문 받기, 메뉴 추천, 계산.
+                                    동적인 상호작용을 담당합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ascii-diagram mb-6">
+                        <pre>
+┌─────────────────────────────────────────┐
+│              브라우저 (Chrome 등)          │
+├─────────────────────────────────────────┤
+│                                         │
+│   ┌───────────────────────────────┐    │
+│   │         HTML (구조)            │    │
+│   │   ┌───────────────────────┐   │    │
+│   │   │      CSS (스타일)      │   │    │
+│   │   │   ┌───────────────┐   │   │    │
+│   │   │   │  JavaScript   │   │   │    │
+│   │   │   │   (동작)      │   │   │    │
+│   │   │   └───────────────┘   │   │    │
+│   │   └───────────────────────┘   │    │
+│   └───────────────────────────────┘    │
+│                                         │
+│       ↑ 이것이 "프론트엔드" 입니다        │
+└─────────────────────────────────────────┘
+                        </pre>
+                    </div>
+
+                    <p class="mb-4">
+                        여러분이 웹사이트에서 보는 모든 것 - 버튼, 이미지, 텍스트, 애니메이션 - 은
+                        프론트엔드입니다. 사용자 경험(UX)의 핵심이죠.
+                    </p>
+                </section>
+
+                <!-- Backend Section -->
+                <section id="backend" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🍳</span>
+                        3. 백엔드: 레스토랑의 주방
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>백엔드(Backend)</strong>는 <strong>사용자 눈에 보이지 않는</strong> 서버 측 로직입니다.
+                        레스토랑의 주방처럼, 손님은 못 보지만 실제로 음식(데이터)을 만드는 곳입니다.
+                    </p>
+
+                    <div class="bg-green-50 rounded-xl p-6 border border-green-200 mb-6">
+                        <h3 class="font-bold text-green-800 mb-3">주방(백엔드)에서 하는 일</h3>
+                        <ul class="list-disc pl-6 space-y-2 text-green-700">
+                            <li><strong>주문 처리:</strong> 사용자 요청을 받아 적절한 응답 반환</li>
+                            <li><strong>재료 관리:</strong> 데이터베이스에서 데이터 읽기/쓰기</li>
+                            <li><strong>보안 검사:</strong> 손님이 VIP인지, 결제가 완료됐는지 확인</li>
+                            <li><strong>복잡한 계산:</strong> AI 분석, 추천 알고리즘 등</li>
+                        </ul>
+                    </div>
+
+                    <p class="mb-4">
+                        백엔드는 Python, Java, Node.js, PHP 등 다양한 언어로 작성됩니다.
+                        AI Test Lab의 성격 분석 알고리즘도 백엔드에서 동작합니다.
+                    </p>
+
+                    <div class="bg-gray-100 rounded-xl p-4 mb-6">
+                        <p class="text-sm text-gray-600">
+                            <strong>💡 알아두기:</strong> "풀스택 개발자"란 프론트엔드와 백엔드를
+                            모두 할 수 있는 개발자를 말합니다. 홀과 주방 모두에서 일할 수 있는
+                            만능 직원인 셈이죠.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Server Section -->
+                <section id="server" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🏠</span>
+                        4. 서버: 레스토랑 건물 자체
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>서버(Server)</strong>는 웹사이트가 "살아있는" 컴퓨터입니다.
+                        레스토랑 비유에서 <strong>건물 자체</strong>에 해당합니다.
+                    </p>
+
+                    <p class="mb-4">
+                        건물이 없으면 홀도 주방도 없듯이, 서버가 없으면 웹사이트도 존재하지 않습니다.
+                        서버는 24시간 365일 켜져 있어야 사람들이 언제든 방문할 수 있습니다.
+                    </p>
+
+                    <div class="ascii-diagram mb-6">
+                        <pre>
+사용자의 컴퓨터                    서버 (24시간 가동 중)
+┌──────────┐                     ┌──────────────────┐
+│  브라우저  │ ──── 인터넷 ────▶  │   웹사이트 코드    │
+│  (손님)   │ ◀─── 응답 ──────  │   데이터베이스     │
+└──────────┘                     │   백엔드 로직      │
+                                 └──────────────────┘
+                                        ↑
+                                 이것이 "서버" 입니다
+                        </pre>
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-4">서버의 종류</h3>
+
+                    <table class="w-full border-collapse mb-6">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border p-3 text-left">유형</th>
+                                <th class="border p-3 text-left">비유</th>
+                                <th class="border p-3 text-left">예시</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border p-3">물리 서버</td>
+                                <td class="border p-3">자가 건물</td>
+                                <td class="border p-3">회사 서버실의 실제 컴퓨터</td>
+                            </tr>
+                            <tr>
+                                <td class="border p-3">클라우드 서버</td>
+                                <td class="border p-3">임대 건물</td>
+                                <td class="border p-3">AWS, Google Cloud, Azure</td>
+                            </tr>
+                            <tr>
+                                <td class="border p-3">서버리스</td>
+                                <td class="border p-3">공유 오피스</td>
+                                <td class="border p-3">Vercel, Netlify, Cloudflare</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="mb-4">
+                        요즘은 대부분 <strong>클라우드 서버</strong>를 사용합니다. 직접 건물을 짓는 대신
+                        필요한 만큼 빌려 쓰는 거죠. 비용 효율적이고 확장이 쉽습니다.
+                    </p>
+                </section>
+
+                <!-- API Section -->
+                <section id="api" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">📝</span>
+                        5. API: 홀과 주방을 연결하는 주문서
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>API (Application Programming Interface)</strong>는 가장 많이 듣지만
+                        가장 헷갈리는 용어입니다. 레스토랑 비유로는 <strong>주문서</strong>입니다.
+                    </p>
+
+                    <div class="bg-purple-50 rounded-xl p-6 border border-purple-200 mb-6">
+                        <h3 class="font-bold text-purple-800 mb-3">API가 하는 일</h3>
+                        <ol class="list-decimal pl-6 space-y-2 text-purple-700">
+                            <li>손님(프론트엔드)이 "파스타 주세요"라고 <strong>요청(Request)</strong></li>
+                            <li>주문서(API)가 주방(백엔드)으로 전달</li>
+                            <li>주방에서 요리 후 <strong>응답(Response)</strong>으로 음식 전달</li>
+                        </ol>
+                    </div>
+
+                    <div class="ascii-diagram mb-6">
+                        <pre>
+프론트엔드                  API                    백엔드
+┌──────────┐           ┌──────────┐           ┌──────────┐
+│ "로그인   │  ──────▶  │ POST     │  ──────▶  │ 비밀번호  │
+│  버튼    │           │ /login   │           │ 확인     │
+│  클릭"   │  ◀──────  │          │  ◀──────  │ 결과반환  │
+└──────────┘           └──────────┘           └──────────┘
+    요청                  중개자                   처리
+                        (주문서)                 (주방)
+                        </pre>
+                    </div>
+
+                    <p class="mb-4">
+                        API 덕분에 프론트엔드와 백엔드가 <strong>서로 다른 언어로 작성되어도</strong>
+                        소통할 수 있습니다. 영어를 쓰는 손님과 한국어를 쓰는 요리사가
+                        표준화된 주문서로 의사소통하는 것과 같습니다.
+                    </p>
+
+                    <div class="bg-blue-50 rounded-xl p-4 mb-6">
+                        <p class="text-sm text-blue-700">
+                            <strong>실생활 예시:</strong> 카카오톡에서 친구에게 선물하기를 할 때,
+                            카카오는 결제 API(카카오페이), 상품 API(쇼핑몰), 알림 API 등
+                            여러 API를 조합해서 서비스를 제공합니다.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Database Section -->
+                <section id="database" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🧊</span>
+                        6. 데이터베이스: 식재료 창고
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>데이터베이스(Database)</strong>는 모든 데이터를 저장하는 곳입니다.
+                        레스토랑의 <strong>냉장고와 창고</strong>에 해당합니다.
+                    </p>
+
+                    <p class="mb-4">
+                        회원 정보, 게시글, 주문 내역 등 모든 것이 데이터베이스에 저장됩니다.
+                        백엔드는 필요할 때 이곳에서 데이터를 꺼내고, 새 데이터를 저장합니다.
+                    </p>
+
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 mb-6">
+                        <h3 class="font-bold text-lg mb-4">데이터베이스의 두 가지 유형</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-bold text-blue-700 mb-2">관계형 DB (SQL)</h4>
+                                <p class="text-sm text-gray-600 mb-2">
+                                    엑셀 시트처럼 <strong>표 형태</strong>로 데이터 저장.
+                                    정형화된 데이터에 적합.
+                                </p>
+                                <p class="text-xs text-gray-500">예: MySQL, PostgreSQL</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <h4 class="font-bold text-green-700 mb-2">NoSQL</h4>
+                                <p class="text-sm text-gray-600 mb-2">
+                                    JSON 형태로 <strong>유연하게</strong> 저장.
+                                    다양한 형태의 데이터에 적합.
+                                </p>
+                                <p class="text-xs text-gray-500">예: MongoDB, Firebase</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ascii-diagram mb-6">
+                        <pre>
+관계형 DB (표 형태)              NoSQL (문서 형태)
+┌────────┬─────────┬────┐      {
+│ ID     │ 이름    │ 나이│        "id": 1,
+├────────┼─────────┼────┤        "name": "김철수",
+│ 1      │ 김철수  │ 55 │        "age": 55,
+│ 2      │ 이영희  │ 48 │        "hobbies": ["등산", "독서"]
+└────────┴─────────┴────┘      }
+                        </pre>
+                    </div>
+                </section>
+
+                <!-- Deployment Section -->
+                <section id="deployment" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🚀</span>
+                        7. 배포: 레스토랑 오픈하기
+                    </h2>
+
+                    <p class="mb-4">
+                        <strong>배포(Deployment)</strong>는 개발한 웹사이트를
+                        <strong>실제로 사람들이 접속할 수 있게</strong> 만드는 과정입니다.
+                        레스토랑을 준비만 해놓고 문을 안 열면 소용없듯이,
+                        코드도 배포해야 의미가 있습니다.
+                    </p>
+
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 mb-6">
+                        <h3 class="font-bold text-lg mb-4">배포 플랫폼 비교</h3>
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="p-2 text-left">플랫폼</th>
+                                    <th class="p-2 text-left">특징</th>
+                                    <th class="p-2 text-left">추천 대상</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t">
+                                    <td class="p-2 font-medium">GitHub Pages</td>
+                                    <td class="p-2">무료, 정적 사이트</td>
+                                    <td class="p-2">입문자, 포트폴리오</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="p-2 font-medium">Vercel</td>
+                                    <td class="p-2">무료, 자동 배포</td>
+                                    <td class="p-2">React/Next.js 프로젝트</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="p-2 font-medium">Cloudflare Pages</td>
+                                    <td class="p-2">무료, 빠른 속도</td>
+                                    <td class="p-2">정적 + 서버리스</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="p-2 font-medium">AWS</td>
+                                    <td class="p-2">유료, 강력함</td>
+                                    <td class="p-2">기업, 대규모 서비스</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="mb-4">
+                        초보자에게는 <strong>GitHub Pages</strong>나 <strong>Cloudflare Pages</strong>를 추천합니다.
+                        무료이고, 클릭 몇 번으로 배포할 수 있습니다.
+                    </p>
+                </section>
+
+                <!-- Summary Section -->
+                <section id="summary" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-3xl mr-3">🎯</span>
+                        8. 전체 흐름 정리
+                    </h2>
+
+                    <p class="mb-4">
+                        이제 모든 개념을 하나로 연결해 봅시다.
+                    </p>
+
+                    <div class="ascii-diagram mb-6">
+                        <pre>
+사용자가 웹사이트에 접속하면...
+
+┌─────────────────────────────────────────────────────────────────┐
+│                         인터넷                                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    🏠 서버 (레스토랑 건물)                         │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │  🪑 프론트엔드 (홀)         📝 API           🍳 백엔드 (주방)  │   │
+│  │  ┌───────────────┐      (주문서)        ┌───────────────┐ │   │
+│  │  │ HTML (뼈대)    │ ────────────────▶  │ 비즈니스 로직  │ │   │
+│  │  │ CSS (인테리어) │ ◀────────────────  │ 데이터 처리   │ │   │
+│  │  │ JS (직원)      │                     └───────────────┘ │   │
+│  │  └───────────────┘                             │          │   │
+│  │        ▲                                       │          │   │
+│  │        │                                       ▼          │   │
+│  │        │                              ┌───────────────┐   │   │
+│  │        └──────────────────────────────│ 🧊 데이터베이스 │   │   │
+│  │                                       │   (창고)       │   │   │
+│  │                                       └───────────────┘   │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+
+                    <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-200 mb-6">
+                        <h3 class="font-bold text-indigo-800 mb-3">핵심 요약</h3>
+                        <ul class="space-y-2 text-indigo-700">
+                            <li>✅ <strong>프론트엔드:</strong> 사용자가 보는 화면 (HTML, CSS, JavaScript)</li>
+                            <li>✅ <strong>백엔드:</strong> 보이지 않는 서버 로직 (Python, Node.js 등)</li>
+                            <li>✅ <strong>서버:</strong> 웹사이트가 돌아가는 컴퓨터</li>
+                            <li>✅ <strong>API:</strong> 프론트엔드와 백엔드를 연결하는 규약</li>
+                            <li>✅ <strong>데이터베이스:</strong> 데이터를 저장하는 곳</li>
+                            <li>✅ <strong>배포:</strong> 만든 것을 세상에 공개하는 과정</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Related Articles -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold mb-4">📖 관련 글</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="/blog/web-development-roadmap-50s-complete-guide.html" class="block bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition">
+                            <h3 class="font-bold text-indigo-700 mb-2">50대를 위한 웹 개발 90일 로드맵</h3>
+                            <p class="text-gray-600 text-sm">노코드부터 JavaScript까지, 단계별 학습 가이드.</p>
+                        </a>
+                        <a href="/blog/career-transition-tech-portfolio-50s.html" class="block bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition">
+                            <h3 class="font-bold text-indigo-700 mb-2">50대 커리어 전환 포트폴리오 전략</h3>
+                            <p class="text-gray-600 text-sm">30년 경력을 기술 분야의 강점으로 활용하기.</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Disclaimer -->
+                <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-6 my-8">
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3">⚠️</span>
+                        <div>
+                            <h4 class="font-bold text-yellow-800 mb-2">정보 제공 목적 고지</h4>
+                            <p class="text-yellow-700 text-sm">
+                                본 콘텐츠는 교육 및 정보 제공 목적으로 작성되었습니다.
+                                기술 환경은 빠르게 변화하므로, 실제 프로젝트 진행 시
+                                최신 공식 문서를 참고하시기 바랍니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <span class="text-2xl">🔮</span>
+                    <span class="font-bold text-white">AI Test Lab</span>
+                </div>
+                <div class="flex space-x-6 text-sm">
+                    <a href="/privacy-policy.html" class="hover:text-white">개인정보처리방침</a>
+                    <a href="/terms-of-service.html" class="hover:text-white">이용약관</a>
+                    <a href="/contact.html" class="hover:text-white">문의하기</a>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-sm mt-8">© 2026 AI Test Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/consent-manager.js"></script>
+</body>
+</html>
