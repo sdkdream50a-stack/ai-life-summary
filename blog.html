@@ -429,7 +429,7 @@
             <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-2 gap-6">
                     <!-- Category 1: Science & Psychology -->
-                    <a href="#science-section" class="block bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-100 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                    <button onclick="filterCategory('science')" id="card-science" class="text-left bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border-2 border-emerald-100 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                         <div class="flex items-center space-x-2 mb-4">
                             <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-semibold px-3 py-1 rounded-full">SCIENCE</span>
                         </div>
@@ -447,10 +447,10 @@
                             <span class="lang-zh">基于研究的性格、心理年龄、人际关系和AI分析洞察。</span>
                             <span class="lang-es">Insights basados en investigación sobre personalidad, edad mental, relaciones y análisis de IA.</span>
                         </p>
-                    </a>
+                    </button>
 
                     <!-- Category 2: Developer Journey -->
-                    <a href="#episodes-section" class="block bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                    <button onclick="filterCategory('episodes')" id="card-episodes" class="text-left bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border-2 border-indigo-100 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                         <div class="flex items-center space-x-2 mb-4">
                             <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full">SERIES</span>
                         </div>
@@ -468,7 +468,17 @@
                             <span class="lang-zh">50岁非开发者构建并发布网页应用。关于反馈和心理健康的真实故事。</span>
                             <span class="lang-es">Un no-desarrollador de 50 años crea y lanza una app web. Historias reales sobre retroalimentación.</span>
                         </p>
-                    </a>
+                    </button>
+                </div>
+                <!-- Show All Button -->
+                <div class="text-center mt-6" id="show-all-container" style="display: none;">
+                    <button onclick="filterCategory('all')" class="text-primary font-medium hover:underline">
+                        <span class="lang-en">← Show All Posts</span>
+                        <span class="lang-ko">← 전체 글 보기</span>
+                        <span class="lang-ja">← すべての投稿を表示</span>
+                        <span class="lang-zh">← 显示所有文章</span>
+                        <span class="lang-es">← Mostrar Todas las Publicaciones</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -1706,5 +1716,38 @@
         });
     </script>
     <script src="/js/consent-manager.js"></script>
+
+    <!-- Category Filter Script -->
+    <script>
+        function filterCategory(category) {
+            var scienceSection = document.getElementById('science-section');
+            var episodesSection = document.getElementById('episodes-section');
+            var showAllBtn = document.getElementById('show-all-container');
+            var cardScience = document.getElementById('card-science');
+            var cardEpisodes = document.getElementById('card-episodes');
+
+            if (category === 'science') {
+                scienceSection.style.display = 'block';
+                episodesSection.style.display = 'none';
+                showAllBtn.style.display = 'block';
+                cardScience.classList.add('ring-4', 'ring-emerald-400');
+                cardEpisodes.classList.remove('ring-4', 'ring-indigo-400');
+                scienceSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (category === 'episodes') {
+                scienceSection.style.display = 'none';
+                episodesSection.style.display = 'block';
+                showAllBtn.style.display = 'block';
+                cardScience.classList.remove('ring-4', 'ring-emerald-400');
+                cardEpisodes.classList.add('ring-4', 'ring-indigo-400');
+                episodesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                scienceSection.style.display = 'block';
+                episodesSection.style.display = 'block';
+                showAllBtn.style.display = 'none';
+                cardScience.classList.remove('ring-4', 'ring-emerald-400');
+                cardEpisodes.classList.remove('ring-4', 'ring-indigo-400');
+            }
+        }
+    </script>
 </body>
 </html>
