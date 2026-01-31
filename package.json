@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "AI Life Summary - AI-powered life summary generator",
   "scripts": {
+    "generate": "node scripts/generate-post.js",
+    "preview:schedule": "node scripts/preview-schedule.js",
     "build:blog": "node scripts/build-blog.js",
     "new:post": "node scripts/new-post.js",
     "build:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --minify",

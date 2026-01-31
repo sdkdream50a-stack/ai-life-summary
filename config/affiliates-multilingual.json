@@ -1,0 +1,91 @@
+{
+  "ko": {
+    "language": "Korean",
+    "affiliate_box": {
+      "title": "💡 관련 추천 학습자료",
+      "description": "50대의 눈높이에 맞춘 체계적인 강의",
+      "disclaimer": "이 링크는 제휴 광고를 포함하고 있습니다. 구매 시 저에게 소정의 수수료가 발생하며, 추가 비용 없이 강의 가격에서 차감됩니다."
+    },
+    "links": {
+      "adsense_revenue": {
+        "url": "https://inf.run/mkuvb",
+        "title": "2시간 만에 AI로 애드센스 수익형 웹사이트 만들기",
+        "description": "개발 경험 없이도 따라할 수 있는 실전 웹사이트 구축 가이드",
+        "target_keywords": ["배포", "수익화", "애드센스", "도메인", "호스팅"]
+      },
+      "ai_beginner": {
+        "url": "https://inf.run/aGx11",
+        "title": "모든 직장인을 위한 누구나 이해할 수 있는 인공지능",
+        "description": "AI 기초부터 실무 활용까지 쉽게 배우는 입문 강의",
+        "target_keywords": ["마음가짐", "입문", "코딩 학습", "IQ", "패턴 인식"]
+      },
+      "nocode_automation": {
+        "url": "https://inf.run/pgr2A",
+        "title": "노코드 자동화 입문부터 실전까지: n8n 완전정복",
+        "description": "코딩 없이 만드는 나만의 업무 자동화 시스템",
+        "target_keywords": ["노코드", "자동화", "n8n", "엑셀", "업무 자동화"]
+      },
+      "prompt_engineering": {
+        "url": "https://inf.run/R8xDk",
+        "title": "ChatGPT 활용법, 생성 AI 프롬프트 엔지니어링 A to Z",
+        "description": "ChatGPT를 내 업무의 든든한 자동화 부품으로 활용하는 법",
+        "target_keywords": ["JavaScript", "AI", "ChatGPT", "프롬프트", "버그"]
+      },
+      "ai_crawling": {
+        "url": "https://inf.run/3jpb5",
+        "title": "딱! AI로 전문가처럼 웹 크롤링 & 데이터 분석",
+        "description": "Python과 AI로 데이터 수집부터 분석까지 완벽 마스터",
+        "target_keywords": ["크롤링", "데이터", "프로젝트", "기획", "MVP"]
+      }
+    }
+  },
+  "en": {
+    "language": "English",
+    "affiliate_box": {
+      "title": "💡 Recommended Learning Resources",
+      "description": "Senior-friendly structured courses for developers over 50",
+      "disclaimer": "This link contains affiliate links. I may earn a commission at no extra cost to you."
+    },
+    "links": {
+      "udemy_web_dev": {
+        "url": "https://www.udemy.com/course/web-development-for-seniors/?referralCode=XXXX",
+        "title": "Complete Web Development Bootcamp for Seniors",
+        "description": "Learn to code from scratch with age-friendly teaching methods",
+        "target_keywords": ["deploy", "hosting", "revenue", "beginner", "career"]
+      }
+    }
+  },
+  "ja": {
+    "language": "Japanese",
+    "affiliate_box": {
+      "title": "💡 おすすめ学習リソース",
+      "description": "50代からのプログラミング学習に最適なコース",
+      "disclaimer": "このリンクはアフィリエイトリンクです"
+    },
+    "links": {
+      "udemy_jp": {
+        "url": "https://www.udemy.com/ja/course/senior-coding/",
+        "title": "50代から始めるWeb開発入門",
+        "description": "年齢に合わせたペースで学べる初心者向け講座"
+      }
+    }
+  },
+  "zh": {
+    "language": "Chinese",
+    "affiliate_box": {
+      "title": "💡 推荐学习资源",
+      "description": "适合50岁以上初学者的系统化编程课程",
+      "disclaimer": "本链接包含联盟营销代码"
+    },
+    "links": {}
+  },
+  "es": {
+    "language": "Spanish",
+    "affiliate_box": {
+      "title": "💡 Recursos de aprendizaje recomendados",
+      "description": "Cursos estructurados para desarrolladores mayores de 50 años",
+      "disclaimer": "Este enlace contiene código de afiliado"
+    },
+    "links": {}
+  }
+}
