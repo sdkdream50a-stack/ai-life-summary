@@ -1828,10 +1828,8 @@
                 questionFlow.currentQuestion++;
                 const totalQuestions = questionFlow.questions[questionFlow.lang].length;
 
-                // Check for interstitial (after question 3)
-                if (questionFlow.currentQuestion === 3 && questionFlow.currentQuestion < totalQuestions) {
-                    showInterstitial();
-                } else if (questionFlow.currentQuestion >= totalQuestions) {
+                // Go to next question or complete
+                if (questionFlow.currentQuestion >= totalQuestions) {
                     // Complete - go to results
                     completeQuestions();
                 } else {
