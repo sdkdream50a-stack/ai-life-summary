@@ -24,31 +24,31 @@ const META_CONTENT = {
             title: 'AI Test Lab - Free AI Personality Tests | Life Summary, Compatibility, Age',
             description: 'Discover yourself with AI-powered personality tests! Enter your birthday and get results in 1 minute. Life Summary, Compatibility Test, Mental Age Calculator. 1M+ tested!',
             ogTitle: 'What\'s Your AI Soul Type? - Free Test',
-            ogDescription: 'Discover your true self in 1 minute. 1M+ found their soul type!'
+            ogDescription: 'Discover your true self in 1 minute. Find your soul type!'
         },
         ko: {
             title: 'AI 테스트 랩 - 무료 AI 심리테스트 | 인생요약, 궁합, 나이계산',
-            description: 'AI가 분석하는 무료 심리테스트! 생년월일만 입력하면 1분만에 결과 확인. 인생요약, 궁합테스트, 정신나이 계산까지. 100만명이 선택한 인기 테스트!',
+            description: 'AI가 분석하는 무료 심리테스트! 생년월일만 입력하면 1분만에 결과 확인. 인생요약, 궁합테스트, 정신나이 계산까지. 전 세계가 선택한 인기 테스트!',
             ogTitle: '나의 AI 소울 타입은? - 무료 테스트',
-            ogDescription: '1분 만에 알아보는 나의 진짜 모습. 100만 명이 발견한 소울 타입!'
+            ogDescription: '1분 만에 알아보는 나의 진짜 모습. 수많은 사람들이 발견한 소울 타입!'
         },
         ja: {
             title: 'AIテストラボ - 無料AI性格診断 | 人生要約、相性、年齢計算',
-            description: 'AIが分析する無料性格診断！誕生日を入力するだけで1分で結果確認。人生要約、相性テスト、精神年齢計算まで。100万人が選んだ人気テスト！',
+            description: 'AIが分析する無料性格診断！誕生日を入力するだけで1分で結果確認。人生要約、相性テスト、精神年齢計算まで。世界中で人気のテスト！',
             ogTitle: 'あなたのAIソウルタイプは？ - 無料テスト',
-            ogDescription: '1分で分かるあなたの本当の姿。100万人が発見したソウルタイプ！'
+            ogDescription: '1分で分かるあなたの本当の姿。あなたのソウルタイプを発見！'
         },
         zh: {
             title: 'AI测试实验室 - 免费AI性格测试 | 人生总结、配对、年龄计算',
-            description: 'AI分析的免费性格测试！只需输入生日，1分钟内得到结果。人生总结、配对测试、心理年龄计算。100万人选择的热门测试！',
+            description: 'AI分析的免费性格测试！只需输入生日，1分钟内得到结果。人生总结、配对测试、心理年龄计算。全球热门测试！',
             ogTitle: '你的AI灵魂类型是什么？ - 免费测试',
-            ogDescription: '1分钟发现真正的自己。100万人已发现他们的灵魂类型！'
+            ogDescription: '1分钟发现真正的自己。发现你的灵魂类型！'
         },
         es: {
             title: 'AI Test Lab - Tests de Personalidad IA Gratis | Resumen de Vida, Compatibilidad, Edad',
-            description: 'Descubre tu personalidad con tests impulsados por IA! Ingresa tu cumpleanos y obtene resultados en 1 minuto. Resumen de vida, test de compatibilidad, calculadora de edad mental. 1M+ probados!',
+            description: 'Descubre tu personalidad con tests impulsados por IA! Ingresa tu cumpleanos y obtene resultados en 1 minuto. Resumen de vida, test de compatibilidad, calculadora de edad mental. Tests populares!',
             ogTitle: 'Cual es tu tipo de alma IA? - Test Gratis',
-            ogDescription: 'Descubre tu verdadero yo en 1 minuto. 1M+ encontraron su tipo de alma!'
+            ogDescription: 'Descubre tu verdadero yo en 1 minuto. Encuentra tu tipo de alma!'
         }
     },
     'life-summary': {
