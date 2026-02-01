@@ -44,7 +44,5 @@ jobs:
         fi
         
         TODAY=$(TZ=Asia/Seoul date +%Y-%m-%d)
-        git commit -m "feat: auto-publish blog post for $TODAY
-
-Co-Authored-By: GitHub Actions <action@github.com>"
+        git commit -m "feat: auto-publish blog post for $TODAY"
         git push
