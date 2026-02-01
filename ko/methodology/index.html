@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>AI 분석 방법론 - 테스트 설계 원리와 심리학적 배경 | AI Test Lab</title>
+    <meta name="description" content="AI Test Lab의 분석 방법론을 소개합니다. 빅5 성격 모델, Gottman 관계 연구, 발달 심리학 이론을 바탕으로 한 테스트 설계 원리와 AI 알고리즘 작동 방식을 투명하게 공개합니다.">
+    <meta name="keywords" content="AI 분석 방법론, 빅5 성격 모델, Gottman 관계 연구, 심리 테스트 원리, AI 알고리즘, 성격 분석, Big Five, OCEAN 모델">
+    <meta name="author" content="AI Test Lab">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://smartaitest.com/ko/methodology/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://smartaitest.com/ko/methodology/">
+    <meta property="og:title" content="AI Test Lab의 분석 방법론">
+    <meta property="og:description" content="심리학 이론과 AI 기술이 만나는 곳. 우리 테스트가 어떻게 설계되었는지 투명하게 공개합니다.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/methodology-og.png">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="AI Test Lab">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://smartaitest.com/ko/methodology/">
+    <meta name="twitter:title" content="AI Test Lab의 분석 방법론">
+    <meta name="twitter:description" content="심리학 이론과 AI 기술이 만나는 곳. 우리 테스트가 어떻게 설계되었는지 투명하게 공개합니다.">
+    <meta name="twitter:image" content="https://smartaitest.com/assets/images/methodology-og.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI Test Lab의 분석 방법론",
+        "description": "빅5 성격 모델, Gottman 관계 연구 등 심리학 이론을 바탕으로 한 AI 테스트 설계 방법론",
+        "author": {
+            "@type": "Organization",
+            "name": "AI Test Lab"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI Test Lab",
+            "url": "https://smartaitest.com"
+        },
+        "mainEntityOfPage": "https://smartaitest.com/ko/methodology/"
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../../css/tailwind.css">
+    <link rel="stylesheet" href="../../css/global-kick.css">
+
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .prose h2 { scroll-margin-top: 100px; }
+        .prose h3 { scroll-margin-top: 100px; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/ko/" class="flex items-center space-x-2">
+                    <span class="text-2xl">🔮</span>
+                    <span class="font-bold text-xl text-gray-900">AI Test Lab</span>
+                </a>
+                <div class="flex items-center space-x-6">
+                    <a href="/ko/" class="text-gray-600 hover:text-gray-900 transition text-sm">홈</a>
+                    <a href="/ko/about/" class="text-gray-600 hover:text-gray-900 transition text-sm">소개</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-gray-900 transition text-sm">블로그</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-700 text-white py-16 md:py-24">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6">
+                    <span class="text-xl">🔬</span>
+                    <span class="text-sm font-medium">투명한 방법론 공개</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    AI Test Lab의 분석 방법론
+                </h1>
+                <p class="text-xl text-white/80 max-w-2xl mx-auto">
+                    심리학 이론과 AI 기술이 만나 탄생한 우리의 테스트.
+                    어떤 원리로 설계되었는지 투명하게 공개합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Table of Contents -->
+        <section class="bg-white border-b">
+            <div class="max-w-4xl mx-auto px-4 py-6">
+                <div class="flex flex-wrap gap-3 justify-center text-sm">
+                    <a href="#psychology" class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full hover:bg-indigo-100 transition">심리학 이론적 기반</a>
+                    <a href="#algorithm" class="px-4 py-2 bg-purple-50 text-purple-700 rounded-full hover:bg-purple-100 transition">AI 알고리즘 원리</a>
+                    <a href="#development" class="px-4 py-2 bg-violet-50 text-violet-700 rounded-full hover:bg-violet-100 transition">테스트 개발 과정</a>
+                    <a href="#limitations" class="px-4 py-2 bg-pink-50 text-pink-700 rounded-full hover:bg-pink-100 transition">한계점과 활용법</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <article class="py-12 md:py-16">
+            <div class="max-w-4xl mx-auto px-4">
+
+                <!-- Section 1: 심리학 이론적 기반 -->
+                <section id="psychology" class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <span class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-2xl">🧠</span>
+                        심리학 이론적 기반
+                    </h2>
+
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="text-lg mb-6">
+                            AI Test Lab의 모든 테스트는 검증된 심리학 이론을 기반으로 설계되었습니다.
+                            단순한 점술이나 재미 위주의 테스트가 아닌, 학술적 프레임워크를 참고하여
+                            의미 있는 자기 성찰의 기회를 제공하고자 합니다.
+                        </p>
+
+                        <!-- Big Five Model -->
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4" id="big-five">빅5 성격 모델 (OCEAN)</h3>
+
+                        <p class="mb-4">
+                            빅5 성격 모델, 또는 OCEAN 모델은 현대 성격 심리학에서 가장 널리 인정받는
+                            성격 분류 체계입니다. 1980년대 Costa와 McCrae에 의해 체계화된 이 모델은
+                            수십 년간의 연구를 통해 문화와 언어를 초월한 보편성이 검증되었습니다.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-4 my-8">
+                            <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                                <h4 class="font-bold text-blue-800 mb-2">O - 개방성 (Openness)</h4>
+                                <p class="text-gray-600 text-sm">새로운 경험, 아이디어, 예술에 대한 수용성. 높으면 창의적이고 호기심이 많으며, 낮으면 실용적이고 전통을 선호합니다.</p>
+                            </div>
+                            <div class="bg-green-50 p-5 rounded-xl border border-green-100">
+                                <h4 class="font-bold text-green-800 mb-2">C - 성실성 (Conscientiousness)</h4>
+                                <p class="text-gray-600 text-sm">목표 지향성, 자기 규율, 계획성. 높으면 체계적이고 신뢰할 수 있으며, 낮으면 유연하고 즉흥적입니다.</p>
+                            </div>
+                            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-100">
+                                <h4 class="font-bold text-yellow-800 mb-2">E - 외향성 (Extraversion)</h4>
+                                <p class="text-gray-600 text-sm">사회적 상호작용에서 에너지를 얻는 정도. 높으면 활발하고 사교적이며, 낮으면 독립적이고 내면 지향적입니다.</p>
+                            </div>
+                            <div class="bg-pink-50 p-5 rounded-xl border border-pink-100">
+                                <h4 class="font-bold text-pink-800 mb-2">A - 친화성 (Agreeableness)</h4>
+                                <p class="text-gray-600 text-sm">타인에 대한 관심과 협력 성향. 높으면 공감적이고 조화를 중시하며, 낮으면 분석적이고 독립적 판단을 선호합니다.</p>
+                            </div>
+                            <div class="bg-purple-50 p-5 rounded-xl border border-purple-100 md:col-span-2">
+                                <h4 class="font-bold text-purple-800 mb-2">N - 신경증 (Neuroticism)</h4>
+                                <p class="text-gray-600 text-sm">부정적 감정을 경험하는 경향. 높으면 감정적 반응이 강하고 민감하며, 낮으면 정서적으로 안정되고 회복력이 높습니다. 어느 쪽이든 장단점이 있습니다.</p>
+                            </div>
+                        </div>
+
+                        <p class="mb-6">
+                            AI Test Lab의 <a href="/ko/life-summary/" class="text-indigo-600 hover:underline">소울 타입 테스트</a>와
+                            <a href="/ko/age-calculator/" class="text-indigo-600 hover:underline">나이 계산기</a>는
+                            빅5 모델의 개념을 참고하여 사용자의 성격 특성을 다차원적으로 분석합니다.
+                        </p>
+
+                        <!-- Gottman Research -->
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4" id="gottman">John Gottman의 관계 심리학</h3>
+
+                        <p class="mb-4">
+                            John Gottman 박사는 40년 이상 커플 관계를 연구한 세계적인 관계 심리학자입니다.
+                            그의 연구실(일명 "Love Lab")에서는 수천 쌍의 커플을 관찰하여
+                            관계 성공과 실패를 예측하는 패턴을 발견했습니다.
+                        </p>
+
+                        <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-2xl my-6">
+                            <h4 class="font-bold text-gray-800 mb-4">Gottman 연구의 주요 발견</h4>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-pink-500 mt-1">✓</span>
+                                    <span><strong>긍정성 비율:</strong> 안정적인 관계에서는 긍정적 상호작용이 부정적 상호작용보다 훨씬 많이 관찰됩니다.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-pink-500 mt-1">✓</span>
+                                    <span><strong>갈등 해결 스타일:</strong> 갈등 자체보다 갈등을 다루는 방식이 관계 만족도에 더 큰 영향을 미칩니다.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-pink-500 mt-1">✓</span>
+                                    <span><strong>애정 지도:</strong> 파트너의 내면 세계(꿈, 두려움, 가치관)를 아는 정도가 친밀감의 기반이 됩니다.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-pink-500 mt-1">✓</span>
+                                    <span><strong>전환점 반응:</strong> 파트너의 관심 요청에 어떻게 반응하는지가 관계의 질을 결정합니다.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p class="mb-6">
+                            우리의 <a href="/ko/compatibility/" class="text-indigo-600 hover:underline">궁합 테스트</a>는
+                            Gottman의 연구 결과를 참고하여 소통 스타일, 갈등 해결 방식,
+                            정서적 연결 등의 영역을 분석합니다.
+                        </p>
+
+                        <!-- Sternberg Triangle -->
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4" id="sternberg">Sternberg의 사랑의 삼각형 이론</h3>
+
+                        <p class="mb-4">
+                            심리학자 Robert Sternberg는 1986년 "사랑의 삼각형 이론"을 발표하여
+                            사랑의 본질을 세 가지 구성 요소로 설명했습니다.
+                        </p>
+
+                        <div class="flex justify-center my-8">
+                            <div class="relative">
+                                <div class="w-64 h-56 flex items-center justify-center">
+                                    <!-- Triangle visualization using CSS -->
+                                    <div class="absolute text-center -top-2">
+                                        <span class="text-3xl">💕</span>
+                                        <p class="font-bold text-pink-600 text-sm">친밀감</p>
+                                        <p class="text-xs text-gray-500">정서적 유대</p>
+                                    </div>
+                                    <div class="absolute text-center -left-4 bottom-0">
+                                        <span class="text-3xl">🔥</span>
+                                        <p class="font-bold text-red-600 text-sm">열정</p>
+                                        <p class="text-xs text-gray-500">신체적 끌림</p>
+                                    </div>
+                                    <div class="absolute text-center -right-4 bottom-0">
+                                        <span class="text-3xl">🤝</span>
+                                        <p class="font-bold text-blue-600 text-sm">헌신</p>
+                                        <p class="text-xs text-gray-500">장기적 약속</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="text-4xl">❤️</span>
+                                        <p class="text-xs text-gray-500 mt-1">완전한 사랑</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="mb-4">
+                            Sternberg에 따르면, 이 세 요소의 조합에 따라 7가지 유형의 사랑이 존재합니다.
+                            세 요소가 모두 강할 때 "완전한 사랑(Consummate Love)"에 도달하며,
+                            이는 많은 사람들이 추구하는 이상적인 관계 형태입니다.
+                        </p>
+
+                        <!-- Erik Erikson -->
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4" id="erikson">Erik Erikson의 심리사회적 발달 단계</h3>
+
+                        <p class="mb-4">
+                            발달 심리학자 Erik Erikson은 인간의 일생을 8단계로 나누어
+                            각 단계에서 해결해야 할 심리적 과제를 제시했습니다.
+                            이 이론은 나이에 따른 심리적 특성을 이해하는 데 중요한 프레임워크를 제공합니다.
+                        </p>
+
+                        <div class="overflow-x-auto my-6">
+                            <table class="w-full text-sm border-collapse">
+                                <thead>
+                                    <tr class="bg-indigo-50">
+                                        <th class="border border-indigo-100 px-4 py-3 text-left">단계</th>
+                                        <th class="border border-indigo-100 px-4 py-3 text-left">연령대</th>
+                                        <th class="border border-indigo-100 px-4 py-3 text-left">심리적 과제</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border border-gray-200 px-4 py-2">1</td><td class="border border-gray-200 px-4 py-2">0-1세</td><td class="border border-gray-200 px-4 py-2">신뢰 vs 불신</td></tr>
+                                    <tr class="bg-gray-50"><td class="border border-gray-200 px-4 py-2">2</td><td class="border border-gray-200 px-4 py-2">1-3세</td><td class="border border-gray-200 px-4 py-2">자율성 vs 수치심</td></tr>
+                                    <tr><td class="border border-gray-200 px-4 py-2">3</td><td class="border border-gray-200 px-4 py-2">3-6세</td><td class="border border-gray-200 px-4 py-2">주도성 vs 죄책감</td></tr>
+                                    <tr class="bg-gray-50"><td class="border border-gray-200 px-4 py-2">4</td><td class="border border-gray-200 px-4 py-2">6-12세</td><td class="border border-gray-200 px-4 py-2">근면성 vs 열등감</td></tr>
+                                    <tr><td class="border border-gray-200 px-4 py-2">5</td><td class="border border-gray-200 px-4 py-2">12-18세</td><td class="border border-gray-200 px-4 py-2">정체성 vs 역할 혼란</td></tr>
+                                    <tr class="bg-gray-50"><td class="border border-gray-200 px-4 py-2">6</td><td class="border border-gray-200 px-4 py-2">18-40세</td><td class="border border-gray-200 px-4 py-2">친밀감 vs 고립</td></tr>
+                                    <tr><td class="border border-gray-200 px-4 py-2">7</td><td class="border border-gray-200 px-4 py-2">40-65세</td><td class="border border-gray-200 px-4 py-2">생산성 vs 침체</td></tr>
+                                    <tr class="bg-gray-50"><td class="border border-gray-200 px-4 py-2">8</td><td class="border border-gray-200 px-4 py-2">65세 이상</td><td class="border border-gray-200 px-4 py-2">자아 통합 vs 절망</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p>
+                            <a href="/ko/age-calculator/" class="text-indigo-600 hover:underline">AI 나이 계산기</a>의
+                            "정신 나이" 분석은 Erikson의 발달 단계 이론을 참고하여,
+                            사용자가 심리적으로 어느 단계의 특성을 주로 보이는지 평가합니다.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 2: AI 알고리즘 작동 원리 -->
+                <section id="algorithm" class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <span class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl">⚙️</span>
+                        AI 알고리즘 작동 원리
+                    </h2>
+
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="text-lg mb-6">
+                            "AI가 어떻게 나를 분석하는 거지?" 많은 분들이 궁금해하시는 부분입니다.
+                            복잡한 기술 용어 없이, 우리 알고리즘이 어떻게 작동하는지 설명해 드리겠습니다.
+                        </p>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">1. 입력 데이터 수집</h3>
+
+                        <p class="mb-4">
+                            테스트는 다양한 유형의 입력을 통해 데이터를 수집합니다.
+                        </p>
+
+                        <div class="grid md:grid-cols-3 gap-4 my-6">
+                            <div class="bg-gray-50 p-4 rounded-xl text-center">
+                                <span class="text-3xl">📅</span>
+                                <p class="font-semibold mt-2">생년월일</p>
+                                <p class="text-sm text-gray-600">세대적 특성, 점성학적 요소</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-xl text-center">
+                                <span class="text-3xl">📝</span>
+                                <p class="font-semibold mt-2">선택형 질문</p>
+                                <p class="text-sm text-gray-600">성격, 가치관, 선호도</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-xl text-center">
+                                <span class="text-3xl">🎯</span>
+                                <p class="font-semibold mt-2">행동 패턴</p>
+                                <p class="text-sm text-gray-600">응답 방식, 선택 경향</p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">2. 패턴 매칭과 확률 분석</h3>
+
+                        <p class="mb-4">
+                            수집된 데이터는 심리학 이론에 기반한 패턴 분석을 거칩니다.
+                            예를 들어, 특정 질문에 대한 응답 조합이 빅5 모델의 어떤 특성과
+                            연관되는지 확률적으로 계산합니다.
+                        </p>
+
+                        <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-2xl my-6">
+                            <h4 class="font-bold text-gray-800 mb-3">예시: 외향성 분석</h4>
+                            <p class="text-gray-700 text-sm mb-3">
+                                사용자가 "주말에 친구들과 모임" 보다 "혼자 책 읽기"를 선호한다고 응답하면,
+                                이는 내향성 지표에 가중치를 더합니다. 하지만 단일 질문이 아닌
+                                여러 관련 질문의 응답 패턴을 종합하여 최종 점수를 산출합니다.
+                            </p>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="bg-white px-3 py-1 rounded-full">Q1 응답</span>
+                                <span class="text-gray-400">+</span>
+                                <span class="bg-white px-3 py-1 rounded-full">Q5 응답</span>
+                                <span class="text-gray-400">+</span>
+                                <span class="bg-white px-3 py-1 rounded-full">Q12 응답</span>
+                                <span class="text-gray-400">=</span>
+                                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-semibold">종합 점수</span>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">3. 결과 생성 로직</h3>
+
+                        <p class="mb-4">
+                            분석된 데이터를 바탕으로 알고리즘은 다음과 같은 과정을 거쳐 결과를 생성합니다.
+                        </p>
+
+                        <ol class="list-decimal list-inside space-y-3 mb-6">
+                            <li><strong>차원별 점수 계산:</strong> 각 성격 차원(예: 외향성, 개방성)에 대한 점수 산출</li>
+                            <li><strong>프로필 매칭:</strong> 계산된 점수 조합과 가장 유사한 미리 정의된 프로필 선택</li>
+                            <li><strong>텍스트 생성:</strong> 선택된 프로필에 맞는 설명, 강점, 조언 등 콘텐츠 조합</li>
+                            <li><strong>시각화:</strong> 결과를 차트, 이미지, 아이콘 등으로 표현</li>
+                        </ol>
+
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6">
+                            <p class="text-amber-800 text-sm">
+                                <strong>투명성 공지:</strong> 우리의 알고리즘은 사전에 정의된 규칙과 템플릿을 기반으로 합니다.
+                                딥러닝 기반의 자가 학습 AI가 아니며, 개인정보를 수집하여 모델을 훈련시키지 않습니다.
+                                모든 분석은 브라우저 내에서 로컬로 처리됩니다.
+                            </p>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">4. 궁합 계산 (두 사람 분석)</h3>
+
+                        <p class="mb-4">
+                            궁합 테스트의 경우, 두 사람의 개별 프로필을 먼저 생성한 후
+                            상호 보완성과 유사성을 분석합니다.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 my-6">
+                            <div class="bg-pink-50 p-5 rounded-xl">
+                                <h4 class="font-bold text-pink-800 mb-2">유사성 분석</h4>
+                                <p class="text-gray-600 text-sm">가치관, 목표, 생활 방식 등에서 두 사람이 얼마나 비슷한지 측정합니다. 공통점이 많으면 이해와 공감이 쉬워집니다.</p>
+                            </div>
+                            <div class="bg-blue-50 p-5 rounded-xl">
+                                <h4 class="font-bold text-blue-800 mb-2">보완성 분석</h4>
+                                <p class="text-gray-600 text-sm">서로 다른 강점이 어떻게 보완되는지 평가합니다. 한 사람의 약점이 다른 사람의 강점이 될 때 시너지가 발생합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: 테스트 개발 과정 -->
+                <section id="development" class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <span class="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center text-2xl">🛠️</span>
+                        테스트 개발 과정
+                    </h2>
+
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="text-lg mb-6">
+                            하나의 테스트가 출시되기까지 체계적인 개발 과정을 거칩니다.
+                            단순히 재미있는 질문을 모아놓는 것이 아니라,
+                            신뢰할 수 있는 결과를 제공하기 위한 노력이 담겨 있습니다.
+                        </p>
+
+                        <div class="relative my-10">
+                            <!-- Timeline -->
+                            <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+
+                            <div class="space-y-8">
+                                <!-- Step 1 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">문헌 연구</h4>
+                                        <p class="text-gray-600 text-sm">관련 심리학 이론과 기존 연구를 검토합니다. 학술 논문, 전문 서적, 검증된 심리 측정 도구를 참고하여 이론적 기반을 마련합니다.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-indigo-400 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">문항 설계</h4>
+                                        <p class="text-gray-600 text-sm">측정하고자 하는 개념을 반영하는 질문을 작성합니다. 애매하거나 유도적인 질문을 피하고, 명확하고 중립적인 문항을 설계합니다.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">파일럿 테스트</h4>
+                                        <p class="text-gray-600 text-sm">소규모 그룹을 대상으로 테스트를 실시합니다. 질문의 이해도, 응답 패턴, 소요 시간 등을 확인하고 피드백을 수집합니다.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">4</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">알고리즘 보정</h4>
+                                        <p class="text-gray-600 text-sm">파일럿 결과를 분석하여 점수 계산 방식과 결과 매칭 로직을 조정합니다. 극단적인 결과가 나오거나 변별력이 낮은 문항을 수정합니다.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 5 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center text-white text-xs font-bold">5</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">결과 콘텐츠 작성</h4>
+                                        <p class="text-gray-600 text-sm">각 결과 유형에 대한 설명, 강점, 조언 등의 콘텐츠를 작성합니다. 긍정적이면서도 균형 잡힌 피드백을 제공하도록 합니다.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Step 6 -->
+                                <div class="relative pl-20">
+                                    <div class="absolute left-5 w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center text-white text-xs font-bold">6</div>
+                                    <div class="bg-white p-5 rounded-xl shadow-sm border">
+                                        <h4 class="font-bold text-gray-800 mb-2">출시 및 지속 개선</h4>
+                                        <p class="text-gray-600 text-sm">테스트를 공개하고 사용자 피드백을 모니터링합니다. 문제점이 발견되면 지속적으로 개선하고 업데이트합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: 한계점과 올바른 활용 -->
+                <section id="limitations" class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <span class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-2xl">⚠️</span>
+                        한계점과 올바른 활용
+                    </h2>
+
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="text-lg mb-6">
+                            투명성을 위해 우리 테스트의 한계를 솔직하게 말씀드립니다.
+                            이를 이해하고 적절하게 활용하시면 더 의미 있는 경험이 될 것입니다.
+                        </p>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">심리 테스트의 본질적 한계</h3>
+
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start gap-4 bg-red-50 p-4 rounded-xl">
+                                <span class="text-red-500 text-xl">✗</span>
+                                <div>
+                                    <p class="font-semibold text-gray-800">자기 보고의 한계</p>
+                                    <p class="text-gray-600 text-sm">모든 답변은 자기 인식에 기반합니다. 무의식적 특성이나 타인이 보는 모습과 다를 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 bg-red-50 p-4 rounded-xl">
+                                <span class="text-red-500 text-xl">✗</span>
+                                <div>
+                                    <p class="font-semibold text-gray-800">상황 의존성</p>
+                                    <p class="text-gray-600 text-sm">기분, 컨디션, 최근 경험에 따라 같은 사람도 다른 결과가 나올 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 bg-red-50 p-4 rounded-xl">
+                                <span class="text-red-500 text-xl">✗</span>
+                                <div>
+                                    <p class="font-semibold text-gray-800">단순화의 위험</p>
+                                    <p class="text-gray-600 text-sm">복잡한 인간의 성격을 몇 가지 유형으로 분류하는 것은 본질적으로 과도한 단순화입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">엔터테인먼트 vs 임상 도구</h3>
+
+                        <div class="grid md:grid-cols-2 gap-6 my-6">
+                            <div class="bg-indigo-50 p-5 rounded-xl">
+                                <h4 class="font-bold text-indigo-800 mb-3">AI Test Lab (엔터테인먼트)</h4>
+                                <ul class="text-sm text-gray-700 space-y-2">
+                                    <li>• 자기 성찰과 대화의 시작점</li>
+                                    <li>• 재미있고 가벼운 인사이트 제공</li>
+                                    <li>• 개인이 자유롭게 해석 가능</li>
+                                    <li>• 결과가 정답이 아님</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-xl">
+                                <h4 class="font-bold text-gray-800 mb-3">임상 심리 검사 (전문 도구)</h4>
+                                <ul class="text-sm text-gray-700 space-y-2">
+                                    <li>• 전문가에 의한 실시 및 해석</li>
+                                    <li>• 표준화된 규준과 신뢰도</li>
+                                    <li>• 진단 및 치료 계획 수립에 활용</li>
+                                    <li>• 법적, 의료적 효력</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">전문 상담이 필요한 경우</h3>
+
+                        <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl my-6 border border-amber-200">
+                            <p class="font-semibold text-gray-800 mb-4">다음과 같은 경우 전문 심리상담사나 정신건강의학과 전문의와 상담하시기 바랍니다:</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center gap-2">
+                                    <span class="text-amber-600">→</span>
+                                    지속적인 우울감, 불안, 무기력함을 느낄 때
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-amber-600">→</span>
+                                    일상생활(학업, 직장, 대인관계)에 심각한 지장이 있을 때
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-amber-600">→</span>
+                                    자해 또는 자살에 대한 생각이 있을 때
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-amber-600">→</span>
+                                    관계 문제로 심각한 고통을 겪고 있을 때
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-amber-600">→</span>
+                                    중독(알코올, 게임, 도박 등) 문제가 있을 때
+                                </li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-t border-amber-200">
+                                <p class="text-sm text-amber-800">
+                                    <strong>긴급 상담:</strong> 정신건강 위기상담 전화 1577-0199 (24시간)
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">테스트를 잘 활용하는 방법</h3>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <p class="text-gray-700"><strong>열린 마음으로:</strong> 결과를 확정적 사실이 아닌 자기 성찰의 시작점으로 받아들이세요.</p>
+                            </div>
+                            <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <p class="text-gray-700"><strong>대화의 소재로:</strong> 파트너, 친구와 결과를 공유하고 서로에 대해 이야기하는 기회로 삼으세요.</p>
+                            </div>
+                            <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <p class="text-gray-700"><strong>재미있게:</strong> 너무 심각하게 받아들이지 말고, 가볍게 즐기면서 인사이트를 얻으세요.</p>
+                            </div>
+                            <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <p class="text-gray-700"><strong>변화 가능성 인식:</strong> 사람은 변합니다. 오늘의 결과가 영원한 정체성은 아닙니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">직접 경험해 보세요</h2>
+                    <p class="text-white/80 mb-8 max-w-xl mx-auto">
+                        이론과 방법론을 알았으니, 이제 직접 테스트를 해볼 차례입니다.
+                        재미있고 의미 있는 자기 발견의 여정을 시작하세요.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a href="/ko/life-summary/" class="inline-flex items-center gap-2 bg-white text-indigo-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-100 transition">
+                            ✨ 소울 타입 테스트
+                        </a>
+                        <a href="/ko/compatibility/" class="inline-flex items-center gap-2 bg-white/10 text-white font-bold py-3 px-6 rounded-xl hover:bg-white/20 transition border border-white/30">
+                            💕 궁합 테스트
+                        </a>
+                        <a href="/ko/age-calculator/" class="inline-flex items-center gap-2 bg-white/10 text-white font-bold py-3 px-6 rounded-xl hover:bg-white/20 transition border border-white/30">
+                            🎂 나이 계산기
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Related Content -->
+                <section class="mt-16">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">관련 콘텐츠</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <a href="/ko/guide/compatibility-guide/" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border">
+                            <span class="text-3xl">💑</span>
+                            <h3 class="font-semibold text-gray-800 mt-3 group-hover:text-indigo-600 transition">궁합 결과 해석 가이드</h3>
+                            <p class="text-sm text-gray-600 mt-2">궁합 점수와 영역별 분석 결과를 제대로 이해하는 방법</p>
+                        </a>
+                        <a href="/ko/guide/soul-types/" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border">
+                            <span class="text-3xl">🌟</span>
+                            <h3 class="font-semibold text-gray-800 mt-3 group-hover:text-indigo-600 transition">12가지 소울 타입 가이드</h3>
+                            <p class="text-sm text-gray-600 mt-2">각 소울 타입의 특성과 유형 간 궁합 매트릭스</p>
+                        </a>
+                        <a href="/ko/about/" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border">
+                            <span class="text-3xl">🔮</span>
+                            <h3 class="font-semibold text-gray-800 mt-3 group-hover:text-indigo-600 transition">AI Test Lab 소개</h3>
+                            <p class="text-sm text-gray-600 mt-2">우리 팀과 서비스에 대해 더 알아보기</p>
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-2xl">🔮</span>
+                        <span class="font-bold text-xl text-white">AI Test Lab</span>
+                    </div>
+                    <p class="text-sm">
+                        AI 기반 성격 테스트로 자신을 발견하세요. 재미있고, 통찰력 있고, 무료입니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">테스트</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/ko/life-summary/" class="hover:text-white transition">AI 인생 요약</a></li>
+                        <li><a href="/ko/age-calculator/" class="hover:text-white transition">AI 나이 계산기</a></li>
+                        <li><a href="/ko/compatibility/" class="hover:text-white transition">AI 궁합 테스트</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">가이드</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/ko/methodology/" class="hover:text-white transition">분석 방법론</a></li>
+                        <li><a href="/ko/guide/compatibility-guide/" class="hover:text-white transition">궁합 해석 가이드</a></li>
+                        <li><a href="/ko/guide/soul-types/" class="hover:text-white transition">소울 타입 가이드</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">빠른 링크</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/ko/" class="hover:text-white transition">홈</a></li>
+                        <li><a href="/ko/about/" class="hover:text-white transition">소개</a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition">블로그</a></li>
+                        <li><a href="/ko/privacy-policy/" class="hover:text-white transition">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2025 AI Test Lab. 모든 권리 보유.</p>
+                <p class="mt-2">모든 테스트는 엔터테인먼트 목적으로만 제공됩니다.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
