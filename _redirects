@@ -36,16 +36,54 @@
 /blog/post-14.html /blog/career-transition-tech-portfolio-50s.html 301
 /blog/post-15.html /blog/career-transition-tech-portfolio-50s.html 301
 
-# Korean translated versions
+# blog/post-N without .html extension
+/blog/post-3 /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/post-11 /blog/web-development-roadmap-50s-complete-guide.html 301
+
+# Korean translated versions (.html)
 /blog/ko/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/ko/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/ko/post-3.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/ko/post-4.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/ko/post-5.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/ko/post-12.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/ko/post-13.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/ko/post-19.html /blog/web-architecture-basics-non-developers.html 301
 
-# English translated versions
+# Korean translated versions (without .html)
+/blog/ko/post-12 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/ko/post-13 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/ko/post-19 /blog/web-architecture-basics-non-developers.html 301
+
+# English translated versions (.html)
 /blog/en/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/en/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/en/post-3.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/en/post-4.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/en/post-5.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-10.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-11.html /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-12.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-13.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-15.html /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-23.html /blog/product-management-50s-beginners.html 301
+/blog/en/post-27.html /blog/web-architecture-basics-non-developers.html 301
+
+# English translated versions (without .html)
+/blog/en/post-10 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-11 /blog/web-development-roadmap-50s-complete-guide.html 301
+/blog/en/post-12 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-13 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-15 /blog/career-transition-tech-portfolio-50s.html 301
+/blog/en/post-23 /blog/product-management-50s-beginners.html 301
+/blog/en/post-27 /blog/web-architecture-basics-non-developers.html 301
+
+# Language-specific pages -> canonical pages
+/ja/contact/ /contact.html 301
+/en/contact/ /contact.html 301
+/en/terms-of-service/ /privacy-policy.html 301
+/es/guide/compatibility-guide/ /blog.html 301
+/zh/methodology/ /blog.html 301
+
+# Search template URL
+/search / 301
