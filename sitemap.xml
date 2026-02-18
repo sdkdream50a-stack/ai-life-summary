@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Total URLs: 65 -->
+<!-- Total URLs: 64 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
@@ -14,13 +14,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://smartaitest.com/authors/dr-kim-minsu.html</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
+<url>
     <loc>https://smartaitest.com/authors/lee-sanghyuk.html</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
