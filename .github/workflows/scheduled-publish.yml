@@ -2,8 +2,8 @@ name: Scheduled Blog Post Publish
 
 on:
   schedule:
-    # 매일 KST 오전 9시 (UTC 00:00)
-    - cron: '0 0 * * *'
+    # 월/수/금 KST 오전 9시 (UTC 00:00)
+    - cron: '0 0 * * 1,3,5'
   workflow_dispatch: # 수동 실행 허용
 
 permissions:
@@ -67,37 +67,52 @@ jobs:
               process.exit(0);
             }
 
+            // 언어별 폴더 확인 및 생성
+            if (!fs.existsSync('blog/ko')) fs.mkdirSync('blog/ko', { recursive: true });
+            if (!fs.existsSync('blog/en')) fs.mkdirSync('blog/en', { recursive: true });
+
             // blog.html 읽기
             let blogHtml = fs.readFileSync('blog.html', 'utf8');
 
             postsToPublish.forEach(post => {
-              console.log('Publishing Episode ' + post.episode + ': ' + post.title_ko);
+              console.log('Publishing: ' + post.title_ko);
 
-              // 파일 이동
+              // 파일 경로 설정
               const koSrc = 'drafts/' + post.files.ko;
               const enSrc = 'drafts/' + post.files.en;
               const defaultSrc = 'drafts/' + post.files.default;
 
-              const koDest = 'blog/ko/post-' + post.episode + '.html';
-              const enDest = 'blog/en/post-' + post.episode + '.html';
-              const defaultDest = 'blog/post-' + post.episode + '.html';
+              const koDest = 'blog/ko/' + post.slug + '.html';
+              const enDest = 'blog/en/' + post.slug + '.html';
+              const defaultDest = 'blog/' + post.slug + '.html';
 
+              // 파일 이동
               if (fs.existsSync(koSrc)) {
-                fs.renameSync(koSrc, koDest);
+                // 발행일 업데이트
+                let content = fs.readFileSync(koSrc, 'utf8');
+                content = content.replace(/2026-02-02/g, post.publish_date);
+                fs.writeFileSync(koDest, content);
+                fs.unlinkSync(koSrc);
                 console.log('Moved ' + koSrc + ' -> ' + koDest);
               }
               if (fs.existsSync(enSrc)) {
-                fs.renameSync(enSrc, enDest);
+                let content = fs.readFileSync(enSrc, 'utf8');
+                content = content.replace(/2026-02-02/g, post.publish_date);
+                fs.writeFileSync(enDest, content);
+                fs.unlinkSync(enSrc);
                 console.log('Moved ' + enSrc + ' -> ' + enDest);
               }
               if (fs.existsSync(defaultSrc)) {
-                fs.renameSync(defaultSrc, defaultDest);
+                let content = fs.readFileSync(defaultSrc, 'utf8');
+                content = content.replace(/2026-02-02/g, post.publish_date);
+                fs.writeFileSync(defaultDest, content);
+                fs.unlinkSync(defaultSrc);
                 console.log('Moved ' + defaultSrc + ' -> ' + defaultDest);
               }
 
               // blog.html에 카드 추가
               const cardHtml = \`
-                    <!-- Post \${post.episode} -->
+                    <!-- Post: \${post.slug} -->
                     <article class=\"card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100\">
                         <div class=\"h-48 bg-gradient-to-br \${post.gradient} flex items-center justify-center\">
                             <span class=\"text-6xl\">\${post.emoji}</span>
@@ -121,7 +136,7 @@ jobs:
                                 <span class=\"lang-zh\">\${post.description_ko}</span>
                                 <span class=\"lang-es\">\${post.description_en}</span>
                             </p>
-                            <a href=\"/blog/post-\${post.episode}.html\" class=\"text-primary text-sm font-medium hover:underline inline-flex items-center space-x-1\">
+                            <a href=\"/blog/\${post.slug}.html\" class=\"text-primary text-sm font-medium hover:underline inline-flex items-center space-x-1\">
                                 <span>Read More</span>
                                 <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/></svg>
                             </a>
@@ -143,6 +158,22 @@ jobs:
             schedule.scheduled_posts = schedule.scheduled_posts.filter(p => p.publish_date !== today);
             fs.writeFileSync('drafts/schedule.json', JSON.stringify(schedule, null, 2));
             console.log('Updated schedule.json');
+
+            // sitemap 업데이트
+            if (fs.existsSync('sitemap.xml')) {
+              let sitemap = fs.readFileSync('sitemap.xml', 'utf8');
+              postsToPublish.forEach(post => {
+                const newEntry = \`  <url>
+    <loc>https://smartaitest.com/blog/\${post.slug}.html</loc>
+    <lastmod>\${post.publish_date}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>\n</urlset>\`;
+                sitemap = sitemap.replace('</urlset>', newEntry);
+              });
+              fs.writeFileSync('sitemap.xml', sitemap);
+              console.log('Updated sitemap.xml');
+            }
           "
 
       - name: Commit and push changes
