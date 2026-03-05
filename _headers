@@ -1,0 +1,65 @@
+# Netlify HTTP Headers - 성능 최적화
+
+# 모든 페이지에 보안 헤더 적용
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# CSS 파일 - 1년 캐시 (파일명에 해시 없으므로 stale-while-revalidate 사용)
+/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# JS 파일 - 1주 캐시 + stale-while-revalidate
+/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# 이미지 - 30일 캐시 (변경 빈도 낮음)
+/assets/images/*
+  Cache-Control: public, max-age=2592000, immutable
+
+# Favicon 및 아이콘 - 30일 캐시
+/favicon*
+  Cache-Control: public, max-age=2592000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000, immutable
+
+# Web Manifest
+/site.webmanifest
+  Cache-Control: public, max-age=604800
+
+# HTML 페이지 - 짧은 캐시 + stale-while-revalidate (콘텐츠 최신 유지)
+/*.html
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# 메인 페이지 (index.html)
+/
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# 블로그 페이지 - 완성된 콘텐츠이므로 좀 더 긴 캐시
+/blog/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# 다국어 테스트 페이지
+/ko/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/en/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/ja/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/zh/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/es/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Sitemap, robots.txt
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
