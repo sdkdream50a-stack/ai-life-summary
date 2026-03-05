@@ -118,47 +118,140 @@
             <div class="prose prose-lg max-w-none">
                 <!-- Introduction -->
                 <section class="bg-indigo-50 rounded-xl p-6 mb-8">
-                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> JavaScript는 50대에게 배우기 가장 적합한 언어입니다. 왜 그런지, 그리고 효과적으로 배우는 법을 알아봅니다.</p>
+                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> HTML/CSS를 배울 때 가장 많은 사람이 막히는 부분이 Flexbox입니다. "왜 이렇게 되는지" 이해가 안 된다면, 이미 익숙한 스프레드시트(엑셀)의 개념과 1:1로 대응시켜 보세요. 50대가 가진 엑셀 실무 경험이 오히려 강력한 학습 도구가 됩니다.</p>
                 </section>
 
                 <!-- Section 1 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">1. 개념의 쉬운 이해</h2>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">1. 왜 50대는 '시각적 연결'로 배워야 하는가</h2>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        연구들에 따르면, 50대 이후의 뇌는 젊은 시절과 다른 방식으로 정보를 처리합니다. 
-                        이는 단점이 아닌 특성이며, 올바른 학습 전략을 통해 강점으로 활용할 수 있습니다.
+                        HTML/CSS는 본래 눈으로 보면서 배우는 언어입니다. 코드를 수정하고 저장하면
+                        브라우저에서 즉시 결과가 바뀌기 때문에, 시각적 피드백이 매우 강합니다.
+                        50대 학습자가 이 특성을 잘 활용하려면, 새로운 개념을 처음부터 암기하는 대신
+                        이미 알고 있는 무언가와 연결 짓는 것이 훨씬 효율적입니다.
                     </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        특히 패턴 인식, 맥락 이해, 문제의 본질 파악에서 50대는 유의미하게 높은 성과를 보이는 것으로 
-                        여러 연구에서 관찰되었습니다.
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        직장 생활을 통해 엑셀을 수십 년 써온 50대라면,
+                        행과 열, 셀 정렬, 병합 같은 개념이 손에 익어 있습니다.
+                        Flexbox는 이 구조와 매우 유사한 방식으로 레이아웃을 제어합니다.
+                        처음부터 "display: flex가 무엇인가"를 외우려 하지 말고,
+                        "엑셀의 어떤 기능과 같은가"를 먼저 생각해보세요.
                     </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-xl">
+                        <p class="text-gray-700">
+                            <strong>핵심 원리:</strong> Flexbox는 부모 요소(컨테이너)가 자식 요소(아이템)를
+                            어떻게 배치할지 지시하는 방식입니다.
+                            마치 엑셀에서 '시트(컨테이너)'가 '셀(아이템)'을 담고 있는 것처럼요.
+                        </p>
+                    </div>
                 </section>
 
                 <!-- Section 2 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">2. 50대를 위한 학습 팁</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        구체적인 실천 방법을 단계별로 설명합니다. 각 단계는 실제 50대 학습자들의 피드백을 반영하여 
-                        현실적으로 실천 가능한 수준으로 구성되어 있습니다.
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">2. Flexbox ↔ 스프레드시트 대응표</h2>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        아래 표는 Flexbox의 핵심 속성을 엑셀 기능과 1:1로 대응시킨 것입니다.
+                        CSS를 처음 볼 때 이 표를 옆에 두고 참조해보세요.
                     </p>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>첫째, 작은 목표부터 시작합니다</li>
-                        <li>둘째, 반복보다 이해에 집중합니다</li>
-                        <li>셋째, 기존 지식과 연결 짓습니다</li>
-                    </ul>
+
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-indigo-100">
+                                    <th class="border border-gray-200 p-3 text-left">CSS Flexbox 속성</th>
+                                    <th class="border border-gray-200 p-3 text-left">엑셀/스프레드시트 유사 기능</th>
+                                    <th class="border border-gray-200 p-3 text-left">한 줄 설명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">display: flex</td>
+                                    <td class="border border-gray-200 p-3">표 만들기 (Insert Table)</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">"이 영역을 Flex 컨테이너로 만든다"</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">flex-direction: row</td>
+                                    <td class="border border-gray-200 p-3">가로 방향으로 데이터 입력</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">아이템을 왼쪽→오른쪽으로 배치</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">flex-direction: column</td>
+                                    <td class="border border-gray-200 p-3">세로 방향으로 데이터 입력</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">아이템을 위→아래로 배치</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">justify-content: center</td>
+                                    <td class="border border-gray-200 p-3">셀 내용 가로 가운데 정렬</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">주축(가로) 방향 정렬 제어</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">align-items: center</td>
+                                    <td class="border border-gray-200 p-3">셀 내용 세로 가운데 정렬</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">교차축(세로) 방향 정렬 제어</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">gap: 16px</td>
+                                    <td class="border border-gray-200 p-3">열/행 간격 조정</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">아이템 사이 여백 설정</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-200 p-3 font-mono text-purple-700">flex: 1</td>
+                                    <td class="border border-gray-200 p-3">열 너비 자동 균등 분배</td>
+                                    <td class="border border-gray-200 p-3 text-gray-600">남은 공간을 균등하게 나눔</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-500">표: Flexbox 속성과 스프레드시트 기능 대응</p>
                 </section>
 
                 <!-- Section 3 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">3. 실습 예제</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        실제 사례와 데이터를 바탕으로 효과적인 접근법을 제시합니다.
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">3. 지금 당장 해볼 수 있는 시각적 암기 연습 3가지</h2>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        이론보다 실습이 중요합니다. 아래 3가지 연습은 메모장(Notepad)과 브라우저만 있으면
+                        바로 해볼 수 있습니다. 코드를 타이핑하고 저장한 뒤 브라우저로 열어보세요.
                     </p>
-                    <div class="bg-gray-100 rounded-lg p-4">
-                        <p class="text-sm text-gray-600 italic">
-                            "50대에 시작했다고 늦은 게 아닙니다. 오히려 문제를 바라보는 시각이 다르기 때문에 
-                            독창적인 해결책을 찾아낼 수 있습니다." - 실제 수강생 후기
-                        </p>
+
+                    <div class="space-y-6">
+                        <div class="bg-white border border-gray-200 rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-3 text-indigo-700">연습 1. 3개의 박스를 가로로 나란히 배치하기</h3>
+                            <div class="bg-gray-900 rounded-lg p-4 text-sm font-mono text-green-400 mb-3">
+                                <p class="text-gray-400">&lt;!-- test.html 파일로 저장하세요 --&gt;</p>
+                                <p>&lt;div <span class="text-yellow-300">style</span>=<span class="text-orange-300">"display:flex; gap:10px"</span>&gt;</p>
+                                <p class="pl-4">&lt;div style=<span class="text-orange-300">"background:coral; padding:20px"</span>&gt;박스1&lt;/div&gt;</p>
+                                <p class="pl-4">&lt;div style=<span class="text-orange-300">"background:skyblue; padding:20px"</span>&gt;박스2&lt;/div&gt;</p>
+                                <p class="pl-4">&lt;div style=<span class="text-orange-300">"background:gold; padding:20px"</span>&gt;박스3&lt;/div&gt;</p>
+                                <p>&lt;/div&gt;</p>
+                            </div>
+                            <p class="text-sm text-gray-600">엑셀에서 A1, B1, C1에 값을 입력한 것처럼 가로로 나열됩니다.</p>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-3 text-indigo-700">연습 2. justify-content로 정렬 바꿔보기</h3>
+                            <p class="text-gray-700 text-sm mb-3">
+                                위 코드의 <code class="bg-gray-100 px-1 rounded">gap:10px</code> 뒤에 다음을 하나씩 추가해보고 변화를 관찰하세요:
+                            </p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm text-gray-700">
+                                <li><code class="bg-gray-100 px-1 rounded">justify-content:center</code> — 가운데 모이기</li>
+                                <li><code class="bg-gray-100 px-1 rounded">justify-content:space-between</code> — 양쪽 끝에 붙고 균등 배치</li>
+                                <li><code class="bg-gray-100 px-1 rounded">justify-content:flex-end</code> — 오른쪽으로 몰리기</li>
+                            </ul>
+                            <p class="text-sm text-gray-600 mt-3">엑셀의 "셀 정렬" 버튼을 클릭하는 것과 동일한 효과입니다.</p>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-3 text-indigo-700">연습 3. flex:1로 균등 너비 분배하기</h3>
+                            <p class="text-gray-700 text-sm mb-3">
+                                각 박스 div에 <code class="bg-gray-100 px-1 rounded">flex:1</code>을 추가하면 세 박스가 너비를 동등하게 나눕니다.
+                                엑셀에서 "열 너비를 동일하게 맞추기"와 같은 개념입니다.
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                이 3가지 연습만 반복해도 Flexbox의 핵심 70%를 체득할 수 있습니다.
+                                "외우려 하지 말고, 바꿔보며 눈으로 확인한다"는 원칙을 지키세요.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
@@ -168,22 +261,26 @@
                     <ul class="space-y-3">
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>본문의 핵심 개념 3가지 메모하기</span>
+                            <span>메모장을 열고 연습 1의 코드를 타이핑해서 test.html로 저장하기</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>15분 실습 시간 확보하기</span>
+                            <span>저장한 파일을 브라우저로 열어 3개의 박스 확인하기</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>다음 글 읽기 일정 잡기</span>
+                            <span>justify-content 값을 3가지로 바꿔보며 변화 관찰하기</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
+                            <span>대응표를 인쇄해서 모니터 옆에 붙여두기</span>
                         </li>
                     </ul>
                 </section>
 
                 <!-- Disclaimer -->
                 <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-gray-600">
-                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 
+                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다.
                     개인의 상황에 따라 결과가 다를 수 있습니다.
                 </div>
             </div>

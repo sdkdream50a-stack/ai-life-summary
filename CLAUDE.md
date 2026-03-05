@@ -1,3 +1,22 @@
+# CLAUDE.md — AI Test Lab (smartaitest.com)
+
+**참고:** 글로벌 CLAUDE.md (`~/.claude/CLAUDE.md`)는 Rails + Kamal 프로젝트용이므로, 정적 HTML 사이트인 smartaitest에는 다음 공통 규칙만 적용:
+- Search Engine APIs (SEO)
+- Interaction Preferences (한국어 상호작용)
+- 과거 이슈 중 SEO 관련 항목
+
+---
+
+## 프로젝트 정보
+
+- **프로젝트명:** AI Test Lab (smartaitest.com)
+- **도메인:** https://smartaitest.com
+- **타입:** 정적 HTML 사이트 (126+ HTML 파일)
+- **AdSense Publisher ID:** ca-pub-6241798439911569
+- **지원 언어:** 한국어(ko), 영어(en), 일본어(ja), 중국어(zh), 스페인어(es)
+
+---
+
 # Project Guidelines for Claude
 
 ## 블로그 포스팅 규칙

@@ -60,47 +60,117 @@
             <div class="prose prose-lg max-w-none">
                 <!-- Introduction -->
                 <section class="bg-indigo-50 rounded-xl p-6 mb-8">
-                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> 코딩 없이도 강력한 웹앱을 만들 수 있습니다. 50대 비전공자에게 가장 현실적인 접근법을 설명합니다.</p>
+                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> Notion은 단순한 메모 앱이 아닙니다. 데이터베이스 기능과 공개 API를 활용하면, 코드 없이도 실제 동작하는 웹앱의 백엔드로 활용할 수 있습니다. 비용도 낮고 진입 장벽도 낮아 50대 비전공자에게 최적의 첫 번째 웹앱 구축 경험을 제공합니다.</p>
                 </section>
 
                 <!-- Section 1 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">1. 도구 선택의 기준</h2>
+                    <h2 class="text-2xl font-bold mb-4">1. Notion을 데이터베이스 백엔드로 활용하기</h2>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        연구들에 따르면, 50대 이후의 뇌는 젊은 시절과 다른 방식으로 정보를 처리합니다. 
-                        이는 단점이 아닌 특성이며, 올바른 학습 전략을 통해 강점으로 활용할 수 있습니다.
+                        Notion의 "데이터베이스" 기능을 한 번이라도 써봤다면, 이미 웹앱 백엔드를 다뤄본 것과 다를 바 없습니다.
+                        Notion 데이터베이스는 엑셀 시트와 비슷해 보이지만, 실제로는 관계형 데이터베이스처럼 동작합니다.
+                        각 행(Row)이 하나의 데이터 항목이고, 각 열(Column)이 필드입니다.
                     </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        특히 패턴 인식, 맥락 이해, 문제의 본질 파악에서 50대는 유의미하게 높은 성과를 보이는 것으로 
-                        여러 연구에서 관찰되었습니다.
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Notion이 일반 데이터베이스보다 훨씬 진입하기 쉬운 이유가 있습니다.
+                        이미 Notion을 쓰고 있다면 별도의 서버 설정이나 SQL 언어를 배울 필요가 없습니다.
+                        데이터를 Notion에 입력하면, Notion API가 그 데이터를 외부 앱에서 읽고 쓸 수 있게 해줍니다.
                     </p>
+                    <div class="bg-cyan-50 rounded-lg p-5 mb-4">
+                        <h3 class="font-bold text-cyan-900 mb-3">Notion 데이터베이스로 만들 수 있는 것들</h3>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>고객 문의 접수 폼 및 관리 시스템</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>재고 관리 및 발주 추적 시스템</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>인사 기록 및 출결 관리</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>프로젝트 진행 상황 대시보드</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>콘텐츠 발행 스케줄 관리</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-cyan-500 font-bold">✓</span><span>멤버십 회원 관리 시스템</span></li>
+                        </ul>
+                    </div>
                 </section>
 
                 <!-- Section 2 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">2. 단계별 구현 가이드</h2>
+                    <h2 class="text-2xl font-bold mb-4">2. Notion API 연동의 기초: 무섭지 않습니다</h2>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        구체적인 실천 방법을 단계별로 설명합니다. 각 단계는 실제 50대 학습자들의 피드백을 반영하여 
-                        현실적으로 실천 가능한 수준으로 구성되어 있습니다.
+                        "API"라는 단어가 어렵게 들릴 수 있습니다. 하지만 실제로는 단순합니다.
+                        API는 두 소프트웨어가 대화하는 방법입니다.
+                        Notion API는 "Notion에 있는 데이터를 다른 앱에서 읽거나 쓸 수 있게 해주는 창구"입니다.
                     </p>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>첫째, 작은 목표부터 시작합니다</li>
-                        <li>둘째, 반복보다 이해에 집중합니다</li>
-                        <li>셋째, 기존 지식과 연결 짓습니다</li>
-                    </ul>
+                    <div class="bg-gray-900 rounded-xl p-5 mb-4 text-sm">
+                        <p class="text-green-400 font-mono mb-3">// Notion API 활용 3단계 (코딩 없이 가능)</p>
+                        <div class="space-y-3 text-gray-300 font-mono">
+                            <div class="flex items-start space-x-3">
+                                <span class="text-yellow-400 flex-shrink-0">Step 1.</span>
+                                <span>Notion에서 Integration 생성 → API 키 발급 (무료)</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-yellow-400 flex-shrink-0">Step 2.</span>
+                                <span>데이터베이스를 Integration에 연결 (공유 설정)</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-yellow-400 flex-shrink-0">Step 3.</span>
+                                <span>Zapier/Make에서 Notion 커넥터로 데이터 읽기/쓰기</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        코딩이 전혀 필요 없는 연동 방법도 있습니다.
+                        Zapier나 Make(구 Integromat)는 Notion API를 시각적인 블록 방식으로 연결할 수 있게 해줍니다.
+                        "새 폼 응답이 들어오면 → Notion 데이터베이스에 새 항목 추가"를 드래그 앤 드롭으로 만들 수 있습니다.
+                    </p>
                 </section>
 
                 <!-- Section 3 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">3. 실제 사례 분석</h2>
+                    <h2 class="text-2xl font-bold mb-4">3. 실전 조합: Notion + 노코드 도구로 만드는 웹앱</h2>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        실제 사례와 데이터를 바탕으로 효과적인 접근법을 제시합니다.
+                        Notion 단독으로는 예쁜 UI를 만들기 어렵습니다. 하지만 다른 노코드 도구와 결합하면 진짜 웹앱이 됩니다.
                     </p>
-                    <div class="bg-gray-100 rounded-lg p-4">
-                        <p class="text-sm text-gray-600 italic">
-                            "50대에 시작했다고 늦은 게 아닙니다. 오히려 문제를 바라보는 시각이 다르기 때문에 
-                            독창적인 해결책을 찾아낼 수 있습니다." - 실제 수강생 후기
-                        </p>
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-2xl">🎨</span>
+                                <h3 class="font-bold text-gray-800">Notion + Softr (가장 쉬운 조합)</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm">Softr는 Notion 데이터베이스를 연결하면 자동으로 목록, 상세 페이지, 검색, 필터 기능을 만들어줍니다.
+                            회원 로그인까지 추가할 수 있어서 외부 고객용 포털을 만들 수 있습니다.</p>
+                            <p class="text-xs text-gray-400 mt-1">난이도: ★★☆☆☆ | 소요 시간: 1~2일</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-2xl">⚡</span>
+                                <h3 class="font-bold text-gray-800">Notion + Tally + Zapier (폼 → 데이터베이스)</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm">Tally로 만든 입력 폼에 누군가 응답하면 Zapier가 자동으로 Notion 데이터베이스에 추가합니다.
+                            고객 문의, 예약 접수, 지원서 수집 등에 즉시 활용할 수 있습니다.</p>
+                            <p class="text-xs text-gray-400 mt-1">난이도: ★★★☆☆ | 소요 시간: 3~5일</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-2xl">🚀</span>
+                                <h3 class="font-bold text-gray-800">Notion API + Webflow (고급 커스텀)</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm">Notion에서 콘텐츠를 관리하고 Webflow에서 디자인을 담당합니다.
+                            블로그, 포트폴리오, 상품 카탈로그 등에 적합합니다. 약간의 JavaScript 이해가 필요합니다.</p>
+                            <p class="text-xs text-gray-400 mt-1">난이도: ★★★★☆ | 소요 시간: 2~4주</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. Notion 백엔드의 한계와 언제 다른 도구로 전환할지</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Notion은 완벽하지 않습니다. 다음 상황이 되면 더 전문적인 도구로 전환을 고려하세요.
+                    </p>
+                    <div class="bg-amber-50 rounded-lg p-5">
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start space-x-2"><span class="text-amber-600 font-bold">⚠</span><span><strong>데이터가 수만 건 이상:</strong> Notion은 대용량 데이터에서 속도가 느려집니다. Airtable이나 실제 데이터베이스를 고려하세요.</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-amber-600 font-bold">⚠</span><span><strong>복잡한 데이터 관계 필요:</strong> 여러 테이블이 복잡하게 연결되는 경우 Airtable이나 Supabase가 적합합니다.</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-amber-600 font-bold">⚠</span><span><strong>실시간 업데이트 중요:</strong> Notion API는 실시간이 아닙니다. 채팅, 실시간 대시보드 등에는 Firebase를 고려하세요.</span></li>
+                            <li class="flex items-start space-x-2"><span class="text-amber-600 font-bold">⚠</span><span><strong>API 요청이 많을 때:</strong> Notion API에는 분당 요청 수 제한이 있어 트래픽이 많은 서비스에는 부적합합니다.</span></li>
+                        </ul>
                     </div>
                 </section>
 
@@ -110,22 +180,26 @@
                     <ul class="space-y-3">
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>본문의 핵심 개념 3가지 메모하기</span>
+                            <span>Notion에서 새 데이터베이스 하나 만들고 필드 설계해보기</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>15분 실습 시간 확보하기</span>
+                            <span>Notion Integration 페이지에서 API 키 발급받기 (무료)</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>다음 글 읽기 일정 잡기</span>
+                            <span>Softr 무료 계정 만들고 내 Notion DB 연결해보기</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
+                            <span>만들고 싶은 웹앱의 데이터 구조(필드 목록) 종이에 스케치하기</span>
                         </li>
                     </ul>
                 </section>
 
                 <!-- Disclaimer -->
                 <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-gray-600">
-                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 
+                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다.
                     개인의 상황에 따라 결과가 다를 수 있습니다.
                 </div>
             </div>
