@@ -473,8 +473,8 @@
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-a" name="year-a"
-                                            placeholder="YYYY" min="1920" max="2025" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="YYYY" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 연도 (A)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             년
@@ -483,8 +483,8 @@
                                     </div>
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-a" name="month-a"
-                                            placeholder="MM" min="1" max="12" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="MM" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 월 (A)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             월
@@ -493,8 +493,8 @@
                                     </div>
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-a" name="day-a"
-                                            placeholder="DD" min="1" max="31" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="DD" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 일 (A)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             일
@@ -544,8 +544,8 @@
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-b" name="year-b"
-                                            placeholder="YYYY" min="1920" max="2025" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="YYYY" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 연도 (B)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             년
@@ -554,8 +554,8 @@
                                     </div>
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-b" name="month-b"
-                                            placeholder="MM" min="1" max="12" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="MM" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 월 (B)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             월
@@ -564,8 +564,8 @@
                                     </div>
                                     <div>
                                         <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-b" name="day-b"
-                                            placeholder="DD" min="1" max="31" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                            placeholder="DD" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="출생 일 (B)">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             일
@@ -598,23 +598,41 @@
         </section>
 
     <script>
-    // 생년월일 자동 포커스 이동
+    // 생년월일 자동 포커스 이동 (개선판)
     (function() {
-        function addAutoFocus(yearId, monthId, dayId) {
+        function setupDateInput(yearId, monthId, dayId) {
             var year = document.getElementById(yearId);
             var month = document.getElementById(monthId);
             var day = document.getElementById(dayId);
             if (!year || !month || !day) return;
+
+            // 비숫자 입력 차단
+            function filterNumeric(el) {
+                el.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            }
+            filterNumeric(year); filterNumeric(month); filterNumeric(day);
+
+            // 순방향 포커스 이동
             year.addEventListener('input', function() {
                 if (this.value.length === 4) month.focus();
             });
             month.addEventListener('input', function() {
                 if (this.value.length === 2) day.focus();
             });
+
+            // 역방향 포커스 이동 (backspace)
+            month.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0) year.focus();
+            });
+            day.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0) month.focus();
+            });
         }
         document.addEventListener('DOMContentLoaded', function() {
-            addAutoFocus('year-a', 'month-a', 'day-a');
-            addAutoFocus('year-b', 'month-b', 'day-b');
+            setupDateInput('year-a', 'month-a', 'day-a');
+            setupDateInput('year-b', 'month-b', 'day-b');
         });
     })();
     </script>
