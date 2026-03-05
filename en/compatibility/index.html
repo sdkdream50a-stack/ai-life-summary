@@ -141,42 +141,6 @@
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
 
-        /* Social Proof Toast */
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
-        .toast {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            max-width: 300px;
-            animation: toastIn 0.5s ease-out forwards;
-            border-left: 4px solid #ec4899;
-        }
-        .toast.toast-out {
-            animation: toastOut 0.3s ease-in forwards;
-        }
-        @keyframes toastIn {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes toastOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(-100%); opacity: 0; }
-        }
-        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
-        .toast-content { flex: 1; min-width: 0; }
-        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
-        .toast-message { font-size: 0.75rem; color: #6b7280; }
-        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
-
         /* Stats badge */
         .stats-badge {
             background: rgba(255,255,255,0.15);
@@ -475,7 +439,7 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128104;</span>
-                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
                                     Person A
 
                                 </h2>
@@ -488,7 +452,7 @@
 
                                 </label>
                                 <input type="text" id="name-a" name="name-a" maxlength="20"
-                                    placeholder="&#128172;"
+                                    placeholder="e.g. John (Optional)"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -501,7 +465,7 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="number" id="year-a" name="year-a"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-a" name="year-a"
                                             placeholder="YYYY" min="1920" max="2025" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -510,7 +474,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="number" id="month-a" name="month-a"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-a" name="month-a"
                                             placeholder="MM" min="1" max="12" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -519,7 +483,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="number" id="day-a" name="day-a"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-a" name="day-a"
                                             placeholder="DD" min="1" max="31" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -540,7 +504,7 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128105;</span>
-                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
                                     Person B
 
                                 </h2>
@@ -553,7 +517,7 @@
 
                                 </label>
                                 <input type="text" id="name-b" name="name-b" maxlength="20"
-                                    placeholder="&#128172;"
+                                    placeholder="e.g. John (Optional)"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -566,7 +530,7 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="number" id="year-b" name="year-b"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-b" name="year-b"
                                             placeholder="YYYY" min="1920" max="2025" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -575,7 +539,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="number" id="month-b" name="month-b"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-b" name="month-b"
                                             placeholder="MM" min="1" max="12" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -584,7 +548,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="number" id="day-b" name="day-b"
+                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-b" name="day-b"
                                             placeholder="DD" min="1" max="31" required
                                             class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
@@ -615,17 +579,28 @@
             </div>
         </section>
 
-        <!-- Ad Slot -->
-        <section class="py-8">
-            <div class="max-w-4xl mx-auto px-4">
-                <div class="kick-glass rounded-xl p-6 text-center">
-                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
-                    <div class="h-20 flex items-center justify-center text-white/30">
-                        [Ad Slot - 728x90 Leaderboard]
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+    <script>
+    // Birthday auto-focus
+    (function() {
+        function addAutoFocus(yearId, monthId, dayId) {
+            var year = document.getElementById(yearId);
+            var month = document.getElementById(monthId);
+            var day = document.getElementById(dayId);
+            if (!year || !month || !day) return;
+            year.addEventListener('input', function() {
+                if (this.value.length === 4) month.focus();
+            });
+            month.addEventListener('input', function() {
+                if (this.value.length === 2) day.focus();
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            addAutoFocus('year-a', 'month-a', 'day-a');
+            addAutoFocus('year-b', 'month-b', 'day-b');
+        });
+    })();
+    </script>
 
         <!-- Did You Know Section -->
         <section class="py-12">
@@ -873,9 +848,6 @@
         </section>
     </main>
 
-    <!-- Social Proof Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
-
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
         <div class="max-w-6xl mx-auto px-4">
@@ -1017,65 +989,6 @@
             // Redirect to result page
             window.location.href = '/en/compatibility/result/';
         });
-    </script>
-
-    <!-- Social Proof Toast Script -->
-    <script>
-        (function() {
-            var lang = document.documentElement.lang || 'en';
-            var cities = {
-                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney', 'Singapore'],
-                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕', '런던'],
-                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン', 'パリ'],
-                zh: ['北京', '上海', '东京', '首尔', '纽约', '伦敦'],
-                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio', 'Nueva York']
-            };
-            var messages = {
-                en: { title: 'New match found!', test: 'Compatibility Test' },
-                ko: { title: '새로운 커플 매칭!', test: '궁합 테스트' },
-                ja: { title: '新しいカップル診断!', test: '相性診断' },
-                zh: { title: '新配对完成!', test: '配对测试' },
-                es: { title: '¡Nueva pareja!', test: 'Compatibilidad' }
-            };
-            var times = {
-                en: ['just now', '1 min ago', '2 mins ago'],
-                ko: ['방금 전', '1분 전', '2분 전'],
-                ja: ['たった今', '1分前', '2分前'],
-                zh: ['刚刚', '1分钟前', '2分钟前'],
-                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
-            };
-            var scores = ['87%', '92%', '78%', '95%', '81%', '89%', '76%'];
-
-            function showToast() {
-                var container = document.getElementById('toast-container');
-                if (!container) return;
-                var currentLang = document.documentElement.lang || 'en';
-                var cityList = cities[currentLang] || cities.en;
-                var msg = messages[currentLang] || messages.en;
-                var timeList = times[currentLang] || times.en;
-                var city = cityList[Math.floor(Math.random() * cityList.length)];
-                var time = timeList[Math.floor(Math.random() * timeList.length)];
-                var score = scores[Math.floor(Math.random() * scores.length)];
-
-                var toast = document.createElement('div');
-                toast.className = 'toast';
-                toast.innerHTML = '<div class="toast-icon">💕</div>' +
-                    '<div class="toast-content">' +
-                    '<div class="toast-title">' + msg.title + ' ' + score + '</div>' +
-                    '<div class="toast-message">' + city + '</div>' +
-                    '<div class="toast-time">' + time + '</div>' +
-                    '</div>';
-                container.appendChild(toast);
-                setTimeout(function() {
-                    toast.classList.add('toast-out');
-                    setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
-                }, 4000);
-            }
-            setTimeout(function() {
-                showToast();
-                setInterval(showToast, 12000 + Math.random() * 8000);
-            }, 3000);
-        })();
     </script>
 
     <!-- Stage 3: Viral Link System -->
