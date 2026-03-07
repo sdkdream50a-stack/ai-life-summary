@@ -59,75 +59,115 @@
 
             <!-- Article Content -->
             <div class="prose prose-lg max-w-none">
-                <!-- Introduction -->
+
                 <section class="bg-indigo-50 rounded-xl p-6 mb-8">
-                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> JavaScript는 50대에게 배우기 가장 적합한 언어입니다. 왜 그런지, 그리고 효과적으로 배우는 법을 알아봅니다.</p>
+                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> JavaScript 변수가 어렵게 느껴진다면 엑셀로 이해하세요. 50대가 이미 완벽히 알고 있는 엑셀 셀의 개념이 변수와 정확히 같습니다. var, let, const의 차이도 엑셀 비유로 쉽게 설명합니다.</p>
                 </section>
-
-                <!-- Section 1 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">1. 개념의 쉬운 이해</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        연구들에 따르면, 50대 이후의 뇌는 젊은 시절과 다른 방식으로 정보를 처리합니다. 
-                        이는 단점이 아닌 특성이며, 올바른 학습 전략을 통해 강점으로 활용할 수 있습니다.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        특히 패턴 인식, 맥락 이해, 문제의 본질 파악에서 50대는 유의미하게 높은 성과를 보이는 것으로 
-                        여러 연구에서 관찰되었습니다.
-                    </p>
+                    <h2 class="text-2xl font-bold mb-4">변수 = 엑셀의 셀</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">강의에서 "변수는 값을 담는 상자입니다"라고 설명할 때는 막연했는데, 엑셀을 떠올리니 바로 이해됐습니다. 엑셀에서 A1 셀에 숫자를 넣는 것처럼, 변수에 값을 넣는 것입니다.</p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="font-bold text-green-800 mb-2">엑셀 방식</p>
+                            <div class="bg-white border border-gray-300 rounded p-3 font-mono text-sm">
+                                <p>A1 = "홍길동"</p>
+                                <p>B1 = 50</p>
+                                <p>C1 = A1&"의 나이: "&B1</p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">C1 결과: "홍길동의 나이: 50"</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <p class="font-bold text-blue-800 mb-2">JavaScript 방식</p>
+                            <div class="bg-gray-900 rounded p-3 font-mono text-sm text-green-400">
+                                <p>let name = "홍길동";</p>
+                                <p>let age = 50;</p>
+                                <p>let result = name + "의 나이: " + age;</p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">result: "홍길동의 나이: 50"</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">엑셀 셀 이름(A1, B1)이 JavaScript에서는 변수 이름(name, age)입니다. 셀에 값을 입력하는 것이 변수에 값을 할당하는 것입니다. 이미 엑셀을 아는 사람에게 변수는 새로운 개념이 아닙니다.</p>
                 </section>
-
-                <!-- Section 2 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">2. 50대를 위한 학습 팁</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        구체적인 실천 방법을 단계별로 설명합니다. 각 단계는 실제 50대 학습자들의 피드백을 반영하여 
-                        현실적으로 실천 가능한 수준으로 구성되어 있습니다.
-                    </p>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>첫째, 작은 목표부터 시작합니다</li>
-                        <li>둘째, 반복보다 이해에 집중합니다</li>
-                        <li>셋째, 기존 지식과 연결 짓습니다</li>
-                    </ul>
-                </section>
-
-                <!-- Section 3 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">3. 실습 예제</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        실제 사례와 데이터를 바탕으로 효과적인 접근법을 제시합니다.
-                    </p>
-                    <div class="bg-gray-100 rounded-lg p-4">
-                        <p class="text-sm text-gray-600 italic">
-                            "50대에 시작했다고 늦은 게 아닙니다. 오히려 문제를 바라보는 시각이 다르기 때문에 
-                            독창적인 해결책을 찾아낼 수 있습니다." - 실제 수강생 후기
-                        </p>
+                    <h2 class="text-2xl font-bold mb-4">let vs const vs var: 엑셀로 구분하기</h2>
+                    <div class="space-y-4 mb-4">
+                        <div class="bg-white border-l-4 border-blue-500 rounded-lg p-4">
+                            <code class="font-bold text-blue-600">let</code><span class="text-gray-600 ml-2">— 일반 셀 (값 변경 가능)</span>
+                            <p class="text-sm text-gray-600 mt-2">엑셀에서 값을 자유롭게 바꿀 수 있는 일반 셀과 같습니다.</p>
+                            <div class="bg-gray-900 rounded p-3 mt-2 font-mono text-sm text-green-400">
+                                <p>let score = 80;  // 초기값</p>
+                                <p>score = 95;      // 나중에 변경 가능</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border-l-4 border-red-500 rounded-lg p-4">
+                            <code class="font-bold text-red-600">const</code><span class="text-gray-600 ml-2">— 잠긴 셀 (값 변경 불가)</span>
+                            <p class="text-sm text-gray-600 mt-2">엑셀에서 셀 보호를 걸어 수정 못하게 한 것과 같습니다. 바뀌면 안 되는 값에 씁니다.</p>
+                            <div class="bg-gray-900 rounded p-3 mt-2 font-mono text-sm text-green-400">
+                                <p>const TAX_RATE = 0.1;  // 부가세율 고정</p>
+                                <p>// TAX_RATE = 0.2; → 오류!</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border-l-4 border-gray-400 rounded-lg p-4">
+                            <code class="font-bold text-gray-600">var</code><span class="text-gray-600 ml-2">— 구버전 방식 (사용 안 함)</span>
+                            <p class="text-sm text-gray-600 mt-2">예전 Excel 2003 시절 방식처럼, 지금은 더 좋은 방법(let, const)이 있어서 잘 안 씁니다.</p>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-4">
+                        <p class="text-sm text-gray-700"><strong>실전 규칙:</strong> 값이 바뀔 것 같으면 <code>let</code>, 절대 안 바뀌면 <code>const</code>. 처음엔 모두 <code>let</code>으로 써도 괜찮습니다.</p>
                     </div>
                 </section>
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">변수 이름 짓기: 엑셀의 이름 정의와 같다</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">엑셀에서 중요한 셀에 "이름 정의"를 해서 쓰는 것처럼, JavaScript 변수 이름도 의미있게 지어야 합니다.</p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <p class="font-bold text-red-700 mb-2">나쁜 변수 이름</p>
+                            <div class="font-mono text-sm space-y-1 text-red-600">
+                                <p>let a = 50000;</p>
+                                <p>let x = "김철수";</p>
+                                <p>let d1 = true;</p>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="font-bold text-green-700 mb-2">좋은 변수 이름</p>
+                            <div class="font-mono text-sm space-y-1 text-green-600">
+                                <p>let monthlySalary = 50000;</p>
+                                <p>let employeeName = "김철수";</p>
+                                <p>let isActive = true;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">한 달 뒤에 자신이 쓴 코드를 다시 볼 때, 의미있는 변수 이름은 엑셀의 메모 기능처럼 "이게 무슨 값이었지?"를 바로 알게 해줍니다.</p>
+                </section>
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">실습: 엑셀 데이터를 JavaScript 변수로 변환하기</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">실제 업무에서 쓰는 엑셀 데이터를 JavaScript 변수로 바꿔보면 개념이 자연스럽게 체득됩니다.</p>
+                    <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                        <pre class="text-green-400 text-sm overflow-x-auto"><code>// 직원 정보 관리 (엑셀 시트 한 행을 변수로)
+const employeeId = "EMP001";       // 사번 (변경 불가)
+let employeeName = "김대권";        // 이름 (결혼 등으로 변경 가능)
+let department = "재무팀";          // 부서 (이동 가능)
+let baseSalary = 3500000;           // 기본급
+const taxRate = 0.033;              // 국민연금요율 (법정 고정)
 
-                <!-- Action Checklist -->
+// 실수령액 계산
+let netSalary = baseSalary - (baseSalary * taxRate);
+console.log(employeeName + "님 실수령액: " + netSalary + "원");
+// 출력: 김대권님 실수령액: 3384500원</code></pre>
+                    </div>
+                    <p class="text-gray-700 text-sm">엑셀로 30년 해온 급여 계산을 JavaScript로 그대로 옮겼습니다. 새로운 개념이 아니라 익숙한 업무를 다른 도구로 한 것뿐입니다.</p>
+                </section>
                 <section class="bg-green-50 rounded-xl p-6 mb-8">
-                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 오늘 바로 실천하기</h2>
+                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 변수 연습 체크리스트</h2>
                     <ul class="space-y-3">
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>본문의 핵심 개념 3가지 메모하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>15분 실습 시간 확보하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>다음 글 읽기 일정 잡기</span>
-                        </li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>let으로 이름, 나이, 직업 변수 3개 만들기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>const로 세금율, 최저임금 등 고정값 변수 만들기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>변수끼리 더하고 연결해서 문장 만들기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>내가 쓰는 엑셀 파일의 주요 셀을 변수로 변환해보기</span></li>
                     </ul>
                 </section>
-
-                <!-- Disclaimer -->
                 <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-gray-600">
-                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 
-                    개인의 상황에 따라 결과가 다를 수 있습니다.
+                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 개인의 상황에 따라 결과가 다를 수 있습니다.
                 </div>
             </div>
 

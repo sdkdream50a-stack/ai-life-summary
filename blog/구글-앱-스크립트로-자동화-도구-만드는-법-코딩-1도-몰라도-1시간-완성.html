@@ -59,75 +59,73 @@
 
             <!-- Article Content -->
             <div class="prose prose-lg max-w-none">
-                <!-- Introduction -->
+
                 <section class="bg-indigo-50 rounded-xl p-6 mb-8">
-                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> 코딩 없이도 강력한 웹앱을 만들 수 있습니다. 50대 비전공자에게 가장 현실적인 접근법을 설명합니다.</p>
+                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> 구글 앱 스크립트(Google Apps Script)는 코딩 경험 없이도 구글 스프레드시트, 지메일, 구글 폼을 자동화할 수 있는 가장 쉬운 방법입니다. 실제로 만든 "매월 청구서 자동 발송" 스크립트를 단계별로 설명합니다.</p>
                 </section>
-
-                <!-- Section 1 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">1. 도구 선택의 기준</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        연구들에 따르면, 50대 이후의 뇌는 젊은 시절과 다른 방식으로 정보를 처리합니다. 
-                        이는 단점이 아닌 특성이며, 올바른 학습 전략을 통해 강점으로 활용할 수 있습니다.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        특히 패턴 인식, 맥락 이해, 문제의 본질 파악에서 50대는 유의미하게 높은 성과를 보이는 것으로 
-                        여러 연구에서 관찰되었습니다.
-                    </p>
-                </section>
-
-                <!-- Section 2 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">2. 단계별 구현 가이드</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        구체적인 실천 방법을 단계별로 설명합니다. 각 단계는 실제 50대 학습자들의 피드백을 반영하여 
-                        현실적으로 실천 가능한 수준으로 구성되어 있습니다.
-                    </p>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>첫째, 작은 목표부터 시작합니다</li>
-                        <li>둘째, 반복보다 이해에 집중합니다</li>
-                        <li>셋째, 기존 지식과 연결 짓습니다</li>
-                    </ul>
-                </section>
-
-                <!-- Section 3 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">3. 실제 사례 분석</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        실제 사례와 데이터를 바탕으로 효과적인 접근법을 제시합니다.
-                    </p>
-                    <div class="bg-gray-100 rounded-lg p-4">
-                        <p class="text-sm text-gray-600 italic">
-                            "50대에 시작했다고 늦은 게 아닙니다. 오히려 문제를 바라보는 시각이 다르기 때문에 
-                            독창적인 해결책을 찾아낼 수 있습니다." - 실제 수강생 후기
-                        </p>
+                    <h2 class="text-2xl font-bold mb-4">구글 앱 스크립트란?</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">구글 스프레드시트 안에 내장된 프로그래밍 도구입니다. JavaScript 기반이라 별도 프로그램 설치 없이 브라우저에서 바로 작성하고 실행할 수 있습니다. 가장 큰 장점은 구글의 모든 서비스와 바로 연동된다는 것입니다.</p>
+                    <div class="grid md:grid-cols-3 gap-3 mb-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center"><div class="text-3xl mb-2">📊</div><p class="font-semibold text-sm">스프레드시트</p><p class="text-xs text-gray-500">데이터 자동 처리</p></div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center"><div class="text-3xl mb-2">📧</div><p class="font-semibold text-sm">지메일</p><p class="text-xs text-gray-500">이메일 자동 발송</p></div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center"><div class="text-3xl mb-2">📅</div><p class="font-semibold text-sm">캘린더</p><p class="text-xs text-gray-500">일정 자동 생성</p></div>
                     </div>
                 </section>
-
-                <!-- Action Checklist -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">실습: 이메일 자동 발송 만들기</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">매월 고객 목록에서 개별 이메일을 보내는 작업을 자동화한 사례입니다.</p>
+                    <h3 class="text-lg font-semibold mb-3">1단계: Apps Script 열기</h3>
+                    <p class="text-gray-700 text-sm mb-4">구글 스프레드시트 열기 → 상단 메뉴 <strong>확장 프로그램</strong> → <strong>Apps Script</strong> 클릭</p>
+                    <h3 class="text-lg font-semibold mb-3">2단계: 코드 입력</h3>
+                    <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                        <pre class="text-green-400 text-sm overflow-x-auto"><code>function sendInvoices() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  
+  for (var i = 1; i < data.length; i++) {
+    var name = data[i][0];    // A열: 이름
+    var email = data[i][1];   // B열: 이메일
+    var amount = data[i][2];  // C열: 청구금액
+    
+    GmailApp.sendEmail(
+      email,
+      "[청구서] " + name + "님의 이번 달 청구서",
+      name + "님, 이번 달 청구 금액은 " + amount + "원입니다."
+    );
+    
+    sheet.getRange(i + 1, 4).setValue("발송완료");
+  }
+  
+  SpreadsheetApp.getUi().alert("모든 청구서 발송 완료!");
+}</code></pre>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">3단계: 저장 후 실행</h3>
+                    <p class="text-gray-700 text-sm mb-4">저장(Ctrl+S) → 실행 버튼(▶) → 구글 계정 권한 허용 → 완료</p>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p class="text-sm text-gray-700"><strong>결과:</strong> 스프레드시트에 있는 100명에게 30초 만에 개인화된 청구서 이메일 발송 완료. 수동으로 했을 때 2~3시간 걸리던 작업입니다.</p>
+                    </div>
+                </section>
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">50대가 자동화하면 좋은 업무들</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4"><h3 class="font-semibold text-gray-800 mb-2">사무/행정</h3><ul class="text-sm text-gray-600 space-y-1"><li>• 월별 보고서 자동 생성</li><li>• 출퇴근 기록 자동 집계</li><li>• 회의록 자동 저장</li></ul></div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4"><h3 class="font-semibold text-gray-800 mb-2">소규모 사업</h3><ul class="text-sm text-gray-600 space-y-1"><li>• 주문 확인 이메일 자동 발송</li><li>• 재고 부족 시 알림</li><li>• 매출 자동 집계</li></ul></div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4"><h3 class="font-semibold text-gray-800 mb-2">개인 생산성</h3><ul class="text-sm text-gray-600 space-y-1"><li>• 매일 할 일 목록 자동 생성</li><li>• 생일 알림 이메일 발송</li><li>• 가계부 데이터 자동 정리</li></ul></div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4"><h3 class="font-semibold text-gray-800 mb-2">교육/강의</h3><ul class="text-sm text-gray-600 space-y-1"><li>• 구글 폼 결과 자동 집계</li><li>• 수강생 성적 자동 계산</li><li>• 수료증 자동 생성 및 발송</li></ul></div>
+                    </div>
+                </section>
                 <section class="bg-green-50 rounded-xl p-6 mb-8">
-                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 오늘 바로 실천하기</h2>
+                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 첫 자동화 도전 체크리스트</h2>
                     <ul class="space-y-3">
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>본문의 핵심 개념 3가지 메모하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>15분 실습 시간 확보하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>다음 글 읽기 일정 잡기</span>
-                        </li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>구글 스프레드시트에서 Apps Script 메뉴 찾아보기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>위 코드 복사해서 실행 테스트해보기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>내 업무 중 반복적인 것 1가지 자동화 대상 선정하기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>ChatGPT에게 내 업무 설명하고 코드 요청해보기</span></li>
                     </ul>
                 </section>
-
-                <!-- Disclaimer -->
                 <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-gray-600">
-                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 
-                    개인의 상황에 따라 결과가 다를 수 있습니다.
+                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 개인의 상황에 따라 결과가 다를 수 있습니다.
                 </div>
             </div>
 

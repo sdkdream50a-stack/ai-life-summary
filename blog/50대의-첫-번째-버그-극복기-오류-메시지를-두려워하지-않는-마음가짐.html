@@ -59,75 +59,82 @@
 
             <!-- Article Content -->
             <div class="prose prose-lg max-w-none">
-                <!-- Introduction -->
+
                 <section class="bg-indigo-50 rounded-xl p-6 mb-8">
-                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> JavaScript는 50대에게 배우기 가장 적합한 언어입니다. 왜 그런지, 그리고 효과적으로 배우는 법을 알아봅니다.</p>
+                    <p class="text-lg leading-relaxed"><strong>핵심 요약:</strong> 코딩을 시작한 지 2주 만에 첫 번째 버그를 만났습니다. 빨간 오류 메시지에 심장이 쿵 내려앉았지만, 그 경험이 가장 중요한 전환점이 됐습니다. 오류를 두려워하지 않는 마음가짐을 어떻게 키웠는지 솔직하게 공유합니다.</p>
                 </section>
-
-                <!-- Section 1 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">1. 개념의 쉬운 이해</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        연구들에 따르면, 50대 이후의 뇌는 젊은 시절과 다른 방식으로 정보를 처리합니다. 
-                        이는 단점이 아닌 특성이며, 올바른 학습 전략을 통해 강점으로 활용할 수 있습니다.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        특히 패턴 인식, 맥락 이해, 문제의 본질 파악에서 50대는 유의미하게 높은 성과를 보이는 것으로 
-                        여러 연구에서 관찰되었습니다.
-                    </p>
+                    <h2 class="text-2xl font-bold mb-4">첫 버그를 만난 날</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">코딩을 시작한 지 2주째 되던 날이었습니다. 간단한 버튼 클릭 기능을 만들다가 처음으로 빨간 오류 메시지를 마주쳤습니다.</p>
+                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                        <p class="font-mono text-sm text-red-700">TypeError: Cannot read properties of undefined (reading 'style')</p>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">처음 든 생각은 "내가 뭔가를 망가뜨린 건가?" 였습니다. 30년 직장 생활에서 실수를 최소화하도록 훈련된 제가, 코드 한 줄로 컴퓨터를 망가뜨린 것 같았습니다. 하지만 브라우저를 새로고침하자 페이지가 멀쩡히 살아있었습니다. 오류 메시지는 단지 "이 부분 다시 봐" 라는 신호였을 뿐이었습니다.</p>
                 </section>
-
-                <!-- Section 2 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">2. 50대를 위한 학습 팁</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        구체적인 실천 방법을 단계별로 설명합니다. 각 단계는 실제 50대 학습자들의 피드백을 반영하여 
-                        현실적으로 실천 가능한 수준으로 구성되어 있습니다.
-                    </p>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>첫째, 작은 목표부터 시작합니다</li>
-                        <li>둘째, 반복보다 이해에 집중합니다</li>
-                        <li>셋째, 기존 지식과 연결 짓습니다</li>
-                    </ul>
-                </section>
-
-                <!-- Section 3 -->
-                <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-4">3. 실습 예제</h2>
-                    <p class="text-gray-700 leading-relaxed mb-4">
-                        실제 사례와 데이터를 바탕으로 효과적인 접근법을 제시합니다.
-                    </p>
-                    <div class="bg-gray-100 rounded-lg p-4">
-                        <p class="text-sm text-gray-600 italic">
-                            "50대에 시작했다고 늦은 게 아닙니다. 오히려 문제를 바라보는 시각이 다르기 때문에 
-                            독창적인 해결책을 찾아낼 수 있습니다." - 실제 수강생 후기
-                        </p>
+                    <h2 class="text-2xl font-bold mb-4">오류 메시지 해독법: 두려움에서 단서로</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">오류 메시지를 읽는 법을 배우니 두려움이 사라졌습니다. 구조를 이해하면 됩니다.</p>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+                        <p class="font-mono text-sm text-red-600 mb-3">TypeError: Cannot read properties of undefined (reading 'style')</p>
+                        <div class="text-sm text-gray-700 space-y-2">
+                            <p><span class="font-bold text-orange-600">TypeError</span> → 오류 종류: 타입(자료형) 관련 문제</p>
+                            <p><span class="font-bold text-blue-600">Cannot read properties of undefined</span> → 존재하지 않는 것에서 뭔가 읽으려 했다</p>
+                            <p><span class="font-bold text-green-600">(reading 'style')</span> → 'style' 속성을 읽으려 했는데 대상이 없다</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">즉, 존재하지 않는 HTML 요소를 JavaScript로 조작하려 했다는 뜻이었습니다. 원인을 찾아보니 HTML의 id를 'myButton'으로 썼는데, JavaScript에서는 'my-button'으로 잘못 참조하고 있었습니다. 오타 하나였습니다.</p>
+                    <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                        <p class="text-gray-400 text-xs mb-1">수정 전 (잘못됨)</p>
+                        <p class="font-mono text-sm text-red-400">document.getElementById('my-button').style.color = 'red';</p>
+                        <p class="text-gray-400 text-xs mt-3 mb-1">수정 후</p>
+                        <p class="font-mono text-sm text-green-400">document.getElementById('myButton').style.color = 'red';</p>
                     </div>
                 </section>
-
-                <!-- Action Checklist -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">버그를 무서워하지 않는 3가지 마음가짐</h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 rounded-lg p-5">
+                            <h3 class="font-bold text-blue-800 mb-2">1. 버그는 배움의 증거다</h3>
+                            <p class="text-gray-700 text-sm">버그가 생긴다는 것은 새로운 것을 시도하고 있다는 뜻입니다. 세계 최고의 개발자들도 매일 버그를 마주합니다. 버그는 실력 부족의 증거가 아니라, 성장하고 있다는 증거입니다.</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-5">
+                            <h3 class="font-bold text-purple-800 mb-2">2. 오류 메시지는 가장 친절한 선생님이다</h3>
+                            <p class="text-gray-700 text-sm">오류 메시지는 "여기가 잘못됐어, 이런 이유로"를 정확히 알려줍니다. 오류 메시지의 첫 줄을 구글에 그대로 복사해서 검색하면 대부분 해결책을 찾을 수 있습니다.</p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-5">
+                            <h3 class="font-bold text-green-800 mb-2">3. 30분 넘으면 검색하라, 이건 규칙이다</h3>
+                            <p class="text-gray-700 text-sm">50대 학습자들이 가장 많이 하는 실수는 혼자 해결하려고 너무 오래 매달리는 것입니다. 30분 이상 해결이 안 되면 즉시 검색하거나 ChatGPT에 물어보세요. 이건 포기가 아니라 효율적인 학습법입니다.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">자주 만나는 오류 유형과 해결 패턴</h2>
+                    <div class="space-y-3">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <p class="font-mono text-xs text-red-600 mb-1">ReferenceError: xxx is not defined</p>
+                            <p class="text-sm text-gray-700">변수나 함수를 선언하기 전에 사용하려 했거나, 오타가 있을 때. 선언 위치와 이름 철자를 확인하세요.</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <p class="font-mono text-xs text-red-600 mb-1">SyntaxError: Unexpected token</p>
+                            <p class="text-sm text-gray-700">괄호, 따옴표, 중괄호가 맞지 않을 때. 오류가 발생한 줄 주변의 짝이 맞는지 확인하세요.</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <p class="font-mono text-xs text-red-600 mb-1">TypeError: xxx is not a function</p>
+                            <p class="text-sm text-gray-700">함수가 아닌 것을 함수처럼 호출했을 때. 변수에 올바른 값이 들어있는지 확인하세요.</p>
+                        </div>
+                    </div>
+                </section>
                 <section class="bg-green-50 rounded-xl p-6 mb-8">
-                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 오늘 바로 실천하기</h2>
+                    <h2 class="text-xl font-bold mb-4 text-green-800">✅ 버그 극복 체크리스트</h2>
                     <ul class="space-y-3">
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>본문의 핵심 개념 3가지 메모하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>15분 실습 시간 확보하기</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300">
-                            <span>다음 글 읽기 일정 잡기</span>
-                        </li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>오류 메시지 전체를 차분하게 읽기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>오류 메시지 첫 줄을 구글에 검색하기</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>30분 해결 안 되면 ChatGPT나 Stack Overflow 활용</span></li>
+                        <li class="flex items-center space-x-3"><input type="checkbox" class="w-5 h-5 rounded border-gray-300"><span>해결 후 원인과 방법을 노트에 기록하기</span></li>
                     </ul>
                 </section>
-
-                <!-- Disclaimer -->
                 <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-sm text-gray-600">
-                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 
-                    개인의 상황에 따라 결과가 다를 수 있습니다.
+                    <strong>면책 조항:</strong> 본 콘텐츠는 정보 제공 목적이며 전문 상담을 대체하지 않습니다. 개인의 상황에 따라 결과가 다를 수 있습니다.
                 </div>
             </div>
 
