@@ -81,7 +81,7 @@
 # Language-specific pages -> canonical pages
 /ja/contact/ /contact.html 301
 /en/contact/ /contact.html 301
-/en/terms-of-service/ /privacy-policy.html 301
+/en/terms-of-service/ /terms-of-service.html 301
 /es/guide/compatibility-guide/ /blog.html 301
 /zh/methodology/ /blog.html 301
 

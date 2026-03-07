@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Total URLs: 65 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
@@ -111,19 +110,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/community/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://smartaitest.com/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/daily/</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -247,12 +234,6 @@
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/events/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://smartaitest.com/ja/</loc>
@@ -408,18 +389,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/profile/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ranking/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://smartaitest.com/widget/</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -429,12 +398,6 @@
     <loc>https://smartaitest.com/widget/embed.html</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/wrapped/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
