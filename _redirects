@@ -78,6 +78,10 @@
 /blog/en/post-23 /blog/product-management-50s-beginners.html 301
 /blog/en/post-27 /blog/web-architecture-basics-non-developers.html 301
 
+# terms-of-service -> terms (canonical)
+/terms-of-service /terms 301
+/terms-of-service.html /terms 301
+
 # Language-specific pages -> canonical pages
 /ja/contact/ /contact.html 301
 /en/contact/ /contact.html 301
