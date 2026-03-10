@@ -1,11 +1,34 @@
 /**
- * GDPR/CCPA Consent Manager
- * Blocks analytics and ads until user consent is obtained
+ * GDPR/CCPA Consent Manager with Google Consent Mode v2
+ * AdSense always loads (required for review); data collection gated by consent
  */
+
+// Google Consent Mode v2 - set defaults BEFORE any scripts load
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'denied',
+  'wait_for_update': 500
+});
+
+// Always load AdSense script (Consent Mode controls data collection)
+(function() {
+  if (!window.adsenseLoaded) {
+    var adScript = document.createElement('script');
+    adScript.async = true;
+    adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569';
+    adScript.crossOrigin = 'anonymous';
+    document.head.appendChild(adScript);
+    window.adsenseLoaded = true;
+  }
+})();
 
 const ConsentManager = {
   STORAGE_KEY: 'ai-test-consent',
-  CONSENT_VERSION: '1.1',
+  CONSENT_VERSION: '1.2',
 
   // Consent categories
   categories: {
@@ -168,17 +191,20 @@ const ConsentManager = {
   },
 
   /**
-   * Apply consent decisions - load or block scripts
+   * Apply consent decisions - update Consent Mode and load scripts
    */
   applyConsent() {
+    // Update Google Consent Mode v2
+    gtag('consent', 'update', {
+      'ad_storage': this.categories.marketing ? 'granted' : 'denied',
+      'ad_user_data': this.categories.marketing ? 'granted' : 'denied',
+      'ad_personalization': this.categories.marketing ? 'granted' : 'denied',
+      'analytics_storage': this.categories.analytics ? 'granted' : 'denied'
+    });
+
     // Analytics (Google Analytics, Clarity)
     if (this.categories.analytics) {
       this.loadAnalytics();
-    }
-
-    // Marketing (AdSense)
-    if (this.categories.marketing) {
-      this.loadAds();
     }
 
     // Dispatch event for other scripts
@@ -227,26 +253,6 @@ const ConsentManager = {
     }
   },
 
-  /**
-   * Load Google AdSense
-   */
-  loadAds() {
-    if (!window.adsLoaded) {
-      const adScript = document.createElement('script');
-      adScript.async = true;
-      adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569';
-      adScript.crossOrigin = 'anonymous';
-      document.head.appendChild(adScript);
-      window.adsLoaded = true;
-
-      // Initialize ads manager after script loads
-      adScript.onload = () => {
-        if (typeof AdsManager !== 'undefined') {
-          AdsManager.init();
-        }
-      };
-    }
-  },
 
   /**
    * Get current language
