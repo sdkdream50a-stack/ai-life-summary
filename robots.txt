@@ -41,5 +41,13 @@ Allow: /
 User-agent: bingbot
 Allow: /
 
+# Google AdSense Bot (ads.txt 크롤링 허용)
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
 # Sitemaps
 Sitemap: https://smartaitest.com/sitemap.xml
