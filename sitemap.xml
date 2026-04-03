@@ -8,6 +8,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://smartaitest.com/blog.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://smartaitest.com/age-calculator/</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -19,30 +25,15 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://smartaitest.com/blog/</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/50대-사무실-직원이-엑셀-vba로-시작해-노코드-saas를-만든-실제-사례</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
+  
   <url>
     <loc>https://smartaitest.com/blog/ai-personality-analysis-accuracy</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaitest.com/blog/career-transition-tech-portfolio-50s</loc>
-    <lastmod>2026-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
   <url>
     <loc>https://smartaitest.com/blog/compatibility-psychology</loc>
     <lastmod>2026-01-25</lastmod>
@@ -85,114 +76,24 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaitest.com/blog/product-management-50s-beginners</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/web-architecture-basics-non-developers</loc>
-    <lastmod>2026-01-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/web-development-roadmap-50s-complete-guide</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/코딩-학습에-필요한-것은-iq가-아니다-50대에게-유리한-지혜의-역전현상</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/400만원-주고-앱-개발하려다-2주-만에-직접-만든-54세-회계사의-선택</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/40년-업무-경험이-코드-리뷰에서-빛나는-이유-도메인-전문가의-시각</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/50대-경험에서-찾아라-내-삶의-불편함을-10만원-수익-모델로-만드는-법</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/50대가-javascript를-배워야-하는-이유-python보다-현실적인-선택</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/50대의-집중력-관리-뽀모도로가-아닌-90분-뇌-리듬-학습법</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/50대의-첫-번째-버그-극복기-오류-메시지를-두려워하지-않는-마음가짐</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/bubble-vs-webflow-vs-framer-50대-비전공자에게-가장-현실적인-선택은</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/htmlcss가-어려운-50대를-위한-시각적-암기법-flexbox를-스프레드시트처럼-이해하기</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/notion-database만으로-웹앱-만드는-법-노코드-api-활용-완벽-가이드</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/구글-앱-스크립트로-자동화-도구-만드는-법-코딩-1도-몰라도-1시간-완성</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/나이-들수록-느는-패턴-인식력으로-프로그래밍-실력을-2배-높이는-법</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/변수-개념을-엑셀-셀에-비유해-설명합니다-50대를-위한-js-기초-문법</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/실패를-두려워하는-50대를-위한-성장형-사고방식-훈련-28일-프로그램</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/코딩-일기-53세에-처음-쓴-함수function와의-3일간의-사투</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <url>
     <loc>https://smartaitest.com/blog/barnum-effect-psychology</loc>
     <lastmod>2026-03-11</lastmod>
