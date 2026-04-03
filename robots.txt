@@ -49,5 +49,21 @@ Allow: /
 User-agent: AdsBot-Google
 Allow: /
 
+# Google AI (Gemini) Training Crawler
+User-agent: Google-Extended
+Allow: /
+
+# Amazon Alexa / Amazon Q AI Crawler
+User-agent: Amazonbot
+Allow: /
+
+# Meta AI Crawler
+User-agent: meta-externalagent
+Allow: /
+
+# ByteDance (TikTok) AI Crawler
+User-agent: Bytespider
+Allow: /
+
 # Sitemaps
 Sitemap: https://smartaitest.com/sitemap.xml
