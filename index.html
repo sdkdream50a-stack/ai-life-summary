@@ -313,8 +313,8 @@
             color: white;
             margin: 0 10px;
         }
-        /* Hide main content when JS redirects (loader covers it) */
-        .js-enabled .main-content { display: none; }
+        /* Loader covers main content visually; content remains in DOM for crawlers */
+        /* .js-enabled .main-content { display: none; } -- removed for SEO */
     </style>
 
     <script>
