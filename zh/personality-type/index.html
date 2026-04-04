@@ -42,6 +42,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"AI性格类型测试","description":"40道题了解你的性格类型！INTJ、ENFP、INFJ等16种类型你是哪种？基于荣格心理类型学的免费AI性格分析。","url":"https://smartaitest.com/zh/personality-type/","applicationCategory":"EntertainmentApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh","provider":{"@type":"Organization","name":"AI Test Lab","url":"https://smartaitest.com"}}
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"这个测试和MBTI一样吗？","acceptedAnswer":{"@type":"Answer","text":"不一样。本测试由AI Test Lab基于荣格心理类型理论独立开发。Myers-Briggs Type Indicator®（MBTI®）是Myers-Briggs Company的注册商标，本测试与其无任何关联。"}},{"@type":"Question","name":"测试结果有多准确？","acceptedAnswer":{"@type":"Answer","text":"本测试以娱乐和自我了解为目的。虽然基于荣格理论，但不能替代专业的心理评估。请将结果作为自我探索的参考。"}},{"@type":"Question","name":"16种类型是如何确定的？","acceptedAnswer":{"@type":"Answer","text":"通过组合四个轴（E/I、S/N、T/F、J/P）中得分较高的字母来确定类型。例如，E、N、T、J得分较高则为ENTJ。4×4=16种可能的组合。"}},{"@type":"Question","name":"测试是免费的吗？","acceptedAnswer":{"@type":"Answer","text":"是的，完全免费，无需注册即可使用。"}},{"@type":"Question","name":"可以重新测试吗？","acceptedAnswer":{"@type":"Answer","text":"可以。点击结果页面的「重新测试」按钮，或重新加载页面即可。结果仅保存在您的浏览器会话中。"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://smartaitest.com/zh/"},{"@type":"ListItem","position":2,"name":"AI性格类型测试","item":"https://smartaitest.com/zh/personality-type/"},{"@type":"ListItem","position":3,"name":"我的性格类型结果","item":"https://smartaitest.com/zh/personality-type/result/"}]}</script>
 <style>
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
 h1,h2,h3,h4,h5,h6{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
@@ -142,8 +144,108 @@ html[lang="ko"] body,html[lang="ja"] body,html[lang="zh"] body{word-break:keep-a
       <button id="pt-next" class="pt-btn pt-btn-primary">下一题 →</button>
       <button id="pt-submit" class="pt-btn pt-btn-primary" style="display:none">查看我的类型</button>
     </div>
-    <p id="pt-disclaimer" class="text-white/30 text-xs text-center mt-6">基于荣格心理类型学 · 与MBTI®无关</p>
+    <p id="pt-disclaimer" class="text-white/50 text-xs text-center mt-6">基于荣格心理类型学 · 与MBTI®无关</p>
   </div>
+
+<!-- ── 교육적 콘텐츠 섹션 (SEO/GEO/AEO) ── -->
+<section class="relative z-10 max-w-2xl mx-auto px-4 py-10 space-y-10">
+
+  <!-- MBTI 면책 배너 -->
+  <div class="rounded-xl border border-purple-500/30 bg-purple-500/10 px-5 py-4 text-sm text-white/80">
+    ⚠️ 本测试由AI Test Lab基于荣格心理类型理论独立开发，与Myers-Briggs Type Indicator®（MBTI®）及Myers-Briggs Company无任何关联。仅供娱乐目的，不能替代专业心理评估。
+  </div>
+
+  <!-- 16유형이란? -->
+  <div>
+    <h2 class="text-xl font-bold text-white mb-3">什么是16种性格类型？</h2>
+    <p class="text-white/60 text-sm leading-relaxed">AI性格类型测试是AI Test Lab基于瑞士心理学家卡尔·荣格（Carl Jung）的心理类型理论独立开发的工具。它通过四个心理轴分析您的性格，判断您最接近16种类型中的哪一种。虽然与Myers-Briggs Type Indicator®（MBTI®）使用相似的框架，但本测试与MBTI®无关联。</p>
+  </div>
+
+  <!-- 4축 설명 -->
+  <div>
+    <h2 class="text-xl font-bold text-white mb-4">四个心理轴</h2>
+    <div class="space-y-4">
+      <div class="flex gap-3 items-start">
+        <span class="text-purple-400 font-black text-lg w-12 shrink-0">E / I</span>
+        <div>
+          <strong class="text-white/90">外向 vs 内向</strong>
+          <p class="text-white/60 text-sm mt-0.5">衡量您是从社交互动中获得能量（E），还是从独处时间中恢复精力（I）。</p>
+        </div>
+      </div>
+      <div class="flex gap-3 items-start">
+        <span class="text-purple-400 font-black text-lg w-12 shrink-0">S / N</span>
+        <div>
+          <strong class="text-white/90">感觉 vs 直觉</strong>
+          <p class="text-white/60 text-sm mt-0.5">衡量您是通过具体事实处理信息（S），还是通过模式和可能性解读信息（N）。</p>
+        </div>
+      </div>
+      <div class="flex gap-3 items-start">
+        <span class="text-purple-400 font-black text-lg w-12 shrink-0">T / F</span>
+        <div>
+          <strong class="text-white/90">思考 vs 情感</strong>
+          <p class="text-white/60 text-sm mt-0.5">衡量您是通过逻辑分析做决定（T），还是优先考虑价值观和情感（F）。</p>
+        </div>
+      </div>
+      <div class="flex gap-3 items-start">
+        <span class="text-purple-400 font-black text-lg w-12 shrink-0">J / P</span>
+        <div>
+          <strong class="text-white/90">判断 vs 感知</strong>
+          <p class="text-white/60 text-sm mt-0.5">衡量您是偏好有计划、有组织的生活方式（J），还是偏好灵活、随机应变的方式（P）。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 테스트 방법 -->
+  <div>
+    <h2 class="text-xl font-bold text-white mb-3">如何参加测试</h2>
+    <ol class="space-y-2"><li class="flex gap-2"><span class="text-purple-400 font-bold shrink-0">1.</span><span class="text-white/70">仔细阅读每道题，回想您平时的行为习惯。</span></li><li class="flex gap-2"><span class="text-purple-400 font-bold shrink-0">2.</span><span class="text-white/70">在5分制量表（非常同意到非常不同意）上诚实选择。</span></li><li class="flex gap-2"><span class="text-purple-400 font-bold shrink-0">3.</span><span class="text-white/70">共40题，每页显示5题。</span></li><li class="flex gap-2"><span class="text-purple-400 font-bold shrink-0">4.</span><span class="text-white/70">在最后一页点击「查看我的类型」，立即显示您的性格类型。</span></li><li class="flex gap-2"><span class="text-purple-400 font-bold shrink-0">5.</span><span class="text-white/70">在结果页面查看您的优势、弱点和相配类型，并分享给朋友。</span></li></ol>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="text-xl font-bold text-white mb-4">常见问题</h2>
+    <div class="space-y-2">
+      <details class="border border-white/10 rounded-xl overflow-hidden">
+        <summary class="px-5 py-4 cursor-pointer text-white/90 font-semibold hover:bg-white/5 transition list-none flex justify-between items-center">
+          <span>这个测试和MBTI一样吗？</span>
+          <span class="text-purple-400 text-lg ml-3">+</span>
+        </summary>
+        <p class="px-5 py-4 text-white/60 text-sm border-t border-white/10 bg-white/5">不一样。本测试由AI Test Lab基于荣格心理类型理论独立开发。Myers-Briggs Type Indicator®（MBTI®）是Myers-Briggs Company的注册商标，本测试与其无任何关联。</p>
+      </details>
+      <details class="border border-white/10 rounded-xl overflow-hidden">
+        <summary class="px-5 py-4 cursor-pointer text-white/90 font-semibold hover:bg-white/5 transition list-none flex justify-between items-center">
+          <span>测试结果有多准确？</span>
+          <span class="text-purple-400 text-lg ml-3">+</span>
+        </summary>
+        <p class="px-5 py-4 text-white/60 text-sm border-t border-white/10 bg-white/5">本测试以娱乐和自我了解为目的。虽然基于荣格理论，但不能替代专业的心理评估。请将结果作为自我探索的参考。</p>
+      </details>
+      <details class="border border-white/10 rounded-xl overflow-hidden">
+        <summary class="px-5 py-4 cursor-pointer text-white/90 font-semibold hover:bg-white/5 transition list-none flex justify-between items-center">
+          <span>16种类型是如何确定的？</span>
+          <span class="text-purple-400 text-lg ml-3">+</span>
+        </summary>
+        <p class="px-5 py-4 text-white/60 text-sm border-t border-white/10 bg-white/5">通过组合四个轴（E/I、S/N、T/F、J/P）中得分较高的字母来确定类型。例如，E、N、T、J得分较高则为ENTJ。4×4=16种可能的组合。</p>
+      </details>
+      <details class="border border-white/10 rounded-xl overflow-hidden">
+        <summary class="px-5 py-4 cursor-pointer text-white/90 font-semibold hover:bg-white/5 transition list-none flex justify-between items-center">
+          <span>测试是免费的吗？</span>
+          <span class="text-purple-400 text-lg ml-3">+</span>
+        </summary>
+        <p class="px-5 py-4 text-white/60 text-sm border-t border-white/10 bg-white/5">是的，完全免费，无需注册即可使用。</p>
+      </details>
+      <details class="border border-white/10 rounded-xl overflow-hidden">
+        <summary class="px-5 py-4 cursor-pointer text-white/90 font-semibold hover:bg-white/5 transition list-none flex justify-between items-center">
+          <span>可以重新测试吗？</span>
+          <span class="text-purple-400 text-lg ml-3">+</span>
+        </summary>
+        <p class="px-5 py-4 text-white/60 text-sm border-t border-white/10 bg-white/5">可以。点击结果页面的「重新测试」按钮，或重新加载页面即可。结果仅保存在您的浏览器会话中。</p>
+      </details>
+    </div>
+  </div>
+
+</section>
+<!-- ── /교육적 콘텐츠 섹션 ── -->
 </main>
 
 <footer class="relative z-10 mt-4 py-8 border-t border-white/10 text-center text-white/40 text-xs">
