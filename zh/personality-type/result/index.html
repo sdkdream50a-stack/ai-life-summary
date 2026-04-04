@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI性格类型测试 Result | AI Test Lab</title>
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://smartaitest.com/zh/personality-type/result/">
+<meta property="og:title" content="AI性格类型测试 — AI Test Lab">
+<meta property="og:description" content="通过40道题发现你的性格类型！免费、快速、有趣的性格分析。">
+<meta property="og:image" content="https://smartaitest.com/assets/images/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
+<link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+<style>
+body{font-family:'Inter',-apple-system,sans-serif;}
+h1,h2,h3,h4,h5,h6{font-family:'Poppins',-apple-system,sans-serif;}
+.pt-type-header{border-radius:1.5rem;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.pt-type-code{font-size:3.5rem;font-weight:800;letter-spacing:0.08em;color:#fff;text-shadow:0 0 40px rgba(255,255,255,0.4);}
+.pt-type-emoji-lg{font-size:3rem;margin-bottom:0.5rem;}
+.pt-type-name{font-size:1.4rem;font-weight:700;color:rgba(255,255,255,0.9);}
+.pt-type-tagline{font-size:0.9rem;color:rgba(255,255,255,0.65);margin-top:0.25rem;}
+.pt-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.5rem;margin-bottom:1rem;}
+.pt-card h3{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:0.75rem;}
+.pt-card p{color:rgba(255,255,255,0.82);line-height:1.7;font-size:0.95rem;}
+.pt-card ul{list-style:none;padding:0;margin:0;}
+.pt-card ul li{color:rgba(255,255,255,0.82);font-size:0.9rem;padding:0.25rem 0;}
+.pt-compatible-badge{display:inline-block;background:rgba(167,139,250,0.2);border:1px solid rgba(167,139,250,0.4);border-radius:0.5rem;padding:0.35rem 0.75rem;font-size:0.85rem;color:#c4b5fd;margin:0.25rem;}
+.pt-btn{display:inline-flex;align-items:center;justify-content:center;padding:0.75rem 1.75rem;border-radius:0.75rem;font-weight:600;font-size:0.95rem;cursor:pointer;transition:all 0.2s;border:none;}
+.pt-btn-primary{background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;}
+.pt-btn-primary:hover{opacity:0.9;transform:translateY(-1px);}
+.pt-btn-secondary{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);}
+.pt-axis-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;}
+.pt-axis-letter{font-size:0.85rem;font-weight:700;color:rgba(255,255,255,0.4);width:1.2rem;text-align:center;}
+.pt-axis-letter.pt-dominant{color:#a78bfa;}
+.pt-axis-track{flex:1;height:0.5rem;background:rgba(255,255,255,0.1);border-radius:1rem;overflow:hidden;display:flex;}
+.pt-axis-fill{height:100%;}
+.pt-axis-left{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:1rem 0 0 1rem;}
+.pt-axis-right{background:linear-gradient(90deg,#ec4899,#f472b6);border-radius:0 1rem 1rem 0;}
+.pt-axis-pct{font-size:0.75rem;color:#a78bfa;font-weight:600;width:2.5rem;text-align:right;}
+.pt-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:1rem;}
+.pt-spinner{width:3rem;height:3rem;border:3px solid rgba(167,139,250,0.2);border-top-color:#a78bfa;border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+html[lang="ko"] body,html[lang="ja"] body,html[lang="zh"] body{word-break:keep-all;overflow-wrap:break-word;}
+</style>
+</head>
+<body class="kick-dark-bg min-h-screen">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QDH2KJQT9Y');</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","v3dwlpj2g5");</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569" crossorigin="anonymous"></script>
+
+<nav class="kick-navbar" id="floating-navbar">
+  <a href="/zh/" class="kick-navbar-logo"><span class="text-xl">🔮</span><span class="kick-gradient-text">AI Test Lab</span></a>
+  <div class="kick-navbar-links">
+    <a href="/zh/compatibility/" class="kick-navbar-link">❤️‍🔥 配对</a>
+    <a href="/zh/life-summary/" class="kick-navbar-link">🔮 人生</a>
+    <a href="/zh/age-calculator/" class="kick-navbar-link">⏳ 年龄</a>
+    <a href="/zh/personality-type/" class="kick-navbar-link" style="color:#a78bfa">🧬 类型</a>
+    <a href="/blog.html" class="kick-navbar-link">📝 博客</a>
+  </div>
+  <div id="lang-selector" class="relative">
+    <button onclick="toggleLangDropdown()" class="kick-navbar-link flex items-center gap-1">
+      <span id="current-lang">🇨🇳 中文</span>
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-28 rounded-xl border border-white/20 py-1" style="background-color:#1a1a2e;z-index:9999999;">
+      <button onclick="switchLang('en',event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇺🇸 EN</button>
+      <button onclick="switchLang('ko',event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇰🇷 한국어</button>
+      <button onclick="switchLang('ja',event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇯🇵 日本語</button>
+      <button onclick="switchLang('zh',event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇨🇳 中文</button>
+      <button onclick="switchLang('es',event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
+    </div>
+  </div>
+</nav>
+
+<main class="relative z-10 pt-16">
+  <!-- Loading screen -->
+  <div id="pt-loading" class="pt-loading">
+    <div class="pt-spinner"></div>
+    <p id="pt-loading-text" class="text-white/60 text-sm"></p>
+  </div>
+
+  <!-- Result content -->
+  <div id="pt-result-content" style="display:none" class="max-w-2xl mx-auto px-4 pb-12">
+    <p id="pt-your-type-label" class="text-center text-white/50 text-sm font-medium uppercase tracking-widest mb-3"></p>
+
+    <!-- Type header card -->
+    <div id="pt-type-header" class="pt-type-header">
+      <div id="pt-type-emoji" class="pt-type-emoji-lg"></div>
+      <div id="pt-type-code" class="pt-type-code"></div>
+      <div id="pt-type-name" class="pt-type-name"></div>
+      <div id="pt-type-tagline" class="pt-type-tagline"></div>
+    </div>
+
+    <!-- Description -->
+    <div class="pt-card">
+      <p id="pt-type-desc"></p>
+    </div>
+
+    <!-- Axis bars -->
+    <div class="pt-card">
+      <h3>E/I · S/N · T/F · J/P</h3>
+      <div id="pt-axis-bars"></div>
+    </div>
+
+    <!-- Strengths -->
+    <div class="pt-card">
+      <h3 id="pt-strengths-label"></h3>
+      <ul id="pt-strengths-list"></ul>
+    </div>
+
+    <!-- Weaknesses -->
+    <div class="pt-card">
+      <h3 id="pt-weaknesses-label"></h3>
+      <ul id="pt-weaknesses-list"></ul>
+    </div>
+
+    <!-- Compatible types -->
+    <div class="pt-card">
+      <h3 id="pt-compatible-label"></h3>
+      <div id="pt-compatible-list"></div>
+    </div>
+
+    <!-- AdSense -->
+    <div class="my-6">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6241798439911569" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
+
+    <!-- Share buttons -->
+    <div class="pt-card text-center">
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button id="pt-share-btn" onclick="ptShare('copy')" class="pt-btn pt-btn-primary"></button>
+        <button onclick="ptShare('twitter')" class="pt-btn pt-btn-secondary">𝕏 Twitter</button>
+        <button onclick="ptShare('facebook')" class="pt-btn pt-btn-secondary">Facebook</button>
+      </div>
+    </div>
+
+    <!-- Try other tests -->
+    <div class="pt-card text-center">
+      <h3 id="pt-other-tests-label" class="mb-4"></h3>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/zh/compatibility/" class="pt-btn pt-btn-secondary">❤️‍🔥 配对</a>
+        <a href="/zh/life-summary/" class="pt-btn pt-btn-secondary">🔮 人生</a>
+        <a href="/zh/age-calculator/" class="pt-btn pt-btn-secondary">⏳ 年龄</a>
+      </div>
+      <div class="mt-4">
+        <button id="pt-retake-btn" class="pt-btn pt-btn-secondary text-sm"></button>
+      </div>
+    </div>
+
+    <p id="pt-result-disclaimer" class="text-white/30 text-xs text-center mt-6"></p>
+  </div>
+</main>
+
+<footer class="relative z-10 mt-4 py-8 border-t border-white/10 text-center text-white/40 text-xs">
+  <p>© 2026 AI Test Lab · <a href="../../../privacy-policy.html" class="hover:text-white/70">Privacy</a> · <a href="../../../terms-of-service.html" class="hover:text-white/70">Terms</a></p>
+</footer>
+
+<script src="../../../js/personality-type-data.js"></script>
+<script src="../../../js/personality-type-result.js"></script>
+</body>
+</html>
