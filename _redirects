@@ -1,6 +1,6 @@
-# Security: Block .git directory access
-/.git/* / 404
-/.env / 404
+# Security: Block .git directory access (! = force over static files)
+/.git/* /404.html 404!
+/.env /404.html 404!
 
 # 301 Redirects - Old Episodes to New Pillar Guides
 # Cloudflare Pages redirect rules
