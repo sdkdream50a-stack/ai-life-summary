@@ -5,6 +5,12 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+
+# Security: Block .git directory access
+/.git/*
+  X-Robots-Tag: noindex
+  ! Access-Control-Allow-Origin
 
 # CSS 파일 - 1년 캐시 (파일명에 해시 없으므로 stale-while-revalidate 사용)
 /css/*

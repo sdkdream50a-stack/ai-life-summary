@@ -1,3 +1,7 @@
+# Security: Block .git directory access
+/.git/* / 404
+/.env / 404
+
 # 301 Redirects - Old Episodes to New Pillar Guides
 # Cloudflare Pages redirect rules
 
