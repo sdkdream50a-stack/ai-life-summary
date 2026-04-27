@@ -68,10 +68,21 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        /* Language switching */
-        .lang-ko { display: none; }
-        html[lang="ko"] .lang-en { display: none; }
+        /* Language switching - 5 languages */
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
         html[lang="ko"] .lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: block; }
+        /* CJK word wrap */
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
     </style>
     <script>
     (function() {
@@ -219,6 +230,186 @@
                     <div>
                         <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">7. 문의</h2>
                         <p class="text-gray-700">이 면책조항에 대한 문의사항은 <a href="/contact.html" class="text-indigo-600 hover:underline">문의 페이지</a>를 이용해 주세요. <a href="/privacy-policy.html" class="text-indigo-600 hover:underline">개인정보처리방침</a> 및 <a href="/terms-of-service.html" class="text-indigo-600 hover:underline">이용약관</a>도 확인하세요.</p>
+                    </div>
+                </div>
+
+                <!-- Japanese Version -->
+                <div class="lang-ja space-y-8">
+                    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-5">
+                        <p class="font-semibold text-amber-900 text-lg">⚠️ エンターテインメントおよび教育目的のみ</p>
+                        <p class="text-amber-800 mt-2">AI Test Labのすべてのテスト、ツール、コンテンツは、エンターテインメント、自己省察、教育目的のみで提供されています。専門的な心理、医療、法律、財務、または人間関係の助言を構成するものではありません。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">1. サービスの性質</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Labは、AI性格診断、ライフサマリー、相性評価、年齢計算機を提供します。これらのツールは、個人的な省察とエンターテインメントのための魅力的で示唆に富む洞察を提供するように設計されています。当社のツールは、確立された心理学的フレームワーク（ビッグファイブ性格モデルなど）からインスピレーションを得ていますが、検証された臨床ツールではなく、専門的評価の代わりに使用すべきではありません。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">2. 専門的助言ではありません</h2>
+                        <p class="text-gray-700 leading-relaxed mb-3">本ウェブサイトのコンテンツは、以下を構成するものではなく、そのように解釈されるべきではありません：</p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                            <li>専門的な心理学的または精神医学的助言</li>
+                            <li>あらゆる種類の医療または健康に関する助言</li>
+                            <li>法律、財務、または人間関係に関するカウンセリング</li>
+                            <li>キャリアまたはライフコーチングサービス</li>
+                        </ul>
+                        <p class="text-gray-700 mt-3">メンタルヘルスの問題、人間関係の困難、または専門的なガイダンスが必要な場合は、資格のある専門家にご相談ください。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">3. 正確性と信頼性</h2>
+                        <p class="text-gray-700 leading-relaxed">テスト結果は、ユーザーが提供した入力に基づいてアルゴリズムで生成されます。多くのユーザーが結果を興味深く共感できるものと感じていますが、当社は科学的正確性や予測妥当性について一切主張しません。結果は多くの視点の一つとして扱われるべきです。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">4. AI生成および編集コンテンツ</h2>
+                        <p class="text-gray-700 leading-relaxed">ブログ記事を含む一部のコンテンツは、AI執筆ツールの支援を受けて制作され、編集チームによってレビューされています。正確性と品質に努めていますが、すべての情報が最新、完全、エラーフリーであることを保証することはできません。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">5. 第三者広告</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Labは、Google AdSenseおよびその他の第三者広告パートナーが配信する広告を表示します。広告の表示は、宣伝された製品やサービスの推奨を構成するものではありません。Googleがデータをどのように使用するかについては、<a href="https://policies.google.com/privacy" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Googleのプライバシーポリシー</a>をご覧ください。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">6. 外部リンク</h2>
+                        <p class="text-gray-700 leading-relaxed">当ウェブサイトには第三者ウェブサイトへのリンクが含まれている場合があります。これらのリンクは利便性と情報提供のみを目的として提供されています。AI Test Labは、外部ウェブサイトのコンテンツ、プライバシー慣行、信頼性を制御せず、その内容について一切責任を負いません。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">7. 責任の制限</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Labおよびその運営者は、当社のツールの結果に基づいて行われた決定、または本ウェブサイトの使用から生じる直接的、間接的、偶発的、または結果的な損害について責任を負わないものとします。当社のサービスはお客様自身の責任でご利用ください。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">8. 本免責事項の変更</h2>
+                        <p class="text-gray-700 leading-relaxed">当社は、本免責事項をいつでも更新する権利を留保します。重要な変更は、本ページ上部の「最終更新日」に反映されます。変更後もウェブサイトの使用を継続することは、更新された免責事項への同意を構成します。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">9. お問い合わせ</h2>
+                        <p class="text-gray-700">本免責事項に関するご質問は、<a href="/contact.html" class="text-indigo-600 hover:underline">お問い合わせページ</a>からご連絡ください。<a href="/privacy-policy.html" class="text-indigo-600 hover:underline">プライバシーポリシー</a>および<a href="/terms-of-service.html" class="text-indigo-600 hover:underline">利用規約</a>もご確認ください。</p>
+                    </div>
+                </div>
+
+                <!-- Chinese (Simplified) Version -->
+                <div class="lang-zh space-y-8">
+                    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-5">
+                        <p class="font-semibold text-amber-900 text-lg">⚠️ 仅用于娱乐和教育目的</p>
+                        <p class="text-amber-800 mt-2">AI Test Lab上的所有测试、工具和内容仅供娱乐、自我反思和教育目的。它们不构成专业的心理、医疗、法律、财务或人际关系建议。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">1. 服务性质</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab提供AI驱动的性格测试、人生总结、配对评估和年龄计算器。这些工具旨在为个人反思和娱乐提供引人入胜、发人深省的洞察。虽然我们的工具借鉴了既定的心理学框架（如大五人格模型），但它们不是经过验证的临床工具，不应替代专业评估。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">2. 非专业建议</h2>
+                        <p class="text-gray-700 leading-relaxed mb-3">本网站的内容不构成且不应被解释为：</p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                            <li>专业的心理或精神病学建议</li>
+                            <li>任何形式的医疗或健康建议</li>
+                            <li>法律、财务或人际关系咨询</li>
+                            <li>职业或人生指导服务</li>
+                        </ul>
+                        <p class="text-gray-700 mt-3">如果您正在经历心理健康问题、人际关系困难或需要专业指导，请咨询合格的专业人士。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">3. 准确性与可靠性</h2>
+                        <p class="text-gray-700 leading-relaxed">测试结果是根据您提供的输入通过算法生成的。虽然许多用户认为结果有趣且具有共鸣，但我们不对科学准确性或预测有效性做出任何声明。结果应被视为众多视角中的一种。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">4. AI生成和编辑内容</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab上的部分内容（包括博客文章）是在AI写作工具的协助下制作并由我们的编辑团队审核的。我们努力追求准确性和质量，但无法保证所有信息都是最新、完整或无误的。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">5. 第三方广告</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab展示由Google AdSense和其他第三方广告合作伙伴提供的广告。广告的存在并不构成对所宣传产品或服务的认可。有关Google如何使用数据的更多信息，请访问<a href="https://policies.google.com/privacy" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Google隐私政策</a>。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">6. 外部链接</h2>
+                        <p class="text-gray-700 leading-relaxed">我们的网站可能包含指向第三方网站的链接。这些链接仅为方便和信息目的提供。AI Test Lab无法控制外部网站的内容、隐私惯例或可靠性，对其内容不承担任何责任。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">7. 责任限制</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab及其运营者对基于我们工具结果所做的任何决定，或因您使用本网站而产生的任何直接、间接、偶然或后果性损害不承担责任。您使用我们的服务需自担风险。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">8. 免责声明的变更</h2>
+                        <p class="text-gray-700 leading-relaxed">我们保留随时更新本免责声明的权利。重大变更将反映在本页顶部的"最后更新"日期中。变更后继续使用本网站即表示您接受更新后的免责声明。</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">9. 联系我们</h2>
+                        <p class="text-gray-700">有关本免责声明的问题，请通过<a href="/contact.html" class="text-indigo-600 hover:underline">联系页面</a>与我们联系。也请查看我们的<a href="/privacy-policy.html" class="text-indigo-600 hover:underline">隐私政策</a>和<a href="/terms-of-service.html" class="text-indigo-600 hover:underline">服务条款</a>。</p>
+                    </div>
+                </div>
+
+                <!-- Spanish Version -->
+                <div class="lang-es space-y-8">
+                    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-5">
+                        <p class="font-semibold text-amber-900 text-lg">⚠️ Solo para Fines de Entretenimiento y Educación</p>
+                        <p class="text-amber-800 mt-2">Todas las pruebas, herramientas y contenido de AI Test Lab se proporcionan únicamente con fines de entretenimiento, autorreflexión y educación. No constituyen asesoramiento profesional psicológico, médico, legal, financiero o de relaciones.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">1. Naturaleza de Nuestros Servicios</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab ofrece pruebas de personalidad impulsadas por IA, resúmenes de vida, evaluaciones de compatibilidad y calculadoras de edad. Estas herramientas están diseñadas para ofrecer perspectivas atractivas y reflexivas para la autorreflexión personal y el entretenimiento. Aunque nuestras herramientas se inspiran en marcos psicológicos establecidos (como el Modelo de Personalidad de los Cinco Grandes), no son instrumentos clínicos validados y no deben usarse como sustituto de una evaluación profesional.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">2. Sin Asesoramiento Profesional</h2>
+                        <p class="text-gray-700 leading-relaxed mb-3">El contenido de este sitio web no constituye y no debe interpretarse como:</p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                            <li>Asesoramiento psicológico o psiquiátrico profesional</li>
+                            <li>Consejo médico o de salud de cualquier tipo</li>
+                            <li>Asesoramiento legal, financiero o de relaciones</li>
+                            <li>Servicios de coaching profesional o de vida</li>
+                        </ul>
+                        <p class="text-gray-700 mt-3">Si experimenta problemas de salud mental, dificultades en las relaciones o requiere orientación profesional, consulte a un profesional cualificado.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">3. Precisión y Fiabilidad</h2>
+                        <p class="text-gray-700 leading-relaxed">Los resultados de nuestras pruebas se generan algorítmicamente en función de las entradas que usted proporciona. Aunque muchos usuarios encuentran los resultados interesantes y reflexivos, no hacemos ninguna afirmación sobre precisión científica o validez predictiva. Los resultados deben tratarse como una perspectiva entre muchas.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">4. Contenido Generado por IA y Editorial</h2>
+                        <p class="text-gray-700 leading-relaxed">Parte del contenido de AI Test Lab, incluidos los artículos del blog, se produce con la asistencia de herramientas de escritura con IA y es revisado por nuestro equipo editorial. Nos esforzamos por la precisión y la calidad, pero no podemos garantizar que toda la información sea actual, completa o esté libre de errores.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">5. Publicidad de Terceros</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab muestra anuncios servidos por Google AdSense y otros socios publicitarios externos. La presencia de anuncios no constituye una recomendación de los productos o servicios anunciados. Para obtener más información sobre cómo Google utiliza los datos, visite la <a href="https://policies.google.com/privacy" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Política de Privacidad de Google</a>.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">6. Enlaces Externos</h2>
+                        <p class="text-gray-700 leading-relaxed">Nuestro sitio web puede contener enlaces a sitios web de terceros. Estos enlaces se proporcionan únicamente por conveniencia e información. AI Test Lab no tiene control sobre el contenido, las prácticas de privacidad o la fiabilidad de los sitios web externos y no acepta ninguna responsabilidad por su contenido.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">7. Limitación de Responsabilidad</h2>
+                        <p class="text-gray-700 leading-relaxed">AI Test Lab y sus operadores no serán responsables de ninguna decisión tomada en base a los resultados de nuestras herramientas, ni de ningún daño directo, indirecto, incidental o consecuente derivado del uso de este sitio web. Usted utiliza nuestros servicios bajo su propio riesgo.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">8. Cambios en este Aviso Legal</h2>
+                        <p class="text-gray-700 leading-relaxed">Nos reservamos el derecho de actualizar este aviso legal en cualquier momento. Los cambios materiales se reflejarán en la fecha de "Última Actualización" en la parte superior de esta página. El uso continuado del sitio web tras cualquier cambio constituye su aceptación del aviso legal actualizado.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">9. Contacto</h2>
+                        <p class="text-gray-700">Para preguntas sobre este aviso legal, <a href="/contact.html" class="text-indigo-600 hover:underline">contáctenos</a>. Consulte también nuestra <a href="/privacy-policy.html" class="text-indigo-600 hover:underline">Política de Privacidad</a> y nuestros <a href="/terms-of-service.html" class="text-indigo-600 hover:underline">Términos de Servicio</a>.</p>
                     </div>
                 </div>
 
