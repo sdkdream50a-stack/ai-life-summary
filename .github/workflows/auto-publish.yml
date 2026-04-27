@@ -1,9 +1,10 @@
 name: Auto Blog Publisher (3x Weekly)
 
 on:
-  schedule:
-    # Mon/Wed/Fri at 00:00 UTC = 09:00 KST
-    - cron: '0 0 * * 1,3,5'
+  # 자동 발행은 일시 중지 (AdSense 재승인 검토 통보까지).
+  # 통보 도착 후 cron 라인 주석 해제. workflow_dispatch는 남겨 수동 트리거만 가능.
+  # schedule:
+  #   - cron: '0 0 * * 1,3,5'  # Mon/Wed/Fri 09:00 KST
   workflow_dispatch:
 
 permissions:
