@@ -71,5 +71,5 @@
   Cache-Control: public, max-age=86400
 
 /ads.txt
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=600, must-revalidate
   Content-Type: text/plain; charset=utf-8
