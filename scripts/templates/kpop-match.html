@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>K-Pop Persona Match — Which Idol Archetype Are You? | AI Test Lab</title>
+    <meta name="description" content="Find your K-pop persona archetype: visual, vocal, dancer, rapper, leader, or maknae. 5 questions, 60 seconds, 16 archetypes. Available in 5 languages.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://smartaitest.com/kpop-match/">
+
+    <link rel="alternate" hreflang="en" href="https://smartaitest.com/en/kpop-match/">
+    <link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/kpop-match/">
+    <link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/kpop-match/">
+    <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/kpop-match/">
+    <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/kpop-match/">
+    <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/kpop-match/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartaitest.com/kpop-match/">
+    <meta property="og:title" content="K-Pop Persona Match — Which Idol Archetype Are You?">
+    <meta property="og:description" content="Visual, vocal, dancer, leader, or maknae? Find your K-pop persona in 60 seconds.">
+    <meta property="og:image" content="https://smartaitest.com/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="AI Test Lab">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="K-Pop Persona Match — Which Idol Archetype Are You?">
+    <meta name="twitter:description" content="Visual, vocal, dancer, leader, or maknae? Find your K-pop persona in 60 seconds.">
+    <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "K-Pop Persona Match",
+      "url": "https://smartaitest.com/kpop-match/",
+      "description": "K-pop persona archetype test — find your idol position in 60 seconds.",
+      "publisher": {"@type": "Organization", "name": "AI Test Lab", "url": "https://smartaitest.com"}
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap">
+    <link rel="stylesheet" href="./css/tailwind.css" fetchpriority="high">
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #fdf2f8 0%, #ede9fe 100%); color: #1f2937; min-height: 100vh; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); }
+        .gradient-text { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card { background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.4); border-radius: 16px; backdrop-filter: blur(8px); }
+        .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
+        html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
+        html[lang="ko"] .lang-ko { display: inline; }
+        html[lang="ko"] p.lang-ko, html[lang="ko"] h1.lang-ko, html[lang="ko"] h2.lang-ko, html[lang="ko"] h3.lang-ko, html[lang="ko"] div.lang-ko, html[lang="ko"] li.lang-ko, html[lang="ko"] button.lang-ko { display: block; }
+        html[lang="ja"] .lang-en, html[lang="ja"] .lang-ko, html[lang="ja"] .lang-zh, html[lang="ja"] .lang-es { display: none; }
+        html[lang="ja"] .lang-ja { display: inline; }
+        html[lang="ja"] p.lang-ja, html[lang="ja"] h1.lang-ja, html[lang="ja"] h2.lang-ja, html[lang="ja"] h3.lang-ja, html[lang="ja"] div.lang-ja, html[lang="ja"] li.lang-ja, html[lang="ja"] button.lang-ja { display: block; }
+        html[lang="zh"] .lang-en, html[lang="zh"] .lang-ko, html[lang="zh"] .lang-ja, html[lang="zh"] .lang-es { display: none; }
+        html[lang="zh"] .lang-zh { display: inline; }
+        html[lang="zh"] p.lang-zh, html[lang="zh"] h1.lang-zh, html[lang="zh"] h2.lang-zh, html[lang="zh"] h3.lang-zh, html[lang="zh"] div.lang-zh, html[lang="zh"] li.lang-zh, html[lang="zh"] button.lang-zh { display: block; }
+        html[lang="es"] .lang-en, html[lang="es"] .lang-ko, html[lang="es"] .lang-ja, html[lang="es"] .lang-zh { display: none; }
+        html[lang="es"] .lang-es { display: inline; }
+        html[lang="es"] p.lang-es, html[lang="es"] h1.lang-es, html[lang="es"] h2.lang-es, html[lang="es"] h3.lang-es, html[lang="es"] div.lang-es, html[lang="es"] li.lang-es, html[lang="es"] button.lang-es { display: block; }
+        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body { word-break: keep-all; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <header class="border-b border-pink-100/70 bg-white/40 backdrop-blur-md sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-2xl">🔮</span>
+                <span class="font-bold text-xl gradient-text">AI Test Lab</span>
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm text-gray-600">
+                <a href="/" class="hover:text-pink-600">Home</a>
+                <a href="/blog.html" class="hover:text-pink-600">Blog</a>
+                <a href="/about.html" class="hover:text-pink-600">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12">
+
+        <section id="hero-stage" class="text-center">
+            <div class="inline-block mb-4 text-3xl">💜🎤✨</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                <span class="lang-en">K-Pop Persona Match</span>
+                <span class="lang-ko">K-팝 페르소나 매칭</span>
+                <span class="lang-ja">K-POPペルソナ診断</span>
+                <span class="lang-zh">K-pop人格匹配</span>
+                <span class="lang-es">K-Pop Persona Match</span>
+            </h1>
+            <p class="text-xl text-gray-700 mb-2">
+                <span class="lang-en">Which idol archetype are you? 16 personas. 60 seconds.</span>
+                <span class="lang-ko">당신의 아이돌 아키타입은? 16개 페르소나. 60초.</span>
+                <span class="lang-ja">あなたのアイドルタイプは？16ペルソナ。60秒。</span>
+                <span class="lang-zh">你是哪种偶像原型？16种人格。60秒。</span>
+                <span class="lang-es">¿Qué arquetipo de ídolo eres? 16 personas. 60 segundos.</span>
+            </p>
+            <p class="text-gray-500 mb-8 text-sm">
+                <span class="lang-en">Visual, Main Vocal, Lead Dancer, Rapper, Leader, Maknae — find your position.</span>
+                <span class="lang-ko">비주얼, 메인보컬, 리드댄서, 래퍼, 리더, 막내 — 당신의 포지션을 찾아보세요.</span>
+                <span class="lang-ja">ビジュアル、メインボーカル、リードダンサー、ラッパー、リーダー、マンネ — あなたのポジションは。</span>
+                <span class="lang-zh">门面、主唱、领舞、说唱、队长、忙内 — 找到你的定位。</span>
+                <span class="lang-es">Visual, Main Vocal, Lead Dancer, Rapper, Leader, Maknae — encuentra tu posición.</span>
+            </p>
+            <button onclick="km_start()" class="gradient-bg text-white font-semibold py-4 px-10 rounded-full hover:opacity-90 transition text-lg shadow-lg">
+                <span class="lang-en">Find My Persona →</span>
+                <span class="lang-ko">내 페르소나 찾기 →</span>
+                <span class="lang-ja">私のペルソナを見つける →</span>
+                <span class="lang-zh">找到我的人格 →</span>
+                <span class="lang-es">Encontrar Mi Persona →</span>
+            </button>
+            <p class="text-xs text-gray-400 mt-6">
+                <span class="lang-en">For entertainment only. Generic position archetypes — no real idols referenced. <a href="/disclaimer" class="underline">Disclaimer</a>.</span>
+                <span class="lang-ko">엔터테인먼트 전용. 일반적인 포지션 아키타입 — 실존 아이돌 미언급. <a href="/ko/disclaimer/" class="underline">면책</a>.</span>
+                <span class="lang-ja">エンタメ専用。一般的なポジションタイプ — 実在のアイドルには言及しません。<a href="/ja/disclaimer/" class="underline">免責</a>。</span>
+                <span class="lang-zh">仅供娱乐。通用定位原型 — 不涉及真实偶像。<a href="/zh/disclaimer/" class="underline">免责声明</a>。</span>
+                <span class="lang-es">Solo entretenimiento. Arquetipos genéricos — no se menciona a ídolos reales. <a href="/es/disclaimer/" class="underline">Aviso</a>.</span>
+            </p>
+        </section>
+
+        <section id="quiz-stage" class="hidden">
+            <div class="mb-6">
+                <div class="text-xs text-gray-500 mb-2">
+                    <span class="lang-en">Question</span><span class="lang-ko">질문</span><span class="lang-ja">質問</span><span class="lang-zh">问题</span><span class="lang-es">Pregunta</span>
+                    <span id="q-counter" class="ml-1">1 / 5</span>
+                </div>
+                <div class="w-full bg-pink-100 rounded-full h-1.5">
+                    <div id="q-progress" class="gradient-bg h-1.5 rounded-full transition-all" style="width: 20%;"></div>
+                </div>
+            </div>
+            <h2 id="q-text" class="text-2xl font-bold mb-6 text-gray-900"></h2>
+            <div id="q-options" class="space-y-3"></div>
+        </section>
+
+        <section id="result-stage" class="hidden text-center">
+            <p class="text-sm text-gray-500 mb-2">
+                <span class="lang-en">Your K-Pop Persona is</span>
+                <span class="lang-ko">당신의 K-팝 페르소나</span>
+                <span class="lang-ja">あなたのK-POPペルソナ</span>
+                <span class="lang-zh">你的K-pop人格</span>
+                <span class="lang-es">Tu Persona K-Pop es</span>
+            </p>
+            <h2 id="r-name" class="text-5xl font-bold mb-3 gradient-text"></h2>
+            <p id="r-tagline" class="text-xl text-gray-800 mb-6"></p>
+            <div class="card p-6 text-left mb-8">
+                <p id="r-description" class="text-gray-700 leading-relaxed"></p>
+            </div>
+
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold mb-3 text-gray-900">
+                    <span class="lang-en">Drag your bias group in</span>
+                    <span class="lang-ko">친구도 페르소나 찾아보기</span>
+                    <span class="lang-ja">友達のペルソナも調べてみよう</span>
+                    <span class="lang-zh">让朋友也找出他们的人格</span>
+                    <span class="lang-es">Trae a tu fandom</span>
+                </h3>
+                <p class="text-sm text-gray-600 mb-5">
+                    <span class="lang-en">Save it, share the link, or compare with friends — see your group line-up.</span>
+                    <span class="lang-ko">결과 저장·링크 공유로 친구들과 라인업을 만들어 보세요.</span>
+                    <span class="lang-ja">画像保存・リンク共有で友達とラインナップを組もう。</span>
+                    <span class="lang-zh">保存图片、分享链接，和朋友一起拼出团体阵容。</span>
+                    <span class="lang-es">Guarda, comparte el enlace o compara con amigos — arma tu line-up.</span>
+                </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="km_saveImage()" class="bg-white hover:bg-pink-50 text-gray-800 py-2.5 px-5 rounded-full text-sm font-medium border border-pink-200">
+                        <span class="lang-en">📷 Save Image</span><span class="lang-ko">📷 이미지 저장</span><span class="lang-ja">📷 画像保存</span><span class="lang-zh">📷 保存图片</span><span class="lang-es">📷 Guardar Imagen</span>
+                    </button>
+                    <button onclick="km_copyLink()" class="bg-white hover:bg-pink-50 text-gray-800 py-2.5 px-5 rounded-full text-sm font-medium border border-pink-200">
+                        <span class="lang-en">🔗 Copy Link</span><span class="lang-ko">🔗 링크 복사</span><span class="lang-ja">🔗 リンクコピー</span><span class="lang-zh">🔗 复制链接</span><span class="lang-es">🔗 Copiar Enlace</span>
+                    </button>
+                    <button onclick="km_restart()" class="gradient-bg text-white py-2.5 px-5 rounded-full text-sm font-medium">
+                        <span class="lang-en">↻ Retake</span><span class="lang-ko">↻ 다시</span><span class="lang-ja">↻ もう一度</span><span class="lang-zh">↻ 重测</span><span class="lang-es">↻ Repetir</span>
+                    </button>
+                </div>
+                <p id="km-toast" class="mt-4 text-sm text-pink-600 font-medium hidden"></p>
+            </div>
+
+            <div class="mt-10 text-sm text-gray-500">
+                <span class="lang-en">Try also:</span><span class="lang-ko">다른 테스트:</span><span class="lang-ja">他の診断:</span><span class="lang-zh">其他测试:</span><span class="lang-es">Prueba también:</span>
+                <a href="/vibe-check/" class="text-pink-600 hover:underline ml-2">AI Vibe Check</a> ·
+                <a href="/compatibility/" class="text-pink-600 hover:underline">Compatibility</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-pink-100 mt-16 py-8 text-center text-gray-500 text-xs">
+        <p>© 2026 AI Test Lab. <a href="/privacy-policy" class="hover:text-pink-600 underline">Privacy</a> · <a href="/disclaimer" class="hover:text-pink-600 underline">Disclaimer</a> · <a href="/terms-of-service" class="hover:text-pink-600 underline">Terms</a></p>
+    </footer>
+
+    <script>
+    (function(){
+        function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+        function show(id){document.getElementById(id).classList.remove('hidden');}
+        function hide(id){document.getElementById(id).classList.add('hidden');}
+        function showToast(m){var el=document.getElementById('km-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
+        function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
+        var LANG = (document.documentElement.lang || 'en').slice(0,2);
+
+        // 4 axes: V (Visual) / S (Skill), C (Charisma) / T (Talent), M (Mainstream) / U (Underground), L (Leader) / Y (Maknae)
+        var Q = [
+            {
+                q: { en: "Backstage, 5 minutes before the stage. You…", ko: "무대 5분 전 백스테이지. 당신은…", ja: "ステージ5分前のバックステージ。あなたは…", zh: "舞台前5分钟，后台。你…", es: "Backstage, 5 minutos antes del escenario. Tú…" },
+                opts: [
+                    { t: { en: "Check the mirror. Twice.", ko: "거울 확인. 두 번.", ja: "鏡確認。2回。", zh: "照镜子。两次。", es: "Te miras al espejo. Dos veces." }, axis: 'V', w: 2 },
+                    { t: { en: "Vocal warm-up scales", ko: "발성 워밍업 스케일", ja: "発声ウォームアップ", zh: "嗓音热身音阶", es: "Escalas de calentamiento vocal" }, axis: 'S', w: 2 },
+                    { t: { en: "Pump up the team energy", ko: "멤버들 분위기 끌어올리기", ja: "メンバーのテンション上げる", zh: "调动队员气氛", es: "Subes la energía del equipo" }, axis: 'C', w: 2 },
+                    { t: { en: "Quietly review the choreography", ko: "조용히 안무 복습", ja: "静かに振付を復習", zh: "悄悄复习编舞", es: "Repasas la coreografía en silencio" }, axis: 'T', w: 2 }
+                ]
+            },
+            {
+                q: { en: "Fan sign event — your strongest moment is…", ko: "팬 사인회, 당신이 빛나는 순간은…", ja: "ファンサイン会。あなたが輝く瞬間は…", zh: "粉丝签售会，你最闪光的瞬间是…", es: "Fan sign — tu momento más fuerte es…" },
+                opts: [
+                    { t: { en: "Eye contact that breaks the internet", ko: "인터넷 멈추게 하는 눈맞춤", ja: "ネットを止めるアイコンタクト", zh: "让网络瘫痪的眼神接触", es: "Contacto visual que rompe internet" }, axis: 'V', w: 2 },
+                    { t: { en: "Remembering the fan's name from last time", ko: "지난번 팬 이름 기억하기", ja: "前回のファンの名前を覚えている", zh: "记得上次粉丝的名字", es: "Recuerdas el nombre del fan de la última vez" }, axis: 'C', w: 2 },
+                    { t: { en: "A surprise short freestyle dance", ko: "깜짝 프리스타일 댄스 한 소절", ja: "サプライズのフリースタイル一節", zh: "突如其来的即兴小段舞蹈", es: "Una sorpresa: un breve baile freestyle" }, axis: 'T', w: 2 },
+                    { t: { en: "A handwritten note in their language", ko: "팬 모국어로 쓴 손편지", ja: "ファンの母国語で書いた手書きメッセージ", zh: "用粉丝母语手写一段话", es: "Una nota a mano en su idioma" }, axis: 'M', w: 2 }
+                ]
+            },
+            {
+                q: { en: "New choreography — your real strength is…", ko: "신곡 안무 — 당신의 진짜 강점은…", ja: "新曲振付 — あなたの本当の強みは…", zh: "新编舞 — 你真正的强项是…", es: "Nueva coreografía — tu verdadera fortaleza es…" },
+                opts: [
+                    { t: { en: "Crisp lines and aesthetic poses", ko: "깔끔한 라인과 미적 포즈", ja: "シャープなラインと美的ポーズ", zh: "干净利落的动作线条和美的姿态", es: "Líneas nítidas y poses estéticas" }, axis: 'V', w: 2 },
+                    { t: { en: "Body control on the kill point", ko: "킬링파트 바디 컨트롤", ja: "キリングパートのボディコントロール", zh: "亮点动作的身体控制", es: "Control corporal en el punto clave" }, axis: 'T', w: 2 },
+                    { t: { en: "Reading the music in real time", ko: "실시간 음악 해석", ja: "リアルタイムの音楽解釈", zh: "实时解读音乐", es: "Interpretas la música en tiempo real" }, axis: 'S', w: 2 },
+                    { t: { en: "Improvising your own ad-libs", ko: "본인 애드리브 추가", ja: "自分のアドリブを加える", zh: "添加自己的即兴元素", es: "Improvisar tus propios ad-libs" }, axis: 'U', w: 2 }
+                ]
+            },
+            {
+                q: { en: "Variety show — your role is…", ko: "예능 출연 — 당신의 역할은…", ja: "バラエティー出演 — あなたの役割は…", zh: "综艺节目 — 你的角色是…", es: "Variety show — tu rol es…" },
+                opts: [
+                    { t: { en: "The visual reaction camera magnet", ko: "리액션 캠 도맡는 비주얼", ja: "リアクションカメラを引きつけるビジュアル", zh: "吸引反应镜头的颜值担当", es: "El imán visual de la cámara de reacción" }, axis: 'V', w: 2 },
+                    { t: { en: "The chaos engine making everyone laugh", ko: "모두 웃기는 카오스 엔진", ja: "みんなを笑わせるカオスエンジン", zh: "让所有人发笑的混乱发动机", es: "El motor de caos que hace reír a todos" }, axis: 'C', w: 2 },
+                    { t: { en: "The quiet one stealing the punchline", ko: "한마디로 분위기 가져가는 조용한 존재", ja: "一言で空気をさらう静かな存在", zh: "用一句话夺走焦点的安静存在", es: "El callado que roba el remate" }, axis: 'U', w: 2 },
+                    { t: { en: "The leader keeping the segment on track", ko: "코너 진행을 안정시키는 리더", ja: "コーナー進行を安定させるリーダー", zh: "稳定节目流程的队长", es: "El líder que mantiene el segmento en marcha" }, axis: 'L', w: 2 }
+                ]
+            },
+            {
+                q: { en: "What matters most when you face fans?", ko: "팬 앞에 설 때 가장 중요한 것?", ja: "ファンの前に立つとき、最も大切なこと？", zh: "面对粉丝时，最重要的是什么？", es: "¿Qué importa más cuando estás ante los fans?" },
+                opts: [
+                    { t: { en: "Showing growth from rookie days", ko: "데뷔 때보다 성장한 모습", ja: "デビュー時からの成長", zh: "比出道时成长的样子", es: "Mostrar crecimiento desde el debut" }, axis: 'S', w: 2 },
+                    { t: { en: "Authenticity over the polished image", ko: "다듬어진 이미지보다 진정성", ja: "整ったイメージより真正性", zh: "真诚胜过光鲜形象", es: "Autenticidad por encima de la imagen pulida" }, axis: 'U', w: 2 },
+                    { t: { en: "Holding the team together", ko: "팀을 하나로 잡아주는 것", ja: "チームをまとめること", zh: "把团队团结起来", es: "Mantener al equipo unido" }, axis: 'L', w: 2 },
+                    { t: { en: "Being the youngest energy of the group", ko: "팀의 막내 같은 에너지", ja: "グループのマンネのようなエネルギー", zh: "团里忙内般的活力", es: "Ser la energía más joven del grupo" }, axis: 'Y', w: 2 }
+                ]
+            }
+        ];
+
+        // 16 archetypes keyed by 4-axis combo (V/S, C/T, M/U, L/Y).
+        var TYPES = {
+            'VCML': { name_en: 'The Iconic Visual Leader', name_ko: '아이코닉 비주얼 리더', name_ja: 'アイコニックビジュアルリーダー', name_zh: '标志性门面队长', name_es: 'Líder Visual Icónico',
+                tagline_en: 'Magazine cover meets group captain.', tagline_ko: '매거진 표지와 단체 캡틴의 결합.', tagline_ja: '雑誌表紙とグループキャプテンの融合。', tagline_zh: '杂志封面与队长气场合一。', tagline_es: 'Portada de revista y capitán de grupo.',
+                desc_en: 'You carry the group\'s public image. Reaction cameras follow you, and so does the schedule. You make eye contact like it\'s a strategy.', desc_ko: '팀의 퍼블릭 이미지를 책임집니다. 리액션 캠도 당신을, 스케줄도 당신을 따라옵니다. 눈맞춤이 전략처럼 정확합니다.', desc_ja: 'グループのパブリックイメージを背負います。リアクションカメラもスケジュールもあなた中心。アイコンタクトは戦略です。', desc_zh: '你扛起团队的公众形象。反应镜头跟着你走，日程也是。眼神接触像战术。', desc_es: 'Cargas con la imagen pública del grupo. Las cámaras de reacción y la agenda te siguen.' },
+            'VCMY': { name_en: 'The Cherry Visual Maknae', name_ko: '체리 비주얼 막내', name_ja: 'チェリービジュアルマンネ', name_zh: '甜心门面忙内', name_es: 'Maknae Visual Cereza',
+                tagline_en: 'The internet\'s favorite chaos angel.', tagline_ko: '인터넷이 사랑하는 카오스 천사.', tagline_ja: 'ネット最愛のカオス天使。', tagline_zh: '互联网最爱的混乱小天使。', tagline_es: 'El ángel del caos favorito de internet.',
+                desc_en: 'Visual + maknae energy = unfair advantage. Older members protect you, fans gif you, brands love you. You also know it.', desc_ko: '비주얼 + 막내 에너지 = 반칙 수준의 사기. 형/누나들이 보호하고, 팬들은 GIF로 만들고, 브랜드는 사랑합니다. 본인도 알고 있죠.', desc_ja: 'ビジュアル+マンネエネルギー＝反則レベルの強さ。先輩が守り、ファンはGIF化し、ブランドが愛する。本人も自覚あり。', desc_zh: '门面+忙内能量＝犯规级优势。前辈保护，粉丝做gif，品牌喜爱。你自己也知道。', desc_es: 'Visual + maknae = ventaja injusta. Los mayores te cuidan, los fans hacen GIFs y las marcas te quieren. Y lo sabes.' },
+            'VCUL': { name_en: 'The Mysterious Image Captain', name_ko: '미스터리 이미지 캡틴', name_ja: 'ミステリアスイメージキャプテン', name_zh: '神秘形象队长', name_es: 'Capitán de Imagen Misterioso',
+                tagline_en: 'Less is more — and you know it.', tagline_ko: '말 적게, 영향 크게 — 본인이 압니다.', tagline_ja: '言葉少なく、影響大きく — 本人わかってる。', tagline_zh: '话少影响大 — 你心里有数。', tagline_es: 'Menos es más — y lo sabes.',
+                desc_en: 'You lead by aesthetic. One photo and the comments are 4,000 lines. You don\'t need to talk much — your silence is a brand.', desc_ko: '미감으로 이끕니다. 사진 한 장에 댓글이 4천 줄. 말 많이 안 해도 됩니다 — 침묵이 곧 브랜드.', desc_ja: '美学でリードします。写真1枚でコメント4,000行。多く語らなくていい — 沈黙がブランド。', desc_zh: '你以美感引领。一张照片，评论4000条。不用多说 — 沉默就是品牌。', desc_es: 'Lideras con estética. Una foto y los comentarios llegan a 4,000. No hace falta hablar — tu silencio es marca.' },
+            'VCUY': { name_en: 'The Soft Boy/Girl Aesthetic', name_ko: '소프트 보이/걸 에스테틱', name_ja: 'ソフトボーイ/ガール美学', name_zh: '软系男孩/女孩美学', name_es: 'Estética Soft Boy/Girl',
+                tagline_en: 'Pinterest moodboard with a heartbeat.', tagline_ko: '심장이 뛰는 핀터레스트 무드보드.', tagline_ja: '鼓動するPinterestムードボード。', tagline_zh: '会心跳的Pinterest灵感板。', tagline_es: 'Moodboard de Pinterest con corazón.',
+                desc_en: 'You ARE the visual moodboard. Quiet, observant, a little melancholic. Fans screenshot every smile.', desc_ko: '당신이 곧 비주얼 무드보드. 조용하고 관찰력 있고 살짝 멜랑콜리. 팬들은 모든 미소를 캡처합니다.', desc_ja: 'あなた自身がビジュアルムードボード。静かで観察力があり、少しメランコリック。ファンは全ての笑顔をスクショします。', desc_zh: '你就是视觉灵感板。安静、观察力强、略带忧郁。粉丝截图每一个微笑。', desc_es: 'TÚ eres el moodboard visual. Callado, observador, un poco melancólico. Los fans capturan cada sonrisa.' },
+            'VTML': { name_en: 'The Triple Threat Captain', name_ko: '트리플 쓰렛 캡틴', name_ja: 'トリプルスレットキャプテン', name_zh: '全能威胁队长', name_es: 'Capitán Triple Amenaza',
+                tagline_en: 'Visuals, skills, and the room key.', tagline_ko: '비주얼, 실력, 그리고 방 열쇠.', tagline_ja: 'ビジュアル、スキル、部屋の鍵。', tagline_zh: '颜值、实力、还有房间钥匙。', tagline_es: 'Visual, habilidad y la llave del cuarto.',
+                desc_en: 'You can do anything in the position chart. Leader because you have to be, not because you want to. Your bias is your work.', desc_ko: '포지션 차트의 모든 칸을 채웁니다. 원해서가 아니라 필요해서 리더. 본인의 최애는 본인의 작업물.', desc_ja: 'ポジションチャートのすべてを埋められる。やりたくてリーダーじゃなく、必要だから。推しは自分の作品。', desc_zh: '你能填满定位图的每一格。当队长不是想当，是非你不可。最爱的是自己的作品。', desc_es: 'Llenas todas las casillas de la lista de posiciones. Líder por necesidad, no por elección.' },
+            'VTMY': { name_en: 'The All-Rounder Maknae', name_ko: '올라운더 막내', name_ja: 'オールラウンダーマンネ', name_zh: '全能忙内', name_es: 'Maknae Todoterreno',
+                tagline_en: 'Born talented. Stayed talented.', tagline_ko: '재능 타고남. 그대로 유지.', tagline_ja: '生まれつき才能。維持中。', tagline_zh: '天生有才。保持有才。', tagline_es: 'Nació con talento. Lo mantiene.',
+                desc_en: 'You can sing, dance, look good, and joke — at age that should be illegal. Hyungs/unnies pretend not to be jealous.', desc_ko: '노래, 춤, 외모, 개그 — 그 나이에 불법이어야 할 수준. 형/언니들은 안 부러운 척 합니다.', desc_ja: '歌、ダンス、ビジュアル、笑い — その年齢で違法レベル。先輩たちは嫉妬してないフリ。', desc_zh: '能唱、能跳、能拍、能搞笑 — 这个年纪不该这么强。哥哥姐姐假装不嫉妒。', desc_es: 'Cantas, bailas, luces bien y haces reír — a una edad que debería ser ilegal. Los mayores fingen no envidiarte.' },
+            'VTUL': { name_en: 'The Concept Architect', name_ko: '컨셉 아키텍트', name_ja: 'コンセプトアーキテクト', name_zh: '概念建筑师', name_es: 'Arquitecto del Concepto',
+                tagline_en: 'You design the era nobody saw coming.', tagline_ko: '아무도 예측 못한 시대를 설계합니다.', tagline_ja: '誰も予想しなかった時代を設計する。', tagline_zh: '设计无人预见的时代。', tagline_es: 'Diseñas la era que nadie vio venir.',
+                desc_en: 'You shape the visual concept and execute it perfectly. Producers ask for your opinion. Stylists fight to dress you.', desc_ko: '비주얼 컨셉을 설계하고 완벽 실행. 프로듀서가 의견 물으러 옵니다. 스타일리스트들이 입혀보려고 경쟁.', desc_ja: 'ビジュアルコンセプトを設計して完璧に実行。プロデューサーは意見を求めにくる。スタイリストは着せたがる。', desc_zh: '你设计视觉概念并完美执行。制作人来征求意见。造型师抢着给你穿衣。', desc_es: 'Diseñas el concepto visual y lo ejecutas a la perfección. Los productores te consultan. Los estilistas pelean por vestirte.' },
+            'VTUY': { name_en: 'The Underground Visual', name_ko: '언더그라운드 비주얼', name_ja: 'アンダーグラウンドビジュアル', name_zh: '地下系门面', name_es: 'Visual Underground',
+                tagline_en: 'Cult favorite with stage presence.', tagline_ko: '컬트 팬덤이 사랑하는 무대 장악력.', tagline_ja: 'コアファン熱愛のステージ掌握力。', tagline_zh: '小众粉热爱的舞台掌控力。', tagline_es: 'Favorito de culto con presencia escénica.',
+                desc_en: 'Mainstream might miss you, but the dedicated fans build empires around you. Your concept work shows up in PhD theses.', desc_ko: '대중은 놓칠 수 있어도 코어 팬덤은 당신 중심으로 제국을 짓습니다. 컨셉 작업이 박사논문에 인용됩니다.', desc_ja: 'メインストリームは見逃しても、コアファンはあなたを中心に帝国を築く。コンセプトワークは博士論文に引用される。', desc_zh: '主流可能错过你，但核心粉以你为中心建帝国。你的概念被博士论文引用。', desc_es: 'El mainstream puede pasarte por alto, pero los fans dedicados construyen imperios contigo. Tu concepto aparece en tesis doctorales.' },
+            'SCML': { name_en: 'The Powerhouse Vocal Captain', name_ko: '파워하우스 보컬 캡틴', name_ja: 'パワーハウスボーカルキャプテン', name_zh: '实力主唱队长', name_es: 'Capitán Vocal Powerhouse',
+                tagline_en: 'High note + leadership combo.', tagline_ko: '고음 + 리더십 콤보.', tagline_ja: 'ハイノート＋リーダーシップ。', tagline_zh: '高音＋领导力组合。', tagline_es: 'Nota alta + liderazgo combinados.',
+                desc_en: 'You hit the kill note and run the team meeting. Members vote you leader because they trust your ear. Encore stages exist for you.', desc_ko: '킬링 노트도 잡고 팀 미팅도 진행. 멤버들은 당신의 귀를 믿기 때문에 리더로 뽑습니다. 앙코르 무대는 당신을 위해 존재합니다.', desc_ja: 'キリングノートを決めてチームミーティングも仕切る。メンバーはあなたの耳を信頼して投票する。アンコールはあなたのために。', desc_zh: '你飙出绝杀高音，也主持团队会议。队员因信任你的耳朵投你为队长。安可舞台为你而生。', desc_es: 'Clavas la nota clave y diriges la reunión del equipo. Los miembros te eligen líder por confiar en tu oído.' },
+            'SCMY': { name_en: 'The Vocal Maknae Sweetheart', name_ko: '보컬 막내 스윗하트', name_ja: 'ボーカルマンネスウィートハート', name_zh: '主唱忙内甜心', name_es: 'Maknae Vocal Encantador',
+                tagline_en: 'Voice older than your face.', tagline_ko: '얼굴보다 오래된 목소리.', tagline_ja: '顔より大人びた歌声。', tagline_zh: '比脸更成熟的嗓音。', tagline_es: 'Voz más madura que tu rostro.',
+                desc_en: 'When you sing, the room ages 10 years and aches. When you stop, you giggle. Fans cannot recover.', desc_ko: '노래하면 방 전체가 10년 늙고 아립니다. 멈추면 웃습니다. 팬들은 회복 못 합니다.', desc_ja: '歌うと部屋が10歳老けて切なくなる。歌い終わって笑う。ファンは立ち直れない。', desc_zh: '一开嗓全场老十岁、心痛。停下笑出声。粉丝无法回血。', desc_es: 'Cuando cantas, la sala envejece 10 años y duele. Te detienes y te ríes. Los fans no se recuperan.' },
+            'STUL': { name_en: 'The Producer Captain', name_ko: '프로듀서 캡틴', name_ja: 'プロデューサーキャプテン', name_zh: '制作人队长', name_es: 'Capitán Productor',
+                tagline_en: 'Writes the song. Leads the practice. Sleeps when?', tagline_ko: '곡 쓰고 연습 이끌고 — 잠은 언제?', tagline_ja: '曲を書き、練習をリードし — いつ寝るの？', tagline_zh: '写歌、领练习 — 你什么时候睡？', tagline_es: 'Escribe la canción. Dirige el ensayo. ¿Cuándo duerme?',
+                desc_en: 'You write the music, run the rehearsal, and call the label. Members nominate you leader because nobody else has the bandwidth.', desc_ko: '곡 쓰고, 리허설 진행하고, 회사와 통화. 멤버들이 당신을 리더로 뽑는 이유는 다른 사람은 그 일을 다 못 하기 때문.', desc_ja: '曲を書き、リハーサルを進め、事務所と通話。誰もそのキャパがないから、メンバーはあなたをリーダーに指名する。', desc_zh: '你写歌、带排练、跟公司通话。队员推你为队长，是因为没人能扛得住。', desc_es: 'Escribes la música, diriges los ensayos y llamas a la disquera. Te eligen líder porque nadie más tiene capacidad.' },
+            'STUY': { name_en: 'The Self-Producing Maknae', name_ko: '자체 프로듀싱 막내', name_ja: 'セルフプロデュースマンネ', name_zh: '自制忙内', name_es: 'Maknae Autoproducido',
+                tagline_en: 'You are 19 and you have a discography.', tagline_ko: '19살인데 디스코그래피가 있습니다.', tagline_ja: '19歳でディスコグラフィー所持。', tagline_zh: '19岁就有自己的作品集。', tagline_es: 'Tienes 19 años y ya una discografía.',
+                desc_en: 'You produce your own tracks at midnight. Hyungs ask "where did you learn this?" You shrug and pull up Logic Pro.', desc_ko: '자정에 본인 트랙 프로듀싱. 형들이 "이거 어디서 배웠어?" 묻습니다. 어깨 으쓱하고 Logic Pro 켭니다.', desc_ja: '深夜に自作トラックをプロデュース。先輩が「どこで習ったの？」と聞く。肩をすくめてLogic Proを開く。', desc_zh: '凌晨自己制作曲子。哥哥问"你哪学的？"你耸肩打开Logic Pro。', desc_es: 'Produces tus propios temas a medianoche. Los mayores preguntan "¿dónde aprendiste?" Te encoges y abres Logic Pro.' },
+            'SCUL': { name_en: 'The Indie Soul Leader', name_ko: '인디 소울 리더', name_ja: 'インディソウルリーダー', name_zh: '独立灵魂队长', name_es: 'Líder de Alma Indie',
+                tagline_en: 'Ballad voice with policy opinions.', tagline_ko: '발라드 보이스에 정책적 의견.', tagline_ja: 'バラード歌唱と政策的意見。', tagline_zh: '抒情嗓音＋政策意见。', tagline_es: 'Voz de balada con opiniones políticas.',
+                desc_en: 'You lead the team\'s artistic direction. The fan-cafe interviews are quoted. Songs land slow but stay forever.', desc_ko: '팀의 예술적 방향을 이끕니다. 팬카페 인터뷰가 인용됩니다. 곡은 천천히 닿지만 영원히 남습니다.', desc_ja: 'チームの芸術的方向を率いる。ファンカフェのインタビューが引用される。曲はゆっくり届くが永遠に残る。', desc_zh: '你引领团队的艺术方向。粉丝咖啡的采访被引用。歌曲慢热但永留。', desc_es: 'Diriges la dirección artística del equipo. Tus entrevistas se citan. Las canciones tardan en llegar pero quedan para siempre.' },
+            'SCUY': { name_en: 'The Soul Maknae', name_ko: '소울 막내', name_ja: 'ソウルマンネ', name_zh: '灵魂忙内', name_es: 'Maknae con Alma',
+                tagline_en: 'Music history is in your voice.', tagline_ko: '목소리에 음악사가 담겨 있습니다.', tagline_ja: '声に音楽史が宿る。', tagline_zh: '音乐史就在你的嗓音里。', tagline_es: 'La historia de la música vive en tu voz.',
+                desc_en: 'You channel old soul/jazz/r&b at an age that shouldn\'t be possible. Producers cry. Fans tattoo your lyrics.', desc_ko: '나이답지 않게 옛 소울/재즈/R&B를 자연스레 표현합니다. 프로듀서가 울고, 팬들은 가사를 타투로.', desc_ja: '年齢らしくないソウル/ジャズ/R&Bを自然に表現。プロデューサーは泣き、ファンは歌詞をタトゥーに。', desc_zh: '以不符合年龄的方式自然表达老灵魂/爵士/R&B。制作人落泪，粉丝纹歌词。', desc_es: 'Canalizas soul/jazz/r&b clásicos a una edad imposible. Los productores lloran. Los fans se tatúan tus letras.' },
+            'STML': { name_en: 'The Performance Captain', name_ko: '퍼포먼스 캡틴', name_ja: 'パフォーマンスキャプテン', name_zh: '舞台队长', name_es: 'Capitán de Performance',
+                tagline_en: 'Choreography heavy lifter who counts heads.', tagline_ko: '안무 헤비 리프터 + 인원 점검.', tagline_ja: '振付ヘビー担当＋メンバー点呼係。', tagline_zh: '编舞主力＋点队员的人。', tagline_es: 'Coreógrafo titular que cuenta cabezas.',
+                desc_en: 'You hold the position chart together and lead the practice room. Stage formation? Your domain. Members trust your spatial sense.', desc_ko: '포지션 차트를 지키고 연습실을 이끕니다. 무대 포메이션? 당신의 영역. 멤버들은 당신의 공간감을 믿습니다.', desc_ja: 'ポジションチャートを支え練習室を率いる。フォーメーション？あなたのテリトリー。メンバーは空間感を信頼。', desc_zh: '你撑起定位图、领导练习室。舞台站位？你的地盘。队员信任你的空间感。', desc_es: 'Sostienes la pizarra de posiciones y diriges el ensayo. ¿Formación escénica? Tu dominio.' },
+            'STMY': { name_en: 'The Dance Machine Maknae', name_ko: '댄스 머신 막내', name_ja: 'ダンスマシーンマンネ', name_zh: '舞蹈机器忙内', name_es: 'Maknae Máquina de Baile',
+                tagline_en: 'Stage clips loop on TikTok. Forever.', tagline_ko: '무대 클립이 틱톡에서 무한 반복. 영원히.', tagline_ja: 'ステージ動画がTikTokで無限ループ。永遠に。', tagline_zh: '舞台片段在TikTok无限循环。永远。', tagline_es: 'Tus clips de escenario se repiten en TikTok. Para siempre.',
+                desc_en: 'Your fancam reaches 50M views in a week. Choreographers nominate you. Hyungs/unnies film your practice for inspiration.', desc_ko: '직캠이 1주 만에 5천만 뷰. 안무가들이 추천합니다. 형/누나들은 영감 얻으려 연습 영상을 찍습니다.', desc_ja: 'ファンカムが1週間で5,000万再生。振付師が推す。先輩はインスピレーションを得るため練習動画を撮る。', desc_zh: 'fancam一周5000万播放。编舞师推荐你。哥哥姐姐为找灵感拍你的练习视频。', desc_es: 'Tu fancam llega a 50M de vistas en una semana. Los coreógrafos te nominan. Los mayores graban tu ensayo para inspirarse.' }
+        };
+
+        var scores = {};
+        var qIdx = 0;
+        function startQuiz(){
+            scores = {V:0,S:0,C:0,T:0,M:0,U:0,L:0,Y:0};
+            qIdx = 0;
+            renderQ();
+            hide('hero-stage'); show('quiz-stage');
+        }
+        function renderQ(){
+            var q = Q[qIdx];
+            document.getElementById('q-counter').textContent = (qIdx+1) + ' / 5';
+            document.getElementById('q-progress').style.width = ((qIdx+1)*20) + '%';
+            document.getElementById('q-text').textContent = q.q[LANG] || q.q.en;
+            var box = document.getElementById('q-options');
+            box.innerHTML = '';
+            q.opts.forEach(function(opt){
+                var btn = document.createElement('button');
+                btn.className = 'card w-full text-left p-4 hover:border-pink-400 transition border';
+                btn.textContent = opt.t[LANG] || opt.t.en;
+                btn.onclick = function(){ pick(opt); };
+                box.appendChild(btn);
+            });
+        }
+        function pick(opt){
+            scores[opt.axis] = (scores[opt.axis]||0) + opt.w;
+            qIdx++;
+            if(qIdx >= Q.length){ finish(); } else { renderQ(); }
+        }
+        function finish(){
+            var t = (scores.V>=scores.S?'V':'S') + (scores.C>=scores.T?'C':'T') + (scores.M>=scores.U?'M':'U') + (scores.L>=scores.Y?'L':'Y');
+            var data = TYPES[t] || TYPES['VCMY'];
+            document.getElementById('r-name').textContent = data['name_'+LANG] || data.name_en;
+            document.getElementById('r-tagline').textContent = data['tagline_'+LANG] || data.tagline_en;
+            document.getElementById('r-description').textContent = data['desc_'+LANG] || data.desc_en;
+            try{ window.history.replaceState(null, '', '#'+t); }catch(e){}
+            hide('quiz-stage'); show('result-stage');
+            gtagSafe('kpop_match_complete', {type: t});
+        }
+
+        window.km_start = function(){ gtagSafe('kpop_match_start'); startQuiz(); };
+        window.km_restart = function(){ hide('result-stage'); startQuiz(); };
+        window.km_saveImage = function(){
+            gtagSafe('share_save_image', {tool:'kpop-match'});
+            var el = document.getElementById('result-stage') || document.body;
+            var p = (typeof html2canvas==='function') ? Promise.resolve() : loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');
+            p.then(function(){ return html2canvas(el, { backgroundColor: '#fdf2f8', scale: 2, useCORS: true }); })
+             .then(function(c){ var a=document.createElement('a'); a.download='kpop-persona.png'; a.href=c.toDataURL('image/png'); a.click(); showToast('✓ Saved'); })
+             .catch(function(){ showToast('⚠ Save failed'); });
+        };
+        window.km_copyLink = function(){
+            gtagSafe('share_copy_link', {tool:'kpop-match'});
+            var url = window.location.href;
+            var ok = function(){ showToast('✓ Link copied'); };
+            if(navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(url).then(ok, function(){ window.prompt('Copy:', url); });
+            } else { window.prompt('Copy:', url); ok(); }
+        };
+
+        document.addEventListener('DOMContentLoaded', function(){
+            var h = (window.location.hash||'').replace('#','').toUpperCase();
+            if(h && TYPES[h]){
+                var data = TYPES[h];
+                document.getElementById('r-name').textContent = data['name_'+LANG] || data.name_en;
+                document.getElementById('r-tagline').textContent = data['tagline_'+LANG] || data.tagline_en;
+                document.getElementById('r-description').textContent = data['desc_'+LANG] || data.desc_en;
+                hide('hero-stage'); show('result-stage');
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

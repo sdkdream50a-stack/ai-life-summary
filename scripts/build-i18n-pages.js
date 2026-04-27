@@ -115,6 +115,38 @@ const META_CONTENT = {
             ogDescription: 'Deja de adivinar y descubre si es tu alma gemela o una red flag. 500K+ parejas probadas!'
         }
     },
+    'kpop-match': {
+        en: {
+            title: 'K-Pop Persona Match — Which Idol Archetype Are You? | AI Test Lab',
+            description: 'Find your K-pop persona archetype: visual, vocal, dancer, rapper, leader, or maknae. 5 questions, 60 seconds, 16 archetypes. Available in 5 languages.',
+            ogTitle: 'K-Pop Persona Match — Which Idol Archetype Are You?',
+            ogDescription: 'Visual, vocal, dancer, leader, or maknae? Find your K-pop persona in 60 seconds.'
+        },
+        ko: {
+            title: 'K-팝 페르소나 매칭 — 당신의 아이돌 아키타입은? | AI Test Lab',
+            description: '비주얼·메인보컬·리드댄서·래퍼·리더·막내 — 당신의 K-팝 페르소나를 찾아보세요. 5문항·60초·16개 아키타입. 5개 언어 지원.',
+            ogTitle: 'K-팝 페르소나 매칭 — 당신의 아이돌 아키타입은?',
+            ogDescription: '비주얼·보컬·댄서·리더·막내? 60초 안에 K-팝 페르소나를 찾아보세요.'
+        },
+        ja: {
+            title: 'K-POPペルソナ診断 — あなたのアイドルタイプは？ | AI Test Lab',
+            description: 'ビジュアル・メインボーカル・リードダンサー・ラッパー・リーダー・マンネ — あなたのK-POPペルソナを発見。5問・60秒・16タイプ。5言語対応。',
+            ogTitle: 'K-POPペルソナ診断 — あなたのアイドルタイプは？',
+            ogDescription: 'ビジュアル・ボーカル・ダンサー・リーダー・マンネ？60秒でK-POPペルソナを発見。'
+        },
+        zh: {
+            title: 'K-pop人格匹配 — 你是哪种偶像原型？ | AI Test Lab',
+            description: '门面、主唱、领舞、说唱、队长、忙内 — 找到你的K-pop人格。5道题·60秒·16种原型。支持5种语言。',
+            ogTitle: 'K-pop人格匹配 — 你是哪种偶像原型？',
+            ogDescription: '门面、主唱、舞者、队长、忙内？60秒发现你的K-pop人格。'
+        },
+        es: {
+            title: 'K-Pop Persona Match — ¿Qué Arquetipo de Ídolo Eres? | AI Test Lab',
+            description: 'Visual, Main Vocal, Lead Dancer, Rapper, Leader o Maknae — encuentra tu persona K-Pop. 5 preguntas, 60 segundos, 16 arquetipos. En 5 idiomas.',
+            ogTitle: 'K-Pop Persona Match — ¿Qué Arquetipo de Ídolo Eres?',
+            ogDescription: 'Visual, vocal, dancer, líder o maknae? Encuentra tu persona K-Pop en 60 segundos.'
+        }
+    },
     'vibe-check': {
         en: {
             title: 'AI Vibe Check - 16 Absurd AI Personality Types in 60 Seconds',
@@ -196,7 +228,8 @@ const PAGES = [
     { template: 'scripts/templates/life-summary.html', slug: 'life-summary', name: 'life-summary' },
     { template: 'scripts/templates/compatibility.html', slug: 'compatibility', name: 'compatibility' },
     { template: 'scripts/templates/age-calculator.html', slug: 'age-calculator', name: 'age-calculator' },
-    { template: 'scripts/templates/vibe-check.html', slug: 'vibe-check', name: 'vibe-check' }
+    { template: 'scripts/templates/vibe-check.html', slug: 'vibe-check', name: 'vibe-check' },
+    { template: 'scripts/templates/kpop-match.html', slug: 'kpop-match', name: 'kpop-match' }
 ];
 
 // Result pages (need special handling) - use templates folder
