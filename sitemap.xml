@@ -2,593 +2,807 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://smartaitest.com/</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog.html</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-<url>
-    <loc>https://smartaitest.com/authors/lee-sanghyuk</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  
-  <url>
-    <loc>https://smartaitest.com/blog/ai-personality-analysis-accuracy</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://smartaitest.com/blog/compatibility-psychology</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/couple-compatibility-science</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/healthy-relationship-signs</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mbti-vs-big5</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mental-age-meaning</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mental-age-science</loc>
-    <lastmod>2026-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-test-history</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <url>
-    <loc>https://smartaitest.com/blog/barnum-effect-psychology</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/blood-type-compatibility-science</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/relationship-compatibility-factors</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/biological-vs-mental-age</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-types-love-patterns</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/psychology-test-stress-relief</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/erikson-psychosocial-stages</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-career-guide</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/compatible-couples-psychology</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/zodiac-vs-ai-compatibility</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://smartaitest.com/en/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/about/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/about/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/about/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/about/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/es/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/es/about/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/about/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/about/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/about/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/es/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/es/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/es/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ja/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ja/about/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/about/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/about/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/about/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ja/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ja/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ja/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
     <loc>https://smartaitest.com/ko/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/ko/about/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <loc>https://smartaitest.com/ja/</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/about/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/about/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/about/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/guide/compatibility-guide/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/guide/compatibility-guide/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/guide/soul-types/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/guide/soul-types/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/methodology/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/methodology/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/life-summary/archive</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/widget/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/widget/embed</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
   </url>
   <url>
     <loc>https://smartaitest.com/zh/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/zh/about/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <loc>https://smartaitest.com/es/</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/about/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/about/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/about/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
+    <priority>1</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/zh/age-calculator/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <loc>https://smartaitest.com/en/life-summary/</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/zh/compatibility/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/zh/life-summary/</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
-      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/archive</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://smartaitest.com/ko/life-summary/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/contact</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://smartaitest.com/ja/life-summary/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/faq</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://smartaitest.com/zh/life-summary/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/privacy-policy</loc>
-    <lastmod>2026-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://smartaitest.com/es/life-summary/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/terms</loc>
+    <loc>https://smartaitest.com/en/compatibility/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/compatibility/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/compatibility/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/compatibility/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/compatibility/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/age-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/age-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/age-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/age-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/age-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/life-summary/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/life-summary/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/life-summary/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/life-summary/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/life-summary/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/life-summary/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/life-summary/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/compatibility/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/compatibility/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/compatibility/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/compatibility/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/compatibility/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/age-calculator/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/age-calculator/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/age-calculator/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/age-calculator/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/age-calculator/result/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/privacy-policy/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/privacy-policy/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/privacy-policy/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/privacy-policy/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/privacy-policy/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/privacy-policy/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/disclaimer/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/disclaimer/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/disclaimer/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/disclaimer/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/disclaimer/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/disclaimer/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/contact/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/contact/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/contact/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/contact/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/contact/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/contact/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/contact/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/contact/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/contact/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/contact/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/contact/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/contact/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/contact/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/contact/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/contact/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/about.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/contact.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/privacy-policy.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/terms-of-service.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/50대-눈으로-읽는-api-문서-외부-지도-서비스-연동-실전-예제.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/50대를-위한-글라이드glide-앱-개발-스마트폰-하나로-고객관리-앱-제작.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/ai-personality-analysis-accuracy.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/barnum-effect-psychology.html</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/about</loc>
+    <loc>https://smartaitest.com/blog/biological-vs-mental-age.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/blood-type-compatibility-science.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/compatibility-psychology.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/compatible-couples-psychology.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/couple-compatibility-science.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/erikson-psychosocial-stages.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/healthy-relationship-signs.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/index.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/disclaimer</loc>
-    <lastmod>2026-03-05</lastmod>
+    <loc>https://smartaitest.com/blog/mbti-vs-big5.html</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <!-- AI 16 성격 유형 테스트 -->
-  <url>
-    <loc>https://smartaitest.com/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/en/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <loc>https://smartaitest.com/blog/mental-age-meaning.html</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/personality-type/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/personality-type/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/personality-type/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/personality-type/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/personality-type/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/personality-type/"/>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/ko/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <loc>https://smartaitest.com/blog/mental-age-science.html</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/ja/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <loc>https://smartaitest.com/blog/personality-career-guide.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/zh/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <loc>https://smartaitest.com/blog/personality-test-history.html</loc>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaitest.com/es/personality-type/</loc>
-    <lastmod>2026-04-04</lastmod>
+    <loc>https://smartaitest.com/blog/personality-types-love-patterns.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/psychology-test-stress-relief.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/relationship-compatibility-factors.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/zodiac-vs-ai-compatibility.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/기술-면접에서-떨지-않는-법-50대만-할-수-있는-경험-기반-답변법.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/배포-후-500-에러가-떴을-때-50대-개발자의-담담한-디버깅-일기.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/완벽한-코드보다-돌아가는-코드를-만드는-법-50대의-실용주의-개발-철학.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/중년의-디지털-불안-극복-컴퓨터-앞에서-떨리는-심리를-다스리는-3단계.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/첫-사용자-100명-모으기-50대-개발자의-지인-네트워크-마케팅-전략.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/퇴직-후-코딩-학원-강사가-된-56세의-사례-전문가가-아닌-동반자로서의-가치.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/포트폴리오에-꼭-들어가야-할-3가지-기술-스택보다-중요한-문제-해결-사례.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/프리랜서-개발자로-첫-수익-내기-50대의-네트워크를-활용한-첫-클라이언트-확보기.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

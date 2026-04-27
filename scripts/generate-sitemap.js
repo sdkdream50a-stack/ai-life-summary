@@ -28,6 +28,11 @@ const PAGES = [
     { path: 'life-summary/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
     { path: 'compatibility/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
     { path: 'age-calculator/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
+
+    // Legal pages — localized via /{lang}/{slug}/index.html (5 langs x 3 pages = 15 URLs)
+    { path: 'privacy-policy/', priority: 0.4, changefreq: 'yearly', lastmod: TODAY },
+    { path: 'disclaimer/',     priority: 0.4, changefreq: 'yearly', lastmod: TODAY },
+    { path: 'contact/',        priority: 0.5, changefreq: 'monthly', lastmod: TODAY },
 ];
 
 // Static pages (non-localized for now)
