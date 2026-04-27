@@ -23,6 +23,7 @@ const PAGES = [
     { path: 'life-summary/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
     { path: 'compatibility/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
     { path: 'age-calculator/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
+    { path: 'vibe-check/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
 
     // Result pages (medium priority, noindex but include for completeness)
     { path: 'life-summary/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },

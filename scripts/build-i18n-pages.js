@@ -115,6 +115,38 @@ const META_CONTENT = {
             ogDescription: 'Deja de adivinar y descubre si es tu alma gemela o una red flag. 500K+ parejas probadas!'
         }
     },
+    'vibe-check': {
+        en: {
+            title: 'AI Vibe Check - 16 Absurd AI Personality Types in 60 Seconds',
+            description: 'Brutally honest AI personality test. 5 questions, 16 absurd types, 60 seconds. The viral self-roast everyone is sharing.',
+            ogTitle: 'AI Vibe Check — 16 Absurd Types, 60 Seconds',
+            ogDescription: 'The brutally honest AI personality test. Find out which absurd type you are.'
+        },
+        ko: {
+            title: 'AI 바이브 체크 - 60초 만에 16가지 어이없는 AI 성격유형',
+            description: '잔인하게 솔직한 AI 성격 테스트. 5문항·16가지 어이없는 유형·60초. 다들 공유 중인 바이럴 자아 디스 테스트.',
+            ogTitle: 'AI 바이브 체크 — 16가지 어이없는 유형, 60초',
+            ogDescription: '잔인하게 솔직한 AI 성격 테스트. 당신은 어떤 어이없는 유형?'
+        },
+        ja: {
+            title: 'AIバイブチェック - 60秒で16の馬鹿げたAI性格タイプ',
+            description: '残酷に正直なAI性格診断。5問・16タイプ・60秒。みんなシェアしているバイラル自己ディス診断。',
+            ogTitle: 'AIバイブチェック — 16の馬鹿げたタイプ、60秒',
+            ogDescription: '残酷に正直なAI性格診断。あなたはどの馬鹿げたタイプ？'
+        },
+        zh: {
+            title: 'AI vibe测验 - 60秒内16种荒诞AI性格类型',
+            description: '残忍诚实的AI性格测试。5道题·16种荒诞类型·60秒。大家都在分享的病毒式自嘲测试。',
+            ogTitle: 'AI vibe测验 — 16种荒诞类型，60秒',
+            ogDescription: '残忍诚实的AI性格测试。看看你是哪种荒诞类型？'
+        },
+        es: {
+            title: 'AI Vibe Check - 16 Tipos Absurdos de Personalidad IA en 60 Segundos',
+            description: 'Test de personalidad IA brutalmente honesto. 5 preguntas, 16 tipos absurdos, 60 segundos. El roast viral que todos comparten.',
+            ogTitle: 'AI Vibe Check — 16 Tipos Absurdos, 60 Segundos',
+            ogDescription: 'El test de personalidad IA brutalmente honesto. Descubre qué tipo absurdo eres.'
+        }
+    },
     'age-calculator': {
         en: {
             title: 'AI Age Calculator - Real Age vs Mental Age vs Energy Age | AI Test Lab',
@@ -163,7 +195,8 @@ const PAGES = [
     { template: 'scripts/templates/index.html', slug: '', name: 'home' },
     { template: 'scripts/templates/life-summary.html', slug: 'life-summary', name: 'life-summary' },
     { template: 'scripts/templates/compatibility.html', slug: 'compatibility', name: 'compatibility' },
-    { template: 'scripts/templates/age-calculator.html', slug: 'age-calculator', name: 'age-calculator' }
+    { template: 'scripts/templates/age-calculator.html', slug: 'age-calculator', name: 'age-calculator' },
+    { template: 'scripts/templates/vibe-check.html', slug: 'vibe-check', name: 'vibe-check' }
 ];
 
 // Result pages (need special handling) - use templates folder
