@@ -32,7 +32,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/ja/compatibility/">
     <meta property="og:title" content="彼から連絡が来ない理由 (AIが教える)">
-    <meta property="og:description" content="片思いはもう終わり、データが語る冷静な相性ファクトチェック。多くのカップルが活用中！">
+    <meta property="og:description" content="片思いはもう終わり、データが語る冷静な相性ファクトチェック。50万組以上がテスト済み！">
     <meta property="og:image" content="https://smartaitest.com/assets/images/compatibility-og.png">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:locale:alternate" content="en_US">
@@ -45,19 +45,20 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/ja/compatibility/">
     <meta name="twitter:title" content="彼から連絡が来ない理由 (AIが教える)">
-    <meta name="twitter:description" content="片思いはもう終わり、データが語る冷静な相性ファクトチェック。多くのカップルが活用中！">
+    <meta name="twitter:description" content="片思いはもう終わり、データが語る冷静な相性ファクトチェック。50万組以上がテスト済み！">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/compatibility-twitter.png">
 
     <!-- Tailwind CSS -->
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../css/tailwind.css" fetchpriority="high">
     <!-- KICK Design System -->
-    <link rel="preload" href="../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -139,6 +140,42 @@
             50% { transform: translateY(-8px) rotate(-5deg); opacity: 0.4; }
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
+
+        /* Social Proof Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            animation: toastIn 0.5s ease-out forwards;
+            border-left: 4px solid #ec4899;
+        }
+        .toast.toast-out {
+            animation: toastOut 0.3s ease-in forwards;
+        }
+        @keyframes toastIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes toastOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .toast-content { flex: 1; min-width: 0; }
+        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
+        .toast-message { font-size: 0.75rem; color: #6b7280; }
+        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
 
         /* Stats badge */
         .stats-badge {
@@ -253,7 +290,7 @@
         }
     }
     </script>
-    <link rel="preload" href="../../css/mobile-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/mobile-enhancements.css"></noscript>
+    <link rel="stylesheet" href="../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -272,20 +309,6 @@
         }
     }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "AI相性テストの使い方",
-      "description": "AI相性計算機で3ステップで愛の相性スコアを確認しましょう。",
-      "totalTime": "PT1M",
-      "step": [
-        {"@type": "HowToStep", "position": 1, "name": "2人の生年月日を入力", "text": "あなたとパートナーの生年月日をそれぞれの入力フィールドに入力します。"},
-        {"@type": "HowToStep", "position": 2, "name": "相性を計算", "text": "「相性を確認する」ボタンをクリックして、5つの関係次元で即座に分析します。"},
-        {"@type": "HowToStep", "position": 3, "name": "結果を確認", "text": "コミュニケーション、価値観、感情的つながり、エネルギー、成長の可能性の相性スコアを確認しましょう。"}
-      ]
-    }
-    </script>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
@@ -297,7 +320,7 @@
         <div class="kick-navbar-links">
             <a href="/ja/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 相性</a>
             <a href="/ja/life-summary/" class="kick-navbar-link">🔮 ソウル</a>
-            <a href="/ja/age-calculator/" class="kick-navbar-link">⏳ 年齢</a><a href="/ja/personality-type/" class="kick-navbar-link">🧬 性格タイプ</a>
+            <a href="/ja/age-calculator/" class="kick-navbar-link">⏳ 年齢</a>
             <a href="/blog.html" class="kick-navbar-link">📝 ブログ</a>
         </div>
         <!-- Language Selector -->
@@ -339,7 +362,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/ja/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 相性診断</a>
             <a href="/ja/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 ソウルタイプ</a>
-            <a href="/ja/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 精神年齢</a><a href="/ja/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 性格タイプ診断</a>
+            <a href="/ja/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 精神年齢</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/ja/about/" class="text-lg text-white/70 hover:text-white transition">概要</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -391,7 +414,7 @@
                 <div class="kick-glass inline-flex items-center gap-2 px-5 py-2 text-white/90 text-sm">
                     <span>🔥</span>
 
-                    多くのカップルが活用中
+                    50万組以上がテスト済み
 
                 </div>
             </div>
@@ -406,11 +429,11 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128104;</span>
-                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
 
                                     1人目
 
-                                </h3>
+                                </h2>
                             </div>
 
                             <!-- Name (Optional) -->
@@ -421,7 +444,7 @@
 
                                 </label>
                                 <input type="text" id="name-a" name="name-a" maxlength="20"
-                                    placeholder="例: 田中 (任意)"
+                                    placeholder="&#128172;"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -435,9 +458,9 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-a" name="year-a"
-                                            placeholder="YYYY" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生年 (A)">
+                                        <input type="number" id="year-a" name="year-a"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             年
@@ -445,9 +468,9 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-a" name="month-a"
-                                            placeholder="MM" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生月 (A)">
+                                        <input type="number" id="month-a" name="month-a"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             月
@@ -455,9 +478,9 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-a" name="day-a"
-                                            placeholder="DD" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生日 (A)">
+                                        <input type="number" id="day-a" name="day-a"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             日
@@ -477,11 +500,11 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128105;</span>
-                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
 
                                     2人目
 
-                                </h3>
+                                </h2>
                             </div>
 
                             <!-- Name (Optional) -->
@@ -492,7 +515,7 @@
 
                                 </label>
                                 <input type="text" id="name-b" name="name-b" maxlength="20"
-                                    placeholder="例: 田中 (任意)"
+                                    placeholder="&#128172;"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -506,9 +529,9 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-b" name="year-b"
-                                            placeholder="YYYY" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生年 (B)">
+                                        <input type="number" id="year-b" name="year-b"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             年
@@ -516,9 +539,9 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-b" name="month-b"
-                                            placeholder="MM" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生月 (B)">
+                                        <input type="number" id="month-b" name="month-b"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             月
@@ -526,9 +549,9 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-b" name="day-b"
-                                            placeholder="DD" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="生日 (B)">
+                                        <input type="number" id="day-b" name="day-b"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
 
                                             日
@@ -560,42 +583,17 @@
             </div>
         </section>
 
-        
-    <script>
-    // Birthday auto-focus (improved)
-    (function() {
-        function setupDateInput(yearId, monthId, dayId) {
-            var year = document.getElementById(yearId);
-            var month = document.getElementById(monthId);
-            var day = document.getElementById(dayId);
-            if (!year || !month || !day) return;
-
-            function filterNumeric(el) {
-                el.addEventListener('input', function() {
-                    this.value = this.value.replace(/[^0-9]/g, '');
-                });
-            }
-            filterNumeric(year); filterNumeric(month); filterNumeric(day);
-
-            year.addEventListener('input', function() {
-                if (this.value.length === 4) month.focus();
-            });
-            month.addEventListener('input', function() {
-                if (this.value.length === 2) day.focus();
-            });
-            month.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0) year.focus();
-            });
-            day.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0) month.focus();
-            });
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            setupDateInput('year-a', 'month-a', 'day-a');
-            setupDateInput('year-b', 'month-b', 'day-b');
-        });
-    })();
-    </script>
+        <!-- Ad Slot -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Did You Know Section -->
         <section class="py-12">
@@ -620,190 +618,10 @@
                 </div>
             </div>
         </section>
-
-    <!-- Informational Content -->
-    <section class="bg-white py-16">
-        <div class="max-w-4xl mx-auto px-4">
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">💕</span>
-                    AI相性診断とは？
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        AI相性診断は、二人の生年月日と性格特性をAIアルゴリズムで分析し、
-                        関係の潜在力と調和を評価するツールです。
-                        単純な星座占いを超えて、心理学的な性格タイプと
-                        関係のダイナミクスに関する研究をもとに設計されています。
-                    </p>
-                    <p class="mb-4">
-                        私たちのAIは二人の情報をもとに、5つの重要な相性領域を分析します：
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-4 my-6">
-                        <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                            <h4 class="font-bold text-pink-700 mb-2">💬 コミュニケーション</h4>
-                            <p class="text-gray-600 text-sm">二人が感情や考えを伝え合う方法の調和</p>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                            <h4 class="font-bold text-purple-700 mb-2">💎 価値観の一致</h4>
-                            <p class="text-gray-600 text-sm">人生において大切にするものの共通点</p>
-                        </div>
-                        <div class="bg-orange-50 p-4 rounded-xl border border-orange-100">
-                            <h4 class="font-bold text-orange-700 mb-2">⚡ エネルギーバランス</h4>
-                            <p class="text-gray-600 text-sm">活動性や休息への好みのバランス</p>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <h4 class="font-bold text-blue-700 mb-2">💙 感情的なつながり</h4>
-                            <p class="text-gray-600 text-sm">感情的に理解し支え合う能力</p>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-xl border border-green-100 md:col-span-2">
-                            <h4 class="font-bold text-green-700 mb-2">🌱 共に成長する可能性</h4>
-                            <p class="text-gray-600 text-sm">お互いをより良い人間へと成長させる潜在力</p>
-                        </div>
-                    </div>
-                    <p>
-                        各領域は独立して評価され、総合スコアはこれらの調和を反映します。
-                        高いスコアが完璧な関係を保証するわけではありませんが、
-                        二人がどの領域で強みを持ち、どこでより努力が必要かを理解する助けになります。
-                    </p>
-                </div>
-            </article>
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">📊</span>
-                    相性スコアの解釈ガイド
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-6">
-                        相性スコアは0%から100%の範囲で表示されます。
-                        各区間が意味することを理解すると、結果をより効果的に活用できます。
-                    </p>
-                    <div class="space-y-6">
-                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-xl border border-gray-200">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="bg-gray-500 text-white text-sm font-bold px-3 py-1 rounded-full">0-40%</span>
-                                <h4 class="text-lg font-bold text-gray-800">互いの違いが際立つ</h4>
-                            </div>
-                            <p class="text-gray-600">
-                                二人の性格やスタイルがかなり異なります。これは必ずしも悪いことではありません！
-                                「正反対が引き合う」というように、違いがむしろ関係に活力を与えることもあります。
-                                意識的なコミュニケーションと理解の努力が大切です。
-                            </p>
-                        </div>
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="bg-blue-500 text-white text-sm font-bold px-3 py-1 rounded-full">41-70%</span>
-                                <h4 class="text-lg font-bold text-gray-800">バランスの取れた調和</h4>
-                            </div>
-                            <p class="text-gray-600">
-                                共通点と違いが適切に混在する関係です。似ているところで安心感を覚え、
-                                違うところでお互いを補完できます。成功している関係の多くはこの範囲です。
-                            </p>
-                        </div>
-                        <div class="bg-gradient-to-r from-pink-50 to-rose-50 p-6 rounded-xl border border-pink-200">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="bg-pink-500 text-white text-sm font-bold px-3 py-1 rounded-full">71-100%</span>
-                                <h4 class="text-lg font-bold text-gray-800">高い調和とシナジー</h4>
-                            </div>
-                            <p class="text-gray-600">
-                                二人の間に自然な調和があります。お互いを簡単に理解し、一緒にいるときに心地よさを感じます。
-                                良い相性はスタートに過ぎず、継続的な努力が関係をより深めます。
-                            </p>
-                        </div>
-                    </div>
-                    <p class="mt-6 text-gray-600 italic">
-                        💡 覚えておきましょう：どんなスコアでも、それだけで関係の成功や失敗を決めません。
-                        大切なのはお互いへの理解、尊重、そして共に努力する意志です。
-                    </p>
-                </div>
-            </article>
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">💡</span>
-                    テスト結果の活用法
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">1. 会話のきっかけとして活用する</h3>
-                    <p class="mb-4">
-                        相性テストの結果は、パートナーとの会話を始める良い機会になります。
-                        結果をもとに「私たちのコミュニケーションスタイルはこうだったけど、どう思う？」
-                        のようにお互いの考えを話し合ってみましょう。
-                    </p>
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">2. 低いスコアの領域を改善する機会として捉える</h3>
-                    <p class="mb-4">
-                        特定の領域のスコアが低い場合は、それを改善するチャンスとして捉えましょう。
-                        「価値観の一致度」が低ければ、お互いの人生の優先事項について率直に話し合ってみてください。
-                    </p>
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">3. 強みの領域を活かす</h3>
-                    <p class="mb-4">
-                        スコアが高い領域は二人の強みです。困難な時期にこの強みを思い出し、
-                        「私たちはコミュニケーションが得意だから、この問題も解決できる」と前向きに考えましょう。
-                    </p>
-                    <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6">
-                        <p class="text-amber-800 text-sm">
-                            <strong>注意:</strong> このテストはエンターテインメントおよび自己省察目的で提供されます。
-                            実際の関係の問題がある場合は専門のカウンセラーに相談してください。
-                        </p>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">❓</span>
-                    よくある質問
-                </h2>
-                <div class="space-y-4">
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            このテストは科学的に正確ですか？
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            このテストは心理学の理論からインスピレーションを得ていますが、エンターテインメント目的で提供されています。
-                            関係の成否を科学的に予測することは不可能であり、結果は自己省察と会話のツールとして活用することをお勧めします。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            相性スコアが低ければ別れるべきですか？
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            絶対に違います！低いスコアは二人のスタイルが異なることを意味するに過ぎません。
-                            多くの成功したカップルは互いに見事に補い合う異なる個性を持っています。大切なのはお互いへの理解と尊重です。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            入力した情報は保存されますか？
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            いいえ。すべての相性計算はブラウザ内でローカルに行われます。
-                            入力された生年月日や名前を収集、保存、または共有することはありません。プライバシーは完全に保護されています。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            友達や家族との相性もテストできますか？
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            もちろんです！分析される領域（コミュニケーション、価値観、エネルギーなど）はすべての親密な関係に当てはまります。
-                            友達や兄弟、同僚とも楽しんでテストしてみてください！
-                        </p>
-                    </details>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
     </main>
+
+    <!-- Social Proof Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -960,6 +778,65 @@
             // Redirect to result page
             window.location.href = '/ja/compatibility/result/';
         });
+    </script>
+
+    <!-- Social Proof Toast Script -->
+    <script>
+        (function() {
+            var lang = document.documentElement.lang || 'en';
+            var cities = {
+                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney', 'Singapore'],
+                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕', '런던'],
+                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン', 'パリ'],
+                zh: ['北京', '上海', '东京', '首尔', '纽约', '伦敦'],
+                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio', 'Nueva York']
+            };
+            var messages = {
+                en: { title: 'New match found!', test: 'Compatibility Test' },
+                ko: { title: '새로운 커플 매칭!', test: '궁합 테스트' },
+                ja: { title: '新しいカップル診断!', test: '相性診断' },
+                zh: { title: '新配对完成!', test: '配对测试' },
+                es: { title: '¡Nueva pareja!', test: 'Compatibilidad' }
+            };
+            var times = {
+                en: ['just now', '1 min ago', '2 mins ago'],
+                ko: ['방금 전', '1분 전', '2분 전'],
+                ja: ['たった今', '1分前', '2分前'],
+                zh: ['刚刚', '1分钟前', '2分钟前'],
+                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
+            };
+            var scores = ['87%', '92%', '78%', '95%', '81%', '89%', '76%'];
+
+            function showToast() {
+                var container = document.getElementById('toast-container');
+                if (!container) return;
+                var currentLang = document.documentElement.lang || 'en';
+                var cityList = cities[currentLang] || cities.en;
+                var msg = messages[currentLang] || messages.en;
+                var timeList = times[currentLang] || times.en;
+                var city = cityList[Math.floor(Math.random() * cityList.length)];
+                var time = timeList[Math.floor(Math.random() * timeList.length)];
+                var score = scores[Math.floor(Math.random() * scores.length)];
+
+                var toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = '<div class="toast-icon">💕</div>' +
+                    '<div class="toast-content">' +
+                    '<div class="toast-title">' + msg.title + ' ' + score + '</div>' +
+                    '<div class="toast-message">' + city + '</div>' +
+                    '<div class="toast-time">' + time + '</div>' +
+                    '</div>';
+                container.appendChild(toast);
+                setTimeout(function() {
+                    toast.classList.add('toast-out');
+                    setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+                }, 4000);
+            }
+            setTimeout(function() {
+                showToast();
+                setInterval(showToast, 12000 + Math.random() * 8000);
+            }, 3000);
+        })();
     </script>
 
     <!-- Stage 3: Viral Link System -->

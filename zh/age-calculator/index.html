@@ -51,12 +51,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../css/tailwind.css" fetchpriority="high">
     <!-- KICK Design System -->
-    <link rel="preload" href="../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -157,6 +158,29 @@
             50% { transform: translateY(-8px) rotate(-5deg); opacity: 0.4; }
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
+
+        /* Social Proof Toast */
+        .toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; }
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            animation: toastIn 0.5s ease-out forwards;
+            border-left: 4px solid #10b981;
+        }
+        .toast.toast-out { animation: toastOut 0.3s ease-in forwards; }
+        @keyframes toastIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes toastOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .toast-content { flex: 1; min-width: 0; }
+        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
+        .toast-message { font-size: 0.75rem; color: #6b7280; }
+        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
 
         /* Stats badge */
         .stats-badge {
@@ -519,7 +543,7 @@
         }
     }
     </script>
-    <link rel="preload" href="../../css/mobile-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/mobile-enhancements.css"></noscript>
+    <link rel="stylesheet" href="../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -538,20 +562,6 @@
         }
     }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "如何使用AI年龄计算器",
-      "description": "3步发现您的实际年龄、心理年龄和能量年龄。",
-      "totalTime": "PT1M",
-      "step": [
-        {"@type": "HowToStep", "position": 1, "name": "输入生日", "text": "在页面的日期选择器中输入您的出生日期。"},
-        {"@type": "HowToStep", "position": 2, "name": "回答生活方式问题", "text": "完成关于睡眠、运动和日常活动的简短生活方式评估。"},
-        {"@type": "HowToStep", "position": 3, "name": "查看三种年龄", "text": "并排查看您的实际年龄、心理年龄和能量年龄对比。"}
-      ]
-    }
-    </script>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
@@ -564,8 +574,7 @@
         <div class="kick-navbar-links">
             <a href="/zh/compatibility/" class="kick-navbar-link">❤️‍🔥 配对</a>
             <a href="/zh/life-summary/" class="kick-navbar-link">🔮 灵魂</a>
-            <a href="/zh/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年龄</a><a href="/zh/personality-type/" class="kick-navbar-link">🧬 性格类型</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 博客</a>
+            <a href="/zh/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年龄</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -606,7 +615,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/zh/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 配对测试</a>
             <a href="/zh/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 灵魂类型</a>
-            <a href="/zh/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 心理年龄</a><a href="/zh/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 性格类型测试</a>
+            <a href="/zh/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 心理年龄</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/zh/about/" class="text-lg text-white/70 hover:text-white transition">关于</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -791,11 +800,23 @@
                                 <div id="interstitial-emoji" class="interstitial-emoji"></div>
                                 <h2 id="interstitial-title" class="interstitial-title"></h2>
                                 <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
-                                <button type="button" id="interstitial-button" class="interstitial-button"></button>
+                                <button id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
                 </form>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -824,144 +845,10 @@
                 </div>
             </div>
         </section>
-
-    <!-- Informational Content -->
-    <section class="bg-white py-16">
-        <div class="max-w-4xl mx-auto px-4">
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">⏳</span>
-                    AI年龄计算器是什么？
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        AI年龄计算器是一款只需输入出生日期，即可精确计算到天数、小时、分钟级别当前年龄的工具。
-                        它不只是简单的年龄计算，还会探索与您生日相关的有趣知识，
-                        以及从宇宙视角看待您存在意义的内容。
-                    </p>
-                    <p class="mb-4">
-                        本工具提供以下信息：
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-4 my-6">
-                        <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100">
-                            <h4 class="font-bold text-cyan-700 mb-2">📅 精确年龄</h4>
-                            <p class="text-gray-600 text-sm">精确计算到年、月、日、小时、分钟</p>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <h4 class="font-bold text-blue-700 mb-2">🎂 距下次生日</h4>
-                            <p class="text-gray-600 text-sm">即时查看距下次生日还有多少天</p>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                            <h4 class="font-bold text-purple-700 mb-2">🌙 出生星期</h4>
-                            <p class="text-gray-600 text-sm">精确识别您出生那天是星期几</p>
-                        </div>
-                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-100">
-                            <h4 class="font-bold text-teal-700 mb-2">⭐ 出生年份大事</h4>
-                            <p class="text-gray-600 text-sm">了解您出生那年发生的世界大事</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">🌟</span>
-                    您生日所蕴含的意义
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        生日不只是一个数字。从您出生的那一刻起，地球绕太阳转了一圈又一圈，
-                        您积累了无数经历和成长。
-                    </p>
-                    <div class="space-y-4 my-6">
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl">
-                            <span class="text-3xl">🌍</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">地球公转与年龄</h4>
-                                <p class="text-gray-600 text-sm">
-                                    人类的一年与地球绕太阳一圈的时间（约365.25天）相对应。
-                                    您的年龄代表了自出生以来地球绕太阳转了多少圈。
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl">
-                            <span class="text-3xl">🕐</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">时间的积累</h4>
-                                <p class="text-gray-600 text-sm">
-                                    30岁的人已经活了约10,957天，即约263,000小时。
-                                    在这漫长的时间里，您做出了无数选择，塑造了自己的人生。
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl">
-                            <span class="text-3xl">💫</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">出生月份与季节</h4>
-                                <p class="text-gray-600 text-sm">
-                                    出生的季节可能对幼年时期的环境产生影响。
-                                    多项研究观察到，日照时间、气温和周边自然环境对儿童发育有各种影响。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">❓</span>
-                    常见问题
-                </h2>
-                <div class="space-y-4">
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            计算结果有多准确？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            使用当前日期时间和您的出生日期进行精确计算。
-                            计算已考虑闰年，但小时和分钟级别的计算基于设备当前时间。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            输入的出生日期会被保存吗？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            不会。所有计算都在浏览器本地进行。
-                            我们不会将输入的出生日期发送到服务器或进行保存。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            可以计算过去或未来的日期吗？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            可以！从输入的出生日期到现在的时间段都可以计算。
-                            如果输入未来日期，会显示距该日期还有多少天。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            能看到星座和生肖信息吗？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            当前版本专注于年龄计算和相关信息。
-                            星座和生肖等更多详细信息计划在未来版本中添加。
-                        </p>
-                    </details>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
     </main>
+
+    <!-- Social Proof Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -1508,7 +1395,7 @@
                 <h3 class="question-title">${question.text}</h3>
                 <div class="option-grid">
                     ${question.options.map((opt, i) => `
-                        <button type="button" class="option-btn" data-value="${opt.value}" data-index="${i}">
+                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
                             <span class="option-emoji">${opt.emoji}</span>
                             <span class="option-text">${opt.text}</span>
                         </button>
@@ -1627,6 +1514,51 @@
             // Navigate to results
             window.location.href = '/zh/age-calculator/result/';
         }
+    </script>
+
+    <!-- Social Proof Toast Script -->
+    <script>
+        (function() {
+            var cities = {
+                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney'],
+                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕'],
+                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン'],
+                zh: ['北京', '上海', '东京', '首尔', '纽约'],
+                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio']
+            };
+            var messages = {
+                en: { title: 'New age calculated!' },
+                ko: { title: '새로운 나이 계산 완료!' },
+                ja: { title: '新しい年齢計算!' },
+                zh: { title: '新的年龄计算!' },
+                es: { title: '¡Nueva edad calculada!' }
+            };
+            var times = {
+                en: ['just now', '1 min ago', '2 mins ago'],
+                ko: ['방금 전', '1분 전', '2분 전'],
+                ja: ['たった今', '1分前', '2分前'],
+                zh: ['刚刚', '1分钟前', '2分钟前'],
+                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
+            };
+            var ages = ['25', '32', '28', '19', '45', '38', '21', '55'];
+            function showToast() {
+                var container = document.getElementById('toast-container');
+                if (!container) return;
+                var currentLang = document.documentElement.lang || 'en';
+                var cityList = cities[currentLang] || cities.en;
+                var msg = messages[currentLang] || messages.en;
+                var timeList = times[currentLang] || times.en;
+                var city = cityList[Math.floor(Math.random() * cityList.length)];
+                var time = timeList[Math.floor(Math.random() * timeList.length)];
+                var mentalAge = ages[Math.floor(Math.random() * ages.length)];
+                var toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = '<div class="toast-icon">🎂</div><div class="toast-content"><div class="toast-title">' + msg.title + '</div><div class="toast-message">' + city + ' • Mental: ' + mentalAge + '</div><div class="toast-time">' + time + '</div></div>';
+                container.appendChild(toast);
+                setTimeout(function() { toast.classList.add('toast-out'); setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300); }, 4000);
+            }
+            setTimeout(function() { showToast(); setInterval(showToast, 12000 + Math.random() * 8000); }, 3000);
+        })();
     </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
 

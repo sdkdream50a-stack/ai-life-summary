@@ -45,12 +45,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -300,8 +301,8 @@
     // Language is set statically for this page - no auto-switch needed
     </script>
     <!-- Gamification CSS -->
-    <link rel="preload" href="../../../css/gamification.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/gamification.css"></noscript>
-    <link rel="preload" href="../../../css/popups.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/popups.css"></noscript>
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
 
@@ -333,9 +334,7 @@
         <div class="kick-navbar-links">
             <a href="/ko/compatibility/" class="kick-navbar-link">❤️‍🔥 궁합</a>
             <a href="/ko/life-summary/" class="kick-navbar-link">🔮 소울</a>
-            <a href="/ko/age-calculator/" class="kick-navbar-link">⏳ 나이</a><a href="/ko/personality-type/" class="kick-navbar-link">🧬 성격 유형</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 블로그</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 블로그</a>
+            <a href="/ko/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 나이</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -372,7 +371,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
             <a href="/ko/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 궁합 테스트</a>
             <a href="/ko/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 소울 타입</a>
-            <a href="/ko/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 정신 나이</a><a href="/ko/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 성격 유형 테스트</a>
+            <a href="/ko/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 정신 나이</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/ko/about/" class="text-lg text-white/70 hover:text-white transition">소개</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -550,6 +549,16 @@
             </div>
         </section>
 
+        <!-- Ad Slot 1 -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Detailed Analysis -->
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
@@ -592,6 +601,16 @@
                 <!-- Overall Summary -->
                 <div class="bg-gray-100 rounded-xl p-6 text-center">
                     <p id="overall-analysis" class="text-gray-700 font-medium"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot 2 -->
+        <section class="py-6 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
                 </div>
             </div>
         </section>
@@ -700,43 +719,6 @@
                             </div>
                         </div>
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scientific Basis Section -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
-                    🔬 이 테스트의 과학적 근거
-                </h2>
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        본 AI 나이 계산기는 <strong>정신 연령(Mental Age)</strong> 개념과
-                        <strong>인지과학(Cognitive Science)</strong> 연구를 기반으로 설계되었습니다.
-                        정신 연령 개념은 1905년 프랑스 심리학자 Alfred Binet가 처음 제안했으며,
-                        현대 신경과학은 뇌의 '기능적 나이'가 생물학적 나이와 다를 수 있음을 입증했습니다.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        인지과학 연구들에 따르면, 인지적 유연성, 정서 조절 능력, 작업 기억 등의 요소가
-                        정신 연령에 영향을 미치는 것으로 나타났습니다.
-                        본 테스트는 이러한 요소들을 종합적으로 평가하여 당신의 정신적, 신체적, 영혼 연령을 분석합니다.
-                    </p>
-
-                    <h3 class="text-lg font-semibold text-gray-800 mt-6 mb-4">📚 참고 문헌</h3>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>• Binet, A., & Simon, T. (1905). New methods for the diagnosis of the intellectual level of subnormals. <em>L'Année Psychologique, 11</em>, 191-244.</li>
-                        <li>• Stern, Y. (2012). Cognitive reserve in ageing and Alzheimer's disease. <em>Lancet Neurology, 11</em>(11), 1006-1012.</li>
-                        <li>• Erickson, K. I., et al. (2011). Exercise training increases size of hippocampus and improves memory. <em>PNAS, 108</em>(7), 3017-3022.</li>
-                        <li>• Draganski, B., et al. (2006). Changes in grey matter induced by training. <em>Nature, 427</em>(6972), 311-312.</li>
-                    </ul>
-
-                    <div class="mt-6 p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
-                        <p class="text-sm text-amber-800">
-                            <strong>참고:</strong> 본 테스트 결과는 재미와 자기 성찰을 위한 것이며,
-                            의학적 진단을 대체하지 않습니다. 건강에 대한 우려가 있으시면 전문 의료인과 상담하세요.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>

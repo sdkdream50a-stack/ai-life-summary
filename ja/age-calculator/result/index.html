@@ -45,12 +45,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -300,8 +301,8 @@
     // Language is set statically for this page - no auto-switch needed
     </script>
     <!-- Gamification CSS -->
-    <link rel="preload" href="../../../css/gamification.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/gamification.css"></noscript>
-    <link rel="preload" href="../../../css/popups.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/popups.css"></noscript>
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
 
@@ -333,8 +334,7 @@
         <div class="kick-navbar-links">
             <a href="/ja/compatibility/" class="kick-navbar-link">❤️‍🔥 相性</a>
             <a href="/ja/life-summary/" class="kick-navbar-link">🔮 ソウル</a>
-            <a href="/ja/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年齢</a><a href="/ja/personality-type/" class="kick-navbar-link">🧬 性格タイプ</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 ブログ</a>
+            <a href="/ja/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年齢</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -371,7 +371,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
             <a href="/ja/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 相性診断</a>
             <a href="/ja/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 ソウルタイプ</a>
-            <a href="/ja/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 精神年齢</a><a href="/ja/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 性格タイプ診断</a>
+            <a href="/ja/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 精神年齢</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/ja/about/" class="text-lg text-white/70 hover:text-white transition">概要</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -549,6 +549,16 @@
             </div>
         </section>
 
+        <!-- Ad Slot 1 -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Detailed Analysis -->
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
@@ -591,6 +601,16 @@
                 <!-- Overall Summary -->
                 <div class="bg-gray-100 rounded-xl p-6 text-center">
                     <p id="overall-analysis" class="text-gray-700 font-medium"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot 2 -->
+        <section class="py-6 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
                 </div>
             </div>
         </section>

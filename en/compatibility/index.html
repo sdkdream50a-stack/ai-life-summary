@@ -52,12 +52,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../css/tailwind.css" fetchpriority="high">
     <!-- KICK Design System -->
-    <link rel="preload" href="../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -139,6 +140,42 @@
             50% { transform: translateY(-8px) rotate(-5deg); opacity: 0.4; }
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
+
+        /* Social Proof Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            animation: toastIn 0.5s ease-out forwards;
+            border-left: 4px solid #ec4899;
+        }
+        .toast.toast-out {
+            animation: toastOut 0.3s ease-in forwards;
+        }
+        @keyframes toastIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes toastOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .toast-content { flex: 1; min-width: 0; }
+        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
+        .toast-message { font-size: 0.75rem; color: #6b7280; }
+        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
 
         /* Stats badge */
         .stats-badge {
@@ -253,57 +290,7 @@
         }
     }
     </script>
-
-    <!-- FAQPage Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "How accurate is the compatibility score?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Our compatibility test is designed for entertainment and reflection, not scientific prediction. While the algorithm analyzes meaningful patterns, real relationship success depends on countless factors including effort, communication, and mutual respect."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What if we get a low compatibility score?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "A lower score doesn't mean your relationship is doomed! Many successful couples have different personalities that complement each other beautifully. The detailed breakdown shows where you might face challenges, which can actually help you focus on areas for growth."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I test compatibility with a friend or family member?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely! While we frame it as a romantic compatibility test, the dimensions we analyze (communication, values, energy, etc.) apply to any close relationship. Many users test with friends, siblings, or colleagues just for fun."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is my and my partner's information stored?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. All compatibility calculations happen locally in your browser. We don't collect, store, or share any birth dates or names entered. Your privacy and your partner's privacy are completely protected."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What languages are supported?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The AI Compatibility Test supports five languages: English, Korean, Japanese, Chinese, and Spanish. Each version has been carefully localized to ensure meaningful, culturally appropriate results."
-                }
-            }
-        ]
-    }
-    </script>
-    <link rel="preload" href="../../css/mobile-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/mobile-enhancements.css"></noscript>
+    <link rel="stylesheet" href="../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -322,20 +309,6 @@
         }
     }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Use the AI Compatibility Test",
-      "description": "Find your love match score in 3 simple steps with our AI compatibility calculator.",
-      "totalTime": "PT1M",
-      "step": [
-        {"@type": "HowToStep", "position": 1, "name": "Enter Both Birthdays", "text": "Input your birth date and your partner's birth date into the respective fields."},
-        {"@type": "HowToStep", "position": 2, "name": "Calculate Compatibility", "text": "Click 'Calculate Compatibility' to instantly analyze your match across 5 relationship dimensions."},
-        {"@type": "HowToStep", "position": 3, "name": "Review Your Score", "text": "Explore your compatibility score across communication, values, emotional connection, energy, and growth potential."}
-      ]
-    }
-    </script>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
@@ -347,7 +320,7 @@
         <div class="kick-navbar-links">
             <a href="/en/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
-            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a><a href="/en/personality-type/" class="kick-navbar-link">🧬 Personality</a>
+            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a>
             <a href="/blog.html" class="kick-navbar-link">📝 Blog</a>
         </div>
         <!-- Language Selector -->
@@ -389,7 +362,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/en/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
-            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a><a href="/en/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 Personality Type</a>
+            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -452,10 +425,10 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128104;</span>
-                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
                                     Person A
 
-                                </h3>
+                                </h2>
                             </div>
 
                             <!-- Name (Optional) -->
@@ -465,7 +438,7 @@
 
                                 </label>
                                 <input type="text" id="name-a" name="name-a" maxlength="20"
-                                    placeholder="e.g. John (Optional)"
+                                    placeholder="&#128172;"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -478,27 +451,27 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-a" name="year-a"
-                                            placeholder="YYYY" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth year (A)">
+                                        <input type="number" id="year-a" name="year-a"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Year
 
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-a" name="month-a"
-                                            placeholder="MM" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth month (A)">
+                                        <input type="number" id="month-a" name="month-a"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Month
 
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-a" name="day-a"
-                                            placeholder="DD" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth day (A)">
+                                        <input type="number" id="day-a" name="day-a"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Day
 
@@ -517,10 +490,10 @@
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
                                 <span class="text-3xl">&#128105;</span>
-                                <h3 class="font-heading text-xl font-bold mt-2 text-pink-400">
+                                <h2 class="font-heading text-xl font-bold mt-2 text-pink-400">
                                     Person B
 
-                                </h3>
+                                </h2>
                             </div>
 
                             <!-- Name (Optional) -->
@@ -530,7 +503,7 @@
 
                                 </label>
                                 <input type="text" id="name-b" name="name-b" maxlength="20"
-                                    placeholder="e.g. John (Optional)"
+                                    placeholder="&#128172;"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
@@ -543,27 +516,27 @@
                                 </label>
                                 <div class="grid grid-cols-3 gap-2">
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="year-b" name="year-b"
-                                            placeholder="YYYY" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth year (B)">
+                                        <input type="number" id="year-b" name="year-b"
+                                            placeholder="YYYY" min="1920" max="2025" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Year
 
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="month-b" name="month-b"
-                                            placeholder="MM" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth month (B)">
+                                        <input type="number" id="month-b" name="month-b"
+                                            placeholder="MM" min="1" max="12" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Month
 
                                         </p>
                                     </div>
                                     <div>
-                                        <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" id="day-b" name="day-b"
-                                            placeholder="DD" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center" aria-label="Birth day (B)">
+                                        <input type="number" id="day-b" name="day-b"
+                                            placeholder="DD" min="1" max="31" required
+                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                         <p class="text-xs text-gray-400 mt-1 text-center">
                                             Day
 
@@ -592,42 +565,17 @@
             </div>
         </section>
 
-        
-    <script>
-    // Birthday auto-focus (improved)
-    (function() {
-        function setupDateInput(yearId, monthId, dayId) {
-            var year = document.getElementById(yearId);
-            var month = document.getElementById(monthId);
-            var day = document.getElementById(dayId);
-            if (!year || !month || !day) return;
-
-            function filterNumeric(el) {
-                el.addEventListener('input', function() {
-                    this.value = this.value.replace(/[^0-9]/g, '');
-                });
-            }
-            filterNumeric(year); filterNumeric(month); filterNumeric(day);
-
-            year.addEventListener('input', function() {
-                if (this.value.length === 4) month.focus();
-            });
-            month.addEventListener('input', function() {
-                if (this.value.length === 2) day.focus();
-            });
-            month.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0) year.focus();
-            });
-            day.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0) month.focus();
-            });
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            setupDateInput('year-a', 'month-a', 'day-a');
-            setupDateInput('year-b', 'month-b', 'day-b');
-        });
-    })();
-    </script>
+        <!-- Ad Slot -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Did You Know Section -->
         <section class="py-12">
@@ -650,230 +598,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- What is AI Compatibility Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900">
-                    What is <span class="love-gradient-text">AI Compatibility Test?</span>
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-6 text-gray-700">
-                        <p class="text-lg leading-relaxed">
-                            The AI Compatibility Test is a fun and engaging tool that analyzes the potential harmony between two people based on their birth dates. Our algorithm examines numerical patterns and generates personalized insights about relationship dynamics across multiple dimensions.
-                        </p>
-                        <p class="leading-relaxed">
-                            Unlike simple zodiac matching, our test evaluates five key compatibility areas: communication style, core values alignment, energy matching, emotional connection depth, and growth potential as a couple. This multi-dimensional approach provides a more nuanced view of relationship compatibility.
-                        </p>
-                        <p class="leading-relaxed">
-                            With over 500,000 couples tested worldwide, the AI Compatibility Test has become a popular way for partners to spark meaningful conversations about their relationship, for friends to have fun comparing matches, and for curious individuals to explore the potential of new connections.
-                        </p>
-                    </div>
-                    <div class="bg-gray-50 rounded-2xl p-8">
-                        <h3 class="font-heading font-semibold text-xl mb-6 text-center text-gray-900">5 Compatibility Dimensions</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0">💬</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm">Communication</h4>
-                                    <p class="text-gray-600 text-xs">How well you understand and express with each other</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0">💎</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm">Values</h4>
-                                    <p class="text-gray-600 text-xs">Alignment on life priorities and beliefs</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0">⚡</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm">Energy</h4>
-                                    <p class="text-gray-600 text-xs">Physical and lifestyle energy matching</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0">💕</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm">Emotional</h4>
-                                    <p class="text-gray-600 text-xs">Depth of emotional understanding and support</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0">🌱</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm">Growth</h4>
-                                    <p class="text-gray-600 text-xs">Potential to grow and evolve together</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Animal Couple Types Section -->
-        <section class="py-16 bg-gradient-to-br from-pink-50 to-rose-50">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-                    Discover Your <span class="love-gradient-text">Animal Couple Type</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Our test also reveals which animal couple best represents your relationship dynamic!
-                </p>
-
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-xl p-5 text-center shadow-sm">
-                        <div class="text-4xl mb-3">🦁❤️🦊</div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Lion & Fox</h3>
-                        <p class="text-gray-600 text-sm">Bold leader meets clever strategist - a power couple that conquers challenges together.</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-5 text-center shadow-sm">
-                        <div class="text-4xl mb-3">🐻❤️🐰</div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Bear & Bunny</h3>
-                        <p class="text-gray-600 text-sm">Protective strength meets gentle warmth - a cozy, nurturing relationship.</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-5 text-center shadow-sm">
-                        <div class="text-4xl mb-3">🦅❤️🐬</div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Eagle & Dolphin</h3>
-                        <p class="text-gray-600 text-sm">Visionary explorer meets playful spirit - adventurous and free-spirited.</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-5 text-center shadow-sm">
-                        <div class="text-4xl mb-3">🦉❤️🦋</div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Owl & Butterfly</h3>
-                        <p class="text-gray-600 text-sm">Wisdom meets beauty - a harmonious blend of depth and lightness.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- User Testimonials Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-                    Love Stories from <span class="love-gradient-text">Our Users</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    See what couples around the world discovered about their compatibility.
-                </p>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"My boyfriend and I got 89% compatibility! The analysis was spot-on about our communication style. We've been using the advice to improve our relationship. Love this!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white font-bold">S</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Sophie & Daniel</p>
-                                <p class="text-gray-500 text-xs">Los Angeles, USA</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"Used this at my friend's bridal shower - everyone loved testing their compatibility! We're 'Bear & Bunny' couple type and it describes us perfectly!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full flex items-center justify-center text-white font-bold">M</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Maria & Carlos</p>
-                                <p class="text-gray-500 text-xs">Madrid, Spain</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"Even though we got 72%, the test explained why we work despite our differences. It helped us understand our growth areas. Very insightful!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">T</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Tomoko & Hiroshi</p>
-                                <p class="text-gray-500 text-xs">Tokyo, Japan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <div class="inline-flex items-center gap-4 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full px-6 py-3">
-                        <span class="text-2xl">💕</span>
-                        <p class="text-gray-700"><strong class="text-gray-900">500,000+</strong> couples tested worldwide</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-16 bg-gradient-to-br from-pink-50 to-rose-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-                    Frequently Asked <span class="love-gradient-text">Questions</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Everything you need to know about the AI Compatibility Test
-                </p>
-
-                <div class="space-y-4">
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            How accurate is the compatibility score?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Our compatibility test is designed for entertainment and reflection, not scientific prediction. While the algorithm analyzes meaningful patterns, real relationship success depends on countless factors including effort, communication, and mutual respect. Use the results as a conversation starter, not a definitive judgment!</p>
-                    </details>
-
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            What if we get a low compatibility score?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">A lower score doesn't mean your relationship is doomed! Many successful couples have different personalities that complement each other beautifully. The detailed breakdown shows where you might face challenges, which can actually help you focus on areas for growth. Some of the best relationships are between very different people!</p>
-                    </details>
-
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Can I test compatibility with a friend or family member?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Absolutely! While we frame it as a romantic compatibility test, the dimensions we analyze (communication, values, energy, etc.) apply to any close relationship. Many users test with friends, siblings, or colleagues just for fun. The animal couple types are especially amusing in non-romantic contexts!</p>
-                    </details>
-
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Is my and my partner's information stored?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">No. All compatibility calculations happen locally in your browser. We don't collect, store, or share any birth dates or names entered. Your privacy and your partner's privacy are completely protected.</p>
-                    </details>
-
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            How do I share results with my partner?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">After receiving your results, you can generate beautiful shareable images perfect for Instagram, Twitter, or messaging apps. You can also copy a special link to send to your partner so they can see the results directly. It's a fun way to share and discuss your compatibility!</p>
-                    </details>
-
-                    <details class="bg-white rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            What languages are supported?
-                            <span class="text-pink-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">The AI Compatibility Test supports five languages: English, Korean (한국어), Japanese (日本語), Chinese (中文), and Spanish (Español). Each version has been carefully localized to ensure meaningful, culturally appropriate results.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
     </main>
+
+    <!-- Social Proof Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -1016,6 +744,65 @@
             // Redirect to result page
             window.location.href = '/en/compatibility/result/';
         });
+    </script>
+
+    <!-- Social Proof Toast Script -->
+    <script>
+        (function() {
+            var lang = document.documentElement.lang || 'en';
+            var cities = {
+                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney', 'Singapore'],
+                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕', '런던'],
+                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン', 'パリ'],
+                zh: ['北京', '上海', '东京', '首尔', '纽约', '伦敦'],
+                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio', 'Nueva York']
+            };
+            var messages = {
+                en: { title: 'New match found!', test: 'Compatibility Test' },
+                ko: { title: '새로운 커플 매칭!', test: '궁합 테스트' },
+                ja: { title: '新しいカップル診断!', test: '相性診断' },
+                zh: { title: '新配对完成!', test: '配对测试' },
+                es: { title: '¡Nueva pareja!', test: 'Compatibilidad' }
+            };
+            var times = {
+                en: ['just now', '1 min ago', '2 mins ago'],
+                ko: ['방금 전', '1분 전', '2분 전'],
+                ja: ['たった今', '1分前', '2分前'],
+                zh: ['刚刚', '1分钟前', '2分钟前'],
+                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
+            };
+            var scores = ['87%', '92%', '78%', '95%', '81%', '89%', '76%'];
+
+            function showToast() {
+                var container = document.getElementById('toast-container');
+                if (!container) return;
+                var currentLang = document.documentElement.lang || 'en';
+                var cityList = cities[currentLang] || cities.en;
+                var msg = messages[currentLang] || messages.en;
+                var timeList = times[currentLang] || times.en;
+                var city = cityList[Math.floor(Math.random() * cityList.length)];
+                var time = timeList[Math.floor(Math.random() * timeList.length)];
+                var score = scores[Math.floor(Math.random() * scores.length)];
+
+                var toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = '<div class="toast-icon">💕</div>' +
+                    '<div class="toast-content">' +
+                    '<div class="toast-title">' + msg.title + ' ' + score + '</div>' +
+                    '<div class="toast-message">' + city + '</div>' +
+                    '<div class="toast-time">' + time + '</div>' +
+                    '</div>';
+                container.appendChild(toast);
+                setTimeout(function() {
+                    toast.classList.add('toast-out');
+                    setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+                }, 4000);
+            }
+            setTimeout(function() {
+                showToast();
+                setInterval(showToast, 12000 + Math.random() * 8000);
+            }, 3000);
+        })();
     </script>
 
     <!-- Stage 3: Viral Link System -->

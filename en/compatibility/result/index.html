@@ -45,12 +45,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -339,8 +340,8 @@
     // Language is set statically for this page - no auto-switch needed
     </script>
     <!-- Gamification CSS -->
-    <link rel="preload" href="../../../css/gamification.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/gamification.css"></noscript>
-    <link rel="preload" href="../../../css/popups.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/popups.css"></noscript>
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
 
@@ -372,7 +373,7 @@
         <div class="kick-navbar-links">
             <a href="/en/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
-            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a><a href="/en/personality-type/" class="kick-navbar-link">🧬 Personality</a>
+            <a href="/en/age-calculator/" class="kick-navbar-link">⏳ Age</a>
             <a href="/blog.html" class="kick-navbar-link">📝 Blog</a>
         </div>
         <!-- Language Selector -->
@@ -410,7 +411,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
             <a href="/en/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
-            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a><a href="/en/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 Personality Type</a>
+            <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -750,6 +751,16 @@
             </div>
         </section>
 
+        <!-- Ad Slot -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Detailed Analysis -->
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
@@ -770,48 +781,63 @@
                 <!-- Category Details -->
                 <div class="space-y-6">
                     <!-- Communication -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128172;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">Communication</h3>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Communication
+
+                            </h3>
                         </div>
-                        <p id="communication-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="communication-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Values -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9878;&#65039;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">Values</h3>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Values
+
+                            </h3>
                         </div>
-                        <p id="values-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="values-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Energy -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9889;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">Energy</h3>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Energy
+
+                            </h3>
                         </div>
-                        <p id="energy-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="energy-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Emotional -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128151;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">Emotional Connection</h3>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Emotional Connection
+
+                            </h3>
                         </div>
-                        <p id="emotional-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="emotional-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Growth -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#127793;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">Growth Potential</h3>
+                            <h3 class="font-heading font-semibold text-lg">
+                                Growth Potential
+
+                            </h3>
                         </div>
-                        <p id="growth-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="growth-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
@@ -850,44 +876,6 @@
                         AI Age Calculator
 
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scientific Basis Section -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
-                    🔬 The Scientific Basis of This Test
-                </h2>
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        This AI Compatibility Test is designed based on the <strong>Big Five Personality Traits (OCEAN) model</strong>
-                        and <strong>Attachment Theory</strong>. Research in personality psychology suggests that
-                        combinations of personality traits are correlated with relationship satisfaction,
-                        with emotional stability and agreeableness being important factors.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        Attachment Theory, developed by John Bowlby and Mary Ainsworth, explains how attachment patterns
-                        formed in childhood influence adult romantic relationships. This test provides insights into
-                        relationship potential by AI-analyzing both partners' personality traits, value alignment, and communication styles.
-                    </p>
-
-                    <h3 class="text-lg font-semibold text-gray-800 mt-6 mb-4">📚 References</h3>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>• Gottman, J. M., & Silver, N. (1999). <em>The Seven Principles for Making Marriage Work.</em> Crown Publishers.</li>
-                        <li>• Bowlby, J. (1969). <em>Attachment and Loss: Vol. 1. Attachment.</em> Basic Books.</li>
-                        <li>• Hazan, C., & Shaver, P. (1987). Romantic love conceptualized as an attachment process. <em>Journal of Personality and Social Psychology, 52</em>(3), 511-524.</li>
-                        <li>• Costa, P. T., & McCrae, R. R. (1992). <em>Revised NEO Personality Inventory (NEO-PI-R).</em> Psychological Assessment Resources.</li>
-                    </ul>
-
-                    <div class="mt-6 p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
-                        <p class="text-sm text-pink-800">
-                            <strong>Note:</strong> This test is a tool for fun and self-understanding.
-                            True relationship success depends not on test results, but on communication,
-                            effort, and the ongoing choice to be there for each other.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>

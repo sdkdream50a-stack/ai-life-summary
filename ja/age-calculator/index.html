@@ -51,12 +51,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../css/tailwind.css" fetchpriority="high">
     <!-- KICK Design System -->
-    <link rel="preload" href="../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -157,6 +158,29 @@
             50% { transform: translateY(-8px) rotate(-5deg); opacity: 0.4; }
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
+
+        /* Social Proof Toast */
+        .toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; }
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            animation: toastIn 0.5s ease-out forwards;
+            border-left: 4px solid #10b981;
+        }
+        .toast.toast-out { animation: toastOut 0.3s ease-in forwards; }
+        @keyframes toastIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes toastOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .toast-content { flex: 1; min-width: 0; }
+        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
+        .toast-message { font-size: 0.75rem; color: #6b7280; }
+        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
 
         /* Stats badge */
         .stats-badge {
@@ -519,7 +543,7 @@
         }
     }
     </script>
-    <link rel="preload" href="../../css/mobile-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/mobile-enhancements.css"></noscript>
+    <link rel="stylesheet" href="../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -538,20 +562,6 @@
         }
     }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "AI年齢計算機の使い方",
-      "description": "3ステップで実年齢、精神年齢、エネルギー年齢を確認しましょう。",
-      "totalTime": "PT1M",
-      "step": [
-        {"@type": "HowToStep", "position": 1, "name": "生年月日を入力", "text": "ページの日付ピッカーに生年月日を入力します。"},
-        {"@type": "HowToStep", "position": 2, "name": "ライフスタイル質問に回答", "text": "睡眠、運動、日常活動に関する簡単なライフスタイル評価を完了します。"},
-        {"@type": "HowToStep", "position": 3, "name": "3つの年齢を確認", "text": "実年齢、精神年齢、エネルギー年齢を並べて比較して確認します。"}
-      ]
-    }
-    </script>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
@@ -564,8 +574,7 @@
         <div class="kick-navbar-links">
             <a href="/ja/compatibility/" class="kick-navbar-link">❤️‍🔥 相性</a>
             <a href="/ja/life-summary/" class="kick-navbar-link">🔮 ソウル</a>
-            <a href="/ja/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年齢</a><a href="/ja/personality-type/" class="kick-navbar-link">🧬 性格タイプ</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 ブログ</a>
+            <a href="/ja/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ 年齢</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -606,7 +615,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/ja/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 相性診断</a>
             <a href="/ja/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 ソウルタイプ</a>
-            <a href="/ja/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 精神年齢</a><a href="/ja/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 性格タイプ診断</a>
+            <a href="/ja/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ 精神年齢</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/ja/about/" class="text-lg text-white/70 hover:text-white transition">概要</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -792,11 +801,23 @@
                                 <div id="interstitial-emoji" class="interstitial-emoji"></div>
                                 <h2 id="interstitial-title" class="interstitial-title"></h2>
                                 <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
-                                <button type="button" id="interstitial-button" class="interstitial-button"></button>
+                                <button id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
                 </form>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -825,146 +846,10 @@
                 </div>
             </div>
         </section>
-
-    <!-- Informational Content -->
-    <section class="bg-white py-16">
-        <div class="max-w-4xl mx-auto px-4">
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">⏳</span>
-                    AI年齢計算機とは？
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        AI年齢計算機は、生年月日を入力するだけで、現在の年齢を正確な日数・時間・分単位まで
-                        計算するツールです。単なる年齢計算を超えて、あなたの誕生日に関する面白い豆知識や
-                        宇宙的な視点から見たあなたの存在の意味を探求します。
-                    </p>
-                    <p class="mb-4">
-                        このツールは以下の情報を提供します：
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-4 my-6">
-                        <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100">
-                            <h4 class="font-bold text-cyan-700 mb-2">📅 正確な年齢</h4>
-                            <p class="text-gray-600 text-sm">年・月・日・時間・分まで細かく計算</p>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <h4 class="font-bold text-blue-700 mb-2">🎂 次の誕生日まで</h4>
-                            <p class="text-gray-600 text-sm">次の誕生日まで何日か即座に確認</p>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                            <h4 class="font-bold text-purple-700 mb-2">🌙 生まれた曜日</h4>
-                            <p class="text-gray-600 text-sm">あなたが生まれた曜日を正確に特定</p>
-                        </div>
-                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-100">
-                            <h4 class="font-bold text-teal-700 mb-2">⭐ 誕生年の出来事</h4>
-                            <p class="text-gray-600 text-sm">あなたが生まれた年の世界的な出来事</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">🌟</span>
-                    あなたの誕生日が持つ意味
-                </h2>
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        誕生日は単なる数字ではありません。あなたが生まれた瞬間から、地球は太陽の周りを
-                        何周も回り、あなたは無数の経験と成長を積み重ねてきました。
-                    </p>
-
-                    <div class="space-y-4 my-6">
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl">
-                            <span class="text-3xl">🌍</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">地球の公転と年齢</h4>
-                                <p class="text-gray-600 text-sm">
-                                    人間の1年は地球が太陽の周りを1周する時間（約365.25日）と一致しています。
-                                    あなたの年齢は、あなたが生まれてから地球が太陽の周りを何周したかを表しています。
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl">
-                            <span class="text-3xl">🕐</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">時間の積み重ね</h4>
-                                <p class="text-gray-600 text-sm">
-                                    30歳の人は約10,957日、つまり約263,000時間を生きてきたことになります。
-                                    この膨大な時間の中で、あなたは無数の選択をし、人生を形作ってきました。
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl">
-                            <span class="text-3xl">💫</span>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">誕生月と季節</h4>
-                                <p class="text-gray-600 text-sm">
-                                    生まれた季節は幼少期の環境に影響を与えることがあります。
-                                    日照時間、気温、周囲の自然環境が子供の発育に様々な影響を与えることが
-                                    複数の研究で観察されています。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <span class="text-4xl">❓</span>
-                    よくある質問
-                </h2>
-                <div class="space-y-4">
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            計算結果はどのくらい正確ですか？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            現在の日時とあなたの生年月日を使って正確に計算します。うるう年も考慮した
-                            高精度な計算を行いますが、時間・分単位の計算はデバイスの現在時刻に基づきます。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            入力した生年月日は保存されますか？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            いいえ。すべての計算はブラウザ内でローカルに行われます。
-                            入力された生年月日をサーバーに送信したり保存したりすることはありません。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            過去や未来の日付も計算できますか？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            はい！生年月日として入力した日付から現在までの期間を計算します。
-                            将来の日付を入力すると、その日まであと何日かを表示します。
-                        </p>
-                    </details>
-                    <details class="bg-gray-50 rounded-xl p-5 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            誕生石や誕生花も分かりますか？
-                            <span class="text-cyan-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">
-                            現在のバージョンでは年齢計算と関連情報に特化しています。
-                            誕生石や誕生花などの詳細情報は今後のアップデートで追加する予定です。
-                        </p>
-                    </details>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
     </main>
+
+    <!-- Social Proof Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -1511,7 +1396,7 @@
                 <h3 class="question-title">${question.text}</h3>
                 <div class="option-grid">
                     ${question.options.map((opt, i) => `
-                        <button type="button" class="option-btn" data-value="${opt.value}" data-index="${i}">
+                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
                             <span class="option-emoji">${opt.emoji}</span>
                             <span class="option-text">${opt.text}</span>
                         </button>
@@ -1630,6 +1515,51 @@
             // Navigate to results
             window.location.href = '/ja/age-calculator/result/';
         }
+    </script>
+
+    <!-- Social Proof Toast Script -->
+    <script>
+        (function() {
+            var cities = {
+                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney'],
+                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕'],
+                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン'],
+                zh: ['北京', '上海', '东京', '首尔', '纽约'],
+                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio']
+            };
+            var messages = {
+                en: { title: 'New age calculated!' },
+                ko: { title: '새로운 나이 계산 완료!' },
+                ja: { title: '新しい年齢計算!' },
+                zh: { title: '新的年龄计算!' },
+                es: { title: '¡Nueva edad calculada!' }
+            };
+            var times = {
+                en: ['just now', '1 min ago', '2 mins ago'],
+                ko: ['방금 전', '1분 전', '2분 전'],
+                ja: ['たった今', '1分前', '2分前'],
+                zh: ['刚刚', '1分钟前', '2分钟前'],
+                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
+            };
+            var ages = ['25', '32', '28', '19', '45', '38', '21', '55'];
+            function showToast() {
+                var container = document.getElementById('toast-container');
+                if (!container) return;
+                var currentLang = document.documentElement.lang || 'en';
+                var cityList = cities[currentLang] || cities.en;
+                var msg = messages[currentLang] || messages.en;
+                var timeList = times[currentLang] || times.en;
+                var city = cityList[Math.floor(Math.random() * cityList.length)];
+                var time = timeList[Math.floor(Math.random() * timeList.length)];
+                var mentalAge = ages[Math.floor(Math.random() * ages.length)];
+                var toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = '<div class="toast-icon">🎂</div><div class="toast-content"><div class="toast-title">' + msg.title + '</div><div class="toast-message">' + city + ' • Mental: ' + mentalAge + '</div><div class="toast-time">' + time + '</div></div>';
+                container.appendChild(toast);
+                setTimeout(function() { toast.classList.add('toast-out'); setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300); }, 4000);
+            }
+            setTimeout(function() { showToast(); setInterval(showToast, 12000 + Math.random() * 8000); }, 3000);
+        })();
     </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
 

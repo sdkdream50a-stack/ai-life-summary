@@ -51,12 +51,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../css/tailwind.css" fetchpriority="high">
     <!-- KICK Design System -->
-    <link rel="preload" href="../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -157,6 +158,29 @@
             50% { transform: translateY(-8px) rotate(-5deg); opacity: 0.4; }
             75% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
         }
+
+        /* Social Proof Toast */
+        .toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; }
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            animation: toastIn 0.5s ease-out forwards;
+            border-left: 4px solid #10b981;
+        }
+        .toast.toast-out { animation: toastOut 0.3s ease-in forwards; }
+        @keyframes toastIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes toastOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+        .toast-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .toast-content { flex: 1; min-width: 0; }
+        .toast-title { font-weight: 600; font-size: 0.875rem; color: #1f2937; margin-bottom: 2px; }
+        .toast-message { font-size: 0.75rem; color: #6b7280; }
+        .toast-time { font-size: 0.65rem; color: #9ca3af; margin-top: 2px; }
 
         /* Stats badge */
         .stats-badge {
@@ -519,57 +543,7 @@
         }
     }
     </script>
-
-    <!-- FAQPage Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What's the difference between mental age and real age?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Your real age is simply how many years you've been alive since birth. Mental age, however, reflects your psychological characteristics - how you think, adapt to change, embrace new experiences, and view the world."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How is energy age calculated?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Energy age is determined by analyzing your lifestyle factors such as physical activity levels, sleep patterns, stress management techniques, social engagement, and overall vitality."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is this test scientifically accurate?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The AI Age Calculator is designed primarily for entertainment and self-reflection. While our questions are inspired by psychological research on subjective age and life satisfaction, the results are not clinically validated."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I improve my mental or energy age?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely! Research shows that staying mentally active, embracing new experiences, maintaining social connections, exercising regularly, and managing stress effectively can help you feel younger."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is my data stored or shared?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. All calculations are performed locally in your browser. We don't store your birth date or quiz responses on any server. Your privacy is completely protected."
-                }
-            }
-        ]
-    }
-    </script>
-    <link rel="preload" href="../../css/mobile-enhancements.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/mobile-enhancements.css"></noscript>
+    <link rel="stylesheet" href="../../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
     @media screen and (max-width: 768px) {
@@ -588,20 +562,6 @@
         }
     }
     </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Use the AI Age Calculator",
-      "description": "Discover your real age, mental age, and energy age in 3 simple steps.",
-      "totalTime": "PT1M",
-      "step": [
-        {"@type": "HowToStep", "position": 1, "name": "Enter Your Birthday", "text": "Input your birth date into the date picker on the page."},
-        {"@type": "HowToStep", "position": 2, "name": "Answer Lifestyle Questions", "text": "Complete the short lifestyle assessment about your habits, sleep, and daily activities."},
-        {"@type": "HowToStep", "position": 3, "name": "Discover Your Three Ages", "text": "See your chronological age, mental age, and energy age compared side by side."}
-      ]
-    }
-    </script>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Header -->
@@ -614,8 +574,7 @@
         <div class="kick-navbar-links">
             <a href="/en/compatibility/" class="kick-navbar-link">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
-            <a href="/en/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ Age</a><a href="/en/personality-type/" class="kick-navbar-link">🧬 Personality</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 Blog</a>
+            <a href="/en/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ Age</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -656,7 +615,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/en/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
-            <a href="/en/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ Mental Age</a><a href="/en/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 Personality Type</a>
+            <a href="/en/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ Mental Age</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -829,11 +788,23 @@
                                 <div id="interstitial-emoji" class="interstitial-emoji"></div>
                                 <h2 id="interstitial-title" class="interstitial-title"></h2>
                                 <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
-                                <button type="button" id="interstitial-button" class="interstitial-button"></button>
+                                <button id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
                 </form>
+            </div>
+        </section>
+
+        <!-- Ad Slot -->
+        <section class="py-8">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="kick-glass rounded-xl p-6 text-center">
+                    <p class="text-white/50 text-sm mb-2">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-white/30">
+                        [Ad Slot - 728x90 Leaderboard]
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -860,174 +831,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- What is AI Age Calculator Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900">
-                    What is <span class="age-gradient-text">AI Age Calculator?</span>
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-6 text-gray-700">
-                        <p class="text-lg leading-relaxed">
-                            The AI Age Calculator is a unique tool that goes beyond simple birthday math to reveal the multiple dimensions of your age. While your chronological age is fixed by your birth date, your mental and energy ages are influenced by your lifestyle, mindset, and daily habits.
-                        </p>
-                        <p class="leading-relaxed">
-                            Our algorithm analyzes your responses to carefully designed questions about lifestyle habits, technology adoption, stress management, and future outlook. These factors have been shown in psychological research to correlate with how "young" or "old" people feel regardless of their actual age.
-                        </p>
-                        <p class="leading-relaxed">
-                            Whether you're curious about how your lifestyle affects your perceived age, or just looking for a fun activity to share with friends, the AI Age Calculator provides entertaining insights that often spark meaningful self-reflection about our relationship with aging.
-                        </p>
-                    </div>
-                    <div class="bg-gray-50 rounded-2xl p-8">
-                        <h3 class="font-heading font-semibold text-xl mb-6 text-center text-gray-900">The Three Ages Explained</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0">🎂</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900">Real Age</h4>
-                                    <p class="text-gray-600 text-sm">Your chronological age calculated from your birth date - the number on your ID.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0">🧠</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900">Mental Age</h4>
-                                    <p class="text-gray-600 text-sm">How your mind perceives the world - your curiosity, adaptability, and psychological flexibility.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0">⚡</div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-900">Energy Age</h4>
-                                    <p class="text-gray-600 text-sm">Your vitality level based on lifestyle - physical activity, social engagement, and stress management.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- User Testimonials Section -->
-        <section class="py-16 bg-gradient-to-br from-emerald-50 to-cyan-50">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-                    What <span class="age-gradient-text">Users Say</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Discover what others have learned about their ages through our test.
-                </p>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"I'm 45 but my mental age came out as 32! It made me realize that staying curious about new things really does keep you young. Shared it with my kids and they were impressed!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">M</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Michael T.</p>
-                                <p class="text-gray-500 text-xs">Chicago, USA</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"My energy age was 10 years older than my real age... it was a wake-up call to start exercising more and managing stress better. Thanks for the reality check!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Anna K.</p>
-                                <p class="text-gray-500 text-xs">Berlin, Germany</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="flex items-center gap-1 mb-4">
-                            <span class="text-yellow-400">★★★★★</span>
-                        </div>
-                        <p class="text-gray-700 mb-4 italic">"Did this with my whole family during dinner - we had so much fun comparing our mental ages! My grandma's mental age was younger than my dad's. Classic!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white font-bold">J</div>
-                            <div>
-                                <p class="font-semibold text-sm text-gray-900">Jessica L.</p>
-                                <p class="text-gray-500 text-xs">Toronto, Canada</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-                    Frequently Asked <span class="age-gradient-text">Questions</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                    Everything you need to know about the AI Age Calculator
-                </p>
-
-                <div class="space-y-4">
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            What's the difference between mental age and real age?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Your real age is simply how many years you've been alive since birth. Mental age, however, reflects your psychological characteristics - how you think, adapt to change, embrace new experiences, and view the world. Someone who stays curious, open to learning, and adaptable often has a mental age younger than their chronological age.</p>
-                    </details>
-
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            How is energy age calculated?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Energy age is determined by analyzing your lifestyle factors such as physical activity levels, sleep patterns, stress management techniques, social engagement, and overall vitality. Active individuals who maintain healthy habits and strong social connections typically show a younger energy age than their chronological age.</p>
-                    </details>
-
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Is this test scientifically accurate?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">The AI Age Calculator is designed primarily for entertainment and self-reflection. While our questions are inspired by psychological research on subjective age and life satisfaction, the results are not clinically validated. Think of it as a fun way to reflect on your lifestyle and mindset rather than a medical assessment.</p>
-                    </details>
-
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Can I improve my mental or energy age?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">Absolutely! Research shows that staying mentally active, embracing new experiences, maintaining social connections, exercising regularly, and managing stress effectively can help you feel younger. Small lifestyle changes like trying new hobbies, learning new skills, or improving sleep habits can positively impact your perceived age.</p>
-                    </details>
-
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Is my data stored or shared?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">No. All calculations are performed locally in your browser. We don't store your birth date or quiz responses on any server. Your privacy is completely protected - enjoy the test without any data concerns.</p>
-                    </details>
-
-                    <details class="bg-gray-50 rounded-xl p-6 group">
-                        <summary class="font-semibold cursor-pointer list-none flex justify-between items-center text-gray-900">
-                            Why do my results change when I retake the test?
-                            <span class="text-emerald-500 group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p class="mt-4 text-gray-600">If you answer the questions differently, your mental and energy ages will change accordingly. Your real age will always remain the same since it's based on your birth date. This actually demonstrates how our perceived age can fluctuate based on current mindset and lifestyle choices!</p>
-                    </details>
-                </div>
-            </div>
-        </section>
     </main>
+
+    <!-- Social Proof Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -1561,7 +1368,7 @@
                 <h3 class="question-title">${question.text}</h3>
                 <div class="option-grid">
                     ${question.options.map((opt, i) => `
-                        <button type="button" class="option-btn" data-value="${opt.value}" data-index="${i}">
+                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
                             <span class="option-emoji">${opt.emoji}</span>
                             <span class="option-text">${opt.text}</span>
                         </button>
@@ -1680,6 +1487,51 @@
             // Navigate to results
             window.location.href = '/en/age-calculator/result/';
         }
+    </script>
+
+    <!-- Social Proof Toast Script -->
+    <script>
+        (function() {
+            var cities = {
+                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney'],
+                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕'],
+                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン'],
+                zh: ['北京', '上海', '东京', '首尔', '纽约'],
+                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio']
+            };
+            var messages = {
+                en: { title: 'New age calculated!' },
+                ko: { title: '새로운 나이 계산 완료!' },
+                ja: { title: '新しい年齢計算!' },
+                zh: { title: '新的年龄计算!' },
+                es: { title: '¡Nueva edad calculada!' }
+            };
+            var times = {
+                en: ['just now', '1 min ago', '2 mins ago'],
+                ko: ['방금 전', '1분 전', '2분 전'],
+                ja: ['たった今', '1分前', '2分前'],
+                zh: ['刚刚', '1分钟前', '2分钟前'],
+                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
+            };
+            var ages = ['25', '32', '28', '19', '45', '38', '21', '55'];
+            function showToast() {
+                var container = document.getElementById('toast-container');
+                if (!container) return;
+                var currentLang = document.documentElement.lang || 'en';
+                var cityList = cities[currentLang] || cities.en;
+                var msg = messages[currentLang] || messages.en;
+                var timeList = times[currentLang] || times.en;
+                var city = cityList[Math.floor(Math.random() * cityList.length)];
+                var time = timeList[Math.floor(Math.random() * timeList.length)];
+                var mentalAge = ages[Math.floor(Math.random() * ages.length)];
+                var toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = '<div class="toast-icon">🎂</div><div class="toast-content"><div class="toast-title">' + msg.title + '</div><div class="toast-message">' + city + ' • Mental: ' + mentalAge + '</div><div class="toast-time">' + time + '</div></div>';
+                container.appendChild(toast);
+                setTimeout(function() { toast.classList.add('toast-out'); setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300); }, 4000);
+            }
+            setTimeout(function() { showToast(); setInterval(showToast, 12000 + Math.random() * 8000); }, 3000);
+        })();
     </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
 

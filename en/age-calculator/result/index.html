@@ -45,12 +45,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -300,8 +301,8 @@
     // Language is set statically for this page - no auto-switch needed
     </script>
     <!-- Gamification CSS -->
-    <link rel="preload" href="../../../css/gamification.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/gamification.css"></noscript>
-    <link rel="preload" href="../../../css/popups.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/popups.css"></noscript>
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
 
@@ -333,8 +334,7 @@
         <div class="kick-navbar-links">
             <a href="/en/compatibility/" class="kick-navbar-link">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="kick-navbar-link">🔮 Soul</a>
-            <a href="/en/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ Age</a><a href="/en/personality-type/" class="kick-navbar-link">🧬 Personality</a>
-            <a href="/blog.html" class="kick-navbar-link">📝 Blog</a>
+            <a href="/en/age-calculator/" class="kick-navbar-link text-cyan-400">⏳ Age</a>
         </div>
         <!-- Language Selector -->
         <div id="lang-selector" class="relative">
@@ -371,7 +371,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
             <a href="/en/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 Compatibility</a>
             <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
-            <a href="/en/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ Mental Age</a><a href="/en/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 Personality Type</a>
+            <a href="/en/age-calculator/" class="text-2xl text-cyan-400 font-bold">⏳ Mental Age</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/en/about/" class="text-lg text-white/70 hover:text-white transition">About</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -536,6 +536,16 @@
             </div>
         </section>
 
+        <!-- Ad Slot 1 -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Detailed Analysis -->
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
@@ -575,6 +585,16 @@
                 <!-- Overall Summary -->
                 <div class="bg-gray-100 rounded-xl p-6 text-center">
                     <p id="overall-analysis" class="text-gray-700 font-medium"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot 2 -->
+        <section class="py-6 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
                 </div>
             </div>
         </section>
@@ -671,43 +691,6 @@
                             </div>
                         </div>
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scientific Basis Section -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8">
-                    🔬 The Scientific Basis of This Test
-                </h2>
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        This AI Age Calculator is designed based on the concept of <strong>Mental Age</strong>
-                        and research in <strong>Cognitive Science</strong>. The concept of mental age was first
-                        proposed by French psychologist Alfred Binet in 1905, and modern neuroscience has proven
-                        that the brain's 'functional age' can differ from biological age.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        Cognitive science research suggests that factors such as cognitive flexibility, emotional regulation,
-                        and working memory influence mental age.
-                        This test comprehensively evaluates these factors to analyze your mental, physical, and soul age.
-                    </p>
-
-                    <h3 class="text-lg font-semibold text-gray-800 mt-6 mb-4">📚 References</h3>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>• Binet, A., & Simon, T. (1905). New methods for the diagnosis of the intellectual level of subnormals. <em>L'Année Psychologique, 11</em>, 191-244.</li>
-                        <li>• Stern, Y. (2012). Cognitive reserve in ageing and Alzheimer's disease. <em>Lancet Neurology, 11</em>(11), 1006-1012.</li>
-                        <li>• Erickson, K. I., et al. (2011). Exercise training increases size of hippocampus and improves memory. <em>PNAS, 108</em>(7), 3017-3022.</li>
-                        <li>• Draganski, B., et al. (2006). Changes in grey matter induced by training. <em>Nature, 427</em>(6972), 311-312.</li>
-                    </ul>
-
-                    <div class="mt-6 p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
-                        <p class="text-sm text-amber-800">
-                            <strong>Note:</strong> This test result is for entertainment and self-reflection purposes
-                            and does not replace medical diagnosis. If you have health concerns, please consult a healthcare professional.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>

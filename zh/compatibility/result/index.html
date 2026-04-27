@@ -45,12 +45,13 @@
     <!-- Google Fonts with Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../../../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
-    <link rel="preload" href="../../../css/global-kick.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/global-kick.css"></noscript>
+    <link rel="stylesheet" href="../../../css/global-kick.css">
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -339,8 +340,8 @@
     // Language is set statically for this page - no auto-switch needed
     </script>
     <!-- Gamification CSS -->
-    <link rel="preload" href="../../../css/gamification.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/gamification.css"></noscript>
-    <link rel="preload" href="../../../css/popups.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/popups.css"></noscript>
+    <link rel="stylesheet" href="../../../css/gamification.css">
+    <link rel="stylesheet" href="../../../css/popups.css">
     <!-- Stage 5: Monetization -->
     <link rel="stylesheet" href="../../../css/monetization.css">
 
@@ -372,7 +373,7 @@
         <div class="kick-navbar-links">
             <a href="/zh/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 配对</a>
             <a href="/zh/life-summary/" class="kick-navbar-link">🔮 灵魂</a>
-            <a href="/zh/age-calculator/" class="kick-navbar-link">⏳ 年龄</a><a href="/zh/personality-type/" class="kick-navbar-link">🧬 性格类型</a>
+            <a href="/zh/age-calculator/" class="kick-navbar-link">⏳ 年龄</a>
             <a href="/blog.html" class="kick-navbar-link">📝 博客</a>
         </div>
         <!-- Language Selector -->
@@ -410,7 +411,7 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
             <a href="/zh/compatibility/" class="text-2xl text-pink-400 font-bold">❤️‍🔥 配对测试</a>
             <a href="/zh/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 灵魂类型</a>
-            <a href="/zh/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 心理年龄</a><a href="/zh/personality-type/" class="text-2xl text-white font-bold hover:text-indigo-400 transition">🧬 性格类型测试</a>
+            <a href="/zh/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 心理年龄</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/zh/about/" class="text-lg text-white/70 hover:text-white transition">关于</a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
@@ -764,6 +765,16 @@
             </div>
         </section>
 
+        <!-- Ad Slot -->
+        <section class="py-6 bg-gray-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gray-200 rounded-lg p-6 text-center border-2 border-dashed border-gray-300">
+                    <p class="text-gray-500 text-sm">Advertisement</p>
+                    <div class="h-20 flex items-center justify-center text-gray-400">[Ad Slot]</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Detailed Analysis -->
         <section class="py-10 bg-white">
             <div class="max-w-3xl mx-auto px-4">
@@ -785,68 +796,68 @@
                 <!-- Category Details -->
                 <div class="space-y-6">
                     <!-- Communication -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128172;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">
+                            <h3 class="font-heading font-semibold text-lg">
 
                                 沟通
 
                             </h3>
                         </div>
-                        <p id="communication-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="communication-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Values -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9878;&#65039;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">
+                            <h3 class="font-heading font-semibold text-lg">
 
                                 价值观
 
                             </h3>
                         </div>
-                        <p id="values-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="values-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Energy -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#9889;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">
+                            <h3 class="font-heading font-semibold text-lg">
 
                                 能量
 
                             </h3>
                         </div>
-                        <p id="energy-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="energy-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Emotional -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#128151;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">
+                            <h3 class="font-heading font-semibold text-lg">
 
                                 情感联系
 
                             </h3>
                         </div>
-                        <p id="emotional-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="emotional-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
 
                     <!-- Growth -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div class="kick-glass rounded-xl p-6">
                         <div class="flex items-center space-x-3 mb-3">
                             <span class="text-2xl">&#127793;</span>
-                            <h3 class="font-heading font-semibold text-lg text-gray-800">
+                            <h3 class="font-heading font-semibold text-lg">
 
                                 成长潜力
 
                             </h3>
                         </div>
-                        <p id="growth-desc" class="text-gray-600 leading-relaxed"></p>
+                        <p id="growth-desc" class="text-white/70 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
