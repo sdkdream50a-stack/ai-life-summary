@@ -62,7 +62,8 @@
         h1, h2, h3 { font-family: 'Poppins', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); }
         .gradient-text { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .card { background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.4); border-radius: 16px; backdrop-filter: blur(8px); }
+        .card { background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; backdrop-filter: blur(8px); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -8px rgba(236, 72, 153, 0.25); }
         .lang-ko, .lang-ja, .lang-zh, .lang-es { display: none; }
         html[lang="ko"] .lang-en, html[lang="ko"] .lang-ja, html[lang="ko"] .lang-zh, html[lang="ko"] .lang-es { display: none; }
         html[lang="ko"] .lang-ko { display: inline; }
@@ -99,7 +100,7 @@
     </style>
 </head>
 <body>
-    <header class="border-b border-pink-100/70 bg-white/40 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-pink-100/70 bg-white/60 backdrop-blur-md sticky top-0 z-50">
         <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="/en/" class="flex items-center space-x-2">
                 <span class="text-2xl">🔮</span>
@@ -113,8 +114,36 @@
                 <a href="/kpop-match/" class="text-fuchsia-600 font-semibold" title="K-Pop Match">💜 K-Pop</a>
                 <a href="/blog.html" class="hover:text-pink-600">📝 Blog</a>
             </div>
+            <button id="km-mobile-btn" class="md:hidden text-gray-700 p-1" aria-label="Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile menu overlay -->
+    <div id="km-mobile-menu" class="hidden fixed inset-0 z-[60] bg-white/95 backdrop-blur-xl">
+        <div class="flex flex-col items-center justify-center h-full gap-5 text-center px-6">
+            <button id="km-mobile-close" class="absolute top-6 right-6 text-gray-700 text-3xl" aria-label="Close">&times;</button>
+            <a href="/en/life-summary/" class="text-2xl text-gray-800 font-bold hover:text-purple-600 transition">🔮 Soul Type</a>
+            <a href="/en/compatibility/" class="text-2xl text-gray-800 font-bold hover:text-pink-600 transition">❤️‍🔥 Compatibility</a>
+            <a href="/en/age-calculator/" class="text-2xl text-gray-800 font-bold hover:text-cyan-600 transition">⏳ Mental Age</a>
+            <a href="/vibe-check/" class="text-2xl text-gray-800 font-bold hover:text-orange-600 transition">🔥 Vibe Check</a>
+            <a href="/kpop-match/" class="text-2xl text-fuchsia-600 font-bold">💜 K-Pop Match</a>
+            <div class="border-t border-gray-300 w-48 my-2"></div>
+            <a href="/blog.html" class="text-lg text-gray-600 hover:text-gray-900">Blog</a>
+            <a href="/en/about/" class="text-lg text-gray-600 hover:text-gray-900">About</a>
+        </div>
+    </div>
+    <script>
+        (function(){
+            var btn = document.getElementById('km-mobile-btn');
+            var menu = document.getElementById('km-mobile-menu');
+            var close = document.getElementById('km-mobile-close');
+            if(btn) btn.addEventListener('click', function(){ menu.classList.remove('hidden'); });
+            if(close) close.addEventListener('click', function(){ menu.classList.add('hidden'); });
+            if(menu) menu.addEventListener('click', function(e){ if(e.target === menu) menu.classList.add('hidden'); });
+        })();
+    </script>
 
     <main class="max-w-2xl mx-auto px-4 py-12">
 
