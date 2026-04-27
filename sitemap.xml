@@ -602,6 +602,66 @@
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
   </url>
   <url>
+    <loc>https://smartaitest.com/en/terms-of-service/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ko/terms-of-service/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/terms-of-service/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/terms-of-service/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/terms-of-service/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/terms-of-service/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
+  </url>
+  <url>
     <loc>https://smartaitest.com/blog.html</loc>
     <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>

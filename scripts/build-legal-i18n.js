@@ -74,14 +74,27 @@ const META = {
              'AI Test Lab联系方式：服务咨询、反馈、合作洽谈、隐私请求请通过邮件或联系表单与我们联系。'],
         es: ['Contacto - AI Test Lab | Comunícate con Nuestro Equipo',
              'Contacta a AI Test Lab: preguntas sobre el servicio, comentarios, consultas de asociación o solicitudes de privacidad por correo y formulario.']
+    },
+    'terms-of-service': {
+        en: ['Terms of Service - AI Test Lab | User Agreement & Conditions',
+             'AI Test Lab Terms of Service: user agreement covering acceptable use, intellectual property, disclaimers, limitation of liability, and governing law for our AI personality tests.'],
+        ko: ['이용약관 - AI Test Lab | 서비스 이용 조건',
+             'AI Test Lab 이용약관: AI 성격 테스트 서비스 이용 시 적용되는 이용 조건, 지식재산권, 면책조항, 책임 제한, 준거법을 안내합니다.'],
+        ja: ['利用規約 - AI Test Lab | サービス利用条件',
+             'AI Test Labの利用規約：AI性格診断サービスの利用条件、知的財産権、免責事項、責任の制限、準拠法についてご案内します。'],
+        zh: ['服务条款 - AI Test Lab | 用户协议与条件',
+             'AI Test Lab服务条款：使用AI性格测试服务的用户协议，涵盖使用条件、知识产权、免责声明、责任限制和适用法律。'],
+        es: ['Términos del Servicio - AI Test Lab | Acuerdo de Usuario y Condiciones',
+             'Términos del Servicio de AI Test Lab: acuerdo de usuario que cubre el uso aceptable, propiedad intelectual, exenciones de responsabilidad y ley aplicable para nuestros tests de personalidad con IA.']
     }
 };
 
 // Source files (root)
 const SOURCES = {
-    'privacy-policy': 'privacy-policy.html',
-    'disclaimer':     'disclaimer.html',
-    'contact':        'contact.html'
+    'privacy-policy':   'privacy-policy.html',
+    'disclaimer':       'disclaimer.html',
+    'contact':          'contact.html',
+    'terms-of-service': 'terms-of-service.html'
 };
 
 // Pages to generate per language (skip ones that already exist with non-trivial body)
