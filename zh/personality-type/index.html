@@ -114,7 +114,16 @@ html[lang="ko"] body,html[lang="ja"] body,html[lang="zh"] body{word-break:keep-a
 <main class="relative z-10 pt-8">
   <section class="py-12 md:py-16 relative overflow-hidden">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="text-5xl mb-3">🧬</div>
+      <!-- Hero illustration: 4x4 grid of 16 dots -->
+      <svg viewBox="0 0 200 200" style="width:112px;height:112px;display:block;margin:0 auto 0.75rem;" aria-hidden="true" role="presentation">
+          <defs>
+              <linearGradient id="pt-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#ec4899"/></linearGradient>
+              <radialGradient id="pt-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#a78bfa" stop-opacity="0.45"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="95" fill="url(#pt-glow)"/>
+          <g fill="url(#pt-grad)"><circle cx="65" cy="70" r="8"/><circle cx="88" cy="70" r="8"/><circle cx="112" cy="70" r="8"/><circle cx="135" cy="70" r="8"/><circle cx="65" cy="92" r="8"/><circle cx="88" cy="92" r="8"/><circle cx="112" cy="92" r="8"/><circle cx="135" cy="92" r="8"/><circle cx="65" cy="115" r="8"/><circle cx="88" cy="115" r="8"/><circle cx="112" cy="115" r="8"/><circle cx="135" cy="115" r="8"/><circle cx="65" cy="138" r="8"/><circle cx="88" cy="138" r="8"/><circle cx="112" cy="138" r="8"/><circle cx="135" cy="138" r="8"/></g>
+          <g fill="#f9a8d4" opacity="0.85"><circle cx="35" cy="50" r="2"/><circle cx="170" cy="60" r="1.5"/><circle cx="165" cy="155" r="2"/><circle cx="32" cy="155" r="1.5"/></g>
+      </svg>
       <h1 class="font-heading text-3xl md:text-4xl font-bold mb-2" style="background:linear-gradient(135deg,#a78bfa,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AI性格类型测试</h1>
       <p class="text-white/70 text-base md:text-lg mb-2">在16种性格类型中发现你自己</p>
       <p class="text-white/50 text-sm">请诚实回答每道题。共40题，约需5分钟。</p>
