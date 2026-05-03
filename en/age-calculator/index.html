@@ -650,7 +650,21 @@
                 <span class="particle">💫</span>
             </div>
             <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                <div class="text-4xl md:text-5xl mb-2">⏳</div>
+                <!-- Hero illustration: hourglass -->
+                <svg viewBox="0 0 200 200" style="width:112px;height:112px;display:block;margin:0 auto 0.75rem;" aria-hidden="true" role="presentation">
+                    <defs>
+                        <linearGradient id="ac-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient>
+                        <radialGradient id="ac-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.45"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="95" fill="url(#ac-glow)"/>
+                    <path d="M 60 50 L 140 50 L 105 100 L 140 150 L 60 150 L 95 100 Z" fill="none" stroke="url(#ac-grad)" stroke-width="3" stroke-linejoin="round"/>
+                    <line x1="55" y1="50" x2="145" y2="50" stroke="url(#ac-grad)" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="55" y1="150" x2="145" y2="150" stroke="url(#ac-grad)" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 70 60 L 130 60 L 102 96 L 98 96 Z" fill="url(#ac-grad)" opacity="0.7"/>
+                    <path d="M 78 140 L 122 140 L 110 110 L 90 110 Z" fill="url(#ac-grad)" opacity="0.7"/>
+                    <line x1="100" y1="98" x2="100" y2="115" stroke="url(#ac-grad)" stroke-width="1.5"/>
+                    <g fill="#7dd3fc" opacity="0.85"><circle cx="38" cy="48" r="2"/><circle cx="172" cy="58" r="1.5"/><circle cx="162" cy="152" r="2"/><circle cx="32" cy="142" r="1.5"/></g>
+                </svg>
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
                     <span class="kick-gradient-text">
                         AI Age Calculator

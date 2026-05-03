@@ -613,6 +613,20 @@
                 <span class="particle">🌙</span>
             </div>
             <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+                <!-- Hero illustration: open book + sparkle -->
+                <svg viewBox="0 0 200 200" style="width:112px;height:112px;display:block;margin:0 auto 1rem;" aria-hidden="true" role="presentation">
+                    <defs>
+                        <linearGradient id="ls-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+                        <radialGradient id="ls-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#a855f7" stop-opacity="0.45"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></radialGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="95" fill="url(#ls-glow)"/>
+                    <path d="M 50 80 L 100 75 L 100 145 L 50 150 Z" fill="url(#ls-grad)" opacity="0.85"/>
+                    <path d="M 150 80 L 100 75 L 100 145 L 150 150 Z" fill="url(#ls-grad)" opacity="0.85"/>
+                    <line x1="100" y1="75" x2="100" y2="145" stroke="white" stroke-width="2" opacity="0.5"/>
+                    <g stroke="white" stroke-width="1.2" opacity="0.55"><line x1="60" y1="95" x2="92" y2="92"/><line x1="60" y1="105" x2="92" y2="102"/><line x1="60" y1="115" x2="86" y2="112"/><line x1="108" y1="92" x2="140" y2="95"/><line x1="108" y1="102" x2="140" y2="105"/><line x1="108" y1="112" x2="134" y2="115"/></g>
+                    <path d="M 100 50 L 103 58 L 111 60 L 103 62 L 100 70 L 97 62 L 89 60 L 97 58 Z" fill="white" opacity="0.95"/>
+                    <g fill="#c4b5fd" opacity="0.85"><circle cx="40" cy="55" r="2"/><circle cx="170" cy="65" r="1.5"/><circle cx="155" cy="160" r="1.8"/></g>
+                </svg>
                 <h1 class="kick-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                     <span class="kick-gradient-text">
                         Your Life in One AI Sentence

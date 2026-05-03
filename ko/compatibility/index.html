@@ -404,7 +404,18 @@
                     테스트 목록으로
 
                 </a>
-                <div class="text-5xl md:text-6xl mb-2 heart-pulse">❤️‍🔥</div>
+                <!-- Hero illustration: two-circle venn + heart -->
+                <svg viewBox="0 0 200 200" style="width:112px;height:112px;display:block;margin:0 auto 0.75rem;" aria-hidden="true" role="presentation">
+                    <defs>
+                        <linearGradient id="cp-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#f43f5e"/></linearGradient>
+                        <radialGradient id="cp-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ec4899" stop-opacity="0.45"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="95" fill="url(#cp-glow)"/>
+                    <circle cx="78" cy="100" r="48" fill="url(#cp-grad)" opacity="0.55"/>
+                    <circle cx="122" cy="100" r="48" fill="url(#cp-grad)" opacity="0.55"/>
+                    <path d="M 100 128 C 82 116, 78 98, 90 92 C 96 89, 100 92, 100 98 C 100 92, 104 89, 110 92 C 122 98, 118 116, 100 128 Z" fill="white" opacity="0.95"/>
+                    <g fill="#fbcfe8" opacity="0.85"><circle cx="40" cy="50" r="2"/><circle cx="170" cy="60" r="1.5"/><circle cx="160" cy="155" r="2"/><circle cx="35" cy="148" r="1.5"/></g>
+                </svg>
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
                     <span class="kick-gradient-text">
 
