@@ -632,3 +632,50 @@ if (document.readyState === 'loading') {
 } else {
   ConsentManager.init();
 }
+
+// ===== Korean auto-detect language banner =====
+// Show one-time top banner to ko-browser visitors on non-ko pages
+(function showKoLangBanner() {
+  function init() {
+    try {
+      // Skip if user dismissed
+      if (localStorage.getItem('lang-banner-dismissed-ko') === '1') return;
+
+      // Skip on Korean pages (already in ko)
+      var path = window.location.pathname;
+      if (path === '/ko' || path.indexOf('/ko/') === 0) return;
+
+      // Detect Korean browser preference
+      var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (!browserLang.indexOf || browserLang.indexOf('ko') !== 0) return;
+
+      // Build target URL: keep current path but force /ko/ prefix where possible
+      var targetUrl = '/ko/';
+      var langMatch = path.match(/^\/(en|ja|zh|es)\/(.*)$/);
+      if (langMatch) {
+        targetUrl = '/ko/' + langMatch[2];
+      }
+
+      // Build banner
+      var banner = document.createElement('div');
+      banner.id = 'ko-lang-banner';
+      banner.setAttribute('role', 'region');
+      banner.setAttribute('aria-label', 'Korean language suggestion');
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99998;background:linear-gradient(90deg,#7c3aed 0%,#ec4899 100%);color:white;padding:10px 16px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-shadow:0 2px 12px rgba(0,0,0,0.25);';
+      banner.innerHTML =
+        '<span style="font-weight:500">🇰🇷 한국어 페이지가 준비되어 있습니다</span>' +
+        '<a href="' + targetUrl + '" style="background:white;color:#7c3aed;padding:6px 14px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">한국어로 이동 →</a>' +
+        '<button type="button" aria-label="닫기" style="background:transparent;border:none;color:white;font-size:20px;cursor:pointer;line-height:1;padding:0 4px;opacity:0.85;">×</button>';
+      banner.querySelector('button').addEventListener('click', function () {
+        banner.remove();
+        try { localStorage.setItem('lang-banner-dismissed-ko', '1'); } catch (e) {}
+      });
+      document.body.appendChild(banner);
+    } catch (e) { /* fail silently */ }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
