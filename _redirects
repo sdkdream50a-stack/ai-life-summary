@@ -95,3 +95,9 @@
 
 # Search template URL
 /search / 301
+
+# Root entry (thin JS-redirect loaders) -> English canonical for AdSense crawler
+/age-calculator/ /en/age-calculator/ 301
+/compatibility/ /en/compatibility/ 301
+/life-summary/ /en/life-summary/ 301
+/personality-type/ /en/personality-type/ 301
