@@ -60,19 +60,27 @@
     </style> <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"AI Test Lab - Psychology Insights Blog","description":"Science-backed insights on personality analysis, relationship compatibility, and mental age — exploring psychology through a fun, accessible lens.","url":"https://smartaitest.com/blog","mainEntity":{"@type":"Blog","name":"AI Test Lab Psychology Blog","description":"Psychology and personality science insights: personality tests, compatibility research, mental age science, and more.","url":"https://smartaitest.com/blog","inLanguage":["en","ko","ja","zh","es"],"publisher":{"@type":"Organization","name":"AI Test Lab","url":"https://smartaitest.com","logo":{"@type":"ImageObject","url":"https://smartaitest.com/assets/images/og-image.png"}}}}</script> <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
-        var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English
-        if (saved && supportedLangs.indexOf(saved) !== -1) { lang = saved; }
-        else {
-            var params = new URLSearchParams(window.location.search);
-            var urlLang = params.get('lang') || params.get('hl');
-            if (urlLang) {
-                var code = urlLang.split('-')[0].toLowerCase();
-                if (supportedLangs.indexOf(code) !== -1) { lang = code; localStorage.setItem('ai-life-summary-lang', code); }
+
+        // 1) URL ?lang= / ?hl= takes top priority (explicit user choice via nav link)
+        var params = new URLSearchParams(window.location.search);
+        var urlLang = params.get('lang') || params.get('hl');
+        if (urlLang) {
+            var code = urlLang.split('-')[0].toLowerCase();
+            if (supportedLangs.indexOf(code) !== -1) {
+                lang = code;
+                try { localStorage.setItem('ai-life-summary-lang', code); } catch (e) {}
+            }
+        } else {
+            // 2) Saved preference from previous visit
+            var saved = null;
+            try { saved = localStorage.getItem('ai-life-summary-lang'); } catch (e) {}
+            if (saved && supportedLangs.indexOf(saved) !== -1) {
+                lang = saved;
             } else {
+                // 3) Browser language fallback
                 var browserLangs = navigator.languages || [navigator.language];
                 var langCodes = browserLangs.map(function(l) { return l.split('-')[0].toLowerCase(); });
-                // Detect browser language - matches user's region/language setting
                 for (var i = 0; i < langCodes.length; i++) {
                     if (supportedLangs.indexOf(langCodes[i]) !== -1) { lang = langCodes[i]; break; }
                 }
