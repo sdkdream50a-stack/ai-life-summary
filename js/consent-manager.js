@@ -679,3 +679,25 @@ if (document.readyState === 'loading') {
     init();
   }
 })();
+
+// ===== Global lang-dropdown portal fix =====
+// Override inline toggleLangDropdown across the site.
+// Reason: kick-navbar uses backdrop-filter which creates a stacking context
+// trapping z-index. Move dropdown to body so it escapes navbar context.
+window.toggleLangDropdown = function () {
+  var dropdown = document.getElementById('lang-dropdown');
+  var selector = document.getElementById('lang-selector');
+  if (!dropdown || !selector) return;
+  var btn = selector.querySelector('button');
+  if (!btn) return;
+  if (dropdown.parentElement !== document.body) {
+    document.body.appendChild(dropdown);
+    dropdown.style.position = 'fixed';
+    dropdown.style.right = 'auto';
+    dropdown.style.zIndex = '2147483647';
+  }
+  var rect = btn.getBoundingClientRect();
+  dropdown.style.top = (rect.bottom + 8) + 'px';
+  dropdown.style.left = Math.max(8, rect.right - 112) + 'px';
+  dropdown.classList.toggle('hidden');
+};
