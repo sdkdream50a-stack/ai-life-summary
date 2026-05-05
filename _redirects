@@ -83,9 +83,8 @@
 /terms-of-service.html /terms 301
 
 # Language-specific pages -> canonical pages
-/ja/contact/ /contact.html 301
-/en/contact/ /contact.html 301
-/en/terms-of-service/ /terms-of-service.html 301
+# (Removed /ja/contact/ /en/contact/ /en/terms-of-service/ legacy redirects —
+#  localized index.html files exist and are the canonical hreflang targets in sitemap.)
 /es/guide/compatibility-guide/ /blog.html 301
 /zh/methodology/ /blog.html 301
 
