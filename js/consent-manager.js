@@ -3,15 +3,35 @@
  * AdSense always loads (required for review); data collection gated by consent
  */
 
-// Google Consent Mode v2 - set defaults BEFORE any scripts load
+// Google Consent Mode v2 - region-specific defaults BEFORE any scripts load
+// Pattern: granted globally + denied override for EU/EEA/UK/CH
+// (Google official recommendation — recovers ~30-50% RPM on non-EU traffic
+//  vs blanket-denied while preserving EU/UK opt-in compliance)
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+
+// Default for everyone NOT covered by a region override below.
+gtag('consent', 'default', {
+  'ad_storage': 'granted',
+  'ad_user_data': 'granted',
+  'ad_personalization': 'granted',
+  'analytics_storage': 'granted'
+});
+
+// EU 27 + EEA (IS, LI, NO) + UK + CH — opt-in required.
+// Banner still shows globally so all users can opt out.
 gtag('consent', 'default', {
   'ad_storage': 'denied',
   'ad_user_data': 'denied',
   'ad_personalization': 'denied',
   'analytics_storage': 'denied',
-  'wait_for_update': 500
+  'wait_for_update': 500,
+  'region': [
+    'AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE',
+    'IT','LT','LU','LV','MT','NL','PL','PT','RO','SE','SI','SK',
+    'IS','LI','NO',
+    'GB','CH'
+  ]
 });
 
 // Always load AdSense script (Consent Mode controls data collection)
