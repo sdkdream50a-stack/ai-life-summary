@@ -225,12 +225,25 @@ const ConsentManager = {
     // Analytics (Google Analytics, Clarity)
     if (this.categories.analytics) {
       this.loadAnalytics();
+    } else {
+      // Clarity has its own consent API separate from gtag — explicit revoke
+      // (gtag('consent', 'update') only stops GA, not Clarity)
+      this.revokeClarity();
     }
 
     // Dispatch event for other scripts
     window.dispatchEvent(new CustomEvent('consentUpdated', {
       detail: this.categories
     }));
+  },
+
+  /**
+   * Stop Microsoft Clarity tracking. Safe no-op if Clarity hasn't loaded.
+   */
+  revokeClarity() {
+    if (typeof window.clarity === 'function') {
+      try { window.clarity('consent', false); } catch (e) {}
+    }
   },
 
   /**
@@ -311,10 +324,14 @@ const ConsentManager = {
     // Don't show if already visible
     if (document.getElementById('consent-banner')) return;
 
+    // Save focus so we can restore it when banner closes (a11y)
+    this._previouslyFocused = document.activeElement;
+
     const banner = document.createElement('div');
     banner.id = 'consent-banner';
     banner.className = 'consent-banner';
     banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-modal', 'true');
     banner.setAttribute('aria-label', 'Cookie consent');
 
     banner.innerHTML = `
@@ -612,15 +629,51 @@ const ConsentManager = {
       this.applyConsent();
       this.hideBanner(banner);
     });
+
+    // Keyboard a11y: Escape = Reject (GDPR-safe deny), Tab cycle within banner.
+    const focusables = () => Array.from(
+      banner.querySelectorAll('button, [href], input:not([disabled])')
+    ).filter(el => el.offsetParent !== null);
+
+    banner.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        rejectBtn.click();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const items = focusables();
+        if (items.length === 0) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Focus the primary action when banner appears.
+    requestAnimationFrame(() => {
+      acceptBtn.focus();
+    });
   },
 
   /**
-   * Hide consent banner
+   * Hide consent banner. Restores focus to whatever was focused before the
+   * banner opened (a11y).
    */
   hideBanner(banner) {
     banner.classList.remove('visible');
     setTimeout(() => {
       banner.remove();
+      if (this._previouslyFocused && typeof this._previouslyFocused.focus === 'function') {
+        try { this._previouslyFocused.focus(); } catch (e) {}
+        this._previouslyFocused = null;
+      }
     }, 400);
   },
 
@@ -650,6 +703,7 @@ const ConsentManager = {
       'ad_personalization': 'denied',
       'analytics_storage': 'denied'
     });
+    this.revokeClarity();
     window.dispatchEvent(new CustomEvent('consentRevoked'));
     this.showBanner();
   }
