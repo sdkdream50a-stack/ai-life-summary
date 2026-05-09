@@ -1010,6 +1010,11 @@ function removeAutoLoadScripts(html) {
     html = html.replace(/\s*<!--\s*Microsoft Clarity\s*-->\s*/gi, '');
     html = html.replace(/\s*<!--\s*Google AdSense\s*-->\s*/gi, '');
 
+    // Inject consent-manager.js (gates GA/Clarity/AdSense per Consent Mode v2)
+    if (!/<script[^>]*src="[^"]*consent-manager\.js"/i.test(html) && /<\/head>/i.test(html)) {
+        html = html.replace(/<\/head>/i, '    <script src="/js/consent-manager.js"></script>\n</head>');
+    }
+
     return html;
 }
 
