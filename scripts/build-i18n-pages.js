@@ -22,7 +22,7 @@ const META_CONTENT = {
     home: {
         en: {
             title: 'AI Test Lab - Free AI Personality Tests | Life Summary, Compatibility, Age',
-            description: 'Discover yourself with AI-powered personality tests! Enter your birthday and get results in 1 minute. Life Summary, Compatibility Test, Mental Age Calculator. 1M+ tested!',
+            description: 'Discover yourself with AI-powered personality tests! Enter your birthday and get results in 1 minute. Life Summary, Compatibility Test, Mental Age Calculator. Free and instant.',
             ogTitle: 'What\'s Your AI Soul Type? - Free Test',
             ogDescription: 'Discover your true self in 1 minute. Find your soul type!'
         },
@@ -88,31 +88,31 @@ const META_CONTENT = {
             title: 'AI Compatibility Test - Couple Compatibility Calculator | AI Test Lab',
             description: 'Free AI Compatibility Test! Enter two birthdays to discover your love match score, animal couple type, romance movie genre, and lucky date. Instant results!',
             ogTitle: 'Is it Love or Just Delulu? - AI Compatibility Test',
-            ogDescription: 'Stop guessing and check if they\'re your soulmate or a red flag. 500K+ couples tested!'
+            ogDescription: 'Stop guessing and check if they\'re your soulmate or a red flag. Try our AI compatibility test.'
         },
         ko: {
             title: 'AI 궁합 테스트 - 커플 궁합 계산기 | AI Test Lab',
             description: '무료 AI 궁합 테스트! 생년월일로 커플 궁합 점수, 동물 커플 유형, 사랑 영화 장르, 럭키 데이트를 알아보세요. 즉시 결과 확인!',
             ogTitle: '그 사람 연락 안 오는 이유 (AI가 알려줌)',
-            ogDescription: '짝사랑은 그만, 데이터가 말해주는 냉정한 궁합 팩트 체크. 50만+ 커플 테스트 완료!'
+            ogDescription: '짝사랑은 그만, 데이터가 말해주는 냉정한 궁합 팩트 체크. AI 궁합 테스트로 알아보세요!'
         },
         ja: {
             title: 'AI相性診断 - カップル相性計算機 | AI Test Lab',
             description: '無料AI相性診断！2人の誕生日を入力して、恋愛相性スコア、動物カップルタイプ、恋愛映画ジャンル、ラッキーデートを発見。即時結果！',
             ogTitle: '彼から連絡が来ない理由 (AIが教える)',
-            ogDescription: '片思いはもう終わり、データが語る冷静な相性ファクトチェック。50万組以上がテスト済み！'
+            ogDescription: '片思いはもう終わり、データが語る冷静な相性ファクトチェック。AI相性診断でチェック！'
         },
         zh: {
             title: 'AI配对测试 - 情侣配对计算器 | AI Test Lab',
             description: '免费AI配对测试！输入两个生日，发现你们的爱情配对分数、动物情侣类型、爱情电影类型和幸运约会。即时结果！',
             ogTitle: '他不回消息的原因 (AI告诉你)',
-            ogDescription: '别再单相思了，数据告诉你冷静的配对事实。50万+情侣已测试！'
+            ogDescription: '别再单相思了，数据告诉你冷静的配对事实。AI配对测试，立即体验！'
         },
         es: {
             title: 'Test de Compatibilidad IA - Calculadora de Compatibilidad de Parejas | AI Test Lab',
             description: 'Test de Compatibilidad IA Gratis! Ingresa dos cumpleanos para descubrir tu puntuacion de amor, tipo de pareja animal, genero de pelicula romantica y fecha de suerte. Resultados instantaneos!',
             ogTitle: 'Es Amor o Solo Ilusion? - Test de Compatibilidad IA',
-            ogDescription: 'Deja de adivinar y descubre si es tu alma gemela o una red flag. 500K+ parejas probadas!'
+            ogDescription: 'Deja de adivinar y descubre si es tu alma gemela o una red flag. Prueba nuestro test de compatibilidad IA!'
         }
     },
     'kpop-match': {

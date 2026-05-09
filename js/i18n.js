@@ -87,7 +87,7 @@ const translations = {
         "cta.title": "Ready to Discover",
         "cta.title_highlight": "Your Life Summary",
         "cta.title_end": "?",
-        "cta.description": "Join millions of people worldwide who have discovered their unique life summaries. It takes just seconds and the result might surprise you!",
+        "cta.description": "Discover your unique life summary in seconds. The result might surprise you.",
         "cta.button": "Get My Life Summary Now",
 
         // Footer
@@ -184,7 +184,7 @@ const translations = {
 
         // Testimonials
         "testimonials.title": "What Others Are Saying",
-        "testimonials.description": "Join millions of people who have discovered their life summaries",
+        "testimonials.description": "Read what others are saying about their life summaries",
         "testimonials.t1": "I was amazed at how accurate my life summary felt. It perfectly captured something I've always known about myself but never put into words.",
         "testimonials.t2": "My friends and I spent hours comparing our results. It's such a fun way to learn more about each other and start meaningful conversations.",
         "testimonials.t3": "The image generator is amazing! I shared my result on Instagram and got so many comments. Everyone wanted to try it for themselves.",
@@ -265,7 +265,7 @@ const translations = {
 
         // About Page
         "about.title": "About AI Life Summary",
-        "about.subtitle": "Discover the story behind the technology that helps millions understand themselves better",
+        "about.subtitle": "Discover the story behind the technology that helps people understand themselves better",
         "about.what.title": "What We Do",
         "about.what.p1": "AI Life Summary is a unique web application that generates personalized life insights based on your birthday. Using a sophisticated algorithm that we've developed and refined over years of research, we create meaningful, thought-provoking sentences that capture the essence of who you are and the journey you're on.",
         "about.what.p2": "Our service combines the timeless human fascination with self-discovery and personality analysis with modern computational techniques. While traditional personality assessments require lengthy questionnaires, AI Life Summary distills the experience into a simple, instant, and highly shareable format that resonates with users worldwide.",
@@ -297,7 +297,7 @@ const translations = {
         "about.faq.q6": "How can I provide feedback?",
         "about.faq.a6": "We love hearing from our users! Please visit our Contact page to share your thoughts, suggestions, or experiences with AI Life Summary.",
         "about.cta.title": "Ready to Discover Your Summary?",
-        "about.cta.desc": "Join millions of people who have discovered meaningful insights about themselves.",
+        "about.cta.desc": "Discover meaningful insights about yourself.",
         "about.cta.btn": "Get My Life Summary",
 
         // Privacy Policy
@@ -681,7 +681,7 @@ const translations = {
         "cta.title": "",
         "cta.title_highlight": "당신의 인생 한 줄",
         "cta.title_end": "을 발견할 준비가 되셨나요?",
-        "cta.description": "전 세계 수백만 명이 발견한 고유한 인생 요약에 참여하세요. 몇 초만 걸리며 결과가 당신을 놀라게 할 수 있습니다!",
+        "cta.description": "당신만의 고유한 인생 요약을 발견하세요. 몇 초만 걸리며 결과가 당신을 놀라게 할 수 있습니다.",
         "cta.button": "지금 내 인생 한 줄 보기",
 
         // Footer
@@ -778,7 +778,7 @@ const translations = {
 
         // Testimonials
         "testimonials.title": "사용자들의 이야기",
-        "testimonials.description": "인생 요약을 발견한 수백만 명에 참여하세요",
+        "testimonials.description": "다른 사람들의 인생 요약 소감을 확인해보세요",
         "testimonials.t1": "내 인생 요약이 얼마나 정확하게 느껴지는지 놀랐습니다. 항상 알고 있었지만 말로 표현하지 못했던 것을 완벽하게 포착했습니다.",
         "testimonials.t2": "친구들과 함께 몇 시간 동안 결과를 비교했습니다. 서로에 대해 더 알아가고 의미 있는 대화를 시작하는 재미있는 방법입니다.",
         "testimonials.t3": "이미지 생성기가 놀랍습니다! 인스타그램에 결과를 공유했더니 많은 댓글이 달렸습니다. 모두가 직접 시도해보고 싶어했습니다.",
@@ -859,7 +859,7 @@ const translations = {
 
         // About Page
         "about.title": "AI 인생 한 줄 소개",
-        "about.subtitle": "수백만 명이 자신을 더 잘 이해하도록 돕는 기술 뒤의 이야기를 발견하세요",
+        "about.subtitle": "사람들이 자신을 더 잘 이해하도록 돕는 기술 뒤의 이야기를 발견하세요",
         "about.what.title": "우리가 하는 일",
         "about.what.p1": "AI 인생 한 줄은 생년월일을 기반으로 개인화된 인생 통찰을 생성하는 독특한 웹 애플리케이션입니다. 수년간의 연구를 통해 개발하고 개선한 정교한 알고리즘을 사용하여, 당신이 누구인지와 당신이 걷고 있는 여정의 본질을 담은 의미 있고 생각을 자극하는 문장을 만듭니다.",
         "about.what.p2": "우리 서비스는 자기 발견과 성격 분석에 대한 시대를 초월한 인간의 매력을 현대의 컴퓨터 기술과 결합합니다. 전통적인 성격 평가가 긴 설문지를 필요로 하는 반면, AI 인생 한 줄은 전 세계 사용자들에게 공감을 주는 간단하고, 즉각적이며, 높은 공유성을 가진 형식으로 경험을 정제합니다.",
@@ -891,7 +891,7 @@ const translations = {
         "about.faq.q6": "피드백을 어떻게 제공할 수 있나요?",
         "about.faq.a6": "사용자의 의견을 듣는 것을 좋아합니다! AI 인생 한 줄에 대한 생각, 제안 또는 경험을 공유하려면 문의 페이지를 방문해 주세요.",
         "about.cta.title": "요약을 발견할 준비가 되셨나요?",
-        "about.cta.desc": "자신에 대한 의미 있는 통찰을 발견한 수백만 명에 참여하세요.",
+        "about.cta.desc": "자신에 대한 의미 있는 통찰을 발견하세요.",
         "about.cta.btn": "내 인생 한 줄 보기",
 
         // Privacy Policy
@@ -963,7 +963,7 @@ const translations = {
 
         // About Page
         "about.title": "AI Life Summary 소개",
-        "about.subtitle": "수백만 명이 자신을 더 잘 이해할 수 있도록 돕는 기술의 이야기를 발견하세요",
+        "about.subtitle": "사람들이 자신을 더 잘 이해할 수 있도록 돕는 기술의 이야기를 발견하세요",
         "about.what.title": "우리가 하는 일",
         "about.what.p1": "AI Life Summary는 생년월일을 기반으로 개인화된 인생 인사이트를 생성하는 독특한 웹 애플리케이션입니다. 수년간의 연구를 통해 개발하고 개선한 정교한 알고리즘을 사용하여 당신이 누구인지, 어떤 여정을 걷고 있는지의 본질을 담은 의미 있고 생각을 자극하는 문장을 만들어냅니다.",
         "about.what.p2": "우리 서비스는 자기 발견과 성격 분석에 대한 시대를 초월한 인간의 관심과 현대 컴퓨팅 기술을 결합합니다. 전통적인 성격 평가가 긴 설문지를 필요로 하는 반면, AI Life Summary는 전 세계 사용자에게 공감을 얻는 간단하고 즉각적이며 공유하기 쉬운 형식으로 경험을 응축합니다.",
@@ -995,7 +995,7 @@ const translations = {
         "about.faq.q6": "피드백을 어떻게 제공할 수 있나요?",
         "about.faq.a6": "사용자의 의견을 듣는 것을 좋아합니다! AI Life Summary에 대한 생각, 제안 또는 경험을 공유하려면 문의 페이지를 방문해 주세요.",
         "about.cta.title": "당신의 요약을 발견할 준비가 되셨나요?",
-        "about.cta.desc": "자신에 대한 의미 있는 인사이트를 발견한 수백만 명의 사람들과 함께하세요.",
+        "about.cta.desc": "자신에 대한 의미 있는 인사이트를 발견하세요.",
         "about.cta.btn": "내 인생 요약 보기",
 
         // Contact Page
@@ -1354,7 +1354,7 @@ const translations = {
         "cta.title": "",
         "cta.title_highlight": "あなたの人生一行",
         "cta.title_end": "を発見する準備はできましたか？",
-        "cta.description": "世界中の何百万人もの人々がユニークな人生要約を発見しています。数秒で完了し、結果はあなたを驚かせるかもしれません！",
+        "cta.description": "あなただけのユニークな人生要約を発見しましょう。数秒で完了し、結果はあなたを驚かせるかもしれません。",
         "cta.button": "今すぐ私の人生一行を見る",
 
         // Footer
@@ -1413,7 +1413,7 @@ const translations = {
 
         // About Page
         "about.title": "AI Life Summaryについて",
-        "about.subtitle": "何百万人もの人々が自分自身をより深く理解するのを助ける技術の背後にあるストーリーを発見してください",
+        "about.subtitle": "人々が自分自身をより深く理解するのを助ける技術の背後にあるストーリーを発見してください",
         "about.what.title": "私たちの仕事",
         "about.what.p1": "AI Life Summaryは、誕生日に基づいてパーソナライズされた人生の洞察を生成するユニークなウェブアプリケーションです。長年の研究を通じて開発・改良した洗練されたアルゴリズムを使用して、あなたが誰であるか、そしてあなたが歩んでいる旅の本質を捉える意味のある、思考を刺激する文章を作成します。",
         "about.what.p2": "私たちのサービスは、自己発見と性格分析に対する時代を超えた人間の魅力を現代のコンピュータ技術と組み合わせています。従来の性格評価が長いアンケートを必要とするのに対し、AI Life Summaryは、世界中のユーザーに共感を与えるシンプルで即時性があり、共有しやすい形式に経験を凝縮します。",
@@ -1445,7 +1445,7 @@ const translations = {
         "about.faq.q6": "フィードバックを提供するにはどうすればよいですか？",
         "about.faq.a6": "ユーザーからのご意見をお待ちしています！AI Life Summaryについてのご意見、ご提案、または体験を共有するには、お問い合わせページをご覧ください。",
         "about.cta.title": "要約を発見する準備はできましたか？",
-        "about.cta.desc": "自分自身について意味のある洞察を発見した何百万人もの人々に加わりましょう。",
+        "about.cta.desc": "自分自身について意味のある洞察を発見しましょう。",
         "about.cta.btn": "私の人生一行を見る",
 
         // Advertisement
@@ -1527,7 +1527,7 @@ const translations = {
 
         // About Page
         "about.title": "AI Life Summaryについて",
-        "about.subtitle": "何百万人もの人々が自分自身をより深く理解するのを助ける技術の物語を発見してください",
+        "about.subtitle": "人々が自分自身をより深く理解するのを助ける技術の物語を発見してください",
         "about.what.title": "私たちの活動",
         "about.what.p1": "AI Life Summaryは、誕生日に基づいてパーソナライズされた人生の洞察を生成するユニークなウェブアプリケーションです。長年の研究を通じて開発・改良してきた洗練されたアルゴリズムを使用して、あなたが誰であるか、どのような旅を歩んでいるかの本質を捉えた意味深く、思考を刺激する文章を作成します。",
         "about.what.p2": "私たちのサービスは、自己発見と性格分析に対する時代を超えた人間の関心と、現代のコンピューティング技術を組み合わせています。従来の性格評価が長いアンケートを必要とするのに対し、AI Life Summaryは世界中のユーザーに共感を得るシンプルで即時的、そして共有しやすいフォーマットに体験を凝縮します。",
@@ -1559,7 +1559,7 @@ const translations = {
         "about.faq.q6": "フィードバックはどのように提供できますか？",
         "about.faq.a6": "ユーザーからのご意見をお待ちしています！AI Life Summaryについてのご感想、ご提案、または体験を共有するには、お問い合わせページをご覧ください。",
         "about.cta.title": "あなたの要約を発見する準備はできていますか？",
-        "about.cta.desc": "自分自身について意味のある洞察を発見した何百万人もの人々に加わりましょう。",
+        "about.cta.desc": "自分自身について意味のある洞察を発見しましょう。",
         "about.cta.btn": "私の人生要約を見る",
 
         // Contact Page
@@ -1823,7 +1823,7 @@ const translations = {
         "cta.title": "",
         "cta.title_highlight": "你的人生一句话",
         "cta.title_end": "准备好发现了吗？",
-        "cta.description": "加入全球数百万已经发现独特人生总结的人。只需几秒钟，结果可能会让你惊喜！",
+        "cta.description": "发现您独特的人生总结。只需几秒钟，结果可能会让您惊喜。",
         "cta.button": "立即获取我的人生一句话",
 
         // Footer
@@ -1882,7 +1882,7 @@ const translations = {
 
         // About Page
         "about.title": "关于 AI Life Summary",
-        "about.subtitle": "发现帮助数百万人更好地了解自己的技术背后的故事",
+        "about.subtitle": "发现帮助人们更好地了解自己的技术背后的故事",
         "about.what.title": "我们的工作",
         "about.what.p1": "AI Life Summary 是一款独特的网络应用程序，可根据您的生日生成个性化的人生洞察。使用我们多年研究开发和完善的复杂算法，我们创造有意义的、发人深省的句子，捕捉您是谁以及您正在走的旅程的本质。",
         "about.what.p2": "我们的服务将人类对自我发现和性格分析的永恒迷恋与现代计算技术相结合。传统的性格评估需要冗长的问卷，而 AI Life Summary 将体验提炼成简单、即时、高度可分享的格式，在全球用户中产生共鸣。",
@@ -1914,7 +1914,7 @@ const translations = {
         "about.faq.q6": "如何提供反馈？",
         "about.faq.a6": "我们喜欢听取用户的意见！请访问我们的联系页面分享您对 AI Life Summary 的想法、建议或体验。",
         "about.cta.title": "准备好发现您的总结了吗？",
-        "about.cta.desc": "加入数百万发现关于自己有意义洞察的人们。",
+        "about.cta.desc": "发现关于自己的有意义洞察。",
         "about.cta.btn": "获取我的人生一句话",
 
         // Advertisement
@@ -1996,7 +1996,7 @@ const translations = {
 
         // About Page
         "about.title": "关于AI Life Summary",
-        "about.subtitle": "发现帮助数百万人更好地了解自己的技术背后的故事",
+        "about.subtitle": "发现帮助人们更好地了解自己的技术背后的故事",
         "about.what.title": "我们做什么",
         "about.what.p1": "AI Life Summary是一个独特的网络应用程序，根据您的生日生成个性化的人生洞察。使用我们经过多年研究开发和完善的复杂算法，我们创建有意义的、发人深省的句子，捕捉您是谁以及您正在走的旅程的本质。",
         "about.what.p2": "我们的服务将人类对自我发现和性格分析的永恒迷恋与现代计算技术相结合。传统的性格评估需要冗长的问卷，而AI Life Summary将体验浓缩为一种简单、即时且高度可分享的格式，在全球用户中引起共鸣。",
@@ -2028,7 +2028,7 @@ const translations = {
         "about.faq.q6": "如何提供反馈？",
         "about.faq.a6": "我们喜欢听取用户的意见！请访问我们的联系页面分享您对AI Life Summary的想法、建议或体验。",
         "about.cta.title": "准备好发现您的总结了吗？",
-        "about.cta.desc": "加入数百万发现自己有意义洞察的人。",
+        "about.cta.desc": "发现自己的有意义洞察。",
         "about.cta.btn": "获取我的人生总结",
 
         // Contact Page
@@ -2292,7 +2292,7 @@ const translations = {
         "cta.title": "¿Listo para Descubrir",
         "cta.title_highlight": "Tu Resumen de Vida",
         "cta.title_end": "?",
-        "cta.description": "¡Únete a millones de personas en todo el mundo que han descubierto sus resúmenes de vida únicos. Solo toma segundos y el resultado podría sorprenderte!",
+        "cta.description": "Descubre tu resumen de vida único. Solo toma segundos y el resultado podría sorprenderte.",
         "cta.button": "Obtener Mi Resumen de Vida Ahora",
 
         // Footer
@@ -2351,7 +2351,7 @@ const translations = {
 
         // About Page
         "about.title": "Acerca de AI Life Summary",
-        "about.subtitle": "Descubre la historia detrás de la tecnología que ayuda a millones a entenderse mejor",
+        "about.subtitle": "Descubre la historia detrás de la tecnología que ayuda a las personas a entenderse mejor",
         "about.what.title": "Lo Que Hacemos",
         "about.what.p1": "AI Life Summary es una aplicación web única que genera percepciones de vida personalizadas basadas en tu fecha de nacimiento. Utilizando un sofisticado algoritmo que hemos desarrollado y refinado a lo largo de años de investigación, creamos oraciones significativas y estimulantes que capturan la esencia de quién eres y el viaje que estás recorriendo.",
         "about.what.p2": "Nuestro servicio combina la fascinación humana atemporal por el autodescubrimiento y el análisis de personalidad con técnicas computacionales modernas. Mientras que las evaluaciones de personalidad tradicionales requieren cuestionarios extensos, AI Life Summary destila la experiencia en un formato simple, instantáneo y altamente compartible que resuena con usuarios de todo el mundo.",
@@ -2383,7 +2383,7 @@ const translations = {
         "about.faq.q6": "¿Cómo puedo proporcionar comentarios?",
         "about.faq.a6": "¡Nos encanta escuchar a nuestros usuarios! Por favor visita nuestra página de Contacto para compartir tus pensamientos, sugerencias o experiencias con AI Life Summary.",
         "about.cta.title": "¿Listo para Descubrir Tu Resumen?",
-        "about.cta.desc": "Únete a millones de personas que han descubierto percepciones significativas sobre sí mismas.",
+        "about.cta.desc": "Descubre percepciones significativas sobre ti mismo.",
         "about.cta.btn": "Obtener Mi Resumen de Vida",
 
         // Advertisement
@@ -2465,7 +2465,7 @@ const translations = {
 
         // About Page
         "about.title": "Acerca de AI Life Summary",
-        "about.subtitle": "Descubre la historia detrás de la tecnología que ayuda a millones a entenderse mejor",
+        "about.subtitle": "Descubre la historia detrás de la tecnología que ayuda a las personas a entenderse mejor",
         "about.what.title": "Lo que hacemos",
         "about.what.p1": "AI Life Summary es una aplicación web única que genera perspectivas de vida personalizadas basadas en tu fecha de nacimiento. Utilizando un sofisticado algoritmo que hemos desarrollado y perfeccionado a lo largo de años de investigación, creamos oraciones significativas y estimulantes que capturan la esencia de quién eres y el viaje que estás recorriendo.",
         "about.what.p2": "Nuestro servicio combina la eterna fascinación humana con el autodescubrimiento y el análisis de personalidad con técnicas computacionales modernas. Mientras que las evaluaciones de personalidad tradicionales requieren cuestionarios extensos, AI Life Summary destila la experiencia en un formato simple, instantáneo y altamente compartible que resuena con usuarios de todo el mundo.",
@@ -2497,7 +2497,7 @@ const translations = {
         "about.faq.q6": "¿Cómo puedo proporcionar comentarios?",
         "about.faq.a6": "¡Nos encanta escuchar a nuestros usuarios! Por favor visita nuestra página de Contacto para compartir tus pensamientos, sugerencias o experiencias con AI Life Summary.",
         "about.cta.title": "¿Listo para descubrir tu resumen?",
-        "about.cta.desc": "Únete a millones de personas que han descubierto perspectivas significativas sobre sí mismas.",
+        "about.cta.desc": "Descubre perspectivas significativas sobre ti mismo.",
         "about.cta.btn": "Obtener mi resumen de vida",
 
         // Contact Page
