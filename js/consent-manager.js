@@ -347,7 +347,8 @@ const ConsentManager = {
           </p>
         </div>
         <div class="consent-actions">
-          <button id="consent-customize" class="consent-btn consent-btn-secondary">
+          <button id="consent-customize" class="consent-btn consent-btn-secondary"
+            aria-expanded="false" aria-controls="consent-details">
             ${this.t('customize')}
           </button>
           <button id="consent-reject" class="consent-btn consent-btn-secondary">
@@ -614,7 +615,9 @@ const ConsentManager = {
 
     customizeBtn.addEventListener('click', () => {
       details.classList.toggle('hidden');
-      customizeBtn.textContent = details.classList.contains('hidden') ? this.t('customize') : this.t('hideDetails');
+      const expanded = !details.classList.contains('hidden');
+      customizeBtn.textContent = expanded ? this.t('hideDetails') : this.t('customize');
+      customizeBtn.setAttribute('aria-expanded', String(expanded));
     });
 
     saveBtn.addEventListener('click', () => {

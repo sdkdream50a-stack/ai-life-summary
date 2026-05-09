@@ -369,7 +369,7 @@ const translations = {
 
         // Privacy Policy
         "privacy.title": "Privacy Policy",
-        "privacy.last_updated": "Last updated: January 2025",
+        "privacy.last_updated": "Last updated: May 9, 2026",
         "privacy.intro.title": "Introduction",
         "privacy.intro.p1": "Welcome to AI Life Summary (\"we,\" \"our,\" or \"us\"). We are committed to protecting your privacy and ensuring you have a positive experience when using our website and services. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at ailifesummary.com (the \"Site\") and use our AI-powered life summary generation service (the \"Service\").",
         "privacy.intro.p2": "Please read this Privacy Policy carefully. By accessing or using our Site and Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not access or use our Site or Service.",
@@ -1045,7 +1045,7 @@ const translations = {
 
         // Privacy Policy
         "privacy.title": "개인정보처리방침",
-        "privacy.last_updated": "최종 수정일: 2025년 1월",
+        "privacy.last_updated": "최종 수정일: 2026년 5월 9일",
         "privacy.intro.title": "소개",
         "privacy.intro.p1": "AI Life Summary(이하 \"당사\", \"우리\" 또는 \"저희\")에 오신 것을 환영합니다. 저희는 귀하의 개인정보 보호에 최선을 다하고 있으며, 저희 웹사이트와 서비스를 이용하실 때 긍정적인 경험을 하실 수 있도록 노력하고 있습니다. 본 개인정보처리방침은 ailifesummary.com(이하 \"사이트\")을 방문하시고 AI 기반 인생 요약 생성 서비스(이하 \"서비스\")를 이용하실 때 저희가 귀하의 정보를 어떻게 수집, 사용, 공개 및 보호하는지 설명합니다.",
         "privacy.intro.p2": "본 개인정보처리방침을 주의 깊게 읽어주시기 바랍니다. 저희 사이트 및 서비스에 접속하거나 이용하시면 본 개인정보처리방침의 모든 조건을 읽고 이해하며 이에 동의한 것으로 간주됩니다. 본 개인정보처리방침의 조건에 동의하지 않으시면 저희 사이트나 서비스에 접속하거나 이용하지 마십시오.",
@@ -1612,7 +1612,7 @@ const translations = {
 
         // Privacy Policy
         "privacy.title": "プライバシーポリシー",
-        "privacy.last_updated": "最終更新日：2025年1月",
+        "privacy.last_updated": "最終更新日：2026年5月9日",
         "privacy.intro.title": "はじめに",
         "privacy.intro.p1": "AI Life Summary（以下「当社」、「私たち」または「弊社」）へようこそ。私たちはお客様のプライバシーの保護に全力を尽くし、当社のウェブサイトとサービスをご利用いただく際に快適な体験を提供することをお約束します。本プライバシーポリシーは、ailifesummary.com（以下「サイト」）をご訪問いただき、AI駆動の人生要約生成サービス（以下「サービス」）をご利用いただく際に、お客様の情報をどのように収集、使用、開示、保護するかを説明します。",
         "privacy.intro.p2": "本プライバシーポリシーをよくお読みください。当サイトおよびサービスにアクセスまたは使用することにより、お客様は本プライバシーポリシーのすべての条項を読み、理解し、それに拘束されることに同意したものとみなされます。本プライバシーポリシーの条項に同意されない場合は、当サイトまたはサービスにアクセスまたは使用しないでください。",
@@ -2084,7 +2084,7 @@ const translations = {
 
         // Privacy Policy
         "privacy.title": "隐私政策",
-        "privacy.last_updated": "最后更新：2025年1月",
+        "privacy.last_updated": "最后更新：2026年5月9日",
         "privacy.intro.title": "引言",
         "privacy.intro.p1": "欢迎使用AI Life Summary（以下简称「我们」或「本公司」）。我们致力于保护您的隐私，确保您在使用我们的网站和服务时获得良好体验。本隐私政策说明当您访问我们位于ailifesummary.com的网站（以下简称「网站」）并使用我们的AI人生总结生成服务（以下简称「服务」）时，我们如何收集、使用、披露和保护您的信息。",
         "privacy.intro.p2": "请仔细阅读本隐私政策。通过访问或使用我们的网站和服务，您确认已阅读、理解并同意受本隐私政策所有条款的约束。如果您不同意本隐私政策的条款，请不要访问或使用我们的网站或服务。",
@@ -2556,7 +2556,7 @@ const translations = {
 
         // Privacy Policy
         "privacy.title": "Política de Privacidad",
-        "privacy.last_updated": "Última actualización: Enero 2025",
+        "privacy.last_updated": "Última actualización: 9 de mayo de 2026",
         "privacy.intro.title": "Introducción",
         "privacy.intro.p1": "Bienvenido a AI Life Summary (\"nosotros\", \"nuestro\" o \"nos\"). Estamos comprometidos a proteger su privacidad y garantizar que tenga una experiencia positiva al usar nuestro sitio web y servicios. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web en ailifesummary.com (el \"Sitio\") y utiliza nuestro servicio de generación de resumen de vida impulsado por IA (el \"Servicio\").",
         "privacy.intro.p2": "Por favor lea esta Política de Privacidad cuidadosamente. Al acceder o usar nuestro Sitio y Servicio, usted reconoce que ha leído, entendido y acepta estar sujeto a todos los términos de esta Política de Privacidad. Si no está de acuerdo con los términos de esta Política de Privacidad, por favor no acceda ni use nuestro Sitio o Servicio.",
