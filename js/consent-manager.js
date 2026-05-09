@@ -174,10 +174,15 @@ const ConsentManager = {
   },
 
   /**
-   * Check if Do Not Track is enabled
+   * Check if user has signaled opt-out via browser. Honors:
+   *  - GPC (Global Privacy Control) — California CCPA/CPRA mandated signal,
+   *    sent by Brave, Firefox, DuckDuckGo, Privacy Badger, etc.
+   *  - DNT (Do Not Track) — deprecated but kept for older browsers.
+   * Method name retained for back-compat with existing callers.
    */
   isDNTEnabled() {
-    return navigator.doNotTrack === '1' ||
+    return navigator.globalPrivacyControl === true ||
+           navigator.doNotTrack === '1' ||
            window.doNotTrack === '1' ||
            navigator.msDoNotTrack === '1';
   },
