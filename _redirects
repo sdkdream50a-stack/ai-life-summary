@@ -1,6 +1,16 @@
 # 301 Redirects - Old Episodes to New Pillar Guides
 # Cloudflare Pages redirect rules
 
+# Block sensitive internal files (404 — wrangler requires destination + status)
+/.git/* /404.html 404
+/.gitignore /404.html 404
+/CLAUDE.md /404.html 404
+/BLOG_GUIDE.md /404.html 404
+/BLOG_MULTILINGUAL_GUIDE.md /404.html 404
+/package.json /404.html 404
+/wrangler.toml /404.html 404
+/scripts/* /404.html 404
+
 # Episodes 1-5, 11-12, 26 -> Web Development Roadmap
 /blog/post-1.html /blog/web-development-roadmap-50s-complete-guide.html 301
 /blog/post-2.html /blog/web-development-roadmap-50s-complete-guide.html 301
