@@ -250,17 +250,21 @@ const ConsentManager = {
    * Load Google Analytics
    */
   loadAnalytics() {
-    // Google Analytics
-    if (!window.gaLoaded && typeof gtag === 'undefined') {
+    // Google Analytics. Note: the local gtag() defined at top of this file
+    // is the Consent Mode shim, not GA — so we only check gaLoaded here,
+    // not `typeof gtag === 'undefined'` (which would always be false and
+    // suppress GA loading entirely).
+    if (!window.gaLoaded) {
       const gaScript = document.createElement('script');
       gaScript.async = true;
       gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y';
       document.head.appendChild(gaScript);
 
       gaScript.onload = () => {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
+        // Reuse the existing dataLayer/gtag set up at top of file — don't
+        // shadow the global gtag function or the consent state pushed earlier
+        // gets dropped on the floor.
+        window.gtag = window.gtag || gtag;
         gtag('js', new Date());
         gtag('config', 'G-QDH2KJQT9Y', {
           'anonymize_ip': true,
@@ -268,7 +272,6 @@ const ConsentManager = {
         });
         window.gaLoaded = true;
 
-        // Track consent acceptance
         gtag('event', 'consent_granted', {
           'consent_analytics': true
         });
