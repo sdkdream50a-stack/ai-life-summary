@@ -139,11 +139,19 @@ function discoverBlogPosts(rootDir) {
         });
     }
 
-    // Get default blog posts
+    // Get default blog posts — skip noindex/redirect stubs (legacy archived posts).
+    // Reason: including noindex/redirect URLs in sitemap signals "low-quality content
+    // active promotion" to AdSense + wastes Google crawl budget on dead URLs.
     const defaultFiles = fs.readdirSync(blogDir)
         .filter(f => f.endsWith('.html') && !fs.statSync(path.join(blogDir, f)).isDirectory());
     defaultFiles.forEach(file => {
-        const stat = fs.statSync(path.join(blogDir, file));
+        const fullPath = path.join(blogDir, file);
+        const html = fs.readFileSync(fullPath, 'utf8');
+        if (/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html) ||
+            /<meta\s+http-equiv=["']refresh["']/i.test(html)) {
+            return; // skip retired/redirect stubs
+        }
+        const stat = fs.statSync(fullPath);
         posts.push({
             path: `blog/${file}`,
             lastmod: stat.mtime.toISOString().split('T')[0],
