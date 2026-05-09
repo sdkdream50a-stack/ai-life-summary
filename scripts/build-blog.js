@@ -410,6 +410,9 @@ function generatePostHtml(meta, content) {
         .success-box { background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         pre code { font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.5; }
     </style>
+
+    <!-- AdSense/GA/Clarity via consent-manager.js (Consent Mode v2 gate) -->
+    <script src="/js/consent-manager.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Header -->

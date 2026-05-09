@@ -612,7 +612,9 @@ const ConsentManager = {
   },
 
   /**
-   * Revoke consent (for settings page)
+   * Revoke consent (for settings page).
+   * Updates Consent Mode v2 to denied immediately so already-loaded
+   * AdSense/GA stop tracking before next pageview.
    */
   revokeConsent() {
     localStorage.removeItem(this.STORAGE_KEY);
@@ -622,7 +624,21 @@ const ConsentManager = {
       marketing: false,
       personalization: false
     };
+    gtag('consent', 'update', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+    window.dispatchEvent(new CustomEvent('consentRevoked'));
     this.showBanner();
+  }
+};
+
+// Public API for cookie-settings UI buttons
+window.openCookieSettings = function () {
+  if (window.ConsentManager && typeof window.ConsentManager.revokeConsent === 'function') {
+    window.ConsentManager.revokeConsent();
   }
 };
 
