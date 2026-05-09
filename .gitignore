@@ -1,6 +1,18 @@
 node_modules/
 drafts/legacy-50dev/
 
+# Topic whitelist enforcement — block legacy 50대 코딩 시리즈 in blog/
+# (psychology test 사이트에서 dev/career 콘텐츠는 AdSense low-value 사유)
+blog/50대*
+blog/중년*
+blog/퇴직-*
+blog/기술-면접*
+blog/배포-후*
+blog/완벽한-코드*
+blog/첫-사용자-*
+blog/포트폴리오에-*
+blog/프리랜서-*
+
 # Internal docs — never deploy to public site
 CLAUDE.md
 BLOG_GUIDE.md
