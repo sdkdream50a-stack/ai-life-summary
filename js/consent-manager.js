@@ -1,6 +1,6 @@
 /**
  * GDPR/CCPA Consent Manager with Google Consent Mode v2
- * AdSense always loads (required for review); data collection gated by consent
+ * AdSense loading removed 2026-05-17 (site sunset, AdSense attempt ended)
  */
 
 // Google Consent Mode v2 - region-specific defaults BEFORE any scripts load
@@ -33,18 +33,6 @@ gtag('consent', 'default', {
     'GB','CH'
   ]
 });
-
-// Always load AdSense script (Consent Mode controls data collection)
-(function() {
-  if (!window.adsenseLoaded) {
-    var adScript = document.createElement('script');
-    adScript.async = true;
-    adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569';
-    adScript.crossOrigin = 'anonymous';
-    document.head.appendChild(adScript);
-    window.adsenseLoaded = true;
-  }
-})();
 
 const ConsentManager = {
   STORAGE_KEY: 'ai-test-consent',
