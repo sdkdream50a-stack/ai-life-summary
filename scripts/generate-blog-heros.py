@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate hero PNGs (1200x630) for 31 psychology blog articles.
+"""Generate hero PNGs (1200x630) for 34 psychology blog articles.
 
 Brand-aligned gradient backgrounds varied by category, English title
 center, AI Test Lab watermark bottom. One-shot script; idempotent
@@ -45,6 +45,9 @@ ARTICLES = [
     ("social-desirability-bias-tests",   "Social Desirability Bias",         "Psychology"),
     ("sternberg-triangular-love",        "Sternberg's Triangle of Love",     "Compatibility"),
     ("test-reliability-validity",        "Test Reliability & Validity",      "Psychology"),
+    ("love-languages-psychology",        "The Five Love Languages",          "Compatibility"),
+    ("hexaco-personality-model",         "The HEXACO Model",                 "Personality"),
+    ("kohlberg-moral-development",       "Kohlberg's Moral Stages",          "Mental Age"),
 ]
 
 CATEGORY_COLORS = {
