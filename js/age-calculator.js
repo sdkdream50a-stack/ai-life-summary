@@ -47,12 +47,8 @@ function calculateMentalAge(realAge, answers) {
     const resolutionScores = { ambitious: -3, practical: 0, none: 2, same: 4 };
     mentalAgeModifier += resolutionScores[answers.q7] || 0;
 
-    // Calculate mental age with bounds
+    // Calculate mental age with bounds (deterministic: answer-driven only)
     let mentalAge = realAge + mentalAgeModifier;
-
-    // Apply some randomness for variety (-2 to +2)
-    const randomFactor = Math.floor(Math.random() * 5) - 2;
-    mentalAge += randomFactor;
 
     // Bound mental age between 15 and 80
     mentalAge = Math.max(15, Math.min(80, mentalAge));
@@ -86,12 +82,8 @@ function calculateEnergyAge(realAge, answers) {
     if ([9, 10, 11].includes(birthMonth)) energyAgeModifier += 0; // Fall babies
     if ([12, 1, 2].includes(birthMonth)) energyAgeModifier += 1; // Winter babies
 
-    // Calculate energy age with bounds
+    // Calculate energy age with bounds (deterministic: answer-driven only)
     let energyAge = realAge + energyAgeModifier;
-
-    // Apply some randomness for variety (-2 to +2)
-    const randomFactor = Math.floor(Math.random() * 5) - 2;
-    energyAge += randomFactor;
 
     // Bound energy age between 15 and 80
     energyAge = Math.max(15, Math.min(80, energyAge));
@@ -274,7 +266,8 @@ function getMentalAgeDescription(gap, lang = 'en') {
     else category = 'veryOld';
 
     const options = descriptions[category];
-    return options[Math.floor(Math.random() * options.length)];
+    // Deterministic pick: same gap always yields the same phrasing
+    return options[Math.abs(gap) % options.length];
 }
 
 function getEnergyAgeDescription(gap, lang = 'en') {
@@ -290,7 +283,8 @@ function getEnergyAgeDescription(gap, lang = 'en') {
     else category = 'veryOld';
 
     const options = descriptions[category];
-    return options[Math.floor(Math.random() * options.length)];
+    // Deterministic pick: same gap always yields the same phrasing
+    return options[Math.abs(gap) % options.length];
 }
 
 // ============================================
