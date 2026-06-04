@@ -980,8 +980,6 @@
         </section>
     </main>
 
-    <!-- Social Proof Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -1649,50 +1647,6 @@
         }
     </script>
 
-    <!-- Social Proof Toast Script -->
-    <script>
-        (function() {
-            var cities = {
-                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney'],
-                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕'],
-                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン'],
-                zh: ['北京', '上海', '东京', '首尔', '纽约'],
-                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio']
-            };
-            var messages = {
-                en: { title: 'New age calculated!' },
-                ko: { title: '새로운 나이 계산 완료!' },
-                ja: { title: '新しい年齢計算!' },
-                zh: { title: '新的年龄计算!' },
-                es: { title: '¡Nueva edad calculada!' }
-            };
-            var times = {
-                en: ['just now', '1 min ago', '2 mins ago'],
-                ko: ['방금 전', '1분 전', '2분 전'],
-                ja: ['たった今', '1分前', '2分前'],
-                zh: ['刚刚', '1分钟前', '2分钟前'],
-                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
-            };
-            var ages = ['25', '32', '28', '19', '45', '38', '21', '55'];
-            function showToast() {
-                var container = document.getElementById('toast-container');
-                if (!container) return;
-                var currentLang = document.documentElement.lang || 'en';
-                var cityList = cities[currentLang] || cities.en;
-                var msg = messages[currentLang] || messages.en;
-                var timeList = times[currentLang] || times.en;
-                var city = cityList[Math.floor(Math.random() * cityList.length)];
-                var time = timeList[Math.floor(Math.random() * timeList.length)];
-                var mentalAge = ages[Math.floor(Math.random() * ages.length)];
-                var toast = document.createElement('div');
-                toast.className = 'toast';
-                toast.innerHTML = '<div class="toast-icon">🎂</div><div class="toast-content"><div class="toast-title">' + msg.title + '</div><div class="toast-message">' + city + ' • Mental: ' + mentalAge + '</div><div class="toast-time">' + time + '</div></div>';
-                container.appendChild(toast);
-                setTimeout(function() { toast.classList.add('toast-out'); setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300); }, 4000);
-            }
-            setTimeout(function() { showToast(); setInterval(showToast, 12000 + Math.random() * 8000); }, 3000);
-        })();
-    </script>
     <script src="../../js/mobile-enhancements.js" defer></script>
 
     <script>

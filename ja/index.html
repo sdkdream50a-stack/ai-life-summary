@@ -1926,8 +1926,6 @@
         </div>
     </section>
 
-    <!-- Social Proof Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <!-- KICK Footer -->
@@ -2046,87 +2044,6 @@
         })();
     </script>
 
-    <!-- Social Proof Toast Script -->
-    <script>
-        (function() {
-            var lang = document.documentElement.lang || 'en';
-
-            var cities = {
-                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney', 'Singapore', 'Toronto', 'Berlin', 'Los Angeles'],
-                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕', '런던', '파리', '싱가포르', '시드니'],
-                ja: ['東京', 'ソウル', '大阪', '名古屋', 'ニューヨーク', 'ロンドン', 'パリ', 'シドニー', 'シンガポール', 'トロント'],
-                zh: ['北京', '上海', '东京', '首尔', '纽约', '伦敦', '巴黎', '悉尼', '新加坡', '多伦多'],
-                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Buenos Aires', 'Lima', 'Tokio', 'Nueva York', 'Londres', 'París', 'Sídney']
-            };
-
-            var tests = {
-                en: ['Compatibility Test', 'Life Summary', 'Age Calculator'],
-                ko: ['궁합 테스트', '인생 요약', '나이 계산기'],
-                ja: ['相性診断', '人生サマリー', '年齢計算機'],
-                zh: ['配对测试', '人生总结', '年龄计算器'],
-                es: ['Test de Compatibilidad', 'Resumen de Vida', 'Calculadora de Edad']
-            };
-
-            var messages = {
-                en: { title: 'Someone just took a test!', from: 'from' },
-                ko: { title: '방금 테스트 완료!', from: '' },
-                ja: { title: 'テスト完了！', from: 'から' },
-                zh: { title: '刚刚完成测试！', from: '来自' },
-                es: { title: '¡Alguien completó un test!', from: 'de' }
-            };
-
-            var times = {
-                en: ['just now', '1 min ago', '2 mins ago', '3 mins ago'],
-                ko: ['방금 전', '1분 전', '2분 전', '3분 전'],
-                ja: ['たった今', '1分前', '2分前', '3分前'],
-                zh: ['刚刚', '1分钟前', '2分钟前', '3分钟前'],
-                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins', 'hace 3 mins']
-            };
-
-            var icons = ['💕', '✨', '🎂'];
-
-            function showToast() {
-                var container = document.getElementById('toast-container');
-                if (!container) return;
-
-                var currentLang = document.documentElement.lang || 'en';
-                var cityList = cities[currentLang] || cities.en;
-                var testList = tests[currentLang] || tests.en;
-                var msg = messages[currentLang] || messages.en;
-                var timeList = times[currentLang] || times.en;
-
-                var testIndex = Math.floor(Math.random() * testList.length);
-                var city = cityList[Math.floor(Math.random() * cityList.length)];
-                var test = testList[testIndex];
-                var time = timeList[Math.floor(Math.random() * timeList.length)];
-                var icon = icons[testIndex];
-
-                var locationText = msg.from ? msg.from + ' ' + city : city;
-
-                var toast = document.createElement('div');
-                toast.className = 'toast';
-                toast.innerHTML = '<div class="toast-icon">' + icon + '</div>' +
-                    '<div class="toast-content">' +
-                    '<div class="toast-title">' + msg.title + '</div>' +
-                    '<div class="toast-message">' + test + ' • ' + locationText + '</div>' +
-                    '<div class="toast-time">' + time + '</div>' +
-                    '</div>';
-
-                container.appendChild(toast);
-
-                setTimeout(function() {
-                    toast.classList.add('toast-out');
-                    setTimeout(function() {
-                        if (toast.parentNode) {
-                            toast.parentNode.removeChild(toast);
-                        }
-                    }, 300);
-                }, 4000);
-            }
-
-            // Toast disabled — fake social proof removed for AdSense trust
-        })();
-    </script>
 
     <!-- Gamification Scripts -->
     <script src="../js/badges.js"></script>

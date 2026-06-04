@@ -740,8 +740,6 @@
         </section>
     </main>
 
-    <!-- Social Proof Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
 
     <!-- Footer -->
     <footer class="relative z-10 mt-12 py-12 border-t border-white/10">
@@ -886,64 +884,6 @@
         });
     </script>
 
-    <!-- Social Proof Toast Script -->
-    <script>
-        (function() {
-            var lang = document.documentElement.lang || 'en';
-            var cities = {
-                en: ['Tokyo', 'Seoul', 'New York', 'London', 'Paris', 'Sydney', 'Singapore'],
-                ko: ['서울', '부산', '대구', '인천', '도쿄', '뉴욕', '런던'],
-                ja: ['東京', 'ソウル', '大阪', 'ニューヨーク', 'ロンドン', 'パリ'],
-                zh: ['北京', '上海', '东京', '首尔', '纽约', '伦敦'],
-                es: ['Madrid', 'Barcelona', 'Ciudad de México', 'Tokio', 'Nueva York']
-            };
-            var messages = {
-                en: { title: 'New match found!', test: 'Compatibility Test' },
-                ko: { title: '새로운 커플 매칭!', test: '궁합 테스트' },
-                ja: { title: '新しいカップル診断!', test: '相性診断' },
-                zh: { title: '新配对完成!', test: '配对测试' },
-                es: { title: '¡Nueva pareja!', test: 'Compatibilidad' }
-            };
-            var times = {
-                en: ['just now', '1 min ago', '2 mins ago'],
-                ko: ['방금 전', '1분 전', '2분 전'],
-                ja: ['たった今', '1分前', '2分前'],
-                zh: ['刚刚', '1分钟前', '2分钟前'],
-                es: ['ahora mismo', 'hace 1 min', 'hace 2 mins']
-            };
-            var scores = ['87%', '92%', '78%', '95%', '81%', '89%', '76%'];
-
-            function showToast() {
-                var container = document.getElementById('toast-container');
-                if (!container) return;
-                var currentLang = document.documentElement.lang || 'en';
-                var cityList = cities[currentLang] || cities.en;
-                var msg = messages[currentLang] || messages.en;
-                var timeList = times[currentLang] || times.en;
-                var city = cityList[Math.floor(Math.random() * cityList.length)];
-                var time = timeList[Math.floor(Math.random() * timeList.length)];
-                var score = scores[Math.floor(Math.random() * scores.length)];
-
-                var toast = document.createElement('div');
-                toast.className = 'toast';
-                toast.innerHTML = '<div class="toast-icon">💕</div>' +
-                    '<div class="toast-content">' +
-                    '<div class="toast-title">' + msg.title + ' ' + score + '</div>' +
-                    '<div class="toast-message">' + city + '</div>' +
-                    '<div class="toast-time">' + time + '</div>' +
-                    '</div>';
-                container.appendChild(toast);
-                setTimeout(function() {
-                    toast.classList.add('toast-out');
-                    setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
-                }, 4000);
-            }
-            setTimeout(function() {
-                showToast();
-                setInterval(showToast, 12000 + Math.random() * 8000);
-            }, 3000);
-        })();
-    </script>
 
     <!-- Stage 3: Viral Link System -->
     <script src="/js/viral-link.js"></script>
