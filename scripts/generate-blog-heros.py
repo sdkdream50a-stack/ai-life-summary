@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate hero PNGs (1200x630) for 18 psychology blog articles.
+"""Generate hero PNGs (1200x630) for 31 psychology blog articles.
 
 Brand-aligned gradient backgrounds varied by category, English title
 center, AI Test Lab watermark bottom. One-shot script; idempotent
@@ -32,6 +32,19 @@ ARTICLES = [
     ("psychology-test-stress-relief",    "Psychology Tests and Stress Relief","Psychology"),
     ("relationship-compatibility-factors","Relationship Compatibility Factors","Compatibility"),
     ("zodiac-vs-ai-compatibility",       "Zodiac vs AI Compatibility",       "Compatibility"),
+    ("16personalities-vs-mbti",          "16Personalities vs MBTI",          "Personality"),
+    ("attachment-styles-relationships",  "Attachment Styles in Love",        "Compatibility"),
+    ("big-five-personality-guide",       "The Big Five Personality Guide",   "Personality"),
+    ("cognitive-dissonance-psychology",  "Cognitive Dissonance",             "Psychology"),
+    ("dark-triad-personality",           "The Dark Triad",                   "Personality"),
+    ("does-personality-change",          "Does Personality Change?",         "Personality"),
+    ("emotional-intelligence-psychology","Emotional Intelligence",           "Psychology"),
+    ("enneagram-nine-types",             "The Enneagram's 9 Types",          "Personality"),
+    ("mbti-cognitive-functions",         "MBTI Cognitive Functions",         "Personality"),
+    ("piaget-cognitive-development",     "Piaget's Cognitive Development",   "Mental Age"),
+    ("social-desirability-bias-tests",   "Social Desirability Bias",         "Psychology"),
+    ("sternberg-triangular-love",        "Sternberg's Triangle of Love",     "Compatibility"),
+    ("test-reliability-validity",        "Test Reliability & Validity",      "Psychology"),
 ]
 
 CATEGORY_COLORS = {
