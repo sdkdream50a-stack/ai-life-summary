@@ -962,11 +962,6 @@
                 <button onclick="switchLang('es', event)" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
             </div>
         </div>
-        <!-- Profile -->
-        <a href="/ja/profile/" id="profile-btn" class="kick-navbar-link">
-            <span id="profile-avatar">👤</span>
-            <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
-        </a>
         <!-- Mobile Menu Button -->
         <button
         id="mobile-menu-btn"
@@ -993,7 +988,6 @@
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/ja/about/" class="text-lg text-white/70 hover:text-white transition">概要</a>
             <a href="/blog.html?lang=ja" class="text-lg text-white/70 hover:text-white transition">Blog</a>
-            <a href="/ja/profile/" class="text-lg text-white/70 hover:text-white transition">👤 プロフィール</a>
             <div class="flex gap-3 mt-4">
                 <button onclick="switchLang('en', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
                 <button onclick="switchLang('ko', event)" data-close-menu="true" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
@@ -1088,25 +1082,6 @@
                         </div>
                     </a>
 
-                    <!-- Daily Test Card - Wide -->
-                    <a href="/daily/" class="kick-bento-item wide kick-tilt" data-tilt>
-                        <div class="h-full flex items-center gap-4">
-                            <div class="text-4xl md:text-5xl kick-tilt-inner">🎯</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-lg mb-1">
-
-                                    今日の質問
-
-                                    <span class="ml-2 text-xs bg-green-500/30 text-green-300 px-2 py-0.5 rounded-full">NEW</span>
-                                </h3>
-                                <p class="text-white/60 text-xs">
-
-                                    毎日XP獲得&レベルアップ
-
-                                </p>
-                            </div>
-                        </div>
-                    </a>
                 </div>
 
                 <!-- Trending Hashtags -->
@@ -1148,46 +1123,6 @@
                     各テストはあなたの性格と人生のさまざまな側面についてユニークな洞察を提供します
 
                 </p>
-
-                <!-- Daily Test Banner -->
-                <a href="/daily/" class="block mb-10 p-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
-                    <!-- Animated background -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-indigo-500/20 animate-pulse"></div>
-                    <!-- Content -->
-                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="text-4xl">&#128197;</div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded animate-pulse">NEW</span>
-                                    <span class="text-white/80 text-sm">
-
-                                        今日のテスト
-
-                                    </span>
-                                </div>
-                                <h3 class="text-white font-bold text-xl md:text-2xl">
-
-                                    今日の質問
-
-                                </h3>
-                                <p class="text-white/80 text-sm mt-1">
-
-                                    毎日1つの質問に答えて、他の人と比較しよう！
-
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-6 rounded-xl transition group-hover:scale-105">
-
-                            参加する
-
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                            </svg>
-                        </div>
-                    </div>
-                </a>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- AI Compatibility Card - FIRST (Highest Viral) - FEATURED -->
@@ -1448,109 +1383,6 @@
                 </p>
 
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <!-- Community - Live Status -->
-                    <a href="/community/" class="viral-card glass-shine hover-glow">
-                        <div class="live-badge">
-                            <span class="live-dot"></span>
-
-                            LIVE
-
-                        </div>
-                        <div class="text-3xl mb-2">💬</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            コミュニティ
-
-                        </h3>
-                        <p class="text-xs text-indigo-600 mt-1 font-semibold">
-
-                            🔥 <span id="community-live-count-ja">142人が参加中</span>
-
-                        </p>
-                    </a>
-
-                    <!-- Ranking - Progress & Provocation -->
-                    <a href="/ranking/" class="viral-card glass-shine hover-glow">
-                        <div class="text-3xl mb-2">👑</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            ランキング
-
-                        </h3>
-                        <p class="text-xs text-amber-600 mt-1 font-semibold">
-
-                            Top 1%まであと3pt!
-
-                        </p>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 97%;"></div>
-                        </div>
-                    </a>
-
-                    <!-- Events - Countdown Timer -->
-                    <a href="/events/" class="viral-card glass-shine hover-glow">
-                        <div class="live-badge" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
-
-                            ⏳ 終了間近
-
-                        </div>
-                        <div class="text-3xl mb-2">🎁</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            イベント
-
-                        </h3>
-                        <div class="countdown" id="event-countdown">
-                            <div class="countdown-unit">
-                                <div class="countdown-value" id="countdown-hours">23</div>
-                                <div class="countdown-label">
-
-                                    時
-
-                                </div>
-                            </div>
-                            <div class="countdown-unit">
-                                <div class="countdown-value" id="countdown-minutes">45</div>
-                                <div class="countdown-label">
-
-                                    分
-
-                                </div>
-                            </div>
-                            <div class="countdown-unit">
-                                <div class="countdown-value" id="countdown-seconds">12</div>
-                                <div class="countdown-label">
-
-                                    秒
-
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Wrapped -->
-                    <a href="/wrapped/?preview=true" class="viral-card glass-shine hover-glow">
-                        <div class="text-3xl mb-2">✨</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            まとめ
-
-                        </h3>
-                        <p class="text-xs text-purple-600 mt-1 font-semibold">
-
-                            2025年のあなた
-
-                        </p>
-                        <div class="progress-container mt-2">
-                            <div class="progress-bar" style="width: 65%; background: linear-gradient(90deg, #a855f7, #ec4899);"></div>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-1">
-
-                            65% 解除
-
-                        </p>
-                    </a>
-
                     <!-- Widget - Preview Animation -->
                     <a href="/widget/" class="viral-card glass-shine hover-glow">
                         <div class="text-3xl mb-2">🔗</div>

@@ -317,11 +317,6 @@
                 <button onclick="switchLang('es')" class="w-full text-left px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10">🇪🇸 ES</button>
             </div>
         </div>
-        <!-- Profile -->
-        <a href="/profile/" id="profile-btn" class="kick-navbar-link">
-            <span id="profile-avatar">👤</span>
-            <span id="profile-level" class="hidden text-xs font-bold bg-white/20 px-1.5 py-0.5 rounded">Lv.1</span>
-        </a>
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden text-white p-1">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -340,7 +335,6 @@
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/about.html" class="text-lg text-white/70 hover:text-white transition"><span class="lang-en">About</span><span class="lang-ko">소개</span><span class="lang-ja">概要</span><span class="lang-zh">关于</span><span class="lang-es">Acerca de</span></a>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white transition">Blog</a>
-            <a href="/profile/" class="text-lg text-white/70 hover:text-white transition">👤 <span class="lang-en">Profile</span><span class="lang-ko">프로필</span><span class="lang-ja">プロフィール</span><span class="lang-zh">档案</span><span class="lang-es">Perfil</span></a>
             <div class="flex gap-3 mt-4">
                 <button onclick="switchLang('en'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇺🇸</button>
                 <button onclick="switchLang('ko'); document.getElementById('mobile-menu').classList.add('hidden');" class="px-3 py-1 text-sm bg-white/10 text-white rounded-full hover:bg-white/20">🇰🇷</button>
@@ -363,11 +357,11 @@
                     <div id="loading-progress" class="loading-progress-bar"></div>
                 </div>
                 <p id="loading-text" class="loading-text">
-                    <span class="lang-en">Analyzing your answers...</span>
-                    <span class="lang-ko">당신의 답변을 분석하고 있어요...</span>
-                    <span class="lang-ja">あなたの回答を分析しています...</span>
-                    <span class="lang-zh">正在分析您的答案...</span>
-                    <span class="lang-es">Analizando tus respuestas...</span>
+                    <span class="lang-en">Analyzing your birthday...</span>
+                    <span class="lang-ko">생년월일을 분석하고 있어요...</span>
+                    <span class="lang-ja">誕生日を分析しています...</span>
+                    <span class="lang-zh">正在分析您的生日...</span>
+                    <span class="lang-es">Analizando tu fecha de nacimiento...</span>
                 </p>
                 <!-- Stage 5: Interstitial Ad during loading -->
                 <div id="loading-ad-container"></div>
@@ -2358,8 +2352,7 @@
         }
     })();
     </script>
-    <!-- Viral Hooks -->
-    <script src="../js/viral-hooks.js" defer></script>
+    <!-- Viral Hooks 비활성화 (AdSense misrepresentation 회피: 가짜 소셜증거 토스트 제거) -->
     <!-- Mobile Enhancements -->
     <script src="../js/mobile-enhancements.js" defer></script>
 

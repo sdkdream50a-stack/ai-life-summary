@@ -42,12 +42,25 @@ User-agent: bingbot
 Allow: /
 
 # Google AdSense Bot (ads.txt 크롤링 허용)
+# 위장(가짜 데이터) 기능 페이지는 AdSense 평가 대상에서 제외 — 광고 미게재 + 저가치 신호 차단
 User-agent: Mediapartners-Google
 Allow: /
+Disallow: /community/
+Disallow: /ranking/
+Disallow: /daily/
+Disallow: /profile/
+Disallow: /wrapped/
+Disallow: /events/
 
-# Google AdsBot
+# Google AdsBot (광고 게재 페이지 품질 검사 — 위장 페이지엔 광고 없음)
 User-agent: AdsBot-Google
 Allow: /
+Disallow: /community/
+Disallow: /ranking/
+Disallow: /daily/
+Disallow: /profile/
+Disallow: /wrapped/
+Disallow: /events/
 
 # Google AI (Gemini) Training Crawler
 User-agent: Google-Extended
