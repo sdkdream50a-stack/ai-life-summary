@@ -1,0 +1,20 @@
+# Cloudflare assets — exclude dev artifacts from public deploy (gitignore syntax)
+.git/
+.github/
+.wrangler/
+.claude/
+.claude_session_save.json
+.omc/
+node_modules/
+scripts/
+drafts/
+templates/
+*.md
+package.json
+package-lock.json
+wrangler.toml
+tailwind.config.js
+server.py
+generate_sitemap.py
+.gitignore
+.nojekyll
