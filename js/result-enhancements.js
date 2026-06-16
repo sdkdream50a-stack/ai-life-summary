@@ -1,116 +1,10 @@
 /**
  * Stage 1 Enhancements for SmartAITest.com
- * - Real-time participant counter
  * - Loading animation with changing text
  * - Count-up animation for scores
  * - Sequential card reveal animations
  * - Rarity percentage calculation
  */
-
-// ============================================
-// PARTICIPANT COUNTER
-// ============================================
-
-/**
- * Get today's participant count from localStorage + random base
- * @returns {number} - Today's participant count
- */
-function getTodayParticipantCount() {
-    const today = new Date().toISOString().split('T')[0];
-    const storageKey = 'smartaitest_participants';
-
-    let data = JSON.parse(localStorage.getItem(storageKey) || '{}');
-
-    // Reset if different day
-    if (data.date !== today) {
-        // Random base between 10,000 and 50,000
-        const randomBase = Math.floor(Math.random() * 40000) + 10000;
-        data = {
-            date: today,
-            baseCount: randomBase,
-            additionalCount: 0
-        };
-        localStorage.setItem(storageKey, JSON.stringify(data));
-    }
-
-    return data.baseCount + data.additionalCount;
-}
-
-/**
- * Increment today's participant count
- */
-function incrementParticipantCount() {
-    const today = new Date().toISOString().split('T')[0];
-    const storageKey = 'smartaitest_participants';
-
-    let data = JSON.parse(localStorage.getItem(storageKey) || '{}');
-
-    if (data.date !== today) {
-        const randomBase = Math.floor(Math.random() * 40000) + 10000;
-        data = {
-            date: today,
-            baseCount: randomBase,
-            additionalCount: 1
-        };
-    } else {
-        data.additionalCount = (data.additionalCount || 0) + 1;
-    }
-
-    localStorage.setItem(storageKey, JSON.stringify(data));
-    return data.baseCount + data.additionalCount;
-}
-
-/**
- * Create and insert the participant counter element
- * @param {string} testType - 'life-summary', 'compatibility', or 'age-calculator'
- * @param {string} lang - Language code
- */
-function initParticipantCounter(testType = 'general', lang = 'ko') {
-    // Increment count for this session
-    const count = incrementParticipantCount();
-
-    const translations = {
-        en: `${count.toLocaleString()} people tested today`,
-        ko: `${count.toLocaleString()}${'\uBA85\uC774 \uC624\uB298 \uD14C\uC2A4\uD2B8\uD588\uC5B4\uC694'}`,
-        ja: `${count.toLocaleString()}${'\u4EBA\u304C\u4ECA\u65E5\u30C6\u30B9\u30C8\u3057\u307E\u3057\u305F'}`,
-        zh: `${count.toLocaleString()}${'\u4EBA\u4ECA\u5929\u5DF2\u6D4B\u8BD5'}`,
-        es: `${count.toLocaleString()} personas probaron hoy`
-    };
-
-    // Find the result hero section
-    const heroSection = document.querySelector('section.gradient-bg, section.love-gradient-bg, section.age-gradient-bg');
-
-    if (heroSection) {
-        // Create counter element
-        const counterDiv = document.createElement('div');
-        counterDiv.id = 'participant-counter';
-        counterDiv.className = 'participant-counter-container';
-        counterDiv.innerHTML = `
-            <div class="participant-counter">
-                <span class="counter-icon">🔥</span>
-                <span class="counter-number" id="counter-value">0</span>
-                <span class="counter-text">
-                    <span class="lang-en"> people tested today</span>
-                    <span class="lang-ko">\uBA85\uC774 \uC624\uB298 \uD14C\uC2A4\uD2B8\uD588\uC5B4\uC694</span>
-                    <span class="lang-ja">\u4EBA\u304C\u4ECA\u65E5\u30C6\u30B9\u30C8\u3057\u307E\u3057\u305F</span>
-                    <span class="lang-zh">\u4EBA\u4ECA\u5929\u5DF2\u6D4B\u8BD5</span>
-                    <span class="lang-es"> personas probaron hoy</span>
-                </span>
-            </div>
-        `;
-
-        // Insert at the beginning of hero section
-        const heroContainer = heroSection.querySelector('.max-w-4xl, .max-w-2xl');
-        if (heroContainer) {
-            heroContainer.insertBefore(counterDiv, heroContainer.firstChild);
-        } else {
-            heroSection.insertBefore(counterDiv, heroSection.firstChild);
-        }
-
-        // Animate counter
-        animateCounter('counter-value', count);
-    }
-}
 
 /**
  * Animate number counting up
@@ -397,38 +291,6 @@ function injectEnhancementStyles() {
     const styles = document.createElement('style');
     styles.id = 'enhancement-styles';
     styles.textContent = `
-        /* Participant Counter */
-        .participant-counter-container {
-            margin-bottom: 1rem;
-        }
-
-        .participant-counter {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            color: white;
-            animation: counterPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes counterPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .counter-icon {
-            font-size: 1.25rem;
-        }
-
-        .counter-number {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
         /* Loading Overlay */
         .loading-overlay {
             position: fixed;
@@ -560,20 +422,12 @@ function injectEnhancementStyles() {
  */
 function initResultEnhancements(options = {}) {
     const {
-        testType = 'general',
-        lang = document.documentElement.lang || 'ko',
-        showCounter = true,
         animateScores = true,
         sequentialReveal = true
     } = options;
 
     // Inject styles
     injectEnhancementStyles();
-
-    // Initialize participant counter
-    if (showCounter) {
-        initParticipantCounter(testType, lang);
-    }
 
     // Initialize scroll reveal
     if (sequentialReveal) {
@@ -592,8 +446,6 @@ if (typeof window !== 'undefined') {
         showLoadingAnimation,
         createLoadingOverlay,
         calculateRarity,
-        getRarityLabel,
-        getTodayParticipantCount,
-        incrementParticipantCount
+        getRarityLabel
     };
 }

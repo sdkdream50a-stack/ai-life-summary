@@ -3,9 +3,9 @@
 # Live host (GH Pages legacy build) ignores _redirects entirely.
 # Sensitive files are excluded via .gitignore + .nojekyll instead.
 
-# terms-of-service -> terms (canonical)
-/terms-of-service /terms 301
-/terms-of-service.html /terms 301
+# terms -> terms-of-service (canonical)
+/terms /terms-of-service.html 301
+/terms.html /terms-of-service.html 301
 
 # Language-specific pages -> canonical pages
 # (Removed /ja/contact/ /en/contact/ /en/terms-of-service/ legacy redirects —
