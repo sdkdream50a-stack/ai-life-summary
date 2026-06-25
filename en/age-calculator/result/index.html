@@ -20,7 +20,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your personalized AI Age Calculator results. See your Real Age, Mental Age, and Energy Age comparison with detailed analysis.">
+    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -180,7 +180,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "AI Age Calculator Results",
-        "description": "Your personalized AI Age Calculator results. See your Real Age, Mental Age, and Energy Age comparison with detailed analysis.",
+        "description": "Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.",
         "isPartOf": {
             "@type": "WebApplication",
             "name": "AI Age Calculator",
@@ -271,14 +271,14 @@
             if (avgGap <= -5) {
                 summaryText = "You're younger than your age in both mind and energy! Keep it up!";
             } else if (avgGap <= 2) {
-                summaryText = "Your mental and energy ages are well-balanced with your real age.";
+                summaryText = "Your mental and energy ages are well-balanced with your calendar age.";
             } else {
                 summaryText = "You have a mature and calm presence. Consider adding some fun activities!";
             }
         }
         document.getElementById('overall-summary').textContent = summaryText;
 
-        // Update detailed analysis
+        // Update detailed result
         var analysis = generateDetailedAnalysis({
             realAge: results.realAge,
             mentalAge: results.mentalAge,
@@ -396,10 +396,10 @@
         <section class="py-8 md:py-12">
             <div class="max-w-2xl mx-auto px-4">
                 <div class="kick-glass rounded-2xl p-6 md:p-8">
-                    <!-- Real Age -->
+                    <!-- Calendar Age -->
                     <div class="text-center mb-8 pb-6 border-b border-white/10">
                         <p class="text-white/60 text-sm mb-1">
-                            &#128197; Real Age
+                            &#128197; Calendar Age
 
                         </p>
                         <p id="real-age" class="age-number font-heading text-5xl md:text-6xl font-bold kick-gradient-text">--</p>
@@ -632,7 +632,7 @@
 
                                 </h3>
                                 <p class="text-gray-600 text-sm">
-                                    Get your personalized life summary in one AI-generated sentence based on your birthday.
+                                    Generate a playful birthday-based life-summary sentence for entertainment.
 
                                 </p>
                                 <span class="inline-block mt-3 text-primary font-medium text-sm">
@@ -654,7 +654,7 @@
                                     <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
                                 </h3>
                                 <p class="text-gray-600 text-sm">
-                                    Calculate your romantic compatibility with AI! Enter two birthdays and discover your love match.
+                                    Generate a playful birthday-based compatibility result for entertainment and conversation.
 
                                 </p>
                                 <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
@@ -789,7 +789,7 @@
                         <span class="text-2xl">🔮</span>
                         <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
                     </div>
-                    <p class="text-gray-400 text-sm lang-en">Discover yourself with AI-powered personality tests.</p>
+                    <p class="text-gray-400 text-sm lang-en">Enjoy free self-discovery questionnaires and entertainment tools.</p>
                     <p class="text-gray-400 text-sm lang-ko">AI 기반 성격 테스트로 자신을 발견하세요.</p>
                     <p class="text-gray-400 text-sm lang-ja">AI搭載の性格テストで自分を発見しましょう。</p>
                     <p class="text-gray-400 text-sm lang-zh">通过AI驱动的性格测试发现自己。</p>
@@ -944,7 +944,7 @@
                 if (avgGap <= -5) {
                     summaryText = "You're younger than your age in both mind and energy! Keep it up!";
                 } else if (avgGap <= 2) {
-                    summaryText = "Your mental and energy ages are well-balanced with your real age.";
+                    summaryText = "Your mental and energy ages are well-balanced with your calendar age.";
                 } else {
                     summaryText = "You have a mature and calm presence. Consider adding some fun activities!";
                 }
