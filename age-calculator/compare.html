@@ -1,37 +1,33 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <!-- GA loaded via consent-manager.js --><!-- Clarity loaded via consent-manager.js --><!-- AdSense loaded via consent-manager.js -->
-<meta charset="UTF-8">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="manifest" href="../site.webmanifest">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-    <!-- Primary SEO Meta Tags -->
-    <title>Compare Age Results - AI Age Calculator | AI Test Lab</title>
-    <meta name="description" content="Compare your AI Age Calculator results with friends. See who has the younger Mental Age and Energy Age!">
-    <meta name="robots" content="noindex, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://smartaitest.com/age-calculator/compare.html">
-    <meta property="og:title" content="Compare Our Ages - AI Age Calculator">
-    <meta property="og:description" content="Compare Mental Age and Energy Age with friends!">
-    <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
-
-    <!-- Tailwind CSS -->
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
-
-    
-    <!-- Tailwind CSS (Local Build) -->
-    <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
+<!-- GA loaded via consent-manager.js --><!-- Clarity loaded via consent-manager.js --><!-- AdSense loaded via consent-manager.js -->
+<meta charset="utf-8"/>
+<!-- Favicon -->
+<link href="../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="../site.webmanifest" rel="manifest"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<!-- Primary SEO Meta Tags -->
+<title>Compare Age Results - AI Age Calculator | AI Test Lab</title>
+<meta content="Compare your AI Age Calculator results with friends. See who has the younger Mental Age and Energy Age!" name="description"/>
+<meta content="noindex, follow" name="robots"/>
+<!-- Open Graph / Facebook -->
+<meta content="website" property="og:type"/>
+<meta content="https://smartaitest.com/age-calculator/compare.html" property="og:url"/>
+<meta content="Compare Our Ages - AI Age Calculator" property="og:title"/>
+<meta content="Compare Mental Age and Energy Age with friends!" property="og:description"/>
+<meta content="https://smartaitest.com/assets/images/og-default.png" property="og:image"/>
+<!-- Tailwind CSS -->
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/></noscript>
+<!-- Tailwind CSS (Local Build) -->
+<link fetchpriority="high" href="../css/tailwind.css" rel="stylesheet"/>
 <style>
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
@@ -64,467 +60,372 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* Language classes - controlled by JavaScript */
-        .lang-ko { display: none; }
-
-        /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
-            word-break: keep-all;
-            overflow-wrap: break-word;
-        }
-    </style>
-
-    <!-- Language Switching -->
-    <script>
-    function switchLang(lang) {
-        // Save and set
-        localStorage.setItem('preferredLanguage', lang);
-        document.documentElement.lang = lang;
-
-        // Show/hide - simple and direct
-        var i, el;
-        var enList = document.getElementsByClassName('lang-en');
-        var koList = document.getElementsByClassName('lang-ko');
-
-        for (i = 0; i < enList.length; i++) {
-            enList[i].style.display = (lang === 'en') ? '' : 'none';
-        }
-        for (i = 0; i < koList.length; i++) {
-            koList[i].style.display = (lang === 'ko') ? '' : 'none';
-        }
-
-        // Update buttons
-        var btnEn = document.getElementById('lang-btn-en');
-        var btnKo = document.getElementById('lang-btn-ko');
-        if (btnEn) btnEn.style.background = (lang === 'en') ? '#6366f1' : '#f3f4f6';
-        if (btnEn) btnEn.style.color = (lang === 'en') ? 'white' : '#374151';
-        if (btnKo) btnKo.style.background = (lang === 'ko') ? '#6366f1' : '#f3f4f6';
-        if (btnKo) btnKo.style.color = (lang === 'ko') ? 'white' : '#374151';
+</style>
+<!-- Language Switching -->
+<script>
+    document.documentElement.lang = 'en';
+    document.documentElement.classList.add('lang-ready');
+    function switchLang() {
+        document.documentElement.lang = 'en';
+        document.documentElement.classList.add('lang-ready');
     }
-
-    // Run on page load
-    (function() {
-        var lang = localStorage.getItem('preferredLanguage') || 'en';
-        // Apply immediately when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() { switchLang(lang); });
-        } else {
-            switchLang(lang);
-        }
-    })();
+    function toggleLangDropdown() {}
     </script>
-    <script src="/js/consent-manager.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569" crossorigin="anonymous"></script>
-</head>
+<script src="/js/consent-manager.js"></script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569"></script>
+<link href="https://smartaitest.com/age-calculator/compare.html" rel="canonical"/><link href="https://smartaitest.com/age-calculator/compare.html" hreflang="en" rel="alternate"/><link href="https://smartaitest.com/age-calculator/compare.html" hreflang="x-default" rel="alternate"/></head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="flex items-center space-x-2">
-                    <span class="text-2xl">🔮</span>
-                    <span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
-                </a>
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="/age-calculator/" class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                        </svg>
-                        <span class="lang-en">Take Test</span>
-                        <span class="lang-ko">테스트 하기</span>
-                    </a>
-                    <!-- Language Toggle Buttons -->
-                    <div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
-                        <button type="button" id="lang-btn-en" onclick="switchLang('en')" class="px-3 py-1.5 text-sm font-medium bg-primary text-white">EN</button>
-                        <button type="button" id="lang-btn-ko" onclick="switchLang('ko')" class="px-3 py-1.5 text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">KO</button>
-                    </div>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="/" class="text-gray-600 hover:text-primary transition">
-                        <span class="lang-en">Home</span>
-                        <span class="lang-ko">홈</span>
-                    </a>
-                    <a href="/age-calculator/" class="text-age-primary font-medium">
-                        <span class="lang-en">Take Test</span>
-                        <span class="lang-ko">테스트 하기</span>
-                    </a>
-                    <div class="pt-3 border-t mt-3">
-                        <p class="text-xs text-gray-500 mb-2">
-                            <span class="lang-en">Language</span>
-                            <span class="lang-ko">언어</span>
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <button onclick="switchLang('en')" data-lang="en" class="mobile-lang-btn px-3 py-1 text-sm bg-primary text-white rounded">EN</button>
-                            <button onclick="switchLang('ko')" data-lang="ko" class="mobile-lang-btn px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">KO</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+<!-- Header -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<nav class="max-w-6xl mx-auto px-4 py-4">
+<div class="flex items-center justify-between">
+<a class="flex items-center space-x-2" href="/">
+<span class="text-2xl">🔮</span>
+<span class="font-heading font-bold text-xl gradient-text">AI Test Lab</span>
+</a>
+<div class="hidden md:flex items-center space-x-4">
+<a class="text-gray-600 hover:text-age-primary transition flex items-center space-x-1" href="/age-calculator/">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Take Test</span>
+</a>
+<!-- Language Toggle Buttons -->
+<div class="flex items-center space-x-1 border rounded-lg overflow-hidden">
 
-    <main>
-        <!-- Hero -->
-        <section class="age-gradient-bg py-10 md:py-14">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <span class="text-5xl mb-4 inline-block">&#128101;</span>
-                <h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
-                    <span class="lang-en">Age Comparison</span>
-                    <span class="lang-ko">나이 비교</span>
-                </h1>
-            </div>
-        </section>
 
-        <!-- Comparison Results -->
-        <section id="comparison-section" class="py-8 md:py-12">
-            <div class="max-w-4xl mx-auto px-4">
-                <!-- Waiting for Friend -->
-                <div id="waiting-view" class="hidden text-center py-12">
-                    <span class="text-6xl mb-6 inline-block">&#9203;</span>
-                    <h2 class="font-heading text-2xl font-bold mb-4">
-                        <span class="lang-en">Waiting for Friend's Results</span>
-                        <span class="lang-ko">친구의 결과를 기다리는 중</span>
-                    </h2>
-                    <p class="text-gray-600 mb-6">
-                        <span class="lang-en">Share this link with your friend to compare results!</span>
-                        <span class="lang-ko">이 링크를 친구에게 공유해서 결과를 비교해보세요!</span>
-                    </p>
-                    <div class="bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto">
-                        <p class="text-sm text-gray-500 mb-3">
-                            <span class="lang-en">Your comparison link:</span>
-                            <span class="lang-ko">비교 링크:</span>
-                        </p>
-                        <div class="flex gap-2">
-                            <input type="text" id="share-link" readonly class="flex-1 px-4 py-2 border rounded-lg bg-gray-50 text-sm">
-                            <button onclick="copyCompareLink()" class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition">
-                                <span class="lang-en">Copy</span>
-                                <span class="lang-ko">복사</span>
-                            </button>
-                        </div>
-                        <p id="copy-success" class="text-green-600 text-sm mt-2 hidden">
-                            <span class="lang-en">Copied!</span>
-                            <span class="lang-ko">복사됨!</span>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Comparison View -->
-                <div id="compare-view" class="hidden">
-                    <!-- VS Header -->
-                    <div class="text-center mb-8">
-                        <div class="inline-flex items-center space-x-4 bg-white rounded-full px-6 py-3 shadow-lg">
-                            <span class="font-heading font-bold text-xl text-indigo-600">
-                                <span class="lang-en">You</span>
-                                <span class="lang-ko">나</span>
-                            </span>
-                            <span class="text-2xl font-bold text-gray-400">VS</span>
-                            <span class="font-heading font-bold text-xl text-pink-600">
-                                <span class="lang-en">Friend</span>
-                                <span class="lang-ko">친구</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Comparison Cards -->
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <!-- Person 1 (You) -->
-                        <div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-indigo-500">
-                            <div class="text-center mb-6">
-                                <span class="text-4xl">&#128100;</span>
-                                <h3 class="font-heading font-bold text-xl text-indigo-600 mt-2">
-                                    <span class="lang-en">You</span>
-                                    <span class="lang-ko">나</span>
-                                </h3>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                    <p class="text-gray-500 text-sm">
-                                        <span class="lang-en">Real Age</span>
-                                        <span class="lang-ko">실제 나이</span>
-                                    </p>
-                                    <p id="p1-real" class="font-heading text-3xl font-bold text-gray-800">--</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="text-center p-4 bg-indigo-50 rounded-xl">
-                                        <p class="text-gray-500 text-sm">
-                                            <span class="lang-en">&#129504; Mental</span>
-                                            <span class="lang-ko">&#129504; 정신</span>
-                                        </p>
-                                        <p id="p1-mental" class="font-heading text-2xl font-bold text-indigo-600">--</p>
-                                        <p id="p1-mental-gap" class="text-sm text-indigo-500">--</p>
-                                    </div>
-                                    <div class="text-center p-4 bg-emerald-50 rounded-xl">
-                                        <p class="text-gray-500 text-sm">
-                                            <span class="lang-en">&#9889; Energy</span>
-                                            <span class="lang-ko">&#9889; 에너지</span>
-                                        </p>
-                                        <p id="p1-energy" class="font-heading text-2xl font-bold text-emerald-600">--</p>
-                                        <p id="p1-energy-gap" class="text-sm text-emerald-500">--</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Person 2 (Friend) -->
-                        <div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-pink-500" style="animation-delay: 0.2s">
-                            <div class="text-center mb-6">
-                                <span class="text-4xl">&#128101;</span>
-                                <h3 class="font-heading font-bold text-xl text-pink-600 mt-2">
-                                    <span class="lang-en">Friend</span>
-                                    <span class="lang-ko">친구</span>
-                                </h3>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="text-center p-4 bg-gray-50 rounded-xl">
-                                    <p class="text-gray-500 text-sm">
-                                        <span class="lang-en">Real Age</span>
-                                        <span class="lang-ko">실제 나이</span>
-                                    </p>
-                                    <p id="p2-real" class="font-heading text-3xl font-bold text-gray-800">--</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="text-center p-4 bg-indigo-50 rounded-xl">
-                                        <p class="text-gray-500 text-sm">
-                                            <span class="lang-en">&#129504; Mental</span>
-                                            <span class="lang-ko">&#129504; 정신</span>
-                                        </p>
-                                        <p id="p2-mental" class="font-heading text-2xl font-bold text-indigo-600">--</p>
-                                        <p id="p2-mental-gap" class="text-sm text-indigo-500">--</p>
-                                    </div>
-                                    <div class="text-center p-4 bg-emerald-50 rounded-xl">
-                                        <p class="text-gray-500 text-sm">
-                                            <span class="lang-en">&#9889; Energy</span>
-                                            <span class="lang-ko">&#9889; 에너지</span>
-                                        </p>
-                                        <p id="p2-energy" class="font-heading text-2xl font-bold text-emerald-600">--</p>
-                                        <p id="p2-energy-gap" class="text-sm text-emerald-500">--</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Winner Section -->
-                    <div id="winner-section" class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 text-center mb-8">
-                        <span class="text-5xl mb-4 inline-block winner-badge">&#127942;</span>
-                        <h3 class="font-heading text-2xl font-bold mb-2" id="winner-title">
-                            <span class="lang-en">Winner</span>
-                            <span class="lang-ko">승자</span>
-                        </h3>
-                        <p class="text-gray-700" id="winner-desc">
-                            <span class="lang-en">Comparison result will appear here</span>
-                            <span class="lang-ko">비교 결과가 여기에 표시됩니다</span>
-                        </p>
-                    </div>
-
-                    <!-- Detailed Comparison -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="font-heading text-xl font-bold mb-6 text-center">
-                            <span class="lang-en">Detailed Comparison</span>
-                            <span class="lang-ko">상세 비교</span>
-                        </h3>
-
-                        <!-- Mental Age Comparison -->
-                        <div class="mb-6">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium">
-                                    <span class="lang-en">&#129504; Mental Age Gap</span>
-                                    <span class="lang-ko">&#129504; 정신 나이 차이</span>
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="flex-1">
-                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
-                                        <span class="lang-en">You</span>
-                                        <span class="lang-ko">나</span>
-                                        <span id="p1-mental-bar-label">--</span>
-                                    </div>
-                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                                        <div id="p1-mental-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
-                                        <span class="lang-en">Friend</span>
-                                        <span class="lang-ko">친구</span>
-                                        <span id="p2-mental-bar-label">--</span>
-                                    </div>
-                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                                        <div id="p2-mental-bar" class="h-full bg-pink-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Energy Age Comparison -->
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium">
-                                    <span class="lang-en">&#9889; Energy Age Gap</span>
-                                    <span class="lang-ko">&#9889; 에너지 나이 차이</span>
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="flex-1">
-                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
-                                        <span class="lang-en">You</span>
-                                        <span class="lang-ko">나</span>
-                                        <span id="p1-energy-bar-label">--</span>
-                                    </div>
-                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                                        <div id="p1-energy-bar" class="h-full bg-indigo-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between text-sm text-gray-500 mb-1">
-                                        <span class="lang-en">Friend</span>
-                                        <span class="lang-ko">친구</span>
-                                        <span id="p2-energy-bar-label">--</span>
-                                    </div>
-                                    <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                                        <div id="p2-energy-bar" class="h-full bg-pink-500 rounded-full transition-all duration-1000" style="width: 50%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-                        <button onclick="shareComparison()" class="age-gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition flex items-center justify-center space-x-2">
-                            <span>&#128279;</span>
-                            <span class="lang-en">Share Comparison</span>
-                            <span class="lang-ko">비교 공유하기</span>
-                        </button>
-                        <a href="/age-calculator/" class="bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition text-center">
-                            <span class="lang-en">&#8634; Take Test Again</span>
-                            <span class="lang-ko">&#8634; 다시 테스트하기</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- No Data View -->
-                <div id="no-data-view" class="hidden text-center py-12">
-                    <span class="text-6xl mb-6 inline-block">&#128533;</span>
-                    <h2 class="font-heading text-2xl font-bold mb-4">
-                        <span class="lang-en">No Results Found</span>
-                        <span class="lang-ko">결과를 찾을 수 없습니다</span>
-                    </h2>
-                    <p class="text-gray-600 mb-6">
-                        <span class="lang-en">Take the AI Age Calculator test first to compare with friends!</span>
-                        <span class="lang-ko">먼저 AI 나이 계산기 테스트를 해보세요!</span>
-                    </p>
-                    <a href="/age-calculator/" class="inline-block age-gradient-bg text-white font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition">
-                        <span class="lang-en">Take the Test</span>
-                        <span class="lang-ko">테스트하기</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-                    <span class="lang-en">&#128302; Try More Tests</span>
-                    <span class="lang-ko">&#128302; 다른 테스트 해보기</span>
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <a href="/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-                                    <span class="lang-en">AI Life Summary</span>
-                                    <span class="lang-ko">AI 인생 요약</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-                                    <span class="lang-en">Get your personalized life summary in one AI-generated sentence.</span>
-                                    <span class="lang-ko">AI가 생성한 한 문장으로 인생 요약을 받아보세요.</span>
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-                                    <span class="lang-en">Try Now &#8594;</span>
-                                    <span class="lang-ko">지금 해보기 &#8594;</span>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="/age-calculator/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#127874;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-                                    <span class="lang-en">AI Age Calculator</span>
-                                    <span class="lang-ko">AI 나이 계산기</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-                                    <span class="lang-en">Discover your Mental Age and Energy Age based on lifestyle.</span>
-                                    <span class="lang-ko">생활 습관에 따른 정신 나이와 에너지 나이를 알아보세요.</span>
-                                </p>
-                                <span class="inline-block mt-3 text-age-primary font-medium text-sm">
-                                    <span class="lang-en">Try Now &#8594;</span>
-                                    <span class="lang-ko">지금 해보기 &#8594;</span>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <span class="text-2xl">🔮</span>
-                        <span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">Discover yourself with AI-powered personality tests.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Tests</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
-                        <li><a href="/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/about.html" class="hover:text-white transition">About</a></li>
-                        <li><a href="/contact.html" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
-                <p class="mt-2">All tests are for entertainment purposes only.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="/js/age-calculator.js"></script>
-    <script src="/js/age-share.js"></script>
-    <script>
+</div>
+</div>
+<button class="md:hidden p-2" id="mobile-menu-btn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="hidden md:hidden mt-4 pb-4 border-t pt-4" id="mobile-menu">
+<div class="flex flex-col space-y-3">
+<a class="text-gray-600 hover:text-primary transition" href="/">
+<span>Home</span>
+</a>
+<a class="text-age-primary font-medium" href="/age-calculator/">
+<span>Take Test</span>
+</a>
+<div class="pt-3 border-t mt-3">
+<p class="text-xs text-gray-500 mb-2">
+<span>Language</span>
+</p>
+<div class="flex flex-wrap gap-2">
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero -->
+<section class="age-gradient-bg py-10 md:py-14">
+<div class="max-w-4xl mx-auto px-4 text-center">
+<span class="text-5xl mb-4 inline-block">👥</span>
+<h1 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2">
+<span>Age Comparison</span>
+</h1>
+</div>
+</section>
+<!-- Comparison Results -->
+<section class="py-8 md:py-12" id="comparison-section">
+<div class="max-w-4xl mx-auto px-4">
+<!-- Waiting for Friend -->
+<div class="hidden text-center py-12" id="waiting-view">
+<span class="text-6xl mb-6 inline-block">⏳</span>
+<h2 class="font-heading text-2xl font-bold mb-4">
+<span>Waiting for Friend's Results</span>
+</h2>
+<p class="text-gray-600 mb-6">
+<span>Share this link with your friend to compare results!</span>
+</p>
+<div class="bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto">
+<p class="text-sm text-gray-500 mb-3">
+<span>Your comparison link:</span>
+</p>
+<div class="flex gap-2">
+<input class="flex-1 px-4 py-2 border rounded-lg bg-gray-50 text-sm" id="share-link" readonly="" type="text"/>
+<button class="age-gradient-bg text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition" onclick="copyCompareLink()">
+<span>Copy</span>
+</button>
+</div>
+<p class="text-green-600 text-sm mt-2 hidden" id="copy-success">
+<span>Copied!</span>
+</p>
+</div>
+</div>
+<!-- Comparison View -->
+<div class="hidden" id="compare-view">
+<!-- VS Header -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center space-x-4 bg-white rounded-full px-6 py-3 shadow-lg">
+<span class="font-heading font-bold text-xl text-indigo-600">
+<span>You</span>
+</span>
+<span class="text-2xl font-bold text-gray-400">VS</span>
+<span class="font-heading font-bold text-xl text-pink-600">
+<span>Friend</span>
+</span>
+</div>
+</div>
+<!-- Comparison Cards -->
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+<!-- Person 1 (You) -->
+<div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-indigo-500">
+<div class="text-center mb-6">
+<span class="text-4xl">👤</span>
+<h3 class="font-heading font-bold text-xl text-indigo-600 mt-2">
+<span>You</span>
+</h3>
+</div>
+<div class="space-y-4">
+<div class="text-center p-4 bg-gray-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>Real Age</span>
+</p>
+<p class="font-heading text-3xl font-bold text-gray-800" id="p1-real">--</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="text-center p-4 bg-indigo-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>🧠 Mental</span>
+</p>
+<p class="font-heading text-2xl font-bold text-indigo-600" id="p1-mental">--</p>
+<p class="text-sm text-indigo-500" id="p1-mental-gap">--</p>
+</div>
+<div class="text-center p-4 bg-emerald-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>⚡ Energy</span>
+</p>
+<p class="font-heading text-2xl font-bold text-emerald-600" id="p1-energy">--</p>
+<p class="text-sm text-emerald-500" id="p1-energy-gap">--</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Person 2 (Friend) -->
+<div class="compare-card bg-white rounded-2xl shadow-xl p-6 border-t-4 border-pink-500" style="animation-delay: 0.2s">
+<div class="text-center mb-6">
+<span class="text-4xl">👥</span>
+<h3 class="font-heading font-bold text-xl text-pink-600 mt-2">
+<span>Friend</span>
+</h3>
+</div>
+<div class="space-y-4">
+<div class="text-center p-4 bg-gray-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>Real Age</span>
+</p>
+<p class="font-heading text-3xl font-bold text-gray-800" id="p2-real">--</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="text-center p-4 bg-indigo-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>🧠 Mental</span>
+</p>
+<p class="font-heading text-2xl font-bold text-indigo-600" id="p2-mental">--</p>
+<p class="text-sm text-indigo-500" id="p2-mental-gap">--</p>
+</div>
+<div class="text-center p-4 bg-emerald-50 rounded-xl">
+<p class="text-gray-500 text-sm">
+<span>⚡ Energy</span>
+</p>
+<p class="font-heading text-2xl font-bold text-emerald-600" id="p2-energy">--</p>
+<p class="text-sm text-emerald-500" id="p2-energy-gap">--</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Winner Section -->
+<div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 text-center mb-8" id="winner-section">
+<span class="text-5xl mb-4 inline-block winner-badge">🏆</span>
+<h3 class="font-heading text-2xl font-bold mb-2" id="winner-title">
+<span>Winner</span>
+</h3>
+<p class="text-gray-700" id="winner-desc">
+<span>Comparison result will appear here</span>
+</p>
+</div>
+<!-- Detailed Comparison -->
+<div class="bg-white rounded-2xl shadow-lg p-6">
+<h3 class="font-heading text-xl font-bold mb-6 text-center">
+<span>Detailed Comparison</span>
+</h3>
+<!-- Mental Age Comparison -->
+<div class="mb-6">
+<div class="flex justify-between items-center mb-2">
+<span class="font-medium">
+<span>🧠 Mental Age Gap</span>
+</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between text-sm text-gray-500 mb-1">
+<span>You</span>
+<span id="p1-mental-bar-label">--</span>
+</div>
+<div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-500 rounded-full transition-all duration-1000" id="p1-mental-bar" style="width: 50%"></div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm text-gray-500 mb-1">
+<span>Friend</span>
+<span id="p2-mental-bar-label">--</span>
+</div>
+<div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-pink-500 rounded-full transition-all duration-1000" id="p2-mental-bar" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Energy Age Comparison -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-medium">
+<span>⚡ Energy Age Gap</span>
+</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between text-sm text-gray-500 mb-1">
+<span>You</span>
+<span id="p1-energy-bar-label">--</span>
+</div>
+<div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-500 rounded-full transition-all duration-1000" id="p1-energy-bar" style="width: 50%"></div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between text-sm text-gray-500 mb-1">
+<span>Friend</span>
+<span id="p2-energy-bar-label">--</span>
+</div>
+<div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-pink-500 rounded-full transition-all duration-1000" id="p2-energy-bar" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+<button class="age-gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition flex items-center justify-center space-x-2" onclick="shareComparison()">
+<span>🔗</span>
+<span>Share Comparison</span>
+</button>
+<a class="bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition text-center" href="/age-calculator/">
+<span>↺ Take Test Again</span>
+</a>
+</div>
+</div>
+<!-- No Data View -->
+<div class="hidden text-center py-12" id="no-data-view">
+<span class="text-6xl mb-6 inline-block">😕</span>
+<h2 class="font-heading text-2xl font-bold mb-4">
+<span>No Results Found</span>
+</h2>
+<p class="text-gray-600 mb-6">
+<span>Take the AI Age Calculator test first to compare with friends!</span>
+</p>
+<a class="inline-block age-gradient-bg text-white font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition" href="/age-calculator/">
+<span>Take the Test</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Try More Tests -->
+<section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
+<div class="max-w-4xl mx-auto px-4">
+<h2 class="font-heading text-2xl font-bold text-center mb-8">
+<span>🔮 Try More Tests</span>
+</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<a class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1" href="/life-summary/">
+<div class="flex items-start space-x-4">
+<span class="text-4xl">✨</span>
+<div>
+<h3 class="font-heading font-semibold text-lg mb-2">
+<span>AI Life Summary</span>
+</h3>
+<p class="text-gray-600 text-sm">
+<span>Get your personalized life summary in one AI-generated sentence.</span>
+</p>
+<span class="inline-block mt-3 text-primary font-medium text-sm">
+<span>Try Now →</span>
+</span>
+</div>
+</div>
+</a>
+<a class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1" href="/age-calculator/">
+<div class="flex items-start space-x-4">
+<span class="text-4xl">🎂</span>
+<div>
+<h3 class="font-heading font-semibold text-lg mb-2">
+<span>AI Age Calculator</span>
+</h3>
+<p class="text-gray-600 text-sm">
+<span>Discover your Mental Age and Energy Age based on lifestyle.</span>
+</p>
+<span class="inline-block mt-3 text-age-primary font-medium text-sm">
+<span>Try Now →</span>
+</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-12">
+<div class="max-w-6xl mx-auto px-4">
+<div class="grid md:grid-cols-4 gap-8 mb-8">
+<div>
+<div class="flex items-center space-x-2 mb-4">
+<span class="text-2xl">🔮</span>
+<span class="font-heading font-bold text-xl text-white">AI Test Lab</span>
+</div>
+<p class="text-gray-400 text-sm">Discover yourself with AI-powered personality tests.</p>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-4">Tests</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition" href="/life-summary/">AI Life Summary</a></li>
+<li><a class="hover:text-white transition" href="/age-calculator/">AI Age Calculator</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-4">Quick Links</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition" href="/">Home</a></li>
+<li><a class="hover:text-white transition" href="/about.html">About</a></li>
+<li><a class="hover:text-white transition" href="/contact.html">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-4">Legal</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition" href="/privacy-policy.html">Privacy Policy</a></li>
+<li><a class="hover:text-white transition" href="/terms-of-service.html">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+<p>© 2025 AI Test Lab. All rights reserved.</p>
+<p class="mt-2">All tests are for entertainment purposes only.</p>
+</div>
+</div>
+</footer>
+<!-- Scripts -->
+<script src="/js/age-calculator.js"></script>
+<script src="/js/age-share.js"></script>
+<script>
         // Parse URL parameters
         const params = new URLSearchParams(window.location.search);
 
