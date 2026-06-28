@@ -1,17 +1,19 @@
-# Cloudflare Pages redirect rules — INERT on GitHub Pages (current host).
-# This file is preserved as documentation for potential CF Pages migration.
-# Live host (GH Pages legacy build) ignores _redirects entirely.
-# Sensitive files are excluded via .gitignore + .nojekyll instead.
+# Cloudflare Workers Static Assets redirects.
+# wrangler.toml uses [assets] directory = "./"; Workers parses this _redirects file.
+# Supported status codes here are redirect codes only (301, 302, 303, 307, 308).
+# Deleted content that needs a true 410 must be handled outside _redirects.
 
 # terms -> terms-of-service (canonical)
 /terms /terms-of-service.html 301
 /terms.html /terms-of-service.html 301
 
-# Language-specific pages -> canonical pages
-# (Removed /ja/contact/ /en/contact/ /en/terms-of-service/ legacy redirects —
-#  localized index.html files exist and are the canonical hreflang targets in sitemap.)
-/es/guide/compatibility-guide/ /blog.html 301
-/zh/methodology/ /blog.html 301
+# Legacy guide URLs with clear current equivalents
+/guide/soul-types /ko/guide/soul-types/ 301
+/guide/soul-types/ /ko/guide/soul-types/ 301
+/guide/compatibility-guide /ko/guide/compatibility-guide/ 301
+/guide/compatibility-guide/ /ko/guide/compatibility-guide/ 301
+/es/guide/compatibility-guide/ /ko/guide/compatibility-guide/ 301
+/zh/methodology/ /ko/methodology/ 301
 
 # Search template URL
 /search / 301
