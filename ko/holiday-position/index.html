@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>우리집 명절 포지션 테스트 — 10문항으로 알아보는 내 포지션 | AI Test Lab</title>
+<meta name="description" content="명절 가족 모임에서 나는 어떤 포지션일까? 10문항으로 알아보고 가족 단톡방에 공유해보세요.">
+<link rel="canonical" href="https://smartaitest.com/ko/holiday-position/">
+<meta property="og:title" content="우리집 명절 포지션 테스트">
+<meta property="og:description" content="방구석 투명인간? 만능 해결사? 10문항으로 알아보는 우리집 명절 포지션 — 가족 태그는 덤.">
+<meta property="og:url" content="https://smartaitest.com/ko/holiday-position/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://smartaitest.com/ko/holiday-position/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<style>
+  :root {
+    --pos-color: #D9C8F0;
+    --pos-color-deep: #BBA8DA;
+    --pos-color-soft: #EFE6FA;
+    --bg: #0E0E10;
+    --text-inv: #16130F;
+    --text-mute: rgba(22, 19, 15, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 40px;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(217, 200, 240, 0.10), transparent 60%),
+      radial-gradient(100% 60% at 50% 100%, rgba(217, 200, 240, 0.05), transparent 60%),
+      var(--bg);
+  }
+
+  .screen { display: none; width: 100%; flex: 1 1 auto; flex-direction: column; align-items: center; }
+  .screen.active { display: flex; }
+
+  /* ── Intro ── */
+  .intro-wrap {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; max-width: 360px;
+  }
+  .intro-mark { font-weight: 800; font-size: 15px; letter-spacing: 0.02em; color: rgba(255,255,255,0.55); }
+  .intro-title {
+    margin-top: 18px;
+    font-size: clamp(28px, 8.5vw, 36px);
+    font-weight: 300; letter-spacing: -0.03em; line-height: 1.3;
+  }
+  .intro-title strong { font-weight: 700; }
+  .intro-sub { margin-top: 14px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.65); }
+  .intro-meta { margin-top: 20px; font-size: 12.5px; color: rgba(255,255,255,0.45); }
+  .intro-cta { margin-top: 30px; width: 100%; }
+  .home-link { margin-top: 34px; font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
+
+  /* ── Quiz ── */
+  .quiz-wrap {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    width: min(92vw, 400px);
+  }
+  .progress-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 26px;
+  }
+  .progress-track {
+    flex: 1 1 auto; height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.12); overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: var(--pos-color);
+    border-radius: 3px;
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .progress-num { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); min-width: 44px; text-align: right; }
+
+  .q-text {
+    font-size: clamp(20px, 6vw, 24px);
+    font-weight: 700; letter-spacing: -0.02em; line-height: 1.4;
+    min-height: 68px;
+  }
+  .opts { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    appearance: none; border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.9);
+    border-radius: 14px;
+    min-height: 56px;
+    padding: 14px 18px;
+    font-size: 15px; font-weight: 500; line-height: 1.4;
+    text-align: left; cursor: pointer;
+    font-family: inherit;
+    transition: background 0.12s ease, transform 0.12s ease, border-color 0.12s ease;
+  }
+  .opt:active { transform: scale(0.985); background: rgba(255,255,255,0.10); border-color: var(--pos-color); }
+  @media (hover: hover) { .opt:hover { background: rgba(255,255,255,0.08); } }
+
+  /* ── Result card ── */
+  .stage {
+    flex: 1 1 auto;
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; min-height: 0;
+  }
+  .pos-card {
+    position: relative;
+    width: min(92vw, 360px);
+    max-height: min(72vh, 640px);
+    aspect-ratio: 9 / 16;
+    border-radius: 28px;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, var(--pos-color-soft) 0%, var(--pos-color) 55%, var(--pos-color-deep) 100%);
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.55),
+      0 8px 24px rgba(0,0,0,0.35),
+      inset 0 0 0 1px rgba(255,255,255,0.18);
+    color: var(--text-inv);
+    display: flex; flex-direction: column;
+    padding: 26px 24px 26px;
+  }
+  .pos-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.18;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; z-index: 2; }
+  .wordmark {
+    font-weight: 800; font-size: 15px; letter-spacing: -0.02em;
+    color: var(--text-inv);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+  }
+  .handle { font-size: 11px; font-weight: 600; color: var(--text-inv); opacity: 0.65; }
+  .date-line { margin-top: 6px; font-size: 12px; font-weight: 500; color: var(--text-mute); z-index: 2; }
+
+  .pos-emoji { margin-top: auto; font-size: 44px; z-index: 2; }
+  .pos-name {
+    margin-top: 8px;
+    font-size: clamp(30px, 9vw, 38px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
+    z-index: 2;
+  }
+  .pos-desc {
+    margin-top: 12px;
+    font-size: 14px; font-weight: 500; line-height: 1.55;
+    opacity: 0.82; z-index: 2;
+  }
+  .pos-quote {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-left: 3px solid rgba(22,19,15,0.35);
+    background: rgba(255,255,255,0.22);
+    border-radius: 0 12px 12px 0;
+    font-size: 14px; font-weight: 600; font-style: italic;
+    z-index: 2;
+  }
+  .pos-combi {
+    margin-top: 16px;
+    font-size: 12.5px; font-weight: 600; line-height: 1.7;
+    opacity: 0.8; z-index: 2;
+  }
+  .card-foot {
+    margin-top: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; font-weight: 600;
+    color: var(--text-mute); letter-spacing: 0.06em; text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal.r1 { animation-delay: 0.05s; }
+  .reveal.r2 { animation-delay: 0.18s; }
+  .reveal.r3 { animation-delay: 0.32s; }
+  .reveal.r4 { animation-delay: 0.46s; }
+  .reveal.r5 { animation-delay: 0.58s; }
+  .reveal.r6 { animation-delay: 0.70s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .progress-fill { transition: none !important; }
+  }
+
+  .actions {
+    width: min(92vw, 360px);
+    margin-top: 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .btn-primary {
+    appearance: none; border: none;
+    width: 100%; height: 54px; border-radius: 16px;
+    background: var(--pos-color); color: #16130F;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 8px 24px rgba(217, 200, 240, 0.25);
+  }
+  .btn-primary:active { transform: scale(0.98); filter: brightness(0.96); }
+  .btn-secondary {
+    appearance: none;
+    width: 100%; height: 50px; border-radius: 16px;
+    background: transparent; color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.18);
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-secondary:active { transform: scale(0.98); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.06); }
+  .retry-link {
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px; text-decoration: none;
+    margin-top: 4px; padding: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: inherit;
+  }
+  .retry-link:active { color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+
+  <!-- ── 인트로 ── -->
+  <section class="screen active" id="screen-intro">
+    <div class="intro-wrap">
+      <div class="intro-mark">HOLIDAY POSITION</div>
+      <h1 class="intro-title">우리집 명절,<br>나는 <strong>어떤 포지션</strong>일까?</h1>
+      <p class="intro-sub">명절 아침부터 귀경길까지 —<br>10개 상황으로 알아보는 나의 역할 캐릭터.</p>
+      <p class="intro-meta">10문항 · 약 1분 · 가족 단톡방 공유용</p>
+      <div class="intro-cta">
+        <button class="btn-primary" id="startBtn" type="button">테스트 시작하기</button>
+      </div>
+      <a class="home-link" href="/ko/">AI Test Lab의 다른 테스트 보기</a>
+    </div>
+  </section>
+
+  <!-- ── 문항 ── -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-wrap">
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-num" id="progressNum">1 / 10</div>
+      </div>
+      <div class="q-text" id="qText"></div>
+      <div class="opts" id="opts"></div>
+    </div>
+  </section>
+
+  <!-- ── 결과 ── -->
+  <section class="screen" id="screen-result">
+    <main class="stage">
+      <article class="pos-card" id="posCard" aria-label="명절 포지션 결과 카드">
+        <div class="card-head reveal r1">
+          <div class="wordmark">명절 포지션 테스트</div>
+          <div class="handle">smartaitest.com</div>
+        </div>
+        <div class="date-line reveal r2" id="dateLine"></div>
+        <div class="pos-emoji reveal r3" id="posEmoji"></div>
+        <div class="pos-name reveal r3" id="posName"></div>
+        <div class="pos-desc reveal r4" id="posDesc"></div>
+        <div class="pos-quote reveal r5" id="posQuote"></div>
+        <div class="pos-combi reveal r6" id="posCombi"></div>
+        <div class="card-foot reveal r6">
+          <div>HOLIDAY POSITION</div>
+          <div id="cardNo"></div>
+        </div>
+      </article>
+    </main>
+    <div class="actions">
+      <button class="btn-primary" id="shareBtn" type="button">가족 단톡방에 공유하기</button>
+      <button class="btn-secondary" id="saveBtn" type="button">이미지로 저장</button>
+      <button class="retry-link" id="retryBtn" type="button">다시 해보기</button>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── 콘텐츠 정본: tasks/smartaitest-holiday-quiz-items/artifacts/quiz-final-v5.md ──
+     채점 = 보기별 주 포지션 1점 + 부 포지션 0.5점, 최고 총점 승. 동점 시 주 횟수 우선 */
+  var P = { T: '투명인간', J: '잔소리요정', I: '인싸', S: '잠수', M: '먹방', H: '해결사' };
+
+  var QUESTIONS = [
+    { q: '명절 아침, 눈 떴는데 이미 누가 일어나 있다면?',
+      opts: ['나보다 먼저? 다시 눕는다', '이미 부엌에서 전 다 담고 있다', '가족들 깨우려고 방방 뛴다', '알람 끄고 폰만 보다 늦잠'],
+      map: [['T','H'], ['J','H'], ['I','M'], ['S','T']] },
+    { q: '명절 음식 준비할 때 자기 역할은?',
+      opts: ['"뭐 도와줄까?" 물어보고 양념 다듬기', '"이거 내가 할게" 하고 전 부침 차지', '식탁 세팅하면서 노래 틀기', '부엌 근처 안 가고 거실 눕기'],
+      map: [['H','J'], ['J','M'], ['I','H'], ['T','S']] },
+    { q: '친척들이 한꺼번에 도착하면?',
+      opts: ['현관에서 맞으며 음료 따라주기', '내 방 문 잠그고 조용히', '주차부터 짐 나르기까지 다 처리', '"잠깐 나갔다 올게" 하고 외출'],
+      map: [['I','H'], ['T','S'], ['H','J'], ['S','T']] },
+    { q: '명절 식사 시간, 자기 포지션은?',
+      opts: ['젓가락 먼저 들고 "잘 먹겠습니다"', '반찬 골고루 채워주기', '남길까 봐 양 조절하며 다 먹기', '밥만 빨리 비우고 자리 뜨기'],
+      map: [['M','I'], ['I','M'], ['J','H'], ['T','S']] },
+    { q: '가족이 모여 앉아 쉴 때?',
+      opts: ['리모컨 들고 프로그램 정하기', '간식 내오면서 티타임 분위기', '누워서 폰 하다가 졸기', '"산책 갈 사람?" 하고 밖으로'],
+      map: [['J','I'], ['I','M'], ['T','S'], ['S','T']] },
+    { q: '귀경길 차가 꽉 막히면?',
+      opts: ['운전 교대하겠다고 자원', '네비 앱 켜고 우회로 찾기', '차 안에서 노래 틀고 분위기', '뒷좌석에서 그냥 잠'],
+      map: [['H','J'], ['J','H'], ['I','M'], ['T','S']] },
+    { q: '조카들이 난리 칠 때?',
+      opts: ['같이 뛰며 놀아주기', '장난감 챙겨주고 구경하기', '소음 차단 이어폰 꽂기', '"우리 나들이 가자" 하고 외출'],
+      map: [['I','H'], ['H','I'], ['T','S'], ['S','I']] },
+    { q: '식사 끝나고 뒷정리는?',
+      opts: ['"내가 정리할게" 하고 다 싸기', '남은 음식 골라서 챙기기', '설거지 라인에서 묵묵히', '"화장실 간다" 하고 사라지기'],
+      map: [['J','H'], ['M','H'], ['H','J'], ['S','T']] },
+    { q: '가족 단톡방에 명절 사진 올라오면?',
+      opts: ['제일 먼저 좋아요 누르고 댓글', '읽고 조용히 닫기', '내가 먼저 사진 찍어서 올리기', '뜨는 김에 배달앱으로 간식 주문'],
+      map: [['I','M'], ['T','S'], ['H','I'], ['M','I']] },
+    { q: '명절 끝나고 집에 돌아오면?',
+      opts: ['정리하고 다음 날 계획 세우기', '뻗어서 다음 날까지 잠', '남은 음식 꺼내 야식', '가족들에게 안전 도착 카톡'],
+      map: [['J','H'], ['S','T'], ['M','I'], ['I','H']] }
+  ];
+
+  var POSITIONS = {
+    T: { name: '방구석 투명인간', emoji: '👻', hex: '#D9C8F0',
+         desc: '명절 내내 존재감을 지워버리는 스텔스 요원. 부엌 근처엔 안 가고, 인파 속에서 자연스럽게 사라진다.',
+         quote: '"아까부터 여기 있었는데…"',
+         combi: '잠수 타격대와 존재감 제로 콤비 · 잔소리 요정과 매년 호출 전쟁',
+         tagName: '잠수 타격대' },
+    J: { name: '완벽주의 잔소리 요정', emoji: '🧚', hex: '#FAE8A0',
+         desc: '모든 것을 통제하려는 명절의 총사령관. 전 부침 각도까지 관리하며, 남들이 하는 건 다 불안하다.',
+         quote: '"그렇게 하지 말고 내가 하는 대로 해."',
+         combi: '만능 해결사와 환상의 콤비 · 방구석 투명인간과 매년 호출 전쟁',
+         tagName: '만능 해결사' },
+    I: { name: '명절 인싸', emoji: '🎤', hex: '#F5B0A8',
+         desc: '분위기 메이커이자 가족 모임의 MC. 누구보다 먼저 맞이하고, 노래 틀고, 간식 까준다.',
+         quote: '"자, 다들 모여봐요! 사진 한 장 찍어요!"',
+         combi: '먹방 수호자와 먹방+놀이 콤비 · 잔소리 요정과 리모컨 전쟁',
+         tagName: '먹방 수호자' },
+    S: { name: '잠수 타격대', emoji: '🥷', hex: '#B8E0D2',
+         desc: '명절 중 타이밍 좋게 사라지는 전술가. 산책·외출·화장실 핑계로 전장을 이탈한다.',
+         quote: '"나 잠깐 나갔다 올게~"',
+         combi: '방구석 투명인간과 존재감 제로 콤비 · 만능 해결사와 잠수 탐색 작전',
+         tagName: '방구석 투명인간' },
+    M: { name: '먹방 수호자', emoji: '🍚', hex: '#F5C898',
+         desc: '먹는 것에 모든 에너지를 집중하는 미식가. 남은 음식 처리 1순위이자, 식탁에서 절대 떠나지 않는다.',
+         quote: '"이거 진짜 맛있네, 하나 더 줘"',
+         combi: '명절 인싸와 먹방+놀이 콤비 · 잠수 타격대와 남은 음식 처리 콤비',
+         tagName: '명절 인싸' },
+    H: { name: '만능 해결사', emoji: '🛠️', hex: '#D4E8B8',
+         desc: '뭐든 척척 해내는 명절의 실무 총괄. 주차·짐·설거지·양념 다듬기까지 빈틈 없이 채운다.',
+         quote: '"됐어, 이건 내가 할게."',
+         combi: '완벽주의 잔소리 요정과 환상의 콤비 · 잠수 타격대와 잠수 탐색 작전',
+         tagName: '완벽주의 잔소리 요정' }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var qIndex = 0;
+  var scores = {};   /* key → 총점 */
+  var primaryCounts = {}; /* key → 주 횟수 (동점 규칙) */
+  var currentPos = null;
+
+  /* KPI 이벤트 — gtag 있으면 전송, 없으면 no-op (GA4 설치는 운영자 잔여) */
+  function track(name) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name);
+    } catch (e) { /* 계측 실패가 UX를 막지 않게 */ }
+  }
+
+  function showScreen(id) {
+    var screens = document.querySelectorAll('.screen');
+    for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
+    $(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function hexToRgb(hex) {
+    var h = hex.replace('#', '');
+    return { r: parseInt(h.substr(0, 2), 16), g: parseInt(h.substr(2, 2), 16), b: parseInt(h.substr(4, 2), 16) };
+  }
+  function rgbToHex(r, g, b) {
+    var to = function (v) { v = Math.max(0, Math.min(255, Math.round(v))); return ('0' + v.toString(16)).slice(-2); };
+    return '#' + to(r) + to(g) + to(b);
+  }
+  function mixWithWhite(hex, amount) {
+    var c = hexToRgb(hex);
+    return rgbToHex(c.r + (255 - c.r) * amount, c.g + (255 - c.g) * amount, c.b + (255 - c.b) * amount);
+  }
+  function darken(hex, amount) {
+    var c = hexToRgb(hex);
+    return rgbToHex(c.r * (1 - amount), c.g * (1 - amount), c.b * (1 - amount));
+  }
+  function pad2(v) { return ('0' + v).slice(-2); }
+
+  /* ── 문항 진행 ── */
+  function renderQuestion() {
+    var item = QUESTIONS[qIndex];
+    $('progressNum').textContent = (qIndex + 1) + ' / ' + QUESTIONS.length;
+    $('progressFill').style.width = ((qIndex) / QUESTIONS.length * 100) + '%';
+    $('qText').textContent = 'Q' + (qIndex + 1) + '. ' + item.q;
+
+    var wrap = $('opts');
+    wrap.innerHTML = '';
+    for (var i = 0; i < item.opts.length; i++) {
+      (function (idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'opt';
+        btn.textContent = item.opts[idx];
+        btn.addEventListener('click', function () { answer(idx); });
+        wrap.appendChild(btn);
+      })(i);
+    }
+  }
+
+  function answer(optIdx) {
+    var m = QUESTIONS[qIndex].map[optIdx];
+    scores[m[0]] = (scores[m[0]] || 0) + 1;
+    primaryCounts[m[0]] = (primaryCounts[m[0]] || 0) + 1;
+    scores[m[1]] = (scores[m[1]] || 0) + 0.5;
+
+    qIndex++;
+    if (qIndex < QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      $('progressFill').style.width = '100%';
+      finish();
+    }
+  }
+
+  function computeWinner() {
+    var best = null;
+    for (var key in POSITIONS) {
+      var s = scores[key] || 0;
+      var p = primaryCounts[key] || 0;
+      if (!best || s > best.s || (s === best.s && p > best.p)) {
+        best = { key: key, s: s, p: p };
+      }
+    }
+    return best.key;
+  }
+
+  function finish() {
+    var key = computeWinner();
+    var pos = POSITIONS[key];
+    currentPos = pos;
+
+    var root = document.documentElement.style;
+    root.setProperty('--pos-color', pos.hex);
+    root.setProperty('--pos-color-soft', mixWithWhite(pos.hex, 0.45));
+    root.setProperty('--pos-color-deep', darken(pos.hex, 0.14));
+
+    var now = new Date();
+    $('dateLine').textContent = now.getFullYear() + ' 명절 포지션 · 나의 결과';
+    $('posEmoji').textContent = pos.emoji;
+    $('posName').textContent = pos.name;
+    $('posDesc').textContent = pos.desc;
+    $('posQuote').textContent = pos.quote;
+    $('posCombi').textContent = pos.combi;
+    $('cardNo').textContent = 'NO. ' + pad2(now.getMonth() + 1) + pad2(now.getDate());
+
+    var reveals = document.querySelectorAll('#screen-result .reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      var el = reveals[i];
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    }
+    showScreen('screen-result');
+    track('hq_complete');
+  }
+
+  /* ── 카드 PNG 렌더 (1080×1920, 외부 라이브러리 없음) ── */
+  function wrapText(ctx, text, maxWidth) {
+    var words = text.split(' ');
+    var lines = [], line = '';
+    for (var i = 0; i < words.length; i++) {
+      var test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = words[i];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function renderCardPNG(pos, cb) {
+    var W = 1080, H = 1920, Pd = 84;
+    var canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    var ink = '#16130F';
+    var font = function (weight, px) {
+      return weight + ' ' + px + 'px -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+    };
+
+    var grad = ctx.createLinearGradient(0, 0, W * 0.35, H);
+    grad.addColorStop(0, mixWithWhite(pos.hex, 0.45));
+    grad.addColorStop(0.55, pos.hex);
+    grad.addColorStop(1, darken(pos.hex, 0.14));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = ink;
+
+    /* head */
+    ctx.font = font(800, 46);
+    ctx.fillText('명절 포지션 테스트', Pd, Pd + 46);
+    ctx.font = font(600, 30);
+    ctx.globalAlpha = 0.65;
+    ctx.textAlign = 'right';
+    ctx.fillText('smartaitest.com', W - Pd, Pd + 42);
+    ctx.textAlign = 'left';
+    ctx.globalAlpha = 1;
+
+    var now = new Date();
+    ctx.globalAlpha = 0.55;
+    ctx.font = font(500, 34);
+    ctx.fillText(now.getFullYear() + ' 명절 포지션 · 나의 결과', Pd, Pd + 126);
+    ctx.globalAlpha = 1;
+
+    /* emoji + name */
+    ctx.font = '120px -apple-system, "Apple Color Emoji", sans-serif';
+    ctx.fillText(pos.emoji, Pd, 640);
+    ctx.font = font(700, 92);
+    var nameLines = wrapText(ctx, pos.name, W - Pd * 2);
+    var y = 780;
+    for (var i = 0; i < nameLines.length; i++) { ctx.fillText(nameLines[i], Pd, y); y += 108; }
+
+    /* desc */
+    ctx.globalAlpha = 0.82;
+    ctx.font = font(500, 40);
+    var descLines = wrapText(ctx, pos.desc, W - Pd * 2);
+    y += 30;
+    for (var d = 0; d < descLines.length; d++) { ctx.fillText(descLines[d], Pd, y); y += 60; }
+    ctx.globalAlpha = 1;
+
+    /* quote */
+    y += 40;
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.fillRect(Pd, y - 44, W - Pd * 2, 96);
+    ctx.fillStyle = 'rgba(22,19,15,0.35)';
+    ctx.fillRect(Pd, y - 44, 8, 96);
+    ctx.fillStyle = ink;
+    ctx.font = 'italic 600 40px -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif';
+    ctx.fillText(pos.quote, Pd + 36, y + 16);
+
+    /* combi */
+    y += 130;
+    ctx.globalAlpha = 0.8;
+    ctx.font = font(600, 34);
+    var combiLines = wrapText(ctx, pos.combi, W - Pd * 2);
+    for (var c = 0; c < combiLines.length; c++) { ctx.fillText(combiLines[c], Pd, y); y += 52; }
+    ctx.globalAlpha = 1;
+
+    /* foot */
+    ctx.globalAlpha = 0.55;
+    ctx.font = font(600, 28);
+    ctx.fillText('HOLIDAY POSITION', Pd, H - 70);
+    ctx.textAlign = 'right';
+    ctx.fillText('NO. ' + pad2(now.getMonth() + 1) + pad2(now.getDate()), W - Pd, H - 70);
+    ctx.textAlign = 'left';
+    ctx.globalAlpha = 1;
+
+    canvas.toBlob(cb, 'image/png');
+  }
+
+  /* ── 공유/저장 ── */
+  function copyShareLink(text, url) {
+    var tmp = document.createElement('textarea');
+    tmp.value = text + ' ' + url;
+    document.body.appendChild(tmp);
+    tmp.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(tmp);
+    $('shareBtn').textContent = '링크가 복사되었어요';
+    setTimeout(function () { $('shareBtn').textContent = '가족 단톡방에 공유하기'; }, 1600);
+    track('hq_share_fallback_copy');
+  }
+
+  $('startBtn').addEventListener('click', function () {
+    qIndex = 0; scores = {}; primaryCounts = {}; currentPos = null;
+    track('hq_start');
+    renderQuestion();
+    showScreen('screen-quiz');
+  });
+
+  $('shareBtn').addEventListener('click', function () {
+    if (!currentPos) return;
+    track('hq_share_attempt');
+    renderCardPNG(currentPos, function (blob) {
+      var file = null;
+      if (blob && typeof File === 'function') {
+        try { file = new File([blob], 'holiday-position.png', { type: 'image/png' }); } catch (e) {}
+      }
+      var shareData = {
+        title: '우리집 명절 포지션 테스트',
+        text: '나는 우리집 \'' + currentPos.name + '\' ' + currentPos.emoji + ' — \'' + currentPos.tagName + '\' 포지션은 우리집에 누구게? 태그해봐',
+        url: 'https://smartaitest.com/ko/holiday-position/'
+      };
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        shareData.files = [file];
+      }
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(function () { track('hq_share_success'); })
+          .catch(function (err) {
+            if (!err || err.name !== 'AbortError') copyShareLink(shareData.text, shareData.url);
+          });
+      } else {
+        copyShareLink(shareData.text, shareData.url);
+      }
+    });
+  });
+
+  $('saveBtn').addEventListener('click', function () {
+    if (!currentPos) return;
+    track('hq_save');
+    renderCardPNG(currentPos, function (blob) {
+      if (!blob) { $('saveBtn').textContent = '저장에 실패했어요'; setTimeout(function () { $('saveBtn').textContent = '이미지로 저장'; }, 1600); return; }
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'holiday-position.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    });
+  });
+
+  $('retryBtn').addEventListener('click', function () {
+    track('hq_retry');
+    showScreen('screen-intro');
+  });
+})();
+</script>
+</body>
+</html>
