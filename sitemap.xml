@@ -415,4 +415,10 @@
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/about/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/about/"/>
   </url>
+  <url>
+    <loc>https://smartaitest.com/ko/mood-report/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

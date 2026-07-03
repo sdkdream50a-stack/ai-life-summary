@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>무드 리포트 — 셀카 속 색감으로 만드는 오늘의 무드 카드 | AI Test Lab</title>
+<meta name="description" content="셀카 한 장의 색감과 빛으로 오늘의 무드 카드를 만들어드려요. 사진은 기기 안에서만 분석되고 서버로 전송되지 않습니다.">
+<link rel="canonical" href="https://smartaitest.com/ko/mood-report/">
+<meta property="og:title" content="무드 리포트 — 셀카 속 색감으로 만드는 오늘의 무드 카드">
+<meta property="og:description" content="사진 속 색감과 빛으로 만드는 오늘의 무드 카드. 서버 전송 없이 기기 안에서만 분석됩니다.">
+<meta property="og:url" content="https://smartaitest.com/ko/mood-report/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<style>
+  :root {
+    --mood-color: #F5C6A5;
+    --mood-color-deep: #E5A884;
+    --mood-color-soft: #FBE6D4;
+    --bg: #0E0E10;
+    --bg-soft: #1A1A1F;
+    --text-inv: #16130F;
+    --text-mute: rgba(22, 19, 15, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 40px;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(245, 198, 165, 0.10), transparent 60%),
+      radial-gradient(100% 60% at 50% 100%, rgba(245, 198, 165, 0.05), transparent 60%),
+      var(--bg);
+  }
+
+  .screen { display: none; width: 100%; flex: 1 1 auto; flex-direction: column; align-items: center; }
+  .screen.active { display: flex; }
+
+  /* ── Intro ── */
+  .intro-wrap {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    max-width: 360px;
+    gap: 0;
+  }
+  .intro-mark {
+    font-weight: 800; font-size: 15px; letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.55);
+  }
+  .intro-title {
+    margin-top: 18px;
+    font-size: clamp(30px, 9vw, 38px);
+    font-weight: 300; letter-spacing: -0.03em; line-height: 1.25;
+  }
+  .intro-title strong { font-weight: 700; }
+  .intro-sub {
+    margin-top: 14px;
+    font-size: 15px; line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+  }
+  .privacy-note {
+    margin-top: 22px;
+    font-size: 12.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.45);
+  }
+  .intro-cta {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .home-link {
+    margin-top: 34px;
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    text-decoration: none;
+  }
+
+  /* ── Loading ── */
+  .loading-wrap {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px;
+  }
+  .mood-orb {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: linear-gradient(160deg, var(--mood-color-soft), var(--mood-color));
+    animation: orbPulse 1.4s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(245,198,165,0.35);
+  }
+  @keyframes orbPulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.12); opacity: 1; }
+  }
+  .loading-text { font-size: 15px; color: rgba(255,255,255,0.7); }
+
+  /* ── Result stage & card (UI v5) ── */
+  .stage {
+    flex: 1 1 auto;
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; min-height: 0;
+  }
+
+  .mood-card {
+    position: relative;
+    width: min(92vw, 360px);
+    max-height: min(72vh, 640px);
+    aspect-ratio: 9 / 16;
+    border-radius: 28px;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, var(--mood-color-soft) 0%, var(--mood-color) 55%, var(--mood-color-deep) 100%);
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.55),
+      0 8px 24px rgba(0,0,0,0.35),
+      inset 0 0 0 1px rgba(255,255,255,0.18);
+    color: var(--text-inv);
+    display: flex; flex-direction: column;
+    padding: 26px 24px 26px;
+  }
+  .mood-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.18;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; z-index: 2; }
+  .wordmark {
+    font-weight: 800; font-size: 16px; letter-spacing: -0.02em;
+    color: var(--text-inv);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+  }
+  .handle { font-size: 11px; font-weight: 600; color: var(--text-inv); opacity: 0.65; }
+
+  .date-line {
+    margin-top: 6px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-mute); letter-spacing: 0.01em;
+    z-index: 2;
+  }
+
+  .mood-name {
+    margin-top: 10px;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--text-inv);
+    z-index: 2;
+  }
+
+  .keywords { margin-top: auto; margin-bottom: 22px; z-index: 2; }
+  .kw-row { display: flex; flex-direction: column; gap: 2px; }
+  .kw {
+    font-size: clamp(34px, 11vw, 46px);
+    font-weight: 300; letter-spacing: -0.03em; line-height: 1.08;
+    color: var(--text-inv);
+    text-shadow: 0 2px 12px rgba(255,255,255,0.18);
+  }
+
+  .chips { display: flex; align-items: center; gap: 10px; z-index: 2; }
+  .swatch {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--mood-color-deep);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.15);
+    flex: 0 0 auto;
+  }
+  .swatch-shadow {
+    width: 22px; height: 30px; border-radius: 12px;
+    background: linear-gradient(180deg, var(--mood-color-soft), var(--mood-color));
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    flex: 0 0 auto;
+  }
+  .color-name { font-size: 14px; font-weight: 600; color: var(--text-inv); }
+
+  .scene {
+    margin-top: 14px;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-inv); opacity: 0.78;
+    letter-spacing: -0.01em; line-height: 1.45;
+    z-index: 2;
+  }
+
+  .card-foot {
+    margin-top: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; font-weight: 600;
+    color: var(--text-mute); letter-spacing: 0.06em; text-transform: uppercase;
+    z-index: 2;
+  }
+  .card-foot .brand-mark { display: flex; align-items: center; gap: 6px; }
+  .brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mood-color-deep); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal.r1 { animation-delay: 0.05s; }
+  .reveal.r2 { animation-delay: 0.18s; }
+  .reveal.r3 { animation-delay: 0.32s; }
+  .reveal.r4 { animation-delay: 0.46s; }
+  .reveal.r5 { animation-delay: 0.58s; }
+  .reveal.r6 { animation-delay: 0.70s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .mood-orb { animation: none !important; }
+  }
+
+  .actions {
+    width: min(92vw, 360px);
+    margin-top: 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .btn-primary {
+    appearance: none; border: none;
+    width: 100%; height: 54px; border-radius: 16px;
+    background: var(--mood-color); color: #16130F;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 8px 24px rgba(245, 198, 165, 0.25);
+  }
+  .btn-primary:active { transform: scale(0.98); filter: brightness(0.96); }
+  .btn-secondary {
+    appearance: none;
+    width: 100%; height: 50px; border-radius: 16px;
+    background: transparent; color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.18);
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-secondary:active { transform: scale(0.98); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.06); }
+  .retry-link {
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px; text-decoration: none;
+    margin-top: 4px; padding: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: inherit;
+  }
+  .retry-link:active { color: rgba(255,255,255,0.8); }
+
+  input[type="file"] { display: none; }
+</style>
+</head>
+<body>
+
+  <!-- ── 인트로 ── -->
+  <section class="screen active" id="screen-intro">
+    <div class="intro-wrap">
+      <div class="intro-mark">MOOD REPORT</div>
+      <h1 class="intro-title">셀카 한 장으로 만드는<br><strong>오늘의 무드 카드</strong></h1>
+      <p class="intro-sub">사진 속 색감과 빛의 온도로<br>지금 나를 둘러싼 분위기를 카드에 담아드려요.</p>
+      <p class="privacy-note" id="introError" style="display:none; color:#f2b8b5;"></p>
+      <p class="privacy-note">사진은 이 기기 안에서만 분석되며<br>서버로 전송되거나 저장되지 않습니다.</p>
+      <div class="intro-cta">
+        <button class="btn-primary" id="uploadBtn" type="button">셀카 올리고 무드 보기</button>
+      </div>
+      <a class="home-link" href="/ko/">AI Test Lab의 다른 테스트 보기</a>
+    </div>
+    <input type="file" id="fileInput" accept="image/*">
+  </section>
+
+  <!-- ── 분석 중 ── -->
+  <section class="screen" id="screen-loading">
+    <div class="loading-wrap">
+      <div class="mood-orb"></div>
+      <div class="loading-text">사진 속 빛과 색을 읽는 중…</div>
+    </div>
+  </section>
+
+  <!-- ── 결과 ── -->
+  <section class="screen" id="screen-result">
+    <main class="stage">
+      <article class="mood-card" id="moodCard" aria-label="오늘의 무드 카드">
+        <div class="card-head reveal r1">
+          <div class="wordmark">무드 리포트</div>
+          <div class="handle">smartaitest.com</div>
+        </div>
+        <div class="date-line reveal r2" id="dateLine"></div>
+        <div class="mood-name reveal r2" id="moodName"></div>
+        <div class="keywords">
+          <div class="kw-row">
+            <div class="kw reveal r3" id="kw1"></div>
+            <div class="kw reveal r4" id="kw2"></div>
+            <div class="kw reveal r5" id="kw3"></div>
+          </div>
+        </div>
+        <div class="chips reveal r5">
+          <div class="swatch" aria-hidden="true"></div>
+          <div class="swatch-shadow" aria-hidden="true"></div>
+          <div class="color-name" id="colorName"></div>
+        </div>
+        <div class="scene reveal r6" id="sceneLine"></div>
+        <div class="card-foot reveal r6">
+          <div class="brand-mark"><span class="brand-dot"></span>MOOD REPORT</div>
+          <div id="cardNo"></div>
+        </div>
+      </article>
+    </main>
+    <div class="actions">
+      <button class="btn-primary" id="shareBtn" type="button">공유하기</button>
+      <button class="btn-secondary" id="saveBtn" type="button">이미지로 저장</button>
+      <button class="retry-link" id="retryBtn" type="button">다시 해보기</button>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+
+  /* 무드 데이터 — 카피뱅크 v5 (셀 = 웜쿨×밝기×채도) */
+  var MOODS = {
+    'W-B-V': { name: '상큼한',   colorName: '레몬셔벗',   hex: '#FAE8A0', kw: ['발랄한', '맑은', '화사한'],   scene: '아침 햇살 가득한 주방의 식탁' },
+    'W-B-M': { name: '봄볕',     colorName: '봄살구',     hex: '#F5D0B5', kw: ['산뜻한', '온화한', '포근한'], scene: '따뜻한 햇살 깃든 베란다 화분' },
+    'W-D-V': { name: '노을',     colorName: '노을크림',   hex: '#F5C898', kw: ['따뜻한', '아늑한', '붉은'],   scene: '붉은 노을이 비치는 탁 트인 옥상' },
+    'W-D-M': { name: '가을빛',   colorName: '단풍밀크',   hex: '#E8C9A0', kw: ['그윽한', '따스한', '고요한'], scene: '노을 진 골목 끝에 세운 자전거' },
+    'N-B-V': { name: '딸기우유', colorName: '딸기크림',   hex: '#F5C0CC', kw: ['달콤한', '몽글한', '폭신한'], scene: '핑크빛 카페 창가에 앉은 자리' },
+    'N-B-M': { name: '나른한',   colorName: '바닐라크림', hex: '#F5E6C8', kw: ['느긋한', '편안한', '말랑한'], scene: '늦은 오후 햇살 비치는 나의 침대' },
+    'N-D-V': { name: '바캉스',   colorName: '코랄셔벗',   hex: '#F5B0A8', kw: ['자유', '경쾌한', '시원한'],   scene: '파도 소리 들리는 넓은 모래사장' },
+    'N-D-M': { name: '소풍',     colorName: '연두빛밀크', hex: '#D4E8B8', kw: ['평온한', '한가한', '여유'],   scene: '풀밭 위에 펼친 돗자리와 책' },
+    'C-B-V': { name: '초여름',   colorName: '연청록',     hex: '#B8E0D2', kw: ['싱그런', '청량한', '투명한'], scene: '맑은 바람 드나드는 창가의 방' },
+    'C-B-M': { name: '아침이슬', colorName: '민트크림',   hex: '#C8F0E0', kw: ['신선한', '고요한', '산들한'], scene: '이슬 맺힌 새벽 테라스 난간' },
+    'C-D-V': { name: '몽환',     colorName: '연라벤더',   hex: '#D9C8F0', kw: ['은은한', '잔잔한', '신비한'], scene: '보랏빛 노을 지는 강변 산책로' },
+    'C-D-M': { name: '겨울아침', colorName: '서리핑크',   hex: '#F0C8D0', kw: ['말간', '새하얀', '차분한'],   scene: '하얀 입김 흩날리는 겨울 거리' }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var currentMood = null;
+
+  /* KPI 이벤트 — gtag 있으면 전송, 없으면 no-op (GA4 설치는 운영자 잔여).
+     사진 파생 데이터(무드명 등)는 절대 싣지 않는다 — 인트로 프라이버시 고지와의 정합 조건 */
+  function track(name) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name);
+    } catch (e) { /* 계측 실패가 UX를 막지 않게 */ }
+  }
+
+  function showScreen(id) {
+    var screens = document.querySelectorAll('.screen');
+    for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
+    $(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  /* ── 색 유틸 ── */
+  function hexToRgb(hex) {
+    var h = hex.replace('#', '');
+    return {
+      r: parseInt(h.substr(0, 2), 16),
+      g: parseInt(h.substr(2, 2), 16),
+      b: parseInt(h.substr(4, 2), 16)
+    };
+  }
+  function rgbToHex(r, g, b) {
+    var to = function (v) {
+      v = Math.max(0, Math.min(255, Math.round(v)));
+      return ('0' + v.toString(16)).slice(-2);
+    };
+    return '#' + to(r) + to(g) + to(b);
+  }
+  function mixWithWhite(hex, amount) {
+    var c = hexToRgb(hex);
+    return rgbToHex(
+      c.r + (255 - c.r) * amount,
+      c.g + (255 - c.g) * amount,
+      c.b + (255 - c.b) * amount
+    );
+  }
+  function darken(hex, amount) {
+    var c = hexToRgb(hex);
+    return rgbToHex(c.r * (1 - amount), c.g * (1 - amount), c.b * (1 - amount));
+  }
+
+  /* ── 온디바이스 분석: 평균 밝기·채도·웜쿨만 계산 (얼굴 인식 없음).
+     MVP 휴리스틱 — 배경 영향을 줄이기 위해 중앙 70% 영역만 샘플링.
+     임계값(웜쿨 14/-6·밝기 118·채도 0.26)은 실사용 분포 확보 후 캘리브레이션 대상 ── */
+  function analyzeImage(img) {
+    var size = 48;
+    var canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    var ctx = canvas.getContext('2d');
+    var cw = img.naturalWidth || img.width, ch = img.naturalHeight || img.height;
+    var crop = 0.7;
+    ctx.drawImage(img, cw * (1 - crop) / 2, ch * (1 - crop) / 2, cw * crop, ch * crop, 0, 0, size, size);
+    var data = ctx.getImageData(0, 0, size, size).data;
+
+    var rSum = 0, gSum = 0, bSum = 0, satSum = 0, n = data.length / 4;
+    for (var i = 0; i < data.length; i += 4) {
+      var r = data[i], g = data[i + 1], b = data[i + 2];
+      rSum += r; gSum += g; bSum += b;
+      var mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+      satSum += mx === 0 ? 0 : (mx - mn) / mx;
+    }
+    var rAvg = rSum / n, gAvg = gSum / n, bAvg = bSum / n;
+    var brightness = 0.2126 * rAvg + 0.7152 * gAvg + 0.0722 * bAvg; // 0~255
+    var saturation = satSum / n;                                     // 0~1
+    var warmth = rAvg - bAvg;                                        // +웜 / -쿨
+
+    var wKey = warmth > 14 ? 'W' : (warmth < -6 ? 'C' : 'N');
+    var bKey = brightness >= 118 ? 'B' : 'D';
+    var sKey = saturation >= 0.26 ? 'V' : 'M';
+    return wKey + '-' + bKey + '-' + sKey;
+  }
+
+  /* ── 결과 렌더 ── */
+  function pad2(v) { return ('0' + v).slice(-2); }
+
+  function renderResult(mood) {
+    currentMood = mood;
+    var root = document.documentElement.style;
+    root.setProperty('--mood-color', mood.hex);
+    root.setProperty('--mood-color-soft', mixWithWhite(mood.hex, 0.45));
+    root.setProperty('--mood-color-deep', darken(mood.hex, 0.14));
+
+    var now = new Date();
+    $('dateLine').textContent =
+      now.getFullYear() + '.' + pad2(now.getMonth() + 1) + '.' + pad2(now.getDate()) + ' · 오늘의 무드';
+    $('moodName').textContent = mood.name;
+    $('kw1').textContent = mood.kw[0];
+    $('kw2').textContent = mood.kw[1];
+    $('kw3').textContent = mood.kw[2];
+    $('colorName').textContent = mood.colorName;
+    $('sceneLine').textContent = mood.scene;
+    $('cardNo').textContent = 'NO. ' + pad2(now.getMonth() + 1) + pad2(now.getDate());
+
+    /* reveal 애니메이션 재시작 */
+    var reveals = document.querySelectorAll('#screen-result .reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      var el = reveals[i];
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    }
+    showScreen('screen-result');
+    track('mr_result');
+  }
+
+  /* ── 카드 PNG 렌더 (1080×1920, 외부 라이브러리 없음) ── */
+  function renderCardPNG(mood, cb) {
+    var W = 1080, H = 1920, P = 84;
+    var canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    var ink = '#16130F';
+    var font = function (weight, px) {
+      return weight + ' ' + px + 'px -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+    };
+
+    var grad = ctx.createLinearGradient(0, 0, W * 0.35, H);
+    grad.addColorStop(0, mixWithWhite(mood.hex, 0.45));
+    grad.addColorStop(0.55, mood.hex);
+    grad.addColorStop(1, darken(mood.hex, 0.14));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = ink;
+    ctx.textBaseline = 'alphabetic';
+
+    /* head */
+    ctx.font = font(800, 48);
+    ctx.fillText('무드 리포트', P, P + 48);
+    ctx.font = font(600, 32);
+    ctx.globalAlpha = 0.65;
+    ctx.textAlign = 'right';
+    ctx.fillText('smartaitest.com', W - P, P + 44);
+    ctx.textAlign = 'left';
+    ctx.globalAlpha = 1;
+
+    /* date + mood name */
+    var now = new Date();
+    var dateStr = now.getFullYear() + '.' + pad2(now.getMonth() + 1) + '.' + pad2(now.getDate()) + ' · 오늘의 무드';
+    ctx.globalAlpha = 0.55;
+    ctx.font = font(500, 34);
+    ctx.fillText(dateStr, P, P + 130);
+    ctx.globalAlpha = 1;
+    ctx.font = font(700, 58);
+    ctx.fillText(mood.name, P, P + 210);
+
+    /* keywords */
+    ctx.font = font(300, 128);
+    var kwBase = H - 640;
+    ctx.fillText(mood.kw[0], P, kwBase);
+    ctx.fillText(mood.kw[1], P, kwBase + 150);
+    ctx.fillText(mood.kw[2], P, kwBase + 300);
+
+    /* chips */
+    var chipY = H - 250;
+    ctx.beginPath();
+    ctx.arc(P + 42, chipY, 42, 0, Math.PI * 2);
+    ctx.fillStyle = darken(mood.hex, 0.14);
+    ctx.fill();
+    ctx.fillStyle = ink;
+    ctx.font = font(600, 40);
+    ctx.fillText(mood.colorName, P + 110, chipY + 14);
+
+    /* scene */
+    ctx.globalAlpha = 0.78;
+    ctx.font = font(500, 40);
+    ctx.fillText(mood.scene, P, chipY + 90);
+    ctx.globalAlpha = 1;
+
+    /* foot */
+    ctx.globalAlpha = 0.55;
+    ctx.font = font(600, 28);
+    ctx.fillText('MOOD REPORT', P, H - 70);
+    ctx.textAlign = 'right';
+    ctx.fillText('NO. ' + pad2(now.getMonth() + 1) + pad2(now.getDate()), W - P, H - 70);
+    ctx.textAlign = 'left';
+    ctx.globalAlpha = 1;
+
+    canvas.toBlob(cb, 'image/png');
+  }
+
+  /* ── 이벤트 바인딩 ── */
+  $('uploadBtn').addEventListener('click', function () {
+    $('fileInput').click();
+  });
+
+  function showIntroError(msg) {
+    var el = $('introError');
+    el.textContent = msg;
+    el.style.display = 'block';
+    showScreen('screen-intro');
+    track('mr_image_error');
+  }
+
+  $('fileInput').addEventListener('change', function () {
+    var file = this.files && this.files[0];
+    this.value = ''; /* 같은 파일 재선택도 change가 발생하도록 즉시 리셋 */
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) {
+      showIntroError('사진이 너무 커요 (25MB 이하). 다른 사진으로 시도해주세요.');
+      return;
+    }
+    $('introError').style.display = 'none';
+    track('mr_upload');
+    showScreen('screen-loading');
+
+    var objectUrl = URL.createObjectURL(file); /* dataURL 대신 — 대형 이미지 메모리 절약 */
+    var img = new Image();
+    img.onload = function () {
+      URL.revokeObjectURL(objectUrl);
+      var cell;
+      try {
+        cell = analyzeImage(img);
+      } catch (err) {
+        cell = 'W-B-M'; /* 분석 실패 시 기본 무드 */
+      }
+      /* 최소 1.2초 — 분석 인지 시간 확보 */
+      setTimeout(function () { renderResult(MOODS[cell]); }, 1200);
+    };
+    img.onerror = function () {
+      URL.revokeObjectURL(objectUrl);
+      showIntroError('이 사진 형식은 브라우저가 열 수 없어요. JPG·PNG로 시도해주세요.');
+    };
+    img.src = objectUrl;
+  });
+
+  function copyShareLink(text, url) {
+    var tmp = document.createElement('textarea');
+    tmp.value = text + ' ' + url;
+    document.body.appendChild(tmp);
+    tmp.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(tmp);
+    $('shareBtn').textContent = '링크가 복사되었어요';
+    setTimeout(function () { $('shareBtn').textContent = '공유하기'; }, 1600);
+    track('mr_share_fallback_copy');
+  }
+
+  $('shareBtn').addEventListener('click', function () {
+    if (!currentMood) return;
+    track('mr_share_attempt');
+    renderCardPNG(currentMood, function (blob) {
+      var file = null;
+      if (blob && typeof File === 'function') {
+        try { file = new File([blob], 'mood-report.png', { type: 'image/png' }); } catch (e) {}
+      }
+      var shareData = {
+        title: '무드 리포트',
+        text: '오늘 나의 무드는 "' + currentMood.name + '" — 셀카 한 장으로 확인해보세요',
+        url: 'https://smartaitest.com/ko/mood-report/'
+      };
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        shareData.files = [file];
+      }
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(function () { track('mr_share_success'); })
+          .catch(function (err) {
+            /* 사용자 취소(AbortError)는 무시, 그 외 실패는 링크 복사로 폴백 */
+            if (!err || err.name !== 'AbortError') copyShareLink(shareData.text, shareData.url);
+          });
+      } else {
+        copyShareLink(shareData.text, shareData.url);
+      }
+    });
+  });
+
+  $('saveBtn').addEventListener('click', function () {
+    if (!currentMood) return;
+    track('mr_save');
+    renderCardPNG(currentMood, function (blob) {
+      if (!blob) { $('saveBtn').textContent = '저장에 실패했어요'; setTimeout(function () { $('saveBtn').textContent = '이미지로 저장'; }, 1600); return; }
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'mood-report.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    });
+  });
+
+  $('retryBtn').addEventListener('click', function () {
+    track('mr_retry');
+    $('fileInput').value = '';
+    showScreen('screen-intro');
+  });
+})();
+</script>
+</body>
+</html>
