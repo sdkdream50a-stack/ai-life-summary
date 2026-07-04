@@ -1,0 +1,28 @@
+/* ============================================================
+   Pretendard 표준화 — 전 페이지 공통 UI 폰트
+   self-host(/fonts/PretendardVariable.woff2, CSP font-src 'self')
+   한글+라틴 단일 폰트로 통일. 기존 인라인 Inter/Poppins 스택을
+   덮어씀(font-family만, 레이아웃 무영향). 2026-07-04.
+   ============================================================ */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+:root {
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', Roboto, sans-serif;
+}
+
+/* font-family만 오버라이드(레이아웃 무영향). !important로 163개 페이지의
+   per-page 인라인 body{Inter}/h1-6{Poppins} 를 확실히 통일.
+   아이콘 폰트(<i class="fa"> 등)는 자체 선언이 있어 영향 없음. */
+body,
+h1, h2, h3, h4, h5, h6,
+button, input, select, textarea,
+.font-sans {
+  font-family: var(--font-sans) !important;
+}
