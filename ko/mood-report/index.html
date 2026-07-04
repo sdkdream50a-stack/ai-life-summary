@@ -597,10 +597,11 @@
       if (blob && typeof File === 'function') {
         try { file = new File([blob], 'mood-report.png', { type: 'image/png' }); } catch (e) {}
       }
+      var moodSlug = Object.keys(MOODS).filter(function (k) { return MOODS[k] === currentMood; })[0];
       var shareData = {
         title: '무드 리포트',
         text: '오늘 나의 무드는 "' + currentMood.name + '" — 셀카 한 장으로 확인해보세요',
-        url: 'https://smartaitest.com/ko/mood-report/'
+        url: 'https://smartaitest.com/ko/mood-report/' + (moodSlug ? 'm/' + moodSlug.toLowerCase() + '/' : '')
       };
       if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
         shareData.files = [file];

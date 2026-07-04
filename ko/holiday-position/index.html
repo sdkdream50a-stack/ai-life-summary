@@ -613,10 +613,11 @@
       if (blob && typeof File === 'function') {
         try { file = new File([blob], 'holiday-position.png', { type: 'image/png' }); } catch (e) {}
       }
+      var posSlug = Object.keys(POSITIONS).filter(function (k) { return POSITIONS[k] === currentPos; })[0];
       var shareData = {
         title: '우리집 명절 포지션 테스트',
         text: '나는 우리집 \'' + currentPos.name + '\' ' + currentPos.emoji + ' — \'' + currentPos.tagName + '\' 포지션은 우리집에 누구게? 태그해봐',
-        url: 'https://smartaitest.com/ko/holiday-position/'
+        url: 'https://smartaitest.com/ko/holiday-position/' + (posSlug ? 'p/' + posSlug.toLowerCase() + '/' : '')
       };
       if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
         shareData.files = [file];
