@@ -87,7 +87,7 @@
   const shareText = langData
     ? L.shareText.replace('{type}', typeCode).replace('{name}', langData.name)
     : `${typeCode} — AI Test Lab`;
-  const shareUrl = window.location.origin + window.location.pathname.replace('result/', '') + '?type=' + typeCode;
+  const shareUrl = window.location.origin + window.location.pathname.replace('result/', 't/' + typeCode.toLowerCase() + '/');
 
   window.ptShare = function(platform) {
     if (platform === 'copy') {
