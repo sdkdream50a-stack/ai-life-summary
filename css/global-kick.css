@@ -374,6 +374,18 @@ section, header, footer, main, article, aside, nav {
     z-index: 0;
 }
 
+/* kick-dark-bg — 브랜드 다크 스테이지(정의 누락 수정: personality-type 등 10페이지가
+   이 클래스에 의존했으나 미정의라 흰 배경+흰 텍스트 안 보임 버그였음).
+   color를 밝게 두어 미컴파일 text-white/XX 변형이 상속으로 가독되게 함. */
+.kick-dark-bg {
+    background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(217, 200, 240, 0.13), transparent 55%),
+        #0E0E10;
+    background-attachment: fixed;
+    color: #F4F1F8;
+    min-height: 100vh;
+}
+
 @keyframes meshMove {
     0%, 100% { transform: scale(1) translate(0, 0); }
     25% { transform: scale(1.1) translate(3%, 2%); }
