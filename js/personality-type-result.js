@@ -106,6 +106,118 @@
     }
   };
 
+  // ── Shareable result card (canvas PNG) — 바이럴 루프 ─────────────
+  function ptWrapText(ctx, text, maxW) {
+    var words = String(text).split(' '), lines = [], line = '';
+    for (var i = 0; i < words.length; i++) {
+      var test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = words[i]; }
+      else { line = test; }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function ptDimSummary() {
+    var saved = JSON.parse(sessionStorage.getItem('pt-answers') || '{}');
+    var axes = [['E','I'],['S','N'],['T','F'],['J','P']];
+    return axes.map(function(pair) {
+      var akey = pair[0] + pair[1], s0 = 0, s1 = 0;
+      PT_QUESTIONS.forEach(function(q) {
+        if (q.axis !== akey) return;
+        var val = parseInt(saved[q.id]) || 3;
+        if (q.pole === pair[0]) { s0 += val; s1 += (6 - val); } else { s1 += val; s0 += (6 - val); }
+      });
+      var t = s0 + s1 || 1, p0 = Math.round(s0 / t * 100);
+      var dom = typeCode.indexOf(pair[0]) >= 0 ? 0 : 1;
+      return { letter: pair[dom], pct: dom === 0 ? p0 : 100 - p0 };
+    });
+  }
+  function ptRenderCard(cb) {
+    if (!typeData || !langData) { cb(null); return; }
+    var W = 1080, H = 1920, Pd = 88, ink = '#16130F';
+    var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    var ctx = cv.getContext('2d');
+    var font = function(w, px) { return w + ' ' + px + 'px -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif'; };
+    var g = ctx.createLinearGradient(0, 0, W * 0.4, H);
+    g.addColorStop(0, '#EFE6FA'); g.addColorStop(0.55, '#D9C8F0'); g.addColorStop(1, '#BBA8DA');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    // dot-grid texture
+    ctx.fillStyle = 'rgba(255,255,255,0.12)';
+    for (var gx = 0; gx < W; gx += 8) for (var gy = 0; gy < H; gy += 8) ctx.fillRect(gx, gy, 1, 1);
+    ctx.fillStyle = ink;
+    // header
+    ctx.font = font(800, 44); ctx.fillText(L.yourType, Pd, Pd + 48);
+    ctx.globalAlpha = 0.6; ctx.font = font(600, 30); ctx.textAlign = 'right';
+    ctx.fillText('smartaitest.com', W - Pd, Pd + 44); ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+    // emoji + name + code
+    ctx.font = '150px -apple-system,"Apple Color Emoji",sans-serif'; ctx.fillText(typeData.emoji, Pd, 780);
+    ctx.font = font(800, 108);
+    var nameLines = ptWrapText(ctx, langData.name, W - Pd * 2), y = 930;
+    nameLines.forEach(function(ln) { ctx.fillText(ln, Pd, y); y += 118; });
+    ctx.globalAlpha = 0.55; ctx.font = font(800, 52); ctx.fillText(typeCode, Pd, y + 6); ctx.globalAlpha = 1;
+    y += 90;
+    // tagline
+    ctx.globalAlpha = 0.82; ctx.font = font(500, 44);
+    ptWrapText(ctx, langData.tagline, W - Pd * 2).forEach(function(ln) { y += 64; ctx.fillText(ln, Pd, y); });
+    ctx.globalAlpha = 1;
+    // dimension chips
+    y += 96; var chipX = Pd;
+    ptDimSummary().forEach(function(d) {
+      var label = d.letter + ' ' + d.pct + '%';
+      ctx.font = font(700, 40); var w = ctx.measureText(label).width + 48;
+      ctx.fillStyle = 'rgba(255,255,255,0.34)';
+      if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(chipX, y - 44, w, 68, 34); ctx.fill(); }
+      else ctx.fillRect(chipX, y - 44, w, 68);
+      ctx.fillStyle = ink; ctx.fillText(label, chipX + 24, y);
+      chipX += w + 16;
+    });
+    // footer watermark
+    ctx.globalAlpha = 0.55; ctx.font = font(600, 28);
+    ctx.fillText('PERSONALITY', Pd, H - 74);
+    ctx.textAlign = 'right'; ctx.fillText('@smartaitest', W - Pd, H - 74); ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+    cv.toBlob(cb, 'image/png');
+  }
+  window.ptShareCard = function() {
+    ptRenderCard(function(blob) {
+      var file = null;
+      if (blob && typeof File === 'function') {
+        try { file = new File([blob], 'my-type-' + typeCode + '.png', { type: 'image/png' }); } catch (e) {}
+      }
+      var data = { title: L.title, text: shareText, url: shareUrl };
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) data.files = [file];
+      if (navigator.share) { navigator.share(data).catch(function(){}); }
+      else if (blob) { ptDownload(blob); }
+      else { window.ptShare && window.ptShare('copy'); }
+    });
+  };
+  window.ptSaveCard = function() {
+    ptRenderCard(function(blob) { if (blob) ptDownload(blob); });
+  };
+  function ptDownload(blob) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'my-type-' + typeCode + '.png';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(a.href); }, 4000);
+  }
+  // inject card share/save buttons next to existing share buttons (shared JS → all locales)
+  (function() {
+    var host = document.getElementById('pt-share-btn');
+    if (!host || !host.parentElement) return;
+    var labels = {
+      en: ['🖼️ Share Result Card', '💾 Save Image'], ko: ['🖼️ 결과 카드 공유', '💾 이미지 저장'],
+      ja: ['🖼️ 結果カードを共有', '💾 画像を保存'], zh: ['🖼️ 分享结果卡片', '💾 保存图片'],
+      es: ['🖼️ Compartir tarjeta', '💾 Guardar imagen']
+    };
+    var lb = labels[LANG] || labels.en, wrap = host.parentElement;
+    var b1 = document.createElement('button');
+    b1.type = 'button'; b1.className = 'pt-btn pt-btn-primary'; b1.textContent = lb[0];
+    b1.addEventListener('click', window.ptShareCard);
+    var b2 = document.createElement('button');
+    b2.type = 'button'; b2.className = 'pt-btn pt-btn-secondary'; b2.textContent = lb[1];
+    b2.addEventListener('click', window.ptSaveCard);
+    wrap.insertBefore(b1, host); wrap.insertBefore(b2, host.nextSibling);
+  })();
+
   // ── Retake ────────────────────────────────────────────────────
   const retakeBtn = document.getElementById('pt-retake-btn');
   if (retakeBtn) {
