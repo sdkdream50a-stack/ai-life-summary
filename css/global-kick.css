@@ -619,6 +619,14 @@ section, header, footer, main, article, aside, nav {
     white-space: nowrap;
 }
 
+/* Logo wordmark — brand lavender (overrides generic multi-hue .kick-gradient-text for the nav logo only) */
+.kick-navbar-logo .kick-gradient-text {
+    background: linear-gradient(135deg, #FFFFFF 0%, #E4D6F5 45%, #BBA8DA 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .kick-navbar-links {
     display: none;
     align-items: center;
