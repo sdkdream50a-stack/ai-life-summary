@@ -117,20 +117,20 @@ const META_CONTENT = {
     },
     'kpop-match': {
         en: {
-            title: 'K-Pop Persona Match — Which Idol Archetype Are You? | AI Test Lab',
-            description: 'Find your K-pop persona archetype: visual, vocal, dancer, rapper, leader, or maknae. 5 questions, 60 seconds, 16 archetypes. Available in 5 languages.',
+            title: 'K-Pop Persona Match — Idol Archetype & Chemistry Test | AI Test Lab',
+            description: 'Find your K-pop persona archetype: visual, vocal, dancer, rapper, leader, or maknae. 5 questions, 60 seconds, 16 archetypes. Compare results with friends like a chemistry test.',
             ogTitle: 'K-Pop Persona Match — Which Idol Archetype Are You?',
             ogDescription: 'Visual, vocal, dancer, leader, or maknae? Find your K-pop persona in 60 seconds.'
         },
         ko: {
-            title: 'K-팝 페르소나 매칭 — 당신의 아이돌 아키타입은? | AI Test Lab',
-            description: '비주얼·메인보컬·리드댄서·래퍼·리더·막내 — 당신의 K-팝 페르소나를 찾아보세요. 5문항·60초·16개 아키타입. 5개 언어 지원.',
+            title: 'K-팝 페르소나 매칭 — 아이돌 아키타입·케미 테스트 | AI Test Lab',
+            description: '비주얼·메인보컬·리드댄서·래퍼·리더·막내 — 당신의 K-팝 페르소나를 찾아보세요. 5문항·60초·16개 아키타입. 친구와 결과를 비교하며 궁합처럼 즐겨보세요.',
             ogTitle: 'K-팝 페르소나 매칭 — 당신의 아이돌 아키타입은?',
             ogDescription: '비주얼·보컬·댄서·리더·막내? 60초 안에 K-팝 페르소나를 찾아보세요.'
         },
         ja: {
-            title: 'K-POPペルソナ診断 — あなたのアイドルタイプは？ | AI Test Lab',
-            description: 'ビジュアル・メインボーカル・リードダンサー・ラッパー・リーダー・マンネ — あなたのK-POPペルソナを発見。5問・60秒・16タイプ。5言語対応。',
+            title: 'K-POPペルソナ診断 — アイドルタイプ・相性ケミ診断 | AI Test Lab',
+            description: 'ビジュアル・メインボーカル・リードダンサー・ラッパー・リーダー・マンネ — あなたのK-POPペルソナを発見。5問・60秒・16タイプ。友達と結果を比べて相性チェックのように楽しめます。',
             ogTitle: 'K-POPペルソナ診断 — あなたのアイドルタイプは？',
             ogDescription: 'ビジュアル・ボーカル・ダンサー・リーダー・マンネ？60秒でK-POPペルソナを発見。'
         },
