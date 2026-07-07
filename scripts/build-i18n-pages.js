@@ -97,8 +97,8 @@ const META_CONTENT = {
             ogDescription: '짝사랑은 그만, 데이터가 말해주는 냉정한 궁합 팩트 체크. AI 궁합 테스트로 알아보세요!'
         },
         ja: {
-            title: 'AI相性診断 - カップル相性計算機 | AI Test Lab',
-            description: '無料AI相性診断！2人の誕生日を入力して、恋愛相性スコア、動物カップルタイプ、恋愛映画ジャンル、ラッキーデートを発見。即時結果！',
+            title: 'AI相性診断 - カップルの相性を無料でチェック | AI Test Lab',
+            description: '無料のAI相性診断！カップル2人の誕生日を入力して、恋愛相性スコア、動物カップルタイプ、恋愛映画ジャンル、ラッキーデートを発見。登録不要・即時結果！',
             ogTitle: '彼から連絡が来ない理由 (AIが教える)',
             ogDescription: '片思いはもう終わり、データが語る冷静な相性ファクトチェック。AI相性診断でチェック！'
         },
@@ -489,6 +489,7 @@ function updateNavLinks(html, lang) {
     result = result.replace(/href="\/compatibility\/"/g, `href="/${lang}/compatibility/"`);
     result = result.replace(/href="\/life-summary\/"/g, `href="/${lang}/life-summary/"`);
     result = result.replace(/href="\/age-calculator\/"/g, `href="/${lang}/age-calculator/"`);
+    result = result.replace(/href="\/kpop-match\/"/g, `href="/${lang}/kpop-match/"`);
     result = result.replace(/href="\/profile\/"/g, `href="/${lang}/profile/"`);
     result = result.replace(/href="\/about\.html"/g, `href="/${lang}/about/"`);
     result = result.replace(/href="\/blog\.html"/g, `href="/blog.html"`); // Blog stays at root
