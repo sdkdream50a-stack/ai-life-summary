@@ -1538,10 +1538,63 @@
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/marriage-compatibility/"/>
   </url>
   <url>
+    <loc>https://smartaitest.com/en/love-type/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/love-type/"/>
+  </url>
+  <url>
     <loc>https://smartaitest.com/ko/love-type/</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
       <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/love-type/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/love-type/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/love-type/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/love-type/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/love-type/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/love-type/</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/love-type/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/love-type/"/>
   </url>
 </urlset>
