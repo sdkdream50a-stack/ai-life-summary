@@ -38,14 +38,78 @@ const ELEMENT_COMPATIBILITY = {
 };
 
 const COMPAT_QUESTIONS = [
-    { id: 1, axis: 'communication', ko: '갈등이 생기면 바로 대화로 풀어야 마음이 편하다.' },
-    { id: 2, axis: 'communication', ko: '속마음이나 감정을 상대에게 자주 표현하는 편이다.' },
-    { id: 3, axis: 'values', ko: '연애에서 미래 계획(결혼·돈·커리어)의 방향이 맞는 게 중요하다.' },
-    { id: 4, axis: 'values', ko: '서로의 가족·친구 관계를 존중하고 함께 맞춰가는 게 중요하다.' },
-    { id: 5, axis: 'energy', ko: '데이트나 약속은 즉흥적으로 정할 때 더 즐겁다.' },
-    { id: 6, axis: 'emotional', ko: '힘들 때 상대에게 기대고 위로받는 것이 자연스럽다.' },
-    { id: 7, axis: 'emotional', ko: '상대의 작은 감정 변화도 민감하게 알아채는 편이다.' },
-    { id: 8, axis: 'growth', ko: '연애를 통해 서로 더 나은 사람으로 성장하길 바란다.' }
+    {
+        id: 1,
+        axis: 'communication',
+        ko: '갈등이 생기면 바로 대화로 풀어야 마음이 편하다.',
+        en: 'When a conflict comes up, I feel better talking it through right away.',
+        ja: 'けんかになったら、すぐ話し合って解決したいほうだ。',
+        zh: '发生矛盾时，我更希望马上沟通、把话说开。',
+        es: 'Cuando surge un conflicto, me siento mejor si lo hablamos enseguida.'
+    },
+    {
+        id: 2,
+        axis: 'communication',
+        ko: '속마음이나 감정을 상대에게 자주 표현하는 편이다.',
+        en: 'I tend to share my true feelings and emotions openly with my partner.',
+        ja: '本音や感情を、相手によく表現するほうだ。',
+        zh: '我比较愿意向对方表达自己真实的想法和情绪。',
+        es: 'Suelo expresar abiertamente mis sentimientos y emociones a mi pareja.'
+    },
+    {
+        id: 3,
+        axis: 'values',
+        ko: '연애에서 미래 계획(결혼·돈·커리어)의 방향이 맞는 게 중요하다.',
+        en: "It matters to me that we're aligned on future plans — marriage, money, career.",
+        ja: '恋愛では、将来の方向性（結婚・お金・仕事）が合っていることが大切だ。',
+        zh: '在恋爱中，双方对未来规划（结婚、金钱、事业）的方向一致很重要。',
+        es: 'Para mí importa que estemos alineados en los planes de futuro: matrimonio, dinero y carrera.'
+    },
+    {
+        id: 4,
+        axis: 'values',
+        ko: '서로의 가족·친구 관계를 존중하고 함께 맞춰가는 게 중요하다.',
+        en: "Respecting and fitting in with each other's family and friends is important to me.",
+        ja: 'お互いの家族や友人を尊重し、合わせていくことが大切だ。',
+        zh: '尊重并融入彼此的家人和朋友，对我来说很重要。',
+        es: 'Para mí es importante respetar y adaptarme a la familia y los amigos del otro.'
+    },
+    {
+        id: 5,
+        axis: 'energy',
+        ko: '데이트나 약속은 즉흥적으로 정할 때 더 즐겁다.',
+        en: "Dates and plans are more fun when they're spontaneous.",
+        ja: 'デートや予定は、その場のノリで決めるほうが楽しい。',
+        zh: '约会和计划临时起意、随性安排会更有意思。',
+        es: 'Las citas y los planes son más divertidos cuando son espontáneos.'
+    },
+    {
+        id: 6,
+        axis: 'emotional',
+        ko: '힘들 때 상대에게 기대고 위로받는 것이 자연스럽다.',
+        en: "When I'm going through a hard time, it feels natural to lean on my partner for comfort.",
+        ja: 'つらいとき、相手に甘えて慰めてもらうのが自然だと感じる。',
+        zh: '遇到难处时，依靠对方、从对方那里得到安慰，对我来说很自然。',
+        es: 'Cuando lo estoy pasando mal, me sale natural apoyarme en mi pareja para consolarme.'
+    },
+    {
+        id: 7,
+        axis: 'emotional',
+        ko: '상대의 작은 감정 변화도 민감하게 알아채는 편이다.',
+        en: "I tend to pick up on even small shifts in my partner's mood.",
+        ja: '相手の小さな気持ちの変化にも、敏感に気づくほうだ。',
+        zh: '对方情绪上细微的变化，我也往往能敏锐地察觉。',
+        es: 'Suelo notar hasta los pequeños cambios de humor de mi pareja.'
+    },
+    {
+        id: 8,
+        axis: 'growth',
+        ko: '연애를 통해 서로 더 나은 사람으로 성장하길 바란다.',
+        en: 'I want us to grow into better people through our relationship.',
+        ja: '恋愛を通して、お互いにもっと成長していきたい。',
+        zh: '我希望通过这段恋爱，我们都能成为更好的人。',
+        es: 'Quiero que, a través de nuestra relación, crezcamos como personas.'
+    }
 ];
 
 const COMPAT_WEIGHTS = {
@@ -254,7 +318,15 @@ function getRepresentativeAnimalForScore(score, offset) {
  * @param {Object} data - { nameA, nameB, answersA:[1..5], answersB:[1..5], birthdayA?, birthdayB? }
  * @returns {Object} Full compatibility results
  */
-function calculateCompatibilityFromAnswers(data) {
+function calculateCompatibilityFromAnswers(data, lang) {
+    const currentLang = lang || (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang) || 'ko';
+    const answerBasedLabels = {
+        en: 'Answer-based',
+        ko: '응답 기반',
+        ja: '回答ベース',
+        zh: '基于答案',
+        es: 'Basado en respuestas'
+    };
     const answersA = (data && data.answersA) || [];
     const answersB = (data && data.answersB) || [];
     const validAnswers = answersA.length === COMPAT_QUESTIONS.length &&
@@ -287,7 +359,7 @@ function calculateCompatibilityFromAnswers(data) {
             const answerB = parseInt(answersB[question.id - 1]);
             const diff = Math.abs(answerA - answerB);
             return {
-                question: question.ko,
+                question: question[currentLang] || question.ko,
                 answerA,
                 answerB,
                 alignPct: Math.round((1 - diff / 4) * 100)
@@ -333,14 +405,14 @@ function calculateCompatibilityFromAnswers(data) {
     return {
         personA: {
             name: data.nameA || 'Person A',
-            zodiac: birthdayA ? zodiacA.name : '응답 기반',
+            zodiac: birthdayA ? zodiacA.name : (answerBasedLabels[currentLang] || answerBasedLabels.ko),
             element: birthdayA ? zodiacA.element : '',
             birthday: birthdayA ? `${birthdayA.year}-${String(birthdayA.month).padStart(2, '0')}-${String(birthdayA.day).padStart(2, '0')}` : '',
             animal: animalA
         },
         personB: {
             name: data.nameB || 'Person B',
-            zodiac: birthdayB ? zodiacB.name : '응답 기반',
+            zodiac: birthdayB ? zodiacB.name : (answerBasedLabels[currentLang] || answerBasedLabels.ko),
             element: birthdayB ? zodiacB.element : '',
             birthday: birthdayB ? `${birthdayB.year}-${String(birthdayB.month).padStart(2, '0')}-${String(birthdayB.day).padStart(2, '0')}` : '',
             animal: animalB

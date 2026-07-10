@@ -633,6 +633,25 @@
             </div>
         </section>
 
+        <!-- Answer-Based Analysis -->
+        <section id="answer-analysis-section" class="py-8 hidden">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="bg-white rounded-xl p-6 md:p-7 border border-pink-100 shadow-sm">
+                    <h2 class="font-heading text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                        Response Analysis
+                    </h2>
+                    <p class="text-gray-700 mb-5">
+                        This score reflects how well your answers align in each area.
+                    </p>
+                    <div id="answer-analysis-list" class="space-y-5"></div>
+                    <div id="conversation-topics" class="mt-6 rounded-xl bg-pink-50 border border-pink-100 p-5 hidden">
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">A good topic to talk about</h3>
+                        <ul id="conversation-topics-list" class="space-y-2 text-gray-700 text-sm"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Share Section - Clean & Viral Design -->
         <section class="py-8">
             <div class="max-w-xl mx-auto px-4 space-y-6">
@@ -1068,22 +1087,73 @@
             }
         }
 
+        const answerAnalysisUi = {"title":"Response Analysis","header":"This score reflects how well your answers align in each area.","you":"You","partner":"Partner","match":"match","topic":"A good topic to talk about","redirect":"/en/compatibility/","note":"Zodiac and birth dates are optional fun tags only; this compatibility score is calculated from how closely your answers align."};
+
+        function hasAnswerData(data) {
+            return data && Array.isArray(data.answersA) && Array.isArray(data.answersB);
+        }
+
+        function displayPersonMeta(person) {
+            return person.element ? person.zodiac + ' ' + person.element : person.zodiac;
+        }
+
+        function renderAnswerAnalysis(results, lang) {
+            const section = document.getElementById('answer-analysis-section');
+            const list = document.getElementById('answer-analysis-list');
+            const topics = document.getElementById('conversation-topics');
+            const topicsList = document.getElementById('conversation-topics-list');
+            if (!section || !list || !results.answerBreakdown) return;
+
+            const axisOrder = ['communication', 'values', 'energy', 'emotional', 'growth'];
+            const axisSummaries = axisOrder.map(function(axis) {
+                const info = getCategoryInfo(axis, lang);
+                const rows = results.answerBreakdown[axis] || [];
+                const avgAlign = rows.length
+                    ? Math.round(rows.reduce(function(sum, row) { return sum + row.alignPct; }, 0) / rows.length)
+                    : 0;
+                return { axis: axis, info: info, rows: rows, avgAlign: avgAlign };
+            });
+
+            list.innerHTML = axisSummaries.map(function(summary) {
+                const rowsHtml = summary.rows.map(function(row) {
+                    return `<li class="text-sm text-gray-700 leading-relaxed">${row.question} — ${answerAnalysisUi.you} [${row.answerA}] · ${answerAnalysisUi.partner} [${row.answerB}] <span class="font-semibold text-pink-600">(${answerAnalysisUi.match} ${row.alignPct}%)</span></li>`;
+                }).join('');
+                return `<div class="border-t border-gray-100 pt-4">
+                    <div class="flex items-center justify-between gap-3 mb-2">
+                        <h3 class="font-heading font-bold text-gray-900">${summary.info.icon} ${summary.info.name}</h3>
+                        <span class="text-sm font-semibold text-pink-600">${answerAnalysisUi.match} ${summary.avgAlign}%</span>
+                    </div>
+                    <ul class="space-y-2">${rowsHtml}</ul>
+                </div>`;
+            }).join('');
+
+            const lowestAxes = axisSummaries.slice().sort(function(a, b) { return a.avgAlign - b.avgAlign; }).slice(0, 2);
+            topicsList.innerHTML = lowestAxes.map(function(summary) {
+                const row = summary.rows.slice().sort(function(a, b) { return a.alignPct - b.alignPct; })[0];
+                return row ? `<li><span class="font-semibold">${summary.info.name}</span>: ${row.question}</li>` : '';
+            }).join('');
+            topics.classList.remove('hidden');
+            section.classList.remove('hidden');
+        }
+
         if (!inputData) {
             // No data, redirect to input page
-            window.location.href = '/compatibility/';
+            window.location.href = answerAnalysisUi.redirect;
         } else {
             // Get current language
-            const currentLang = localStorage.getItem('ai-life-summary-lang') || 'en';
+            const currentLang = document.documentElement.lang || localStorage.getItem('ai-life-summary-lang') || 'en';
 
             // Calculate compatibility
-            const results = calculateCompatibility(inputData.personA, inputData.personB);
+            const results = hasAnswerData(inputData)
+                ? calculateCompatibilityFromAnswers(inputData, currentLang)
+                : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
             document.getElementById('person-b-name').textContent = results.personB.name;
-            document.getElementById('person-a-zodiac').textContent = results.personA.zodiac + ' ' + results.personA.element;
-            document.getElementById('person-b-zodiac').textContent = results.personB.zodiac + ' ' + results.personB.element;
+            document.getElementById('person-a-zodiac').textContent = displayPersonMeta(results.personA);
+            document.getElementById('person-b-zodiac').textContent = displayPersonMeta(results.personB);
 
             // Animate score display
             setTimeout(() => {
@@ -1126,8 +1196,12 @@
                 document.getElementById('analysis-type').textContent = analysis.type;
                 document.getElementById('analysis-strength').textContent = analysis.strength;
                 document.getElementById('analysis-growth').textContent = analysis.growth;
-                document.getElementById('analysis-elements').textContent = analysis.elements;
+                document.getElementById('analysis-elements').textContent = results.answerBreakdown ? answerAnalysisUi.note : analysis.elements;
             }, 1200);
+
+            if (results.answerBreakdown) {
+                renderAnswerAnalysis(results, currentLang);
+            }
 
             // Animal couple display
             if (results.animalCouple) {
