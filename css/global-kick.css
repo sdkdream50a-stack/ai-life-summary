@@ -1251,3 +1251,12 @@ button,
 
 /* hp-dark 내 viral-card(Test Hub)는 var(--glass-bg)=rgba(255,255,255,.7) 밝은 글래스라 hp-dark 카드셀렉터에 미포착 → 흰 텍스트 비가시. 다크화. 2026-07-04 */
 .hp-dark .viral-card{background:rgba(255,255,255,0.05)!important;border-color:rgba(217,200,240,0.14)!important}
+
+/* 미컴파일 opacity 유틸 복원 — 다크 글래스 muted 위계. 2026-07-10 */
+.text-white\/40{color:rgba(255,255,255,.4)}
+.text-white\/50{color:rgba(255,255,255,.5)}
+.text-white\/60{color:rgba(255,255,255,.6)}
+.text-white\/65{color:rgba(255,255,255,.65)}
+.bg-white\/5{background-color:rgba(255,255,255,.05)}
+.border-white\/10{border-color:rgba(255,255,255,.1)}
+.bg-black\/90{background-color:rgba(0,0,0,.9)}
