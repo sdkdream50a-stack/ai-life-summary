@@ -37,6 +37,25 @@ const ELEMENT_COMPATIBILITY = {
     'Water-Water': 90
 };
 
+const COMPAT_QUESTIONS = [
+    { id: 1, axis: 'communication', ko: '갈등이 생기면 바로 대화로 풀어야 마음이 편하다.' },
+    { id: 2, axis: 'communication', ko: '속마음이나 감정을 상대에게 자주 표현하는 편이다.' },
+    { id: 3, axis: 'values', ko: '연애에서 미래 계획(결혼·돈·커리어)의 방향이 맞는 게 중요하다.' },
+    { id: 4, axis: 'values', ko: '서로의 가족·친구 관계를 존중하고 함께 맞춰가는 게 중요하다.' },
+    { id: 5, axis: 'energy', ko: '데이트나 약속은 즉흥적으로 정할 때 더 즐겁다.' },
+    { id: 6, axis: 'emotional', ko: '힘들 때 상대에게 기대고 위로받는 것이 자연스럽다.' },
+    { id: 7, axis: 'emotional', ko: '상대의 작은 감정 변화도 민감하게 알아채는 편이다.' },
+    { id: 8, axis: 'growth', ko: '연애를 통해 서로 더 나은 사람으로 성장하길 바란다.' }
+];
+
+const COMPAT_WEIGHTS = {
+    communication: 0.20,
+    values: 0.25,
+    energy: 0.15,
+    emotional: 0.25,
+    growth: 0.15
+};
+
 // ============================================
 // DETERMINISTIC HASH FUNCTION
 // ============================================
@@ -203,6 +222,138 @@ function calculateCompatibility(personA, personB) {
         luckyDate,
         elementCompatibility: elementBase,
         seed // For verification/debugging
+    };
+}
+
+function normalizeBirthdayFromAnswersData(data, key) {
+    const birthday = data && data[key];
+    if (birthday && birthday.year && birthday.month && birthday.day) {
+        return {
+            name: data[key === 'birthdayA' ? 'nameA' : 'nameB'] || '',
+            year: parseInt(birthday.year),
+            month: parseInt(birthday.month),
+            day: parseInt(birthday.day)
+        };
+    }
+    return null;
+}
+
+function getRepresentativeAnimalForScore(score, offset) {
+    const bands = score >= 90 ? ['lion', 'cat'] :
+        score >= 80 ? ['fox', 'dog'] :
+        score >= 70 ? ['dolphin', 'penguin'] :
+        score >= 60 ? ['panda', 'koala'] :
+        ['owl', 'deer'];
+    const animalId = bands[offset % bands.length];
+    return ANIMALS.find(a => a.id === animalId) || ANIMALS[0];
+}
+
+/**
+ * Calculate compatibility from 8 Likert answers per person.
+ * Scores are based only on answer differences; birthdays are optional fun tags.
+ * @param {Object} data - { nameA, nameB, answersA:[1..5], answersB:[1..5], birthdayA?, birthdayB? }
+ * @returns {Object} Full compatibility results
+ */
+function calculateCompatibilityFromAnswers(data) {
+    const answersA = (data && data.answersA) || [];
+    const answersB = (data && data.answersB) || [];
+    const validAnswers = answersA.length === COMPAT_QUESTIONS.length &&
+        answersB.length === COMPAT_QUESTIONS.length &&
+        answersA.concat(answersB).every(value => {
+            const numericValue = Number(value);
+            return Number.isInteger(numericValue) && numericValue >= 1 && numericValue <= 5;
+        });
+
+    if (!validAnswers) {
+        throw new Error('Invalid compatibility answers');
+    }
+
+    const categories = {};
+    const answerBreakdown = {};
+
+    Object.keys(COMPAT_WEIGHTS).forEach(axis => {
+        const axisQuestions = COMPAT_QUESTIONS.filter(question => question.axis === axis);
+        const diffs = axisQuestions.map(question => {
+            const answerA = parseInt(answersA[question.id - 1]);
+            const answerB = parseInt(answersB[question.id - 1]);
+            return Math.abs(answerA - answerB);
+        });
+        const avgDiff = diffs.reduce((sum, diff) => sum + diff, 0) / diffs.length;
+        const alignment = 1 - (avgDiff / 4);
+        categories[axis] = Math.round(50 + alignment * 45);
+
+        answerBreakdown[axis] = axisQuestions.map(question => {
+            const answerA = parseInt(answersA[question.id - 1]);
+            const answerB = parseInt(answersB[question.id - 1]);
+            const diff = Math.abs(answerA - answerB);
+            return {
+                question: question.ko,
+                answerA,
+                answerB,
+                alignPct: Math.round((1 - diff / 4) * 100)
+            };
+        });
+    });
+
+    const overallScore = Math.round(
+        categories.communication * COMPAT_WEIGHTS.communication +
+        categories.values * COMPAT_WEIGHTS.values +
+        categories.energy * COMPAT_WEIGHTS.energy +
+        categories.emotional * COMPAT_WEIGHTS.emotional +
+        categories.growth * COMPAT_WEIGHTS.growth
+    );
+
+    const birthdayA = normalizeBirthdayFromAnswersData(data, 'birthdayA');
+    const birthdayB = normalizeBirthdayFromAnswersData(data, 'birthdayB');
+    const seed = overallScore * 1000 +
+        Object.values(categories).reduce((sum, score, index) => sum + score * (index + 1), 0);
+
+    let zodiacA = { name: 'Answer-based', element: 'Profile' };
+    let zodiacB = { name: 'Answer-based', element: 'Profile' };
+    let animalA;
+    let animalB;
+
+    if (birthdayA && birthdayB) {
+        zodiacA = getZodiacSign(birthdayA.month, birthdayA.day);
+        zodiacB = getZodiacSign(birthdayB.month, birthdayB.day);
+        animalA = getAnimalForPerson(zodiacA, seed, 0);
+        animalB = getAnimalForPerson(zodiacB, seed, 1);
+    } else {
+        animalA = getRepresentativeAnimalForScore(overallScore, 0);
+        animalB = getRepresentativeAnimalForScore(overallScore, 1);
+    }
+
+    const animalCouple = getAnimalCouple(animalA, animalB);
+    const relationshipType = getEnhancedRelationshipType(overallScore, animalCouple);
+    const movieGenre = getMovieGenre(overallScore, categories, animalCouple, seed);
+    const datePersonA = birthdayA || { year: 2000, month: ((overallScore - 1) % 12) + 1, day: ((categories.communication - 1) % 28) + 1 };
+    const datePersonB = birthdayB || { year: 2000, month: ((categories.values - 1) % 12) + 1, day: ((categories.emotional - 1) % 28) + 1 };
+    const luckyDate = getLuckyDate(datePersonA, datePersonB, seed);
+
+    return {
+        personA: {
+            name: data.nameA || 'Person A',
+            zodiac: birthdayA ? zodiacA.name : '응답 기반',
+            element: birthdayA ? zodiacA.element : '',
+            birthday: birthdayA ? `${birthdayA.year}-${String(birthdayA.month).padStart(2, '0')}-${String(birthdayA.day).padStart(2, '0')}` : '',
+            animal: animalA
+        },
+        personB: {
+            name: data.nameB || 'Person B',
+            zodiac: birthdayB ? zodiacB.name : '응답 기반',
+            element: birthdayB ? zodiacB.element : '',
+            birthday: birthdayB ? `${birthdayB.year}-${String(birthdayB.month).padStart(2, '0')}-${String(birthdayB.day).padStart(2, '0')}` : '',
+            animal: animalB
+        },
+        overallScore,
+        categories,
+        relationshipType,
+        animalCouple,
+        movieGenre,
+        luckyDate,
+        elementCompatibility: null,
+        answerBreakdown,
+        seed
     };
 }
 

@@ -639,6 +639,25 @@
             </div>
         </section>
 
+        <!-- Answer-Based Analysis -->
+        <section id="answer-analysis-section" class="py-8 hidden">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="bg-white rounded-xl p-6 md:p-7 border border-pink-100 shadow-sm">
+                    <h2 class="font-heading text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                        응답 분석
+                    </h2>
+                    <p class="text-gray-700 mb-5">
+                        이 점수는 두 분의 답변이 각 영역에서 얼마나 잘 맞는지를 나타냅니다.
+                    </p>
+                    <div id="answer-analysis-list" class="space-y-5"></div>
+                    <div id="conversation-topics" class="mt-6 rounded-xl bg-pink-50 border border-pink-100 p-5 hidden">
+                        <h3 class="font-heading font-bold text-gray-900 mb-2">대화해보면 좋은 주제</h3>
+                        <ul id="conversation-topics-list" class="space-y-2 text-gray-700 text-sm"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Share Section - Clean & Viral Design -->
         <section class="py-8">
             <div class="max-w-xl mx-auto px-4 space-y-6">
@@ -691,7 +710,7 @@
                     </h3>
                     <p class="text-sm text-center mb-6 relative z-10" style="color: rgba(255,255,255,0.9);">
 
-                        친구가 내 생일로 궁합 테스트를 바로 할 수 있어요! 어떤 결과가 나올까?
+                        친구가 같은 문항으로 궁합 테스트를 바로 할 수 있어요! 어떤 결과가 나올까?
 
                     </p>
 
@@ -740,13 +759,6 @@
                             <span>LinkedIn</span>
                         </button>
                     </div>
-
-                    <!-- Bottom Stats -->
-                    <p class="text-sm text-center relative z-10" style="color: rgba(255,255,255,0.8);">
-
-                        🔥 5만 커플이 이미 궁합을 확인했어요!
-
-                    </p>
 
                     <!-- Copy Feedback -->
                     <p id="copy-feedback" class="text-center font-semibold text-sm mt-3 hidden rounded-full py-2 relative z-10" style="color: white; background: rgba(255,255,255,0.2);">
@@ -1001,7 +1013,7 @@
             <div class="p-6 md:p-7 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100">
                 <h3 class="text-base md:text-lg font-bold text-gray-900 mb-2">이 도구의 이론 배경</h3>
                 <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-5">
-                    본 도구는 생년월일을 사용해 가벼운 궁합 서사를 생성합니다. 결과는 오락용 참고 정보이며, 학술적 진단·관계 평가·과학적 측정이 아닙니다.
+                    본 도구는 두 사람의 문항 응답 차이를 사용해 가벼운 궁합 서사를 생성합니다. 선택 생년월일은 재미 태그에만 사용됩니다. 결과는 오락용 참고 정보이며, 학술적 진단·관계 평가·과학적 측정이 아닙니다.
                 </p>
                 <div class="text-xs text-gray-500 mb-2">이 주제를 더 알고 싶다면</div>
                 <div class="grid sm:grid-cols-2 gap-2">
@@ -1124,22 +1136,76 @@
             }
         }
 
+        function hasAnswerData(data) {
+            return data && Array.isArray(data.answersA) && Array.isArray(data.answersB);
+        }
+
+        function displayPersonMeta(person) {
+            return person.element ? person.zodiac + ' ' + person.element : person.zodiac;
+        }
+
+        function renderAnswerAnalysis(results) {
+            const section = document.getElementById('answer-analysis-section');
+            const list = document.getElementById('answer-analysis-list');
+            const topics = document.getElementById('conversation-topics');
+            const topicsList = document.getElementById('conversation-topics-list');
+            if (!section || !list || !results.answerBreakdown) return;
+
+            const axisOrder = ['communication', 'values', 'energy', 'emotional', 'growth'];
+            const axisSummaries = axisOrder.map(function(axis) {
+                const info = getCategoryInfo(axis, 'ko');
+                const rows = results.answerBreakdown[axis] || [];
+                const avgAlign = rows.length
+                    ? Math.round(rows.reduce(function(sum, row) { return sum + row.alignPct; }, 0) / rows.length)
+                    : 0;
+                return { axis: axis, info: info, rows: rows, avgAlign: avgAlign };
+            });
+
+            list.innerHTML = axisSummaries.map(function(summary) {
+                const rowsHtml = summary.rows.map(function(row) {
+                    return `<li class="text-sm text-gray-700 leading-relaxed">${row.question} — 나 [${row.answerA}] · 상대 [${row.answerB}] <span class="font-semibold text-pink-600">(일치 ${row.alignPct}%)</span></li>`;
+                }).join('');
+                return `<div class="border-t border-gray-100 pt-4">
+                    <div class="flex items-center justify-between gap-3 mb-2">
+                        <h3 class="font-heading font-bold text-gray-900">${summary.info.icon} ${summary.info.name}</h3>
+                        <span class="text-sm font-semibold text-pink-600">평균 일치 ${summary.avgAlign}%</span>
+                    </div>
+                    <ul class="space-y-2">${rowsHtml}</ul>
+                </div>`;
+            }).join('');
+
+            const lowestAxes = axisSummaries.slice().sort(function(a, b) {
+                return a.avgAlign - b.avgAlign;
+            }).slice(0, 2);
+
+            topicsList.innerHTML = lowestAxes.map(function(summary) {
+                const row = summary.rows.slice().sort(function(a, b) {
+                    return a.alignPct - b.alignPct;
+                })[0];
+                return `<li><span class="font-semibold">${summary.info.name}</span>: ${row ? row.question : '서로 기대하는 방식을 이야기해보세요.'}</li>`;
+            }).join('');
+            topics.classList.remove('hidden');
+            section.classList.remove('hidden');
+        }
+
         if (!inputData) {
             // No data, redirect to input page
-            window.location.href = '/compatibility/';
+            window.location.href = '/ko/compatibility/';
         } else {
             // Get current language
-            const currentLang = localStorage.getItem('ai-life-summary-lang') || 'en';
+            const currentLang = document.documentElement.lang || localStorage.getItem('ai-life-summary-lang') || 'ko';
 
             // Calculate compatibility
-            const results = calculateCompatibility(inputData.personA, inputData.personB);
+            const results = hasAnswerData(inputData)
+                ? calculateCompatibilityFromAnswers(inputData)
+                : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
             document.getElementById('person-b-name').textContent = results.personB.name;
-            document.getElementById('person-a-zodiac').textContent = results.personA.zodiac + ' ' + results.personA.element;
-            document.getElementById('person-b-zodiac').textContent = results.personB.zodiac + ' ' + results.personB.element;
+            document.getElementById('person-a-zodiac').textContent = displayPersonMeta(results.personA);
+            document.getElementById('person-b-zodiac').textContent = displayPersonMeta(results.personB);
 
             // Animate score display
             setTimeout(() => {
@@ -1182,8 +1248,14 @@
                 document.getElementById('analysis-type').textContent = analysis.type;
                 document.getElementById('analysis-strength').textContent = analysis.strength;
                 document.getElementById('analysis-growth').textContent = analysis.growth;
-                document.getElementById('analysis-elements').textContent = analysis.elements;
+                document.getElementById('analysis-elements').textContent = results.answerBreakdown
+                    ? '별자리·생년월일은 선택 입력 시 재미 태그에만 사용되며, 궁합 점수는 두 사람의 응답 일치도에서 계산됩니다.'
+                    : analysis.elements;
             }, 1200);
+
+            if (results.answerBreakdown) {
+                renderAnswerAnalysis(results);
+            }
 
             // Animal couple display
             if (results.animalCouple) {

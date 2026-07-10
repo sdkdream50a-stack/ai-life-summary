@@ -318,6 +318,28 @@
     <script src="/js/consent-manager.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+    <style>
+        .pt-question-card{padding:18px 16px;margin-bottom:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:18px;transition:border-color .3s ease;}
+        .pt-question-card.pt-answered{border-color:rgba(236,72,153,0.35);}
+        .pt-question-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.42);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+        .pt-question-text{font-size:15px;font-weight:600;color:#F4F1F8;line-height:1.5;margin-bottom:16px;}
+        .pt-likert{display:flex;align-items:center;justify-content:center;gap:clamp(3px,1.5vw,11px);flex-wrap:nowrap;}
+        .pt-likert .pt-end{font-size:11px;font-weight:700;width:34px;text-align:center;flex:0 0 auto;line-height:1.2;}
+        .pt-likert .pt-end.agree{color:#B8E0D2;}
+        .pt-likert .pt-end.disagree{color:#D9C8F0;}
+        .pt-likert .pt-likert-btn{position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;border:2px solid rgba(255,255,255,0.55);background:rgba(255,255,255,0.09);cursor:pointer;flex:0 0 auto;min-width:0;padding:0;box-sizing:border-box;transition:transform .15s cubic-bezier(.22,1,.36,1),border-color .15s,background .15s;}
+        .pt-likert .pt-likert-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;}
+        .pt-likert .pt-likert-btn:hover{transform:scale(1.12);}
+        .pt-likert .pt-likert-btn .pt-ck{opacity:0;color:#16130F;font-weight:900;font-size:13px;pointer-events:none;transition:opacity .15s;}
+        .pt-likert .pt-likert-btn.active .pt-ck{opacity:1;}
+        .pt-likert .pt-likert-btn.s0,.pt-likert .pt-likert-btn.s4{width:38px;height:38px;}
+        .pt-likert .pt-likert-btn.s1,.pt-likert .pt-likert-btn.s3{width:30px;height:30px;}
+        .pt-likert .pt-likert-btn.s2{width:24px;height:24px;}
+        .pt-likert .pt-likert-btn.agree.active{background:#B8E0D2;border-color:#B8E0D2;}
+        .pt-likert .pt-likert-btn.neutral.active{background:rgba(255,255,255,0.60);border-color:rgba(255,255,255,0.60);}
+        .pt-likert .pt-likert-btn.disagree.active{background:#D9C8F0;border-color:#D9C8F0;}
+        @media (prefers-reduced-motion: reduce){.pt-likert .pt-likert-btn,.pt-question-card{transition:none;}}
+    </style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
@@ -443,7 +465,7 @@
         <section class="py-4 md:py-6">
             <div class="max-w-3xl mx-auto px-4">
                 <form id="compatibility-form">
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class="grid md:grid-cols-2 gap-6 relative">
                         <!-- Person A -->
                         <div class="person-card kick-glass rounded-2xl p-4">
                             <div class="text-center mb-3">
@@ -455,7 +477,6 @@
                                 </h2>
                             </div>
 
-                            <!-- Name (Optional) -->
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-white/80 mb-2">
 
@@ -467,47 +488,7 @@
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
-                            <!-- Birthday -->
-                            <div>
-                                <label class="block text-sm font-medium text-white/80 mb-2">
-
-                                    생년월일
-
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <div class="grid grid-cols-3 gap-2">
-                                    <div>
-                                        <input type="number" id="year-a" name="year-a"
-                                            placeholder="YYYY" min="1920" max="2025" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            년
-
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <input type="number" id="month-a" name="month-a"
-                                            placeholder="MM" min="1" max="12" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            월
-
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <input type="number" id="day-a" name="day-a"
-                                            placeholder="DD" min="1" max="31" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            일
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="questions-a" class="space-y-3"></div>
                         </div>
 
                         <!-- Heart Connector (visible on desktop) -->
@@ -526,7 +507,6 @@
                                 </h2>
                             </div>
 
-                            <!-- Name (Optional) -->
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-white/80 mb-2">
 
@@ -538,54 +518,41 @@
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                             </div>
 
-                            <!-- Birthday -->
+                            <div id="questions-b" class="space-y-3"></div>
+                        </div>
+                    </div>
+
+                    <details class="kick-glass rounded-2xl p-4 mt-6">
+                        <summary class="cursor-pointer text-center font-semibold text-white">
+                            🔮 재미로 별자리·동물 궁합도 볼래요?
+                        </summary>
+                        <p class="text-sm text-white/60 text-center mt-2 mb-4">
+                            선택 입력입니다. 점수에는 반영되지 않고 결과의 재미 태그에만 사용됩니다.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-white/80 mb-2">
-
-                                    생년월일
-
-                                    <span class="text-red-500">*</span>
-                                </label>
+                                <label class="block text-sm font-medium text-white/80 mb-2">첫 번째 사람 생년월일</label>
                                 <div class="grid grid-cols-3 gap-2">
-                                    <div>
-                                        <input type="number" id="year-b" name="year-b"
-                                            placeholder="YYYY" min="1920" max="2025" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            년
-
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <input type="number" id="month-b" name="month-b"
-                                            placeholder="MM" min="1" max="12" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            월
-
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <input type="number" id="day-b" name="day-b"
-                                            placeholder="DD" min="1" max="31" required
-                                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
-                                        <p class="text-xs text-gray-400 mt-1 text-center">
-
-                                            일
-
-                                        </p>
-                                    </div>
+                                    <input type="number" id="year-a" name="year-a" placeholder="YYYY" min="1920" max="2026" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                    <input type="number" id="month-a" name="month-a" placeholder="MM" min="1" max="12" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                    <input type="number" id="day-a" name="day-a" placeholder="DD" min="1" max="31" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white/80 mb-2">두 번째 사람 생년월일</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <input type="number" id="year-b" name="year-b" placeholder="YYYY" min="1920" max="2026" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                    <input type="number" id="month-b" name="month-b" placeholder="MM" min="1" max="12" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                    <input type="number" id="day-b" name="day-b" placeholder="DD" min="1" max="31" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </details>
 
                     <!-- Error Message -->
                     <p id="form-error" class="text-red-500 text-sm text-center mt-4 hidden">
 
-                        두 사람의 생년월일을 올바르게 입력해주세요.
+                        두 사람 모두 8개 문항에 답해주세요.
 
                     </p>
 
@@ -614,7 +581,7 @@
                     </h3>
                     <div class="space-y-4 text-white/80">
 
-                            이 궁합 테스트는 생년월일을 오락용 입력값으로 사용해 다섯 가지 재미 요소로 관계 분위기를 구성합니다: <strong>소통</strong>, <strong>가치관</strong>, <strong>에너지</strong>, <strong>정서적 유대</strong>, 그리고 <strong>성장 가능성</strong>. 각 영역이 전체 궁합 점수에 기여합니다.
+                            이 궁합 테스트는 두 사람의 답변 차이를 바탕으로 다섯 가지 재미 요소의 관계 분위기를 구성합니다: <strong>소통</strong>, <strong>가치관</strong>, <strong>에너지</strong>, <strong>정서적 유대</strong>, 그리고 <strong>성장 가능성</strong>. 선택 생년월일은 별자리·동물 태그 같은 재미 요소에만 사용됩니다.
 
                         <p class="text-sm text-white/50 mt-4">
 
@@ -638,8 +605,8 @@
                     </h2>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
 
-                        AI 궁합 테스트는 두 사람의 생년월일을 기반으로 로맨틱 궁합을 평가하는 무료 엔터테인먼트 도구입니다. 생년월일을 바탕으로 궁합 점수·동물 커플 유형·럭키 데이트 제안·로맨스 영화 장르 매칭을 몇 초 만에 제공하는 재미용 테스트입니다. 5개 언어로 이용할 수 있습니다.
-                        모든 처리는 브라우저 안에서만 이뤄집니다. 두 사람의 생년월일은 서버로 전송·저장·공유되지 않습니다. 본 테스트는 성별 중립이며 어떤 커플 형태든 환영합니다. 궁합 점수는 하나의 창의적 관점일 뿐, 관계 예측이나 상담이 아니라는 점을 유의해 주세요. 자세한 이용 범위는 <a href="/ko/disclaimer/" class="text-indigo-600 hover:underline">면책조항</a>과 <a href="/ko/privacy-policy/" class="text-indigo-600 hover:underline">개인정보처리방침</a>을 참고하세요.
+                        AI 궁합 테스트는 두 사람이 같은 8개 문항에 답하고, 답변이 각 영역에서 얼마나 비슷한지 계산하는 무료 엔터테인먼트 도구입니다. 궁합 점수·동물 커플 유형·럭키 데이트 제안·로맨스 영화 장르 매칭을 몇 초 만에 제공하는 재미용 테스트입니다. 5개 언어로 이용할 수 있습니다.
+                        모든 처리는 브라우저 안에서만 이뤄집니다. 두 사람의 답변과 선택 생년월일은 서버로 전송·저장·공유되지 않습니다. 본 테스트는 성별 중립이며 어떤 커플 형태든 환영합니다. 궁합 점수는 하나의 창의적 관점일 뿐, 관계 예측이나 상담이 아니라는 점을 유의해 주세요. 자세한 이용 범위는 <a href="/ko/disclaimer/" class="text-indigo-600 hover:underline">면책조항</a>과 <a href="/ko/privacy-policy/" class="text-indigo-600 hover:underline">개인정보처리방침</a>을 참고하세요.
 
                     </div>
                 </div>
@@ -668,12 +635,12 @@
                         <details class="bg-gray-50 rounded-lg p-5 cursor-pointer">
                             <summary class="font-semibold text-gray-900">
 
-                                두 사람의 생년월일이 저장되거나 공유되나요?
+                                두 사람의 답변이 저장되거나 공유되나요?
 
                             </summary>
                             <p class="mt-3 text-gray-700">
 
-                                아니요. 모든 처리는 브라우저 안에서만 이뤄집니다. 두 사람의 생년월일은 저희 서버로 전송되지 않으며, 저장되거나 제3자와 공유되지 않습니다.
+                                아니요. 모든 처리는 브라우저 안에서만 이뤄집니다. 두 사람의 답변과 선택 생년월일은 저희 서버로 전송되지 않으며, 저장되거나 제3자와 공유되지 않습니다.
 
                             </p>
                         </details>
@@ -686,7 +653,7 @@
                             </summary>
                             <p class="mt-3 text-gray-700">
 
-                                네. 본 테스트는 성별 중립적이며 어떤 커플 형태든 환영합니다. 알고리즘은 성별이나 관계 구조를 가정하지 않고 생년월일만 읽습니다.
+                                네. 본 테스트는 성별 중립적이며 어떤 커플 형태든 환영합니다. 알고리즘은 성별이나 관계 구조를 가정하지 않고 두 사람의 문항 답변만 비교합니다.
 
                             </p>
                         </details>
@@ -712,7 +679,7 @@
                             </summary>
                             <p class="mt-3 text-gray-700">
 
-                                궁합은 두 사람 간의 페어와이즈 계산이기 때문입니다. 두 사람의 생년월일 프로필 사이의 상호작용을 측정하므로 입력이 바뀌면 결과도 바뀝니다. 이는 단순한 오락용 페어 계산 방식입니다.
+                                궁합은 두 사람 간의 페어와이즈 계산이기 때문입니다. 두 사람의 답변 조합을 비교하므로 입력이 바뀌면 결과도 바뀝니다. 이는 단순한 오락용 페어 계산 방식입니다.
 
                             </p>
                         </details>
@@ -726,10 +693,10 @@
                       "@type": "FAQPage",
                       "mainEntity": [
                         {"@type":"Question","name":"궁합 테스트는 정말 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네. 완전히 무료이며 회원가입이나 카드 정보가 필요하지 않습니다."}},
-                        {"@type":"Question","name":"두 사람의 생일이 저장되거나 공유되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 모든 처리는 브라우저에서 이루어집니다. 생년월일은 서버로 전송되거나 저장되거나 제3자와 공유되지 않습니다."}},
-                        {"@type":"Question","name":"동성 커플이나 논바이너리 커플도 사용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 본 테스트는 성별 중립적이며 어떤 커플 형태든 환영합니다. 알고리즘은 성별이나 관계 구조를 가정하지 않고 생년월일만 읽습니다."}},
+                        {"@type":"Question","name":"두 사람의 답변이 저장되거나 공유되나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 모든 처리는 브라우저에서 이루어집니다. 답변과 선택 생년월일은 서버로 전송되거나 저장되거나 제3자와 공유되지 않습니다."}},
+                        {"@type":"Question","name":"동성 커플이나 논바이너리 커플도 사용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 본 테스트는 성별 중립적이며 어떤 커플 형태든 환영합니다. 알고리즘은 성별이나 관계 구조를 가정하지 않고 두 사람의 문항 답변만 비교합니다."}},
                         {"@type":"Question","name":"궁합 점수가 낮으면 어떤 의미인가요?","acceptedAnswer":{"@type":"Answer","text":"단순한 엔터테인먼트입니다. 낮은 점수가 관계의 결말을 예측하지 않습니다. 여기서 측정하지 않는 요소(소통, 공유 가치, 인생 맥락)가 훨씬 더 중요합니다."}},
-                        {"@type":"Question","name":"같은 사람과 친구별로 점수가 다른 이유는?","acceptedAnswer":{"@type":"Answer","text":"궁합은 두 사람 간의 페어와이즈 계산이기 때문입니다. 두 사람의 생년월일 프로필 사이의 상호작용을 측정하므로 입력이 바뀌면 결과도 바뀝니다."}}
+                        {"@type":"Question","name":"같은 사람과 친구별로 점수가 다른 이유는?","acceptedAnswer":{"@type":"Answer","text":"궁합은 두 사람 간의 페어와이즈 계산이기 때문입니다. 두 사람의 답변 조합을 비교하므로 입력이 바뀌면 결과도 바뀝니다."}}
                       ]
                     }
                     </script>
@@ -868,56 +835,130 @@
     <script>
         // Mobile menu handled by build script injection
 
+        const compatQuestions = [
+            '갈등이 생기면 바로 대화로 풀어야 마음이 편하다.',
+            '속마음이나 감정을 상대에게 자주 표현하는 편이다.',
+            '연애에서 미래 계획(결혼·돈·커리어)의 방향이 맞는 게 중요하다.',
+            '서로의 가족·친구 관계를 존중하고 함께 맞춰가는 게 중요하다.',
+            '데이트나 약속은 즉흥적으로 정할 때 더 즐겁다.',
+            '힘들 때 상대에게 기대고 위로받는 것이 자연스럽다.',
+            '상대의 작은 감정 변화도 민감하게 알아채는 편이다.',
+            '연애를 통해 서로 더 나은 사람으로 성장하길 바란다.'
+        ];
+        const likertLabels = ['매우 그렇다', '그렇다', '보통', '아니다', '전혀 아니다'];
+
+        function renderCompatQuestions(containerId, prefix) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = compatQuestions.map(function(question, index) {
+                const qNumber = index + 1;
+                return `
+                    <div class="pt-question-card">
+                        <p class="pt-question-num">QUESTION ${qNumber} / ${compatQuestions.length}</p>
+                        <p class="pt-question-text">${question}</p>
+                        <div class="pt-likert" role="radiogroup" aria-label="${question}">
+                            <span class="pt-end agree">동의</span>
+                            ${likertLabels.map(function(label, li) {
+                                const value = 5 - li;
+                                const pole = li < 2 ? 'agree' : (li === 2 ? 'neutral' : 'disagree');
+                                return `<label class="pt-likert-btn s${li} ${pole}" title="${label}" aria-label="${label}">
+                                    <input type="radio" name="${prefix}-${qNumber}" value="${value}">
+                                    <span class="pt-ck">&#10003;</span>
+                                </label>`;
+                            }).join('')}
+                            <span class="pt-end disagree">비동의</span>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        function collectAnswers(prefix) {
+            const answers = [];
+            for (let i = 1; i <= compatQuestions.length; i++) {
+                const selected = document.querySelector(`input[name="${prefix}-${i}"]:checked`);
+                if (!selected) return null;
+                answers.push(parseInt(selected.value));
+            }
+            return answers;
+        }
+
+        function getOptionalBirthday(suffix) {
+            const year = document.getElementById('year-' + suffix).value;
+            const month = document.getElementById('month-' + suffix).value;
+            const day = document.getElementById('day-' + suffix).value;
+            if (!year && !month && !day) return null;
+            if (!year || !month || !day) return false;
+
+            const parsed = {
+                year: parseInt(year),
+                month: parseInt(month),
+                day: parseInt(day)
+            };
+            const date = new Date(parsed.year, parsed.month - 1, parsed.day);
+            const today = new Date();
+            if (
+                date > today ||
+                parsed.year < 1920 ||
+                parsed.month < 1 ||
+                parsed.month > 12 ||
+                parsed.day < 1 ||
+                parsed.day > 31 ||
+                date.getFullYear() !== parsed.year ||
+                date.getMonth() !== parsed.month - 1 ||
+                date.getDate() !== parsed.day
+            ) {
+                return false;
+            }
+            return parsed;
+        }
+
+        renderCompatQuestions('questions-a', 'a');
+        renderCompatQuestions('questions-b', 'b');
+
+        document.querySelectorAll('.pt-likert input[type=radio]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const group = this.closest('.pt-likert');
+                group.querySelectorAll('.pt-likert-btn').forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+                this.closest('.pt-likert-btn').classList.add('active');
+                this.closest('.pt-question-card').classList.add('pt-answered');
+                document.getElementById('form-error').classList.add('hidden');
+            });
+        });
+
         // Form validation and submission
         document.getElementById('compatibility-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const yearA = document.getElementById('year-a').value;
-            const monthA = document.getElementById('month-a').value;
-            const dayA = document.getElementById('day-a').value;
             const nameA = document.getElementById('name-a').value.trim();
-
-            const yearB = document.getElementById('year-b').value;
-            const monthB = document.getElementById('month-b').value;
-            const dayB = document.getElementById('day-b').value;
             const nameB = document.getElementById('name-b').value.trim();
+            const answersA = collectAnswers('a');
+            const answersB = collectAnswers('b');
+            const birthdayA = getOptionalBirthday('a');
+            const birthdayB = getOptionalBirthday('b');
 
-            // Validate dates
-            if (!yearA || !monthA || !dayA || !yearB || !monthB || !dayB) {
-                document.getElementById('form-error').classList.remove('hidden');
-                return;
-            }
-
-            const dateA = new Date(yearA, monthA - 1, dayA);
-            const dateB = new Date(yearB, monthB - 1, dayB);
-            const today = new Date();
-
-            if (dateA > today || dateB > today || yearA < 1920 || yearB < 1920) {
+            if (!answersA || !answersB || birthdayA === false || birthdayB === false) {
+                document.getElementById('form-error').textContent = birthdayA === false || birthdayB === false
+                    ? '선택 생년월일을 입력했다면 올바른 날짜로 완성해주세요.'
+                    : '두 사람 모두 8개 문항에 답해주세요.';
                 document.getElementById('form-error').classList.remove('hidden');
                 return;
             }
 
             document.getElementById('form-error').classList.add('hidden');
 
-            // Store data in localStorage
             const formData = {
-                personA: {
-                    name: nameA,
-                    year: parseInt(yearA),
-                    month: parseInt(monthA),
-                    day: parseInt(dayA)
-                },
-                personB: {
-                    name: nameB,
-                    year: parseInt(yearB),
-                    month: parseInt(monthB),
-                    day: parseInt(dayB)
-                }
+                nameA,
+                nameB,
+                answersA,
+                answersB
             };
+
+            if (birthdayA) formData.birthdayA = birthdayA;
+            if (birthdayB) formData.birthdayB = birthdayB;
 
             localStorage.setItem('compatibility-data', JSON.stringify(formData));
 
-            // Redirect to result page
             window.location.href = '/ko/compatibility/result/';
         });
     </script>
@@ -952,12 +993,8 @@
             // Track conversion if this was a referral
             if (typeof ComparisonLandingManager !== 'undefined' && ComparisonLandingManager.referralData) {
                 const formData = {
-                    personB: {
-                        name: document.getElementById('name-b').value.trim(),
-                        year: parseInt(document.getElementById('year-b').value),
-                        month: parseInt(document.getElementById('month-b').value),
-                        day: parseInt(document.getElementById('day-b').value)
-                    }
+                    nameB: document.getElementById('name-b').value.trim(),
+                    answersB: typeof collectAnswers === 'function' ? collectAnswers('b') : null
                 };
                 ComparisonLandingManager.onFormSubmit(formData);
             }
