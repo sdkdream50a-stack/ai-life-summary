@@ -218,10 +218,10 @@
 <span>Share</span>
 </button>
 <!-- Mobile Share & Menu -->
-<button class="md:hidden kick-btn kick-btn-primary p-1.5 rounded-lg" id="share-btn-mobile">
+<button class="md:hidden kick-btn kick-btn-primary p-1.5 rounded-lg" id="share-btn-mobile" aria-label="공유">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
-<button class="md:hidden text-white p-1" id="mobile-menu-btn">
+<button class="md:hidden text-white p-1" id="mobile-menu-btn" aria-label="메뉴 열기">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
@@ -230,7 +230,7 @@
 <!-- Mobile Menu Overlay -->
 <div class="hidden fixed inset-0 z-[999] bg-black/90 backdrop-blur-xl" id="mobile-menu">
 <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
-<button class="absolute top-6 right-6 text-white text-3xl" id="mobile-menu-close">×</button>
+<button class="absolute top-6 right-6 text-white text-3xl" id="mobile-menu-close" aria-label="메뉴 닫기">×</button>
 <a class="text-2xl text-white font-bold hover:text-pink-400 transition" href="/compatibility/">❤️‍🔥 <span>Compatibility</span></a>
 <a class="text-2xl text-white font-bold hover:text-purple-400 transition" href="/life-summary/">🔮 <span>Soul Type</span></a>
 <a class="text-2xl text-cyan-400 font-bold" href="/age-calculator/">⏳ <span>Mental Age</span></a>
