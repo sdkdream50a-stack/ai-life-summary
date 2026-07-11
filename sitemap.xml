@@ -1657,4 +1657,64 @@
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/communication-style/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/communication-style/"/>
   </url>
+  <url>
+    <loc>https://smartaitest.com/ko/work-style/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/en/work-style/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/ja/work-style/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/zh/work-style/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/es/work-style/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
 </urlset>
