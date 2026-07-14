@@ -3,6 +3,11 @@
 <head>
     <!-- GA loaded via consent-manager.js --><!-- Clarity loaded via consent-manager.js --><!-- AdSense loaded via consent-manager.js -->
 <meta charset="UTF-8">
+    <script>
+    // Privacy: strip any legacy PII-bearing query params (birthdays/names) from the
+    // URL on load, so old shared links cannot display or be re-shared with personal data.
+    (function(){try{var u=new URL(window.location.href);var k=['a','b','na','nb','ref_dob','ref_name'];var c=false;k.forEach(function(p){if(u.searchParams.has(p)){u.searchParams.delete(p);c=true;}});if(c)window.history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}catch(e){}})();
+    </script>
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
