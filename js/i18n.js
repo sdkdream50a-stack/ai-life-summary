@@ -165,9 +165,9 @@ const translations = {
         "insights.lucky_element_desc": "Natural element connection",
         "insights.what_means": "What This Means For You",
         "insights.p1": "A deterministic month-and-day birthday hash selected elements from fixed narrative templates. The text and illustrative indicators are entertainment only; they do not identify personality traits, life themes, or factual insights.",
-        "insights.p2": "Your core trait reflects the fundamental strength that guides you through life's challenges. This characteristic often manifests in how you approach problems, relate to others, and pursue your goals. Embracing this trait can help you navigate difficult situations with greater confidence and clarity.",
-        "insights.p3": "The life phase indicator suggests the general theme of your current life chapter. Understanding this can provide perspective on the opportunities and challenges you might be experiencing, helping you make decisions that align with your natural rhythm.",
-        "insights.p4": "Your lucky element represents a deeper connection to natural forces that ancient traditions believed influenced human destiny. Whether you take this literally or metaphorically, many find that reflecting on elemental connections brings a sense of grounding and purpose.",
+        "insights.p2": "The story-theme label is selected from a fixed template library. Treat it as a writing theme, not a measured strength or personal guide.",
+        "insights.p3": "The story-phase label is fixed template text. It does not determine your current chapter, opportunities, challenges, or decisions.",
+        "insights.p4": "The playful element is a symbolic conversation theme. It does not predict reality, destiny, or a connection with nature.",
 
         // Related Tests
         "related.title": "Try These Related Tests",
@@ -185,7 +185,7 @@ const translations = {
         // Testimonials
         "testimonials.title": "What Others Are Saying",
         "testimonials.description": "Read what others are saying about their life summaries",
-        "testimonials.t1": "I was amazed at how accurate my life summary felt. It perfectly captured something I've always known about myself but never put into words.",
+        "testimonials.t1": "The birthday-hash result gave my friends and me a fun conversation prompt.",
         "testimonials.t2": "My friends and I spent hours comparing our results. It's such a fun way to learn more about each other and start meaningful conversations.",
         "testimonials.t3": "The image generator is amazing! I shared my result on Instagram and got so many comments. Everyone wanted to try it for themselves.",
 
@@ -763,8 +763,8 @@ const translations = {
         "insights.lucky_element_desc": "자연 원소와의 연결",
         "insights.what_means": "이것이 당신에게 의미하는 것",
         "insights.p1": "월·일 기반 결정론적 생년월일 해시가 고정 서사 템플릿 요소를 선택했습니다. 문구와 예시 지표는 오락용이며 성격 특성, 인생 테마, 사실적 통찰을 식별하지 않습니다.",
-        "insights.p2": "핵심 특성은 인생의 도전을 통해 당신을 안내하는 근본적인 강점을 반영합니다. 이 특성은 문제에 접근하고, 다른 사람들과 관계를 맺고, 목표를 추구하는 방식에서 종종 나타납니다. 이 특성을 받아들이면 더 큰 자신감과 명확성으로 어려운 상황을 헤쳐나갈 수 있습니다.",
-        "insights.p3": "인생 단계 지표는 현재 인생 장의 일반적인 테마를 제안합니다. 이를 이해하면 경험하고 있는 기회와 도전에 대한 관점을 제공하여, 자연스러운 리듬에 맞는 결정을 내리는 데 도움이 됩니다.",
+        "insights.p2": "이야기 테마 라벨은 고정 템플릿 라이브러리에서 선택됩니다. 측정된 강점이나 개인 지침이 아니라 글쓰기 주제로 봐 주세요.",
+        "insights.p3": "이야기 단계 라벨은 고정 템플릿 문구입니다. 현재 인생 단계, 기회, 도전, 결정을 판단하지 않습니다.",
         "insights.p4": "행운의 원소는 고대 전통이 인간의 운명에 영향을 미친다고 믿었던 자연의 힘과의 더 깊은 연결을 나타냅니다. 이를 문자 그대로 받아들이든 은유적으로 받아들이든, 많은 사람들이 원소적 연결에 대한 성찰이 기반과 목적의 감각을 가져다준다고 느낍니다.",
 
         // Related Tests
@@ -783,7 +783,7 @@ const translations = {
         // Testimonials
         "testimonials.title": "사용자들의 이야기",
         "testimonials.description": "다른 사람들의 인생 요약 소감을 확인해보세요",
-        "testimonials.t1": "내 인생 요약이 얼마나 정확하게 느껴지는지 놀랐습니다. 항상 알고 있었지만 말로 표현하지 못했던 것을 완벽하게 포착했습니다.",
+        "testimonials.t1": "생년월일 해시 결과가 친구들과 재미있게 대화할 소재가 됐습니다.",
         "testimonials.t2": "친구들과 함께 몇 시간 동안 결과를 비교했습니다. 서로에 대해 더 알아가고 의미 있는 대화를 시작하는 재미있는 방법입니다.",
         "testimonials.t3": "이미지 생성기가 놀랍습니다! 인스타그램에 결과를 공유했더니 많은 댓글이 달렸습니다. 모두가 직접 시도해보고 싶어했습니다.",
 

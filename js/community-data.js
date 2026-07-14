@@ -255,7 +255,7 @@ const GENERIC_CONTENTS = {
     '제 소울 타입이 이거였다니... 신기해요'
   ],
   en: [
-    'My test result was so accurate today! Amazing!',
+    'Today\'s result was a fun conversation prompt!',
     'Tried the compatibility test with a friend - it was fun!',
     'Daily testing is keeping my streak up. Feeling proud!',
     'This app helped me understand my personality better',
@@ -263,7 +263,7 @@ const GENERIC_CONTENTS = {
     'Today\'s question was fun! What did everyone pick?',
     'Finally leveled up! Consistency pays off',
     'Any same type folks here? Nice to meet you!',
-    'Sharing my test result~ It\'s surprisingly accurate',
+    'Sharing my result~ It was fun to compare with friends',
     '7 days in a row! Keeping the streak alive',
     'Got a new badge! Feeling good',
     'Everyone, have a great day!',
@@ -300,7 +300,7 @@ const GENERIC_CONTENTS = {
     '原来我的灵魂类型是这个...真神奇'
   ],
   es: [
-    '¡Mi resultado de hoy fue muy preciso! ¡Increíble!',
+    '¡El resultado de hoy fue un tema divertido de conversación!',
     'Hice la prueba de compatibilidad con un amigo - ¡fue divertido!',
     'Las pruebas diarias mantienen mi racha. ¡Me siento orgulloso!',
     'Esta app me ayudó a entender mejor mi personalidad',
@@ -308,7 +308,7 @@ const GENERIC_CONTENTS = {
     '¡La pregunta de hoy fue divertida! ¿Qué eligieron todos?',
     '¡Por fin subí de nivel! La constancia da frutos',
     '¿Hay alguien del mismo tipo? ¡Encantado de conocerte!',
-    'Comparto mi resultado~ Es sorprendentemente preciso',
+    'Comparto mi resultado~ Fue divertido compararlo con amigos',
     '¡7 días seguidos! Manteniendo la racha',
     '¡Obtuve una nueva insignia! Me siento bien',
     '¡Todos, tengan un gran día!',
