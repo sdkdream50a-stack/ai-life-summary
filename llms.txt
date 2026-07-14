@@ -38,8 +38,8 @@ AI Life Summary (AI Test Lab) is a free web application with self-report persona
 4. User receives an illustrative age comparison for entertainment, not a scientific assessment
 
 ## Target Audience
-- People interested in personality analysis
-- Users curious about birthday-based insights
+- People interested in personality questionnaires
+- Users curious about birthday-hash entertainment prompts
 - Adults interested in mental and energy age comparison
 - Social media users who enjoy sharing personality content
 - 50+ adults learning web development (blog content)
