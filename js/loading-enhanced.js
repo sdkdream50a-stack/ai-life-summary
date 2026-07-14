@@ -26,74 +26,44 @@ class EnhancedLoadingManager {
   getLogMessages() {
     const messages = {
       ko: [
-        { text: 'AI 분석 엔진 초기화 중...', delay: 0 },
-        { text: '신경망 패턴 분석 시작...', delay: 300 },
-        { text: '<span class="data">2,847,392</span>개 데이터 포인트 로드 완료', delay: 600, type: 'success' },
-        { text: '감정 깊이 점수 계산 중...', delay: 900, type: 'processing' },
-        { text: '심리학적 프로파일 매칭...', delay: 1200 },
-        { text: '글로벌 데이터베이스 접근 중...', delay: 1500 },
-        { text: '<span class="highlight">고유 패턴</span> 감지됨!', delay: 1800, type: 'success' },
-        { text: '소울 타입 분류 알고리즘 실행...', delay: 2100 },
-        { text: '성격 특성 벡터 계산...', delay: 2400, type: 'processing' },
-        { text: '상위 <span class="data">3%</span> 희귀도 매칭...', delay: 2700 },
-        { text: '최종 결과 생성 중...', delay: 3000 },
-        { text: '<span class="success-text">분석 완료!</span> 결과 준비됨', delay: 3300, type: 'success' }
+        { text: '결과를 준비하고 있어요...', delay: 0 },
+        { text: '입력한 내용을 정리하는 중...', delay: 600 },
+        { text: '결과를 구성하는 중...', delay: 1200, type: 'processing' },
+        { text: '재미있는 결과를 만드는 중...', delay: 1800 },
+        { text: '거의 다 됐어요...', delay: 2400 },
+        { text: '<span class="success-text">완료!</span> 결과가 준비됐어요', delay: 3000, type: 'success' }
       ],
       en: [
-        { text: 'Initializing AI analysis engine...', delay: 0 },
-        { text: 'Analyzing neural patterns...', delay: 300 },
-        { text: '<span class="data">2,847,392</span> data points loaded', delay: 600, type: 'success' },
-        { text: 'Calculating emotional depth score...', delay: 900, type: 'processing' },
-        { text: 'Matching psychological profile...', delay: 1200 },
-        { text: 'Accessing global database...', delay: 1500 },
-        { text: '<span class="highlight">Unique pattern</span> detected!', delay: 1800, type: 'success' },
-        { text: 'Running soul type classification...', delay: 2100 },
-        { text: 'Computing personality trait vectors...', delay: 2400, type: 'processing' },
-        { text: 'Matching top <span class="data">3%</span> rarity...', delay: 2700 },
-        { text: 'Generating final results...', delay: 3000 },
-        { text: '<span class="success-text">Analysis complete!</span> Results ready', delay: 3300, type: 'success' }
+        { text: 'Preparing your result...', delay: 0 },
+        { text: 'Reviewing your inputs...', delay: 600 },
+        { text: 'Putting your result together...', delay: 1200, type: 'processing' },
+        { text: 'Adding the fun details...', delay: 1800 },
+        { text: 'Almost there...', delay: 2400 },
+        { text: '<span class="success-text">Done!</span> Your result is ready', delay: 3000, type: 'success' }
       ],
       ja: [
-        { text: 'AI分析エンジン初期化中...', delay: 0 },
-        { text: 'ニューラルパターン分析開始...', delay: 300 },
-        { text: '<span class="data">2,847,392</span>データポイント読込完了', delay: 600, type: 'success' },
-        { text: '感情深度スコア計算中...', delay: 900, type: 'processing' },
-        { text: '心理プロファイルマッチング...', delay: 1200 },
-        { text: 'グローバルデータベースにアクセス中...', delay: 1500 },
-        { text: '<span class="highlight">ユニークパターン</span>検出！', delay: 1800, type: 'success' },
-        { text: 'ソウルタイプ分類実行中...', delay: 2100 },
-        { text: '性格特性ベクトル計算中...', delay: 2400, type: 'processing' },
-        { text: '上位<span class="data">3%</span>レアリティマッチング...', delay: 2700 },
-        { text: '最終結果生成中...', delay: 3000 },
-        { text: '<span class="success-text">分析完了！</span>結果準備完了', delay: 3300, type: 'success' }
+        { text: '結果を準備しています...', delay: 0 },
+        { text: '入力内容を確認中...', delay: 600 },
+        { text: '結果を組み立て中...', delay: 1200, type: 'processing' },
+        { text: '楽しい結果を作成中...', delay: 1800 },
+        { text: 'もうすぐ完了...', delay: 2400 },
+        { text: '<span class="success-text">完了！</span>結果の準備ができました', delay: 3000, type: 'success' }
       ],
       zh: [
-        { text: '正在初始化AI分析引擎...', delay: 0 },
-        { text: '开始分析神经模式...', delay: 300 },
-        { text: '<span class="data">2,847,392</span>个数据点加载完成', delay: 600, type: 'success' },
-        { text: '正在计算情感深度分数...', delay: 900, type: 'processing' },
-        { text: '匹配心理档案...', delay: 1200 },
-        { text: '正在访问全球数据库...', delay: 1500 },
-        { text: '检测到<span class="highlight">独特模式</span>！', delay: 1800, type: 'success' },
-        { text: '运行灵魂类型分类...', delay: 2100 },
-        { text: '计算性格特征向量...', delay: 2400, type: 'processing' },
-        { text: '匹配前<span class="data">3%</span>稀有度...', delay: 2700 },
-        { text: '正在生成最终结果...', delay: 3000 },
-        { text: '<span class="success-text">分析完成！</span>结果已准备好', delay: 3300, type: 'success' }
+        { text: '正在准备你的结果...', delay: 0 },
+        { text: '正在整理你的输入...', delay: 600 },
+        { text: '正在生成结果...', delay: 1200, type: 'processing' },
+        { text: '正在添加趣味细节...', delay: 1800 },
+        { text: '即将完成...', delay: 2400 },
+        { text: '<span class="success-text">完成！</span>结果已准备好', delay: 3000, type: 'success' }
       ],
       es: [
-        { text: 'Inicializando motor de análisis AI...', delay: 0 },
-        { text: 'Analizando patrones neuronales...', delay: 300 },
-        { text: '<span class="data">2,847,392</span> puntos de datos cargados', delay: 600, type: 'success' },
-        { text: 'Calculando puntuación de profundidad emocional...', delay: 900, type: 'processing' },
-        { text: 'Emparejando perfil psicológico...', delay: 1200 },
-        { text: 'Accediendo a base de datos global...', delay: 1500 },
-        { text: '¡<span class="highlight">Patrón único</span> detectado!', delay: 1800, type: 'success' },
-        { text: 'Ejecutando clasificación de tipo de alma...', delay: 2100 },
-        { text: 'Calculando vectores de rasgos de personalidad...', delay: 2400, type: 'processing' },
-        { text: 'Emparejando rareza del top <span class="data">3%</span>...', delay: 2700 },
-        { text: 'Generando resultados finales...', delay: 3000 },
-        { text: '<span class="success-text">¡Análisis completo!</span> Resultados listos', delay: 3300, type: 'success' }
+        { text: 'Preparando tu resultado...', delay: 0 },
+        { text: 'Revisando tus respuestas...', delay: 600 },
+        { text: 'Armando tu resultado...', delay: 1200, type: 'processing' },
+        { text: 'Agregando los detalles divertidos...', delay: 1800 },
+        { text: 'Casi listo...', delay: 2400 },
+        { text: '<span class="success-text">¡Listo!</span> Tu resultado está preparado', delay: 3000, type: 'success' }
       ]
     };
 
