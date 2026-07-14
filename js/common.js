@@ -120,7 +120,7 @@ function getFooterHTML() {
                         <span class="font-heading font-bold text-xl text-white">AI Life Summary</span>
                     </div>
                     <p class="text-gray-400 text-sm" data-i18n="footer.description">
-                        Discover who you are with AI-powered life summaries. A fun and insightful way to understand yourself better.
+                        Enjoy birthday-hash life summaries as playful prompts for reflection and sharing.
                     </p>
                 </div>
                 <div>

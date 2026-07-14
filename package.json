@@ -1,7 +1,7 @@
 {
   "name": "ai-life-summary",
   "version": "1.0.0",
-  "description": "AI Life Summary - AI-powered life summary generator",
+  "description": "AI Life Summary - deterministic birthday-hash entertainment generator",
   "scripts": {
     "build:blog": "node scripts/build-blog.js",
     "new:post": "node scripts/new-post.js",

@@ -56,52 +56,52 @@ const RADAR_TRAITS = {
 // Provocative viral copy templates
 const VIRAL_COPY = {
   ko: [
-    { text: '내 정신 연령은 상위 {percent}%?', emoji: '🧠' },
+    { text: '재미용 정신 나이 점수 상위 {percent}%?', emoji: '🧠' },
     { text: '이 유형은 100명 중 {count}명뿐!', emoji: '💎' },
     { text: '당신의 숨겨진 잠재력 발견!', emoji: '✨' },
     { text: '이 조합은 전 세계 {percent}% 미만!', emoji: '🌍' },
     { text: '나만의 특별한 소울 DNA 공개!', emoji: '🔬' },
-    { text: 'AI가 분석한 나의 진짜 모습', emoji: '🤖' },
+    { text: '답변으로 만든 나의 오락용 프로필', emoji: '🧩' },
     { text: '이런 유형 처음 봤다고요?', emoji: '😱' },
     { text: '감성 지수 {score}점 달성!', emoji: '💕' }
   ],
   en: [
-    { text: 'My mental age is in the top {percent}%?', emoji: '🧠' },
+    { text: 'My playful mental-age score is in the top {percent}%?', emoji: '🧠' },
     { text: 'Only {count} out of 100 have this type!', emoji: '💎' },
     { text: 'Your hidden potential revealed!', emoji: '✨' },
     { text: 'This combo is less than {percent}% worldwide!', emoji: '🌍' },
     { text: 'My unique Soul DNA revealed!', emoji: '🔬' },
-    { text: 'AI analyzed my true self', emoji: '🤖' },
+    { text: 'My entertainment profile from my answers', emoji: '🧩' },
     { text: "Never seen this type before?", emoji: '😱' },
     { text: 'Emotion score: {score} achieved!', emoji: '💕' }
   ],
   ja: [
-    { text: '私の精神年齢は上位{percent}%?', emoji: '🧠' },
+    { text: '娯楽用メンタル年齢スコアは上位{percent}%?', emoji: '🧠' },
     { text: 'このタイプは100人中{count}人だけ!', emoji: '💎' },
     { text: 'あなたの隠れた可能性を発見!', emoji: '✨' },
     { text: 'この組み合わせは世界の{percent}%未満!', emoji: '🌍' },
     { text: '私だけの特別なソウルDNA公開!', emoji: '🔬' },
-    { text: 'AIが分析した本当の私', emoji: '🤖' },
+    { text: '回答から作った娯楽用プロフィール', emoji: '🧩' },
     { text: 'こんなタイプ初めて見た?', emoji: '😱' },
     { text: '感性指数{score}点達成!', emoji: '💕' }
   ],
   zh: [
-    { text: '我的心理年龄是前{percent}%?', emoji: '🧠' },
+    { text: '我的娱乐心理年龄分数进入前{percent}%?', emoji: '🧠' },
     { text: '100人中只有{count}人是这个类型!', emoji: '💎' },
     { text: '发现你隐藏的潜力!', emoji: '✨' },
     { text: '这个组合全球不到{percent}%!', emoji: '🌍' },
     { text: '我独特的灵魂DNA公开!', emoji: '🔬' },
-    { text: 'AI分析了真实的我', emoji: '🤖' },
+    { text: '根据回答生成的娱乐性个人档案', emoji: '🧩' },
     { text: '第一次见到这种类型?', emoji: '😱' },
     { text: '感性指数达到{score}分!', emoji: '💕' }
   ],
   es: [
-    { text: '¿Mi edad mental está en el top {percent}%?', emoji: '🧠' },
+    { text: '¿Mi puntuación lúdica de edad mental está en el top {percent}%?', emoji: '🧠' },
     { text: '¡Solo {count} de 100 tienen este tipo!', emoji: '💎' },
     { text: '¡Tu potencial oculto revelado!', emoji: '✨' },
     { text: '¡Esta combo es menos del {percent}% mundial!', emoji: '🌍' },
     { text: '¡Mi ADN de Alma único revelado!', emoji: '🔬' },
-    { text: 'AI analizó mi verdadero yo', emoji: '🤖' },
+    { text: 'Mi perfil lúdico creado a partir de mis respuestas', emoji: '🧩' },
     { text: '¿Nunca viste este tipo antes?', emoji: '😱' },
     { text: '¡Puntuación emocional: {score} lograda!', emoji: '💕' }
   ]

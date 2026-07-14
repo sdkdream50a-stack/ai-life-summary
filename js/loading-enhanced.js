@@ -83,11 +83,11 @@ class EnhancedLoadingManager {
         es: 'Procesando...'
       },
       aiAnalysis: {
-        ko: 'AI 분석',
-        en: 'AI Analysis',
-        ja: 'AI分析',
-        zh: 'AI分析',
-        es: 'Análisis AI'
+        ko: '결과 계산',
+        en: 'Calculating Result',
+        ja: '結果を計算中',
+        zh: '正在计算结果',
+        es: 'Calculando el resultado'
       }
     };
 

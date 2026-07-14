@@ -1,13 +1,13 @@
 # AI Life Summary (AI Test Lab)
 
-> AI-powered personality tests and life insights generator.
+> Self-report personality questionnaires and deterministic entertainment tools.
 
 ## About
-AI Life Summary (AI Test Lab) is a free web application that provides AI-powered personality tests and life insights. Our main services include AI Life Summary (birthday-based personality insights) and AI Age Calculator (real age vs mental age vs energy age comparison).
+AI Life Summary (AI Test Lab) is a free web application with self-report personality questionnaires and deterministic entertainment tools. Its services include a birthday-hash life summary, an answer-difference compatibility quiz, a four-axis personality type questionnaire, and a rule-based age comparison.
 
 ## Features
-- Free AI-generated life summaries based on birthday
-- AI Age Calculator with mental and energy age analysis
+- Free template-generated life summaries selected by a birthday hash
+- Rule-based age calculator with playful mental- and energy-age estimates
 - Instant results with no registration required
 - Available in 5 languages (English, Korean, Japanese, Chinese, Spanish)
 - Share results on social media
@@ -28,14 +28,14 @@ AI Life Summary (AI Test Lab) is a free web application that provides AI-powered
 ## How It Works
 ### AI Life Summary
 1. User enters their birthday (month and day)
-2. AI analyzes the date and generates a unique life summary
+2. A deterministic birthday hash selects components from fixed narrative templates
 3. User can view, share, or download their personalized result
 
 ### AI Age Calculator
 1. User enters their birth date
 2. User answers 7 lifestyle questions
-3. AI calculates real age, mental age, and energy age
-4. User receives detailed comparison and insights
+3. Fixed, hand-assigned offsets are applied to the 7 answers
+4. User receives an illustrative age comparison for entertainment, not a scientific assessment
 
 ## Target Audience
 - People interested in personality analysis

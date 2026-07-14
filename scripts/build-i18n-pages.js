@@ -23,31 +23,31 @@ const META_CONTENT = {
     home: {
         en: {
             title: 'AI Test Lab - Free AI Personality Tests | Life Summary, Compatibility, Age',
-            description: 'Discover yourself with AI-powered personality tests! Enter your birthday and get results in 1 minute. Life Summary, Compatibility Test, Mental Age Calculator. Free and instant.',
+            description: 'Free self-discovery questionnaires and deterministic entertainment tools. Try a personality type questionnaire, birthday-based life summary, compatibility quiz, and playful age calculator.',
             ogTitle: 'What\'s Your AI Soul Type? - Free Test',
             ogDescription: 'Discover your true self in 1 minute. Find your soul type!'
         },
         ko: {
             title: 'AI 테스트 랩 - 무료 AI 심리테스트 | 인생요약, 궁합, 나이계산',
-            description: 'AI가 분석하는 무료 심리테스트! 생년월일만 입력하면 1분만에 결과 확인. 인생요약, 궁합테스트, 정신나이 계산까지. 전 세계가 선택한 인기 테스트!',
+            description: '무료 자기이해 문항과 규칙 기반 엔터테인먼트 도구를 즐겨보세요. 성격 유형 문항, 생년월일 인생요약, 궁합, 오락용 나이 계산을 제공합니다.',
             ogTitle: '나의 AI 소울 타입은? - 무료 테스트',
             ogDescription: '1분 만에 알아보는 나의 진짜 모습. 수많은 사람들이 발견한 소울 타입!'
         },
         ja: {
             title: 'AIテストラボ - 無料AI性格診断 | 人生要約、相性、年齢計算',
-            description: 'AIが分析する無料性格診断！誕生日を入力するだけで1分で結果確認。人生要約、相性テスト、精神年齢計算まで。世界中で人気のテスト！',
+            description: '無料の自己理解アンケートと決定論的な娯楽ツール。性格タイプ、誕生日ベースの人生要約、相性、娯楽用年齢計算を楽しめます。',
             ogTitle: 'あなたのAIソウルタイプは？ - 無料テスト',
             ogDescription: '1分で分かるあなたの本当の姿。あなたのソウルタイプを発見！'
         },
         zh: {
             title: 'AI测试实验室 - 免费AI性格测试 | 人生总结、配对、年龄计算',
-            description: 'AI分析的免费性格测试！只需输入生日，1分钟内得到结果。人生总结、配对测试、心理年龄计算。全球热门测试！',
+            description: '免费的自我探索问卷和确定性娱乐工具，包括性格类型、生日人生总结、配对和娱乐性年龄计算。',
             ogTitle: '你的AI灵魂类型是什么？ - 免费测试',
             ogDescription: '1分钟发现真正的自己。发现你的灵魂类型！'
         },
         es: {
             title: 'AI Test Lab - Tests de Personalidad IA Gratis | Resumen de Vida, Compatibilidad, Edad',
-            description: 'Descubre tu personalidad con tests impulsados por IA! Ingresa tu cumpleanos y obtene resultados en 1 minuto. Resumen de vida, test de compatibilidad, calculadora de edad mental. Tests populares!',
+            description: 'Cuestionarios de autoconocimiento y herramientas deterministas de entretenimiento: tipo de personalidad, resumen por cumpleaños, compatibilidad y calculadora ludica de edad.',
             ogTitle: 'Cual es tu tipo de alma IA? - Test Gratis',
             ogDescription: 'Descubre tu verdadero yo en 1 minuto. Encuentra tu tipo de alma!'
         }
@@ -55,33 +55,33 @@ const META_CONTENT = {
     'life-summary': {
         en: {
             title: 'AI Life Summary - Your Life in One AI Sentence | Free Test',
-            description: 'Get your personalized AI-generated life summary! Enter your birthday and discover your core traits, life phase, and lucky element. Free & instant results!',
+            description: 'Enter your birthday to generate a playful life-summary sentence from a deterministic hash and narrative templates. Free, instant, and for entertainment.',
             ogTitle: 'AI Life Summary - Your Life in One Sentence',
-            ogDescription: 'What if AI could summarize your entire life in one sentence? Find out now!'
+            ogDescription: 'Generate a playful one-sentence life summary from your birthday.'
         },
         ko: {
             title: 'AI 인생요약 - 생년월일로 보는 내 인생 한 문장 | 무료 테스트',
-            description: '생년월일만 입력하면 AI가 당신의 인생을 한 문장으로 요약! 핵심특성, 인생단계, 행운원소까지. 100% 무료, 1분만에 결과 확인!',
+            description: '생년월일 해시와 문장 템플릿으로 오락용 인생 한 문장을 만들어보세요. 무료이며 즉시 결과를 확인할 수 있습니다.',
             ogTitle: 'AI 인생요약 - 내 인생을 한 문장으로?',
-            ogDescription: '생년월일만 입력하면 AI가 당신의 인생을 한 문장으로 요약!'
+            ogDescription: '생년월일 해시로 오락용 인생 한 문장을 만들어보세요.'
         },
         ja: {
             title: 'AIライフサマリー - あなたの人生を一文で | 無料テスト',
-            description: '誕生日を入力するだけでAIがあなたの人生を一文で要約！核心的特性、人生段階、ラッキーエレメントまで。100%無料、1分で結果確認！',
+            description: '誕生日ハッシュと文章テンプレートで娯楽用の人生要約を一文で生成。無料ですぐに結果を確認できます。',
             ogTitle: 'AIライフサマリー - あなたの人生を一文で',
-            ogDescription: 'AIがあなたの人生を一文で要約できたら？今すぐ確認！'
+            ogDescription: '誕生日から娯楽用の人生要約を一文で生成します。'
         },
         zh: {
             title: 'AI人生总结 - 一句话概括你的人生 | 免费测试',
-            description: '只需输入生日，AI就能用一句话总结你的人生！核心特质、人生阶段、幸运元素。100%免费，1分钟出结果！',
+            description: '使用生日哈希和句子模板生成娱乐性一句话人生总结。免费并即时出结果。',
             ogTitle: 'AI人生总结 - 一句话概括你的人生',
-            ogDescription: '如果AI能用一句话总结你的整个人生呢？现在就来发现！'
+            ogDescription: '根据生日生成娱乐性一句话人生总结。'
         },
         es: {
             title: 'Resumen de Vida IA - Tu Vida en Una Oracion IA | Test Gratis',
-            description: 'Obtene tu resumen de vida personalizado generado por IA! Ingresa tu cumpleanos y descubre tus rasgos principales, fase de vida y elemento de suerte. Gratis e instantaneo!',
+            description: 'Genera una frase ludica con un hash de tu cumpleaños y plantillas narrativas. Gratis, instantaneo y solo para entretenimiento.',
             ogTitle: 'Resumen de Vida IA - Tu Vida en Una Oracion',
-            ogDescription: 'Y si la IA pudiera resumir toda tu vida en una oracion? Descubrilo ahora!'
+            ogDescription: 'Genera una frase ludica de vida basada en tu cumpleaños.'
         }
     },
     compatibility: {
@@ -183,33 +183,33 @@ const META_CONTENT = {
     'age-calculator': {
         en: {
             title: 'AI Age Calculator - Real Age vs Mental Age vs Energy Age | AI Test Lab',
-            description: 'Discover your TRUE age with AI! Compare your real age, mental age, and energy age. Answer lifestyle questions and get your personalized age analysis. Free!',
+            description: 'Compare calendar age with playful mental-age and energy-age estimates calculated from 7 lifestyle answers. Free entertainment, not a psychological assessment.',
             ogTitle: 'Are You a Boomer in a Gen-Z Body? - AI Age Calculator',
-            ogDescription: 'Your ID says one thing. AI says another. Find out your REAL mental age!'
+            ogDescription: 'Compare your calendar age with playful estimates based on 7 lifestyle answers.'
         },
         ko: {
             title: 'AI 나이 계산기 - 실제 나이 vs 정신 나이 vs 에너지 나이 | AI Test Lab',
-            description: 'AI로 진짜 나이를 발견하세요! 실제 나이, 정신 나이, 에너지 나이를 비교. 라이프스타일 질문에 답하고 개인화된 나이 분석을 받으세요. 무료!',
+            description: '실제 나이와 라이프스타일 7문항으로 계산한 오락용 정신 나이·에너지 나이를 비교해 보세요. 심리 평가가 아닌 무료 엔터테인먼트입니다.',
             ogTitle: '꼰대력 테스트 - 당신은 MZ인 척하는 꼰대?',
-            ogDescription: '주민등록증 나이가 다가 아니다. AI가 말해주는 진짜 정신 나이!'
+            ogDescription: '실제 나이와 라이프스타일 답변으로 계산한 오락용 나이를 비교해 보세요.'
         },
         ja: {
             title: 'AI年齢計算機 - 実年齢 vs 精神年齢 vs エネルギー年齢 | AI Test Lab',
-            description: 'AIで本当の年齢を発見！実年齢、精神年齢、エネルギー年齢を比較。ライフスタイルの質問に答えて、パーソナライズされた年齢分析を受けよう。無料！',
+            description: '実年齢と7つの回答から算出する娯楽用の精神年齢・エネルギー年齢を比較。心理評価ではない無料ツールです。',
             ogTitle: 'あなたはZ世代の体にいるブーマー？ - AI年齢計算機',
-            ogDescription: 'IDには一つのことが書いてある。AIは別のことを言う。本当の精神年齢を発見！'
+            ogDescription: '実年齢とライフスタイル回答による娯楽用の年齢を比較。'
         },
         zh: {
             title: 'AI年龄计算器 - 实际年龄 vs 心理年龄 vs 能量年龄 | AI Test Lab',
-            description: '用AI发现你的真实年龄！比较你的实际年龄、心理年龄和能量年龄。回答生活方式问题，获得个性化年龄分析。免费！',
+            description: '比较实际年龄与根据7道生活方式问题计算的娱乐性心理年龄、能量年龄。免费使用，不属于心理评估。',
             ogTitle: '你是披着Z世代皮的老人吗？ - AI年龄计算器',
-            ogDescription: '身份证说一回事。AI说另一回事。发现你真正的心理年龄！'
+            ogDescription: '比较实际年龄与生活方式回答计算的娱乐性年龄。'
         },
         es: {
             title: 'Calculadora de Edad IA - Edad Real vs Edad Mental vs Edad de Energia | AI Test Lab',
-            description: 'Descubre tu edad REAL con IA! Compara tu edad real, edad mental y edad de energia. Responde preguntas de estilo de vida y obtene tu analisis de edad personalizado. Gratis!',
+            description: 'Compara tu edad cronologica con estimaciones ludicas calculadas a partir de 7 respuestas de estilo de vida. Gratis; no es una evaluacion psicologica.',
             ogTitle: 'Eres un Boomer en un Cuerpo Gen-Z? - Calculadora de Edad IA',
-            ogDescription: 'Tu ID dice una cosa. La IA dice otra. Descubre tu edad mental REAL!'
+            ogDescription: 'Compara tu edad cronologica con estimaciones ludicas basadas en tus respuestas.'
         }
     }
 };
@@ -679,67 +679,67 @@ function addQuizSchema(html, pageName, lang) {
         'life-summary': {
             en: {
                 name: 'AI Life Summary Test',
-                description: 'Discover your life in one AI-generated sentence based on your birthday'
+                description: 'Generate a playful sentence from a deterministic birthday hash and narrative templates'
             },
             ko: {
                 name: 'AI 인생 요약 테스트',
-                description: '생년월일 기반 AI가 생성한 한 문장으로 당신의 인생을 발견하세요'
+                description: '생년월일 해시와 문장 템플릿으로 오락용 인생 한 문장을 만들어보세요'
             },
             ja: {
                 name: 'AIライフサマリーテスト',
-                description: '誕生日に基づいてAIが生成した一文であなたの人生を発見'
+                description: '誕生日ハッシュと文章テンプレートで娯楽用の一文を生成'
             },
             zh: {
                 name: 'AI人生总结测试',
-                description: '根据你的生日，AI生成的一句话来发现你的人生'
+                description: '用生日哈希和句子模板生成娱乐性一句话总结'
             },
             es: {
                 name: 'Test de Resumen de Vida IA',
-                description: 'Descubre tu vida en una oracion generada por IA basada en tu cumpleanos'
+                description: 'Genera una frase ludica con un hash de cumpleaños y plantillas narrativas'
             }
         },
         compatibility: {
             en: {
                 name: 'AI Compatibility Test',
-                description: 'Discover your love compatibility with AI analysis based on two birthdays'
+                description: 'Compare two sets of quiz answers with fixed arithmetic weights for entertainment'
             },
             ko: {
                 name: 'AI 궁합 테스트',
-                description: '두 생년월일 기반 AI 분석으로 사랑 궁합을 발견하세요'
+                description: '두 사람의 문항 답변 차이를 고정 가중치로 계산하는 오락용 궁합입니다'
             },
             ja: {
                 name: 'AI相性診断',
-                description: '2つの誕生日に基づくAI分析で恋愛相性を発見'
+                description: '2人の回答差を固定の重みで計算する娯楽用相性テスト'
             },
             zh: {
                 name: 'AI配对测试',
-                description: '根据两个生日的AI分析发现你们的爱情配对'
+                description: '用固定权重计算两人的答题差异，提供娱乐性配对结果'
             },
             es: {
                 name: 'Test de Compatibilidad IA',
-                description: 'Descubre tu compatibilidad amorosa con analisis de IA basado en dos cumpleanos'
+                description: 'Compara las respuestas de dos personas con pesos aritmeticos fijos para entretenimiento'
             }
         },
         'age-calculator': {
             en: {
                 name: 'AI Age Calculator',
-                description: 'Discover your real age, mental age, and energy age with AI analysis'
+                description: 'Compare calendar age with playful estimates calculated from 7 lifestyle answers'
             },
             ko: {
                 name: 'AI 나이 계산기',
-                description: 'AI 분석으로 실제 나이, 정신 나이, 에너지 나이를 발견하세요'
+                description: '라이프스타일 7문항으로 실제 나이와 오락용 나이 추정치를 비교하세요'
             },
             ja: {
                 name: 'AI年齢計算機',
-                description: 'AI分析で実年齢、精神年齢、エネルギー年齢を発見'
+                description: '7つの回答から算出した娯楽用年齢と実年齢を比較'
             },
             zh: {
                 name: 'AI年龄计算器',
-                description: '通过AI分析发现你的实际年龄、心理年龄和能量年龄'
+                description: '用7道生活方式回答计算娱乐性年龄并与实际年龄比较'
             },
             es: {
                 name: 'Calculadora de Edad IA',
-                description: 'Descubre tu edad real, edad mental y edad de energia con analisis de IA'
+                description: 'Compara tu edad cronologica con estimaciones ludicas basadas en 7 respuestas'
             }
         }
     };

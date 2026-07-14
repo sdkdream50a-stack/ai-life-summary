@@ -23,7 +23,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://smartaitest.com/ko/methodology/">
-    <meta property="og:title" content="AI Test Lab의 분석 방법론">
+    <meta property="og:title" content="AI Test Lab의 결과 계산 방식">
     <meta property="og:description" content="심리학 이론과 AI 기술이 만나는 곳. 우리 테스트가 어떻게 설계되었는지 투명하게 공개합니다.">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:locale" content="ko_KR">
@@ -32,7 +32,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/ko/methodology/">
-    <meta name="twitter:title" content="AI Test Lab의 분석 방법론">
+    <meta name="twitter:title" content="AI Test Lab의 결과 계산 방식">
     <meta name="twitter:description" content="심리학 이론과 AI 기술이 만나는 곳. 우리 테스트가 어떻게 설계되었는지 투명하게 공개합니다.">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
 
@@ -124,7 +124,7 @@
             <div class="max-w-4xl mx-auto px-4 py-6">
                 <div class="flex flex-wrap gap-3 justify-center text-sm">
                     <a href="#psychology" class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full hover:bg-indigo-100 transition">도구 유형 구분</a>
-                    <a href="#algorithm" class="px-4 py-2 bg-purple-50 text-purple-700 rounded-full hover:bg-purple-100 transition">AI 알고리즘 원리</a>
+                    <a href="#algorithm" class="px-4 py-2 bg-purple-50 text-purple-700 rounded-full hover:bg-purple-100 transition">고정 규칙 원리</a>
                     <a href="#development" class="px-4 py-2 bg-violet-50 text-violet-700 rounded-full hover:bg-violet-100 transition">테스트 개발 과정</a>
                     <a href="#limitations" class="px-4 py-2 bg-pink-50 text-pink-700 rounded-full hover:bg-pink-100 transition">한계점과 활용법</a>
                 </div>
@@ -144,10 +144,9 @@
 
                     <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                         <p class="text-lg mb-6">
-                            AI Test Lab의 도구는 두 범주로 나뉩니다. <a href="/ko/personality-type/" class="text-indigo-600 hover:underline">AI 성격 유형 분석</a>은
-                            40문항 리커트 자기보고 설문을 채점하는 16유형 검사입니다. 반면
-                            생년월일·별자리 입력을 쓰는 궁합·인생요약 도구는 과학적 심리검사가 아니라
-                            자기 성찰과 공유를 위한 엔터테인먼트입니다.
+                            AI Test Lab의 도구는 입력과 계산 방식이 서로 다릅니다. <a href="/ko/personality-type/" class="text-indigo-600 hover:underline">성격 유형 검사</a>는
+                            40문항 리커트 자기보고 응답을 4개 축으로 합산합니다. 궁합은 두 사람의 리커트 응답 차이에 고정 가중치를 적용하고,
+                            인생요약은 생년월일 해시로 고정 템플릿을 선택합니다. 모두 임상·과학적 심리검사가 아닌 엔터테인먼트입니다.
                         </p>
 
                         <!-- Big Five Model -->
@@ -183,9 +182,8 @@
                         </div>
 
                         <p class="mb-6">
-                            AI Test Lab은 Big Five 같은 성격 심리학 모델을 설명 콘텐츠에서 다루지만,
-                            생년월일 기반 도구가 Big Five 특성을 측정한다고 주장하지 않습니다.
-                            실제 설문 기반 도구는 사용자의 응답 점수를 바탕으로 결과를 산출합니다.
+                            AI Test Lab은 Big Five를 설명 콘텐츠에서 다루지만, 현재 16유형 검사는 Big Five가 아닙니다.
+                            이 검사는 리커트 응답을 E/I, S/N, T/F, J/P 네 축으로 합산하며 과학적 성격 평가로 제공되지 않습니다.
                         </p>
 
                         <!-- Gottman Research -->
@@ -222,7 +220,7 @@
                         <p class="mb-6">
                             Gottman의 관계 연구는 블로그 설명 콘텐츠에서 참고할 수 있는 배경지식입니다.
                             다만 <a href="/ko/compatibility/" class="text-indigo-600 hover:underline">궁합 테스트</a>는
-                            생년월일을 사용하는 오락용 도구이며, Gottman 연구나 Big Five를 측정하는 검사가 아닙니다.
+                            두 사람의 리커트 응답 차이에 고정 가중치를 적용하는 오락용 도구이며, Gottman 연구나 Big Five를 측정하는 검사가 아닙니다.
                         </p>
 
                         <!-- Sternberg Triangle -->
@@ -305,11 +303,11 @@
                     </div>
                 </section>
 
-                <!-- Section 2: AI 알고리즘 작동 원리 -->
+                <!-- Section 2: Fixed-rule mechanics -->
                 <section id="algorithm" class="mb-16">
                     <h2 class="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                         <span class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl">⚙️</span>
-                        AI 알고리즘 작동 원리
+                        고정 규칙의 작동 원리
                     </h2>
 
                     <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
@@ -342,10 +340,10 @@
                             </div>
                         </div>
 
-                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">2. 패턴 매칭과 확률 분석</h3>
+                        <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">2. 점수 합산</h3>
 
                         <p class="mb-4">
-                            AI 성격 유형 분석은 40문항 리커트 응답을 4가지 축(E/I, S/N, T/F, J/P)에 배정하고,
+                            성격 유형 검사는 40문항 리커트 응답을 4가지 축(E/I, S/N, T/F, J/P)에 배정하고,
                             정방향·역방향 문항을 반영해 점수를 합산합니다. 생년월일 기반 도구는 이런 설문 채점을 하지 않습니다.
                         </p>
 
@@ -369,13 +367,13 @@
                         <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">3. 결과 생성 로직</h3>
 
                         <p class="mb-4">
-                            분석된 데이터를 바탕으로 알고리즘은 다음과 같은 과정을 거쳐 결과를 생성합니다.
+                            입력 데이터에 고정 규칙을 적용해 다음과 같이 결과를 생성합니다.
                         </p>
 
                         <ol class="list-decimal list-inside space-y-3 mb-6">
-                            <li><strong>차원별 점수 계산:</strong> 각 성격 차원(예: 외향성, 개방성)에 대한 점수 산출</li>
-                            <li><strong>프로필 매칭:</strong> 계산된 점수 조합과 가장 유사한 미리 정의된 프로필 선택</li>
-                            <li><strong>텍스트 생성:</strong> 선택된 프로필에 맞는 설명, 강점, 조언 등 콘텐츠 조합</li>
+                            <li><strong>축별 점수 계산:</strong> E/I, S/N, T/F, J/P 응답 점수 합산</li>
+                            <li><strong>유형 선택:</strong> 각 축에서 더 높은 쪽을 조합해 4글자 유형 선택</li>
+                            <li><strong>텍스트 표시:</strong> 선택된 유형에 연결된 미리 작성된 설명 표시</li>
                             <li><strong>시각화:</strong> 결과를 차트, 이미지, 아이콘 등으로 표현</li>
                         </ol>
 
@@ -383,24 +381,24 @@
                             <p class="text-amber-800 text-sm">
                                 <strong>투명성 공지:</strong> 우리의 도구는 사전에 정의된 규칙과 템플릿을 기반으로 합니다.
                                 딥러닝 기반의 자가 학습 AI가 아니며, 개인정보를 수집하여 모델을 훈련시키지 않습니다.
-                                모든 분석은 브라우저 내에서 로컬로 처리됩니다.
+                                모든 계산은 브라우저 내에서 로컬로 처리됩니다.
                             </p>
                         </div>
 
                         <h3 class="text-2xl font-semibold text-gray-800 mt-10 mb-4">4. 궁합 계산 (두 사람 분석)</h3>
 
                         <p class="mb-4">
-                            궁합 테스트의 경우, 두 사람의 생년월일을 오락용 입력값으로 사용해
-                            점수와 서사를 생성합니다. 이는 관계 적합성 분석이 아닙니다.
+                            궁합 테스트는 두 사람의 리커트 응답 차이에 고정 가중치를 적용해
+                            점수와 서사를 생성합니다. 설문 데이터가 없는 구버전 결과에서만 생년월일 해시를 사용하며, 관계 적합성 분석이 아닙니다.
                         </p>
 
                         <div class="grid md:grid-cols-2 gap-6 my-6">
                             <div class="bg-pink-50 p-5 rounded-xl">
-                                <h4 class="font-bold text-pink-800 mb-2">유사성 분석</h4>
-                                <p class="text-gray-600 text-sm">생년월일 기반 입력에서 재미용 점수와 서사를 생성합니다. 실제 가치관이나 생활 방식을 측정하지 않습니다.</p>
+                                <h4 class="font-bold text-pink-800 mb-2">응답 차이 계산</h4>
+                                <p class="text-gray-600 text-sm">각 리커트 응답의 차이에 고정 가중치를 적용합니다. 실제 가치관이나 생활 방식을 검증해 측정하지 않습니다.</p>
                             </div>
                             <div class="bg-blue-50 p-5 rounded-xl">
-                                <h4 class="font-bold text-blue-800 mb-2">보완성 분석</h4>
+                                <h4 class="font-bold text-blue-800 mb-2">오락용 결과</h4>
                                 <p class="text-gray-600 text-sm">동물 커플·럭키 데이트 같은 공유용 결과를 만듭니다. 관계 예측이나 상담 조언으로 쓰지 않습니다.</p>
                             </div>
                         </div>
