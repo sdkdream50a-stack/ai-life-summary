@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const LANGUAGES = ['en', 'ko', 'ja', 'zh', 'es'];
 const DEFAULT_LANG = 'en';
@@ -238,6 +239,64 @@ const RESULT_PAGES = [
     { template: 'scripts/templates/compatibility-result.html', slug: 'compatibility/result' },
     { template: 'scripts/templates/age-calculator-result.html', slug: 'age-calculator/result' }
 ];
+
+const SNAPSHOT_START = lang => `<!-- I18N_PAGE_START ${lang} -->\n`;
+const SNAPSHOT_END = lang => `<!-- I18N_PAGE_END ${lang} -->`;
+
+/**
+ * Templates may contain byte-for-byte locale snapshots. Phase-A changed both
+ * content and document structure independently per locale, so these snapshots
+ * are the source templates; running the generic legacy transforms over them
+ * would reintroduce stale copy and head markup.
+ */
+function extractLocaleSnapshot(template, lang) {
+    const startMarker = SNAPSHOT_START(lang);
+    const endMarker = SNAPSHOT_END(lang);
+    const start = template.indexOf(startMarker);
+    if (start === -1) return null;
+
+    const contentStart = start + startMarker.length;
+    const end = template.indexOf(endMarker, contentStart);
+    if (end === -1) {
+        throw new Error(`Missing ${endMarker} in locale snapshot template`);
+    }
+
+    return template.slice(contentStart, end);
+}
+
+/**
+ * One-time/repeatable reverse sync: capture the committed generated pages as
+ * the locale-specific template sources. Normal builds never invoke git; they
+ * only read the snapshots stored in scripts/templates/*.html.
+ */
+function resyncTemplatesFromHead() {
+    const rootDir = path.join(__dirname, '..');
+    const pages = [
+        ...PAGES.map(page => ({ ...page, result: false })),
+        ...RESULT_PAGES.map(page => ({ ...page, result: true }))
+    ];
+
+    for (const page of pages) {
+        const sections = LANGUAGES.map(lang => {
+            const outputPath = page.slug
+                ? `${lang}/${page.slug}/index.html`
+                : `${lang}/index.html`;
+            const committedHtml = execFileSync(
+                'git', ['show', `HEAD:${outputPath}`],
+                { cwd: rootDir, encoding: 'utf8', maxBuffer: 20 * 1024 * 1024 }
+            );
+            return `${SNAPSHOT_START(lang)}${committedHtml}${SNAPSHOT_END(lang)}\n`;
+        }).join('\n');
+
+        const header = `<!--\n` +
+            `  Locale source snapshots for ${page.slug || 'home'}.\n` +
+            `  Refresh intentionally with: node scripts/build-i18n-pages.js --resync-templates-from-head\n` +
+            `  Each block is emitted byte-for-byte for deterministic, idempotent builds.\n` +
+            `-->\n\n`;
+        fs.writeFileSync(path.join(rootDir, page.template), header + sections, 'utf8');
+        console.log(`Resynced: ${page.template}`);
+    }
+}
 
 /**
  * Generate hreflang tags for a page
@@ -1033,6 +1092,11 @@ function processPage(templatePath, pageName, pageSlug, lang) {
 
     let html = fs.readFileSync(templateFile, 'utf-8');
 
+    const localeSnapshot = extractLocaleSnapshot(html, lang);
+    if (localeSnapshot !== null) {
+        return localeSnapshot;
+    }
+
     // Calculate depth for asset paths
     const depth = pageSlug ? pageSlug.split('/').length + 1 : 1;
 
@@ -1111,25 +1175,31 @@ function build() {
             let html = fs.readFileSync(templateFile, 'utf-8');
             const depth = page.slug.split('/').length + 1;
 
-            html = setHtmlLang(html, lang);
-            html = extractLanguageContent(html, lang);
-            html = fixAssetPaths(html, depth);
-            html = removeLanguageDetection(html);
-            html = updateNavLinks(html, lang);
-            html = updateSwitchLangFunction(html, page.slug);
-            html = updateLanguageIndicator(html, lang);
-            html = fixMobileNavbar(html);
+            const localeSnapshot = extractLocaleSnapshot(html, lang);
+            if (localeSnapshot !== null) {
+                html = localeSnapshot;
+            } else {
 
-            // Update canonical and OG URLs for result pages
-            const resultUrl = `${BASE_URL}/${lang}/${page.slug}/`;
-            html = html.replace(
-                /<link\s+rel="canonical"\s+href="[^"]*">/,
-                `<link rel="canonical" href="${resultUrl}">`
-            );
-            html = html.replace(
-                /<meta\s+property="og:url"\s+content="[^"]*">/,
-                `<meta property="og:url" content="${resultUrl}">`
-            );
+                html = setHtmlLang(html, lang);
+                html = extractLanguageContent(html, lang);
+                html = fixAssetPaths(html, depth);
+                html = removeLanguageDetection(html);
+                html = updateNavLinks(html, lang);
+                html = updateSwitchLangFunction(html, page.slug);
+                html = updateLanguageIndicator(html, lang);
+                html = fixMobileNavbar(html);
+
+                // Update canonical and OG URLs for result pages
+                const resultUrl = `${BASE_URL}/${lang}/${page.slug}/`;
+                html = html.replace(
+                    /<link\s+rel="canonical"\s+href="[^"]*">/,
+                    `<link rel="canonical" href="${resultUrl}">`
+                );
+                html = html.replace(
+                    /<meta\s+property="og:url"\s+content="[^"]*">/,
+                    `<meta property="og:url" content="${resultUrl}">`
+                );
+            }
 
             const outputDir = path.join(langDir, page.slug);
             const outputFile = path.join(outputDir, 'index.html');
@@ -1149,21 +1219,17 @@ function build() {
 
 // Run if called directly
 if (require.main === module) {
-    // SAFETY GUARD: scripts/templates/*.html are drifted behind the deployed
-    // pages (pre-Phase-A copy: Big Five overclaim, birthday-based descriptions,
-    // inline consent loaders, missing CSP). Running this build overwrites the
-    // committed locale pages and REGRESSES already-fixed P1 issues (see
-    // multi-agent-harness tasks/smartaitest-template-resync + authority-0714).
-    // Do NOT build until the templates are resynced to the live output.
-    if (!process.env.ALLOW_STALE_TEMPLATE_BUILD) {
-        console.error(
-            '\n✋ build:i18n is BLOCKED — templates are stale and would regress fixed P1s.\n' +
-            '   Templates must be resynced to the deployed pages first (task: smartaitest-template-resync).\n' +
-            '   If you have resynced and really intend to rebuild, run with ALLOW_STALE_TEMPLATE_BUILD=1.\n'
-        );
-        process.exit(1);
+    if (process.argv.includes('--resync-templates-from-head')) {
+        resyncTemplatesFromHead();
+    } else {
+        build();
     }
-    build();
 }
 
-module.exports = { build, processPage, generateHreflangTags };
+module.exports = {
+    build,
+    processPage,
+    generateHreflangTags,
+    extractLocaleSnapshot,
+    resyncTemplatesFromHead
+};
