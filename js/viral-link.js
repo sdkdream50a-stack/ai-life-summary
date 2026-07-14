@@ -98,17 +98,14 @@ const ViralLinkManager = {
     const baseUrl = options.baseUrl || 'https://smartaitest.com/compatibility/';
     const params = new URLSearchParams();
 
-    // Add encoded birth date
-    if (year && month && day) {
-      params.set('ref_dob', this.encodeBirthDate(year, month, day));
-    }
+    // Privacy: do NOT encode birthdays or names into shared links — that would
+    // expose personal data to any third party the link is sent through. The
+    // encodeBirthDate/encodeName helpers are obfuscation, not encryption, and
+    // the page promises inputs are not shared with third parties. Only a
+    // non-identifying referral marker is attached.
+    void year; void month; void day; void name;
 
-    // Add encoded name
-    if (name) {
-      params.set('ref_name', this.encodeName(name));
-    }
-
-    // Add soul type if available
+    // Add soul type if available (non-identifying result label)
     if (soulType) {
       params.set('ref_type', soulType);
     }

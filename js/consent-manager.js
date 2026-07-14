@@ -1,6 +1,6 @@
 /**
  * GDPR/CCPA Consent Manager with Google Consent Mode v2
- * AdSense loading removed 2026-05-17 (site sunset, AdSense attempt ended)
+ * Gates AdSense/GA/Clarity behind region-aware Consent Mode defaults.
  */
 
 // Google Consent Mode v2 - region-specific defaults BEFORE any scripts load
@@ -600,6 +600,10 @@ const ConsentManager = {
         personalization: false
       };
       this.saveConsent();
+      // Push the denied state to Google Consent Mode / revoke Clarity NOW.
+      // Without this, non-EU visitors (granted-by-default) stay tracked on the
+      // current page after clicking Reject until the next navigation.
+      this.applyConsent();
       this.hideBanner(banner);
 
       // Still dispatch event even though no tracking

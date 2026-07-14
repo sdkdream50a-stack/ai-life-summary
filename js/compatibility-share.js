@@ -8,33 +8,19 @@
 // ============================================
 
 /**
- * Generate a shareable URL with encoded results
- * Format: ?a=YYYYMMDD&b=YYYYMMDD&na=NameA&nb=NameB
+ * Generate a shareable URL that points to the test entry.
+ * Privacy: birthdays and names are NEVER encoded into the shared link
+ * (they would be sent to third parties like Facebook/X in the URL).
+ * The score/type summary lives in the share TEXT; the link invites the
+ * recipient to take the test themselves — which is also what the copy says.
  */
 function generateShareUrl() {
-    const results = window.compatibilityResults;
-    if (!results) return window.location.origin + '/compatibility/';
-
-    const baseUrl = window.location.origin + '/compatibility/result.html';
-
-    // Format birthdays as YYYYMMDD
-    const birthdayA = results.personA.birthday.replace(/-/g, '');
-    const birthdayB = results.personB.birthday.replace(/-/g, '');
-
-    const params = new URLSearchParams({
-        a: birthdayA,
-        b: birthdayB
-    });
-
-    // Add names if they exist and are not default
-    if (results.personA.name && results.personA.name !== 'Person A') {
-        params.append('na', encodeURIComponent(results.personA.name));
-    }
-    if (results.personB.name && results.personB.name !== 'Person B') {
-        params.append('nb', encodeURIComponent(results.personB.name));
-    }
-
-    return `${baseUrl}?${params.toString()}`;
+    // Derive the locale test-entry path from the current result path.
+    // /ko/compatibility/result/ -> /ko/compatibility/ ; /compatibility/result.html -> /compatibility/
+    const path = window.location.pathname
+        .replace(/result\/?$/, '')
+        .replace(/result\.html$/, '');
+    return window.location.origin + (path || '/compatibility/');
 }
 
 /**
