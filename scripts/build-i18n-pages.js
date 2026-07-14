@@ -1149,6 +1149,20 @@ function build() {
 
 // Run if called directly
 if (require.main === module) {
+    // SAFETY GUARD: scripts/templates/*.html are drifted behind the deployed
+    // pages (pre-Phase-A copy: Big Five overclaim, birthday-based descriptions,
+    // inline consent loaders, missing CSP). Running this build overwrites the
+    // committed locale pages and REGRESSES already-fixed P1 issues (see
+    // multi-agent-harness tasks/smartaitest-template-resync + authority-0714).
+    // Do NOT build until the templates are resynced to the live output.
+    if (!process.env.ALLOW_STALE_TEMPLATE_BUILD) {
+        console.error(
+            '\n✋ build:i18n is BLOCKED — templates are stale and would regress fixed P1s.\n' +
+            '   Templates must be resynced to the deployed pages first (task: smartaitest-template-resync).\n' +
+            '   If you have resynced and really intend to rebuild, run with ALLOW_STALE_TEMPLATE_BUILD=1.\n'
+        );
+        process.exit(1);
+    }
     build();
 }
 
