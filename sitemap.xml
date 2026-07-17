@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://smartaitest.com/en/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
@@ -21,7 +21,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/compatibility/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/compatibility/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/age-calculator/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
@@ -48,7 +48,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/age-calculator/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
@@ -75,7 +75,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/about/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
@@ -84,7 +84,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/about/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
@@ -285,7 +285,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/work-style/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
@@ -321,7 +321,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/zh/work-style/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
@@ -333,7 +333,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/es/work-style/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>

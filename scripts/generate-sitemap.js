@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const BASE_URL = 'https://smartaitest.com';
 
@@ -52,7 +53,19 @@ function isNoindex(filePath) {
            /<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html);
 }
 
+/**
+ * lastmod = last git commit date of the file (content change), falling back
+ * to filesystem mtime for untracked files. Build scripts rewrite files with
+ * identical content, so raw mtime would churn lastmod on every build.
+ */
 function fileMtime(filePath) {
+    try {
+        const out = execSync(`git log -1 --format=%as -- "${filePath}"`, {
+            cwd: path.dirname(filePath),
+            stdio: ['ignore', 'pipe', 'ignore']
+        }).toString().trim();
+        if (out) return out;
+    } catch (e) { /* not a git repo or git unavailable — fall through */ }
     return fs.statSync(filePath).mtime.toISOString().split('T')[0];
 }
 
