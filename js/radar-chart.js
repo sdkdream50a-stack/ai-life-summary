@@ -56,54 +56,34 @@ const RADAR_TRAITS = {
 // Provocative viral copy templates
 const VIRAL_COPY = {
   ko: [
-    { text: '재미용 정신 나이 점수 상위 {percent}%?', emoji: '🧠' },
-    { text: '이 유형은 100명 중 {count}명뿐!', emoji: '💎' },
     { text: '당신의 숨겨진 잠재력 발견!', emoji: '✨' },
-    { text: '이 조합은 전 세계 {percent}% 미만!', emoji: '🌍' },
     { text: '나만의 특별한 소울 DNA 공개!', emoji: '🔬' },
     { text: '답변으로 만든 나의 오락용 프로필', emoji: '🧩' },
-    { text: '이런 유형 처음 봤다고요?', emoji: '😱' },
-    { text: '감성 지수 {score}점 달성!', emoji: '💕' }
+    { text: '이런 유형 처음 봤다고요?', emoji: '😱' }
   ],
   en: [
-    { text: 'My playful mental-age score is in the top {percent}%?', emoji: '🧠' },
-    { text: 'Only {count} out of 100 have this type!', emoji: '💎' },
     { text: 'Your hidden potential revealed!', emoji: '✨' },
-    { text: 'This combo is less than {percent}% worldwide!', emoji: '🌍' },
     { text: 'My unique Soul DNA revealed!', emoji: '🔬' },
     { text: 'My entertainment profile from my answers', emoji: '🧩' },
-    { text: "Never seen this type before?", emoji: '😱' },
-    { text: 'Emotion score: {score} achieved!', emoji: '💕' }
+    { text: "Never seen this type before?", emoji: '😱' }
   ],
   ja: [
-    { text: '娯楽用メンタル年齢スコアは上位{percent}%?', emoji: '🧠' },
-    { text: 'このタイプは100人中{count}人だけ!', emoji: '💎' },
     { text: 'あなたの隠れた可能性を発見!', emoji: '✨' },
-    { text: 'この組み合わせは世界の{percent}%未満!', emoji: '🌍' },
     { text: '私だけの特別なソウルDNA公開!', emoji: '🔬' },
     { text: '回答から作った娯楽用プロフィール', emoji: '🧩' },
-    { text: 'こんなタイプ初めて見た?', emoji: '😱' },
-    { text: '感性指数{score}点達成!', emoji: '💕' }
+    { text: 'こんなタイプ初めて見た?', emoji: '😱' }
   ],
   zh: [
-    { text: '我的娱乐心理年龄分数进入前{percent}%?', emoji: '🧠' },
-    { text: '100人中只有{count}人是这个类型!', emoji: '💎' },
     { text: '发现你隐藏的潜力!', emoji: '✨' },
-    { text: '这个组合全球不到{percent}%!', emoji: '🌍' },
     { text: '我独特的灵魂DNA公开!', emoji: '🔬' },
     { text: '根据回答生成的娱乐性个人档案', emoji: '🧩' },
-    { text: '第一次见到这种类型?', emoji: '😱' },
-    { text: '感性指数达到{score}分!', emoji: '💕' }
+    { text: '第一次见到这种类型?', emoji: '😱' }
   ],
   es: [
-    { text: '¿Mi puntuación lúdica de edad mental está en el top {percent}%?', emoji: '🧠' },
-    { text: '¡Solo {count} de 100 tienen este tipo!', emoji: '💎' },
     { text: '¡Tu potencial oculto revelado!', emoji: '✨' },
-    { text: '¡Esta combo es menos del {percent}% mundial!', emoji: '🌍' },
     { text: '¡Mi ADN de Alma único revelado!', emoji: '🔬' },
     { text: 'Mi perfil lúdico creado a partir de mis respuestas', emoji: '🧩' },
-    { text: '¿Nunca viste este tipo antes?', emoji: '😱' },
-    { text: '¡Puntuación emocional: {score} lograda!', emoji: '💕' }
+    { text: '¿Nunca viste este tipo antes?', emoji: '😱' }
   ]
 };
 
@@ -131,19 +111,9 @@ class RadarChartManager {
     const copies = VIRAL_COPY[this.lang] || VIRAL_COPY.en;
     const template = copies[Math.floor(Math.random() * copies.length)];
 
-    // Generate dynamic values based on soul type
-    const percent = soulType.rarity || Math.floor(Math.random() * 10) + 1;
-    const count = Math.floor(100 / (percent || 5));
-    const score = Math.floor(Math.random() * 20) + 80;
-
-    let text = template.text
-      .replace('{percent}', percent)
-      .replace('{count}', count)
-      .replace('{score}', score);
-
     return {
       emoji: template.emoji,
-      text: text
+      text: template.text
     };
   }
 
@@ -533,21 +503,6 @@ class ViralImageGenerator {
       ctx.fillText(`${traitValues[key]}%`, x + 120, y + 8);
       ctx.font = '24px "Pretendard Variable", sans-serif';
     });
-
-    // === RARITY BADGE ===
-    const badgeY = 1450;
-
-    ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
-    this.roundRect(width / 2 - 200, badgeY - 35, 400, 70, 35);
-    ctx.fill();
-
-    ctx.font = 'bold 36px "Pretendard Variable", sans-serif';
-    ctx.fillStyle = '#FFD700';
-    ctx.textAlign = 'center';
-    const rarityText = this.lang === 'ko'
-      ? `🏆 상위 ${soulType.rarity || 5}% 유형`
-      : `🏆 Top ${soulType.rarity || 5}% Type`;
-    ctx.fillText(rarityText, width / 2, badgeY + 10);
 
     // === HASHTAGS ===
     const hashtagY = 1580;

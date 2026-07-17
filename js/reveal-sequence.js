@@ -396,14 +396,6 @@ class RevealSequence {
             }, index * 200);
           });
 
-          // Show rarity badge
-          if (rarityBadge && this.soulType) {
-            setTimeout(() => {
-              rarityBadge.classList.remove('hidden');
-              rarityBadge.classList.add('pop-in');
-            }, traitBars.length * 200 + 300);
-          }
-
           observer.disconnect();
         }
       });

@@ -499,13 +499,8 @@
 
                     <!-- Rarity Badge -->
                     <div class="text-center">
-                        <div id="rarity-badge" class="rarity-badge hidden">
-                            <span id="rarity-icon">🏆</span>
-                            <span id="rarity-text">
-
-                                상위 5% 타입
-
-                            </span>
+                        <div id="rarity-badge" class="hidden">
+                            <span id="rarity-text"></span>
                         </div>
                     </div>
 
@@ -1430,24 +1425,7 @@
                 }
             });
 
-            // Show rarity badge
             setTimeout(() => {
-                const rarityPercent = currentSoulType.rarity;
-                const tier = getRarityTier(rarityPercent);
-
-                rarityBadge.classList.remove('hidden');
-                rarityBadge.classList.add('pop-in', tier);
-
-                // Update rarity text based on language
-                const rarityLabels = {
-                    ko: `상위 ${rarityPercent}% 타입`,
-                    en: `Top ${rarityPercent}% Type`,
-                    ja: `上位${rarityPercent}%タイプ`,
-                    zh: `前${rarityPercent}%类型`,
-                    es: `Top ${rarityPercent}% Tipo`
-                };
-                rarityText.textContent = rarityLabels[currentLang] || rarityLabels.en;
-
                 // Add Cultural Metaphor (Stage 4)
                 if (typeof CulturalMetaphorManager !== 'undefined') {
                     const culturalDesc = CulturalMetaphorManager.generateCulturalDescription(traits, currentLang);
@@ -1493,7 +1471,7 @@
             if (typeof SmartShareManager !== 'undefined') {
                 SmartShareManager.init('smart-share-life', {
                     locale: currentLang,
-                    score: currentSoulType?.rarity || '',
+                    score: '',
                     type: currentSoulType?.name?.[currentLang] || '',
                     url: window.location.href
                 });

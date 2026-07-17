@@ -362,11 +362,8 @@
 </div>
 <!-- Rarity Badge -->
 <div class="text-center">
-<div class="rarity-badge hidden" id="rarity-badge">
-<span id="rarity-icon">🏆</span>
-<span id="rarity-text">
-<span>Top 5% Type</span>
-</span>
+<div class="hidden" id="rarity-badge">
+<span id="rarity-text"></span>
 </div>
 </div>
 <!-- Radar Chart Visualization -->
@@ -1014,24 +1011,7 @@
                 }
             });
 
-            // Show rarity badge
             setTimeout(() => {
-                const rarityPercent = currentSoulType.rarity;
-                const tier = getRarityTier(rarityPercent);
-
-                rarityBadge.classList.remove('hidden');
-                rarityBadge.classList.add('pop-in', tier);
-
-                // Update rarity text based on language
-                const rarityLabels = {
-                    ko: `상위 ${rarityPercent}% 타입`,
-                    en: `Top ${rarityPercent}% Type`,
-                    ja: `上位${rarityPercent}%タイプ`,
-                    zh: `前${rarityPercent}%类型`,
-                    es: `Top ${rarityPercent}% Tipo`
-                };
-                rarityText.textContent = rarityLabels[currentLang] || rarityLabels.en;
-
                 // Add Cultural Metaphor (Stage 4)
                 if (typeof CulturalMetaphorManager !== 'undefined') {
                     const culturalDesc = CulturalMetaphorManager.generateCulturalDescription(traits, currentLang);

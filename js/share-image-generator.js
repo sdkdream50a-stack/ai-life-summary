@@ -468,16 +468,8 @@ class ShareImageGenerator {
       gaugeY += isStory ? 70 : 55;
     });
 
-    // Rarity badge
-    const rarityY = gaugeY + (isStory ? 40 : 30);
-    const rarityText = `🏆 ${texts.full.topPercent} ${soulType.rarity}% ${texts.full.type}`;
-    this.drawText(rarityText, size.width / 2, rarityY, {
-      fontSize: isStory ? 36 : 30,
-      fontWeight: '600'
-    });
-
     // Hashtags
-    const hashtagY = rarityY + (isStory ? 80 : 60);
+    const hashtagY = gaugeY + (isStory ? 120 : 90);
     const hashtag = `${texts.full.hashtags} #${typeName.replace(/\s/g, '')}`;
     this.drawText(hashtag, size.width / 2, hashtagY, {
       fontSize: isStory ? 28 : 24,

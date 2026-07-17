@@ -26,7 +26,6 @@ const SOUL_TYPES = [
       zh: "你拥有与生俱来的直觉力，能洞察情况，并对开始的每一件事倾注火焰般的热情。周围的人常常被你的能量和洞察力所惊叹。",
       es: "Posees una capacidad innata para ver a través de las situaciones, y viertes una pasión ardiente en todo lo que comienzas. La gente a tu alrededor a menudo se sorprende por tu energía y perspicacia."
     },
-    rarity: 7,
     traits: { intuition: 92, passion: 88, empathy: 52, logic: 63, creativity: 85 },
     color: "#FF6B35",
     gradient: "from-orange-400 to-red-500"
@@ -53,7 +52,6 @@ const SOUL_TYPES = [
       zh: "你以坚定的信念和魅力激励周围的人。即使在困难的情况下也能展现出闪耀的领导力，并珍惜每一段缘分。",
       es: "Inspiras a quienes te rodean con convicción inquebrantable y carisma. Demuestras un liderazgo brillante incluso en situaciones difíciles, y valoras cada conexión que haces."
     },
-    rarity: 5,
     traits: { intuition: 65, passion: 78, empathy: 72, logic: 70, creativity: 60 },
     color: "#FFD700",
     gradient: "from-yellow-400 to-amber-500"
@@ -80,7 +78,6 @@ const SOUL_TYPES = [
       zh: "你以如海洋般深沉的心包容周围的人。以从不动摇的稳定感，成为每个人舒适的避风港。",
       es: "Abrazas a quienes te rodean con un corazón tan profundo como el océano. Con una estabilidad que nunca vacila, te conviertes en un refugio cómodo para todos."
     },
-    rarity: 12,
     traits: { intuition: 58, passion: 45, empathy: 95, logic: 68, creativity: 52 },
     color: "#4A90D9",
     gradient: "from-blue-400 to-cyan-500"
@@ -107,7 +104,6 @@ const SOUL_TYPES = [
       zh: "你以细腻的感觉发现世界的美丽，不断变化和成长。你的存在本身就是照亮周围一切的光。",
       es: "Descubres la belleza del mundo con sentidos delicados, cambiando y creciendo constantemente. Tu existencia misma se convierte en una luz que ilumina todo a tu alrededor."
     },
-    rarity: 8,
     traits: { intuition: 75, passion: 62, empathy: 88, logic: 42, creativity: 95 },
     color: "#E066FF",
     gradient: "from-purple-400 to-pink-500"
@@ -134,7 +130,6 @@ const SOUL_TYPES = [
       zh: "你以在风暴中也不动摇的大胆，不惧任何新挑战。像从高处俯瞰的雄鹰一样，洞察每一个情况。",
       es: "No temes ningún nuevo desafío con una audacia que permanece firme incluso en tormentas. Como un águila mirando desde lo alto, ves a través de cada situación."
     },
-    rarity: 6,
     traits: { intuition: 85, passion: 82, empathy: 48, logic: 78, creativity: 70 },
     color: "#4169E1",
     gradient: "from-indigo-500 to-blue-600"
@@ -161,7 +156,6 @@ const SOUL_TYPES = [
       zh: "你拥有在月光下闪耀的神秘智慧，与珍视的人建立深厚的羁绊。你珍惜独处的时光，培养内心的力量。",
       es: "Posees una sabiduría misteriosa que brilla bajo la luz de la luna, formando lazos profundos con quienes aprecias. Valoras el tiempo a solas para cultivar tu fuerza interior."
     },
-    rarity: 9,
     traits: { intuition: 90, passion: 55, empathy: 78, logic: 72, creativity: 68 },
     color: "#7B68EE",
     gradient: "from-violet-500 to-indigo-600"
@@ -188,7 +182,6 @@ const SOUL_TYPES = [
       zh: "你拥有克服任何困难、更加坚强站起来的不屈精神。你不惧失败，每次都以更加闪耀的姿态重生。",
       es: "Posees un espíritu indomable que supera cualquier dificultad y se levanta más fuerte. No temes al fracaso, y renaces más radiante cada vez."
     },
-    rarity: 4,
     traits: { intuition: 72, passion: 95, empathy: 60, logic: 65, creativity: 88 },
     color: "#FF4500",
     gradient: "from-red-500 to-orange-500"
@@ -215,7 +208,6 @@ const SOUL_TYPES = [
       zh: "你不急不躁稳步前进，拥有随时间沉淀的智慧。以安静但确定的方式向目标前进。",
       es: "Avanzas firmemente sin prisa, poseyendo una sabiduría que se profundiza con el tiempo. Avanzas hacia tus metas de manera tranquila pero segura."
     },
-    rarity: 10,
     traits: { intuition: 68, passion: 45, empathy: 75, logic: 92, creativity: 55 },
     color: "#50C878",
     gradient: "from-emerald-400 to-teal-500"
@@ -242,7 +234,6 @@ const SOUL_TYPES = [
       zh: "你外表优雅沉稳，但内心蕴藏着强大的力量。在任何情况下都不失风度，静静地走着自己的路。",
       es: "Pareces elegante y calmado por fuera, pero guardas un poder fuerte en tu interior. Nunca pierdes tu dignidad en ninguna situación, caminando tranquilamente tu propio camino."
     },
-    rarity: 6,
     traits: { intuition: 70, passion: 52, empathy: 82, logic: 75, creativity: 78 },
     color: "#C0C0C0",
     gradient: "from-slate-300 to-gray-500"
@@ -269,7 +260,6 @@ const SOUL_TYPES = [
       zh: "你以如夜空中星星般的无限好奇心探索世界。发现别人忽略的东西，以深邃的洞察力看透真相。",
       es: "Exploras el mundo con curiosidad infinita como las estrellas en el cielo nocturno. Descubres lo que otros pasan por alto, y ves la verdad con profunda perspicacia."
     },
-    rarity: 8,
     traits: { intuition: 95, passion: 58, empathy: 62, logic: 88, creativity: 82 },
     color: "#191970",
     gradient: "from-indigo-600 to-purple-700"
@@ -296,7 +286,6 @@ const SOUL_TYPES = [
       zh: "你以如太阳般明亮的能量照亮周围，以自由的灵魂享受生活。到处寻找快乐，并与他人分享这份喜悦。",
       es: "Iluminas tu entorno con energía como el sol, disfrutando de la vida con un espíritu libre. Encuentras alegría en todas partes y compartes esa felicidad con otros."
     },
-    rarity: 11,
     traits: { intuition: 62, passion: 85, empathy: 90, logic: 48, creativity: 88 },
     color: "#00CED1",
     gradient: "from-cyan-400 to-teal-500"
@@ -323,7 +312,6 @@ const SOUL_TYPES = [
       zh: "你拥有即使不言语也能展现存在感的强烈魅力。以不外露的隐藏力量主导局势，在需要时展现惊人的能力。",
       es: "Posees un carisma intenso que llama la atención incluso sin palabras. Diriges las situaciones con poder oculto, revelando habilidades sorprendentes cuando es necesario."
     },
-    rarity: 5,
     traits: { intuition: 78, passion: 72, empathy: 55, logic: 80, creativity: 75 },
     color: "#2F2F2F",
     gradient: "from-gray-700 to-slate-900"
@@ -337,15 +325,6 @@ const TRAIT_LABELS = {
   empathy: { ko: "공감력", en: "Empathy", ja: "共感力", zh: "共情力", es: "Empatía" },
   logic: { ko: "논리력", en: "Logic", ja: "論理力", zh: "逻辑力", es: "Lógica" },
   creativity: { ko: "창의력", en: "Creativity", ja: "創造力", zh: "创造力", es: "Creatividad" }
-};
-
-// Rarity tier labels
-const RARITY_TIERS = {
-  ko: { legendary: "레전더리", epic: "에픽", rare: "레어", common: "커먼" },
-  en: { legendary: "Legendary", epic: "Epic", rare: "Rare", common: "Common" },
-  ja: { legendary: "レジェンダリー", epic: "エピック", rare: "レア", common: "コモン" },
-  zh: { legendary: "传奇", epic: "史诗", rare: "稀有", common: "普通" },
-  es: { legendary: "Legendario", epic: "Épico", rare: "Raro", common: "Común" }
 };
 
 /**
@@ -385,18 +364,6 @@ function hashBirthday(birthday) {
 }
 
 /**
- * Get rarity tier from percentage
- * @param {number} rarity - Rarity percentage (lower = rarer)
- * @returns {string} Tier name
- */
-function getRarityTier(rarity) {
-  if (rarity <= 5) return 'legendary';
-  if (rarity <= 8) return 'epic';
-  if (rarity <= 11) return 'rare';
-  return 'common';
-}
-
-/**
  * Get trait label by language
  * @param {string} trait - Trait key
  * @param {string} lang - Language code
@@ -404,16 +371,6 @@ function getRarityTier(rarity) {
  */
 function getTraitLabel(trait, lang = 'ko') {
   return TRAIT_LABELS[trait]?.[lang] || TRAIT_LABELS[trait]?.en || trait;
-}
-
-/**
- * Get rarity tier label by language
- * @param {string} tier - Tier key
- * @param {string} lang - Language code
- * @returns {string} Localized tier label
- */
-function getRarityTierLabel(tier, lang = 'ko') {
-  return RARITY_TIERS[lang]?.[tier] || RARITY_TIERS.en[tier] || tier;
 }
 
 /**
@@ -496,13 +453,10 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     SOUL_TYPES,
     TRAIT_LABELS,
-    RARITY_TIERS,
     getSoulTypeById,
     getSoulTypeFromBirthday,
     hashBirthday,
-    getRarityTier,
     getTraitLabel,
-    getRarityTierLabel,
     getSoulTypeName,
     getSoulTypeSlogan,
     getSoulTypeDescription,

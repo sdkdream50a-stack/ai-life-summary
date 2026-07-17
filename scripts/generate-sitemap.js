@@ -3,8 +3,10 @@
 /**
  * generate-sitemap.js
  *
- * Generates sitemap.xml with hreflang tags for all language variants.
- * Follows Google's guidelines for multilingual sitemaps.
+ * Generates sitemap.xml with hreflang tags for indexable pages only.
+ * Guard: any URL whose local file is missing or carries a noindex robots
+ * meta is skipped — the sitemap must never advertise pages that opt out
+ * of indexing (GSC "Submitted URL marked noindex").
  *
  * Usage: node scripts/generate-sitemap.js
  */
@@ -13,93 +15,80 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://smartaitest.com';
-const LANGUAGES = ['en', 'ko', 'ja', 'zh', 'es'];
-const TODAY = new Date().toISOString().split('T')[0];
 
-// Page configurations with priorities and change frequencies
-const PAGES = [
-    // Main pages (high priority)
-    { path: '', priority: 1.0, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'life-summary/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'compatibility/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'age-calculator/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'vibe-check/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'kpop-match/', priority: 0.9, changefreq: 'weekly', lastmod: TODAY },
-
-    // Result pages (medium priority, noindex but include for completeness)
-    { path: 'life-summary/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
-    { path: 'compatibility/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
-    { path: 'age-calculator/result/', priority: 0.6, changefreq: 'monthly', lastmod: TODAY },
-
-    // Legal pages — localized via /{lang}/{slug}/index.html (5 langs x 4 pages = 20 URLs)
-    { path: 'privacy-policy/',   priority: 0.4, changefreq: 'yearly', lastmod: TODAY },
-    { path: 'disclaimer/',       priority: 0.4, changefreq: 'yearly', lastmod: TODAY },
-    { path: 'contact/',          priority: 0.5, changefreq: 'monthly', lastmod: TODAY },
-    { path: 'terms-of-service/', priority: 0.4, changefreq: 'yearly', lastmod: TODAY },
+// Curated indexable pages. langs = locales that actually have real content
+// (partial locale coverage is intentional — do not blanket-expand to 5 langs).
+// Localized legal pages (/{lang}/privacy-policy/ etc.) are noindex with
+// canonical to the root .html versions, so they are intentionally absent.
+// Result pages are noindex and must never be listed.
+const LOCALIZED_PAGES = [
+    { path: '',                        langs: ['en', 'ko'],                   priority: 1.0, changefreq: 'weekly' },
+    { path: 'compatibility/',          langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
+    { path: 'age-calculator/',         langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
+    { path: 'personality-type/',       langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
+    { path: 'about/',                  langs: ['en', 'ko'],                   priority: 0.5, changefreq: 'monthly' },
+    { path: 'mood-report/',            langs: ['ko'],                         priority: 0.8, changefreq: 'monthly' },
+    { path: 'holiday-position/',       langs: ['ko'],                         priority: 0.8, changefreq: 'monthly' },
+    { path: 'friend-compatibility/',   langs: ['en', 'ko', 'ja'],             priority: 0.8, changefreq: 'weekly' },
+    { path: 'marriage-compatibility/', langs: ['en', 'ko', 'ja'],             priority: 0.8, changefreq: 'weekly' },
+    { path: 'love-type/',              langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
+    { path: 'communication-style/',    langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
+    { path: 'work-style/',             langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
 ];
 
-// Static pages (non-localized for now)
+// Root-level static pages (no hreflang)
 const STATIC_PAGES = [
-    { path: 'blog.html', priority: 0.8, changefreq: 'weekly', lastmod: TODAY },
-    { path: 'about.html', priority: 0.7, changefreq: 'monthly', lastmod: TODAY },
-    { path: 'contact.html', priority: 0.5, changefreq: 'monthly', lastmod: TODAY },
-    { path: 'privacy-policy.html', priority: 0.3, changefreq: 'yearly', lastmod: TODAY },
-    { path: 'terms-of-service.html', priority: 0.3, changefreq: 'yearly', lastmod: TODAY },
+    { path: 'blog.html', priority: 0.8, changefreq: 'weekly' },
 ];
 
 /**
- * Generate hreflang links for a page
+ * Returns true if the file opts out of indexing, false if indexable,
+ * null if the file does not exist.
  */
-function generateHreflangLinks(pagePath) {
-    const links = LANGUAGES.map(lang => {
-        const url = pagePath
-            ? `${BASE_URL}/${lang}/${pagePath}`
-            : `${BASE_URL}/${lang}/`;
-        return `      <xhtml:link rel="alternate" hreflang="${lang}" href="${url}"/>`;
-    });
+function isNoindex(filePath) {
+    if (!fs.existsSync(filePath)) return null;
+    const html = fs.readFileSync(filePath, 'utf8');
+    return /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) ||
+           /<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html);
+}
 
-    // Add x-default pointing to English
-    const xDefaultUrl = pagePath
-        ? `${BASE_URL}/en/${pagePath}`
-        : `${BASE_URL}/en/`;
-    links.push(`      <xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultUrl}"/>`);
-
-    return links.join('\n');
+function fileMtime(filePath) {
+    return fs.statSync(filePath).mtime.toISOString().split('T')[0];
 }
 
 /**
- * Generate a single URL entry with hreflang
+ * Generate hreflang links for a multi-locale page (omitted for single-locale)
  */
-function generateUrlEntry(lang, pagePath, config) {
-    const url = pagePath
-        ? `${BASE_URL}/${lang}/${pagePath}`
-        : `${BASE_URL}/${lang}/`;
+function generateHreflangLinks(pagePath, langs) {
+    if (langs.length < 2) return '';
+    const links = langs.map(lang =>
+        `      <xhtml:link rel="alternate" hreflang="${lang}" href="${BASE_URL}/${lang}/${pagePath}"/>`
+    );
+    const xDefaultLang = langs.includes('en') ? 'en' : langs[0];
+    links.push(`      <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}/${xDefaultLang}/${pagePath}"/>`);
+    return '\n' + links.join('\n');
+}
 
-    const hreflangLinks = generateHreflangLinks(pagePath);
-
+function generateUrlEntry(lang, page, lastmod) {
     return `  <url>
-    <loc>${url}</loc>
-    <lastmod>${config.lastmod}</lastmod>
-    <changefreq>${config.changefreq}</changefreq>
-    <priority>${config.priority}</priority>
-${hreflangLinks}
+    <loc>${BASE_URL}/${lang}/${page.path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>${generateHreflangLinks(page.path, page.langs)}
   </url>`;
 }
 
-/**
- * Generate URL entry for static page (no hreflang)
- */
-function generateStaticUrlEntry(config) {
+function generateStaticUrlEntry(config, lastmod) {
     return `  <url>
     <loc>${BASE_URL}/${config.path}</loc>
-    <lastmod>${config.lastmod}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${config.changefreq}</changefreq>
     <priority>${config.priority}</priority>
   </url>`;
 }
 
 /**
- * Discover blog posts
+ * Discover blog posts — skip noindex/redirect stubs (legacy archived posts).
  */
 function discoverBlogPosts(rootDir) {
     const blogDir = path.join(rootDir, 'blog');
@@ -109,41 +98,28 @@ function discoverBlogPosts(rootDir) {
         return posts;
     }
 
-    // Get Korean blog posts
-    const koDir = path.join(blogDir, 'ko');
-    if (fs.existsSync(koDir)) {
-        const files = fs.readdirSync(koDir).filter(f => f.endsWith('.html'));
+    for (const sub of ['ko', 'en']) {
+        const dir = path.join(blogDir, sub);
+        if (!fs.existsSync(dir)) continue;
+        const files = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
         files.forEach(file => {
-            const stat = fs.statSync(path.join(koDir, file));
+            const fullPath = path.join(dir, file);
+            if (isNoindex(fullPath)) return;
             posts.push({
-                path: `blog/ko/${file}`,
-                lastmod: stat.mtime.toISOString().split('T')[0],
+                path: `blog/${sub}/${file.replace(/\.html$/, '')}`,
+                lastmod: fileMtime(fullPath),
                 priority: 0.7,
                 changefreq: 'monthly'
             });
         });
     }
 
-    // Get English blog posts
-    const enDir = path.join(blogDir, 'en');
-    if (fs.existsSync(enDir)) {
-        const files = fs.readdirSync(enDir).filter(f => f.endsWith('.html'));
-        files.forEach(file => {
-            const stat = fs.statSync(path.join(enDir, file));
-            posts.push({
-                path: `blog/en/${file}`,
-                lastmod: stat.mtime.toISOString().split('T')[0],
-                priority: 0.7,
-                changefreq: 'monthly'
-            });
-        });
-    }
-
-    // Get default blog posts — skip noindex/redirect stubs (legacy archived posts).
-    // Reason: including noindex/redirect URLs in sitemap signals "low-quality content
-    // active promotion" to AdSense + wastes Google crawl budget on dead URLs.
+    // Post URLs are extensionless clean URLs — must match each post's
+    // self-canonical (…/blog/<slug> without .html). The hub is the root
+    // blog.html static entry, so blog/index.html is skipped here.
     const defaultFiles = fs.readdirSync(blogDir)
-        .filter(f => f.endsWith('.html') && !fs.statSync(path.join(blogDir, f)).isDirectory());
+        .filter(f => f.endsWith('.html') && f !== 'index.html' &&
+                     !fs.statSync(path.join(blogDir, f)).isDirectory());
     defaultFiles.forEach(file => {
         const fullPath = path.join(blogDir, file);
         const html = fs.readFileSync(fullPath, 'utf8');
@@ -151,10 +127,9 @@ function discoverBlogPosts(rootDir) {
             /<meta\s+http-equiv=["']refresh["']/i.test(html)) {
             return; // skip retired/redirect stubs
         }
-        const stat = fs.statSync(fullPath);
         posts.push({
-            path: `blog/${file}`,
-            lastmod: stat.mtime.toISOString().split('T')[0],
+            path: `blog/${file.replace(/\.html$/, '')}`,
+            lastmod: fileMtime(fullPath),
             priority: 0.7,
             changefreq: 'monthly'
         });
@@ -163,34 +138,47 @@ function discoverBlogPosts(rootDir) {
     return posts;
 }
 
-/**
- * Main sitemap generation function
- */
 function generateSitemap() {
     const rootDir = path.join(__dirname, '..');
     const urls = [];
+    let skipped = 0;
 
     console.log('Generating sitemap.xml...\n');
 
-    // Generate URLs for each language and page combination
-    for (const page of PAGES) {
-        for (const lang of LANGUAGES) {
-            urls.push(generateUrlEntry(lang, page.path, page));
+    for (const page of LOCALIZED_PAGES) {
+        for (const lang of page.langs) {
+            const filePath = path.join(rootDir, lang, page.path, 'index.html');
+            const noindex = isNoindex(filePath);
+            if (noindex === null) {
+                console.warn(`  ! skip (missing file): /${lang}/${page.path}`);
+                skipped++;
+                continue;
+            }
+            if (noindex) {
+                console.warn(`  ! skip (noindex): /${lang}/${page.path}`);
+                skipped++;
+                continue;
+            }
+            urls.push(generateUrlEntry(lang, page, fileMtime(filePath)));
         }
     }
 
-    // Add static pages
     for (const page of STATIC_PAGES) {
-        urls.push(generateStaticUrlEntry(page));
+        const filePath = path.join(rootDir, page.path);
+        const noindex = isNoindex(filePath);
+        if (noindex === null || noindex) {
+            console.warn(`  ! skip (${noindex === null ? 'missing file' : 'noindex'}): /${page.path}`);
+            skipped++;
+            continue;
+        }
+        urls.push(generateStaticUrlEntry(page, fileMtime(filePath)));
     }
 
-    // Add blog posts
     const blogPosts = discoverBlogPosts(rootDir);
     for (const post of blogPosts) {
-        urls.push(generateStaticUrlEntry(post));
+        urls.push(generateStaticUrlEntry(post, post.lastmod));
     }
 
-    // Build complete sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -198,13 +186,11 @@ ${urls.join('\n')}
 </urlset>
 `;
 
-    // Write sitemap
     const sitemapPath = path.join(rootDir, 'sitemap.xml');
     fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
 
-    console.log(`✓ Generated sitemap.xml with ${urls.length} URLs`);
-    console.log(`  - ${PAGES.length * LANGUAGES.length} localized page URLs`);
-    console.log(`  - ${STATIC_PAGES.length} static page URLs`);
+    console.log(`\n✓ Generated sitemap.xml with ${urls.length} URLs (${skipped} skipped)`);
+    console.log(`  - ${urls.length - blogPosts.length - STATIC_PAGES.length} localized page URLs`);
     console.log(`  - ${blogPosts.length} blog post URLs`);
 
     return sitemap;

@@ -98,11 +98,11 @@ const BADGES = {
     id: "rare-type",
     name: { ko: "희귀 소울", en: "Rare Soul", ja: "レアソウル", zh: "稀有灵魂", es: "Alma Rara" },
     description: {
-      ko: "상위 10% 희귀 타입 획득!",
-      en: "Get a top 10% rare type!",
-      ja: "上位10%のレアタイプを獲得！",
-      zh: "获得前10%稀有类型！",
-      es: "Obtén un tipo raro del 10%!"
+      ko: "특별한 소울 타입 발견!",
+      en: "Discover a special soul type!",
+      ja: "特別なソウルタイプを発見！",
+      zh: "发现特别的灵魂类型！",
+      es: "¡Descubre un alma especial!"
     },
     emoji: "💎",
     icon: "diamond",
@@ -115,11 +115,11 @@ const BADGES = {
     id: "legendary-type",
     name: { ko: "전설의 소울", en: "Legendary Soul", ja: "伝説のソウル", zh: "传奇灵魂", es: "Alma Legendaria" },
     description: {
-      ko: "상위 3% 전설 타입 획득!",
-      en: "Get a top 3% legendary type!",
-      ja: "上位3%の伝説タイプを獲得！",
-      zh: "获得前3%传奇类型！",
-      es: "Obtén un tipo legendario del 3%!"
+      ko: "전설급 소울 타입 발견!",
+      en: "Discover a legendary soul type!",
+      ja: "伝説級のソウルタイプを発見！",
+      zh: "发现传奇灵魂类型！",
+      es: "¡Descubre un alma legendaria!"
     },
     emoji: "👑",
     icon: "crown",

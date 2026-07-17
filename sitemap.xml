@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://smartaitest.com/en/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/"/>
@@ -21,7 +21,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/compatibility/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/compatibility/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/compatibility/"/>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/age-calculator/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
@@ -48,7 +48,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/age-calculator/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/age-calculator/"/>
@@ -56,332 +56,8 @@
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/en/privacy-policy/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/privacy-policy/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/privacy-policy/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/privacy-policy/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/privacy-policy/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/disclaimer/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/disclaimer/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/disclaimer/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/disclaimer/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/disclaimer/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/contact/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/contact/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/contact/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/contact/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/contact/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/en/terms-of-service/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/ko/terms-of-service/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/terms-of-service/"/>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/terms-of-service/"/>
-      <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/terms-of-service/"/>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog.html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/ai-personality-analysis-accuracy</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/barnum-effect-psychology</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/attachment-styles-relationships</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/piaget-cognitive-development</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/test-reliability-validity</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/enneagram-nine-types</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mbti-cognitive-functions</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/dark-triad-personality</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/cognitive-dissonance-psychology</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/social-desirability-bias-tests</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/love-languages-psychology</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/love-style-psychology</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/communication-style-psychology</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/work-style-psychology</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/hexaco-personality-model</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/kohlberg-moral-development</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/big-five-personality-guide</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-nature-vs-nurture</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/highly-sensitive-person-hsp</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/introversion-extraversion-science</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/fluid-crystallized-intelligence</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/cold-reading-psychology</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/love-brain-three-stages</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/type-a-b-personality</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/self-efficacy-psychology</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/sternberg-triangular-love</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/does-personality-change</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/emotional-intelligence-psychology</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/16personalities-vs-mbti</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/biological-vs-mental-age</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/blood-type-compatibility-science</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/couple-compatibility-science</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/erikson-psychosocial-stages</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mbti-vs-big5</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/mental-age-meaning</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-career-guide</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-test-history</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/personality-types-love-patterns</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/psychology-test-stress-relief</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/relationship-compatibility-factors</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaitest.com/blog/zodiac-vs-ai-compatibility</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://smartaitest.com/en/personality-type/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/personality-type/"/>
@@ -390,7 +66,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/personality-type/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/personality-type/"/>
@@ -399,7 +75,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/about/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
@@ -408,7 +84,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/about/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/about/"/>
@@ -417,7 +93,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/mood-report/</loc>
-    <lastmod>2026-07-04</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -429,7 +105,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/friend-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/friend-compatibility/"/>
@@ -439,7 +115,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/friend-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/friend-compatibility/"/>
@@ -449,7 +125,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ja/friend-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/friend-compatibility/"/>
@@ -459,7 +135,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/marriage-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/marriage-compatibility/"/>
@@ -469,7 +145,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/marriage-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/marriage-compatibility/"/>
@@ -479,7 +155,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ja/marriage-compatibility/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/marriage-compatibility/"/>
@@ -489,7 +165,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/en/love-type/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
@@ -501,7 +177,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/love-type/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
@@ -513,7 +189,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ja/love-type/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
@@ -525,7 +201,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/zh/love-type/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
@@ -537,7 +213,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/es/love-type/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/love-type/"/>
@@ -561,7 +237,7 @@
   </url>
   <url>
     <loc>https://smartaitest.com/ko/communication-style/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/communication-style/"/>
@@ -608,24 +284,24 @@
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/communication-style/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/ko/work-style/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://smartaitest.com/en/work-style/</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
   </url>
   <url>
-    <loc>https://smartaitest.com/en/work-style/</loc>
+    <loc>https://smartaitest.com/ko/work-style/</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
@@ -636,8 +312,8 @@
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
@@ -645,11 +321,11 @@
   </url>
   <url>
     <loc>https://smartaitest.com/zh/work-style/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
@@ -657,14 +333,278 @@
   </url>
   <url>
     <loc>https://smartaitest.com/es/work-style/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="en" href="https://smartaitest.com/en/work-style/"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/work-style/"/>
       <xhtml:link rel="alternate" hreflang="ja" href="https://smartaitest.com/ja/work-style/"/>
       <xhtml:link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/work-style/"/>
       <xhtml:link rel="alternate" hreflang="es" href="https://smartaitest.com/es/work-style/"/>
       <xhtml:link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/work-style/"/>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/16personalities-vs-mbti</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/ai-personality-analysis-accuracy</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/attachment-styles-relationships</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/barnum-effect-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/big-five-personality-guide</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/biological-vs-mental-age</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/blood-type-compatibility-science</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/cognitive-dissonance-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/cold-reading-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/communication-style-psychology</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/compatible-couples-psychology</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/couple-compatibility-science</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/dark-triad-personality</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/does-personality-change</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/emotional-intelligence-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/enneagram-nine-types</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/erikson-psychosocial-stages</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/fluid-crystallized-intelligence</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/healthy-relationship-signs</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/hexaco-personality-model</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/highly-sensitive-person-hsp</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/introversion-extraversion-science</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/kohlberg-moral-development</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/love-brain-three-stages</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/love-languages-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/love-style-psychology</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/mbti-cognitive-functions</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/mbti-vs-big5</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/mental-age-meaning</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/personality-career-guide</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/personality-nature-vs-nurture</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/personality-test-history</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/personality-types-love-patterns</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/piaget-cognitive-development</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/psychology-test-stress-relief</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/relationship-compatibility-factors</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/self-efficacy-psychology</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/social-desirability-bias-tests</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/sternberg-triangular-love</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/test-reliability-validity</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/type-a-b-personality</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/work-style-psychology</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smartaitest.com/blog/zodiac-vs-ai-compatibility</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

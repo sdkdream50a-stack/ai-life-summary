@@ -231,57 +231,6 @@ function initScrollReveal() {
 }
 
 // ============================================
-// RARITY PERCENTAGE
-// ============================================
-
-/**
- * Calculate rarity percentage based on result type
- * Different tests have different type distributions
- * @param {string} resultType - The result type identifier
- * @param {string} testType - 'life-summary', 'compatibility', or 'age-calculator'
- * @returns {number} - Rarity percentage (5-30)
- */
-function calculateRarity(resultType, testType = 'general') {
-    // Use hash to generate consistent rarity for same result type
-    let hash = 0;
-    const str = resultType + testType;
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-
-    // Map to 5-30% range with weighted distribution
-    // Lower percentages are rarer
-    const normalized = Math.abs(hash % 100);
-
-    if (normalized < 10) return 5;  // 10% chance of being top 5%
-    if (normalized < 25) return 8;  // 15% chance of being top 8%
-    if (normalized < 45) return 12; // 20% chance of being top 12%
-    if (normalized < 65) return 18; // 20% chance of being top 18%
-    if (normalized < 85) return 23; // 20% chance of being top 23%
-    return 30; // 15% chance of being top 30%
-}
-
-/**
- * Get rarity label based on percentage
- * @param {number} rarityPercent - Rarity percentage
- * @param {string} lang - Language code
- * @returns {string} - Formatted rarity label
- */
-function getRarityLabel(rarityPercent, lang = 'ko') {
-    const labels = {
-        en: `Top ${rarityPercent}% Type`,
-        ko: `\uC0C1\uC704 ${rarityPercent}% \uD0C0\uC785`,
-        ja: `\u4E0A\u4F4D ${rarityPercent}% \u30BF\u30A4\u30D7`,
-        zh: `\u524D ${rarityPercent}% \u7C7B\u578B`,
-        es: `Top ${rarityPercent}% Tipo`
-    };
-
-    return labels[lang] || labels['en'];
-}
-
-// ============================================
 // CSS STYLES (injected dynamically)
 // ============================================
 
@@ -444,8 +393,6 @@ if (typeof window !== 'undefined') {
         animateProgressBar,
         revealCardsSequentially,
         showLoadingAnimation,
-        createLoadingOverlay,
-        calculateRarity,
-        getRarityLabel
+        createLoadingOverlay
     };
 }

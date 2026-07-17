@@ -114,6 +114,11 @@ function transform(srcHtml, slug, lang) {
     // 1. <html lang="...">
     h = h.replace(/<html\s+lang="[^"]*"/i, `<html lang="${lang}"`);
 
+    // 1b. Inline bottom script hardcodes 'en' and would override <html lang>
+    // at runtime — align it with the page locale.
+    h = h.replace(/document\.documentElement\.lang = 'en';/g,
+        `document.documentElement.lang = '${lang}';`);
+
     // 2. <title>
     h = h.replace(/<title>[^<]*<\/title>/i, `<title>${title}</title>`);
 
