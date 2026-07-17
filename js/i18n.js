@@ -14,7 +14,6 @@ const translations = {
         "hero.title": "Your Life in One Birthday-Based Sentence",
         "hero.subtitle": "Generate a playful sentence from your birthday",
         "hero.description": "Pop in your birthday and get a playful, one-of-a-kind life summary in seconds — the same birthday always gives the same result. Just for fun, and fun to share!",
-        "hero.stats": "Over 1,000,000 sentences generated worldwide",
 
         // Form
         "form.birthdate": "Date of Birth",
@@ -612,7 +611,6 @@ const translations = {
         "hero.title": "생년월일로 만든 나의 인생 한 줄",
         "hero.subtitle": "생년월일로 나만의 재미있는 인생 한 문장을 만들어보세요",
         "hero.description": "생년월일만 입력하면 나만의 재미있는 인생 한 문장이 몇 초 만에 완성돼요. 같은 생일은 언제나 같은 결과! 친구들과 함께 즐겨보세요.",
-        "hero.stats": "전 세계 1,000,000개 이상의 문장이 생성되었습니다",
 
         // Form
         "form.birthdate": "생년월일",
@@ -1289,7 +1287,6 @@ const translations = {
         "hero.title": "誕生日で作る私の人生一行",
         "hero.subtitle": "誕生日から遊び心あふれる人生の一文を生成",
         "hero.description": "誕生日を入れるだけで、あなただけの遊び心あふれる人生の一文が数秒で完成。同じ誕生日ならいつも同じ結果です。友達とシェアして楽しんでね。",
-        "hero.stats": "世界中で1,000,000以上の文章が生成されました",
 
         // Form
         "form.birthdate": "生年月日",
@@ -1762,7 +1759,6 @@ const translations = {
         "hero.title": "生日哈希人生一句话",
         "hero.subtitle": "用生日生成一句娱乐性总结",
         "hero.description": "只需输入生日，几秒就能得到专属于你的趣味人生一句话。相同生日永远得到相同结果，快和朋友一起分享吧！",
-        "hero.stats": "全球已生成超过1,000,000条句子",
 
         // Form
         "form.birthdate": "出生日期",
@@ -2235,7 +2231,6 @@ const translations = {
         "hero.title": "Tu Vida en Una Frase Basada en Tu Cumpleaños",
         "hero.subtitle": "Genera una frase ludica a partir de tu cumpleaños",
         "hero.description": "Solo pon tu cumpleaños y obtén en segundos un divertido resumen de tu vida, único para ti. El mismo cumpleaños siempre da el mismo resultado. ¡Diviértete y compártelo con tus amigos!",
-        "hero.stats": "Más de 1,000,000 de frases generadas en todo el mundo",
 
         // Form
         "form.birthdate": "Fecha de Nacimiento",
