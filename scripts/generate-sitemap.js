@@ -17,24 +17,28 @@ const { execSync } = require('child_process');
 
 const BASE_URL = 'https://smartaitest.com';
 
-// Curated indexable pages. langs = locales that actually have real content
-// (partial locale coverage is intentional — do not blanket-expand to 5 langs).
+const LANGUAGES = ['en', 'ko', 'ja', 'zh', 'es'];
+
+// Indexable page paths. Which locales each path covers is derived from the
+// filesystem (see availableLangs) rather than hardcoded — a hardcoded list
+// silently goes stale when locale files are added, which is exactly how
+// /ja/compatibility/ (the top-converting market) sat outside the sitemap.
 // Localized legal pages (/{lang}/privacy-policy/ etc.) are noindex with
-// canonical to the root .html versions, so they are intentionally absent.
+// canonical to the root .html versions, so they are skipped by the guard.
 // Result pages are noindex and must never be listed.
 const LOCALIZED_PAGES = [
-    { path: '',                        langs: ['en', 'ko'],                   priority: 1.0, changefreq: 'weekly' },
-    { path: 'compatibility/',          langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
-    { path: 'age-calculator/',         langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
-    { path: 'personality-type/',       langs: ['en', 'ko'],                   priority: 0.9, changefreq: 'weekly' },
-    { path: 'about/',                  langs: ['en', 'ko'],                   priority: 0.5, changefreq: 'monthly' },
-    { path: 'mood-report/',            langs: ['ko'],                         priority: 0.8, changefreq: 'monthly' },
-    { path: 'holiday-position/',       langs: ['ko'],                         priority: 0.8, changefreq: 'monthly' },
-    { path: 'friend-compatibility/',   langs: ['en', 'ko', 'ja'],             priority: 0.8, changefreq: 'weekly' },
-    { path: 'marriage-compatibility/', langs: ['en', 'ko', 'ja'],             priority: 0.8, changefreq: 'weekly' },
-    { path: 'love-type/',              langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
-    { path: 'communication-style/',    langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
-    { path: 'work-style/',             langs: ['en', 'ko', 'ja', 'zh', 'es'], priority: 0.8, changefreq: 'monthly' },
+    { path: '',                        priority: 1.0, changefreq: 'weekly' },
+    { path: 'compatibility/',          priority: 0.9, changefreq: 'weekly' },
+    { path: 'age-calculator/',         priority: 0.9, changefreq: 'weekly' },
+    { path: 'personality-type/',       priority: 0.9, changefreq: 'weekly' },
+    { path: 'about/',                  priority: 0.5, changefreq: 'monthly' },
+    { path: 'mood-report/',            priority: 0.8, changefreq: 'monthly' },
+    { path: 'holiday-position/',       priority: 0.8, changefreq: 'monthly' },
+    { path: 'friend-compatibility/',   priority: 0.8, changefreq: 'weekly' },
+    { path: 'marriage-compatibility/', priority: 0.8, changefreq: 'weekly' },
+    { path: 'love-type/',              priority: 0.8, changefreq: 'monthly' },
+    { path: 'communication-style/',    priority: 0.8, changefreq: 'monthly' },
+    { path: 'work-style/',             priority: 0.8, changefreq: 'monthly' },
 ];
 
 // Root-level static pages (no hreflang)
@@ -51,6 +55,17 @@ function isNoindex(filePath) {
     const html = fs.readFileSync(filePath, 'utf8');
     return /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) ||
            /<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html);
+}
+
+/**
+ * Locales whose file for this path exists and is indexable. Drives both the
+ * <loc> entries and the hreflang cluster, so the sitemap can never advertise
+ * an alternate that isn't there.
+ */
+function availableLangs(rootDir, pagePath) {
+    return LANGUAGES.filter(lang =>
+        isNoindex(path.join(rootDir, lang, pagePath, 'index.html')) === false
+    );
 }
 
 /**
@@ -82,12 +97,12 @@ function generateHreflangLinks(pagePath, langs) {
     return '\n' + links.join('\n');
 }
 
-function generateUrlEntry(lang, page, lastmod) {
+function generateUrlEntry(lang, page, langs, lastmod) {
     return `  <url>
     <loc>${BASE_URL}/${lang}/${page.path}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>${generateHreflangLinks(page.path, page.langs)}
+    <priority>${page.priority}</priority>${generateHreflangLinks(page.path, langs)}
   </url>`;
 }
 
@@ -111,9 +126,15 @@ function discoverBlogPosts(rootDir) {
         return posts;
     }
 
-    for (const sub of ['ko', 'en']) {
+    // Locale subdirectories are discovered, not hardcoded — the previous
+    // hardcoded ['ko','en'] pointed at two empty dirs while blog/ja and
+    // blog/es (6 posts each) were never scanned.
+    const localeDirs = fs.readdirSync(blogDir, { withFileTypes: true })
+        .filter(d => d.isDirectory())
+        .map(d => d.name);
+
+    for (const sub of localeDirs) {
         const dir = path.join(blogDir, sub);
-        if (!fs.existsSync(dir)) continue;
         const files = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
         files.forEach(file => {
             const fullPath = path.join(dir, file);
@@ -159,20 +180,16 @@ function generateSitemap() {
     console.log('Generating sitemap.xml...\n');
 
     for (const page of LOCALIZED_PAGES) {
-        for (const lang of page.langs) {
+        const langs = availableLangs(rootDir, page.path);
+        for (const lang of LANGUAGES) {
+            if (langs.includes(lang)) continue;
+            const state = isNoindex(path.join(rootDir, lang, page.path, 'index.html'));
+            console.warn(`  ! skip (${state === null ? 'missing file' : 'noindex'}): /${lang}/${page.path}`);
+            skipped++;
+        }
+        for (const lang of langs) {
             const filePath = path.join(rootDir, lang, page.path, 'index.html');
-            const noindex = isNoindex(filePath);
-            if (noindex === null) {
-                console.warn(`  ! skip (missing file): /${lang}/${page.path}`);
-                skipped++;
-                continue;
-            }
-            if (noindex) {
-                console.warn(`  ! skip (noindex): /${lang}/${page.path}`);
-                skipped++;
-                continue;
-            }
-            urls.push(generateUrlEntry(lang, page, fileMtime(filePath)));
+            urls.push(generateUrlEntry(lang, page, langs, fileMtime(filePath)));
         }
     }
 
