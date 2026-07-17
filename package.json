@@ -8,10 +8,11 @@
     "build:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --minify",
     "watch:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --watch",
     "build:i18n": "node scripts/build-i18n-pages.js",
+    "build:legal": "node scripts/build-legal-i18n.js",
     "build:sitemap": "node scripts/generate-sitemap.js",
-    "build:redirectors": "node scripts/create-redirectors.js",
-    "build:all": "npm run build:i18n && npm run build:redirectors && npm run build:sitemap && npm run build:ads",
-    "build:ads": "node scripts/update-ad-placements.js"
+    "build:all": "npm run build:i18n && npm run build:legal && npm run build:sitemap",
+    "danger:redirectors": "node scripts/create-redirectors.js",
+    "danger:ads": "node scripts/update-ad-placements.js"
   },
   "author": "AI Life Summary",
   "license": "MIT",
