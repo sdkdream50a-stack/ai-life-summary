@@ -1040,7 +1040,9 @@ function fixMobileMenu(html) {
 }
 
 /**
- * Remove auto-loading analytics/ads scripts (now handled by consent manager)
+ * Remove auto-loading analytics and ads from source snapshots.
+ * Analytics is handled by consent-manager.js; the final AdSense boundary
+ * injects its loader only on explicitly allowed pages.
  */
 function removeAutoLoadScripts(html) {
     // Remove Google Analytics script tags
@@ -1062,7 +1064,7 @@ function removeAutoLoadScripts(html) {
     // Remove Google AdSense script
     html = html.replace(
         /<script[^>]*src="[^"]*pagead2\.googlesyndication\.com[^"]*"[^>]*><\/script>/gi,
-        '<!-- AdSense loaded via consent manager -->'
+        ''
     );
 
     // Remove comment markers for these scripts
@@ -1070,7 +1072,7 @@ function removeAutoLoadScripts(html) {
     html = html.replace(/\s*<!--\s*Microsoft Clarity\s*-->\s*/gi, '');
     html = html.replace(/\s*<!--\s*Google AdSense\s*-->\s*/gi, '');
 
-    // Inject consent-manager.js (gates GA/Clarity/AdSense per Consent Mode v2)
+    // Inject consent-manager.js for GA/Clarity and Consent Mode v2 defaults.
     if (!/<script[^>]*src="[^"]*consent-manager\.js"/i.test(html) && /<\/head>/i.test(html)) {
         html = html.replace(/<\/head>/i, '    <script src="/js/consent-manager.js"></script>\n</head>');
     }

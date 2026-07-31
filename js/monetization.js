@@ -1,86 +1,7 @@
 /**
  * Monetization System for SmartAITest.com
- * Stage 5: Contextual Ads & Affiliate Recommendations
+ * Contextual affiliate recommendations.
  */
-
-// ===== AdSense Configuration =====
-const ADSENSE_CONFIG = {
-    publisherId: 'ca-pub-6241798439911569',
-    slots: {
-        interstitial: '1234567890', // Replace with actual ad slot ID
-        resultBottom: '0987654321', // Replace with actual ad slot ID
-        affiliate: '1122334455'     // Replace with actual ad slot ID
-    }
-};
-
-// ===== Interstitial Ad Manager =====
-const InterstitialAdManager = {
-    /**
-     * Create an interstitial ad container for loading screen
-     */
-    createLoadingAd(containerId, options = {}) {
-        const container = document.getElementById(containerId);
-        if (!container) return null;
-
-        const lang = options.lang || 'ko';
-        const adLabels = {
-            ko: '광고',
-            en: 'Advertisement',
-            ja: '広告',
-            zh: '广告',
-            es: 'Publicidad'
-        };
-
-        // Create ad wrapper
-        const adWrapper = document.createElement('div');
-        adWrapper.className = 'loading-ad-wrapper';
-        adWrapper.innerHTML = `
-            <div class="loading-ad-container">
-                <p class="ad-label">${adLabels[lang] || adLabels.en}</p>
-                <div class="ad-slot-interstitial">
-                    <!-- Google AdSense -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="${ADSENSE_CONFIG.publisherId}"
-                         data-ad-slot="${ADSENSE_CONFIG.slots.interstitial}"></ins>
-                </div>
-            </div>
-        `;
-
-        container.appendChild(adWrapper);
-
-        // Push ad to AdSense
-        try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.log('AdSense not available');
-            // Show placeholder for development
-            const adSlot = adWrapper.querySelector('.ad-slot-interstitial');
-            if (adSlot) {
-                adSlot.innerHTML = `
-                    <div class="ad-placeholder">
-                        <span class="ad-placeholder-text">AD 300x250</span>
-                    </div>
-                `;
-            }
-        }
-
-        return adWrapper;
-    },
-
-    /**
-     * Remove the interstitial ad
-     */
-    removeLoadingAd(wrapper) {
-        if (wrapper && wrapper.parentNode) {
-            wrapper.classList.add('fade-out');
-            setTimeout(() => {
-                wrapper.parentNode.removeChild(wrapper);
-            }, 300);
-        }
-    }
-};
-
 
 // ===== Contextual Affiliate Manager =====
 const ContextualAffiliateManager = {
@@ -431,7 +352,5 @@ const ContextualAffiliateManager = {
 
 // ===== Export for global use =====
 if (typeof window !== 'undefined') {
-    window.InterstitialAdManager = InterstitialAdManager;
     window.ContextualAffiliateManager = ContextualAffiliateManager;
-    window.ADSENSE_CONFIG = ADSENSE_CONFIG;
 }
