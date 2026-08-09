@@ -14,8 +14,6 @@ const path = require('path');
 const POSTS_DIR = path.join(__dirname, '../posts');
 const BLOG_DIR = path.join(__dirname, '../blog');
 const BLOG_HTML = path.join(__dirname, '../blog.html');
-const SITEMAP_PATH = path.join(__dirname, '../sitemap.xml');
-const DOMAIN = 'https://ailifesummary.com';
 
 // 색상 매핑 (순환용 배열로 변경)
 const COLOR_LIST = [
@@ -578,76 +576,14 @@ function updateBlogHtml(posts) {
   }
 }
 
-// sitemap.xml 업데이트
-function updateSitemap(posts) {
-  const today = new Date().toISOString().split('T')[0];
-
-  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${DOMAIN}/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/blog.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>`;
-
-  posts.forEach(post => {
-    sitemap += `
-  <url>
-    <loc>${DOMAIN}/blog/post-${post.episode}.html</loc>
-    <lastmod>${post.date}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
+// The canonical generator owns both sitemap.xml and sitemap-blog.xml.
+// Keeping this delegation prevents the legacy markdown builder from restoring
+// stale URLs such as blog.html after a blog rebuild.
+function updateSitemap() {
+  const { execFileSync } = require('child_process');
+  execFileSync(process.execPath, [path.join(__dirname, 'generate-sitemap.js')], {
+    stdio: 'inherit'
   });
-
-  sitemap += `
-  <url>
-    <loc>${DOMAIN}/about.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/generate.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/archive.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/contact.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/privacy-policy.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>${DOMAIN}/terms-of-service.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-</urlset>`;
-
-  fs.writeFileSync(SITEMAP_PATH, sitemap);
-  console.log('📍 sitemap.xml 업데이트 완료');
 }
 
 // 메인 빌드 함수
@@ -706,7 +642,7 @@ function build() {
   updateBlogHtml(posts);
 
   // sitemap.xml 업데이트
-  updateSitemap(posts);
+  updateSitemap();
 
   console.log(`\n✨ 빌드 완료! ${posts.length}개의 포스트가 생성되었습니다.\n`);
 }

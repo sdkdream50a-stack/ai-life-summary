@@ -3,7 +3,7 @@
 /**
  * generate-sitemap.js
  *
- * Generates sitemap.xml with hreflang tags for indexable pages only.
+ * Generates sitemap.xml plus a blog-only sitemap for indexable pages only.
  * Guard: any URL whose local file is missing or carries a noindex robots
  * meta is skipped — the sitemap must never advertise pages that opt out
  * of indexing (GSC "Submitted URL marked noindex").
@@ -39,11 +39,6 @@ const LOCALIZED_PAGES = [
     { path: 'love-type/',              priority: 0.8, changefreq: 'monthly' },
     { path: 'communication-style/',    priority: 0.8, changefreq: 'monthly' },
     { path: 'work-style/',             priority: 0.8, changefreq: 'monthly' },
-];
-
-// Root-level static pages (no hreflang)
-const STATIC_PAGES = [
-    { path: 'blog.html', priority: 0.8, changefreq: 'weekly' },
 ];
 
 /**
@@ -172,6 +167,15 @@ function discoverBlogPosts(rootDir) {
     return posts;
 }
 
+function renderSitemap(urls) {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`;
+}
+
 function generateSitemap() {
     const rootDir = path.join(__dirname, '..');
     const urls = [];
@@ -193,35 +197,24 @@ function generateSitemap() {
         }
     }
 
-    for (const page of STATIC_PAGES) {
-        const filePath = path.join(rootDir, page.path);
-        const noindex = isNoindex(filePath);
-        if (noindex === null || noindex) {
-            console.warn(`  ! skip (${noindex === null ? 'missing file' : 'noindex'}): /${page.path}`);
-            skipped++;
-            continue;
-        }
-        urls.push(generateStaticUrlEntry(page, fileMtime(filePath)));
-    }
-
     const blogPosts = discoverBlogPosts(rootDir);
     for (const post of blogPosts) {
         urls.push(generateStaticUrlEntry(post, post.lastmod));
     }
 
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls.join('\n')}
-</urlset>
-`;
-
+    const sitemap = renderSitemap(urls);
     const sitemapPath = path.join(rootDir, 'sitemap.xml');
     fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
+    fs.writeFileSync(
+        path.join(rootDir, 'sitemap-blog.xml'),
+        renderSitemap(blogPosts.map(post => generateStaticUrlEntry(post, post.lastmod))),
+        'utf-8'
+    );
 
     console.log(`\n✓ Generated sitemap.xml with ${urls.length} URLs (${skipped} skipped)`);
-    console.log(`  - ${urls.length - blogPosts.length - STATIC_PAGES.length} localized page URLs`);
+    console.log(`  - ${urls.length - blogPosts.length} localized page URLs`);
     console.log(`  - ${blogPosts.length} blog post URLs`);
+    console.log('  - sitemap-blog.xml contains blog URLs only');
 
     return sitemap;
 }

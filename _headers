@@ -68,6 +68,9 @@
 /sitemap.xml
   Cache-Control: public, max-age=86400
 
+/sitemap-blog.xml
+  Cache-Control: public, max-age=86400
+
 /robots.txt
   Cache-Control: public, max-age=86400
 

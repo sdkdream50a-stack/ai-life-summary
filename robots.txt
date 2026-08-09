@@ -67,3 +67,4 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://smartaitest.com/sitemap.xml
+Sitemap: https://smartaitest.com/sitemap-blog.xml
