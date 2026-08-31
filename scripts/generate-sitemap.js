@@ -44,12 +44,37 @@ const LOCALIZED_PAGES = [
 /**
  * Returns true if the file opts out of indexing, false if indexable,
  * null if the file does not exist.
+ *
+ * Two ways to opt out, and both must be honoured:
+ *   1. a noindex robots meta;
+ *   2. a canonical pointing at a DIFFERENT URL. A sitemap is a list of
+ *      canonical URLs, so a page that names someone else as canonical
+ *      does not belong in it. The dedup pass (df8818a) consolidates
+ *      duplicate-cluster members this way while leaving them indexable,
+ *      and without this branch the sitemap re-submits exactly the pages
+ *      the dedup was meant to withdraw.
  */
 function isNoindex(filePath) {
     if (!fs.existsSync(filePath)) return null;
     const html = fs.readFileSync(filePath, 'utf8');
-    return /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) ||
-           /<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html);
+    if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) ||
+        /<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html)) {
+        return true;
+    }
+    return pointsCanonicalElsewhere(filePath, html);
+}
+
+/**
+ * True when the page's canonical names a URL other than its own.
+ * Path comparison is trailing-slash and .html insensitive so that
+ * /blog/foo, /blog/foo.html and /blog/foo/ all count as the same page.
+ */
+function pointsCanonicalElsewhere(filePath, html) {
+    const m = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/smartaitest\.com([^"']*)["']/i);
+    if (!m) return false;
+    const normalise = (p) => p.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/+$/, '');
+    const own = '/' + path.relative(path.join(__dirname, '..'), filePath).split(path.sep).join('/');
+    return normalise(m[1]) !== normalise(own);
 }
 
 /**
@@ -153,8 +178,9 @@ function discoverBlogPosts(rootDir) {
         const fullPath = path.join(blogDir, file);
         const html = fs.readFileSync(fullPath, 'utf8');
         if (/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html) ||
-            /<meta\s+http-equiv=["']refresh["']/i.test(html)) {
-            return; // skip retired/redirect stubs
+            /<meta\s+http-equiv=["']refresh["']/i.test(html) ||
+            pointsCanonicalElsewhere(fullPath, html)) {
+            return; // skip retired/redirect stubs and canonical-consolidated duplicates
         }
         posts.push({
             path: `blog/${file.replace(/\.html$/, '')}`,
