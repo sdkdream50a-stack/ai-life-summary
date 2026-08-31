@@ -605,15 +605,6 @@
             </div>
         </section>
 
-        <!-- Stage 5: Supplement Affiliate Section -->
-        <section class="py-8 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <div id="supplement-affiliate-container">
-                    <!-- Populated by ContextualAffiliateManager -->
-                </div>
-            </div>
-        </section>
-
         <!-- Try More Tests -->
         <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
             <div class="max-w-4xl mx-auto px-4">
@@ -970,16 +961,6 @@
                     testType: 'age-calculator',
                     lang: currentLang
                 });
-            }
-
-            // Stage 5: Add Supplement Affiliate Section
-            if (typeof ContextualAffiliateManager !== 'undefined') {
-                const supplementHtml = ContextualAffiliateManager.createSupplementAffiliateSection(
-                    realAge,
-                    mentalAge,
-                    currentLang
-                );
-                ContextualAffiliateManager.insertAffiliateSection('supplement-affiliate-container', supplementHtml);
             }
         }
 
