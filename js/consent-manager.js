@@ -726,46 +726,107 @@ if (document.readyState === 'loading') {
   ConsentManager.init();
 }
 
-// ===== Korean auto-detect language banner =====
-// Show one-time top banner to ko-browser visitors on non-ko pages
-(function showKoLangBanner() {
+// ===== Locale suggestion banner =====
+// Offers the visitor the same page in their own language. This used to be
+// Korean-only: it fired on every non-/ko/ page, including every Japanese one,
+// with hardcoded Korean copy and no equivalent for any other locale — a
+// one-way funnel out of every other market. It is now symmetric across all
+// five supported locales and speaks in the language it is offering.
+//
+// It only ever suggests. The URL locale still decides what the page renders
+// (see getCurrentLanguage in js/i18n.js) — this never switches anything itself.
+(function localeSuggestionBanner() {
+  var SUPPORTED = ['en', 'ko', 'ja', 'zh', 'es'];
+
+  // Copy is written in the language being offered, so the visitor can read it.
+  var COPY = {
+    ko: { flag: '\uD83C\uDDF0\uD83C\uDDF7', msg: '한국어 페이지가 준비되어 있습니다', cta: '한국어로 이동', close: '닫기' },
+    ja: { flag: '\uD83C\uDDEF\uD83C\uDDF5', msg: '日本語のページがあります', cta: '日本語で見る', close: '閉じる' },
+    en: { flag: '\uD83C\uDDFA\uD83C\uDDF8', msg: 'This page is available in English', cta: 'View in English', close: 'Dismiss' },
+    zh: { flag: '\uD83C\uDDE8\uD83C\uDDF3', msg: '本页面有中文版', cta: '查看中文版', close: '关闭' },
+    es: { flag: '\uD83C\uDDEA\uD83C\uDDF8', msg: 'Esta página está disponible en español', cta: 'Ver en español', close: 'Cerrar' }
+  };
+
+  // These two tools were only ever built for en, ko and ja, so a same-path
+  // suggestion into zh or es would land on a 404.
+  var LIMITED = {
+    'friend-compatibility': ['en', 'ko', 'ja'],
+    'marriage-compatibility': ['en', 'ko', 'ja']
+  };
+
+  function pageLocale(path) {
+    var m = path.match(/^\/(en|ko|ja|zh|es)(\/|$)/);
+    return m ? m[1] : null;
+  }
+
+  function preferredLocale() {
+    var list = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i] || '').split('-')[0].toLowerCase();
+      if (SUPPORTED.indexOf(code) !== -1) return code;
+    }
+    return null;
+  }
+
+  function targetUrl(path, from, to) {
+    if (!from) return '/' + to + '/';
+    var rest = path.slice(('/' + from).length).replace(/^\//, '');
+    var slug = rest.split('/')[0];
+    if (LIMITED[slug] && LIMITED[slug].indexOf(to) === -1) return '/' + to + '/';
+    return '/' + to + '/' + rest;
+  }
+
   function init() {
     try {
-      // Skip if user dismissed
-      if (localStorage.getItem('lang-banner-dismissed-ko') === '1') return;
+      var want = preferredLocale();
+      if (!want) return;
 
-      // Skip on Korean pages (already in ko)
+      // Honour both the new key and the original Korean-only one, so anyone who
+      // already dismissed the old banner is not shown this one.
+      if (localStorage.getItem('lang-banner-dismissed') === '1') return;
+      if (want === 'ko' && localStorage.getItem('lang-banner-dismissed-ko') === '1') return;
+
       var path = window.location.pathname;
-      if (path === '/ko' || path.indexOf('/ko/') === 0) return;
+      var here = pageLocale(path);
+      if (here === want) return;                 // already in their language
+      if (!here && want === 'en') return;        // root pages are English already
 
-      // Detect Korean browser preference
-      var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      if (!browserLang.indexOf || browserLang.indexOf('ko') !== 0) return;
+      var copy = COPY[want];
+      if (!copy) return;
 
-      // Build target URL: keep current path but force /ko/ prefix where possible
-      var targetUrl = '/ko/';
-      var langMatch = path.match(/^\/(en|ja|zh|es)\/(.*)$/);
-      if (langMatch) {
-        targetUrl = '/ko/' + langMatch[2];
-      }
-
-      // Build banner
       var banner = document.createElement('div');
-      banner.id = 'ko-lang-banner';
+      banner.id = 'locale-suggestion-banner';
       banner.setAttribute('role', 'region');
-      banner.setAttribute('aria-label', 'Korean language suggestion');
+      banner.setAttribute('aria-label', copy.msg);
+      banner.setAttribute('lang', want);
       banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99998;background:linear-gradient(90deg,#7c3aed 0%,#ec4899 100%);color:white;padding:10px 16px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-shadow:0 2px 12px rgba(0,0,0,0.25);';
-      banner.innerHTML =
-        '<span style="font-weight:500">🇰🇷 한국어 페이지가 준비되어 있습니다</span>' +
-        '<a href="' + targetUrl + '" style="background:white;color:#7c3aed;padding:6px 14px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;">한국어로 이동 →</a>' +
-        '<button type="button" aria-label="닫기" style="background:transparent;border:none;color:white;font-size:20px;cursor:pointer;line-height:1;padding:0 4px;opacity:0.85;">×</button>';
-      banner.querySelector('button').addEventListener('click', function () {
+
+      var label = document.createElement('span');
+      label.style.fontWeight = '500';
+      label.textContent = copy.flag + ' ' + copy.msg;
+
+      var link = document.createElement('a');
+      link.href = targetUrl(path, here, want);
+      link.style.cssText = 'background:white;color:#7c3aed;padding:6px 14px;border-radius:8px;font-weight:600;text-decoration:none;font-size:13px;';
+      link.textContent = copy.cta + ' \u2192';
+
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.setAttribute('aria-label', copy.close);
+      close.style.cssText = 'background:transparent;border:none;color:white;font-size:20px;cursor:pointer;line-height:1;padding:0 4px;opacity:0.85;';
+      close.textContent = '\u00D7';
+      close.addEventListener('click', function () {
         banner.remove();
-        try { localStorage.setItem('lang-banner-dismissed-ko', '1'); } catch (e) {}
+        try { localStorage.setItem('lang-banner-dismissed', '1'); } catch (e) {}
       });
+
+      banner.appendChild(label);
+      banner.appendChild(link);
+      banner.appendChild(close);
       document.body.appendChild(banner);
     } catch (e) { /* fail silently */ }
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

@@ -247,12 +247,42 @@ function checkShareChannels() {
   return checked;
 }
 
+// ---------------------------------------------------------------- guard 6
+/**
+ * The locale suggestion banner ships on every page via js/consent-manager.js.
+ * It used to be Korean-only — it fired on every non-/ko/ page with hardcoded
+ * Korean copy and had no equivalent for any other market. It must stay
+ * symmetric across all five locales.
+ */
+function checkLocaleBanner() {
+  const js = read('js/consent-manager.js');
+
+  if (js.includes('showKoLangBanner')) {
+    failures.push('js/consent-manager.js: the Korean-only redirect banner is back');
+  }
+  const block = js.slice(js.indexOf('localeSuggestionBanner'));
+  if (!block) {
+    failures.push('js/consent-manager.js: locale suggestion banner missing');
+    return 0;
+  }
+  const copy = block.slice(block.indexOf('var COPY'), block.indexOf('var LIMITED'));
+  const missing = LANGS.filter(l => !new RegExp(`\\b${l}:\\s*\\{`).test(copy));
+  if (missing.length) {
+    failures.push(`js/consent-manager.js: locale banner has no copy for ${missing.join(', ')} — it would only serve some markets`);
+  }
+  if (!/here === want/.test(block)) {
+    failures.push('js/consent-manager.js: locale banner no longer suppresses itself on a page already in the visitor\'s language');
+  }
+  return LANGS.length - missing.length;
+}
+
 // ---------------------------------------------------------------- run
 const parity = checkTemplateParity();
 const surfaces = checkFunnelCoverage();
 const ctas = checkReferralUtm();
 const locale = checkLocaleAuthority();
 const share = checkShareChannels();
+const banner = checkLocaleBanner();
 
 if (failures.length) {
   console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
@@ -262,6 +292,7 @@ if (failures.length) {
   console.log(
     `S1 guards passed: ${parity} template/generated pairs in sync, ` +
     `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
-    `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels.`
+    `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels, ` +
+    `locale banner covering ${banner}/${LANGS.length} markets.`
   );
 }
