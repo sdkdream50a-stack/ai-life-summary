@@ -149,6 +149,24 @@ $ echo $?
 정상 블록 수가 양쪽 모두 **30 으로 동일**하다. 38 − 30 = 8 로 제거 수와도 일치한다.
 즉 제거된 8개는 전부 wrong-language 블록이었고, 올바르게 현지화된 블록은 하나도 잃지 않았다.
 
+### mismatch 0 이 "FAQPage 를 전부 지워서" 가 아니다 — 보존 30블록의 로케일 분포
+
+산술(30 = 30)만으로는 "혹시 비영어 FAQPage 를 싹 지우고 영어만 남긴 것 아닌가" 를 배제하지
+못한다. 그래서 GREEN 트리의 30블록이 실제로 **어느 로케일에 살아 있는지** 전수 집계했다.
+
+| locale | 보존된 FAQPage blocks | 파일 |
+|---|---|---|
+| en | 9 | `index` · `about` · `age-calculator` · `compatibility` · `life-summary` · `friend-compatibility` · `marriage-compatibility` · `personality-type` |
+| ko | 7 | `index` · `about` · `compatibility` · `friend-compatibility` · `marriage-compatibility` · `personality-type` |
+| ja | 6 | `index` · `compatibility` · `friend-compatibility` · `marriage-compatibility` · `personality-type` |
+| zh | 4 | `index` · `compatibility` · `personality-type` |
+| es | 4 | `index` · `compatibility` · `personality-type` |
+| **합계** | **30** | |
+
+**비영어 로케일에 21블록이 살아 있다** (ko 7 + ja 6 + zh 4 + es 4). 5개 로케일 전부가
+자기 언어의 FAQPage 를 여전히 제출한다. 제거는 `age-calculator`·`life-summary` 두 계열의
+비영어 4로케일 × 2면 = 8블록에만 적용됐고, 그 8개는 전부 영어 본문이었다.
+
 ---
 
 ## Mutation test — 가드가 load-bearing 임을 증명
