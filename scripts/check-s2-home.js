@@ -131,7 +131,24 @@ for (const lang of LANGS) {
   chips.forEach(href => {
     if (!html.includes(`id="${href.slice(1)}"`)) fail(lang, 'intent chip target', `${href} resolves to nothing`);
   });
-  if (!/<a href="#intent" class="s2-hero-cta">/.test(html)) fail(lang, 'hero CTA', 'hero CTA to #intent missing');
+  const heroCta = /<a href="(#[^"]+)" class="s2-hero-cta">/.exec(html);
+  if (!heroCta) {
+    fail(lang, 'hero CTA', 'hero CTA missing');
+  } else if (!html.includes(`id="${heroCta[1].slice(1)}"`)) {
+    fail(lang, 'hero CTA target', `${heroCta[1]} resolves to nothing`);
+  }
+
+  // title / og:title / twitter:title carry no AI capability claim (brand is fine)
+  for (const [label, re] of [['title', /<title>([^<]*)<\/title>/],
+                             ['og:title', /<meta property="og:title" content="([^"]*)"/],
+                             ['twitter:title', /<meta name="twitter:title" content="([^"]*)"/]]) {
+    const m = re.exec(html);
+    if (!m) continue;
+    let t = m[1];
+    BRAND.forEach(b => { t = t.replace(b, ' '); });
+    const c = AI_CLAIMS.find(x => t.includes(x));
+    if (c) fail(lang, `2 ${label} AI claim`, `"${c}" outside the brand name`);
+  }
 }
 
 // 11. template -> generated parity stays owned by the S1 guard; assert it is still wired
@@ -152,7 +169,7 @@ if (failures.length) {
 }
 console.log(
   `S2 Home guard passed: ${LANGS.length} locale homes, 2 flagship cards each in order, ` +
-  `kpop-match secondary, 3 resolving intent chips + hero CTA, ` +
-  `0 AI capability claims, 0 viral-hub/real-time promises, 0 unbacked badges, ` +
+  `kpop-match secondary, 3 resolving intent chips + a resolving hero CTA, ` +
+  `0 AI capability claims (body + title/og/twitter), 0 viral-hub/real-time promises, 0 unbacked badges, ` +
   `0 FateAIverse links, 0 cross-locale copy leaks (template parity delegated to check:s1-guards).`
 );

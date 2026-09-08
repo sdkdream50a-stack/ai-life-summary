@@ -290,7 +290,10 @@ S2 방향: warm white 기조 · deep ink 텍스트 · electric indigo(주) · co
 |---|---|
 | `b139de9` | Home 위계 재편 — Hero 진실화 · Intent 계층 · Flagship 2단 진입 (S2-1A+B) |
 | `8401c27` | 실체 없는 Home 표면 제거 — 바이럴 허브 · AI 기능 해시태그 (S2-1C) |
-| `eb7c53d` | S2 Home guard (mutation 8/8 red) + 문서 정정 |
+| `ebde9ef` | S2 Home guard (mutation 8/8 red) + 문서 정정 |
+| `fee6d5d` | **S2-1A JA 확정** — Hero SUB에서 상성 소요시간 제거 · Intent 3칩(自分/恋愛・友だち/気軽に試す) · Flagship 필드/CTA · nav 順 · JA title/meta |
+| `6384d4e` | **5로케일 확장** — 구조 동일, 카피는 각 로케일 자체 어휘 재사용 |
+| (guard) | Hero CTA 앵커 실재 + title/og/twitter AI 주장 검사 추가 (mutation 11/11 red) |
 
 > **S2-1A와 S2-1B를 한 커밋으로 묶은 이유**: Intent 칩의 앵커가 Flagship 섹션을 가리킨다.
 > A만 먼저 커밋하면 `#test-personality`가 존재하지 않는 중간 상태가 생기고, 이는 지시문이
@@ -320,6 +323,7 @@ Intent 섹션이 JA390 첫 화면 안으로 올라왔다.
 | 44px 미만 터치타깃 14개 | **전부 기존 요소**(nav pill·footer·로고·해시태그). **신규 섹션 미달 0개** |
 | XP/level/streak/badges JS 7종 | S2-2 이월 (지시문 명시) |
 | `.live-ticker` 등 죽은 인라인 CSS, 대상 없는 countdown 함수 | 기존 dead code. countdown 블록에 **살아 있는 모바일 메뉴 핸들러**가 동거하므로 통째 삭제 불가 |
-| 랜딩 `<title>` AI 주장 5건 | 홈 밖 파일. DECISION 2는 **홈 title/meta 한정**이었고 홈 5로케일 title/og/description은 이미 브랜드명뿐이라 **수정할 것이 없었다** |
+| 랜딩 `<title>` AI 주장 5건 | 홈 밖 파일. 지시 범위가 홈 title/meta였고, 홈 5로케일 title/og/description에는 원래 AI 기능 주장이 없었다(브랜드명뿐). JA만 요청받은 방향으로 브랜드 우선 형태로 교체했고 40問·性格タイプ診断 검색 intent는 제목에 남겼다 |
+| **Clean Pop Lab 팔레트** | **미적용.** 홈은 여전히 `hp-dark`/`kick-mesh-bg`(#0e0e10) 다크 + 핑크·퍼플 그라데이션이다. warm white·deep ink·electric indigo로의 전환은 `css/global-kick.css`와 전 섹션을 건드려야 하므로 S2-1의 3개 범위 밖. **S2-2/S2-3 결정 필요** |
 | ko 홈 FAQ 「AI 궁합 테스트는 어떻게 하나요?」 | 본문 FAQ + FAQPage JSON-LD. title/meta가 아니며 FAQ는 S2-3 범위. **미해결로 보고** |
 | JSON-LD `alternateName: "AI Life Summary"` (5로케일) | 구 브랜드명이지 AI 기능 주장이 아니다. S0 P1-13 잔여 |
