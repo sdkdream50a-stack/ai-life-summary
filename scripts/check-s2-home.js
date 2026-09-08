@@ -151,6 +151,65 @@ for (const lang of LANGS) {
   }
 }
 
+// --- S2-2 -----------------------------------------------------------------
+// Every page that opted into Clean Pop Lab, and the assets the Home must not reload.
+const CPL_PAGES = [];
+for (const l of LANGS) CPL_PAGES.push(home(l), `${l}/personality-type/index.html`, `${l}/compatibility/index.html`);
+const DEAD_HOME_ASSETS = [
+  'js/badges.js', 'js/level-xp.js', 'js/streak.js', 'js/user-data.js',
+  'js/auth.js', 'js/gamification-ui.js', 'js/referral.js',
+  'css/gamification.css', 'css/popups.css', 'css/viral-hub.css', 'canvas-confetti'
+];
+
+for (const lang of LANGS) {
+  const html = read(home(lang));
+
+  // S2-2B: the dead gamification payload must not come back to the Home
+  const back = DEAD_HOME_ASSETS.filter(a => html.includes(a));
+  if (back.length) fail(lang, 'S2-2B dead assets', `${back.join(', ')} re-referenced on the Home`);
+
+  // S2-2A: the JA Home needs word-break:normal — `keep-all` clips Japanese grids
+  if (lang === 'ja') {
+    if (!/html\[lang="ja"\][^{]*\{[^}]*word-break:\s*normal/.test(html)) {
+      fail(lang, 'S2-2A word-break', 'the JA-scoped `word-break: normal` rule is gone; keep-all clips the JA Home');
+    }
+  } else if (/html\[lang="(?!ja)[a-z]{2}"\][^{]*\{[^}]*word-break:\s*normal/.test(html)) {
+    fail(lang, 'S2-2A word-break', 'word-break:normal leaked outside ja');
+  }
+}
+
+// S2-2C: the Home and both flagship landings share one visual family
+for (const rel of CPL_PAGES) {
+  if (!fs.existsSync(path.join(ROOT, rel))) { fail(rel, 'S2-2C page', 'missing'); continue; }
+  const html = read(rel);
+  if (!/<html[^>]*\bclass="[^"]*\bcpl\b/.test(html)) fail(rel, 'S2-2C opt-in', 'the `cpl` class is not on <html>');
+  if (!html.includes('/css/clean-pop-lab.css')) fail(rel, 'S2-2C opt-in', 'clean-pop-lab.css is not linked');
+}
+if (!fs.existsSync(path.join(ROOT, 'css/clean-pop-lab.css'))) {
+  fail('repo', 'S2-2C stylesheet', 'css/clean-pop-lab.css is missing');
+}
+if (fs.existsSync(path.join(ROOT, 'css/viral-hub.css'))) {
+  fail('repo', 'S2-2B dead asset', 'css/viral-hub.css is back');
+}
+
+// S2-2: the FateAIverse referral surface must be untouched by Home work
+{
+  const walk = dir => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap(e => {
+    if (e.name === 'node_modules' || e.name.startsWith('.')) return [];
+    const rel = path.posix.join(dir, e.name);
+    return e.isDirectory() ? walk(rel) : (e.name.endsWith('.html') ? [rel] : []);
+  });
+  const files = walk('.').filter(f => !f.startsWith('scripts/'));
+  let hits = 0, withRef = 0;
+  for (const f of files) {
+    const n = (read(f).match(/fateaiverse/gi) || []).length;
+    if (n) { withRef++; hits += n; }
+  }
+  if (withRef !== 16 || hits !== 32) {
+    fail('repo', 'S2-2 referral', `deployed FateAIverse surface changed: ${withRef} files / ${hits} hits (expected 16 files / 32 occurrences)`);
+  }
+}
+
 // 11. template -> generated parity stays owned by the S1 guard; assert it is still wired
 const pkg = JSON.parse(read('package.json'));
 if (!/check-s1-guards\.js/.test(pkg.scripts['check:s1-guards'] || '')) {
@@ -171,5 +230,7 @@ console.log(
   `S2 Home guard passed: ${LANGS.length} locale homes, 2 flagship cards each in order, ` +
   `kpop-match secondary, 3 resolving intent chips + a resolving hero CTA, ` +
   `0 AI capability claims (body + title/og/twitter), 0 viral-hub/real-time promises, 0 unbacked badges, ` +
-  `0 FateAIverse links, 0 cross-locale copy leaks (template parity delegated to check:s1-guards).`
+  `0 FateAIverse links, 0 cross-locale copy leaks; ${CPL_PAGES.length} Clean Pop Lab pages, ` +
+  `0 dead gamification refs, JA word-break scoped, FateAIverse surface 16/32 unchanged ` +
+  `(template parity delegated to check:s1-guards).`
 );

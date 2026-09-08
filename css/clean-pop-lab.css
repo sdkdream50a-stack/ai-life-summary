@@ -1,0 +1,340 @@
+/* ============================================================
+   Clean Pop Lab — SmartAItest visual identity (S2-2C)
+
+   Scoped to `.cpl` on <html>. Only the Home and the two flagship
+   landings opt in, so css/global-kick.css (79 pages) and the rest
+   of the site are untouched.
+
+   Fast · Playful · Social · Self-discovery.
+   Deliberately NOT FateAIverse: no navy/gold, no destiny mysticism,
+   no fortune imagery, no neon "AI" gradients.
+   ============================================================ */
+
+.cpl {
+    --cpl-ground: #FBF9F6;        /* warm white */
+    --cpl-surface: #FFFFFF;
+    --cpl-surface-tint: #F4F1EC;
+    --cpl-ink: #16131C;           /* deep ink */
+    --cpl-ink-2: #4A4553;
+    --cpl-ink-3: #605A6B;   /* AA on both the warm ground and white cards */
+    --cpl-indigo: #4F46E5;        /* electric indigo — primary action */
+    --cpl-indigo-dark: #4338CA;
+    --cpl-indigo-soft: #EEEDFC;
+    --cpl-coral: #FF6A5A;         /* accent */
+    --cpl-coral-soft: #FFEEEB;
+    --cpl-aqua: #0E9C8A;          /* restrained */
+    --cpl-line: rgba(22, 19, 28, .10);
+    --cpl-line-strong: rgba(22, 19, 28, .18);
+    --cpl-shadow: 0 1px 2px rgba(22, 19, 28, .05), 0 8px 24px rgba(22, 19, 28, .06);
+}
+
+/* ---- ground ------------------------------------------------
+   The dark stage is implemented as inline `!important` rules
+   (`body{background:#0E0E10!important}` plus a `.hp-dark …` family),
+   so the light ground has to answer at the same weight with one more
+   class of specificity. */
+.cpl,
+.cpl body,
+.cpl .kick-mesh-bg,
+.cpl .kick-dark-bg,
+.cpl .hp-dark,
+.cpl section.hp-dark {
+    background: var(--cpl-ground) !important;
+    color: var(--cpl-ink);
+}
+
+/* the dark-stage overrides, answered one-for-one */
+.cpl .hp-dark .card-hover,
+.cpl .hp-dark .featured-card,
+.cpl .hp-dark [class*="bg-white"],
+.cpl .hp-dark [class*="bg-gray"],
+.cpl .hp-dark [class*="bg-pink-1"] {
+    background: var(--cpl-surface) !important;
+    border-color: var(--cpl-line) !important;
+}
+.cpl .hp-dark h2,
+.cpl .hp-dark h3,
+.cpl .hp-dark summary,
+.cpl .hp-dark .text-gray-800,
+.cpl .hp-dark .text-gray-900 { color: var(--cpl-ink) !important; }
+.cpl .hp-dark p,
+.cpl .hp-dark li,
+.cpl .hp-dark .text-gray-600,
+.cpl .hp-dark .text-gray-700,
+.cpl .hp-dark .text-gray-500,
+.cpl .hp-dark .text-gray-400 { color: var(--cpl-ink-2) !important; }
+.cpl .hp-dark a:not(.s2-chip):not(.s2-flag-card):not(.kick-bento-item):not(.s2-hero-cta) {
+    color: var(--cpl-indigo) !important;
+}
+/* the S2 components carry their own colour system */
+.cpl .s2-chip,
+.cpl .s2-chip *,
+.cpl .kick-bento-item,
+.cpl .kick-bento-item h3 { color: var(--cpl-ink) !important; }
+.cpl .s2-chip-note,
+.cpl .kick-bento-item p { color: var(--cpl-ink-3) !important; }
+.cpl .s2-flag-title { color: var(--cpl-ink) !important; }
+.cpl .s2-flag-promise { color: var(--cpl-ink-2) !important; }
+.cpl .s2-flag-result { color: var(--cpl-ink-3) !important; }
+.cpl .s2-flag-cta,
+.cpl .s2-hero-cta { color: #fff !important; }
+.cpl #test-compatibility .s2-flag-cta { color: #3A1710 !important; }
+/* the mesh pseudo-element is a fixed radial gradient: it is what makes
+   text contrast machine-undeterminable, and it has no place on a flat ground */
+.cpl .kick-mesh-bg::before,
+.cpl .kick-dark-bg::before { display: none !important; }
+
+.cpl .kick-navbar {
+    background: rgba(255, 255, 255, .88) !important;
+    border: 1px solid var(--cpl-line);
+    box-shadow: var(--cpl-shadow);
+    backdrop-filter: saturate(1.4) blur(10px);
+}
+.cpl .kick-footer {
+    background: var(--cpl-surface-tint);
+    border-top: 1px solid var(--cpl-line);
+    color: var(--cpl-ink-2);
+}
+.cpl .kick-footer-logo-bg { opacity: .05; }
+
+/* ---- type: white-on-dark utilities become ink-on-light ------ */
+.cpl .text-white,
+.cpl .kick-navbar-logo,
+.cpl .kick-heading { color: var(--cpl-ink); }
+.cpl .text-white\/90 { color: var(--cpl-ink); }
+.cpl .text-white\/80,
+.cpl .text-white\/70 { color: var(--cpl-ink-2); }
+.cpl .text-white\/65,
+.cpl .text-white\/60,
+.cpl .text-white\/50,
+.cpl .text-white\/40 { color: var(--cpl-ink-3); }
+.cpl .kick-navbar-link,
+.cpl .kick-footer-link { color: var(--cpl-ink-2); }
+.cpl .kick-navbar-link:hover,
+.cpl .kick-footer-link:hover { color: var(--cpl-indigo); }
+
+/* gradient text reads as a solid brand ink — also removes the
+   "background gradient" blocker that made contrast unverifiable */
+.cpl .gradient-text,
+.cpl .kick-gradient-text,
+.cpl .kick-navbar-logo .kick-gradient-text {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: var(--cpl-indigo) !important;
+}
+
+/* ---- surfaces ---------------------------------------------- */
+.cpl .bg-white\/5,
+.cpl .bg-white\/10,
+.cpl .bg-white\/20,
+.cpl .kick-glass,
+.cpl .person-card,
+.cpl .pt-question-card {
+    background: var(--cpl-surface);
+    border-color: var(--cpl-line);
+    box-shadow: var(--cpl-shadow);
+    color: var(--cpl-ink);
+}
+.cpl .border-white\/10,
+.cpl .border-white\/20,
+.cpl .border-white\/40 { border-color: var(--cpl-line); }
+
+/* ---- actions ------------------------------------------------ */
+.cpl .gradient-bg,
+.cpl .kick-btn-primary {
+    background: var(--cpl-indigo) !important;
+    color: #fff !important;
+}
+.cpl .gradient-bg:hover,
+.cpl .kick-btn-primary:hover { background: var(--cpl-indigo-dark) !important; }
+
+/* ---- S2 home components ------------------------------------ */
+.cpl .s2-hero-cta {
+    background: var(--cpl-indigo);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(79, 70, 229, .28);
+}
+.cpl .s2-hero-cta:hover { background: var(--cpl-indigo-dark); opacity: 1; }
+
+.cpl .s2-chip {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-chip:hover { background: var(--cpl-indigo-soft); border-color: var(--cpl-indigo); }
+.cpl .s2-chip-note { color: var(--cpl-ink-3); }
+
+.cpl .s2-flag-card {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-flag-card:hover { border-color: var(--cpl-indigo); background: var(--cpl-surface); }
+.cpl .s2-flag-title { color: var(--cpl-ink); }
+.cpl .s2-flag-promise { color: var(--cpl-ink-2); }
+.cpl .s2-flag-result { color: var(--cpl-ink-3); }
+.cpl .s2-flag-meta li { background: var(--cpl-indigo-soft); color: var(--cpl-indigo-dark); }
+.cpl #test-compatibility .s2-flag-meta li { background: var(--cpl-coral-soft); color: #B03A2C; }
+.cpl .s2-flag-cta { background: var(--cpl-indigo); color: #fff; }
+.cpl #test-compatibility .s2-flag-cta { background: var(--cpl-coral); color: #3A1710; }
+
+/* secondary tier stays quieter than the flagships */
+.cpl .kick-bento-item {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: none;
+}
+.cpl .kick-bento-item:hover { border-color: var(--cpl-line-strong); }
+.cpl .kick-bento-item h3 { color: var(--cpl-ink); }
+.cpl .kick-bento-item p { color: var(--cpl-ink-3); }
+
+/* the hero orb becomes a soft brand halo instead of a purple sphere */
+.cpl .hero-orb {
+    background: radial-gradient(circle at 34% 30%, #fff 0%, var(--cpl-indigo-soft) 42%, var(--cpl-coral-soft) 100%);
+    box-shadow: 0 18px 48px rgba(79, 70, 229, .16);
+}
+
+/* ---- flagship landings ------------------------------------- */
+.cpl .pt-likert-btn {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+}
+.cpl .pt-likert-btn:hover { border-color: var(--cpl-indigo); background: var(--cpl-indigo-soft); }
+.cpl input[type="number"],
+.cpl input[type="text"],
+.cpl select {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line-strong);
+    color: var(--cpl-ink);
+}
+.cpl input::placeholder { color: var(--cpl-ink-3); }
+.cpl details summary { color: var(--cpl-ink); }
+.cpl .bg-gray-50 { background: var(--cpl-ground); }
+
+/* ============================================================
+   Flagship landings — personality-type questionnaire
+   The likert control was authored white-on-dark; on a light ground
+   its surfaces and labels disappear, so each one is answered here.
+   Structure and copy are untouched (S3 owns the questionnaire).
+   ============================================================ */
+.cpl .pt-question-card {
+    background: var(--cpl-surface) !important;
+    border: 1px solid var(--cpl-line) !important;
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .pt-question-num { color: var(--cpl-ink-3) !important; }
+.cpl .pt-question-text { color: var(--cpl-ink) !important; }
+.cpl .pt-likert-btn {
+    background: var(--cpl-surface-tint) !important;
+    border: 1px solid var(--cpl-line-strong) !important;
+    color: var(--cpl-ink-2) !important;
+    min-height: 44px;
+}
+.cpl .pt-likert-btn:hover {
+    border-color: var(--cpl-indigo) !important;
+    background: var(--cpl-indigo-soft) !important;
+}
+.cpl .pt-likert-btn.active {
+    border-color: var(--cpl-indigo) !important;
+    background: var(--cpl-indigo) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px var(--cpl-indigo) !important;
+}
+.cpl .pt-likert-btn.active .pt-likert-label { color: #fff !important; }
+.cpl .pt-likert-label { color: var(--cpl-ink-2) !important; }
+.cpl .pt-btn-primary { background: var(--cpl-indigo) !important; color: #fff !important; }
+.cpl .pt-btn-secondary {
+    background: var(--cpl-surface) !important;
+    color: var(--cpl-ink) !important;
+    border: 1px solid var(--cpl-line-strong) !important;
+}
+.cpl .pt-error { color: #B3261E !important; background: var(--cpl-coral-soft) !important; }
+
+/* the language dropdown carries an inline dark background */
+.cpl #lang-dropdown {
+    background-color: var(--cpl-surface) !important;
+    border-color: var(--cpl-line) !important;
+}
+.cpl #lang-dropdown button { color: var(--cpl-ink-2) !important; }
+.cpl #lang-dropdown button:hover { background: var(--cpl-indigo-soft) !important; color: var(--cpl-ink) !important; }
+
+/* compatibility landing: glass person cards and its own dark stage */
+.cpl .person-card,
+.cpl .kick-glass {
+    background: var(--cpl-surface) !important;
+    border: 1px solid var(--cpl-line) !important;
+    box-shadow: var(--cpl-shadow);
+    color: var(--cpl-ink) !important;
+}
+.cpl label { color: var(--cpl-ink-2); }
+.cpl .kick-btn { color: var(--cpl-ink); }
+
+/* scale end labels and the page title were authored for a dark stage */
+.cpl .pt-end { color: var(--cpl-ink-2) !important; }
+.cpl .pt-end.agree { color: var(--cpl-indigo-dark) !important; }
+.cpl .pt-end.disagree { color: var(--cpl-ink-3) !important; }
+.cpl .pt-ck { color: #fff !important; }
+.cpl .pt-progress-bar,
+.cpl .pt-progress { background: var(--cpl-surface-tint) !important; }
+.cpl .pt-progress-fill { background: var(--cpl-indigo) !important; }
+
+/* headings that paint themselves with a gradient background-clip */
+.cpl h1,
+.cpl h2,
+.cpl h3 {
+    background-image: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: var(--cpl-ink);
+}
+.cpl h1 .kick-gradient-text,
+.cpl h2 .kick-gradient-text,
+.cpl h1 .gradient-text,
+.cpl h2 .gradient-text { color: var(--cpl-indigo) !important; }
+
+/* the footer was white-on-dark; on the light stage it needs ink */
+.cpl .kick-footer-tagline { color: var(--cpl-ink) !important; }
+.cpl .kick-footer-copyright,
+.cpl .kick-footer p,
+.cpl .kick-footer small { color: var(--cpl-ink-2) !important; }
+.cpl .text-white\/50,
+.cpl .text-white\/40 { color: var(--cpl-ink-2); }
+
+/* Pastel accent utilities were picked for a dark stage; on the light
+   ground they fall below AA, so each maps onto a brand ink that passes. */
+.cpl .text-purple-400,
+.cpl .text-violet-300,
+.cpl .text-indigo-300,
+.cpl .text-fuchsia-400 { color: var(--cpl-indigo-dark) !important; }
+.cpl .text-pink-400,
+.cpl .text-rose-400 { color: #B03A2C !important; }
+.cpl .text-cyan-400,
+.cpl .text-cyan-300,
+.cpl .text-cyan-200 { color: #0A7365 !important; }
+.cpl .text-amber-300,
+.cpl .text-yellow-300 { color: #8A5A00 !important; }
+.cpl .text-gray-400 { color: var(--cpl-ink-3) !important; }
+.cpl #pt-progress-text,
+.cpl .pt-progress-text { color: var(--cpl-ink-2) !important; }
+
+/* inline links inside prose must not rely on colour alone */
+.cpl p > a,
+.cpl li > a,
+.cpl .hp-dark p > a,
+.cpl a.text-indigo-600,
+.cpl a.consent-link { text-decoration: underline; text-underline-offset: 2px; }
+.cpl a.text-indigo-600 { color: var(--cpl-indigo-dark) !important; }
+
+/* the mobile menu panel is a full-screen dark sheet */
+.cpl #mobile-menu {
+    background: var(--cpl-ground) !important;
+    color: var(--cpl-ink) !important;
+}
+.cpl #mobile-menu a { color: var(--cpl-ink) !important; text-decoration: none; }
+.cpl #mobile-menu a:hover { color: var(--cpl-indigo) !important; }
+.cpl #mobile-menu-close { color: var(--cpl-ink) !important; min-width: 44px; min-height: 44px; }
