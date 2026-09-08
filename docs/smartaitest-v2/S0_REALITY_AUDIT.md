@@ -14,7 +14,7 @@
 | origin | `github.com/sdkdream50a-stack/ai-life-summary` (구 브랜드명 잔존) |
 | 타입 | **순수 정적 HTML** — 프레임워크·번들러·서버 없음 |
 | 배포 | **Cloudflare Workers Static Assets** (`wrangler.toml` `[assets] directory="./"`) |
-| CI/CD | **없음** (`.github/` 부재) — 배포는 수동 `wrangler deploy` |
+| CI/CD | **정정 필요 — `.github/` 는 부재하지만 CI 가 없는 것이 아니다.** Cloudflare **Workers Builds** 가 이 저장소에 연결돼 있고, PR 브랜치 push 에 대해 실제로 빌드가 실행되어 통과했다(PR #1, check `Workers Builds: ai-life-summary`). `main` merge 시 자동 프로덕션 배포가 걸리는지는 Cloudflare 대시보드 설정이라 저장소에서 확인 불가 = **UNKNOWN, 사용자 확인 필요**. 브랜치 push 만으로 프로덕션이 바뀌지 않은 것은 라이브 대조로 확인했다. |
 | DB / 서버 상태 / cron | **없음** |
 | 테스트 | `scripts/test-age-determinism.js` 1개 |
 | 시크릿 | 이 저장소에 없음 (값 미출력) |
