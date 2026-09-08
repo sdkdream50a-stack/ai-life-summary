@@ -152,6 +152,9 @@ JA 전체에서 LINE 버튼 보유 파일 **1개**, Kakao 보유 **12개**. `sha
 
 ## 측정 방법 정정 (2026-09-08, S1 중 발견) — **중요**
 
+> **RED → GREEN 실측 증거**: `evidence/S1_FAQPAGE_RED_GREEN_EVIDENCE.md`
+> 같은 파서 기반 가드를 fix 직전 커밋과 현재 HEAD 양쪽에 겨눠 **8 → 0**, parse errors **0 → 0** 을 출력으로 남겼다.
+
 ### 무엇이 틀렸나
 
 S1 진행 중 "비영어 로케일의 FAQPage 구조화 데이터가 영어"라는 결함을 발견하고 그 규모를

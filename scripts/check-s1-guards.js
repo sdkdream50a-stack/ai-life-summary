@@ -28,7 +28,24 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..');
+// ---------------------------------------------------------------- invocation
+// Defaults are unchanged: `node scripts/check-s1-guards.js` runs every guard
+// against this repo. Two read-only overrides exist so the FAQPage check can be
+// pointed at another checkout and produce before/after evidence with the SAME
+// parser, rather than comparing against some ad-hoc script:
+//
+//   --root=<dir> / S1_GUARD_ROOT=<dir>   inspect that tree instead of this one
+//   --faq-only                           run only the FAQPage locale check
+//
+// Neither override writes anything.
+const ARGV = process.argv.slice(2);
+const FAQ_ONLY = ARGV.includes('--faq-only');
+const rootArg = ARGV.find(a => a.startsWith('--root='));
+const ROOT = path.resolve(
+  (rootArg && rootArg.slice('--root='.length)) ||
+  process.env.S1_GUARD_ROOT ||
+  path.join(__dirname, '..')
+);
 const LANGS = ['en', 'ko', 'ja', 'zh', 'es'];
 
 const TEMPLATE_MAP = [
@@ -366,7 +383,8 @@ function checkFaqSchemaLocale() {
     return acc;
   };
 
-  let checked = 0;
+  const stats = { blocksParsed: 0, faqBlocks: 0, mismatched: 0, parseErrors: 0, files: [] };
+
   for (const lang of LANGS) {
     const base = path.join(ROOT, lang);
     if (!fs.existsSync(base)) continue;
@@ -375,17 +393,29 @@ function checkFaqSchemaLocale() {
         const abs = path.join(dir, entry.name);
         if (entry.isDirectory()) { walk(abs); continue; }
         if (entry.name !== 'index.html') continue;
-        const rel = path.relative(ROOT, abs);
+        const rel = path.relative(ROOT, abs).split(path.sep).join('/');
         const html = fs.readFileSync(abs, 'utf8');
         let m;
         LD.lastIndex = 0;
         while ((m = LD.exec(html)) !== null) {
+          stats.blocksParsed++;
           let parsed;
-          try { parsed = JSON.parse(m[1]); } catch (e) { continue; }
+          try {
+            parsed = JSON.parse(m[1]);
+          } catch (e) {
+            // A block we cannot parse is not silently ignored: unparseable
+            // structured data is itself a defect, and staying quiet here would
+            // let a wrong-language FAQPage hide behind a syntax error.
+            stats.parseErrors++;
+            failures.push(`${rel}: PARSE_ERROR in application/ld+json — ${e.message}`);
+            continue;
+          }
           for (const qs of collectFaqQuestions(parsed)) {
-            checked++;
+            stats.faqBlocks++;
             const found = [...new Set(qs.map(langOf))];
             if (!(found.length === 1 && found[0] === lang)) {
+              stats.mismatched++;
+              if (!stats.files.includes(rel)) stats.files.push(rel);
               failures.push(
                 `${rel}: FAQPage structured data is in ${found.join('+')} on a ${lang} page — ` +
                 `remove it rather than submitting wrong-language schema (the visible FAQ stays).`
@@ -397,29 +427,50 @@ function checkFaqSchemaLocale() {
     };
     walk(base);
   }
-  return checked;
+  return stats;
 }
 
 // ---------------------------------------------------------------- run
-const parity = checkTemplateParity();
-const surfaces = checkFunnelCoverage();
-const ctas = checkReferralUtm();
-const locale = checkLocaleAuthority();
-const share = checkShareChannels();
-const banner = checkLocaleBanner();
-const trust = checkTrustCopy();
-const faqLd = checkFaqSchemaLocale();
-
-if (failures.length) {
-  console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
-  failures.forEach(f => console.error(`  - ${f}`));
-  process.exitCode = 1;
+if (FAQ_ONLY) {
+  // Isolated so the same parser can be pointed at an older checkout without
+  // dragging in unrelated guard failures from that tree.
+  const faq = checkFaqSchemaLocale();
+  console.log(`FAQPage locale check`);
+  console.log(`  root                        : ${ROOT}`);
+  console.log(`  ld+json blocks parsed       : ${faq.blocksParsed}`);
+  console.log(`  FAQPage blocks found        : ${faq.faqBlocks}`);
+  console.log(`  wrong-language FAQPage blocks: ${faq.mismatched}`);
+  console.log(`  parse errors                : ${faq.parseErrors}`);
+  console.log(`  affected files              : ${faq.files.length}`);
+  faq.files.forEach(f => console.log(`      ${f}`));
+  if (failures.length) {
+    console.error(`\nFAQPage check FAILED (${failures.length}):`);
+    failures.forEach(f => console.error(`  - ${f}`));
+    process.exitCode = 1;
+  } else {
+    console.log(`\nFAQPage check PASSED — every FAQPage block matches its page locale.`);
+  }
 } else {
-  console.log(
-    `S1 guards passed: ${parity} template/generated pairs in sync, ` +
-    `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
-    `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels, ` +
-    `locale banner covering ${banner}/${LANGS.length} markets, ${trust} pages clean of stale trust copy, ` +
-    `${faqLd} FAQPage blocks language-matched.`
-  );
+  const parity = checkTemplateParity();
+  const surfaces = checkFunnelCoverage();
+  const ctas = checkReferralUtm();
+  const locale = checkLocaleAuthority();
+  const share = checkShareChannels();
+  const banner = checkLocaleBanner();
+  const trust = checkTrustCopy();
+  const faq = checkFaqSchemaLocale();
+
+  if (failures.length) {
+    console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
+    failures.forEach(f => console.error(`  - ${f}`));
+    process.exitCode = 1;
+  } else {
+    console.log(
+      `S1 guards passed: ${parity} template/generated pairs in sync, ` +
+      `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
+      `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels, ` +
+      `locale banner covering ${banner}/${LANGS.length} markets, ${trust} pages clean of stale trust copy, ` +
+      `${faq.faqBlocks} FAQPage blocks language-matched (0 parse errors).`
+    );
+  }
 }
