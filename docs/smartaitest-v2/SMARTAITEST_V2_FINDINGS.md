@@ -152,8 +152,9 @@ JA 전체에서 LINE 버튼 보유 파일 **1개**, Kakao 보유 **12개**. `sha
 
 ## 측정 방법 정정 (2026-09-08, S1 중 발견) — **중요**
 
-> **RED → GREEN 실측 증거**: `evidence/S1_FAQPAGE_RED_GREEN_EVIDENCE.md`
-> 같은 파서 기반 가드를 fix 직전 커밋과 현재 HEAD 양쪽에 겨눠 **8 → 0**, parse errors **0 → 0** 을 출력으로 남겼다.
+> **RED → GREEN 실측 증거**: `S1_FAQPAGE_RED_GREEN_EVIDENCE.md`
+> 현재 HEAD 의 같은 가드를 `--root=` 로 fix 직전 커밋 트리에도 겨눠 **8 → 0**, parse errors **0 → 0**,
+> 정상 localized 블록 **30 → 30**(손실 없음)을 출력으로 남겼다. 변형 테스트 3종으로 가드가 load-bearing 임도 증명했다.
 
 ### 무엇이 틀렸나
 

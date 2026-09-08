@@ -383,7 +383,10 @@ function checkFaqSchemaLocale() {
     return acc;
   };
 
-  const stats = { blocksParsed: 0, faqBlocks: 0, mismatched: 0, parseErrors: 0, files: [] };
+  const stats = {
+    htmlScanned: 0, blocksParsed: 0, faqBlocks: 0,
+    matched: 0, mismatched: 0, parseErrors: 0, files: []
+  };
 
   for (const lang of LANGS) {
     const base = path.join(ROOT, lang);
@@ -395,30 +398,39 @@ function checkFaqSchemaLocale() {
         if (entry.name !== 'index.html') continue;
         const rel = path.relative(ROOT, abs).split(path.sep).join('/');
         const html = fs.readFileSync(abs, 'utf8');
+        stats.htmlScanned++;
         let m;
+        let blockIndex = -1;
         LD.lastIndex = 0;
         while ((m = LD.exec(html)) !== null) {
+          blockIndex++;
           stats.blocksParsed++;
           let parsed;
           try {
             parsed = JSON.parse(m[1]);
           } catch (e) {
-            // A block we cannot parse is not silently ignored: unparseable
+            // A block we cannot parse is never silently skipped: unparseable
             // structured data is itself a defect, and staying quiet here would
             // let a wrong-language FAQPage hide behind a syntax error.
             stats.parseErrors++;
-            failures.push(`${rel}: PARSE_ERROR in application/ld+json — ${e.message}`);
+            failures.push(
+              `${rel}: PARSE_ERROR in application/ld+json block #${blockIndex} — ` +
+              `${e.constructor.name}: ${e.message}`
+            );
             continue;
           }
           for (const qs of collectFaqQuestions(parsed)) {
             stats.faqBlocks++;
             const found = [...new Set(qs.map(langOf))];
-            if (!(found.length === 1 && found[0] === lang)) {
+            if (found.length === 1 && found[0] === lang) {
+              stats.matched++;
+            } else {
               stats.mismatched++;
               if (!stats.files.includes(rel)) stats.files.push(rel);
               failures.push(
-                `${rel}: FAQPage structured data is in ${found.join('+')} on a ${lang} page — ` +
-                `remove it rather than submitting wrong-language schema (the visible FAQ stays).`
+                `${rel}: FAQPage structured data in block #${blockIndex} is ${found.join('+')} ` +
+                `on a ${lang} page — remove it rather than submitting wrong-language schema ` +
+                `(the visible FAQ stays).`
               );
             }
           }
@@ -435,13 +447,15 @@ if (FAQ_ONLY) {
   // Isolated so the same parser can be pointed at an older checkout without
   // dragging in unrelated guard failures from that tree.
   const faq = checkFaqSchemaLocale();
-  console.log(`FAQPage locale check`);
-  console.log(`  root                        : ${ROOT}`);
-  console.log(`  ld+json blocks parsed       : ${faq.blocksParsed}`);
-  console.log(`  FAQPage blocks found        : ${faq.faqBlocks}`);
-  console.log(`  wrong-language FAQPage blocks: ${faq.mismatched}`);
-  console.log(`  parse errors                : ${faq.parseErrors}`);
-  console.log(`  affected files              : ${faq.files.length}`);
+  console.log(`FAQPage audit`);
+  console.log(`  root                             : ${ROOT}`);
+  console.log(`  HTML files scanned               : ${faq.htmlScanned}`);
+  console.log(`  JSON-LD blocks parsed            : ${faq.blocksParsed}`);
+  console.log(`  FAQPage blocks                   : ${faq.faqBlocks}`);
+  console.log(`  wrong-language FAQPage           : ${faq.mismatched}`);
+  console.log(`  correct localized FAQPage kept   : ${faq.matched}`);
+  console.log(`  parse errors                     : ${faq.parseErrors}`);
+  console.log(`  affected files                   : ${faq.files.length}`);
   faq.files.forEach(f => console.log(`      ${f}`));
   if (failures.length) {
     console.error(`\nFAQPage check FAILED (${failures.length}):`);
