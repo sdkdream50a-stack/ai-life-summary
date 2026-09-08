@@ -76,7 +76,13 @@
                     "@type": "ContactPoint",
                     "contactType": "customer service",
                     "email": "contact@smartaitest.com",
-                    "availableLanguage": ["English", "Korean", "Japanese", "Chinese", "Spanish"]
+                    "availableLanguage": [
+                        "English",
+                        "Korean",
+                        "Japanese",
+                        "Chinese",
+                        "Spanish"
+                    ]
                 }
             },
             {
@@ -92,10 +98,10 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "¿Las pruebas son gratuitas?",
+                        "name": "¿Son gratuitas las pruebas?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Sí, todas las pruebas de AI Test Lab son 100% gratuitas. Puedes usarlas de inmediato sin registro, y guardar los resultados como imágenes o compartirlos en redes sociales."
+                            "text": "Sí, todas las pruebas en AI Test Lab son 100% gratuitas. No requiere registro - solo ingresa tu cumpleaños y obtén resultados instantáneos. También puedes descargar los resultados como imágenes o compartirlos en redes sociales sin costo."
                         }
                     },
                     {
@@ -103,7 +109,7 @@
                         "name": "¿Cómo funciona el test de compatibilidad?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "El test de compatibilidad aplica pesos fijos a las diferencias entre respuestas Likert de dos personas. Los cumpleaños opcionales solo se usan como etiquetas ludicas; no es analisis real de relacion ni evaluacion cientifica."
+                            "text": "Dos personas responden preguntas Likert breves y el sistema aplica pesos fijos a las diferencias para producir una puntuación de compatibilidad y el grado de coincidencia por pregunta. Los cumpleaños opcionales solo sirven como etiquetas; no es una evaluación de relación."
                         }
                     },
                     {
@@ -111,15 +117,23 @@
                         "name": "¿Cómo se calcula la puntuación lúdica de Edad Mental?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "La calculadora de edad genera una comparacion ludica a partir de tus datos y preguntas de estilo de vida. No es una medicion medica o psicologica ni determina tu edad real."
+                            "text": "La calculadora de edad usa tus datos y preguntas de estilo de vida para generar una comparacion ludica. No es una medicion medica, psicologica ni de edad real."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "¿Puedo compartir los resultados con amigos?",
+                        "name": "¿Puedo compartir mis resultados con amigos?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Los resultados de compatibilidad, tipo de alma y edad mental se pueden descargar como imagen para historias (9:16) y cuadrada (1:1). El test de tipo de personalidad permite guardar una tarjeta de resultado. Los canales disponibles varían según el test: LINE, X (Twitter), Facebook y copiar enlace."
+                            "text": "Los resultados de compatibilidad, tipo de alma y edad mental se pueden descargar como imagen (Historia 9:16 / Cuadrado 1:1). El test de tipo de personalidad guarda una tarjeta de resultado. Los canales disponibles varían según el test: LINE, X (Twitter), Facebook y copiar enlace."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Para quién es AI Test Lab?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "AI Test Lab es perfecto para cualquier persona curiosa sobre sí misma. Ya sea que busques juegos para fiestas, quieras probar la compatibilidad con tu pareja, o simplemente tengas curiosidad sobre tus rasgos de personalidad. ¡Genial para adolescentes, parejas, grupos de amigos y familias!"
                         }
                     }
                 ]
@@ -781,7 +795,7 @@
         html[lang="es"] a.lang-es { display: inline-flex; }
 
         /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+        html[lang="ko"] body, html[lang="zh"] body {
             word-break: keep-all;
             overflow-wrap: break-word;
         }

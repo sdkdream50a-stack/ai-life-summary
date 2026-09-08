@@ -348,6 +348,19 @@ section, header, footer, main, article, aside, nav {
     -webkit-hyphens: none;
 }
 
+/* `keep-all` is written for Korean, which separates words with spaces. Japanese
+   does not, so the rule turns a whole sentence into one unbreakable run: the
+   min-content width of any text becomes the width of the sentence, and every
+   grid/flex track sized from it blows past its container. On /ja/compatibility/
+   that clipped the question cards at 375/390/430. The rule above is class-scoped,
+   not language-scoped, so it reaches Japanese pages that the lang-scoped copy in
+   each page's <style> no longer does; this restores the default for ja only.
+   ko/zh keep `keep-all`. */
+html[lang="ja"] .kick-mesh-bg,
+html[lang="ja"] .kick-mesh-light {
+    word-break: normal;
+}
+
 /* ============================================
    2. LIVING BACKGROUND - Mesh Gradient
    ============================================ */

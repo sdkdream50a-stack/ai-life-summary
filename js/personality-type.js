@@ -40,16 +40,32 @@
       '.pt-likert .pt-end.agree{color:#B8E0D2;}',
       '.pt-likert .pt-end.disagree{color:#D9C8F0;}',
       '.pt-likert .pt-likert-btn{position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;border:2px solid rgba(255,255,255,0.55);background:rgba(255,255,255,0.09);cursor:pointer;flex:0 0 auto;min-width:0;padding:0;box-sizing:border-box;transition:transform .15s cubic-bezier(.22,1,.36,1),border-color .15s,background .15s;}',
-      '.pt-likert .pt-likert-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;}',
+      '.pt-likert .pt-likert-btn input{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;min-width:24px;min-height:24px;opacity:0;cursor:pointer;margin:0;}',
       '.pt-likert .pt-likert-btn:hover{transform:scale(1.12);}',
       '.pt-likert .pt-likert-btn .pt-ck{opacity:0;color:#16130F;font-weight:900;font-size:13px;pointer-events:none;transition:opacity .15s;}',
       '.pt-likert .pt-likert-btn.active .pt-ck{opacity:1;}',
-      '.pt-likert .pt-likert-btn.s0,.pt-likert .pt-likert-btn.s4{width:38px;height:38px;}',
-      '.pt-likert .pt-likert-btn.s1,.pt-likert .pt-likert-btn.s3{width:30px;height:30px;}',
-      '.pt-likert .pt-likert-btn.s2{width:24px;height:24px;}',
+      // min-height is pinned with the diameter: `.cpl .pt-likert-btn{min-height:44px}`
+      // is a property `height` cannot answer, so it stretched each graduated circle
+      // into an ellipse (38x44 / 30x44 / 24x44). These selectors outrank it.
+      '.pt-likert .pt-likert-btn.s0,.pt-likert .pt-likert-btn.s4{width:38px;height:38px;min-height:38px;}',
+      '.pt-likert .pt-likert-btn.s1,.pt-likert .pt-likert-btn.s3{width:30px;height:30px;min-height:30px;}',
+      '.pt-likert .pt-likert-btn.s2{width:24px;height:24px;min-height:24px;}',
       '.pt-likert .pt-likert-btn.agree.active{background:#B8E0D2;border-color:#B8E0D2;}',
       '.pt-likert .pt-likert-btn.neutral.active{background:rgba(255,255,255,0.60);border-color:rgba(255,255,255,0.60);}',
       '.pt-likert .pt-likert-btn.disagree.active{background:#D9C8F0;border-color:#D9C8F0;}',
+      // Narrow viewports: the two end labels take their own line, which frees the row
+      // for five non-overlapping 44x44 targets. 17px is the smallest column gap that
+      // keeps the closest pair of centres (s2 12px + s1 15px) at least 44px apart, so
+      // the targets meet but never overlap. The circles keep their diameters; only the
+      // transparent <input> carries the 44x44 box. Wider viewports are unchanged.
+      '@media (max-width:767px){',
+      '.pt-likert{flex-wrap:wrap;row-gap:10px;column-gap:17px;}',
+      '.pt-likert .pt-end{flex:1 1 45%;width:auto;order:0;}',
+      '.pt-likert .pt-end.agree{text-align:left;}',
+      '.pt-likert .pt-end.disagree{text-align:right;}',
+      '.pt-likert .pt-likert-btn{order:1;}',
+      '.pt-likert .pt-likert-btn input{top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:44px;height:44px;}',
+      '}',
       '@media (prefers-reduced-motion: reduce){.pt-likert .pt-likert-btn,.pt-question-card{transition:none;}}'
     ].join('');
     document.head.appendChild(s);

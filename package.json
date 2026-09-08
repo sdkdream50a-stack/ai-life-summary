@@ -18,7 +18,8 @@
     "danger:redirectors": "node scripts/create-redirectors.js",
     "check:s1-guards": "node scripts/check-s1-guards.js",
     "check:s2-home": "node scripts/check-s2-home.js",
-    "verify": "npm run build:all && npm run check:adsense-boundary && npm run check:asset-version && npm run check:s1-guards && npm run check:s2-home"
+    "verify": "npm run build:all && npm run check:adsense-boundary && npm run check:asset-version && npm run check:s1-guards && npm run check:s2-home && npm run check:pre-s3-hardening",
+    "check:pre-s3-hardening": "node scripts/check-pre-s3-hardening.js"
   },
   "author": "AI Life Summary",
   "license": "MIT",

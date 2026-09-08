@@ -76,7 +76,13 @@
                     "@type": "ContactPoint",
                     "contactType": "customer service",
                     "email": "contact@smartaitest.com",
-                    "availableLanguage": ["English", "Korean", "Japanese", "Chinese", "Spanish"]
+                    "availableLanguage": [
+                        "English",
+                        "Korean",
+                        "Japanese",
+                        "Chinese",
+                        "Spanish"
+                    ]
                 }
             },
             {
@@ -87,7 +93,7 @@
                         "name": "AI Test Labはどんなテストを提供していますか？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "AI Test Labは無料の自己理解ツールを提供しています：40問の性格タイプ質問票、誕生日ハッシュの人生要約、2人の回答差を固定加重する相性クイズ、回答別固定オフセットの年齢比較です。すべて娯楽用で、5言語に対応しています。"
+                            "text": "AI Test Labは、40問の16タイプ質問票、誕生日ハッシュの人生要約、回答別固定オフセットの年齢比較、2人の回答差を固定加重する相性テストを提供します。いずれも科学的評価ではありません。"
                         }
                     },
                     {
@@ -95,15 +101,15 @@
                         "name": "テストは無料ですか？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "はい、AI Test Labのすべてのテストは100%無料です。会員登録なしですぐに利用でき、結果を画像として保存したりSNSで共有したりできます。"
+                            "text": "はい、AI Test Labのすべてのテストは100%無料です。会員登録不要 - 誕生日を入力するだけで即座に結果が得られます。結果を画像としてダウンロードしたり、SNSで共有することもできます。"
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "相性テストはどうやって行いますか？",
+                        "name": "相性テストはどのように機能しますか？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "相性テストは2人のリッカート回答の差に固定加重を適用して娯楽用スコアを作ります。任意の誕生日は遊び用ラベルにのみ使い、関係分析や科学的評価ではありません。"
+                            "text": "2人が短いリッカート質問に答えると、回答差に固定加重を適用して相性スコアと、質問ごとの一致度を表示します。任意の誕生日は遊び用ラベルだけに使い、関係評価ではありません。"
                         }
                     },
                     {
@@ -116,10 +122,18 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "テスト結果を友達に共有できますか？",
+                        "name": "テスト結果を友達と共有できますか？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "相性診断・ソウルタイプ・精神年齢の結果は、ストーリー用（9:16）と正方形（1:1）の画像としてダウンロードできます。性格タイプ診断は結果カード画像を保存できます。共有できるSNSはテストごとに異なり、LINE・X（Twitter）・Facebook・リンクコピーなどが利用できます。"
+                            "text": "相性診断・ソウルタイプ・精神年齢の結果は画像としてダウンロードできます（ストーリー9:16／正方形1:1）。性格タイプ診断は結果カード画像を保存できます。共有先はテストごとに異なり、LINE・X（Twitter）・Facebook・リンクコピーなどが使えます。友達に同じテストを送ってみましょう！"
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "AI Test Labは誰のためのものですか？",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "AI Test Labは自分について知りたいすべての人に最適です！パーティーゲームを探している方、パートナーとの相性をテストしたい方、または単に性格特性に興味がある方。10代、カップル、友達グループ、家族が一緒に楽しむのに最適です。"
                         }
                     }
                 ]
@@ -781,7 +795,7 @@
         html[lang="es"] a.lang-es { display: inline-flex; }
 
         /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+        html[lang="ko"] body, html[lang="zh"] body {
             word-break: keep-all;
             overflow-wrap: break-word;
         }
