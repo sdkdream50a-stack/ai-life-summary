@@ -327,3 +327,63 @@ Intent 섹션이 JA390 첫 화면 안으로 올라왔다.
 | **Clean Pop Lab 팔레트** | **미적용.** 홈은 여전히 `hp-dark`/`kick-mesh-bg`(#0e0e10) 다크 + 핑크·퍼플 그라데이션이다. warm white·deep ink·electric indigo로의 전환은 `css/global-kick.css`와 전 섹션을 건드려야 하므로 S2-1의 3개 범위 밖. **S2-2/S2-3 결정 필요** |
 | ko 홈 FAQ 「AI 궁합 테스트는 어떻게 하나요?」 | 본문 FAQ + FAQPage JSON-LD. title/meta가 아니며 FAQ는 S2-3 범위. **미해결로 보고** |
 | JSON-LD `alternateName: "AI Life Summary"` (5로케일) | 구 브랜드명이지 AI 기능 주장이 아니다. S0 P1-13 잔여 |
+
+
+---
+
+# S2-1 사실 정합 재검증 (flagship claim audit)
+
+`compatibility` 엔진을 소스에서 추적한 결과 **내가 S2-1에서 쓴 카피 1건이 틀렸다.**
+
+## 확인된 사실 (js/compatibility.js)
+
+| 항목 | 실측 |
+|---|---|
+| 엔진 분기 | 결과면이 `hasAnswerData(inputData) ? calculateCompatibilityFromAnswers(...) : calculateCompatibility(personA, personB)` |
+| 홈 flagship이 보내는 경로 | 랜딩 submit 핸들러가 `if (!answersA \|\| !answersB ...) return` 으로 막는다 → **8문항×2인 응답이 필수**, `hasAnswerData`는 항상 true → **항상 응답 엔진** |
+| 생일 | `getOptionalBirthday()` — 전부 비우면 `null`(통과), 일부만 채우면 `false`(오류). **선택 입력** |
+| 생일의 점수 기여 | **없음.** `overallScore`는 `Math.abs(answerA - answerB)` 만으로 5축 가중평균. 생일은 별자리·럭키데이 등 장식 |
+| 레거시 생일 엔진 | `?a=&b=` 공유 링크로만 도달 (S0 P1-2, 미해결) |
+| **실제 점수 범위** | `categories[axis] = Math.round(50 + alignment * 45)`, `alignment ∈ [0,1]` → **각 축 [50, 95] → overall [50, 95]** |
+
+## 정정한 카피
+
+「結果でわかること：**0〜100%のスコア**と、話のきっかけ」는 **도달 불가능한 범위**를 약속하고 있었다.
+응답 엔진은 50% 미만도 95% 초과도 만들 수 없다. 결과면이 실제로 렌더하는 것
+(`answer-analysis-section` / `alignPct` = 문항별 일치도)으로 교체했다.
+
+```
+ja  結果でわかること：相性スコアと、質問ごとの一致度
+ko  결과에서 보는 것: 궁합 점수와 문항별 응답 일치도
+en  What you get: a compatibility score and how closely you matched on each question
+zh  结果包含：配对分数与每道题的回答一致度
+es  En el resultado: una puntuación de compatibilidad y cuánto coincidís en cada pregunta
+```
+
+> **잔여**: 사이트 기존 FAQ의 「娯楽用相性スコア(0-100%)」(5로케일)도 같은 오류다.
+> S2-1이 만든 문구가 아니고 FAQ는 S2-3 범위이므로 **미해결로 기록**한다.
+
+## personality-type 주장 대조 (전부 일치)
+
+| 주장 | 실측 |
+|---|---|
+| 40問 | `personality-type-data.js` 문항 객체 **40개** |
+| 16タイプ | 4글자 타입 **16종** |
+| 「4つの軸のスコア」 | 축 선언 **EI/SN/TF/JP = 4개**, 결과 스크립트가 4축 모두 렌더 |
+| 登録なし・無料 | 로그인/결제/가격 코드 **0** |
+
+## 앵커 스크롤 검증의 한계 (정정)
+
+이전 보고에서 "클릭 흐름 검증 통과(scrollY 0→423→836→1202→1598)"라고 적었으나,
+재현을 시도한 결과 **이 자동화 컨텍스트에서는 스크립트 스크롤(`window.scrollTo`·
+`scrollIntoView`)이 일관되게 무효**다. 그리고 이는 **미수정 프로덕션 `/ja/`에서도 동일**하게
+재현되므로 S2-1이 만든 회귀가 아니다. 실제 입력(trusted wheel event)으로는 정상 스크롤된다.
+
+따라서 앵커에 대해 확언할 수 있는 것은 다음까지다:
+
+- 모든 앵커 타깃이 **존재하고 id가 유일**하며 `deadAnchors = 0` (5로케일)
+- 클릭 시 `location.hash`가 올바른 타깃으로 설정됨
+- **어떤 스크립트도 앵커 기본 동작을 가로채지 않음** (`defaultPrevented = false`)
+- `scroll-behavior: smooth` 적용됨
+
+시각적 점프 자체는 이 하네스에서 **확인 불가(UNVERIFIED)** 로 남긴다.
