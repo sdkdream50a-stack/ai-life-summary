@@ -5,14 +5,33 @@
 > 과거 트리에 그 시점의 가드를 기대하지 않는다 — 현재 가드를 실행하면서 `--root=` 로
 > 과거 트리를 읽는다. 이것이 "same guard" 의 핵심이다.
 
+## SHA 역할표 — 네 SHA 를 서로 섞지 않는다
+
+| SHA | 역할 |
+|---|---|
+| `3dbdd3c^` = `11185a8` | **PRE_FIX_SHA** — FAQ fix 직전, RED 상태의 트리 |
+| `3dbdd3c` | **FAQ_FIX_COMMIT** — 8개 wrong-language FAQPage 블록을 제거한 커밋 |
+| `b193939` | **PR_HEAD_BEFORE_EVIDENCE** — evidence closure 작업 시작 직전의 PR head |
+| `f3bc9df` | **CURRENT_HEAD** — evidence 가 추가된 현재 PR head (GREEN 측정 기준) |
+| `644c3f8` | **BASE** — `origin/main`. PR 은 **미merge** (`mergeCommit = null`) |
+
 ```
 FAQ_FIX_COMMIT          = 3dbdd3cdbac365c2797267dc49acc805ab60a1f5   fix(s1-7)
 PRE_FIX_SHA             = 3dbdd3c^ = 11185a807af20fe4fe973e465901997834682bbe   fix(s1-2b)
-
-측정에 쓴 가드 트리        = 94b643b  (= b193939 = 65577e9, 아래 동일성 증명 참조)
 PR_HEAD_BEFORE_EVIDENCE = b193939a0ea9463c75ce089cb645752ec1fa6cc3
+CURRENT_HEAD            = f3bc9df6c766c2e9dfeb01fa7568aa52c007adab
 BASE (origin/main)      = 644c3f86511bb3ccbbf6f1a3ddfdd637b639e18d   (미merge)
 ```
+
+**`b193939` 와 `CURRENT_HEAD` 가 왜 다른가:**
+`b193939` was the PR head before the evidence / locale-distribution documentation commits;
+subsequent evidence-only commits advanced the PR head without runtime changes.
+(`b193939` → `65577e9` 로케일 분포 증거 → `f3bc9df` 측정 트리 동일성·BEFORE/AFTER 축 분리.
+모두 `.md` 전용이다.)
+
+**이 표기가 다시 낡지 않는 이유:** 이후 evidence-only 커밋이 HEAD 를 더 밀어도 그것들은 `.md` 만
+바꾸므로 **측정 트리는 불변**이다 — 아래 동일성 증명이 그 불변식이다. GREEN 수치는 `94b643b`
+이후의 어떤 evidence 커밋에서 재실행해도 같다.
 
 ### 측정 트리 동일성 — 이 문서가 자기 자신을 무효화하지 않는다는 증명
 
@@ -22,15 +41,16 @@ BASE (origin/main)      = 644c3f86511bb3ccbbf6f1a3ddfdd637b639e18d   (미merge)
 ```
 $ git diff --name-only 94b643b..b193939 -- . ':!*.md'   → 0 files
 $ git diff --name-only b193939..65577e9 -- . ':!*.md'   → 0 files
-$ git diff --name-only 94b643b..65577e9 -- . ':!*.md'   → 0 files
+$ git diff --name-only 65577e9..f3bc9df -- . ':!*.md'   → 0 files
+$ git diff --name-only 94b643b..f3bc9df -- . ':!*.md'   → 0 files
 
 $ git show 94b643b:scripts/check-s1-guards.js | shasum   c988f98953ef6edd85554d446462ea20d74b4a57
 $ git show HEAD:scripts/check-s1-guards.js    | shasum   c988f98953ef6edd85554d446462ea20d74b4a57   (IDENTICAL)
 ```
 
-가드 파일과 런타임 트리가 바이트 동일하므로 아래 RED/GREEN/MUTATION 수치는 이 세 커밋
-어디에서 재실행해도 같다. 실제로 `94b643b`·`b193939`·`65577e9` 세 시점에서 재실행해 동일함을
-확인했다(최초 캡처는 `50a3f27`).
+가드 파일과 런타임 트리가 바이트 동일하므로 아래 RED/GREEN/MUTATION 수치는 이 커밋들
+어디에서 재실행해도 같다. 실제로 `94b643b`·`b193939`·`65577e9`·`f3bc9df` 네 시점에서 모두
+재실행해 동일함을 확인했다(최초 캡처는 `50a3f27`). 표에 적은 최종 GREEN 은 `f3bc9df` 실행값이다.
 
 ## FAQ_FIX_COMMIT 이 정확히 그 배치인가 (추측 아님)
 
@@ -222,7 +242,12 @@ $ echo $?   → 1
 
 ### B — malformed JSON-LD
 
-같은 파일 `</head>` 앞에 `{"@context":…,"@type":"FAQPage",}` (trailing comma) 삽입.
+같은 파일 `</head>` 앞에 trailing comma 를 가진 블록을 삽입한다. fixture 를 정확히 적는다 —
+`position` 값은 fixture 길이에 따라 달라지므로, 문자열이 다르면 숫자도 달라진다:
+
+```html
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage",}</script>
+```
 
 ```
   wrong-language FAQPage           : 0
@@ -233,6 +258,9 @@ FAQPage check FAILED (1):
     SyntaxError: Expected double-quoted property name in JSON at position 51 (line 1 column 52)
 $ echo $?   → 1
 ```
+
+(`@context` 를 `"x"` 로 줄인 fixture 로도 재실행해 `position 34` 로 동일하게 FAIL 하는 것을
+확인했다. 걸리는 사실은 위치 숫자가 아니라 **parse errors 1 · exit 1** 이다.)
 
 깨진 블록은 **조용히 skip 되지 않는다**. 이것이 없으면 문법 오류 뒤에 잘못된 언어의
 FAQPage 가 숨을 수 있다.
