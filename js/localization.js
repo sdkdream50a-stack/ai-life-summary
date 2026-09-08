@@ -37,21 +37,21 @@ const SmartShareManager = {
 
     // Tweet templates by language
     TWITTER_TEMPLATES: {
-        ko: (score, type) => `나의 AI 궁합 점수는 ${score}%! ${type} 유형이래요 🔮\n\n`,
-        ja: (score, type) => `私のAI相性スコアは${score}%！${type}タイプだって 🔮\n\n`,
-        zh: (score, type) => `我的AI配对分数是${score}%！${type}类型 🔮\n\n`,
-        'zh-TW': (score, type) => `我的AI配對分數是${score}%！${type}類型 🔮\n\n`,
-        en: (score, type) => `My AI compatibility score is ${score}%! I'm a ${type} type 🔮\n\n`,
-        es: (score, type) => `¡Mi puntuación de compatibilidad IA es ${score}%! Soy tipo ${type} 🔮\n\n`
+        ko: (score, type) => `나의 궁합 점수는 ${score}%! ${type} 유형이래요 🔮\n\n`,
+        ja: (score, type) => `私の相性スコアは${score}%！${type}タイプだって 🔮\n\n`,
+        zh: (score, type) => `我的配对分数是${score}%！${type}类型 🔮\n\n`,
+        'zh-TW': (score, type) => `我的配對分數是${score}%！${type}類型 🔮\n\n`,
+        en: (score, type) => `My compatibility score is ${score}%! I'm a ${type} type 🔮\n\n`,
+        es: (score, type) => `¡Mi puntuación de compatibilidad es ${score}%! Soy tipo ${type} 🔮\n\n`
     },
 
     // WhatsApp message templates
     WHATSAPP_TEMPLATES: {
-        ko: (score) => `나 AI 궁합 테스트 해봤는데 ${score}% 나왔어! 너도 해봐 👉`,
-        ja: (score) => `AI相性テストやってみたら${score}%だった！あなたもやってみて 👉`,
-        zh: (score) => `我做了AI配对测试，得了${score}%！你也试试 👉`,
-        en: (score) => `I got ${score}% on this AI compatibility test! Try it 👉`,
-        es: (score) => `¡Saqué ${score}% en este test de compatibilidad IA! Pruébalo 👉`
+        ko: (score) => `나 궁합 테스트 해봤는데 ${score}% 나왔어! 너도 해봐 👉`,
+        ja: (score) => `相性テストやってみたら${score}%だった！あなたもやってみて 👉`,
+        zh: (score) => `我做了配对测试，得了${score}%！你也试试 👉`,
+        en: (score) => `I got ${score}% on this compatibility test! Try it 👉`,
+        es: (score) => `¡Saqué ${score}% en este test de compatibilidad! Pruébalo 👉`
     },
 
     /**

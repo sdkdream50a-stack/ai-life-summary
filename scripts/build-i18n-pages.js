@@ -54,7 +54,7 @@ const META_CONTENT = {
     },
     'life-summary': {
         en: {
-            title: 'AI Life Summary - Your Life in One AI Sentence | Free Test',
+            title: 'AI Life Summary - Your Life in One Sentence | Free Test',
             description: 'Enter your birthday to generate a playful life-summary sentence from a deterministic hash and narrative templates. Free, instant, and for entertainment.',
             ogTitle: 'AI Life Summary - Your Life in One Sentence',
             ogDescription: 'Generate a playful one-sentence life summary from your birthday.'
