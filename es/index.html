@@ -139,8 +139,6 @@
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
     <link rel="stylesheet" href="../css/global-kick.css">
-    <!-- Test Hub Dynamic Dashboard -->
-    <link rel="stylesheet" href="../css/viral-hub.css">
     <!-- Canvas Confetti for celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
@@ -1317,49 +1315,7 @@
             </div>
         </section>
 
-        <!-- Test Hub - Dynamic Dashboard -->
-        <section class="py-12 hp-dark relative overflow-hidden">
-            <div class="max-w-6xl mx-auto px-4 relative z-10">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-3">
-
-                    Centro <span class="gradient-text">Viral</span>
-                </h2>
-                <p class="text-gray-600 text-center mb-8">
-
-                    Participa ahora - Ve lo que pasa en vivo!
-                </p>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <!-- Widget - Preview Animation -->
-                    <a href="/widget/" class="viral-card glass-shine hover-glow">
-                        <div class="text-3xl mb-2">🔗</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            Widget
-                        </h3>
-                        <div class="widget-preview">
-                            <div class="widget-preview-inner">
-                                <div class="soul-icon">🦊</div>
-                                <div class="soul-info">
-                                    <div class="soul-type">Flame Fox</div>
-                                    <div class="soul-bar">
-                                        <div class="soul-bar-fill"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- Floating particles -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="absolute top-10 left-10 w-32 h-32 bg-indigo-300/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute bottom-10 right-10 w-40 h-40 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-1/2 w-24 h-24 bg-purple-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-            </div>
-        </section>
-
-        <!-- How It Works -->
+                <!-- How It Works -->
         <section class="py-16 hp-dark">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
@@ -1902,25 +1858,6 @@
         }
 
         // Live count disabled — fake "142 online" removed for AdSense trust
-
-        // 3D Tilt Effect for Viral Cards
-        document.querySelectorAll('.viral-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
     })();
     </script>
     <script src="../js/mobile-enhancements.js" defer></script>
