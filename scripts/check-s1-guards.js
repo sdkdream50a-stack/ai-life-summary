@@ -276,6 +276,50 @@ function checkLocaleBanner() {
   return LANGS.length - missing.length;
 }
 
+// ---------------------------------------------------------------- guard 7
+/**
+ * Trust copy. Three things must not come back, and one must not disappear:
+ *   - the pre-rebrand "© 2025 AI Life Summary" footer (wrong brand and wrong year,
+ *     sitting on contact pages while the header said AI Test Lab)
+ *   - absolute monetization promises that foreclose every future option
+ *   - the claim that a page is funded by AdSense ads it does not actually serve
+ *   - and the real operator disclosure must stay: it is the site's strongest signal
+ */
+function checkTrustCopy() {
+  const banned = [
+    [/(?:&copy;|©)\s*2025\s*AI Life Summary/, 'pre-rebrand copyright footer'],
+    [/free forever/i, 'absolute "free forever" promise'],
+    [/premium tiers/i, 'absolute "no premium tiers" promise'],
+    [/subscription requirements/i, 'absolute "no subscription" promise'],
+    [/supported by non-intrusive advertisements served by Google AdSense/, 'AdSense funding claim on an ad-free page'],
+    [/AdSenseの控えめな広告によって運営されています/, 'AdSense funding claim on an ad-free page'],
+  ];
+  let scanned = 0;
+  const walk = dir => {
+    for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (['node_modules', '.git', '.omc', '.claude', '.wrangler', 'docs'].includes(entry.name)) continue;
+        walk(path.join(dir, entry.name));
+      } else if (entry.name.endsWith('.html')) {
+        const rel = path.join(dir, entry.name);
+        const html = read(rel);
+        scanned++;
+        for (const [re, label] of banned) {
+          if (re.test(html)) failures.push(`${rel}: ${label}`);
+        }
+      }
+    }
+  };
+  walk('.');
+
+  // Operator disclosure must survive — it is already a PASS and must not regress.
+  const about = read('about.html');
+  for (const token of ['영제솔라', '550-87-01067']) {
+    if (!about.includes(token)) failures.push(`about.html: operator disclosure lost (${token})`);
+  }
+  return scanned;
+}
+
 // ---------------------------------------------------------------- run
 const parity = checkTemplateParity();
 const surfaces = checkFunnelCoverage();
@@ -283,6 +327,7 @@ const ctas = checkReferralUtm();
 const locale = checkLocaleAuthority();
 const share = checkShareChannels();
 const banner = checkLocaleBanner();
+const trust = checkTrustCopy();
 
 if (failures.length) {
   console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
@@ -293,6 +338,6 @@ if (failures.length) {
     `S1 guards passed: ${parity} template/generated pairs in sync, ` +
     `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
     `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels, ` +
-    `locale banner covering ${banner}/${LANGS.length} markets.`
+    `locale banner covering ${banner}/${LANGS.length} markets, ${trust} pages clean of stale trust copy.`
   );
 }
