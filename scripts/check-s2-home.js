@@ -296,6 +296,38 @@ for (const t of LANDING_TESTS) {
   }
 }
 
+// --- Visual text integrity ------------------------------------------------
+// A broad `.hp-dark a:not(...)` rule once repainted the Final CTA's label with the
+// link colour on top of its own indigo background: the label measured 1.00:1 and
+// only the emoji stayed visible, on all five Home locales. The rule is now scoped
+// to prose, and controls that paint a brand background pin their own foreground.
+{
+  const cpl = read('css/clean-pop-lab.css').replace(/\/\*[\s\S]*?\*\//g, ' ');  // rules only, not the notes about them
+  if (/\.hp-dark\s+a\s*:not\(/.test(cpl)) {
+    fail('repo', 'visual text', 'the broad `.hp-dark a:not(...)` colour rule is back — it repaints button labels');
+  }
+  // the pinning rule must name the control itself, not only its descendants
+  const pinRules = [...cpl.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .filter(m => /color:\s*#fff\s*!important/i.test(m[2]))
+    .map(m => m[1].split(',').map(x => x.trim()));
+  for (const need of ['a.gradient-bg', 'a.s2-hero-cta', '.s2-flag-cta', '.pt-btn-primary']) {
+    const pinned = pinRules.some(sels => sels.some(sel => sel.endsWith(need)));
+    if (!pinned) fail('repo', 'visual text', `${need} has no pinned white foreground of its own in clean-pop-lab.css`);
+  }
+  if (!/-webkit-text-fill-color:\s*#fff\s*!important/.test(cpl)) {
+    fail('repo', 'visual text', 'brand buttons do not pin -webkit-text-fill-color, so gradient-text rules can blank them');
+  }
+}
+for (const lang of LANGS) {
+  const html = read(home(lang));
+  const cta = /<a href="\/[a-z]+\/personality-type\/" class="([^"]*gradient-bg[^"]*)"[^>]*>([\s\S]{0,120}?)<\/a>/.exec(html);
+  if (!cta) fail(lang, 'visual text', 'the primary Final CTA is missing');
+  else {
+    const label = cta[2].replace(/<[^>]+>/g, '').replace(/&#\d+;/g, '').trim();
+    if (label.length < 2) fail(lang, 'visual text', 'the primary Final CTA has no visible label');
+  }
+}
+
 // 11. template -> generated parity stays owned by the S1 guard; assert it is still wired
 const pkg = JSON.parse(read('package.json'));
 if (!/check-s1-guards\.js/.test(pkg.scripts['check:s1-guards'] || '')) {
@@ -320,5 +352,6 @@ console.log(
   `0 dead gamification refs, JA word-break scoped, FateAIverse surface 16/32 unchanged ` +
   `Trust 4 cards + resolving engine link, 2 example previews with a lazy alt image, ` +
   `3 vetted JA articles, Final CTA after the FAQ, 25 landing titles free of AI capability claims ` +
+  `primary CTA labels pinned against their own background ` +
   `(template parity delegated to check:s1-guards).`
 );

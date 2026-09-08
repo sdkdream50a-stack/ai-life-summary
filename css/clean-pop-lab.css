@@ -64,9 +64,33 @@
 .cpl .hp-dark .text-gray-700,
 .cpl .hp-dark .text-gray-500,
 .cpl .hp-dark .text-gray-400 { color: var(--cpl-ink-2) !important; }
-.cpl .hp-dark a:not(.s2-chip):not(.s2-flag-card):not(.kick-bento-item):not(.s2-hero-cta) {
+/* Prose links only. This rule used to be `.hp-dark a:not(...)`, which also caught
+   styled buttons: the Final CTA is `.gradient-bg.text-white`, so it inherited the
+   indigo link colour on top of its indigo background and its label went invisible
+   (1.00:1) on all five Home locales. An exclusion list cannot hold — the next new
+   button class would fail the same way — so the rule is scoped to the prose
+   contexts it was written for instead. */
+.cpl .hp-dark p > a,
+.cpl .hp-dark li > a,
+.cpl .hp-dark summary a,
+.cpl .hp-dark .s2-trust-body a {
     color: var(--cpl-indigo) !important;
 }
+
+/* Contract: a control that paints its own brand background always keeps a
+   foreground that reads on it. Highest specificity in this file so no later
+   colour rule can take the label away again. */
+.cpl a.gradient-bg,
+.cpl button.gradient-bg,
+.cpl a.kick-btn-primary,
+.cpl button.kick-btn-primary,
+.cpl a.s2-hero-cta,
+.cpl .s2-flag-cta,
+.cpl .pt-btn-primary,
+.cpl a.gradient-bg *,
+.cpl a.kick-btn-primary * { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+.cpl #test-compatibility .s2-flag-cta,
+.cpl #test-compatibility .s2-flag-cta * { color: #3A1710 !important; -webkit-text-fill-color: #3A1710 !important; }
 /* the S2 components carry their own colour system */
 .cpl .s2-chip,
 .cpl .s2-chip *,
