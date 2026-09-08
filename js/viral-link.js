@@ -598,7 +598,7 @@ const ViralCTAManager = {
         if (navigator.share) {
           try {
             await navigator.share({
-              title: 'AI 궁합 테스트',
+              title: '궁합 테스트',
               text: this.t('shareMessage'),
               url: link
             });
@@ -620,7 +620,7 @@ const ViralCTAManager = {
           Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-              title: 'AI 궁합 테스트',
+              title: '궁합 테스트',
               description: this.t('shareMessage'),
               imageUrl: 'https://smartaitest.com/assets/images/compatibility-og.png',
               link: {

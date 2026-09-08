@@ -99,6 +99,10 @@
           setTimeout(function() { btn.textContent = orig; }, 2000);
         }
       });
+    } else if (platform === 'line') {
+      // Same official endpoint the other three share libraries already use.
+      window.open('https://social-plugins.line.me/lineit/share?url=' +
+        encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent(shareText), '_blank');
     } else if (platform === 'twitter') {
       window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText + ' ' + shareUrl), '_blank');
     } else if (platform === 'facebook') {

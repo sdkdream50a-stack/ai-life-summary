@@ -111,8 +111,8 @@ function shareToKakao() {
     const results = window.compatibilityResults;
     const url = generateShareUrl();
     const text = results
-        ? `💕 AI 궁합 테스트 결과!\n${results.personA.name || 'A'} & ${results.personB.name || 'B'}: ${results.overallScore}% ${results.relationshipType.emoji}\n\n`
-        : 'AI 궁합 테스트 결과!\n\n';
+        ? `💕 궁합 테스트 결과!\n${results.personA.name || 'A'} & ${results.personB.name || 'B'}: ${results.overallScore}% ${results.relationshipType.emoji}\n\n`
+        : '궁합 테스트 결과!\n\n';
     const fullText = text + url;
 
     navigator.clipboard.writeText(fullText).then(() => {
@@ -395,11 +395,11 @@ function generateShareText(platform = 'default') {
             return `${vibe}${relationshipType.emoji}\n\n${nameA} & ${nameB}\n💕 Compatibility: ${overallScore}%\n✨ Type: ${relationshipType.labels.en}\n\nTry the AI Compatibility Test!`;
 
         case 'pinterest':
-            return `AI Compatibility Test: ${nameA} & ${nameB} are ${overallScore}% compatible! ${relationshipType.emoji} Find your perfect match!`;
+            return `Compatibility Test: ${nameA} & ${nameB} are ${overallScore}% compatible! ${relationshipType.emoji} Find your perfect match!`;
 
         case 'wechat':
         case 'weibo':
-            return `${vibe}${relationshipType.emoji}\n\nAI配对测试结果:\n${nameA} & ${nameB}\n配对度: ${overallScore}%\n类型: ${relationshipType.labels.zh || relationshipType.labels.en}\n\n快来测试你们的配对度!`;
+            return `${vibe}${relationshipType.emoji}\n\n配对测试结果:\n${nameA} & ${nameB}\n配对度: ${overallScore}%\n类型: ${relationshipType.labels.zh || relationshipType.labels.en}\n\n快来测试你们的配对度!`;
 
         case 'clipboard':
             return `AI Compatibility Results:\n${nameA} & ${nameB}\nScore: ${overallScore}%\nType: ${relationshipType.labels.en} ${relationshipType.emoji}`;

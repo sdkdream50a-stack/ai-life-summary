@@ -17,6 +17,7 @@ const AnalyticsEvents = {
    */
   init() {
     this.bindEvents();
+    this.bindCanonicalFunnel();
     window.AnalyticsEvents = this;
   },
 
@@ -261,6 +262,243 @@ const AnalyticsEvents = {
       test_type: this.session.testType || this.detectTestType(),
       questions_completed: this.session.questionsAnswered
     });
+  },
+
+  // ==========================================================================
+  // Canonical funnel (S1-1)
+  //
+  // The legacy events above only ever loaded on noindex leaf pages, so the
+  // business funnel was never measured. These are the canonical names, bound
+  // by URL shape so no per-page wiring is needed. Everything routes through
+  // this.track(), which honours ConsentManager and queues until consent —
+  // the consent policy is NOT bypassed here.
+  // ==========================================================================
+
+  /** Locale from the URL path, not documentElement.lang (which JS rewrites). */
+  detectLocale() {
+    const p = window.location.pathname;
+    // Translated blog posts live at /blog/{lang}/… with no top-level prefix.
+    const blog = p.match(/^\/blog\/(ja|es|ko|zh|en)\//);
+    if (blog) return blog[1];
+    if (/^\/blog(\/|$)/.test(p)) return 'ko'; // root blog corpus is Korean
+    const m = p.match(/^\/(en|ko|ja|zh|es)(\/|$)/);
+    return m ? m[1] : 'en';
+  },
+
+  /** Test slug from the URL, covering every test the site actually ships. */
+  detectTestSlug() {
+    const p = window.location.pathname;
+    const slugs = [
+      'personality-type', 'compatibility', 'age-calculator', 'life-summary',
+      'vibe-check', 'kpop-match', 'love-type', 'work-style',
+      'communication-style', 'friend-compatibility', 'marriage-compatibility'
+    ];
+    // longest match first so 'friend-compatibility' wins over 'compatibility'
+    return slugs.slice().sort((a, b) => b.length - a.length)
+      .find(s => p.includes('/' + s)) || null;
+  },
+
+  /** Which kind of surface this page is. */
+  detectSurface() {
+    const p = window.location.pathname;
+    if (/\/result\/?$/.test(p) || /result\.html$/.test(p)) return 'result';
+    if (/^\/blog\/[^/]+/.test(p) && !/^\/blog\/?$/.test(p)) return 'article';
+    if (/^\/blog\/(ja|es)\/[^/]+/.test(p)) return 'article';
+    if (this.detectTestSlug()) return 'test_landing';
+    if (/^\/(en|ko|ja|zh|es)\/?$/.test(p) || p === '/' || p === '/index.html') return 'home';
+    return 'other';
+  },
+
+  /** Params every canonical event carries. */
+  baseParams() {
+    return {
+      locale: this.detectLocale(),
+      surface: this.detectSurface(),
+      device_type: this.getDeviceType(),
+      page_path: window.location.pathname
+    };
+  },
+
+  /** Fire an event at most once per page load. */
+  once(key, eventName, params) {
+    this._fired = this._fired || {};
+    if (this._fired[key]) return;
+    this._fired[key] = true;
+    this.track(eventName, { ...this.baseParams(), ...params });
+  },
+
+  bindCanonicalFunnel() {
+    const surface = this.detectSurface();
+    const test = this.detectTestSlug();
+
+    // ---- on load ----------------------------------------------------------
+    if (surface === 'home') {
+      this.once('home_view', 'home_view', {});
+    } else if (surface === 'result') {
+      // A result page is only reachable by finishing the test, so its load is
+      // the completion signal for this architecture.
+      this.once('result_view', 'result_view', { test_type: test });
+      this.once('test_complete', 'test_complete', { test_type: test });
+    } else if (surface === 'article') {
+      this.once('article_view', 'article_view', {
+        article_slug: window.location.pathname.replace(/^\/blog\//, '').replace(/\/$/, '')
+      });
+    }
+
+    // ---- test_start: first real interaction with a quiz --------------------
+    if (surface === 'test_landing') {
+      const start = () => this.once('test_start', 'test_start', { test_type: test });
+      document.addEventListener('change', e => {
+        if (e.target && e.target.matches('input[type=radio], input[type=checkbox], select')) start();
+      }, true);
+      document.addEventListener('click', e => {
+        if (e.target && e.target.closest(
+          '[data-test-start], .test-start-btn, #start-test-btn, .pt-likert-btn, .vc-option, .option-btn, .quiz-option'
+        )) start();
+      }, true);
+      // Birthday-only tools have no questions — submitting the form is the start.
+      document.addEventListener('submit', start, true);
+    }
+
+    // ---- share_click -------------------------------------------------------
+    document.addEventListener('click', e => {
+      const el = e.target && e.target.closest(
+        '[data-share], .share-btn, [id^="share-"], [onclick*="share"], [onclick*="Share"]'
+      );
+      if (!el) return;
+      this.track('share_click', {
+        ...this.baseParams(),
+        test_type: test,
+        method: this.shareMethodOf(el)
+      });
+    }, true);
+
+    // ---- deep_dive (FateAIverse referral) ----------------------------------
+    this.bindDeepDive(test);
+
+    // ---- article_to_test_click --------------------------------------------
+    if (surface === 'article') {
+      document.addEventListener('click', e => {
+        const a = e.target && e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        if (/^(https?:)?\/\//.test(href) && !href.includes('smartaitest.com')) return;
+        if (!/\/(personality-type|compatibility|age-calculator|life-summary|vibe-check|kpop-match|love-type|work-style|communication-style)\b/.test(href)) return;
+        this.track('article_to_test_click', {
+          ...this.baseParams(),
+          target_href: href,
+          article_slug: window.location.pathname.replace(/^\/blog\//, '').replace(/\/$/, '')
+        });
+      }, true);
+    }
+
+    // ---- share_success -----------------------------------------------------
+    this.bindShareSuccess(test);
+  },
+
+  /** Best-effort share channel label from the clicked control. */
+  shareMethodOf(el) {
+    const hay = (
+      (el.getAttribute('data-platform') || '') + ' ' +
+      (el.id || '') + ' ' +
+      (el.getAttribute('onclick') || '') + ' ' +
+      (el.textContent || '')
+    ).toLowerCase();
+    const known = ['line', 'kakao', 'twitter', 'facebook', 'instagram', 'threads',
+                   'telegram', 'reddit', 'pinterest', 'linkedin', 'whatsapp',
+                   'copy', 'link', 'download', 'image', 'native'];
+    return known.find(k => hay.includes(k)) || 'unknown';
+  },
+
+  /** Impression + click on the FateAIverse deep-dive CTA. */
+  bindDeepDive(test) {
+    const SEL = 'a[href*="fateaiverse"]';
+
+    document.addEventListener('click', e => {
+      const a = e.target && e.target.closest(SEL);
+      if (!a) return;
+      this.track('deep_dive_click', {
+        ...this.baseParams(),
+        test_type: test,
+        target_href: a.getAttribute('href') || ''
+      });
+    }, true);
+
+    // Impression. IntersectionObserver is the primary signal, but its callbacks
+    // are throttled or dropped entirely in background/automated tabs, so a plain
+    // rect check on scroll is kept as a deterministic fallback. Both funnel into
+    // once(), so the event is still emitted at most one time per page.
+    const nodesIn = () => document.querySelectorAll(SEL);
+    const markSeen = () => this.once('deep_dive_impression', 'deep_dive_impression', { test_type: test });
+
+    const isHalfVisible = el => {
+      const r = el.getBoundingClientRect();
+      if (r.height === 0 || r.width === 0) return false;
+      const shown = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+      return shown / r.height >= 0.5;
+    };
+
+    const checkRects = () => {
+      if (this._fired && this._fired.deep_dive_impression) return true;
+      for (const n of nodesIn()) if (isHalfVisible(n)) { markSeen(); return true; }
+      return false;
+    };
+
+    const observe = () => {
+      const nodes = nodesIn();
+      if (!nodes.length) return;
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return;
+            markSeen();
+            io.disconnect();
+          });
+        }, { threshold: 0.5 });
+        nodes.forEach(n => io.observe(n));
+      }
+
+      if (checkRects()) return;
+      const onScroll = () => { if (checkRects()) window.removeEventListener('scroll', onScroll); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', observe);
+    } else {
+      observe();
+    }
+  },
+
+  /**
+   * share_success — the only reliable signal on this site is the resolution of
+   * the two browser APIs every share path funnels through. Wrapping them once
+   * here avoids editing dozens of per-page share handlers.
+   */
+  bindShareSuccess(test) {
+    const self = this;
+    const fire = method => self.track('share_success', {
+      ...self.baseParams(), test_type: test, method
+    });
+
+    if (navigator.share && !navigator.share.__saitWrapped) {
+      const orig = navigator.share.bind(navigator);
+      const wrapped = function (data) {
+        return orig(data).then(r => { fire('native'); return r; });
+      };
+      wrapped.__saitWrapped = true;
+      try { navigator.share = wrapped; } catch (e) {}
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText &&
+        !navigator.clipboard.writeText.__saitWrapped) {
+      const orig = navigator.clipboard.writeText.bind(navigator.clipboard);
+      const wrapped = function (text) {
+        return orig(text).then(r => { fire('copy'); return r; });
+      };
+      wrapped.__saitWrapped = true;
+      try { navigator.clipboard.writeText = wrapped; } catch (e) {}
+    }
   },
 
   /**

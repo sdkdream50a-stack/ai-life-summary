@@ -91,42 +91,42 @@
                 "mainEntity": [
                     {
                         "@type": "Question",
-                        "name": "AI 테스트 랩은 어떤 테스트를 제공하나요?",
+                        "name": "What tests does AI Test Lab offer?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "AI 테스트 랩은 무료 자기이해 도구를 제공합니다: 1) 40문항 자기보고 성격 유형 테스트, 2) 생년월일 해시 기반 엔터테인먼트 인생요약, 3) 두 사람의 답변 차이를 고정 가중치로 비교하는 궁합 퀴즈, 4) 답변별 고정 오프셋을 사용하는 재미용 나이 비교. 모든 테스트는 5개 언어로 이용 가능합니다."
+                            "text": "AI Test Lab offers a 40-question Likert self-report 16-type questionnaire, a birthday-hash life summary, a fixed-offset age comparison, and a compatibility test that applies fixed weights to two people's answers. None of these are scientific assessments."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "테스트는 무료인가요?",
+                        "name": "Are the tests free?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "네, AI 테스트 랩의 모든 테스트는 100% 무료입니다. 회원가입 없이 바로 이용 가능하며, 결과를 이미지로 저장하거나 SNS에 공유할 수 있습니다."
+                            "text": "Yes, every test on AI Test Lab is free. No signup is required and results can be downloaded as images or shared at no cost."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "AI 궁합 테스트는 어떻게 하나요?",
+                        "name": "How does the compatibility test work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "궁합 테스트는 두 사람의 리커트 응답 차이에 고정 가중치를 적용해 오락용 점수를 만듭니다. 선택 생년월일은 재미 라벨에만 쓰이며, 실제 관계 분석이나 과학적 평가가 아닙니다."
+                            "text": "The compatibility test applies fixed weights to the difference between two people's Likert answers to produce an entertainment score. The optional birthday is used only as a playful label; it is not a relationship analysis or a scientific assessment."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "재미용 정신 나이 점수는 어떻게 계산되나요?",
+                        "name": "How is the playful Mental Age score calculated?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "나이 계산기는 입력한 정보와 라이프스타일 문항을 바탕으로 오락용 나이 비교를 제공합니다. 의학적·심리학적 측정이나 실제 나이 판단이 아닙니다."
+                            "text": "The age calculator applies preset offsets to your inputs and seven lifestyle answers. It is illustrative entertainment and is not a medical, psychological, or real-age measurement."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "테스트 결과를 친구에게 공유할 수 있나요?",
+                        "name": "Can I share my test results with friends?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "네, 모든 테스트 결과는 다양한 방법으로 공유 가능합니다. 스토리용(9:16) 또는 정사각형(1:1) 이미지로 다운로드하거나, 링크 복사, Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk 등 SNS로 직접 공유할 수 있습니다."
+                            "text": "Compatibility, Soul Type and Mental Age results download as Story (9:16) and Square (1:1) images. The Personality Type test saves a result card image. Available sharing channels vary by test and include LINE, X (Twitter), Facebook and copy-link."
                         }
                     }
                 ]
@@ -849,6 +849,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -955,6 +964,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -1517,7 +1527,7 @@
                         <span class="transition-transform group-open:rotate-180">&#9660;</span>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
-                        Yes! All test results can be shared in multiple ways: <strong>Download as image</strong> (Story 9:16 or Square 1:1), copy link, or share directly to <strong>Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk</strong>. Challenge your friends to take the same test!
+                        Compatibility, Soul Type and Mental Age results <strong>download as an image</strong> (Story 9:16 / Square 1:1). The Personality Type test saves a result card image. Available channels <strong>vary by test</strong> — LINE, X (Twitter), Facebook and copy-link are supported. Send one to a friend and compare.
 
                     </p>
                 </details>
@@ -1540,7 +1550,7 @@
 
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
-                Last updated: January 2026
+                Last updated: September 2026
 
             </p>
         </div>
@@ -2048,7 +2058,7 @@
                         "name": "테스트 결과를 친구에게 공유할 수 있나요?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "네, 모든 테스트 결과는 다양한 방법으로 공유 가능합니다. 스토리용(9:16) 또는 정사각형(1:1) 이미지로 다운로드하거나, 링크 복사, Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk 등 SNS로 직접 공유할 수 있습니다."
+                            "text": "궁합·소울타입·정신연령 결과는 스토리용(9:16)과 정사각형(1:1) 이미지로 내려받을 수 있습니다. 성격유형 테스트는 결과 카드 이미지를 저장할 수 있습니다. 공유 가능한 채널은 테스트마다 다르며 카카오톡·X(트위터)·페이스북·링크 복사 등을 지원합니다."
                         }
                     }
                 ]
@@ -2771,6 +2781,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -2879,6 +2898,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -3506,7 +3526,7 @@
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        네! 모든 테스트 결과는 다양한 방법으로 공유 가능합니다: <strong>이미지 다운로드</strong>(스토리 9:16 또는 정사각형 1:1), 링크 복사, 또는 <strong>Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk</strong>으로 직접 공유. 친구들에게 같은 테스트를 도전해보세요!
+                        궁합·소울타입·정신연령 결과는 <strong>이미지로 다운로드</strong>할 수 있습니다(스토리 9:16 / 정사각형 1:1). 성격유형 테스트는 결과 카드 이미지를 저장할 수 있습니다. 공유 채널은 <strong>테스트마다 다르며</strong> 카카오톡·X(트위터)·페이스북·링크 복사를 지원합니다.
 
                     </p>
                 </details>
@@ -3532,7 +3552,7 @@
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
 
-                최종 업데이트: 2026년 1월
+                최종 업데이트: 2026년 9월
 
             </p>
         </div>
@@ -4043,7 +4063,7 @@
                         "name": "テスト結果を友達に共有できますか？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "はい、すべてのテスト結果はさまざまな方法で共有できます。ストーリー用（9:16）または正方形（1:1）画像としてダウンロードしたり、リンクコピー、Twitter/X、Facebook、WhatsApp、LINE、KakaoTalkなどのSNSで直接共有できます。"
+                            "text": "相性診断・ソウルタイプ・精神年齢の結果は、ストーリー用（9:16）と正方形（1:1）の画像としてダウンロードできます。性格タイプ診断は結果カード画像を保存できます。共有できるSNSはテストごとに異なり、LINE・X（Twitter）・Facebook・リンクコピーなどが利用できます。"
                         }
                     }
                 ]
@@ -4766,6 +4786,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -4872,6 +4901,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -5493,7 +5523,7 @@
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        はい！すべてのテスト結果は複数の方法で共有できます：<strong>画像としてダウンロード</strong>（ストーリー9:16または正方形1:1）、リンクコピー、または<strong>Twitter/X、Facebook、WhatsApp、LINE、KakaoTalk</strong>に直接共有。友達に同じテストに挑戦してもらいましょう！
+                        相性診断・ソウルタイプ・精神年齢の結果は<strong>画像としてダウンロード</strong>できます（ストーリー9:16／正方形1:1）。性格タイプ診断は結果カード画像を保存できます。共有先は<strong>テストごとに異なり</strong>、LINE・X（Twitter）・Facebook・リンクコピーなどが使えます。友達に同じテストを送ってみましょう！
 
                     </p>
                 </details>
@@ -5519,7 +5549,7 @@
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
 
-                最終更新: 2026年1月
+                最終更新: 2026年9月
 
             </p>
         </div>
@@ -6030,7 +6060,7 @@
                         "name": "可以把测试结果分享给朋友吗？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "是的，所有测试结果都可以通过多种方式分享。可下载为故事版（9:16）或方形（1:1）图片，或通过复制链接、Twitter/X、Facebook、WhatsApp、LINE、KakaoTalk等社交媒体直接分享。"
+                            "text": "配对、灵魂类型和心理年龄的结果可下载为故事版（9:16）和方形（1:1）图片。性格类型测试可保存结果卡片图片。可用的分享渠道因测试而异，包括 LINE、X（Twitter）、Facebook 和复制链接。"
                         }
                     }
                 ]
@@ -6753,6 +6783,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -6859,6 +6898,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -7480,7 +7520,7 @@
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        是的！所有测试结果都可以通过多种方式分享：<strong>下载为图片</strong>（故事9:16或正方形1:1）、复制链接，或直接分享到<strong>Twitter/X、Facebook、WhatsApp、LINE、KakaoTalk</strong>。邀请朋友参加同样的测试吧！
+                        配对、灵魂类型和心理年龄的结果可<strong>下载为图片</strong>（故事 9:16 / 正方形 1:1）。性格类型测试可保存结果卡片图片。可用的分享渠道<strong>因测试而异</strong>，包括 LINE、X（Twitter）、Facebook 和复制链接。
 
                     </p>
                 </details>
@@ -7506,7 +7546,7 @@
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
 
-                最后更新: 2026年1月
+                最后更新: 2026年9月
 
             </p>
         </div>
@@ -8017,7 +8057,7 @@
                         "name": "¿Puedo compartir los resultados con amigos?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Sí, todos los resultados se pueden compartir de varias formas. Puedes descargarlos como imagen para historias (9:16) o cuadrada (1:1), o compartirlos directamente copiando el enlace o vía Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk y otras redes sociales."
+                            "text": "Los resultados de compatibilidad, tipo de alma y edad mental se pueden descargar como imagen para historias (9:16) y cuadrada (1:1). El test de tipo de personalidad permite guardar una tarjeta de resultado. Los canales disponibles varían según el test: LINE, X (Twitter), Facebook y copiar enlace."
                         }
                     }
                 ]
@@ -8740,6 +8780,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -8846,6 +8895,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -9407,7 +9457,7 @@
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        ¡Sí! Todos los resultados se pueden compartir de múltiples maneras: <strong>Descargar como imagen</strong> (Historia 9:16 o Cuadrado 1:1), copiar enlace, o compartir directamente a <strong>Twitter/X, Facebook, WhatsApp, LINE, KakaoTalk</strong>. ¡Desafía a tus amigos a hacer el mismo test!
+                        Los resultados de compatibilidad, tipo de alma y edad mental se pueden <strong>descargar como imagen</strong> (Historia 9:16 / Cuadrado 1:1). El test de tipo de personalidad guarda una tarjeta de resultado. Los canales disponibles <strong>varían según el test</strong>: LINE, X (Twitter), Facebook y copiar enlace.
                     </p>
                 </details>
 
@@ -9430,7 +9480,7 @@
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
 
-                Última actualización: Enero 2026
+                Última actualización: Septiembre 2026
             </p>
         </div>
     </section>

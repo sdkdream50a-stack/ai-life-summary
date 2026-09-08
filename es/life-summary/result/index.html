@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>Your Life Summary Result - AI Life Summary | Personalized Insights</title>
+    <title>Resultado de tu resumen de vida | AI Test Lab</title>
     <link rel="canonical" href="https://smartaitest.com/es/life-summary/result/">
     <link rel="alternate" hreflang="en" href="https://smartaitest.com/en/life-summary/result/">
     <link rel="alternate" hreflang="ko" href="https://smartaitest.com/ko/life-summary/result/">
@@ -29,7 +29,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/es/life-summary/result/">
-    <meta property="og:title" content="My AI Life Summary">
+    <meta property="og:title" content="Resultado de tu resumen de vida | AI Test Lab">
     <meta property="og:description" content="I generated a playful birthday-based life summary. Try it for fun!">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:locale" content="en_US">
@@ -38,7 +38,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/generate">
-    <meta name="twitter:title" content="My AI Life Summary">
+    <meta name="twitter:title" content="Resultado de tu resumen de vida | AI Test Lab">
     <meta name="twitter:description" content="I generated a playful birthday-based life summary. Try it for fun!">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
 
@@ -298,6 +298,7 @@
     }
     </style>
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
@@ -539,6 +540,10 @@
                         <span>🔗</span>
 
                         Copiar
+                    </button>
+                    <button id="share-line" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #06C755; color: #FFFFFF;">
+                        <span>💬</span>
+                        <span>LINE</span>
                     </button>
                     <button id="share-kakao" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #FEE500; color: #191919;">
                         <span>💛</span>
@@ -1049,7 +1054,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p id="footer-copyright">&copy; 2025 AI Life Summary. All rights reserved.</p>
+                <p id="footer-copyright">&copy; 2026 AI Test Lab. All rights reserved.</p>
                 <p id="footer-disclaimer" class="mt-2">This service is for entertainment purposes only and should not be considered as professional advice.</p>
             </div>
         </div>
@@ -1144,7 +1149,7 @@
             currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'ko';
 
             if (!birthdate) {
-                window.location.href = '/life-summary/';
+                window.location.href = '/es/life-summary/';
                 return;
             }
 
@@ -1733,7 +1738,7 @@
                     'footer-privacy': '개인정보처리방침',
                     'footer-terms': '이용약관',
                     'footer-connect': '연결',
-                    'footer-copyright': '© 2025 AI Life Summary. 모든 권리 보유.',
+                    'footer-copyright': '© 2026 AI Test Lab. 모든 권리 보유.',
                     'footer-disclaimer': '이 서비스는 오락 목적으로만 제공되며 전문적인 조언으로 간주되어서는 안 됩니다.'
                 },
                 ja: {
@@ -1781,7 +1786,7 @@
                     'footer-privacy': 'プライバシーポリシー',
                     'footer-terms': '利用規約',
                     'footer-connect': 'つながる',
-                    'footer-copyright': '© 2025 AI Life Summary. 全著作権所有。',
+                    'footer-copyright': '© 2026 AI Test Lab. 全著作権所有。',
                     'footer-disclaimer': 'このサービスは娯楽目的のみであり、専門的なアドバイスとして考慮されるべきではありません。'
                 },
                 zh: {
@@ -1829,7 +1834,7 @@
                     'footer-privacy': '隐私政策',
                     'footer-terms': '服务条款',
                     'footer-connect': '连接',
-                    'footer-copyright': '© 2025 AI Life Summary. 版权所有。',
+                    'footer-copyright': '© 2026 AI Test Lab. 版权所有。',
                     'footer-disclaimer': '此服务仅供娱乐目的，不应被视为专业建议。'
                 },
                 es: {
@@ -1877,7 +1882,7 @@
                     'footer-privacy': 'Política de Privacidad',
                     'footer-terms': 'Términos de Servicio',
                     'footer-connect': 'Conectar',
-                    'footer-copyright': '© 2025 AI Life Summary. Todos los derechos reservados.',
+                    'footer-copyright': '© 2026 AI Test Lab. Todos los derechos reservados.',
                     'footer-disclaimer': 'Este servicio es solo para entretenimiento y no debe considerarse como consejo profesional.'
                 }
             };

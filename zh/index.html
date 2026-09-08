@@ -119,7 +119,7 @@
                         "name": "可以把测试结果分享给朋友吗？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "是的，所有测试结果都可以通过多种方式分享。可下载为故事版（9:16）或方形（1:1）图片，或通过复制链接、Twitter/X、Facebook、WhatsApp、LINE、KakaoTalk等社交媒体直接分享。"
+                            "text": "配对、灵魂类型和心理年龄的结果可下载为故事版（9:16）和方形（1:1）图片。性格类型测试可保存结果卡片图片。可用的分享渠道因测试而异，包括 LINE、X（Twitter）、Facebook 和复制链接。"
                         }
                     }
                 ]
@@ -842,6 +842,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English // default
 
@@ -948,6 +957,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -1569,7 +1579,7 @@
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        是的！所有测试结果都可以通过多种方式分享：<strong>下载为图片</strong>（故事9:16或正方形1:1）、复制链接，或直接分享到<strong>Twitter/X、Facebook、WhatsApp、LINE、KakaoTalk</strong>。邀请朋友参加同样的测试吧！
+                        配对、灵魂类型和心理年龄的结果可<strong>下载为图片</strong>（故事 9:16 / 正方形 1:1）。性格类型测试可保存结果卡片图片。可用的分享渠道<strong>因测试而异</strong>，包括 LINE、X（Twitter）、Facebook 和复制链接。
 
                     </p>
                 </details>
@@ -1595,7 +1605,7 @@
             <!-- Last Updated for GEO -->
             <p class="text-center text-gray-400 text-sm mt-8">
 
-                最后更新: 2026年1月
+                最后更新: 2026年9月
 
             </p>
         </div>

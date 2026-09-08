@@ -250,6 +250,7 @@
 <!-- Mobile Enhancements -->
 <link as="style" href="../css/mobile-enhancements.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/><noscript><link href="../css/mobile-enhancements.css" rel="stylesheet"/></noscript>
 <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
 <link href="https://smartaitest.com/compatibility/result.html" rel="canonical"/><link href="https://smartaitest.com/compatibility/result.html" hreflang="en" rel="alternate"/><link href="https://smartaitest.com/ko/compatibility/result/" hreflang="ko" rel="alternate"/><link href="https://smartaitest.com/ja/compatibility/result/" hreflang="ja" rel="alternate"/><link href="https://smartaitest.com/zh/compatibility/result/" hreflang="zh" rel="alternate"/><link href="https://smartaitest.com/es/compatibility/result/" hreflang="es" rel="alternate"/><link href="https://smartaitest.com/compatibility/result.html" hreflang="x-default" rel="alternate"/>    <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen" data-result-page="">
@@ -534,6 +535,14 @@
 <button class="h-[40px] px-4 flex items-center gap-2 bg-white text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition shadow-md border border-gray-200" onclick="copyViralLink()">
 <span>🔗</span>
 <span>Copy Link</span>
+</button>
+<button onclick="shareToLine()" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #06C755; color: #FFFFFF;">
+    <span>💬</span>
+    <span>LINE</span>
+</button>
+<button onclick="shareToWhatsApp()" class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" style="background: #25D366; color: #FFFFFF;">
+    <span>🟢</span>
+    <span>WhatsApp</span>
 </button>
 <button class="h-[40px] px-4 flex items-center gap-2 rounded-full text-sm font-semibold hover:brightness-95 transition shadow-md" onclick="shareViralKakao()" style="background: #FEE500; color: #191919;">
 <span>💛</span>
@@ -1221,11 +1230,11 @@
         const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const messages = {
-            ko: '나랑 AI 궁합 테스트 해볼래? 🥰',
-            en: 'Want to test our AI compatibility? 🥰',
-            ja: 'AI相性テストしてみない？🥰',
-            zh: '要测试我们的AI配对吗？🥰',
-            es: '¿Quieres probar nuestra compatibilidad IA? 🥰'
+            ko: '나랑 궁합 테스트 해볼래? 🥰',
+            en: 'Want to test our compatibility? 🥰',
+            ja: '相性テストしてみない？🥰',
+            zh: '要测试我们的配对吗？🥰',
+            es: '¿Quieres probar nuestra compatibilidad? 🥰'
         };
 
         const text = encodeURIComponent(messages[lang]);
@@ -1238,10 +1247,10 @@
         const link = getViralLink();
         const lang = document.documentElement.lang || 'ko';
         const titles = {
-            ko: 'AI 궁합 테스트',
+            ko: '궁합 테스트',
             en: 'AI Compatibility Test',
-            ja: 'AI相性テスト',
-            zh: 'AI配对测试',
+            ja: '相性テスト',
+            zh: '配对测试',
             es: 'Test de Compatibilidad IA'
         };
         const messages = {

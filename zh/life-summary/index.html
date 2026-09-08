@@ -430,6 +430,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English
         if (saved && supportedLangs.indexOf(saved) !== -1) {
@@ -528,6 +537,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
@@ -1078,7 +1088,7 @@
                             </summary>
                             <p class="mt-3 text-gray-700">
 
-                                是的，完全免费，无需注册，无需信用卡。本服务由Google AdSense提供的非侵入式广告支持。
+                                是的，完全免费，无需注册，无需信用卡。
 
                             </p>
                         </details>
@@ -1137,55 +1147,6 @@
 
                     </div>
 
-                    <!-- FAQPage JSON-LD (English baseline; multilingual SERP coverage relies on hreflang) -->
-                    <script type="application/ld+json">
-                    {
-                      "@context": "https://schema.org",
-                      "@type": "FAQPage",
-                      "mainEntity": [
-                        {
-                          "@type": "Question",
-                          "name": "Is the AI Life Summary really free?",
-                          "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes — completely free, no signup, no credit card. The service is supported by non-intrusive advertisements served by Google AdSense."
-                          }
-                        },
-                        {
-                          "@type": "Question",
-                          "name": "Will my birthday or personal data be saved?",
-                          "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "No. All processing happens in your browser. Your birthdate stays on your device — it is not sent to our servers or shared with third parties."
-                          }
-                        },
-                        {
-                          "@type": "Question",
-                          "name": "How long does the test take?",
-                          "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Under 30 seconds in most cases. Just enter your birthday, and your summary appears instantly."
-                          }
-                        },
-                        {
-                          "@type": "Question",
-                          "name": "Can I share my result on social media?",
-                          "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes. Every result page includes share buttons for X (Twitter), Facebook, KakaoTalk, and direct link copy."
-                          }
-                        },
-                        {
-                          "@type": "Question",
-                          "name": "Is this an entertainment tool?",
-                          "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "No. This algorithm uses a birthday-based hash and narrative templates for entertainment and self-reflection; it is not a scientific, clinical, or psychological assessment."
-                          }
-                        }
-                      ]
-                    }
-                    </script>
                 </div>
 
             </div>
@@ -1286,7 +1247,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Life Summary. 版权所有。</p>
+                <p>&copy; 2026 AI Test Lab. 版权所有。</p>
                 <p class="mt-2">
 
                     此服务仅供娱乐目的，不应被视为专业建议。

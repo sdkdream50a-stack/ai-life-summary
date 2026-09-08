@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>AI Life Summary - Your Life in One AI Sentence | Free Test</title>
+    <title>AI Life Summary - Your Life in One Sentence | Free Test</title>
     <meta name="description" content="Enter your birthday to generate a playful life-summary sentence and lucky element for entertainment and self-reflection. Free and instant.">
     <meta name="keywords" content="AI 인생요약, 생년월일 테스트, 무료 심리테스트, 성격테스트, 인생 한문장, AI 운세, 2026 운세, 생일 운세, MBTI 대안, 무료 성격분석">
     <meta name="author" content="AI Life Summary">
@@ -430,6 +430,15 @@
     <script>
     (function() {
         var supportedLangs = ['en', 'ko', 'ja', 'zh', 'es'];
+        // The URL locale is authoritative: /ja/… is a Japanese page for every
+        // visitor. Every engine reads documentElement.lang, so without this a
+        // Japanese URL renders its result in the visitor's browser language.
+        var pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+        if (pathLang) {
+            document.documentElement.lang = pathLang;
+            try { localStorage.setItem('ai-life-summary-lang', pathLang); } catch (e) {}
+            return;
+        }
         var saved = localStorage.getItem('ai-life-summary-lang');
         var lang = 'en'; // Default to English
         if (saved && supportedLangs.indexOf(saved) !== -1) {
@@ -528,6 +537,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js"></script>
+<script src="/js/analytics-events.js"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
@@ -625,7 +635,7 @@
                 </svg>
                 <h1 class="kick-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                     <span class="kick-gradient-text">
-                        Your Life in One AI Sentence
+                        Your Life in One Sentence
 
                     </span>
                 </h1>
@@ -1032,7 +1042,7 @@
 
                             </summary>
                             <p class="mt-3 text-gray-700">
-                                Yes — completely free, no signup, no credit card. The service is supported by non-intrusive advertisements served by Google AdSense.
+                                Yes — completely free, no signup, no credit card.
 
                             </p>
                         </details>
@@ -1094,7 +1104,7 @@
                           "name": "Is the AI Life Summary really free?",
                           "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes — completely free, no signup, no credit card. The service is supported by non-intrusive advertisements served by Google AdSense."
+                            "text": "Yes — completely free, no signup, no credit card."
                           }
                         },
                         {
@@ -1222,7 +1232,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Life Summary. All rights reserved.</p>
+                <p>&copy; 2026 AI Test Lab. All rights reserved.</p>
                 <p class="mt-2">
                     This service is for entertainment purposes only and should not be considered as professional advice.
 
