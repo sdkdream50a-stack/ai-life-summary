@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="cpl">
 <head>
     <!-- GA loaded via consent manager --><!-- Clarity loaded via consent manager -->
     <meta charset="UTF-8">
@@ -100,7 +100,7 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "AI 궁합 테스트는 어떻게 하나요?",
+                        "name": "궁합 테스트는 어떻게 계산되나요?",
                         "acceptedAnswer": {
                             "@type": "Answer",
                             "text": "궁합 테스트는 두 사람의 리커트 응답 차이에 고정 가중치를 적용해 오락용 점수를 만듭니다. 선택 생년월일은 재미 라벨에만 쓰이며, 실제 관계 분석이나 과학적 평가가 아닙니다."
@@ -139,10 +139,6 @@
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
     <link rel="stylesheet" href="../css/global-kick.css">
-    <!-- Test Hub Dynamic Dashboard -->
-    <link rel="stylesheet" href="../css/viral-hub.css">
-    <!-- Canvas Confetti for celebrations -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -360,57 +356,12 @@
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.2) 100%), rgba(255, 255, 255, 0.05);
         }
 
-        /* Glassmorphism Stats */
-        .glass-stat {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 11px;
-            padding: 0.7rem 1rem;
-            transition: all 0.3s ease;
-        }
-        .glass-stat:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        .glass-stat-number {
-            font-size: 1.1rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #f0abfc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .glass-stat .text-3xl {
-            font-size: 1.2rem;
-        }
 
-        /* Real-time Ticker */
-        .live-ticker {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-        .ticker-content {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            animation: tickerSlide 0.5s ease-out;
-        }
         @keyframes tickerSlide {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .ticker-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: tickerPulse 1.5s ease-in-out infinite;
-        }
+
         @keyframes tickerPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.2); }
@@ -562,9 +513,7 @@
             transform: translateY(-8px);
             box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
         }
-        .new-badge {
-            animation: pulse 2s infinite;
-        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -936,8 +885,6 @@
     });
     </script>
     <!-- Gamification CSS -->
-    <link rel="stylesheet" href="../css/gamification.css">
-    <link rel="stylesheet" href="../css/popups.css">
     <link rel="stylesheet" href="../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
@@ -961,6 +908,57 @@
     <script src="/js/consent-manager.js?v=b8a8bbf4"></script>
 <script src="/js/analytics-events.js?v=bd7b4f55"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+
+    <!-- S2-1 Home hierarchy (inline: no Tailwind rebuild) -->
+    <style id="s2-home">
+        /* the hero no longer carries the test grid, so drop the 100vh floor */
+        #hero.kick-mesh-bg{min-height:0}
+        .s2-chips{display:grid;grid-template-columns:1fr;gap:.75rem}
+        @media(min-width:640px){.s2-chips{grid-template-columns:repeat(3,1fr)}}
+        .s2-chip{display:flex;align-items:center;gap:.75rem;min-height:56px;padding:.875rem 1rem;
+            border-radius:1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+            color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
+        .s2-chip:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.3)}
+        .s2-chip-emoji{font-size:1.5rem;line-height:1;flex:none}
+        .s2-chip-label{font-weight:700;font-size:1rem}
+        .s2-chip-note{margin-left:auto;font-size:.8125rem;color:rgba(255,255,255,.6);white-space:nowrap}
+        .s2-flag-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+        @media(min-width:768px){.s2-flag-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}}
+        .s2-flag-card{display:flex;flex-direction:column;gap:.5rem;padding:1.5rem;border-radius:1.25rem;
+            background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff;
+            text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+        .s2-flag-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+        .s2-flag-title{font-size:1.5rem;font-weight:800;margin:.25rem 0 0}
+        .s2-flag-promise{font-size:1rem;color:rgba(255,255,255,.82);margin:0}
+        .s2-flag-meta{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:.25rem 0 0}
+        .s2-flag-meta li{font-size:.8125rem;color:rgba(255,255,255,.72);background:rgba(255,255,255,.09);
+            border-radius:999px;padding:.25rem .625rem}
+        .s2-flag-result{font-size:.875rem;color:rgba(255,255,255,.6);margin:.25rem 0 0}
+        .s2-flag-cta{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;margin-top:.75rem;
+            min-height:44px;padding:.625rem 1.25rem;border-radius:999px;font-weight:700;
+            background:#fff;color:#111827}
+        .s2-hero-cta{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.875rem 2rem;
+            border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
+            text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+        .s2-hero-cta:hover{opacity:.9}
+        /* S2-2A: interactive targets reach 44px without growing the visible text */
+        .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
+            display:inline-flex;align-items:center;justify-content:center;
+            min-height:44px;min-width:44px;padding-top:.5rem;padding-bottom:.5rem}
+        #hero a[href*="instagram.com"]{
+            display:inline-flex;align-items:center;min-height:44px;padding-top:.625rem;padding-bottom:.625rem}
+        #lang-selector > button{min-height:44px;display:inline-flex;align-items:center}
+        #lang-dropdown button{min-height:44px;display:flex;align-items:center}
+        .kick-footer a{display:inline-flex;align-items:center;min-height:44px}
+        /* S2-2A: Japanese has no word spaces, so the global `keep-all` turns a
+           punctuation-free sentence into one unbreakable run and blows out grid
+           tracks (375/390/430 clipped 24/24/6). Scoped to the JA Home only;
+           ko/zh keep `keep-all` and css/global-kick.css is untouched. */
+        html[lang="ja"] body,html[lang="ja"] body *{word-break:normal}
+        .s2-more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+        @media(min-width:768px){.s2-more-grid{grid-template-columns:repeat(3,1fr);gap:1rem}}
+    </style>
+    <link rel="stylesheet" href="/css/clean-pop-lab.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Floating Pill Navbar -->
@@ -972,9 +970,8 @@
         <div class="kick-navbar-links">
             <a href="/ko/personality-type/" class="kick-navbar-link">🧬 성격</a>
             <a href="/ko/compatibility/" class="kick-navbar-link">❤️‍🔥 궁합</a>
-            <a href="/ko/life-summary/" class="kick-navbar-link">🔮 소울</a>
             <a href="/ko/age-calculator/" class="kick-navbar-link">⏳ 나이</a>
-            <a href="/ko/vibe-check/" class="kick-navbar-link">🔥 바이브</a>
+            <a href="/ko/life-summary/" class="kick-navbar-link">🔮 소울</a>
             <a href="/ko/kpop-match/" class="kick-navbar-link">💜 K-팝</a>
             <a href="/ko/mood-report/" class="kick-navbar-link">🌤️ 무드</a>
             <a href="/ko/holiday-position/" class="kick-navbar-link">🎑 명절</a>
@@ -1016,9 +1013,8 @@
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
             <a href="/ko/personality-type/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🧬 성격 유형 검사</a>
             <a href="/ko/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 궁합 테스트</a>
-            <a href="/ko/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 소울 타입</a>
             <a href="/ko/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ 정신 나이</a>
-            <a href="/ko/vibe-check/" class="text-2xl text-white font-bold hover:text-orange-400 transition">🔥 바이브 체크</a>
+            <a href="/ko/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 소울 타입</a>
             <a href="/ko/kpop-match/" class="text-2xl text-white font-bold hover:text-fuchsia-400 transition">💜 K-팝 매칭</a>
             <a href="/ko/mood-report/" class="text-2xl text-white font-bold hover:text-amber-300 transition">🌤️ 무드 리포트</a>
             <a href="/ko/holiday-position/" class="text-2xl text-white font-bold hover:text-violet-300 transition">🎑 명절 포지션 테스트</a>
@@ -1039,7 +1035,7 @@
         <!-- (Marquee Ticker 제거 — 영상 처방 #2 "허위 통계 금지" + 미니멀 미감) -->
 
         <!-- Hero Section - KICK Redesign -->
-        <section class="kick-mesh-bg py-12 md:py-16 relative overflow-hidden">
+        <section id="hero" class="kick-mesh-bg py-12 md:py-16 relative overflow-hidden">
             <div class="max-w-6xl mx-auto px-4 text-center relative z-10 pt-6">
                 <!-- Floating 3D Orb -->
                 <div class="flex justify-center mb-4">
@@ -1049,116 +1045,117 @@
                 <!-- Bold Headline -->
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl mb-4 text-white">
 
-                    가볍게 시작해봐.<br>질문으로 보는 <span class="kick-gradient-text">나의 성향</span>
+                    지금의 나, <span class="kick-gradient-text">한마디로 하면?</span>
 
                 </h1>
 
                 <p class="text-base md:text-xl text-white/70 mb-6 max-w-2xl mx-auto">
 
-                    먼저 40문항 설문 기반 성격 유형 검사를 해보세요. 궁합·인생 요약은 오락용 테스트입니다
+                    40문항 성격 유형 검사(약 5분)부터 연애·궁합 간단 테스트까지. 가입 없이 무료.
 
                 </p>
 
-                <!-- Bento Grid Test Cards -->
-                <div class="kick-bento-grid px-4 md:px-0 mb-16 md:mb-20" id="bento-grid">
-                    <!-- Compatibility Card - Large -->
-                    <a href="/ko/personality-type/" class="kick-bento-item large kick-tilt" data-tilt>
-                        <div class="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full animate-pulse">설문 기반</div>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-7xl md:text-8xl mb-4 kick-tilt-inner">🧬</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-2xl md:text-3xl mb-2">
+                <div class="flex justify-center mb-4">
+                    <a href="#intent" class="s2-hero-cta">
 
-                                    성격 유형 검사
+                        테스트 고르기
 
-                                </h3>
-                                <p class="text-sm md:text-base" style="color:rgba(255,255,255,.68)">
-
-                                    40문항 리커트 설문 기반 16유형 검사
-
-                                </p>
-                            </div>
-                        </div>
+                        <span aria-hidden="true">&darr;</span>
                     </a>
+                </div>
 
-                    <!-- Love Type Card -->
-                    <a href="/ko/love-type/" class="kick-bento-item kick-tilt" data-tilt>
+                                <!-- Trending Hashtags -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6">
+                    <span class="lang-ko flex flex-wrap justify-center gap-2">
+                        <a href="https://www.instagram.com/explore/tags/성격테스트/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#성격테스트</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    무엇이 궁금해?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">나</span>
+                        <span class="s2-chip-note">40문항·약 5분</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">연애·친구</span>
+                        <span class="s2-chip-note">둘이서</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">가볍게 해보기</span>
+                        <span class="s2-chip-note">5문항부터</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flagship Tests -->
+        <section id="flagship" class="py-12 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+
+                    먼저 이 두 가지
+
+                </h2>
+                <div class="s2-flag-grid">
+                    <a id="test-personality" href="/ko/personality-type/" class="s2-flag-card">
+                        <div class="text-6xl" aria-hidden="true">&#129516;</div>
+                        <h3 class="s2-flag-title">성격 유형 검사</h3>
+                        <p class="s2-flag-promise">40문항에 답하면 16유형 중 하나가 나온다.</p>
+                        <ul class="s2-flag-meta"><li>40문항</li><li>약 5분</li><li>16유형</li><li>가입 없이</li><li>무료</li></ul>
+                        <p class="s2-flag-result">결과에서 보는 것: 유형 이름과 4개 축 점수</p>
+                        <span class="s2-flag-cta">성격 유형 검사하기 <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a id="test-compatibility" href="/ko/compatibility/" class="s2-flag-card">
+                        <div class="text-6xl" aria-hidden="true">&#128149;</div>
+                        <h3 class="s2-flag-title">궁합 테스트</h3>
+                        <p class="s2-flag-promise">두 사람의 질문 응답을 비교해 궁합 점수로 만든다.</p>
+                        <ul class="s2-flag-meta"><li>2명</li><li>8문항 × 2</li><li>가입 없이</li><li>무료</li></ul>
+                        <p class="s2-flag-result">결과에서 보는 것: 궁합 점수와 문항별 응답 일치도</p>
+                        <span class="s2-flag-cta">두 사람 궁합 검사하기 <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Tests (secondary tier) -->
+        <section id="more-tests" class="py-12 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+
+                    더 해보기
+
+                </h2>
+                <div class="s2-more-grid">
+                    <a href="/ko/kpop-match/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💘</div>
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">&#128156;</div>
                             <div class="text-left kick-tilt-inner">
                                 <h3 class="text-white font-black text-xl mb-1">
 
-                                    연애 유형 테스트
+                                    K-팝 페르소나 매칭
 
                                 </h3>
-                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
+                                <p class="text-white/60 text-xs">
 
-                                    15문항 러브 타입
+                                    5문항·16페르소나
 
                                 </p>
                             </div>
                         </div>
                     </a>
-                    <!-- Communication Style Card -->
-                    <a href="/ko/communication-style/" class="kick-bento-item kick-tilt" data-tilt>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💬</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-xl mb-1">
-
-                                    소통 유형 테스트
-
-                                </h3>
-                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
-
-                                    15문항 대화 스타일
-
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-
-
-                    <!-- Work Style Card -->
-                    <a href="/ko/work-style/" class="kick-bento-item kick-tilt" data-tilt>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🧭</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-xl mb-1">
-
-                                    워크스타일 테스트
-
-                                </h3>
-                                <p class="text-white/60 text-xs" style="color:rgba(255,255,255,.66)">
-
-                                    15문항 일하는 방식
-
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Soul Type Card -->
-                    <a href="/ko/life-summary/" class="kick-bento-item kick-tilt" data-tilt>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🔮</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-xl mb-1">
-
-                                    소울 타입
-
-                                </h3>
-                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
-
-                                    12가지 타입
-
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Mental Age Card -->
                     <a href="/ko/age-calculator/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
                             <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">⏳</div>
@@ -1176,18 +1173,78 @@
                             </div>
                         </div>
                     </a>
+                    <a href="/ko/life-summary/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🔮</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
 
-                </div>
+                                    소울 타입
 
-                <!-- Trending Hashtags -->
-                <div class="flex flex-wrap justify-center gap-2 mt-6">
-                    <span class="lang-ko flex flex-wrap justify-center gap-2">
-                        <a href="https://www.instagram.com/explore/tags/AI테스트/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#AI테스트</a>
-                        <a href="https://www.instagram.com/explore/tags/성격테스트/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#성격테스트</a>
-                    </span>
+                                </h3>
+                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
+
+                                    12가지 타입
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/ko/love-type/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💘</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+
+                                    연애 유형 테스트
+
+                                </h3>
+                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
+
+                                    15문항 러브 타입
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/ko/communication-style/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💬</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+
+                                    소통 유형 테스트
+
+                                </h3>
+                                <p class="text-xs" style="color:rgba(255,255,255,.66)">
+
+                                    15문항 대화 스타일
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/ko/work-style/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🧭</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+
+                                    워크스타일 테스트
+
+                                </h3>
+                                <p class="text-white/60 text-xs" style="color:rgba(255,255,255,.66)">
+
+                                    15문항 일하는 방식
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
+
 
         <!-- Valentine's Day Special Banner -->
         <section class="py-8 hp-dark relative overflow-hidden">
@@ -1241,48 +1298,35 @@
             </div>
         </section>
 
-        <!-- Test Hub - Dynamic Dashboard -->
-        <section class="py-12 hp-dark relative overflow-hidden">
-            <div class="max-w-6xl mx-auto px-4 relative z-10">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-3">
+                        <!-- Result Preview -->
+        <section id="result-preview" class="py-16 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
 
-                    <span class="gradient-text">테스트 허브</span>
+                    결과 미리보기
 
                 </h2>
-                <p class="text-gray-600 text-center mb-8">
-
-                    원하는 테스트를 선택해 바로 시작하세요.
-
-                </p>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <!-- Widget - Preview Animation -->
-                    <a href="/widget/" class="viral-card glass-shine hover-glow">
-                        <div class="text-3xl mb-2">🔗</div>
-                        <h3 class="font-semibold text-gray-800 text-sm">
-
-                            위젯
-
-                        </h3>
-                        <div class="widget-preview">
-                            <div class="widget-preview-inner">
-                                <div class="soul-icon">🦊</div>
-                                <div class="soul-info">
-                                    <div class="soul-type">Flame Fox</div>
-                                    <div class="soul-bar">
-                                        <div class="soul-bar-fill"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                <div class="s2-rp-grid">
+                    <figure class="s2-rp-card">
+                        <figcaption class="s2-rp-badge">표시 예시</figcaption>
+                        <img src="/assets/images/pt/infp.jpg" alt="성격 유형 검사 결과 카드 예시 (중재자 유형)"
+                             width="1200" height="630" loading="lazy" decoding="async" class="s2-rp-img">
+                        <h3 class="s2-rp-title">성격 유형 검사</h3>
+                        <p class="s2-rp-type">중재자 (INFP)</p>
+                        <div class="s2-rp-axes"><div class="s2-rp-axis"><span>E</span><i class="s2-rp-track"><b class="s2-rp-fill s2-rp-right"></b></i><span>I</span></div><div class="s2-rp-axis"><span>S</span><i class="s2-rp-track"><b class="s2-rp-fill s2-rp-right"></b></i><span>N</span></div><div class="s2-rp-axis"><span>T</span><i class="s2-rp-track"><b class="s2-rp-fill s2-rp-right"></b></i><span>F</span></div><div class="s2-rp-axis"><span>J</span><i class="s2-rp-track"><b class="s2-rp-fill s2-rp-right"></b></i><span>P</span></div></div>
+                        <p class="s2-rp-desc">유형 이름과 4개 축에서 어느 쪽에 가까운지가 나옵니다.</p>
+                    </figure>
+                    <figure class="s2-rp-card">
+                        <figcaption class="s2-rp-badge">표시 예시</figcaption>
+                        <h3 class="s2-rp-title">궁합 테스트</h3>
+                        <p class="s2-rp-label">궁합 점수</p>
+                        <div class="s2-rp-score" aria-hidden="true"><i></i></div>
+                        <p class="s2-rp-label">문항별 응답 일치도</p>
+                        <div class="s2-rp-qbars" aria-hidden="true"><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i><i class="s2-rp-qbar"></i></div>
+                        <p class="s2-rp-desc">궁합 점수와 문항별 응답 일치도가 나열됩니다.</p>
+                    </figure>
                 </div>
-            </div>
-            <!-- Floating particles -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="absolute top-10 left-10 w-32 h-32 bg-indigo-300/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute bottom-10 right-10 w-40 h-40 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-1/2 w-24 h-24 bg-purple-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+                <p class="s2-rp-note">실제 결과는 응답에 따라 달라집니다. 수치는 표시하지 않았습니다.</p>
             </div>
         </section>
 
@@ -1365,135 +1409,43 @@
             </div>
         </section>
 
-        <!-- Why Choose Us -->
-        <section class="py-16 hp-dark">
-            <div class="max-w-6xl mx-auto px-4">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-12">
+                <!-- Trust -->
+        <section id="trust" class="py-16 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
 
-                    왜 <span class="gradient-text">AI Test Lab인가요?</span>
-
-                </h2>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#9889;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            즉시 결과
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            몇 초 만에 맞춤형 결과를 받아보세요. 기다림도, 이메일도 필요 없습니다.
-
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#127760;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            5개 언어 지원
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            영어, 한국어, 일본어, 중국어, 스페인어로 이용 가능합니다.
-
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#128274;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            개인정보 보호
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            데이터는 기기에서 처리됩니다. 개인정보를 서버에 저장하지 않습니다.
-
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#128247;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            공유 가능한 이미지
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            소셜 미디어에 공유할 수 있는 아름다운 결과 이미지를 만드세요.
-
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#128241;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            모바일 최적화
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            모든 기기에서 완벽하게 작동하는 반응형 디자인입니다.
-
-                        </p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <div class="text-4xl mb-4">&#127881;</div>
-                        <h3 class="font-heading font-semibold text-xl mb-2">
-
-                            100% 무료
-
-                        </h3>
-                        <p class="text-gray-600">
-
-                            모든 테스트는 완전 무료입니다. 숨겨진 비용이 없습니다.
-
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-16 hp-dark">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
-
-                    <span class="gradient-text">나를 발견할 준비가 되셨나요?</span>
+                    믿고 해볼 수 있는 이유
 
                 </h2>
-                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-
-                    설문 기반 성격 유형 검사로 먼저 나를 확인하고, 오락용 테스트는 가볍게 즐겨보세요!
-
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="/ko/personality-type/" class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg inline-flex items-center gap-2">
-
-                        🧬 성격 유형 검사
-
-                        <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded">LEAD</span>
-                    </a>
-                    <a href="/ko/life-summary/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
-
-                        &#10024; 인생 요약
-
-                    </a>
-                    <a href="/ko/age-calculator/" class="age-gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
-
-                        &#127874; 나이 계산기
-
-                    </a>
+                <div class="s2-trust-grid">
+                    <div class="s2-trust-card">
+                        <span class="s2-trust-emoji" aria-hidden="true">🔍</span>
+                        <h3 class="s2-trust-title">결과가 나오는 방식</h3>
+                        <p class="s2-trust-body">질문에 대한 응답을 정해진 규칙으로 점수화합니다.</p>
+                        <a class="s2-trust-link" href="#faq">자세히 <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                    <div class="s2-trust-card">
+                        <span class="s2-trust-emoji" aria-hidden="true">🚪</span>
+                        <h3 class="s2-trust-title">가입 없이 이용</h3>
+                        <p class="s2-trust-body">성격 유형 검사와 궁합 테스트는 가입도 로그인도 없이 끝까지 진행됩니다.</p>
+                    </div>
+                    <div class="s2-trust-card">
+                        <span class="s2-trust-emoji" aria-hidden="true">💻</span>
+                        <h3 class="s2-trust-title">브라우저에서 처리</h3>
+                        <p class="s2-trust-body">성격 유형·궁합·정신 나이·소울 타입의 채점은 이 기기의 브라우저 안에서 이뤄집니다.</p>
+                    </div>
+                    <div class="s2-trust-card">
+                        <span class="s2-trust-emoji" aria-hidden="true">🏢</span>
+                        <h3 class="s2-trust-title">운영 정보 공개</h3>
+                        <p class="s2-trust-body">운영 회사·대표자·사업자등록번호를 About에 밝히고 있습니다.</p>
+                        <a class="s2-trust-link" href="/ko/about/">운영 정보 <span aria-hidden="true">&rarr;</span></a>
+                    </div>
                 </div>
+                <p class="s2-trust-foot"><a href="/ko/privacy-policy/">개인정보처리방침</a></p>
             </div>
         </section>
-    </main>
-
-    <!-- FAQ Section for GEO Optimization -->
-    <section class="py-16 hp-dark">
+            <!-- FAQ Section for GEO Optimization -->
+    <section id="faq" class="py-16 hp-dark">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
 
@@ -1546,14 +1498,14 @@
                     <summary class="flex justify-between items-center font-semibold text-gray-800 list-none">
                         <span>
 
-                            AI 궁합 테스트는 어떻게 하나요?
+                            궁합 테스트는 어떻게 계산되나요?
 
                         </span>
                         <span class="transition-transform group-open:rotate-180">&#9660;</span>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
 
-                        두 사람이 짧은 리커트 질문에 답하면 응답 차이에 고정 가중치를 적용해 <strong>오락용 궁합 점수(0-100%)</strong>를 만듭니다. 선택 생년월일은 재미 라벨에만 쓰이며 실제 관계 분석이나 과학적 평가가 아닙니다.
+                        두 사람이 짧은 리커트 질문에 답하면 응답 차이에 고정 가중치를 적용해 <strong>궁합 점수와 문항별 응답 일치도</strong>를 보여줍니다. 선택 생년월일은 재미 라벨에만 쓰이며 실제 관계 분석이나 과학적 평가가 아닙니다.
 
                     </p>
                 </details>
@@ -1618,6 +1570,35 @@
             </p>
         </div>
     </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 hp-dark">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
+
+                    <span class="gradient-text">나를 발견할 준비가 되셨나요?</span>
+
+                </h2>
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+
+                    설문 기반 성격 유형 검사로 먼저 나를 확인하고, 오락용 테스트는 가볍게 즐겨보세요!
+
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/ko/personality-type/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
+
+                        &#129516; 성격 유형 검사
+
+                    </a>
+                    <a href="/ko/compatibility/" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-lg border border-white/20 transition text-lg">
+
+                        &#128149; 궁합 테스트
+
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
 
     <!-- Footer -->
@@ -1742,161 +1723,34 @@
 
 
     <!-- Gamification Scripts -->
-    <script src="../js/badges.js"></script>
-    <script src="../js/level-xp.js"></script>
-    <script src="../js/streak.js"></script>
-    <script src="../js/user-data.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/gamification-ui.js"></script>
-    <script src="../js/referral.js"></script>
     <script>
     // Initialize gamification on homepage
     document.addEventListener('DOMContentLoaded', function() {
         // Valentine's Day Countdown
-        function updateValentineCountdown() {
-            var valentine = new Date('2026-02-14T00:00:00');
-            var now = new Date();
-            var diff = valentine - now;
-            var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            if (days < 0) days = 0;
 
-            var lang = document.documentElement.lang || 'ko';
-            var texts = {
-                en: '⏰ D-' + days + ' until Valentine\'s',
-                ko: '관계 판단이 아닌 대화용',
-                ja: '予測ではなく会話用',
-                zh: '用于交流而非预测',
-                es: 'Para conversar, no predecir'
-            };
-
-            document.querySelectorAll('[class*="lang-"]').forEach(function(el) {
-                if (false) {
-                    var langClass = Array.from(el.classList).find(function(c) { return c.startsWith('lang-'); });
-                    if (langClass) {
-                        var langCode = langClass.replace('lang-', '');
-                        el.textContent = texts[langCode] || texts.en;
-                    }
-                }
-            });
-        }
-        updateValentineCountdown();
 
         // Update header profile display
-        function updateHeaderProfile() {
-            if (typeof userDataManager === 'undefined') return;
 
-            var userData = userDataManager.getUserData();
-            var profileAvatar = document.getElementById('profile-avatar');
-            var profileLevel = document.getElementById('profile-level');
-            var mobileProfileIcon = document.getElementById('mobile-profile-icon');
-            var mobileProfileLevel = document.getElementById('mobile-profile-level');
-
-            var level = userData.gamification ? userData.gamification.level : 1;
-            var streak = userData.gamification ? userData.gamification.currentStreak : 0;
-            var lang = document.documentElement.lang || 'ko';
-
-            // Desktop profile
-            if (profileAvatar && profileLevel) {
-                if (typeof levelXpSystem !== 'undefined') {
-                    var levelInfo = levelXpSystem.getLevelInfo(level);
-                    profileLevel.textContent = 'Lv.' + level;
-                    profileLevel.classList.remove('hidden');
-                    profileLevel.title = levelInfo.name[lang] || levelInfo.name.en;
-                }
-
-                if (streak > 0) {
-                    profileAvatar.textContent = streak >= 7 ? '🔥' : '✨';
-                } else {
-                    profileAvatar.textContent = '👤';
-                }
-            }
-
-            // Mobile profile
-            if (mobileProfileIcon && mobileProfileLevel) {
-                if (streak > 0) {
-                    mobileProfileIcon.textContent = streak >= 7 ? '🔥' : '✨';
-                } else {
-                    mobileProfileIcon.textContent = '👤';
-                }
-                mobileProfileLevel.textContent = 'Lv.' + level;
-                mobileProfileLevel.classList.remove('hidden');
-            }
-        }
 
         // Initialize
-        setTimeout(updateHeaderProfile, 100);
 
         // Listen for gamification updates
-        window.addEventListener('gamification-update', updateHeaderProfile);
     });
     </script>
 
-    <!-- Live Ticker Script -->
-    <script>
-    (function() {
-        var tickerContainer = document.getElementById("live-ticker");
-        if (tickerContainer) tickerContainer.classList.add("hidden");
-    })();
-    </script>
 
     <!-- Test Hub Dynamic Features -->
     <script>
     (function() {
         // Countdown Timer for Events
-        function updateCountdown() {
-            // Set end time to 24 hours from page load (simulated)
-            const now = new Date();
-            const endTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            const diff = endTime - now;
 
-            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-            const minutes = Math.floor(diff / (1000 * 60)) % 60;
-            const seconds = Math.floor(diff / 1000) % 60;
-
-            const hoursEl = document.getElementById('countdown-hours');
-            const minutesEl = document.getElementById('countdown-minutes');
-            const secondsEl = document.getElementById('countdown-seconds');
-
-            if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-            if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-            if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
-        }
 
         // Countdown disabled — fake 24h urgency removed for AdSense trust
 
         // Live community count animation
-        function animateLiveCount() {
-            const baseCounts = { en: 0, ko: 0, ja: 0, zh: 0, es: 0 };
-            const langs = ['', '-ko', '-ja', '-zh', '-es'];
 
-            langs.forEach(lang => {
-                const el = document.getElementById('community-live-count' + lang);
-                if (el) {
-                    el.textContent = "";
-                }
-            });
-        }
 
         // Live count disabled — fake "142 online" removed for AdSense trust
-
-        // 3D Tilt Effect for Viral Cards
-        document.querySelectorAll('.viral-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
     })();
     </script>
     <script src="../js/mobile-enhancements.js" defer></script>
@@ -1968,6 +1822,18 @@
             e.preventDefault(); // Prevent mouse emulation delay
             toggleMenu(e);
         }, {passive: false});
+
+        // The close button lives inside the menu, so the outside-click handler
+        // never sees it. Without this binding the only ways out on a phone are
+        // navigating away or ESC, and the body scroll lock stays on.
+        var menuClose = document.getElementById('mobile-menu-close');
+        if (menuClose) {
+            menuClose.addEventListener('click', toggleMenu);
+            menuClose.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                toggleMenu(e);
+            }, {passive: false});
+        }
 
         // Let all links and buttons navigate naturally
         // Don't add click handlers that would prevent navigation

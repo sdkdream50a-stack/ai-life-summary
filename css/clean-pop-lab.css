@@ -1,0 +1,438 @@
+/* ============================================================
+   Clean Pop Lab — SmartAItest visual identity (S2-2C)
+
+   Scoped to `.cpl` on <html>. Only the Home and the two flagship
+   landings opt in, so css/global-kick.css (79 pages) and the rest
+   of the site are untouched.
+
+   Fast · Playful · Social · Self-discovery.
+   Deliberately NOT FateAIverse: no navy/gold, no destiny mysticism,
+   no fortune imagery, no neon "AI" gradients.
+   ============================================================ */
+
+.cpl {
+    --cpl-ground: #FBF9F6;        /* warm white */
+    --cpl-surface: #FFFFFF;
+    --cpl-surface-tint: #F4F1EC;
+    --cpl-ink: #16131C;           /* deep ink */
+    --cpl-ink-2: #4A4553;
+    --cpl-ink-3: #605A6B;   /* AA on both the warm ground and white cards */
+    --cpl-indigo: #4F46E5;        /* electric indigo — primary action */
+    --cpl-indigo-dark: #4338CA;
+    --cpl-indigo-soft: #EEEDFC;
+    --cpl-coral: #FF6A5A;         /* accent */
+    --cpl-coral-soft: #FFEEEB;
+    --cpl-aqua: #0E9C8A;          /* restrained */
+    --cpl-line: rgba(22, 19, 28, .10);
+    --cpl-line-strong: rgba(22, 19, 28, .18);
+    --cpl-control-line: rgba(22, 19, 28, .50);  /* 3.46:1 on white, 3.07:1 on the tint */
+    --cpl-shadow: 0 1px 2px rgba(22, 19, 28, .05), 0 8px 24px rgba(22, 19, 28, .06);
+}
+
+/* ---- ground ------------------------------------------------
+   The dark stage is implemented as inline `!important` rules
+   (`body{background:#0E0E10!important}` plus a `.hp-dark …` family),
+   so the light ground has to answer at the same weight with one more
+   class of specificity. */
+.cpl,
+.cpl body,
+.cpl .kick-mesh-bg,
+.cpl .kick-dark-bg,
+.cpl .hp-dark,
+.cpl section.hp-dark {
+    background: var(--cpl-ground) !important;
+    color: var(--cpl-ink);
+}
+
+/* the dark-stage overrides, answered one-for-one */
+.cpl .hp-dark .card-hover,
+.cpl .hp-dark .featured-card,
+.cpl .hp-dark [class*="bg-white"],
+.cpl .hp-dark [class*="bg-gray"],
+.cpl .hp-dark [class*="bg-pink-1"] {
+    background: var(--cpl-surface) !important;
+    border-color: var(--cpl-line) !important;
+}
+.cpl .hp-dark h2,
+.cpl .hp-dark h3,
+.cpl .hp-dark summary,
+.cpl .hp-dark .text-gray-800,
+.cpl .hp-dark .text-gray-900 { color: var(--cpl-ink) !important; }
+.cpl .hp-dark p,
+.cpl .hp-dark li,
+.cpl .hp-dark .text-gray-600,
+.cpl .hp-dark .text-gray-700,
+.cpl .hp-dark .text-gray-500,
+.cpl .hp-dark .text-gray-400 { color: var(--cpl-ink-2) !important; }
+/* Prose links only. This rule used to be `.hp-dark a:not(...)`, which also caught
+   styled buttons: the Final CTA is `.gradient-bg.text-white`, so it inherited the
+   indigo link colour on top of its indigo background and its label went invisible
+   (1.00:1) on all five Home locales. An exclusion list cannot hold — the next new
+   button class would fail the same way — so the rule is scoped to the prose
+   contexts it was written for instead. */
+.cpl .hp-dark p > a,
+.cpl .hp-dark li > a,
+.cpl .hp-dark summary a,
+.cpl .hp-dark .s2-trust-body a {
+    color: var(--cpl-indigo) !important;
+}
+
+/* Contract: a control that paints its own brand background always keeps a
+   foreground that reads on it. Highest specificity in this file so no later
+   colour rule can take the label away again. */
+.cpl a.gradient-bg,
+.cpl button.gradient-bg,
+.cpl a.kick-btn-primary,
+.cpl button.kick-btn-primary,
+.cpl a.s2-hero-cta,
+.cpl .s2-flag-cta,
+.cpl .pt-btn-primary,
+.cpl a.gradient-bg *,
+.cpl a.kick-btn-primary * { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+.cpl #test-compatibility .s2-flag-cta,
+.cpl #test-compatibility .s2-flag-cta * { color: #3A1710 !important; -webkit-text-fill-color: #3A1710 !important; }
+/* the S2 components carry their own colour system */
+.cpl .s2-chip,
+.cpl .s2-chip *,
+.cpl .kick-bento-item,
+.cpl .kick-bento-item h3 { color: var(--cpl-ink) !important; }
+.cpl .s2-chip-note,
+.cpl .kick-bento-item p { color: var(--cpl-ink-3) !important; }
+.cpl .s2-flag-title { color: var(--cpl-ink) !important; }
+.cpl .s2-flag-promise { color: var(--cpl-ink-2) !important; }
+.cpl .s2-flag-result { color: var(--cpl-ink-3) !important; }
+.cpl .s2-flag-cta,
+.cpl .s2-hero-cta { color: #fff !important; }
+.cpl #test-compatibility .s2-flag-cta { color: #3A1710 !important; }
+/* the mesh pseudo-element is a fixed radial gradient: it is what makes
+   text contrast machine-undeterminable, and it has no place on a flat ground */
+.cpl .kick-mesh-bg::before,
+.cpl .kick-dark-bg::before { display: none !important; }
+
+.cpl .kick-navbar {
+    background: rgba(255, 255, 255, .88) !important;
+    border: 1px solid var(--cpl-line);
+    box-shadow: var(--cpl-shadow);
+    backdrop-filter: saturate(1.4) blur(10px);
+}
+.cpl .kick-footer {
+    background: var(--cpl-surface-tint);
+    border-top: 1px solid var(--cpl-line);
+    color: var(--cpl-ink-2);
+}
+.cpl .kick-footer-logo-bg { opacity: .05; }
+
+/* ---- type: white-on-dark utilities become ink-on-light ------ */
+.cpl .text-white,
+.cpl .kick-navbar-logo,
+.cpl .kick-heading { color: var(--cpl-ink); }
+.cpl .text-white\/90 { color: var(--cpl-ink); }
+.cpl .text-white\/80,
+.cpl .text-white\/70 { color: var(--cpl-ink-2); }
+.cpl .text-white\/65,
+.cpl .text-white\/60,
+.cpl .text-white\/50,
+.cpl .text-white\/40 { color: var(--cpl-ink-3); }
+.cpl .kick-navbar-link,
+.cpl .kick-footer-link { color: var(--cpl-ink-2); }
+.cpl .kick-navbar-link:hover,
+.cpl .kick-footer-link:hover { color: var(--cpl-indigo); }
+
+/* gradient text reads as a solid brand ink — also removes the
+   "background gradient" blocker that made contrast unverifiable */
+.cpl .gradient-text,
+.cpl .kick-gradient-text,
+.cpl .kick-navbar-logo .kick-gradient-text {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: var(--cpl-indigo) !important;
+}
+
+/* ---- surfaces ---------------------------------------------- */
+.cpl .bg-white\/5,
+.cpl .bg-white\/10,
+.cpl .bg-white\/20,
+.cpl .kick-glass,
+.cpl .person-card,
+.cpl .pt-question-card {
+    background: var(--cpl-surface);
+    border-color: var(--cpl-line);
+    box-shadow: var(--cpl-shadow);
+    color: var(--cpl-ink);
+}
+.cpl .border-white\/10,
+.cpl .border-white\/20,
+.cpl .border-white\/40 { border-color: var(--cpl-line); }
+
+/* ---- actions ------------------------------------------------ */
+.cpl .gradient-bg,
+.cpl .kick-btn-primary {
+    background: var(--cpl-indigo) !important;
+    color: #fff !important;
+}
+.cpl .gradient-bg:hover,
+.cpl .kick-btn-primary:hover { background: var(--cpl-indigo-dark) !important; }
+
+/* ---- S2 home components ------------------------------------ */
+.cpl .s2-hero-cta {
+    background: var(--cpl-indigo);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(79, 70, 229, .28);
+}
+.cpl .s2-hero-cta:hover { background: var(--cpl-indigo-dark); opacity: 1; }
+
+.cpl .s2-chip {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-chip:hover { background: var(--cpl-indigo-soft); border-color: var(--cpl-indigo); }
+.cpl .s2-chip-note { color: var(--cpl-ink-3); }
+
+.cpl .s2-flag-card {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-flag-card:hover { border-color: var(--cpl-indigo); background: var(--cpl-surface); }
+.cpl .s2-flag-title { color: var(--cpl-ink); }
+.cpl .s2-flag-promise { color: var(--cpl-ink-2); }
+.cpl .s2-flag-result { color: var(--cpl-ink-3); }
+.cpl .s2-flag-meta li { background: var(--cpl-indigo-soft); color: var(--cpl-indigo-dark); }
+.cpl #test-compatibility .s2-flag-meta li { background: var(--cpl-coral-soft); color: #B03A2C; }
+.cpl .s2-flag-cta { background: var(--cpl-indigo); color: #fff; }
+.cpl #test-compatibility .s2-flag-cta { background: var(--cpl-coral); color: #3A1710; }
+
+/* secondary tier stays quieter than the flagships */
+.cpl .kick-bento-item {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+    box-shadow: none;
+}
+.cpl .kick-bento-item:hover { border-color: var(--cpl-line-strong); }
+.cpl .kick-bento-item h3 { color: var(--cpl-ink); }
+.cpl .kick-bento-item p { color: var(--cpl-ink-3); }
+
+/* the hero orb becomes a soft brand halo instead of a purple sphere */
+.cpl .hero-orb {
+    background: radial-gradient(circle at 34% 30%, #fff 0%, var(--cpl-indigo-soft) 42%, var(--cpl-coral-soft) 100%);
+    box-shadow: 0 18px 48px rgba(79, 70, 229, .16);
+}
+
+/* ---- flagship landings ------------------------------------- */
+.cpl .pt-likert-btn {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line);
+    color: var(--cpl-ink);
+}
+.cpl .pt-likert-btn:hover { border-color: var(--cpl-indigo); background: var(--cpl-indigo-soft); }
+.cpl input[type="number"],
+.cpl input[type="text"],
+.cpl select {
+    background: var(--cpl-surface);
+    border: 1px solid var(--cpl-line-strong);
+    color: var(--cpl-ink);
+}
+.cpl input::placeholder { color: var(--cpl-ink-3); }
+.cpl details summary { color: var(--cpl-ink); }
+.cpl .bg-gray-50 { background: var(--cpl-ground); }
+
+/* ============================================================
+   Flagship landings — personality-type questionnaire
+   The likert control was authored white-on-dark; on a light ground
+   its surfaces and labels disappear, so each one is answered here.
+   Structure and copy are untouched (S3 owns the questionnaire).
+   ============================================================ */
+.cpl .pt-question-card {
+    background: var(--cpl-surface) !important;
+    border: 1px solid var(--cpl-line) !important;
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .pt-question-num { color: var(--cpl-ink-3) !important; }
+.cpl .pt-question-text { color: var(--cpl-ink) !important; }
+/* WCAG 2.1 SC 1.4.11: the boundary of an unselected control must reach 3:1
+   against its surroundings. At rgba(22,19,28,.18) it was 1.47:1 on a white
+   card, i.e. the scale read as an empty row. */
+.cpl .pt-likert-btn {
+    background: var(--cpl-surface-tint) !important;
+    border: 1px solid var(--cpl-control-line) !important;
+    color: var(--cpl-ink-2) !important;
+    min-height: 44px;
+}
+.cpl .pt-likert-btn:hover {
+    border-color: var(--cpl-indigo) !important;
+    background: var(--cpl-indigo-soft) !important;
+}
+.cpl .pt-likert-btn.active {
+    border-color: var(--cpl-indigo) !important;
+    background: var(--cpl-indigo) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px var(--cpl-indigo) !important;
+}
+.cpl .pt-likert-btn.active .pt-likert-label { color: #fff !important; }
+.cpl .pt-likert-label { color: var(--cpl-ink-2) !important; }
+.cpl .pt-btn-primary { background: var(--cpl-indigo) !important; color: #fff !important; }
+.cpl .pt-btn-secondary {
+    background: var(--cpl-surface) !important;
+    color: var(--cpl-ink) !important;
+    border: 1px solid var(--cpl-line-strong) !important;
+}
+.cpl .pt-error { color: #B3261E !important; background: var(--cpl-coral-soft) !important; }
+
+/* the language dropdown carries an inline dark background */
+.cpl #lang-dropdown {
+    background-color: var(--cpl-surface) !important;
+    border-color: var(--cpl-line) !important;
+}
+.cpl #lang-dropdown button { color: var(--cpl-ink-2) !important; }
+.cpl #lang-dropdown button:hover { background: var(--cpl-indigo-soft) !important; color: var(--cpl-ink) !important; }
+
+/* compatibility landing: glass person cards and its own dark stage */
+.cpl .person-card,
+.cpl .kick-glass {
+    background: var(--cpl-surface) !important;
+    border: 1px solid var(--cpl-line) !important;
+    box-shadow: var(--cpl-shadow);
+    color: var(--cpl-ink) !important;
+}
+.cpl label { color: var(--cpl-ink-2); }
+.cpl .kick-btn { color: var(--cpl-ink); }
+
+/* scale end labels and the page title were authored for a dark stage */
+.cpl .pt-end { color: var(--cpl-ink-2) !important; }
+.cpl .pt-end.agree { color: var(--cpl-indigo-dark) !important; }
+.cpl .pt-end.disagree { color: var(--cpl-ink-3) !important; }
+.cpl .pt-ck { color: #fff !important; }
+.cpl .pt-progress-bar,
+.cpl .pt-progress { background: var(--cpl-surface-tint) !important; }
+.cpl .pt-progress-fill { background: var(--cpl-indigo) !important; }
+
+/* headings that paint themselves with a gradient background-clip */
+.cpl h1,
+.cpl h2,
+.cpl h3 {
+    background-image: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: var(--cpl-ink);
+}
+.cpl h1 .kick-gradient-text,
+.cpl h2 .kick-gradient-text,
+.cpl h1 .gradient-text,
+.cpl h2 .gradient-text { color: var(--cpl-indigo) !important; }
+
+/* the footer was white-on-dark; on the light stage it needs ink */
+.cpl .kick-footer-tagline { color: var(--cpl-ink) !important; }
+.cpl .kick-footer-copyright,
+.cpl .kick-footer p,
+.cpl .kick-footer small { color: var(--cpl-ink-2) !important; }
+.cpl .text-white\/50,
+.cpl .text-white\/40 { color: var(--cpl-ink-2); }
+
+/* Pastel accent utilities were picked for a dark stage; on the light
+   ground they fall below AA, so each maps onto a brand ink that passes. */
+.cpl .text-purple-400,
+.cpl .text-violet-300,
+.cpl .text-indigo-300,
+.cpl .text-fuchsia-400 { color: var(--cpl-indigo-dark) !important; }
+.cpl .text-pink-400,
+.cpl .text-rose-400 { color: #B03A2C !important; }
+.cpl .text-cyan-400,
+.cpl .text-cyan-300,
+.cpl .text-cyan-200 { color: #0A7365 !important; }
+.cpl .text-amber-300,
+.cpl .text-yellow-300 { color: #8A5A00 !important; }
+.cpl .text-gray-400 { color: var(--cpl-ink-3) !important; }
+.cpl #pt-progress-text,
+.cpl .pt-progress-text { color: var(--cpl-ink-2) !important; }
+
+/* inline links inside prose must not rely on colour alone */
+.cpl p > a,
+.cpl li > a,
+.cpl .hp-dark p > a,
+.cpl a.text-indigo-600,
+.cpl a.consent-link { text-decoration: underline; text-underline-offset: 2px; }
+.cpl a.text-indigo-600 { color: var(--cpl-indigo-dark) !important; }
+
+/* the mobile menu panel is a full-screen dark sheet */
+.cpl #mobile-menu {
+    background: var(--cpl-ground) !important;
+    color: var(--cpl-ink) !important;
+}
+.cpl #mobile-menu a { color: var(--cpl-ink) !important; text-decoration: none; }
+.cpl #mobile-menu a:hover { color: var(--cpl-indigo) !important; }
+.cpl #mobile-menu-close { color: var(--cpl-ink) !important; min-width: 44px; min-height: 44px; }
+
+/* ============================================================
+   S2-3 · Trust · Result Preview · Articles
+   Same tokens as the rest of Clean Pop Lab — no new palette.
+   ============================================================ */
+.cpl .s2-trust-grid,
+.cpl .s2-art-grid { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+@media (min-width: 640px) { .cpl .s2-trust-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+@media (min-width: 1024px) { .cpl .s2-trust-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 768px) { .cpl .s2-art-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; } }
+
+.cpl .s2-trust-card {
+    display: flex; flex-direction: column; gap: .4rem;
+    padding: 1.25rem; border-radius: 1rem;
+    background: var(--cpl-surface); border: 1px solid var(--cpl-line);
+    box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-trust-emoji { font-size: 1.5rem; line-height: 1; }
+.cpl .s2-trust-title { font-size: 1rem; font-weight: 800; color: var(--cpl-ink) !important; margin: 0; }
+.cpl .s2-trust-body { font-size: .875rem; line-height: 1.6; color: var(--cpl-ink-2) !important; margin: 0; }
+.cpl .s2-trust-link {
+    display: inline-flex; align-items: center; gap: .3rem; align-self: flex-start;
+    margin-top: .25rem; min-height: 44px; font-size: .875rem; font-weight: 700;
+    color: var(--cpl-indigo) !important; text-decoration: none;
+}
+.cpl .s2-trust-link:hover { text-decoration: underline; }
+.cpl .s2-trust-foot { margin: 1rem 0 0; text-align: center; font-size: .8125rem; }
+.cpl .s2-trust-foot a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    color: var(--cpl-ink-3) !important; text-decoration: underline; text-underline-offset: 2px;
+}
+
+.cpl .s2-rp-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 768px) { .cpl .s2-rp-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
+.cpl .s2-rp-card {
+    margin: 0; padding: 1.25rem; border-radius: 1.25rem;
+    background: var(--cpl-surface); border: 1px solid var(--cpl-line); box-shadow: var(--cpl-shadow);
+}
+.cpl .s2-rp-badge {
+    display: inline-block; margin-bottom: .75rem; padding: .2rem .625rem; border-radius: 999px;
+    font-size: .75rem; font-weight: 700;
+    background: var(--cpl-surface-tint); color: var(--cpl-ink-2) !important;
+    border: 1px solid var(--cpl-line);
+}
+.cpl .s2-rp-img { width: 100%; height: auto; border-radius: .75rem; display: block; }
+.cpl .s2-rp-title { font-size: 1.125rem; font-weight: 800; color: var(--cpl-ink) !important; margin: .875rem 0 .125rem; }
+.cpl .s2-rp-type { font-size: .9375rem; font-weight: 700; color: var(--cpl-indigo-dark) !important; margin: 0 0 .625rem; }
+.cpl .s2-rp-label { font-size: .8125rem; font-weight: 700; color: var(--cpl-ink-2) !important; margin: .75rem 0 .375rem; }
+.cpl .s2-rp-desc { font-size: .8125rem; line-height: 1.6; color: var(--cpl-ink-3) !important; margin: .75rem 0 0; }
+.cpl .s2-rp-note { margin: 1rem 0 0; text-align: center; font-size: .8125rem; color: var(--cpl-ink-3) !important; }
+
+.cpl .s2-rp-axes { display: flex; flex-direction: column; gap: .375rem; }
+.cpl .s2-rp-axis { display: flex; align-items: center; gap: .5rem; font-size: .8125rem; font-weight: 700; color: var(--cpl-ink-2); }
+.cpl .s2-rp-track { flex: 1; height: 8px; border-radius: 999px; background: var(--cpl-surface-tint); border: 1px solid var(--cpl-line); overflow: hidden; display: block; }
+.cpl .s2-rp-fill { display: block; height: 100%; background: var(--cpl-indigo); }
+.cpl .s2-rp-right { margin-left: auto; width: 58%; }
+.cpl .s2-rp-score { height: 12px; border-radius: 999px; background: var(--cpl-surface-tint); border: 1px solid var(--cpl-line); overflow: hidden; }
+.cpl .s2-rp-score i { display: block; height: 100%; width: 62%; background: var(--cpl-coral); }
+.cpl .s2-rp-qbars { display: flex; gap: .25rem; }
+.cpl .s2-rp-qbar { flex: 1; height: 8px; border-radius: 999px; background: var(--cpl-surface-tint); border: 1px solid var(--cpl-line); }
+
+.cpl .s2-art-card {
+    display: flex; flex-direction: column; gap: .375rem;
+    padding: 1.25rem; border-radius: 1rem; text-decoration: none;
+    background: var(--cpl-surface); border: 1px solid var(--cpl-line); box-shadow: var(--cpl-shadow);
+    transition: border-color .2s, transform .2s;
+}
+.cpl .s2-art-card:hover { border-color: var(--cpl-indigo); transform: translateY(-2px); }
+.cpl .s2-art-title { font-size: 1rem; font-weight: 800; line-height: 1.5; color: var(--cpl-ink) !important; margin: 0; }
+.cpl .s2-art-sum { font-size: .8125rem; line-height: 1.6; color: var(--cpl-ink-3) !important; margin: 0; }
