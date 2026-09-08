@@ -59,6 +59,7 @@ const MANAGED = [
   'consent-manager',
   'i18n',
   'localization',
+  'personality-type',
   'personality-type-result',
   'viral-link',
 ];

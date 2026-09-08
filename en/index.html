@@ -76,7 +76,13 @@
                     "@type": "ContactPoint",
                     "contactType": "customer service",
                     "email": "contact@smartaitest.com",
-                    "availableLanguage": ["English", "Korean", "Japanese", "Chinese", "Spanish"]
+                    "availableLanguage": [
+                        "English",
+                        "Korean",
+                        "Japanese",
+                        "Chinese",
+                        "Spanish"
+                    ]
                 }
             },
             {
@@ -87,7 +93,7 @@
                         "name": "What tests does AI Test Lab offer?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "AI Test Lab offers a 40-question Likert self-report 16-type questionnaire, a birthday-hash life summary, a fixed-offset age comparison, and a compatibility test that applies fixed weights to two people's answers. None of these are scientific assessments."
+                            "text": "AI Test Lab offers 4 free tools: 1) Personality Type Test - a 40-question Likert self-report 16-type questionnaire, 2) AI Life Summary - a birthday-hash entertainment summary, 3) AI Age Calculator - fixed-offset age comparison for entertainment, 4) AI Compatibility Test - a fixed-weight comparison of two people’s Likert answers. All tools are available in 5 languages."
                         }
                     },
                     {
@@ -95,7 +101,7 @@
                         "name": "Are the tests free?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes, every test on AI Test Lab is free. No signup is required and results can be downloaded as images or shared at no cost."
+                            "text": "Yes, all tests on AI Test Lab are 100% free. No signup required - just enter your birthday and get instant results. You can also download results as images or share them on social media at no cost."
                         }
                     },
                     {
@@ -103,7 +109,7 @@
                         "name": "How does the compatibility test work?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "The compatibility test applies fixed weights to the difference between two people's Likert answers to produce an entertainment score. The optional birthday is used only as a playful label; it is not a relationship analysis or a scientific assessment."
+                            "text": "Two people answer short Likert questions, and fixed weights are applied to the answer differences to produce a playful compatibility score and a per-question agreement breakdown. Optional birthday labels are for fun; this is not a relationship assessment."
                         }
                     },
                     {
@@ -111,7 +117,7 @@
                         "name": "How is the playful Mental Age score calculated?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "The age calculator applies preset offsets to your inputs and seven lifestyle answers. It is illustrative entertainment and is not a medical, psychological, or real-age measurement."
+                            "text": "The age calculator uses your inputs and lifestyle questions to generate a playful age comparison. It is not a medical, psychological, or real-age measurement."
                         }
                     },
                     {
@@ -119,7 +125,15 @@
                         "name": "Can I share my test results with friends?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Compatibility, Soul Type and Mental Age results download as Story (9:16) and Square (1:1) images. The Personality Type test saves a result card image. Available sharing channels vary by test and include LINE, X (Twitter), Facebook and copy-link."
+                            "text": "Compatibility, Soul Type and Mental Age results download as an image (Story 9:16 / Square 1:1). The Personality Type test saves a result card image. Available channels vary by test — LINE, X (Twitter), Facebook and copy-link are supported. Send one to a friend and compare."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Who is AI Test Lab for?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "AI Test Lab is perfect for anyone curious about themselves! Whether you're looking for fun party games, wanting to test compatibility with your partner, or simply curious about your personality traits. Great for teens, couples, friend groups, and families looking for entertaining activities together."
                         }
                     }
                 ]
@@ -781,7 +795,7 @@
         html[lang="es"] a.lang-es { display: inline-flex; }
 
         /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+        html[lang="ko"] body, html[lang="zh"] body {
             word-break: keep-all;
             overflow-wrap: break-word;
         }

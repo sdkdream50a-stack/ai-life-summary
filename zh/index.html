@@ -76,7 +76,13 @@
                     "@type": "ContactPoint",
                     "contactType": "customer service",
                     "email": "contact@smartaitest.com",
-                    "availableLanguage": ["English", "Korean", "Japanese", "Chinese", "Spanish"]
+                    "availableLanguage": [
+                        "English",
+                        "Korean",
+                        "Japanese",
+                        "Chinese",
+                        "Spanish"
+                    ]
                 }
             },
             {
@@ -92,18 +98,18 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "测试是免费的吗？",
+                        "name": "测试免费吗？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "是的，AI测试实验室的所有测试100%免费。无需注册即可立即使用，并可将结果保存为图片或分享到社交媒体。"
+                            "text": "是的，AI测试实验室的所有测试都是100%免费的。无需注册 - 只需输入生日即可立即获得结果。您还可以免费将结果下载为图片或分享到社交媒体。"
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "配对测试怎么做？",
+                        "name": "配对测试如何运作？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "配对测试对两人的李克特回答差异应用固定权重来生成娱乐评分。选填生日仅用于趣味标签；它不是实际关系分析或科学评估。"
+                            "text": "两个人回答简短的李克特问题后，系统按固定权重比较回答差异，显示配对分数与每道题的回答一致度。选填生日仅用于趣味标签；这不是关系评估或科学测量。"
                         }
                     },
                     {
@@ -116,10 +122,18 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "可以把测试结果分享给朋友吗？",
+                        "name": "我可以与朋友分享测试结果吗？",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "配对、灵魂类型和心理年龄的结果可下载为故事版（9:16）和方形（1:1）图片。性格类型测试可保存结果卡片图片。可用的分享渠道因测试而异，包括 LINE、X（Twitter）、Facebook 和复制链接。"
+                            "text": "配对、灵魂类型和心理年龄的结果可下载为图片（故事 9:16 / 正方形 1:1）。性格类型测试可保存结果卡片图片。可用的分享渠道因测试而异，包括 LINE、X（Twitter）、Facebook 和复制链接。"
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "AI测试实验室适合谁？",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "AI测试实验室适合任何对自己好奇的人！无论您是在寻找派对游戏、想要测试与伴侣的配对度，还是只是对自己的性格特征感到好奇。非常适合青少年、情侣、朋友群和家庭一起娱乐。"
                         }
                     }
                 ]
@@ -781,7 +795,7 @@
         html[lang="es"] a.lang-es { display: inline-flex; }
 
         /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+        html[lang="ko"] body, html[lang="zh"] body {
             word-break: keep-all;
             overflow-wrap: break-word;
         }

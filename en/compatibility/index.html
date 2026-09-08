@@ -94,6 +94,12 @@
         /* Person card styles */
         .person-card {
             transition: all 0.3s ease;
+            /* Grid items default to min-width:auto, so the track is sized by the
+               card content rather than by the column. The question text made that
+               min-content wider than the column at 375/390/430, pushing the card
+               ~34px past the viewport where body{overflow-x:hidden} silently cut
+               it off. Let the column govern the card instead. */
+            min-width: 0;
         }
         .person-card:focus-within {
             border-color: #ec4899;
@@ -110,7 +116,7 @@
         }
 
         /* Prevent word breaking in the middle for CJK languages */
-        html[lang="ko"] body, html[lang="ja"] body, html[lang="zh"] body {
+        html[lang="ko"] body, html[lang="zh"] body {
             word-break: keep-all;
             overflow-wrap: break-word;
         }
@@ -202,17 +208,25 @@
         .pt-likert .pt-end.agree{color:#B8E0D2;}
         .pt-likert .pt-end.disagree{color:#D9C8F0;}
         .pt-likert .pt-likert-btn{position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;border:2px solid rgba(255,255,255,0.55);background:rgba(255,255,255,0.09);cursor:pointer;flex:0 0 auto;min-width:0;padding:0;box-sizing:border-box;transition:transform .15s cubic-bezier(.22,1,.36,1),border-color .15s,background .15s;}
-        .pt-likert .pt-likert-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0;}
+        .pt-likert .pt-likert-btn input{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;min-width:24px;min-height:24px;opacity:0;cursor:pointer;margin:0;}
         .pt-likert .pt-likert-btn:hover{transform:scale(1.12);}
         .pt-likert .pt-likert-btn .pt-ck{opacity:0;color:#16130F;font-weight:900;font-size:13px;pointer-events:none;transition:opacity .15s;}
         .pt-likert .pt-likert-btn.active .pt-ck{opacity:1;}
-        .pt-likert .pt-likert-btn.s0,.pt-likert .pt-likert-btn.s4{width:38px;height:38px;}
-        .pt-likert .pt-likert-btn.s1,.pt-likert .pt-likert-btn.s3{width:30px;height:30px;}
-        .pt-likert .pt-likert-btn.s2{width:24px;height:24px;}
+        .pt-likert .pt-likert-btn.s0,.pt-likert .pt-likert-btn.s4{width:38px;height:38px;min-height:38px;}
+        .pt-likert .pt-likert-btn.s1,.pt-likert .pt-likert-btn.s3{width:30px;height:30px;min-height:30px;}
+        .pt-likert .pt-likert-btn.s2{width:24px;height:24px;min-height:24px;}
         .pt-likert .pt-likert-btn.agree.active{background:#B8E0D2;border-color:#B8E0D2;}
         .pt-likert .pt-likert-btn.neutral.active{background:rgba(255,255,255,0.60);border-color:rgba(255,255,255,0.60);}
         .pt-likert .pt-likert-btn.disagree.active{background:#D9C8F0;border-color:#D9C8F0;}
         @media (prefers-reduced-motion: reduce){.pt-likert .pt-likert-btn,.pt-question-card{transition:none;}}
+        @media (max-width:767px){
+            .pt-likert{flex-wrap:wrap;row-gap:10px;column-gap:17px;}
+            .pt-likert .pt-end{flex:1 1 45%;width:auto;order:0;}
+            .pt-likert .pt-end.agree{text-align:left;}
+            .pt-likert .pt-end.disagree{text-align:right;}
+            .pt-likert .pt-likert-btn{order:1;}
+            .pt-likert .pt-likert-btn input{top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:44px;height:44px;}
+        }
     </style>
 
     <!-- Schema.org Structured Data -->
@@ -442,7 +456,7 @@
                 </svg>
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
                     <span class="kick-gradient-text">
-                        AI Compatibility Test
+                        Compatibility Test
 
                     </span>
                 </h1>
@@ -672,10 +686,10 @@
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">
+                    <h3 class="font-semibold text-white mb-4">
                         Tests
 
-                    </h4>
+                    </h3>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/en/life-summary/" class="hover:text-white transition">
                             AI Life Summary
@@ -692,10 +706,10 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">
+                    <h3 class="font-semibold text-white mb-4">
                         Quick Links
 
-                    </h4>
+                    </h3>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/en/" class="hover:text-white transition">
                             Home
@@ -716,10 +730,10 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">
+                    <h3 class="font-semibold text-white mb-4">
                         Legal
 
-                    </h4>
+                    </h3>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/en/privacy-policy/" class="hover:text-white transition">
                             Privacy Policy
