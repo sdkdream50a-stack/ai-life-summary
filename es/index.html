@@ -959,6 +959,42 @@
     <script src="/js/consent-manager.js?v=b8a8bbf4"></script>
 <script src="/js/analytics-events.js?v=bd7b4f55"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+
+    <!-- S2-1 Home hierarchy (inline: no Tailwind rebuild) -->
+    <style id="s2-home">
+        /* the hero no longer carries the test grid, so drop the 100vh floor */
+        #hero.kick-mesh-bg{min-height:0}
+        .s2-chips{display:grid;grid-template-columns:1fr;gap:.75rem}
+        @media(min-width:640px){.s2-chips{grid-template-columns:repeat(3,1fr)}}
+        .s2-chip{display:flex;align-items:center;gap:.75rem;min-height:56px;padding:.875rem 1rem;
+            border-radius:1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+            color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
+        .s2-chip:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.3)}
+        .s2-chip-emoji{font-size:1.5rem;line-height:1;flex:none}
+        .s2-chip-label{font-weight:700;font-size:1rem}
+        .s2-chip-note{margin-left:auto;font-size:.8125rem;color:rgba(255,255,255,.6);white-space:nowrap}
+        .s2-flag-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+        @media(min-width:768px){.s2-flag-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}}
+        .s2-flag-card{display:flex;flex-direction:column;gap:.5rem;padding:1.5rem;border-radius:1.25rem;
+            background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff;
+            text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+        .s2-flag-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+        .s2-flag-title{font-size:1.5rem;font-weight:800;margin:.25rem 0 0}
+        .s2-flag-promise{font-size:1rem;color:rgba(255,255,255,.82);margin:0}
+        .s2-flag-meta{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:.25rem 0 0}
+        .s2-flag-meta li{font-size:.8125rem;color:rgba(255,255,255,.72);background:rgba(255,255,255,.09);
+            border-radius:999px;padding:.25rem .625rem}
+        .s2-flag-result{font-size:.875rem;color:rgba(255,255,255,.6);margin:.25rem 0 0}
+        .s2-flag-cta{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;margin-top:.75rem;
+            min-height:44px;padding:.625rem 1.25rem;border-radius:999px;font-weight:700;
+            background:#fff;color:#111827}
+        .s2-hero-cta{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.875rem 2rem;
+            border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
+            text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+        .s2-hero-cta:hover{opacity:.9}
+        .s2-more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+        @media(min-width:768px){.s2-more-grid{grid-template-columns:repeat(3,1fr);gap:1rem}}
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Floating Pill Navbar -->
@@ -968,10 +1004,10 @@
             <span class="kick-gradient-text">AI Test Lab</span>
         </a>
         <div class="kick-navbar-links">
+            <a href="/es/personality-type/" class="kick-navbar-link">🧬 Tipo</a>
             <a href="/es/compatibility/" class="kick-navbar-link">❤️‍🔥 Compatibilidad</a>
             <a href="/es/life-summary/" class="kick-navbar-link">🔮 Alma</a>
             <a href="/es/age-calculator/" class="kick-navbar-link">⏳ Edad</a>
-            <a href="/es/vibe-check/" class="kick-navbar-link">🔥 Vibe</a>
             <a href="/es/kpop-match/" class="kick-navbar-link">💜 K-Pop</a>
             <a href="/blog.html?lang=es" class="kick-navbar-link">📝 Blog</a>
         </div>
@@ -1009,10 +1045,10 @@
     <div id="mobile-menu" class="hidden">
         <div class="flex flex-col items-center justify-center h-full gap-6 text-center">
             <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">×</button>
+            <a href="/es/personality-type/" class="text-2xl text-white font-bold hover:text-pink-400 transition">🧬 Tipo de Personalidad</a>
             <a href="/es/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 Compatibilidad</a>
             <a href="/es/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Tipo de Alma</a>
             <a href="/es/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Edad Mental</a>
-            <a href="/es/vibe-check/" class="text-2xl text-white font-bold hover:text-orange-400 transition">🔥 Vibe Check</a>
             <a href="/es/kpop-match/" class="text-2xl text-white font-bold hover:text-fuchsia-400 transition">💜 K-Pop Match</a>
             <div class="border-t border-white/20 w-48 my-4"></div>
             <a href="/es/about/" class="text-lg text-white/70 hover:text-white transition">Acerca de</a>
@@ -1031,7 +1067,7 @@
         <!-- (Marquee Ticker 제거 — 영상 처방 #2 "허위 통계 금지" + 미니멀 미감) -->
 
         <!-- Hero Section - KICK Redesign -->
-        <section class="kick-mesh-bg py-12 md:py-16 relative overflow-hidden">
+        <section id="hero" class="kick-mesh-bg py-12 md:py-16 relative overflow-hidden">
             <div class="max-w-6xl mx-auto px-4 text-center relative z-10 pt-6">
                 <!-- Floating 3D Orb -->
                 <div class="flex justify-center mb-4">
@@ -1041,35 +1077,148 @@
                 <!-- Bold Headline -->
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl mb-4 text-white">
 
-                    Empieza ligero.<br>Explora tus <span class="kick-gradient-text">tendencias. 🚩</span>
+                    Tu yo de ahora, <span class="kick-gradient-text">¿en una frase?</span>
+
                 </h1>
 
                 <p class="text-base md:text-xl text-white/70 mb-6 max-w-2xl mx-auto">
 
-                    Test de personalidad por cuestionario y herramientas de entretenimiento basadas en cumpleanos.
+                    Desde el test de personalidad de 40 preguntas (unos 5 min) hasta el test de compatibilidad para dos (unos 2 min). Sin registro, gratis.
+
                 </p>
 
-                <!-- Bento Grid Test Cards -->
-                <div class="kick-bento-grid px-4 md:px-0 mb-16 md:mb-20" id="bento-grid">
-                    <!-- Compatibility Card - Large -->
-                    <a href="/es/personality-type/" class="kick-bento-item large kick-tilt" data-tilt>
-                        <div class="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full animate-pulse">Cuestionario</div>
+                <div class="flex justify-center mb-4">
+                    <a href="#intent" class="s2-hero-cta">
+
+                        Elegir un test
+
+                        <span aria-hidden="true">&darr;</span>
+                    </a>
+                </div>
+
+                                <!-- Trending Hashtags -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6">
+                    <span class="lang-es flex flex-wrap justify-center gap-2">
+                        <a href="https://www.instagram.com/explore/tags/TestDeIA/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#TestDeIA</a>
+                        <a href="https://www.instagram.com/explore/tags/TestDePersonalidad/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#TestDePersonalidad</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    ¿Qué quieres saber?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">Conócete</span>
+                        <span class="s2-chip-note">40 preguntas · ~5 min</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">Amor y amigos</span>
+                        <span class="s2-chip-note">2 personas · ~2 min</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🎂</span>
+                        <span class="s2-chip-label">Juega con cumpleaños</span>
+                        <span class="s2-chip-note">30 s</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flagship Tests -->
+        <section id="flagship" class="py-12 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+
+                    Empieza por estos dos
+
+                </h2>
+                <div class="s2-flag-grid">
+                    <a id="test-personality" href="/es/personality-type/" class="s2-flag-card">
+                        <div class="text-6xl" aria-hidden="true">&#129516;</div>
+                        <h3 class="s2-flag-title">Tipo de Personalidad</h3>
+                        <p class="s2-flag-promise">Responde 40 preguntas y obtienes uno de los 16 tipos.</p>
+                        <ul class="s2-flag-meta"><li>40 preguntas · ~5 min</li><li>Sin registro, gratis</li></ul>
+                        <p class="s2-flag-result">En el resultado: el nombre de tu tipo y las puntuaciones de 4 ejes</p>
+                        <span class="s2-flag-cta">Empezar el test <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a id="test-compatibility" href="/es/compatibility/" class="s2-flag-card">
+                        <div class="text-6xl" aria-hidden="true">&#128149;</div>
+                        <h3 class="s2-flag-title">Test de Compatibilidad</h3>
+                        <p class="s2-flag-promise">Dos personas responden y la diferencia entre las respuestas se convierte en la puntuación.</p>
+                        <ul class="s2-flag-meta"><li>8 preguntas × 2 personas · ~2 min</li><li>Sin registro, gratis</li></ul>
+                        <p class="s2-flag-result">En el resultado: una puntuación de 0–100 % y un tema de conversación</p>
+                        <span class="s2-flag-cta">Empezar entre dos <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Tests (secondary tier) -->
+        <section id="more-tests" class="py-12 hp-dark">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-8">
+
+                    Más tests
+
+                </h2>
+                <div class="s2-more-grid">
+                    <a href="/es/kpop-match/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
-                            <div class="text-7xl md:text-8xl mb-4 kick-tilt-inner">🧬</div>
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">&#128156;</div>
                             <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-2xl md:text-3xl mb-2">
+                                <h3 class="text-white font-black text-xl mb-1">
 
-                                    Tipo de Personalidad
+                                    K-Pop Persona Match
+
                                 </h3>
-                                <p class="text-white/60 text-sm md:text-base">
+                                <p class="text-white/60 text-xs">
 
-                                    40 preguntas de autoinforme, 16 tipos
+                                    5 preguntas, 16 personas
+
                                 </p>
                             </div>
                         </div>
                     </a>
+                    <a href="/es/age-calculator/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">⏳</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
 
-                    <!-- Love Type Card -->
+                                    Edad Mental
+                                </h3>
+                                <p class="text-white/60 text-xs">
+
+                                    ¿Tu edad mental?
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/es/life-summary/" class="kick-bento-item kick-tilt" data-tilt>
+                        <div class="h-full flex flex-col justify-between">
+                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🔮</div>
+                            <div class="text-left kick-tilt-inner">
+                                <h3 class="text-white font-black text-xl mb-1">
+
+                                    Tipo de Alma
+                                </h3>
+                                <p class="text-white/60 text-xs">
+
+                                    12 tipos únicos
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                     <a href="/es/love-type/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
                             <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💘</div>
@@ -1085,7 +1234,6 @@
                             </div>
                         </div>
                     </a>
-                    <!-- Communication Style Card -->
                     <a href="/es/communication-style/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
                             <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">💬</div>
@@ -1101,10 +1249,6 @@
                             </div>
                         </div>
                     </a>
-
-
-
-                    <!-- Work Style Card -->
                     <a href="/es/work-style/" class="kick-bento-item kick-tilt" data-tilt>
                         <div class="h-full flex flex-col justify-between">
                             <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🧭</div>
@@ -1122,52 +1266,10 @@
                             </div>
                         </div>
                     </a>
-
-                    <!-- Soul Type Card -->
-                    <a href="/es/life-summary/" class="kick-bento-item kick-tilt" data-tilt>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">🔮</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-xl mb-1">
-
-                                    Tipo de Alma
-                                </h3>
-                                <p class="text-white/60 text-xs">
-
-                                    12 tipos únicos
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Mental Age Card -->
-                    <a href="/es/age-calculator/" class="kick-bento-item kick-tilt" data-tilt>
-                        <div class="h-full flex flex-col justify-between">
-                            <div class="text-5xl md:text-6xl mb-4 kick-tilt-inner">⏳</div>
-                            <div class="text-left kick-tilt-inner">
-                                <h3 class="text-white font-black text-xl mb-1">
-
-                                    Edad Mental
-                                </h3>
-                                <p class="text-white/60 text-xs">
-
-                                    ¿Tu edad mental?
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
-
-                <!-- Trending Hashtags -->
-                <div class="flex flex-wrap justify-center gap-2 mt-6">
-                    <span class="lang-es flex flex-wrap justify-center gap-2">
-                        <a href="https://www.instagram.com/explore/tags/TestDeIA/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#TestDeIA</a>
-                        <a href="https://www.instagram.com/explore/tags/TestDePersonalidad/" target="_blank" rel="noopener" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium transition-all hover:scale-105">#TestDePersonalidad</a>
-                    </span>
                 </div>
             </div>
         </section>
+
 
         <!-- Valentine's Day Special Banner -->
         <section class="py-8 hp-dark relative overflow-hidden">
@@ -1417,18 +1519,15 @@
                     Empieza con el cuestionario de personalidad y disfruta las herramientas de entretenimiento con ligereza.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="/es/personality-type/" class="bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg inline-flex items-center gap-2">
+                    <a href="/es/personality-type/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
 
-                        🧬 Tipo de Personalidad
-                        <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded">HOT</span>
+                        &#129516; Tipo de Personalidad
+
                     </a>
-                    <a href="/es/life-summary/" class="gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
+                    <a href="/es/compatibility/" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-lg border border-white/20 transition text-lg">
 
-                        &#10024; Resumen de Vida
-                    </a>
-                    <a href="/es/age-calculator/" class="age-gradient-bg text-white font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition text-lg shadow-lg">
+                        &#128149; Test de Compatibilidad
 
-                        &#127874; Calculadora de Edad
                     </a>
                 </div>
             </div>
