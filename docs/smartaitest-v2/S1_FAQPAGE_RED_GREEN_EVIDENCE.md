@@ -6,10 +6,13 @@
 > 과거 트리를 읽는다. 이것이 "same guard" 의 핵심이다.
 
 ```
-CURRENT_HEAD    = 50a3f276f91b8e552e8956753a9c1da4a30fda27
+CURRENT_HEAD    = 94b643b2b37de60c4a7c20de77ee995624dc5185   docs(s0)
 FAQ_FIX_COMMIT  = 3dbdd3cdbac365c2797267dc49acc805ab60a1f5   fix(s1-7)
-PRE_FIX_SHA     = 11185a807af20fe4fe973e465901997834682bbe   fix(s1-2b)
+PRE_FIX_SHA     = 3dbdd3c^ = 11185a807af20fe4fe973e465901997834682bbe   fix(s1-2b)
 ```
+
+RED · GREEN · MUTATION A/B/C 는 이 `CURRENT_HEAD` 의 가드로 **전부 재실행해 재현**했다
+(최초 캡처는 `50a3f27` 에서 했고, 이후 두 커밋을 거친 뒤에도 수치가 동일했다).
 
 ## FAQ_FIX_COMMIT 이 정확히 그 배치인가 (추측 아님)
 
@@ -76,7 +79,7 @@ FAQPage 부재 = PASS(원어민 검수 스키마가 생기기 전까지의 의�
 ```
 $ node scripts/check-s1-guards.js --faq-only --root=<worktree @ 11185a807af20fe4fe973e465901997834682bbe>
 FAQPage audit
-  root                             : /private/tmp/claude-501/-Users-seong-project-smartaitest/e59f1763-a3c8-4c7e-84e4-218e8942078d/scratchpad/s1-faq-prefix
+  root                             : /private/tmp/claude-501/-Users-seong-project-smartaitest/e1c4c885-f857-4f36-85de-019c6af3f668/scratchpad/s1-faq-prefix
   HTML files scanned               : 204
   JSON-LD blocks parsed            : 259
   FAQPage blocks                   : 38
@@ -150,16 +153,85 @@ $ echo $?
 
 ## Mutation test — 가드가 load-bearing 임을 증명
 
-임시 복사본을 만들어 변형하고 원복했다(`cp` 백업/복원, `git checkout`·`reset --hard` 미사용).
+가드가 통과하는 이유가 "검사를 안 해서"가 아님을 보인다.
+현재 트리의 5개 로케일 디렉터리를 임시 복사본으로 뜬 뒤 변형하고 원복했다
+(`cp` 백업/복원. `git checkout`·`reset --hard` 미사용, 원본 트리 무변경).
+
+복사본 baseline: `wrong-language 0 · parse errors 0 · exit 0` — 변형 전 깨끗함을 먼저 확인.
 
 | # | 변형 | 기대 | 결과 |
 |---|---|---|---|
-| **A** | 올바른 JA FAQPage 질문 1개를 영어로 | FAIL | **FAIL** — `block #2 is en+ja on a ja page`, wrong-language 1, exit 1 |
-| **B** | malformed JSON-LD 삽입 | PARSE_ERROR / FAIL | **FAIL** — `PARSE_ERROR in … block #1 — SyntaxError: Expected property name or '}' …`, exit 1 |
+| **A** | 올바른 JA FAQPage 질문 1개를 영어로 | FAIL | **FAIL** — wrong-language 1, affected files 1, exit 1 |
+| **B** | malformed JSON-LD 블록 삽입 | PARSE_ERROR + FAIL | **FAIL** — parse errors 1, exit 1 |
 | **C** | FAQPage 아닌 `WebApplication`·`Quiz`·`ListItem` 의 `name` 4개를 영어로 | 오판 없음 | **PASS** — wrong-language 0, exit 0 |
 
-C 가 핵심이다. 초기 grep 이 정확히 이 경우를 FAQ 불일치로 잘못 셌고,
-파서 기반 가드는 세지 않는다.
+세 변형 모두 원복 후 `exit 0` 으로 되돌아왔다.
+
+### A — wrong-language
+
+`ja/compatibility/index.html` 의 `"相性診断は本当に無料ですか？"` → `"Is the compatibility test really free?"`
+
+```
+  wrong-language FAQPage           : 1
+  correct localized FAQPage kept   : 29
+  affected files                   : 1
+      ja/compatibility/index.html
+
+FAQPage check FAILED (1):
+  - ja/compatibility/index.html: FAQPage structured data in block #2 is en+ja on a ja page — …
+$ echo $?   → 1
+```
+
+한 문항만 바꿔도 `en+ja` 로 잡힌다 — 블록 전체가 영어일 때만 걸리는 게 아니다.
+
+### B — malformed JSON-LD
+
+같은 파일 `</head>` 앞에 `{"@context":…,"@type":"FAQPage",}` (trailing comma) 삽입.
+
+```
+  wrong-language FAQPage           : 0
+  parse errors                     : 1
+
+FAQPage check FAILED (1):
+  - ja/compatibility/index.html: PARSE_ERROR in application/ld+json block #2 —
+    SyntaxError: Expected double-quoted property name in JSON at position 51 (line 1 column 52)
+$ echo $?   → 1
+```
+
+깨진 블록은 **조용히 skip 되지 않는다**. 이것이 없으면 문법 오류 뒤에 잘못된 언어의
+FAQPage 가 숨을 수 있다.
+
+### C — non-FAQ false positive (핵심)
+
+같은 파일에서 FAQPage **바깥** 스키마의 `name` 4곳을 영어로 바꿨다
+(`WebApplication` `AI相性診断`, `Quiz` `AI相性診断`, `ListItem` `ホーム`, `ListItem` `AI相性診断`).
+이 파일은 올바른 JA FAQPage 를 함께 가지고 있다.
+
+```
+  FAQPage blocks                   : 30
+  wrong-language FAQPage           : 0
+  correct localized FAQPage kept   : 30
+  parse errors                     : 0
+FAQPage check PASSED
+$ echo $?   → 0
+```
+
+같은 변형 파일에 **폐기된 초기 방법**(모든 `"name"` 을 정규식으로 세는 방식)을 돌리면:
+
+```
+$ grep -oE '"name": *"[^"]*"' ja/compatibility/index.html | grep -vE '[ぁ-ゟ゠-ヿ一-鿿]'
+      "name": "AI Compatibility Test"     ← WebApplication
+      "name": "AI Test Lab"               ← Organization
+      "name": "Home"                      ← ListItem
+      "name": "AI Compatibility Test"     ← ListItem
+      "name": "AI Compatibility Test"     ← Quiz
+      "name": "AI Test Lab"               ← Organization
+  naive 방식 "영어 FAQ 문항" 집계 : 6
+  파서 기반 가드 집계             : 0
+```
+
+**한 파일에서 6건의 허위 계수.** 최초 보고의 "24면 / 100문항" 과대추정이 정확히 이
+방식에서 나왔다. 파서 기반 가드는 0을 센다.
 
 ---
 
@@ -186,6 +258,32 @@ node scripts/check-s1-guards.js --faq-only --root=/tmp/s1-faq-prefix   # 8, exit
 node scripts/check-s1-guards.js --faq-only                             # 0, exit 0
 git worktree remove /tmp/s1-faq-prefix
 ```
+
+---
+
+## Final gate — CURRENT_HEAD
+
+```
+$ npm run verify
+  … build:i18n → build:legal → build:sitemap → build:adsense-boundary
+  AdSense boundary verified: 64 allowed, 225 blocked deployable HTML files, 10 source templates, 0 changed.
+  S1 guards passed: 45 template/generated pairs in sync, 128 core surfaces instrumented,
+  18 referral CTAs on canonical UTM, 11 locale-authority checks,
+  20 result surfaces with market-correct share channels, locale banner covering 5/5 markets,
+  299 pages clean of stale trust copy, 30 FAQPage blocks language-matched (0 parse errors).
+$ echo $?   → 0
+
+$ node scripts/check-s1-guards.js --faq-only
+  wrong-language FAQPage : 0 · parse errors : 0
+$ echo $?   → 0
+
+$ git status --short     (verify 실행 직후)
+  (빈 출력)
+```
+
+`npm run verify` 는 빌더를 먼저 돌린다. 그 뒤 워킹 트리가 비어 있다는 것은
+**빌드 재생성물이 커밋된 상태와 바이트 동일**하다는 뜻이다 — 즉 이 배치는 생성물 드리프트를
+만들지 않는다.
 
 ---
 
