@@ -162,10 +162,55 @@ function checkReferralUtm() {
   return seen.length;
 }
 
+// ---------------------------------------------------------------- guard 4
+/**
+ * The URL path locale must win over browser language and stored preference.
+ * Both override paths are asserted:
+ *   a) the inline "Early Language Detection" block on generated pages
+ *   b) getCurrentLanguage() in js/i18n.js, whose fallthrough defaults to 'ko'
+ * Without (a)+(b) a /ja/ URL renders its result in the visitor's own language,
+ * because every engine reads document.documentElement.lang.
+ */
+function checkLocaleAuthority() {
+  let checked = 0;
+
+  const i18n = read('js/i18n.js');
+  const decl = i18n.indexOf('function getCurrentLanguage()');
+  if (decl === -1) {
+    failures.push('js/i18n.js: getCurrentLanguage() not found');
+  } else {
+    const body = i18n.slice(decl, decl + 1200);
+    const guardAt = body.indexOf('pathLang');
+    const savedAt = body.indexOf("localStorage.getItem('ai-life-summary-lang')");
+    if (guardAt === -1) {
+      failures.push('js/i18n.js: getCurrentLanguage() lost its path-locale guard — localized URLs will render in the visitor\'s language');
+    } else if (savedAt !== -1 && guardAt > savedAt) {
+      failures.push('js/i18n.js: the path-locale guard must run before the localStorage lookup');
+    }
+    checked++;
+  }
+
+  // Generated pages that carry the inline detector must consult the path too.
+  for (const [, slug] of TEMPLATE_MAP) {
+    for (const lang of LANGS) {
+      const out = outPath(lang, slug);
+      if (!exists(out)) continue;
+      const html = read(out);
+      if (!html.includes('Early Language Detection')) continue;
+      checked++;
+      if (!html.includes('var pathLang')) {
+        failures.push(`${out}: inline language detection overwrites documentElement.lang without checking the URL locale`);
+      }
+    }
+  }
+  return checked;
+}
+
 // ---------------------------------------------------------------- run
 const parity = checkTemplateParity();
 const surfaces = checkFunnelCoverage();
 const ctas = checkReferralUtm();
+const locale = checkLocaleAuthority();
 
 if (failures.length) {
   console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
@@ -174,6 +219,7 @@ if (failures.length) {
 } else {
   console.log(
     `S1 guards passed: ${parity} template/generated pairs in sync, ` +
-    `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM.`
+    `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
+    `${locale} locale-authority checks.`
   );
 }

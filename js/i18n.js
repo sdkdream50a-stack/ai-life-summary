@@ -2851,6 +2851,15 @@ const languageFlags = {
  * Get current language from localStorage, URL, or browser
  */
 function getCurrentLanguage() {
+    // 0. The URL path locale is authoritative. /ja/… is a Japanese page for
+    //    every visitor, so it must win over stored preference and browser
+    //    language. Without this the fallthrough below defaults to Korean and
+    //    renders localized URLs in the wrong language.
+    const pathLang = (window.location.pathname.match(/^\/(en|ko|ja|zh|es)(\/|$)/) || [])[1];
+    if (pathLang && translations[pathLang]) {
+        return pathLang;
+    }
+
     // 1. Check localStorage first (user's previous selection)
     const saved = localStorage.getItem('ai-life-summary-lang');
     if (saved && translations[saved]) {
