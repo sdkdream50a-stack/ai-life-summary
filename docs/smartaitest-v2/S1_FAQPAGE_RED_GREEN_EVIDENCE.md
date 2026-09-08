@@ -6,13 +6,31 @@
 > 과거 트리를 읽는다. 이것이 "same guard" 의 핵심이다.
 
 ```
-CURRENT_HEAD    = 94b643b2b37de60c4a7c20de77ee995624dc5185   docs(s0)
-FAQ_FIX_COMMIT  = 3dbdd3cdbac365c2797267dc49acc805ab60a1f5   fix(s1-7)
-PRE_FIX_SHA     = 3dbdd3c^ = 11185a807af20fe4fe973e465901997834682bbe   fix(s1-2b)
+FAQ_FIX_COMMIT          = 3dbdd3cdbac365c2797267dc49acc805ab60a1f5   fix(s1-7)
+PRE_FIX_SHA             = 3dbdd3c^ = 11185a807af20fe4fe973e465901997834682bbe   fix(s1-2b)
+
+측정에 쓴 가드 트리        = 94b643b  (= b193939 = 65577e9, 아래 동일성 증명 참조)
+PR_HEAD_BEFORE_EVIDENCE = b193939a0ea9463c75ce089cb645752ec1fa6cc3
+BASE (origin/main)      = 644c3f86511bb3ccbbf6f1a3ddfdd637b639e18d   (미merge)
 ```
 
-RED · GREEN · MUTATION A/B/C 는 이 `CURRENT_HEAD` 의 가드로 **전부 재실행해 재현**했다
-(최초 캡처는 `50a3f27` 에서 했고, 이후 두 커밋을 거친 뒤에도 수치가 동일했다).
+### 측정 트리 동일성 — 이 문서가 자기 자신을 무효화하지 않는다는 증명
+
+증거 문서를 커밋할 때마다 HEAD 가 움직인다. 그래서 "현재 HEAD 의 가드로 측정했다"는 주장은
+문서를 쓰는 행위 자체로 낡을 수 있다. 이 배치의 커밋들은 **`.md` 만** 바꾸므로 그렇지 않다:
+
+```
+$ git diff --name-only 94b643b..b193939 -- . ':!*.md'   → 0 files
+$ git diff --name-only b193939..65577e9 -- . ':!*.md'   → 0 files
+$ git diff --name-only 94b643b..65577e9 -- . ':!*.md'   → 0 files
+
+$ git show 94b643b:scripts/check-s1-guards.js | shasum   c988f98953ef6edd85554d446462ea20d74b4a57
+$ git show HEAD:scripts/check-s1-guards.js    | shasum   c988f98953ef6edd85554d446462ea20d74b4a57   (IDENTICAL)
+```
+
+가드 파일과 런타임 트리가 바이트 동일하므로 아래 RED/GREEN/MUTATION 수치는 이 세 커밋
+어디에서 재실행해도 같다. 실제로 `94b643b`·`b193939`·`65577e9` 세 시점에서 재실행해 동일함을
+확인했다(최초 캡처는 `50a3f27`).
 
 ## FAQ_FIX_COMMIT 이 정확히 그 배치인가 (추측 아님)
 

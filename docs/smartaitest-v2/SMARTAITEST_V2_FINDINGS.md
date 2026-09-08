@@ -161,10 +161,18 @@ JA 전체에서 LINE 버튼 보유 파일 **1개**, Kakao 보유 **12개**. `sha
 S1 진행 중 "비영어 로케일의 FAQPage 구조화 데이터가 영어"라는 결함을 발견하고 그 규모를
 **"24면 / 약 100문항"** 으로 보고했다. **이 추정치는 틀렸다.**
 
-| | 값 |
+**두 축을 섞지 않는다.** 하나는 *세는 방법*이 틀린 것이고, 다른 하나는 *결함이 고쳐진* 것이다.
+
+| 축 | 값 |
 |---|---|
-| OLD (grep 추정) | 24 surfaces / ~100 questions |
-| **NEW (JSON-LD 실파싱)** | **8 mismatched FAQPage blocks / 8 files** |
+| 측정 방법 — OLD (grep 휴리스틱 추정) | 24 surfaces / ~100 questions |
+| 측정 방법 — **NEW (JSON-LD 실파싱)** | **8 mismatched FAQPage blocks / 8 files** |
+| 결함 상태 — **BEFORE** (`3dbdd3c^`) | **8 mismatched / 8 files** · parse errors 0 |
+| 결함 상태 — **AFTER** (S1-7 이후, 현재) | **0 mismatched** · parse errors 0 · localized 30블록 보존 |
+
+즉 `8` 은 **고치기 전** 의 실제 규모이고, 현재 저장소의 값은 **0** 이다.
+`WebSite`·`SoftwareApplication`·`HowTo`·`Organization`·`BreadcrumbList`/`ListItem`·`Quiz`·`Offer`
+의 `name` 필드는 FAQ mismatch 계산에서 **제외**한다 — 이들이 과대계수의 원인이었다.
 
 ### 왜 달랐나
 
