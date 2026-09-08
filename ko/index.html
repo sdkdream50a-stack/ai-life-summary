@@ -992,6 +992,20 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        /* S2-2A: interactive targets reach 44px without growing the visible text */
+        .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
+            display:inline-flex;align-items:center;justify-content:center;
+            min-height:44px;min-width:44px;padding-top:.5rem;padding-bottom:.5rem}
+        #hero a[href*="instagram.com"]{
+            display:inline-flex;align-items:center;min-height:44px;padding-top:.625rem;padding-bottom:.625rem}
+        #lang-selector > button{min-height:44px;display:inline-flex;align-items:center}
+        #lang-dropdown button{min-height:44px;display:flex;align-items:center}
+        .kick-footer a{display:inline-flex;align-items:center;min-height:44px}
+        /* S2-2A: Japanese has no word spaces, so the global `keep-all` turns a
+           punctuation-free sentence into one unbreakable run and blows out grid
+           tracks (375/390/430 clipped 24/24/6). Scoped to the JA Home only;
+           ko/zh keep `keep-all` and css/global-kick.css is untouched. */
+        html[lang="ja"] body,html[lang="ja"] body *{word-break:normal}
         .s2-more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
         @media(min-width:768px){.s2-more-grid{grid-template-columns:repeat(3,1fr);gap:1rem}}
     </style>
@@ -1532,8 +1546,6 @@
                 </div>
             </div>
         </section>
-    </main>
-
     <!-- FAQ Section for GEO Optimization -->
     <section class="py-16 hp-dark">
         <div class="max-w-4xl mx-auto px-4">
@@ -1660,6 +1672,7 @@
             </p>
         </div>
     </section>
+    </main>
 
 
     <!-- Footer -->
