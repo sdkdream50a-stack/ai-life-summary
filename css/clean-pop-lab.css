@@ -25,6 +25,7 @@
     --cpl-aqua: #0E9C8A;          /* restrained */
     --cpl-line: rgba(22, 19, 28, .10);
     --cpl-line-strong: rgba(22, 19, 28, .18);
+    --cpl-control-line: rgba(22, 19, 28, .50);  /* 3.46:1 on white, 3.07:1 on the tint */
     --cpl-shadow: 0 1px 2px rgba(22, 19, 28, .05), 0 8px 24px rgba(22, 19, 28, .06);
 }
 
@@ -230,9 +231,12 @@
 }
 .cpl .pt-question-num { color: var(--cpl-ink-3) !important; }
 .cpl .pt-question-text { color: var(--cpl-ink) !important; }
+/* WCAG 2.1 SC 1.4.11: the boundary of an unselected control must reach 3:1
+   against its surroundings. At rgba(22,19,28,.18) it was 1.47:1 on a white
+   card, i.e. the scale read as an empty row. */
 .cpl .pt-likert-btn {
     background: var(--cpl-surface-tint) !important;
-    border: 1px solid var(--cpl-line-strong) !important;
+    border: 1px solid var(--cpl-control-line) !important;
     color: var(--cpl-ink-2) !important;
     min-height: 44px;
 }
