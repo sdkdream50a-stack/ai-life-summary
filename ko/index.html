@@ -139,8 +139,6 @@
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
     <!-- Global KICK Design System -->
     <link rel="stylesheet" href="../css/global-kick.css">
-    <!-- Canvas Confetti for celebrations -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <style>
         /* Prevent CLS - with fallback */
         body { opacity: 1; }
@@ -358,57 +356,12 @@
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.2) 100%), rgba(255, 255, 255, 0.05);
         }
 
-        /* Glassmorphism Stats */
-        .glass-stat {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 11px;
-            padding: 0.7rem 1rem;
-            transition: all 0.3s ease;
-        }
-        .glass-stat:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        .glass-stat-number {
-            font-size: 1.1rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #f0abfc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .glass-stat .text-3xl {
-            font-size: 1.2rem;
-        }
 
-        /* Real-time Ticker */
-        .live-ticker {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-        .ticker-content {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            animation: tickerSlide 0.5s ease-out;
-        }
         @keyframes tickerSlide {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .ticker-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: tickerPulse 1.5s ease-in-out infinite;
-        }
+
         @keyframes tickerPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.2); }
@@ -560,9 +513,7 @@
             transform: translateY(-8px);
             box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
         }
-        .new-badge {
-            animation: pulse 2s infinite;
-        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -934,8 +885,6 @@
     });
     </script>
     <!-- Gamification CSS -->
-    <link rel="stylesheet" href="../css/gamification.css">
-    <link rel="stylesheet" href="../css/popups.css">
     <link rel="stylesheet" href="../css/mobile-enhancements.css">
 
     <style id="mobile-navbar-fix">
@@ -1797,140 +1746,32 @@
 
 
     <!-- Gamification Scripts -->
-    <script src="../js/badges.js"></script>
-    <script src="../js/level-xp.js"></script>
-    <script src="../js/streak.js"></script>
-    <script src="../js/user-data.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/gamification-ui.js"></script>
-    <script src="../js/referral.js"></script>
     <script>
     // Initialize gamification on homepage
     document.addEventListener('DOMContentLoaded', function() {
         // Valentine's Day Countdown
-        function updateValentineCountdown() {
-            var valentine = new Date('2026-02-14T00:00:00');
-            var now = new Date();
-            var diff = valentine - now;
-            var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            if (days < 0) days = 0;
 
-            var lang = document.documentElement.lang || 'ko';
-            var texts = {
-                en: '⏰ D-' + days + ' until Valentine\'s',
-                ko: '관계 판단이 아닌 대화용',
-                ja: '予測ではなく会話用',
-                zh: '用于交流而非预测',
-                es: 'Para conversar, no predecir'
-            };
-
-            document.querySelectorAll('[class*="lang-"]').forEach(function(el) {
-                if (false) {
-                    var langClass = Array.from(el.classList).find(function(c) { return c.startsWith('lang-'); });
-                    if (langClass) {
-                        var langCode = langClass.replace('lang-', '');
-                        el.textContent = texts[langCode] || texts.en;
-                    }
-                }
-            });
-        }
-        updateValentineCountdown();
 
         // Update header profile display
-        function updateHeaderProfile() {
-            if (typeof userDataManager === 'undefined') return;
 
-            var userData = userDataManager.getUserData();
-            var profileAvatar = document.getElementById('profile-avatar');
-            var profileLevel = document.getElementById('profile-level');
-            var mobileProfileIcon = document.getElementById('mobile-profile-icon');
-            var mobileProfileLevel = document.getElementById('mobile-profile-level');
-
-            var level = userData.gamification ? userData.gamification.level : 1;
-            var streak = userData.gamification ? userData.gamification.currentStreak : 0;
-            var lang = document.documentElement.lang || 'ko';
-
-            // Desktop profile
-            if (profileAvatar && profileLevel) {
-                if (typeof levelXpSystem !== 'undefined') {
-                    var levelInfo = levelXpSystem.getLevelInfo(level);
-                    profileLevel.textContent = 'Lv.' + level;
-                    profileLevel.classList.remove('hidden');
-                    profileLevel.title = levelInfo.name[lang] || levelInfo.name.en;
-                }
-
-                if (streak > 0) {
-                    profileAvatar.textContent = streak >= 7 ? '🔥' : '✨';
-                } else {
-                    profileAvatar.textContent = '👤';
-                }
-            }
-
-            // Mobile profile
-            if (mobileProfileIcon && mobileProfileLevel) {
-                if (streak > 0) {
-                    mobileProfileIcon.textContent = streak >= 7 ? '🔥' : '✨';
-                } else {
-                    mobileProfileIcon.textContent = '👤';
-                }
-                mobileProfileLevel.textContent = 'Lv.' + level;
-                mobileProfileLevel.classList.remove('hidden');
-            }
-        }
 
         // Initialize
-        setTimeout(updateHeaderProfile, 100);
 
         // Listen for gamification updates
-        window.addEventListener('gamification-update', updateHeaderProfile);
     });
     </script>
 
-    <!-- Live Ticker Script -->
-    <script>
-    (function() {
-        var tickerContainer = document.getElementById("live-ticker");
-        if (tickerContainer) tickerContainer.classList.add("hidden");
-    })();
-    </script>
 
     <!-- Test Hub Dynamic Features -->
     <script>
     (function() {
         // Countdown Timer for Events
-        function updateCountdown() {
-            // Set end time to 24 hours from page load (simulated)
-            const now = new Date();
-            const endTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            const diff = endTime - now;
 
-            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-            const minutes = Math.floor(diff / (1000 * 60)) % 60;
-            const seconds = Math.floor(diff / 1000) % 60;
-
-            const hoursEl = document.getElementById('countdown-hours');
-            const minutesEl = document.getElementById('countdown-minutes');
-            const secondsEl = document.getElementById('countdown-seconds');
-
-            if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-            if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-            if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
-        }
 
         // Countdown disabled — fake 24h urgency removed for AdSense trust
 
         // Live community count animation
-        function animateLiveCount() {
-            const baseCounts = { en: 0, ko: 0, ja: 0, zh: 0, es: 0 };
-            const langs = ['', '-ko', '-ja', '-zh', '-es'];
 
-            langs.forEach(lang => {
-                const el = document.getElementById('community-live-count' + lang);
-                if (el) {
-                    el.textContent = "";
-                }
-            });
-        }
 
         // Live count disabled — fake "142 online" removed for AdSense trust
     })();
@@ -2004,6 +1845,18 @@
             e.preventDefault(); // Prevent mouse emulation delay
             toggleMenu(e);
         }, {passive: false});
+
+        // The close button lives inside the menu, so the outside-click handler
+        // never sees it. Without this binding the only ways out on a phone are
+        // navigating away or ESC, and the body scroll lock stays on.
+        var menuClose = document.getElementById('mobile-menu-close');
+        if (menuClose) {
+            menuClose.addEventListener('click', toggleMenu);
+            menuClose.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                toggleMenu(e);
+            }, {passive: false});
+        }
 
         // Let all links and buttons navigate naturally
         // Don't add click handlers that would prevent navigation
