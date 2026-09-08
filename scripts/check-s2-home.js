@@ -210,6 +210,92 @@ if (fs.existsSync(path.join(ROOT, 'css/viral-hub.css'))) {
   }
 }
 
+// --- S2-3 -----------------------------------------------------------------
+// The compatibility engine can only produce [50,95]; "0-100%" is a range it
+// cannot reach, and the ko FAQ used to credit an AI for a rule-based score.
+const FAQ_LIES = ['0-100%', '0–100%', '0〜100%', 'AI 궁합', 'AI相性テスト'];
+// Landing titles keep the brand but must not claim the AI does the work.
+const LANDING_TESTS = ['personality-type', 'compatibility', 'age-calculator', 'life-summary', 'vibe-check'];
+const TITLE_CLAIMS = {
+  ja: ['AI性格', 'AI相性', 'AI年齢', 'AIライフ', 'AIバイブ', 'AI診断', 'AI分析'],
+  ko: ['AI 성격', 'AI 궁합', 'AI 나이', 'AI 인생', 'AI 바이브', 'AI 분석'],
+  en: ['AI Personality', 'AI Compatibility', 'AI Age', 'AI Life Summary', 'AI Vibe', 'AI analysis'],
+  zh: ['AI性格', 'AI配对', 'AI年龄', 'AI人生', 'AI vibe', 'AI分析'],
+  es: ['Personalidad IA', 'Compatibilidad IA', 'Edad IA', 'Vida IA', 'AI Vibe']
+};
+const META_FIELDS = [
+  /<title>([^<]*)</, /<meta property="og:title" content="([^"]*)"/,
+  /<meta name="twitter:title" content="([^"]*)"/, /<meta name="description" content="([^"]*)"/,
+  /<meta property="og:description" content="([^"]*)"/, /<meta name="twitter:description" content="([^"]*)"/
+];
+
+for (const lang of LANGS) {
+  const html = read(home(lang));
+  const text = textOf(html);
+
+  const lie = FAQ_LIES.find(x => text.includes(x));
+  if (lie) fail(lang, 'S2-3 FAQ truth', `"${lie}" is back on the Home`);
+  // the ko FAQPage Question name lived in JSON-LD too — check the raw source
+  const jsonLie = FAQ_LIES.find(x => html.includes(x));
+  if (jsonLie) fail(lang, 'S2-3 FAQ truth', `"${jsonLie}" present in the Home source (visible or JSON-LD)`);
+
+  // Trust must be the 4-card rebuild, not the old "Why" grid, and it must resolve
+  if (!/<section[^>]*id="trust"/.test(html)) fail(lang, 'S2-3 trust', 'the Trust section is missing');
+  const trustCards = (html.match(/class="s2-trust-card"/g) || []).length;
+  if (trustCards !== 4) fail(lang, 'S2-3 trust', `expected 4 trust cards, got ${trustCards}`);
+  const engineLink = /<a class="s2-trust-link" href="(#[^"]+)"/.exec(html);
+  if (!engineLink) fail(lang, 'S2-3 trust', 'the engine-explanation link is missing');
+  else if (!html.includes(`id="${engineLink[1].slice(1)}"`)) fail(lang, 'S2-3 trust', `${engineLink[1]} resolves to nothing`);
+
+  // Result Preview: two honest example cards, image lazy, no invented numbers
+  if ((html.match(/class="s2-rp-card"/g) || []).length !== 2) fail(lang, 'S2-3 result preview', 'expected 2 preview cards');
+  const img = /<img[^>]*class="s2-rp-img"[^>]*>/.exec(html) || /<img src="\/assets\/images\/pt\/[^"]+"[^>]*>/.exec(html);
+  if (!img) fail(lang, 'S2-3 result preview', 'the example image is missing');
+  else {
+    if (!/loading="lazy"/.test(img[0])) fail(lang, 'S2-3 result preview', 'the example image is not lazy-loaded');
+    if (!/alt="[^"]{4,}"/.test(img[0])) fail(lang, 'S2-3 result preview', 'the example image has no alt text');
+  }
+  if ((html.match(/class="s2-rp-badge"/g) || []).length !== 2) fail(lang, 'S2-3 result preview', 'both cards must carry the example badge');
+
+  // Final CTA closes the page, after the FAQ
+  const faqAt = html.indexOf('id="faq"'), ctaAt = html.indexOf('<!-- CTA Section -->');
+  if (faqAt === -1 || ctaAt === -1 || ctaAt < faqAt) fail(lang, 'S2-3 IA', 'the Final CTA no longer follows the FAQ');
+}
+
+// Articles are JA-only: the other locales have no equivalent indexable set
+{
+  const jaArts = (read(home('ja')).match(/class="s2-art-card"/g) || []).length;
+  if (jaArts !== 3) fail('ja', 'S2-3 articles', `expected 3 article cards, got ${jaArts}`);
+  const ALLOWED = ['relationship-compatibility-factors', 'couple-compatibility-science', 'blood-type-compatibility-science'];
+  const linked = [...read(home('ja')).matchAll(/class="s2-art-card" href="\/blog\/ja\/([^"]+)"/g)].map(m => m[1]);
+  for (const slug of linked) {
+    if (!ALLOWED.includes(slug)) fail('ja', 'S2-3 articles', `${slug} is not on the vetted list`);
+    const p = `blog/ja/${slug}.html`;
+    if (!fs.existsSync(path.join(ROOT, p))) { fail('ja', 'S2-3 articles', `${p} does not exist`); continue; }
+    const a = read(p);
+    if (/<meta name="robots"[^>]*noindex/.test(a)) fail('ja', 'S2-3 articles', `${slug} is noindex`);
+    const t = (/<title>([^<]*)</.exec(a) || [])[1] || '';
+    const claim = TITLE_CLAIMS.ja.find(c => t.replace('AI Test Lab', ' ').includes(c));
+    if (claim) fail('ja', 'S2-3 articles', `${slug} title claims "${claim}"`);
+  }
+  for (const l of ['ko', 'en', 'zh', 'es']) {
+    if (read(home(l)).includes('class="s2-art-card"')) fail(l, 'S2-3 articles', 'articles are JA-only; this locale has no vetted set');
+  }
+}
+
+// Landing meta: brand stays, capability claim goes
+for (const t of LANDING_TESTS) {
+  for (const lang of LANGS) {
+    const rel = `${lang}/${t}/index.html`;
+    if (!fs.existsSync(path.join(ROOT, rel))) { fail(rel, 'S2-3 landing', 'missing'); continue; }
+    const html = read(rel);
+    let meta = META_FIELDS.map(re => (re.exec(html) || [])[1] || '').join(' | ');
+    BRAND.forEach(b => { meta = meta.replace(b, ' '); });
+    const claim = TITLE_CLAIMS[lang].find(c => meta.includes(c));
+    if (claim) fail(rel, 'S2-3 landing title', `"${claim}" still claims the AI does the work`);
+  }
+}
+
 // 11. template -> generated parity stays owned by the S1 guard; assert it is still wired
 const pkg = JSON.parse(read('package.json'));
 if (!/check-s1-guards\.js/.test(pkg.scripts['check:s1-guards'] || '')) {
@@ -232,5 +318,7 @@ console.log(
   `0 AI capability claims (body + title/og/twitter), 0 viral-hub/real-time promises, 0 unbacked badges, ` +
   `0 FateAIverse links, 0 cross-locale copy leaks; ${CPL_PAGES.length} Clean Pop Lab pages, ` +
   `0 dead gamification refs, JA word-break scoped, FateAIverse surface 16/32 unchanged ` +
+  `Trust 4 cards + resolving engine link, 2 example previews with a lazy alt image, ` +
+  `3 vetted JA articles, Final CTA after the FAQ, 25 landing titles free of AI capability claims ` +
   `(template parity delegated to check:s1-guards).`
 );
