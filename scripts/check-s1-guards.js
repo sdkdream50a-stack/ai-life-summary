@@ -206,11 +206,53 @@ function checkLocaleAuthority() {
   return checked;
 }
 
+// ---------------------------------------------------------------- guard 5
+/**
+ * Share channels must match the market. LINE is the primary channel in Japan and
+ * was absent from every JA result surface while Kakao — a Korean messenger — sat
+ * first, on a site whose home FAQ promised LINE sharing. Korea keeps Kakao first.
+ */
+function checkShareChannels() {
+  const RESULTS = ['compatibility/result', 'life-summary/result', 'age-calculator/result', 'personality-type/result'];
+  const ORDER_RE = /onclick="share(?:To|Viral)([A-Za-z]+)\(|id="share-(line|kakao)"|ptShare\('([a-z]+)'\)/g;
+  let checked = 0;
+
+  for (const lang of LANGS) {
+    for (const slug of RESULTS) {
+      const file = outPath(lang, slug);
+      if (!exists(file)) continue;
+      const html = read(file);
+      checked++;
+
+      const seq = [];
+      let m;
+      ORDER_RE.lastIndex = 0;
+      while ((m = ORDER_RE.exec(html)) !== null) {
+        const name = (m[1] || m[2] || m[3]).toLowerCase();
+        if ((name === 'line' || name === 'kakao') && !seq.includes(name)) seq.push(name);
+      }
+
+      if (!seq.includes('line')) {
+        failures.push(`${file}: no LINE share control — the home FAQ promises LINE sharing`);
+        continue;
+      }
+      if (lang !== 'ko' && seq[0] === 'kakao') {
+        failures.push(`${file}: Kakao is offered before LINE outside the Korean locale`);
+      }
+      if (lang === 'ko' && seq.includes('kakao') && seq[0] !== 'kakao') {
+        failures.push(`${file}: Kakao must stay first on the Korean locale`);
+      }
+    }
+  }
+  return checked;
+}
+
 // ---------------------------------------------------------------- run
 const parity = checkTemplateParity();
 const surfaces = checkFunnelCoverage();
 const ctas = checkReferralUtm();
 const locale = checkLocaleAuthority();
+const share = checkShareChannels();
 
 if (failures.length) {
   console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
@@ -220,6 +262,6 @@ if (failures.length) {
   console.log(
     `S1 guards passed: ${parity} template/generated pairs in sync, ` +
     `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
-    `${locale} locale-authority checks.`
+    `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels.`
   );
 }
