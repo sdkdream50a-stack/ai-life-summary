@@ -329,6 +329,77 @@ function checkTrustCopy() {
   return scanned;
 }
 
+// ---------------------------------------------------------------- guard 8
+/**
+ * Structured data must not be submitted to search engines in the wrong language.
+ * Every non-English locale used to ship an English "baseline" FAQPage alongside a
+ * correctly localized visible FAQ, on the theory that hreflang would sort it out.
+ *
+ * Rule: on a non-English page, a FAQPage block may exist only if its questions are
+ * in that page's language. No FAQPage at all is a PASS — that is the deliberate
+ * state until reviewed, natively-written localized schema exists. English pages
+ * keep their English FAQPage.
+ */
+function checkFaqSchemaLocale() {
+  const LD = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+  const langOf = s => {
+    if (/[ぁ-ゟ゠-ヿ]/.test(s)) return 'ja';   // kana
+    if (/[가-힣]/.test(s)) return 'ko';                // hangul
+    if (/[一-鿿]/.test(s)) return 'zh';                // han, kana already excluded
+    if (/[áéíóúñ¿¡]/.test(s)) return 'es';
+    return 'en';
+  };
+  // FAQPage may sit at the top level of a block or nested inside an @graph
+  // (the locale home pages use @graph), so this has to recurse.
+  const collectFaqQuestions = (node, acc = []) => {
+    if (Array.isArray(node)) { node.forEach(n => collectFaqQuestions(n, acc)); return acc; }
+    if (node && typeof node === 'object') {
+      const t = node['@type'];
+      if (t === 'FAQPage' || (Array.isArray(t) && t.includes('FAQPage'))) {
+        const me = node.mainEntity || [];
+        const qs = (Array.isArray(me) ? me : [me]).map(q => q && q.name).filter(Boolean);
+        if (qs.length) acc.push(qs);
+      }
+      Object.values(node).forEach(v => collectFaqQuestions(v, acc));
+    }
+    return acc;
+  };
+
+  let checked = 0;
+  for (const lang of LANGS) {
+    const base = path.join(ROOT, lang);
+    if (!fs.existsSync(base)) continue;
+    const walk = dir => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const abs = path.join(dir, entry.name);
+        if (entry.isDirectory()) { walk(abs); continue; }
+        if (entry.name !== 'index.html') continue;
+        const rel = path.relative(ROOT, abs);
+        const html = fs.readFileSync(abs, 'utf8');
+        let m;
+        LD.lastIndex = 0;
+        while ((m = LD.exec(html)) !== null) {
+          let parsed;
+          try { parsed = JSON.parse(m[1]); } catch (e) { continue; }
+          for (const qs of collectFaqQuestions(parsed)) {
+            checked++;
+            const found = [...new Set(qs.map(langOf))];
+            if (!(found.length === 1 && found[0] === lang)) {
+              failures.push(
+                `${rel}: FAQPage structured data is in ${found.join('+')} on a ${lang} page — ` +
+                `remove it rather than submitting wrong-language schema (the visible FAQ stays).`
+              );
+            }
+          }
+        }
+      }
+    };
+    walk(base);
+  }
+  return checked;
+}
+
 // ---------------------------------------------------------------- run
 const parity = checkTemplateParity();
 const surfaces = checkFunnelCoverage();
@@ -337,6 +408,7 @@ const locale = checkLocaleAuthority();
 const share = checkShareChannels();
 const banner = checkLocaleBanner();
 const trust = checkTrustCopy();
+const faqLd = checkFaqSchemaLocale();
 
 if (failures.length) {
   console.error(`S1 guards FAILED (${failures.length} issue${failures.length === 1 ? '' : 's'}):`);
@@ -347,6 +419,7 @@ if (failures.length) {
     `S1 guards passed: ${parity} template/generated pairs in sync, ` +
     `${surfaces} core surfaces instrumented, ${ctas} referral CTAs on canonical UTM, ` +
     `${locale} locale-authority checks, ${share} result surfaces with market-correct share channels, ` +
-    `locale banner covering ${banner}/${LANGS.length} markets, ${trust} pages clean of stale trust copy.`
+    `locale banner covering ${banner}/${LANGS.length} markets, ${trust} pages clean of stale trust copy, ` +
+    `${faqLd} FAQPage blocks language-matched.`
   );
 }
