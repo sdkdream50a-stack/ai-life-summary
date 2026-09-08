@@ -180,6 +180,9 @@ sitemap 125 URL, 형태 정합, 고아 글 0, 블로그 본문 중앙값 4,148�
 - 사이트의 58%가 noindex, JA 실효 색인 블로그 4편
 - `index,follow`인데 canonical이 남을 가리키는 면 4개
 - **루트 영문 페이지의 canonical·hreflang이 항상 307되는 `.html` URL을 가리킨다** — `faq.html:20`·`blog.html`은 `index,follow`인데 canonical이 `…/faq.html`(라이브 **307**). about/contact/privacy/terms는 canonical이 `.html`이면서 동시에 `noindex,nofollow`인데, `/ko/about/` 등이 hreflang으로 **그 noindex 페이지를 en·x-default로 지목**한다 → 다국어 클러스터 파손
+- **구조화 데이터 언어 불일치 8건** (S1 중 JSON-LD 실파싱으로 확정 — 최초 grep 추정 "24면/100문항"은
+  FAQPage 밖 스키마의 `name` 까지 센 오류였다. `SMARTAITEST_V2_FINDINGS.md` §측정 방법 정정 참조).
+  S1-7에서 제거 완료.
 - **색인 가능한 사이트맵 고아 3건**: `/friend-compatibility/`·`/marriage-compatibility/`·`/widget/` — robots 메타 없음(=색인 허용), 라이브 200, 두 사이트맵 모두 부재
 
 ## TRUST

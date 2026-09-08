@@ -148,6 +148,59 @@ JA 전체에서 LINE 버튼 보유 파일 **1개**, Kakao 보유 **12개**. `sha
 
 ---
 
+---
+
+## 측정 방법 정정 (2026-09-08, S1 중 발견) — **중요**
+
+### 무엇이 틀렸나
+
+S1 진행 중 "비영어 로케일의 FAQPage 구조화 데이터가 영어"라는 결함을 발견하고 그 규모를
+**"24면 / 약 100문항"** 으로 보고했다. **이 추정치는 틀렸다.**
+
+| | 값 |
+|---|---|
+| OLD (grep 추정) | 24 surfaces / ~100 questions |
+| **NEW (JSON-LD 실파싱)** | **8 mismatched FAQPage blocks / 8 files** |
+
+### 왜 달랐나
+
+최초 스캔이 HTML에서 `"name":` 필드를 **정규식으로 전부 세었기 때문**이다. 그 필드는
+FAQPage 의 `Question.name` 뿐 아니라 같은 페이지의 다른 스키마에도 존재한다 —
+`WebSite`, `SoftwareApplication`, `Organization`, `HowTo`(각 step 이 `name` 을 가진다),
+`BreadcrumbList`. 그래서 FAQPage 와 무관한 이름들이 "영어 FAQ 문항"으로 집계됐다.
+
+정정된 방법은 `<script type="application/ld+json">` 을 **실제 `JSON.parse` 한 뒤
+`@type === "FAQPage"` 인 객체만** 검사하고, `@graph` 내부까지 재귀한다.
+(로케일 홈 5면은 FAQPage 가 `@graph` 안에 중첩돼 있어, 최상위 `@type` 만 보면 놓친다 —
+가드 구현 중 실제로 이 버그를 만들었고 25 vs 30 불일치로 발견해 정정했다.)
+
+### 확정 사실
+
+**불일치 8건** — 전부 가시 FAQ 는 해당 로케일로 정확히 현지화돼 있는데 FAQPage JSON-LD 만 영어:
+
+| 파일 | 페이지 로케일 | 가시 FAQ | FAQPage JSON-LD | 불일치 |
+|---|---|---|---|---|
+| `{ko,ja,zh,es}/age-calculator/index.html` | ko·ja·zh·es | 각 5문항, 로케일 정확 | 영어 5문항 × 1블록 | YES |
+| `{ko,ja,zh,es}/life-summary/index.html` | ko·ja·zh·es | 각 5문항, 로케일 정확 | 영어 5문항 × 1블록 | YES |
+
+**정상이라 보존한 것 30블록** — `{ko,ja,zh,es}/compatibility`, `{ko,ja,zh,es}/personality-type`(각 2),
+`{ko,ja,zh,es}/index.html`(@graph 중첩), `{ko,ja}/friend-·marriage-compatibility`,
+`ko/about`, 그리고 **EN 9블록 전부**.
+
+### 교훈 (다음 감사에 적용)
+
+**구조화 데이터는 정규식이 아니라 파서로 센다.** 이 저장소의 감사에서 grep 휴리스틱이
+규모를 12배 과대추정한 사례다. 스키마 타입 판정이 필요한 모든 항목(JSON-LD, 메타 구조)은
+실제 파싱으로 검증하고, 가드도 같은 방식으로 작성한다 —
+`scripts/check-s1-guards.js` guard #8 이 그 구현이다.
+
+### 조치 (S1-7, 커밋 `3dbdd3c`)
+
+사용자 결정: **기계번역 대신 잘못된 스키마만 제거.** 가시 FAQ·title·description·
+canonical·hreflang·본문은 불변(순수 삭제 496줄 / 추가 0줄). 원어민 검수된 로케일 FAQ 가
+준비되면 복원 가능하다. 가드는 "비영어 페이지의 FAQPage 는 그 페이지 언어와 일치해야 하고,
+FAQPage 부재는 PASS" 로 이 상태를 고정한다.
+
 ## 반증된 것 (병렬 감사 주장 중 라이브에서 기각)
 
 | 주장 | 출처 | 실측 | 판정 |
