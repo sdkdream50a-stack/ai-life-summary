@@ -232,6 +232,15 @@ function checkShareChannels() {
         if ((name === 'line' || name === 'kakao') && !seq.includes(name)) seq.push(name);
       }
 
+
+      // A result page reached without data must bounce inside its own locale.
+      // Bouncing to the root tool path 301s every non-English visitor into /en/.
+      for (const tool of ['age-calculator', 'compatibility', 'life-summary']) {
+        const re = new RegExp(`location\\.(?:href|replace)\\s*=\\s*(['"])\\/${tool}\\/\\1`);
+        if (re.test(html)) {
+          failures.push(`${file}: falls back to the root /${tool}/ path, which redirects out of the ${lang} locale`);
+        }
+      }
       if (!seq.includes('line')) {
         failures.push(`${file}: no LINE share control — the home FAQ promises LINE sharing`);
         continue;
