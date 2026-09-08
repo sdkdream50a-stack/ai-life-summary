@@ -13,7 +13,9 @@
     "build:adsense-boundary": "node scripts/enforce-adsense-boundary.js",
     "check:adsense-boundary": "node scripts/enforce-adsense-boundary.js --check",
     "build:all": "npm run build:i18n && npm run build:legal && npm run build:sitemap && npm run build:adsense-boundary",
-    "danger:redirectors": "node scripts/create-redirectors.js"
+    "danger:redirectors": "node scripts/create-redirectors.js",
+    "check:s1-guards": "node scripts/check-s1-guards.js",
+    "verify": "npm run build:all && npm run check:adsense-boundary && npm run check:s1-guards"
   },
   "author": "AI Life Summary",
   "license": "MIT",
