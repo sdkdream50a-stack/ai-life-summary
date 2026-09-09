@@ -14,13 +14,17 @@
  * The score/type summary lives in the share TEXT; the link invites the
  * recipient to take the test themselves — which is also what the copy says.
  */
+function compatShareLang() {
+    const l = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return ['en', 'ko', 'ja', 'zh', 'es'].includes(l) ? l : 'en';
+}
+
 function compatEntryPath() {
-    // Derive the locale test-entry path from the current result path.
-    // /ko/compatibility/result/ -> /ko/compatibility/ ; /compatibility/result.html -> /compatibility/
-    const path = window.location.pathname
-        .replace(/result\/?$/, '')
-        .replace(/result\.html$/, '');
-    return path || '/compatibility/';
+    // Take the locale from the page, the way the other products do, rather than
+    // munging the pathname. The root /compatibility/result.html has no locale
+    // segment to reuse, and stripping it produced /compatibility/s/<key>/ —
+    // a page that does not exist and that the 404 fallback cannot recover.
+    return `/${compatShareLang()}/compatibility/`;
 }
 
 function generateShareUrl() {
