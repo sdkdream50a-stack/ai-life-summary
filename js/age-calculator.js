@@ -4,6 +4,43 @@
  */
 
 // ============================================
+// LOCALE RESOLUTION
+// ============================================
+
+const SUPPORTED_RESULT_LANGS = ['en', 'ko', 'ja', 'zh', 'es'];
+
+/**
+ * Resolve the locale the result copy must be rendered in.
+ *
+ * The localized pages under /{lang}/ are statically built and declare their
+ * locale on <html lang>. That declaration is the source of truth: a visitor who
+ * lands on /ko/age-calculator/ straight from search or a shared link has no
+ * stored language preference, and falling back to English there printed English
+ * body copy underneath Korean labels. localStorage is only consulted when the
+ * document declares no supported locale.
+ */
+function resolveResultLang() {
+    const docLang = (document.documentElement.getAttribute('lang') || '')
+        .toLowerCase()
+        .split('-')[0];
+    if (SUPPORTED_RESULT_LANGS.includes(docLang)) {
+        return docLang;
+    }
+
+    try {
+        const stored = localStorage.getItem('ai-life-summary-lang')
+            || localStorage.getItem('preferredLanguage');
+        if (stored && SUPPORTED_RESULT_LANGS.includes(stored)) {
+            return stored;
+        }
+    } catch (e) {
+        // storage unavailable (private mode / blocked cookies)
+    }
+
+    return 'en';
+}
+
+// ============================================
 // AGE CALCULATION FUNCTIONS
 // ============================================
 

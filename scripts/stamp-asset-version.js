@@ -54,6 +54,10 @@ const CHECK = process.argv.includes('--check');
 
 // The runtime scripts S1 changed (git diff 644c3f8..0adfcf0 -- 'js/*.js').
 const MANAGED = [
+  // R1 added age-calculator: the result page now calls resolveResultLang() from
+  // it, so a browser holding the 7-day-cached copy would throw a ReferenceError
+  // and render no result at all.
+  'age-calculator',
   'analytics-events',
   'compatibility-share',
   'consent-manager',

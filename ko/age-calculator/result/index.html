@@ -317,6 +317,14 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The floating navbar is position:fixed and is pinned to the bottom on phones,
+   so the document must reserve the band it occupies; without it the closing
+   body copy and the footer stay trapped underneath the bar. */
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
     <!-- Floating Pill Navbar -->
@@ -906,7 +914,7 @@
     </footer>
 
     <!-- Age Calculator Scripts -->
-    <script src="/js/age-calculator.js"></script>
+    <script src="/js/age-calculator.js?v=47939b3b"></script>
     <script src="/js/age-share.js"></script>
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
@@ -925,7 +933,7 @@
             const data = JSON.parse(storedData);
 
             // Get current language
-            const currentLang = localStorage.getItem('ai-life-summary-lang') || localStorage.getItem('preferredLanguage') || 'en';
+            const currentLang = resolveResultLang();
 
             // Calculate ages
             const realAge = calculateRealAge(
