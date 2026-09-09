@@ -32,6 +32,18 @@ const AnalyticsEvents = {
       return;
     }
 
+    // Consent alone is not enough. `gtag` is defined from the first line of
+    // consent-manager.js as the Consent Mode shim, so it is truthy long before
+    // GA4 exists — sending here would push into dataLayer ahead of
+    // gtag('config', …), and GA4 drops events that arrive with no property
+    // configured. This is the returning-visitor half of the same defect: with
+    // consent already stored, on-load events were never queued at all, they
+    // were sent straight into that gap. Wait for configuration instead.
+    if (!window.gaLoaded) {
+      this.queueEvent(eventName, params);
+      return;
+    }
+
     if (typeof gtag !== 'undefined') {
       gtag('event', eventName, {
         ...params,
@@ -49,15 +61,36 @@ const AnalyticsEvents = {
     }
     window.pendingAnalyticsEvents.push({ eventName, params, time: Date.now() });
 
-    // Process queue when consent is granted
-    window.addEventListener('consentUpdated', () => {
-      if (window.pendingAnalyticsEvents && ConsentManager.hasConsent('analytics')) {
-        window.pendingAnalyticsEvents.forEach(event => {
-          this.track(event.eventName, { ...event.params, delayed: true });
-        });
-        window.pendingAnalyticsEvents = [];
-      }
-    }, { once: true });
+    // Bind the drain exactly once per page load. Binding per queued event —
+    // as this did before — registers N listeners for N events, so the queue
+    // is walked N times; only the array being emptied first kept that from
+    // duplicating sends.
+    if (!this._drainBound) {
+      this._drainBound = true;
+      window.addEventListener('consentUpdated', () => this.flushQueue());
+    }
+  },
+
+  /**
+   * Send anything queued while analytics was unavailable.
+   *
+   * Both conditions are re-checked here rather than trusted from the caller:
+   * a rejected user must never have their queue transmitted, and GA4 must be
+   * configured or the events are dropped on arrival. The queue is detached
+   * before sending so a re-entrant call cannot send the same event twice.
+   */
+  flushQueue() {
+    if (typeof ConsentManager !== 'undefined' && !ConsentManager.hasConsent('analytics')) {
+      return;
+    }
+    if (!window.gaLoaded) {
+      return;
+    }
+    const pending = window.pendingAnalyticsEvents || [];
+    window.pendingAnalyticsEvents = [];
+    pending.forEach(event => {
+      this.track(event.eventName, { ...event.params, delayed: true });
+    });
   },
 
   /**

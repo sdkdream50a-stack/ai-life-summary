@@ -217,14 +217,31 @@ const ConsentManager = {
 
     // Analytics (Google Analytics, Clarity)
     if (this.categories.analytics) {
+      // loadAnalytics() owns the consentUpdated dispatch in this branch: it
+      // fires only once gtag('config', …) has run. Dispatching here instead
+      // would replay queued canonical events into dataLayer before GA4 knows
+      // which property they belong to, and GA4 silently discards them — the
+      // production defect where home_view / result_view / test_complete /
+      // article_view were 0 while post-config events were delivered normally.
       this.loadAnalytics();
     } else {
       // Clarity has its own consent API separate from gtag — explicit revoke
       // (gtag('consent', 'update') only stops GA, not Clarity)
       this.revokeClarity();
+      // Nothing to wait for when analytics is denied. Consumers must not
+      // transmit on this signal; they re-check consent before sending.
+      this.dispatchConsentUpdated();
     }
+  },
 
-    // Dispatch event for other scripts
+  /**
+   * Notify other scripts that consent has been applied.
+   *
+   * When analytics is granted this must not run until GA4 is configured, so
+   * that anything replaying queued events on this signal reaches a configured
+   * property. See applyConsent() / loadAnalytics().
+   */
+  dispatchConsentUpdated() {
     window.dispatchEvent(new CustomEvent('consentUpdated', {
       detail: this.categories
     }));
@@ -247,11 +264,23 @@ const ConsentManager = {
     // is the Consent Mode shim, not GA — so we only check gaLoaded here,
     // not `typeof gtag === 'undefined'` (which would always be false and
     // suppress GA loading entirely).
-    if (!window.gaLoaded) {
+    if (window.gaLoaded) {
+      // Already configured by an earlier applyConsent() — the ordering
+      // guarantee is already satisfied, so signal immediately.
+      this.dispatchConsentUpdated();
+    } else {
       const gaScript = document.createElement('script');
       gaScript.async = true;
       gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-QDH2KJQT9Y';
       document.head.appendChild(gaScript);
+
+      // Blocked by a network failure or content blocker: GA4 will never be
+      // configured, so nothing may be transmitted. Still signal, so consumers
+      // that only observe consent are not starved; the analytics queue stays
+      // gated on window.gaLoaded and therefore stays unsent.
+      gaScript.onerror = () => {
+        this.dispatchConsentUpdated();
+      };
 
       gaScript.onload = () => {
         // Reuse the existing dataLayer/gtag set up at top of file — don't
@@ -268,6 +297,10 @@ const ConsentManager = {
         gtag('event', 'consent_granted', {
           'consent_analytics': true
         });
+
+        // GA4 is configured — only now is it safe for listeners to replay
+        // events they queued while waiting.
+        this.dispatchConsentUpdated();
       };
     }
 
