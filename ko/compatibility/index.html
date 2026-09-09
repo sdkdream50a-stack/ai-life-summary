@@ -13,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>궁합 테스트 - 커플 궁합 계산기 | AI Test Lab</title>
-    <meta name="description" content="무료 궁합 테스트! 두 사람이 간단한 질문에 답하면 소통·가치관 등 영역별 궁합을 알려드려요. 생년월일 별자리·동물 커플은 재미로 추가! 즉시 결과.">
+    <title>생년월일 궁합 테스트 - 커플 궁합 계산기 | AI Test Lab</title>
+    <meta name="description" content="생년월일만 넣으면 바로 보는 무료 궁합 테스트. 문항 없이 즉시 결과를 확인하고, 원하면 16문항으로 소통·가치관까지 자세히 볼 수 있어요. 재미로 보는 참고용입니다.">
     <meta name="keywords" content="궁합 테스트, 커플 궁합, AI 궁합, 답변 기반 궁합, 연인 궁합, 동물 커플, 사랑 테스트, 연애 궁합, couple compatibility test, compatibility quiz, relationship match, answer-based compatibility, animal couple matching, soulmate test, 相性診断, 配对测试">
     <meta name="author" content="AI Test Lab">
     <meta name="robots" content="index, follow">
@@ -31,8 +31,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/ko/compatibility/">
-    <meta property="og:title" content="재미로 보는 궁합 테스트">
-    <meta property="og:description" content="무료 궁합 테스트! 두 사람이 간단한 질문에 답하면 소통·가치관 등 영역별 궁합을 알려드려요. 생년월일 별자리·동물 커플은 재미로 추가! 즉시 결과.">
+    <meta property="og:title" content="생년월일로 보는 궁합 테스트">
+    <meta property="og:description" content="생년월일만 넣으면 바로 보는 무료 궁합 테스트. 문항 없이 즉시 결과를 확인하고, 원하면 16문항으로 소통·가치관까지 자세히 볼 수 있어요. 재미로 보는 참고용입니다.">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:locale" content="ko_KR">
     <meta property="og:locale:alternate" content="en_US">
@@ -44,8 +44,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/ko/compatibility/">
-    <meta name="twitter:title" content="재미로 보는 궁합 테스트">
-    <meta name="twitter:description" content="무료 궁합 테스트! 두 사람이 간단한 질문에 답하면 소통·가치관 등 영역별 궁합을 알려드려요. 생년월일 별자리·동물 커플은 재미로 추가! 즉시 결과.">
+    <meta name="twitter:title" content="생년월일로 보는 궁합 테스트">
+    <meta name="twitter:description" content="생년월일만 넣으면 바로 보는 무료 궁합 테스트. 문항 없이 즉시 결과를 확인하고, 원하면 16문항으로 소통·가치관까지 자세히 볼 수 있어요. 재미로 보는 참고용입니다.">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
 
     <!-- Tailwind CSS -->
@@ -459,13 +459,13 @@
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
                     <span class="kick-gradient-text">
 
-                        궁합 테스트
+                        생년월일 궁합 테스트
 
                     </span>
                 </h1>
                 <p class="text-base md:text-lg text-white/80 mb-3">
 
-                    질문으로 보는 재미 궁합
+                    생년월일로 바로 보거나, 16문항으로 자세히
 
                 </p>
                 <div class="kick-glass inline-flex items-center gap-2 px-5 py-2 text-white/90 text-sm">
@@ -477,9 +477,65 @@
             </div>
         </section>
 
-        <!-- Form Section -->
+
+        <!-- Fast path: birthdate only, no questions. Restores the
+             "생년월일 궁합 / 궁합 계산기" search intent on this same URL rather
+             than on a competing landing page. The 16-question quiz below is
+             untouched and remains the detailed path. -->
+        <section id="fast-path" class="py-4 md:py-6">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="kick-glass rounded-2xl p-5 md:p-6">
+                    <h2 class="font-heading text-xl md:text-2xl font-bold text-white text-center mb-1">
+                        생년월일로 바로 궁합 보기
+                    </h2>
+                    <p class="text-sm text-white/70 text-center mb-4">
+                        문항 없이 두 사람의 생년월일만 넣으면 바로 결과가 나와요. 재미로 보는 참고용이에요.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-white/80 mb-2" for="fast-year-a">첫 번째 사람 생년월일</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <input type="number" id="fast-year-a" inputmode="numeric" placeholder="YYYY" min="1920" max="2026" aria-label="첫 번째 사람 출생 연도" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                <input type="number" id="fast-month-a" inputmode="numeric" placeholder="MM" min="1" max="12" aria-label="첫 번째 사람 출생 월" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                <input type="number" id="fast-day-a" inputmode="numeric" placeholder="DD" min="1" max="31" aria-label="첫 번째 사람 출생 일" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                            </div>
+                            <input type="text" id="fast-name-a" maxlength="20" placeholder="이름 (선택)" aria-label="첫 번째 사람 이름 (선택)" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white/80 mb-2" for="fast-year-b">두 번째 사람 생년월일</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <input type="number" id="fast-year-b" inputmode="numeric" placeholder="YYYY" min="1920" max="2026" aria-label="두 번째 사람 출생 연도" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                <input type="number" id="fast-month-b" inputmode="numeric" placeholder="MM" min="1" max="12" aria-label="두 번째 사람 출생 월" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                                <input type="number" id="fast-day-b" inputmode="numeric" placeholder="DD" min="1" max="31" aria-label="두 번째 사람 출생 일" class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                            </div>
+                            <input type="text" id="fast-name-b" maxlength="20" placeholder="이름 (선택)" aria-label="두 번째 사람 이름 (선택)" class="w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent text-center">
+                        </div>
+                    </div>
+                    <p id="fast-error" class="text-red-300 text-sm text-center mt-3 hidden">
+                        두 사람의 생년월일을 모두 정확히 입력해주세요.
+                    </p>
+                    <div class="mt-5 text-center">
+                        <button type="button" id="fast-submit" class="kick-btn kick-btn-primary kick-btn-bounce text-lg py-4 px-10">
+                            &#128153; 생년월일로 궁합 보기
+                        </button>
+                    </div>
+                    <p class="text-xs text-white/50 text-center mt-3">
+                        둘의 관계 스타일까지 더 자세히 알고 싶다면
+                        <a href="#compatibility-form" id="deep-path-link" class="underline text-pink-300">16문항 정밀 궁합 테스트</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Section: 16-question detailed path -->
         <section class="py-4 md:py-6">
             <div class="max-w-3xl mx-auto px-4">
+                <h2 class="font-heading text-xl md:text-2xl font-bold text-white text-center mb-1">
+                    더 자세히: 16문항 정밀 궁합
+                </h2>
+                <p class="text-sm text-white/70 text-center mb-5">
+                    두 사람이 각각 8문항에 답하면 소통·가치관·에너지·정서적 유대·성장까지 영역별로 봅니다.
+                </p>
                 <form id="compatibility-form">
                     <div class="grid md:grid-cols-2 gap-6 relative">
                         <!-- Person A -->
@@ -1121,6 +1177,105 @@
     } else {
         document.documentElement.classList.add('js-ready');
     }
+    </script>
+
+    <!-- Fast path behaviour. Reuses the shipped birthdate engine: the result
+         route already calls calculateCompatibility(personA, personB) whenever
+         the stored payload carries no answer arrays, so this writes the same
+         `compatibility-data` contract and adds no second engine. -->
+    <script>
+    (function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var fastStarted = false, deepStarted = false;
+
+        function track(name, params) {
+            if (window.AnalyticsEvents && typeof window.AnalyticsEvents.track === 'function') {
+                window.AnalyticsEvents.track(name, params || {});
+            }
+        }
+        var BASE = { test_type: 'compatibility', lang: 'ko', variant: 'fast_path' };
+
+        function num(id) {
+            var el = $(id);
+            var n = el ? parseInt(el.value, 10) : NaN;
+            return isNaN(n) ? null : n;
+        }
+        function readPerson(sfx) {
+            var y = num('fast-year-' + sfx), m = num('fast-month-' + sfx), d = num('fast-day-' + sfx);
+            if (!y || !m || !d) return null;
+            // Reject impossible dates (e.g. 2/31) rather than letting Date roll over.
+            var probe = new Date(y, m - 1, d);
+            if (probe.getFullYear() !== y || probe.getMonth() !== m - 1 || probe.getDate() !== d) return null;
+            if (y < 1920 || y > 2026) return null;
+            var nameEl = $('fast-name-' + sfx);
+            // Names are optional here, so blanks are the common case. Supply a
+            // Korean default: the engine's own fallback is 'Person A'/'Person B',
+            // which would put English on a Korean result and share card.
+            var fallback = (sfx === 'a') ? '나' : '상대';
+            return { name: (nameEl && nameEl.value.trim()) || fallback, year: y, month: m, day: d };
+        }
+
+        var fastIds = ['fast-year-a','fast-month-a','fast-day-a','fast-name-a',
+                       'fast-year-b','fast-month-b','fast-day-b','fast-name-b'];
+        fastIds.forEach(function (id) {
+            var el = $(id);
+            if (!el) return;
+            el.addEventListener('input', function () {
+                if (fastStarted) return;
+                fastStarted = true;
+                track('compat_fast_start', BASE);
+            });
+        });
+
+        var submit = $('fast-submit');
+        if (submit) {
+            submit.addEventListener('click', function () {
+                var a = readPerson('a'), b = readPerson('b');
+                var err = $('fast-error');
+                if (!a || !b) {
+                    if (err) err.classList.remove('hidden');
+                    return;
+                }
+                if (err) err.classList.add('hidden');
+                // Replaces the whole item, so a stale 16-answer payload cannot
+                // leak into the fast-path result.
+                localStorage.setItem('compatibility-data', JSON.stringify({
+                    personA: a, personB: b, entry: 'fast'
+                }));
+                track('compat_fast_complete', BASE);
+                setTimeout(function () { window.location.href = '/ko/compatibility/result/'; }, 200);
+            });
+        }
+
+        // Deep path: first answer on the 16-question quiz, or the pointer link.
+        function markDeep() {
+            if (deepStarted) return;
+            deepStarted = true;
+            track('compat_deep_start', { test_type: 'compatibility', lang: 'ko', variant: 'deep_path' });
+        }
+        var form = $('compatibility-form');
+        if (form) form.addEventListener('change', function (e) {
+            if (e.target && e.target.type === 'radio') markDeep();
+        });
+        var deepLink = $('deep-path-link');
+        if (deepLink) deepLink.addEventListener('click', markDeep);
+
+        // Impression: only once the fast path is actually on screen.
+        var section = $('fast-path');
+        if (section && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) {
+                        track('compat_fast_impression', BASE);
+                        io.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+            io.observe(section);
+        } else if (section) {
+            track('compat_fast_impression', BASE);
+        }
+    }());
     </script>
 </body>
 </html>

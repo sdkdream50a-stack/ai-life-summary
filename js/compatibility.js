@@ -1430,7 +1430,11 @@ function getAnimalCouple(animalA, animalB) {
     const pairing = ANIMAL_COUPLES[key] || ANIMAL_COUPLES[reverseKey] || DEFAULT_COUPLE;
 
     // `key` is the shared-entry token: the pairing label, nothing personal.
-    const resolvedKey = ANIMAL_COUPLES[key] ? key : (ANIMAL_COUPLES[reverseKey] ? reverseKey : null);
+    // Only 33 of the 136 possible pairs have a written couple, and the rest fall
+    // through to DEFAULT_COUPLE — most real birthdays land there, so it needs a
+    // token of its own or those results share with no result context at all.
+    const resolvedKey = ANIMAL_COUPLES[key] ? key
+        : (ANIMAL_COUPLES[reverseKey] ? reverseKey : 'unique-duo');
 
     return {
         animalA,

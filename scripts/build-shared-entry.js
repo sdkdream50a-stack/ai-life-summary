@@ -57,6 +57,7 @@ function extractLiteral(file, name) {
 const SOUL_TYPES = extractLiteral('js/soul-types.js', 'SOUL_TYPES');
 const ANIMAL_COUPLES = extractLiteral('js/compatibility.js', 'ANIMAL_COUPLES');
 const ANIMALS = extractLiteral('js/compatibility.js', 'ANIMALS');
+const DEFAULT_COUPLE = extractLiteral('js/compatibility.js', 'DEFAULT_COUPLE');
 const ANIMAL_EMOJI = Object.fromEntries(ANIMALS.map(a => [a.id, a.emoji]));
 
 // ── Per-locale chrome ────────────────────────────────────────────────────
@@ -155,14 +156,23 @@ function tokensFor(product, lang) {
     }));
   }
   if (product === 'compatibility') {
-    return Object.entries(ANIMAL_COUPLES).map(([key, c]) => ({
+    // 'unique-duo' is the token for DEFAULT_COUPLE: 103 of the 136 possible
+    // animal pairings have no written couple and resolve to it.
+    const fallback = [{
+      token: 'unique-duo',
+      emoji: DEFAULT_COUPLE.chemistry || '💫',
+      title: pick(DEFAULT_COUPLE.title, lang, 'Unique Duo'),
+      tagline: '',
+      desc: pick(DEFAULT_COUPLE.desc, lang)
+    }];
+    return fallback.concat(Object.entries(ANIMAL_COUPLES).map(([key, c]) => ({
       token: key,
       // The couple key is `a-b`; emoji live in the ANIMALS table, not on the pair.
       emoji: key.split('-').map(a => ANIMAL_EMOJI[a] || '').join(c.chemistry || '') || '🐾',
       title: pick(c.title, lang, key),
       tagline: '',
       desc: pick(c.desc, lang)
-    }));
+    })));
   }
   if (product === 'age-calculator') {
     return AGE_BANDS.map(b => ({
