@@ -564,7 +564,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=eda9af38"></script>
+<script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6241798439911569" crossorigin="anonymous"></script>
 </head>
@@ -807,7 +807,7 @@
                                 <div id="interstitial-emoji" class="interstitial-emoji"></div>
                                 <h2 id="interstitial-title" class="interstitial-title"></h2>
                                 <p id="interstitial-subtitle" class="interstitial-subtitle"></p>
-                                <button id="interstitial-button" class="interstitial-button"></button>
+                                <button type="button" id="interstitial-button" class="interstitial-button"></button>
                             </div>
                         </div>
                     </div>
@@ -1471,7 +1471,7 @@
                 <h3 class="question-title">${question.text}</h3>
                 <div class="option-grid">
                     ${question.options.map((opt, i) => `
-                        <button class="option-btn" data-value="${opt.value}" data-index="${i}">
+                        <button type="button" class="option-btn" data-value="${opt.value}" data-index="${i}">
                             <span class="option-emoji">${opt.emoji}</span>
                             <span class="option-text">${opt.text}</span>
                         </button>
