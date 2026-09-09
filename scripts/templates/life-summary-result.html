@@ -63,7 +63,6 @@
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../../../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../../../css/radar-chart.css">
     <!-- Stage 5: Monetization -->
@@ -307,6 +306,25 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The sticky action bar (all widths) and the floating navbar (pinned to the
+   bottom on phones) are position:fixed, so the document must reserve the band
+   they occupy; without it the closing body copy and the footer stay trapped
+   underneath them. */
+body { padding-bottom: 96px; }
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
+<style id="result-card-immediate">
+/* Render-critical duplicate of the .instant-reveal rules in
+   css/reveal-animations.css. /css/* is served with a 7-day cache and carries no
+   version query, so a returning visitor can still be holding the old stylesheet;
+   without these two rules the result card keeps .card-back's rotateY(180deg),
+   turns its back face away from the viewer and renders blank. */
+.reveal-card.instant-reveal { transform: none; transition: none; cursor: default; }
+.reveal-card.instant-reveal .card-back { transform: none; }
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Life Summary Result</h1>
@@ -369,40 +387,14 @@
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
-        <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
-            <div class="loading-stage">
-                <div class="loading-spinner"></div>
-                <div class="loading-progress-container">
-                    <div id="loading-progress" class="loading-progress-bar"></div>
-                </div>
-                <p id="loading-text" class="loading-text">
-                    Analyzing your birthday...
-
-                </p>
-                <!-- Stage 5: Interstitial Ad during loading -->
-                <div id="loading-ad-container"></div>
-            </div>
-        </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-8 md:py-10">
             <div class="reveal-stage">
-                <div id="reveal-card" class="reveal-card">
-                    <div id="card-front" class="card-face card-front">
-                        <div class="reveal-icon">?</div>
-                        <p id="reveal-text" class="reveal-text">
-                            TAP TO REVEAL
-
-                        </p>
-                    </div>
+                <div id="reveal-card" class="reveal-card instant-reveal">
                     <div id="card-back" class="card-face card-back">
                         <!-- Soul type will be revealed here -->
                     </div>
-                </div>
-                <div class="tap-hint">
-                    Click or tap the card
-
                 </div>
             </div>
         </section>
@@ -410,12 +402,11 @@
         <!-- Stage C: Character Section -->
         <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
-                <div class="sparkle-container">
-                    <div class="character-container">
-                        <div id="character-image" class="character-image">
+                <div class="sparkle-container"></div>
+                <div class="character-container">
+                <div id="character-image" class="character-image">
                             <!-- Emoji will be displayed here -->
                         </div>
-                    </div>
                 </div>
                 <p id="slogan-text" class="slogan-text"></p>
             </div>
@@ -1126,7 +1117,6 @@
     <script src="/js/reveal-sequence.js"></script>
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
-    <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
@@ -1187,102 +1177,32 @@
         });
 
         // Soul Type Reveal Sequence
-        async function startSoulTypeReveal() {
-            // Stage A: Loading animation
-            await stageA_Loading();
-
-            // Stage B: Card reveal
-            await stageB_Reveal();
-
-            // Stage C: Character appearance
-            await stageC_Character();
-
-            // Stage D: Analysis
+        // The result identity renders immediately; every stage after it is
+        // entrance polish and must never gate access to the result.
+        function startSoulTypeReveal() {
+            stageB_Reveal();
+            stageC_Character();
             stageD_Analysis();
-
-            // Stage E: Share
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
-        async function stageA_Loading() {
-            const loadingStage = document.getElementById('loading-stage');
-            let adWrapper = null;
-
-            // Show interstitial ad during loading (Stage 5: Monetization)
-            if (typeof InterstitialAdManager !== 'undefined') {
-                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
-                    lang: currentLang
-                });
-            }
-
-            return new Promise((resolve) => {
-                // Use enhanced loading with fake terminal animation
-                const loadingManager = new EnhancedLoadingManager({
-                    lang: currentLang,
-                    duration: 4000, // 4 seconds
-                    onComplete: () => {
-                        // Remove ad before transitioning
-                        if (adWrapper) {
-                            InterstitialAdManager.removeLoadingAd(adWrapper);
-                        }
-                        setTimeout(() => {
-                            loadingStage.classList.add('hidden');
-                            resolve();
-                        }, 300);
-                    }
-                });
-
-                loadingManager.run(loadingStage);
-            });
-        }
-
-        // Stage B: Card Reveal (Enhanced timing)
-        async function stageB_Reveal() {
+        // Stage B: Result card, revealed on load
+        // No synthetic wait, no tap gate, no forced scroll: the identity is on
+        // screen as soon as the soul type is known.
+        function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
-            const revealCard = document.getElementById('reveal-card');
             const cardBack = document.getElementById('card-back');
 
+            const typeName = getSoulTypeName(currentSoulType, currentLang);
+            cardBack.innerHTML = `
+                <div class="soul-type-reveal">
+                    <div class="emoji-large">${currentSoulType.emoji}</div>
+                    <div class="type-name">${typeName}</div>
+                </div>
+            `;
+
             revealStage.classList.remove('hidden');
-
-            return new Promise((resolve) => {
-                const flipCard = () => {
-                    revealCard.classList.add('flipped');
-                    // Move card to top position after flip
-                    revealStage.classList.add('card-revealed');
-
-                    // Show soul type on card back with slight delay for dramatic effect
-                    setTimeout(() => {
-                        const typeName = getSoulTypeName(currentSoulType, currentLang);
-                        cardBack.innerHTML = `
-                            <div class="soul-type-reveal">
-                                <div class="emoji-large">${currentSoulType.emoji}</div>
-                                <div class="type-name">${typeName}</div>
-                            </div>
-                        `;
-                    }, 400); // Show content after card is halfway flipped
-
-                    // Play confetti slightly after flip starts
-                    setTimeout(playConfetti, 600);
-
-                    // Smooth scroll down to position the shrunken card and reveal area below
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.3,
-                            behavior: 'smooth'
-                        });
-                    }, 1200);
-
-                    // Wait for card animation before proceeding
-                    setTimeout(resolve, 2000);
-                };
-
-                revealCard.addEventListener('click', flipCard, { once: true });
-                revealCard.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    flipCard();
-                }, { once: true, passive: false });
-            });
+            setTimeout(playConfetti, 300);
         }
 
         // Stage C: Character Appearance
@@ -2398,7 +2318,6 @@
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../../../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../../../css/radar-chart.css">
     <!-- Stage 5: Monetization -->
@@ -2642,6 +2561,25 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The sticky action bar (all widths) and the floating navbar (pinned to the
+   bottom on phones) are position:fixed, so the document must reserve the band
+   they occupy; without it the closing body copy and the footer stay trapped
+   underneath them. */
+body { padding-bottom: 96px; }
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
+<style id="result-card-immediate">
+/* Render-critical duplicate of the .instant-reveal rules in
+   css/reveal-animations.css. /css/* is served with a 7-day cache and carries no
+   version query, so a returning visitor can still be holding the old stylesheet;
+   without these two rules the result card keeps .card-back's rotateY(180deg),
+   turns its back face away from the viewer and renders blank. */
+.reveal-card.instant-reveal { transform: none; transition: none; cursor: default; }
+.reveal-card.instant-reveal .card-back { transform: none; }
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">인생요약 결과</h1>
@@ -2703,43 +2641,14 @@
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
-        <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
-            <div class="loading-stage">
-                <div class="loading-spinner"></div>
-                <div class="loading-progress-container">
-                    <div id="loading-progress" class="loading-progress-bar"></div>
-                </div>
-                <p id="loading-text" class="loading-text">
-
-                    생년월일을 분석하고 있어요...
-
-                </p>
-                <!-- Stage 5: Interstitial Ad during loading -->
-                <div id="loading-ad-container"></div>
-            </div>
-        </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-8 md:py-10">
             <div class="reveal-stage">
-                <div id="reveal-card" class="reveal-card">
-                    <div id="card-front" class="card-face card-front">
-                        <div class="reveal-icon">?</div>
-                        <p id="reveal-text" class="reveal-text">
-
-                            탭해서 확인하기
-
-                        </p>
-                    </div>
+                <div id="reveal-card" class="reveal-card instant-reveal">
                     <div id="card-back" class="card-face card-back">
                         <!-- Soul type will be revealed here -->
                     </div>
-                </div>
-                <div class="tap-hint">
-
-                    카드를 클릭하거나 탭하세요
-
                 </div>
             </div>
         </section>
@@ -2747,12 +2656,11 @@
         <!-- Stage C: Character Section -->
         <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
-                <div class="sparkle-container">
-                    <div class="character-container">
-                        <div id="character-image" class="character-image">
+                <div class="sparkle-container"></div>
+                <div class="character-container">
+                <div id="character-image" class="character-image">
                             <!-- Emoji will be displayed here -->
                         </div>
-                    </div>
                 </div>
                 <p id="slogan-text" class="slogan-text"></p>
             </div>
@@ -3505,7 +3413,6 @@
     <script src="/js/reveal-sequence.js"></script>
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
-    <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
@@ -3566,102 +3473,32 @@
         });
 
         // Soul Type Reveal Sequence
-        async function startSoulTypeReveal() {
-            // Stage A: Loading animation
-            await stageA_Loading();
-
-            // Stage B: Card reveal
-            await stageB_Reveal();
-
-            // Stage C: Character appearance
-            await stageC_Character();
-
-            // Stage D: Analysis
+        // The result identity renders immediately; every stage after it is
+        // entrance polish and must never gate access to the result.
+        function startSoulTypeReveal() {
+            stageB_Reveal();
+            stageC_Character();
             stageD_Analysis();
-
-            // Stage E: Share
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
-        async function stageA_Loading() {
-            const loadingStage = document.getElementById('loading-stage');
-            let adWrapper = null;
-
-            // Show interstitial ad during loading (Stage 5: Monetization)
-            if (typeof InterstitialAdManager !== 'undefined') {
-                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
-                    lang: currentLang
-                });
-            }
-
-            return new Promise((resolve) => {
-                // Use enhanced loading with fake terminal animation
-                const loadingManager = new EnhancedLoadingManager({
-                    lang: currentLang,
-                    duration: 4000, // 4 seconds
-                    onComplete: () => {
-                        // Remove ad before transitioning
-                        if (adWrapper) {
-                            InterstitialAdManager.removeLoadingAd(adWrapper);
-                        }
-                        setTimeout(() => {
-                            loadingStage.classList.add('hidden');
-                            resolve();
-                        }, 300);
-                    }
-                });
-
-                loadingManager.run(loadingStage);
-            });
-        }
-
-        // Stage B: Card Reveal (Enhanced timing)
-        async function stageB_Reveal() {
+        // Stage B: Result card, revealed on load
+        // No synthetic wait, no tap gate, no forced scroll: the identity is on
+        // screen as soon as the soul type is known.
+        function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
-            const revealCard = document.getElementById('reveal-card');
             const cardBack = document.getElementById('card-back');
 
+            const typeName = getSoulTypeName(currentSoulType, currentLang);
+            cardBack.innerHTML = `
+                <div class="soul-type-reveal">
+                    <div class="emoji-large">${currentSoulType.emoji}</div>
+                    <div class="type-name">${typeName}</div>
+                </div>
+            `;
+
             revealStage.classList.remove('hidden');
-
-            return new Promise((resolve) => {
-                const flipCard = () => {
-                    revealCard.classList.add('flipped');
-                    // Move card to top position after flip
-                    revealStage.classList.add('card-revealed');
-
-                    // Show soul type on card back with slight delay for dramatic effect
-                    setTimeout(() => {
-                        const typeName = getSoulTypeName(currentSoulType, currentLang);
-                        cardBack.innerHTML = `
-                            <div class="soul-type-reveal">
-                                <div class="emoji-large">${currentSoulType.emoji}</div>
-                                <div class="type-name">${typeName}</div>
-                            </div>
-                        `;
-                    }, 400); // Show content after card is halfway flipped
-
-                    // Play confetti slightly after flip starts
-                    setTimeout(playConfetti, 600);
-
-                    // Smooth scroll down to position the shrunken card and reveal area below
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.3,
-                            behavior: 'smooth'
-                        });
-                    }, 1200);
-
-                    // Wait for card animation before proceeding
-                    setTimeout(resolve, 2000);
-                };
-
-                revealCard.addEventListener('click', flipCard, { once: true });
-                revealCard.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    flipCard();
-                }, { once: true, passive: false });
-            });
+            setTimeout(playConfetti, 300);
         }
 
         // Stage C: Character Appearance
@@ -4781,7 +4618,6 @@
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../../../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../../../css/radar-chart.css">
     <!-- Stage 5: Monetization -->
@@ -5025,6 +4861,25 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The sticky action bar (all widths) and the floating navbar (pinned to the
+   bottom on phones) are position:fixed, so the document must reserve the band
+   they occupy; without it the closing body copy and the footer stay trapped
+   underneath them. */
+body { padding-bottom: 96px; }
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
+<style id="result-card-immediate">
+/* Render-critical duplicate of the .instant-reveal rules in
+   css/reveal-animations.css. /css/* is served with a 7-day cache and carries no
+   version query, so a returning visitor can still be holding the old stylesheet;
+   without these two rules the result card keeps .card-back's rotateY(180deg),
+   turns its back face away from the viewer and renders blank. */
+.reveal-card.instant-reveal { transform: none; transition: none; cursor: default; }
+.reveal-card.instant-reveal .card-back { transform: none; }
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">ライフサマリー結果</h1>
@@ -5086,43 +4941,14 @@
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
-        <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
-            <div class="loading-stage">
-                <div class="loading-spinner"></div>
-                <div class="loading-progress-container">
-                    <div id="loading-progress" class="loading-progress-bar"></div>
-                </div>
-                <p id="loading-text" class="loading-text">
-
-                    誕生日を分析しています...
-
-                </p>
-                <!-- Stage 5: Interstitial Ad during loading -->
-                <div id="loading-ad-container"></div>
-            </div>
-        </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-8 md:py-10">
             <div class="reveal-stage">
-                <div id="reveal-card" class="reveal-card">
-                    <div id="card-front" class="card-face card-front">
-                        <div class="reveal-icon">?</div>
-                        <p id="reveal-text" class="reveal-text">
-
-                            タップして確認
-
-                        </p>
-                    </div>
+                <div id="reveal-card" class="reveal-card instant-reveal">
                     <div id="card-back" class="card-face card-back">
                         <!-- Soul type will be revealed here -->
                     </div>
-                </div>
-                <div class="tap-hint">
-
-                    カードをクリックまたはタップ
-
                 </div>
             </div>
         </section>
@@ -5130,12 +4956,11 @@
         <!-- Stage C: Character Section -->
         <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
-                <div class="sparkle-container">
-                    <div class="character-container">
-                        <div id="character-image" class="character-image">
+                <div class="sparkle-container"></div>
+                <div class="character-container">
+                <div id="character-image" class="character-image">
                             <!-- Emoji will be displayed here -->
                         </div>
-                    </div>
                 </div>
                 <p id="slogan-text" class="slogan-text"></p>
             </div>
@@ -5886,7 +5711,6 @@
     <script src="/js/reveal-sequence.js"></script>
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
-    <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
@@ -5947,102 +5771,32 @@
         });
 
         // Soul Type Reveal Sequence
-        async function startSoulTypeReveal() {
-            // Stage A: Loading animation
-            await stageA_Loading();
-
-            // Stage B: Card reveal
-            await stageB_Reveal();
-
-            // Stage C: Character appearance
-            await stageC_Character();
-
-            // Stage D: Analysis
+        // The result identity renders immediately; every stage after it is
+        // entrance polish and must never gate access to the result.
+        function startSoulTypeReveal() {
+            stageB_Reveal();
+            stageC_Character();
             stageD_Analysis();
-
-            // Stage E: Share
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
-        async function stageA_Loading() {
-            const loadingStage = document.getElementById('loading-stage');
-            let adWrapper = null;
-
-            // Show interstitial ad during loading (Stage 5: Monetization)
-            if (typeof InterstitialAdManager !== 'undefined') {
-                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
-                    lang: currentLang
-                });
-            }
-
-            return new Promise((resolve) => {
-                // Use enhanced loading with fake terminal animation
-                const loadingManager = new EnhancedLoadingManager({
-                    lang: currentLang,
-                    duration: 4000, // 4 seconds
-                    onComplete: () => {
-                        // Remove ad before transitioning
-                        if (adWrapper) {
-                            InterstitialAdManager.removeLoadingAd(adWrapper);
-                        }
-                        setTimeout(() => {
-                            loadingStage.classList.add('hidden');
-                            resolve();
-                        }, 300);
-                    }
-                });
-
-                loadingManager.run(loadingStage);
-            });
-        }
-
-        // Stage B: Card Reveal (Enhanced timing)
-        async function stageB_Reveal() {
+        // Stage B: Result card, revealed on load
+        // No synthetic wait, no tap gate, no forced scroll: the identity is on
+        // screen as soon as the soul type is known.
+        function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
-            const revealCard = document.getElementById('reveal-card');
             const cardBack = document.getElementById('card-back');
 
+            const typeName = getSoulTypeName(currentSoulType, currentLang);
+            cardBack.innerHTML = `
+                <div class="soul-type-reveal">
+                    <div class="emoji-large">${currentSoulType.emoji}</div>
+                    <div class="type-name">${typeName}</div>
+                </div>
+            `;
+
             revealStage.classList.remove('hidden');
-
-            return new Promise((resolve) => {
-                const flipCard = () => {
-                    revealCard.classList.add('flipped');
-                    // Move card to top position after flip
-                    revealStage.classList.add('card-revealed');
-
-                    // Show soul type on card back with slight delay for dramatic effect
-                    setTimeout(() => {
-                        const typeName = getSoulTypeName(currentSoulType, currentLang);
-                        cardBack.innerHTML = `
-                            <div class="soul-type-reveal">
-                                <div class="emoji-large">${currentSoulType.emoji}</div>
-                                <div class="type-name">${typeName}</div>
-                            </div>
-                        `;
-                    }, 400); // Show content after card is halfway flipped
-
-                    // Play confetti slightly after flip starts
-                    setTimeout(playConfetti, 600);
-
-                    // Smooth scroll down to position the shrunken card and reveal area below
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.3,
-                            behavior: 'smooth'
-                        });
-                    }, 1200);
-
-                    // Wait for card animation before proceeding
-                    setTimeout(resolve, 2000);
-                };
-
-                revealCard.addEventListener('click', flipCard, { once: true });
-                revealCard.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    flipCard();
-                }, { once: true, passive: false });
-            });
+            setTimeout(playConfetti, 300);
         }
 
         // Stage C: Character Appearance
@@ -7162,7 +6916,6 @@
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../../../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../../../css/radar-chart.css">
     <!-- Stage 5: Monetization -->
@@ -7406,6 +7159,25 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The sticky action bar (all widths) and the floating navbar (pinned to the
+   bottom on phones) are position:fixed, so the document must reserve the band
+   they occupy; without it the closing body copy and the footer stay trapped
+   underneath them. */
+body { padding-bottom: 96px; }
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
+<style id="result-card-immediate">
+/* Render-critical duplicate of the .instant-reveal rules in
+   css/reveal-animations.css. /css/* is served with a 7-day cache and carries no
+   version query, so a returning visitor can still be holding the old stylesheet;
+   without these two rules the result card keeps .card-back's rotateY(180deg),
+   turns its back face away from the viewer and renders blank. */
+.reveal-card.instant-reveal { transform: none; transition: none; cursor: default; }
+.reveal-card.instant-reveal .card-back { transform: none; }
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">人生总结结果</h1>
@@ -7467,43 +7239,14 @@
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
-        <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
-            <div class="loading-stage">
-                <div class="loading-spinner"></div>
-                <div class="loading-progress-container">
-                    <div id="loading-progress" class="loading-progress-bar"></div>
-                </div>
-                <p id="loading-text" class="loading-text">
-
-                    正在分析您的生日...
-
-                </p>
-                <!-- Stage 5: Interstitial Ad during loading -->
-                <div id="loading-ad-container"></div>
-            </div>
-        </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-8 md:py-10">
             <div class="reveal-stage">
-                <div id="reveal-card" class="reveal-card">
-                    <div id="card-front" class="card-face card-front">
-                        <div class="reveal-icon">?</div>
-                        <p id="reveal-text" class="reveal-text">
-
-                            点击查看
-
-                        </p>
-                    </div>
+                <div id="reveal-card" class="reveal-card instant-reveal">
                     <div id="card-back" class="card-face card-back">
                         <!-- Soul type will be revealed here -->
                     </div>
-                </div>
-                <div class="tap-hint">
-
-                    点击卡片
-
                 </div>
             </div>
         </section>
@@ -7511,12 +7254,11 @@
         <!-- Stage C: Character Section -->
         <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
-                <div class="sparkle-container">
-                    <div class="character-container">
-                        <div id="character-image" class="character-image">
+                <div class="sparkle-container"></div>
+                <div class="character-container">
+                <div id="character-image" class="character-image">
                             <!-- Emoji will be displayed here -->
                         </div>
-                    </div>
                 </div>
                 <p id="slogan-text" class="slogan-text"></p>
             </div>
@@ -8256,7 +7998,6 @@
     <script src="/js/reveal-sequence.js"></script>
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
-    <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
@@ -8317,102 +8058,32 @@
         });
 
         // Soul Type Reveal Sequence
-        async function startSoulTypeReveal() {
-            // Stage A: Loading animation
-            await stageA_Loading();
-
-            // Stage B: Card reveal
-            await stageB_Reveal();
-
-            // Stage C: Character appearance
-            await stageC_Character();
-
-            // Stage D: Analysis
+        // The result identity renders immediately; every stage after it is
+        // entrance polish and must never gate access to the result.
+        function startSoulTypeReveal() {
+            stageB_Reveal();
+            stageC_Character();
             stageD_Analysis();
-
-            // Stage E: Share
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
-        async function stageA_Loading() {
-            const loadingStage = document.getElementById('loading-stage');
-            let adWrapper = null;
-
-            // Show interstitial ad during loading (Stage 5: Monetization)
-            if (typeof InterstitialAdManager !== 'undefined') {
-                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
-                    lang: currentLang
-                });
-            }
-
-            return new Promise((resolve) => {
-                // Use enhanced loading with fake terminal animation
-                const loadingManager = new EnhancedLoadingManager({
-                    lang: currentLang,
-                    duration: 4000, // 4 seconds
-                    onComplete: () => {
-                        // Remove ad before transitioning
-                        if (adWrapper) {
-                            InterstitialAdManager.removeLoadingAd(adWrapper);
-                        }
-                        setTimeout(() => {
-                            loadingStage.classList.add('hidden');
-                            resolve();
-                        }, 300);
-                    }
-                });
-
-                loadingManager.run(loadingStage);
-            });
-        }
-
-        // Stage B: Card Reveal (Enhanced timing)
-        async function stageB_Reveal() {
+        // Stage B: Result card, revealed on load
+        // No synthetic wait, no tap gate, no forced scroll: the identity is on
+        // screen as soon as the soul type is known.
+        function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
-            const revealCard = document.getElementById('reveal-card');
             const cardBack = document.getElementById('card-back');
 
+            const typeName = getSoulTypeName(currentSoulType, currentLang);
+            cardBack.innerHTML = `
+                <div class="soul-type-reveal">
+                    <div class="emoji-large">${currentSoulType.emoji}</div>
+                    <div class="type-name">${typeName}</div>
+                </div>
+            `;
+
             revealStage.classList.remove('hidden');
-
-            return new Promise((resolve) => {
-                const flipCard = () => {
-                    revealCard.classList.add('flipped');
-                    // Move card to top position after flip
-                    revealStage.classList.add('card-revealed');
-
-                    // Show soul type on card back with slight delay for dramatic effect
-                    setTimeout(() => {
-                        const typeName = getSoulTypeName(currentSoulType, currentLang);
-                        cardBack.innerHTML = `
-                            <div class="soul-type-reveal">
-                                <div class="emoji-large">${currentSoulType.emoji}</div>
-                                <div class="type-name">${typeName}</div>
-                            </div>
-                        `;
-                    }, 400); // Show content after card is halfway flipped
-
-                    // Play confetti slightly after flip starts
-                    setTimeout(playConfetti, 600);
-
-                    // Smooth scroll down to position the shrunken card and reveal area below
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.3,
-                            behavior: 'smooth'
-                        });
-                    }, 1200);
-
-                    // Wait for card animation before proceeding
-                    setTimeout(resolve, 2000);
-                };
-
-                revealCard.addEventListener('click', flipCard, { once: true });
-                revealCard.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    flipCard();
-                }, { once: true, passive: false });
-            });
+            setTimeout(playConfetti, 300);
         }
 
         // Stage C: Character Appearance
@@ -9532,7 +9203,6 @@
     <!-- Stage 2: Reveal Animations -->
     <link rel="stylesheet" href="../../../css/reveal-animations.css">
     <!-- Stage 1: Enhanced Loading -->
-    <link rel="stylesheet" href="../../../css/loading-enhanced.css">
     <!-- Stage 2: Radar Chart -->
     <link rel="stylesheet" href="../../../css/radar-chart.css">
     <!-- Stage 5: Monetization -->
@@ -9776,6 +9446,25 @@
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
+<style id="floating-bar-safe-space">
+/* The sticky action bar (all widths) and the floating navbar (pinned to the
+   bottom on phones) are position:fixed, so the document must reserve the band
+   they occupy; without it the closing body copy and the footer stay trapped
+   underneath them. */
+body { padding-bottom: 96px; }
+@media screen and (max-width: 768px) {
+    body { padding-bottom: 112px; }
+}
+</style>
+<style id="result-card-immediate">
+/* Render-critical duplicate of the .instant-reveal rules in
+   css/reveal-animations.css. /css/* is served with a 7-day cache and carries no
+   version query, so a returning visitor can still be holding the old stylesheet;
+   without these two rules the result card keeps .card-back's rotateY(180deg),
+   turns its back face away from the viewer and renders blank. */
+.reveal-card.instant-reveal { transform: none; transition: none; cursor: default; }
+.reveal-card.instant-reveal .card-back { transform: none; }
+</style>
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
   <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Resultado de Resumen de Vida</h1>
@@ -9837,40 +9526,14 @@
         <!-- Confetti Container -->
         <div id="confetti-container"></div>
 
-        <!-- Stage A: Loading Section -->
-        <section id="loading-stage" class="py-16 md:py-20 min-h-[60vh] flex items-center justify-center">
-            <div class="loading-stage">
-                <div class="loading-spinner"></div>
-                <div class="loading-progress-container">
-                    <div id="loading-progress" class="loading-progress-bar"></div>
-                </div>
-                <p id="loading-text" class="loading-text">
-
-                    Analizando tu fecha de nacimiento...
-                </p>
-                <!-- Stage 5: Interstitial Ad during loading -->
-                <div id="loading-ad-container"></div>
-            </div>
-        </section>
 
         <!-- Stage B: Reveal Section -->
-        <section id="reveal-stage" class="py-16 md:py-20 hidden">
+        <section id="reveal-stage" class="py-8 md:py-10">
             <div class="reveal-stage">
-                <div id="reveal-card" class="reveal-card">
-                    <div id="card-front" class="card-face card-front">
-                        <div class="reveal-icon">?</div>
-                        <p id="reveal-text" class="reveal-text">
-
-                            TOCA PARA REVELAR
-                        </p>
-                    </div>
+                <div id="reveal-card" class="reveal-card instant-reveal">
                     <div id="card-back" class="card-face card-back">
                         <!-- Soul type will be revealed here -->
                     </div>
-                </div>
-                <div class="tap-hint">
-
-                    Haz clic o toca la tarjeta
                 </div>
             </div>
         </section>
@@ -9878,12 +9541,11 @@
         <!-- Stage C: Character Section -->
         <section id="character-stage" class="py-8 hidden">
             <div class="character-stage">
-                <div class="sparkle-container">
-                    <div class="character-container">
-                        <div id="character-image" class="character-image">
+                <div class="sparkle-container"></div>
+                <div class="character-container">
+                <div id="character-image" class="character-image">
                             <!-- Emoji will be displayed here -->
                         </div>
-                    </div>
                 </div>
                 <p id="slogan-text" class="slogan-text"></p>
             </div>
@@ -10602,7 +10264,6 @@
     <script src="/js/reveal-sequence.js"></script>
     <script src="/js/share-image-generator.js"></script>
     <!-- Stage 1: Enhanced Loading -->
-    <script src="/js/loading-enhanced.js"></script>
     <!-- Stage 2: Radar Chart & Viral Image -->
     <script src="/js/radar-chart.js"></script>
     <!-- Stage 4: Localization -->
@@ -10663,102 +10324,32 @@
         });
 
         // Soul Type Reveal Sequence
-        async function startSoulTypeReveal() {
-            // Stage A: Loading animation
-            await stageA_Loading();
-
-            // Stage B: Card reveal
-            await stageB_Reveal();
-
-            // Stage C: Character appearance
-            await stageC_Character();
-
-            // Stage D: Analysis
+        // The result identity renders immediately; every stage after it is
+        // entrance polish and must never gate access to the result.
+        function startSoulTypeReveal() {
+            stageB_Reveal();
+            stageC_Character();
             stageD_Analysis();
-
-            // Stage E: Share
             stageE_Share();
         }
 
-        // Stage A: Loading (Enhanced with Fake Terminal Animation + Interstitial Ad)
-        async function stageA_Loading() {
-            const loadingStage = document.getElementById('loading-stage');
-            let adWrapper = null;
-
-            // Show interstitial ad during loading (Stage 5: Monetization)
-            if (typeof InterstitialAdManager !== 'undefined') {
-                adWrapper = InterstitialAdManager.createLoadingAd('loading-ad-container', {
-                    lang: currentLang
-                });
-            }
-
-            return new Promise((resolve) => {
-                // Use enhanced loading with fake terminal animation
-                const loadingManager = new EnhancedLoadingManager({
-                    lang: currentLang,
-                    duration: 4000, // 4 seconds
-                    onComplete: () => {
-                        // Remove ad before transitioning
-                        if (adWrapper) {
-                            InterstitialAdManager.removeLoadingAd(adWrapper);
-                        }
-                        setTimeout(() => {
-                            loadingStage.classList.add('hidden');
-                            resolve();
-                        }, 300);
-                    }
-                });
-
-                loadingManager.run(loadingStage);
-            });
-        }
-
-        // Stage B: Card Reveal (Enhanced timing)
-        async function stageB_Reveal() {
+        // Stage B: Result card, revealed on load
+        // No synthetic wait, no tap gate, no forced scroll: the identity is on
+        // screen as soon as the soul type is known.
+        function stageB_Reveal() {
             const revealStage = document.getElementById('reveal-stage');
-            const revealCard = document.getElementById('reveal-card');
             const cardBack = document.getElementById('card-back');
 
+            const typeName = getSoulTypeName(currentSoulType, currentLang);
+            cardBack.innerHTML = `
+                <div class="soul-type-reveal">
+                    <div class="emoji-large">${currentSoulType.emoji}</div>
+                    <div class="type-name">${typeName}</div>
+                </div>
+            `;
+
             revealStage.classList.remove('hidden');
-
-            return new Promise((resolve) => {
-                const flipCard = () => {
-                    revealCard.classList.add('flipped');
-                    // Move card to top position after flip
-                    revealStage.classList.add('card-revealed');
-
-                    // Show soul type on card back with slight delay for dramatic effect
-                    setTimeout(() => {
-                        const typeName = getSoulTypeName(currentSoulType, currentLang);
-                        cardBack.innerHTML = `
-                            <div class="soul-type-reveal">
-                                <div class="emoji-large">${currentSoulType.emoji}</div>
-                                <div class="type-name">${typeName}</div>
-                            </div>
-                        `;
-                    }, 400); // Show content after card is halfway flipped
-
-                    // Play confetti slightly after flip starts
-                    setTimeout(playConfetti, 600);
-
-                    // Smooth scroll down to position the shrunken card and reveal area below
-                    setTimeout(() => {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.3,
-                            behavior: 'smooth'
-                        });
-                    }, 1200);
-
-                    // Wait for card animation before proceeding
-                    setTimeout(resolve, 2000);
-                };
-
-                revealCard.addEventListener('click', flipCard, { once: true });
-                revealCard.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                    flipCard();
-                }, { once: true, passive: false });
-            });
+            setTimeout(playConfetti, 300);
         }
 
         // Stage C: Character Appearance
