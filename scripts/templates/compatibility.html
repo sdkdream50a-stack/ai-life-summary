@@ -2213,9 +2213,21 @@
         var $ = function (id) { return document.getElementById(id); };
         var fastStarted = false, deepStarted = false;
 
-        function track(name, params) {
-            if (window.AnalyticsEvents && typeof window.AnalyticsEvents.track === 'function') {
-                window.AnalyticsEvents.track(name, params || {});
+        // Send only once GA4 is actually configured. compat_fast_impression fires
+        // on load, before the consent banner is answered; handing it to
+        // AnalyticsEvents.track() then puts it in the pre-consent queue, and that
+        // queued copy did not survive to the wire — measured on production, the
+        // three post-consent events arrived and this one never did. Waiting for
+        // window.gaLoaded keeps the consent gate intact (nothing is sent if the
+        // visitor declines) while making the impression as reliable as the rest.
+        function track(name, params, tries) {
+            tries = tries || 0;
+            var ready = window.AnalyticsEvents &&
+                        typeof window.AnalyticsEvents.track === 'function' &&
+                        window.gaLoaded;
+            if (ready) { window.AnalyticsEvents.track(name, params || {}); return; }
+            if (tries < 600) {   // ~60s, then give up silently
+                setTimeout(function () { track(name, params, tries + 1); }, 100);
             }
         }
         var BASE = { test_type: 'compatibility', lang: 'ko', variant: 'fast_path' };
