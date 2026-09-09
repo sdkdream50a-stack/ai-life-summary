@@ -732,7 +732,7 @@
 </footer>
 <!-- Scripts -->
 <script src="/js/compatibility.js"></script>
-<script src="/js/compatibility-share.js?v=aded9cd3"></script>
+<script src="/js/compatibility-share.js?v=df8f9d47"></script>
 <script src="/js/compatibility-image.js"></script>
 <script src="/js/result-enhancements.js"></script>
 <script src="/js/viral-link.js?v=98614de5"></script>
@@ -1144,7 +1144,7 @@
                 // Generate viral comparison link
                 if (userData.year && userData.month && userData.day) {
                     viralLink = ViralLinkManager.generateComparisonLink(userData, {
-                        baseUrl: 'https://smartaitest.com/compatibility/',
+                        baseUrl: `https://smartaitest.com/${document.documentElement.lang || 'en'}/compatibility/`,
                         source: 'result_cta'
                     });
                 }
@@ -1159,7 +1159,15 @@
 
     // Viral CTA button handlers
     function getViralLink() {
-        // Use currentViralLink or fallback to current page URL
+        // Prefer the shared-entry page for this animal couple: it shows the
+        // recipient the result before inviting them in. The result route can't
+        // do that — it reads *their* storage and bounces them to a blank quiz.
+        if (typeof generateShareUrl === 'function') {
+            try {
+                const shared = generateShareUrl();
+                if (shared) return shared;
+            } catch (e) {}
+        }
         return window.currentViralLink || window.location.href;
     }
 

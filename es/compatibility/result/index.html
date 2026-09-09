@@ -993,7 +993,7 @@
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'compatibility'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='compatibility-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
-                window.vb_copyLink=function(){gtagSafe('share_copy_link',{tool:'compatibility'});var u=window.location.href;var ok=function(){showToast('✓ Link copied');};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){window.prompt('Copy:',u);});}else{window.prompt('Copy:',u);ok();}};
+                window.vb_copyLink=function(){gtagSafe('share_copy_link',{tool:'compatibility'});var u=(function(){try{if(typeof generateShareUrl==='function'){var s=generateShareUrl(window.ageResults||window.compatibilityResults);if(s)return s;}if(typeof siteUrl==='function'){var l=siteUrl();if(l)return l;}}catch(e){}return window.location.href;}());var ok=function(){showToast('✓ Link copied');};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){window.prompt('Copy:',u);});}else{window.prompt('Copy:',u);ok();}};
                 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#vb-friend-cta');if(a)gtagSafe('share_invite_friend',{tool:'compatibility'});});
             })();
         </script>
@@ -1079,7 +1079,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=aded9cd3"></script>
+    <script src="/js/compatibility-share.js?v=df8f9d47"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -1535,7 +1535,7 @@
                 // Generate viral comparison link
                 if (userData.year && userData.month && userData.day) {
                     viralLink = ViralLinkManager.generateComparisonLink(userData, {
-                        baseUrl: 'https://smartaitest.com/compatibility/',
+                        baseUrl: `https://smartaitest.com/${document.documentElement.lang || 'en'}/compatibility/`,
                         source: 'result_cta'
                     });
                 }
@@ -1550,7 +1550,15 @@
 
     // Viral CTA button handlers
     function getViralLink() {
-        // Use currentViralLink or fallback to current page URL
+        // Prefer the shared-entry page for this animal couple: it shows the
+        // recipient the result before inviting them in. The result route can't
+        // do that — it reads *their* storage and bounces them to a blank quiz.
+        if (typeof generateShareUrl === 'function') {
+            try {
+                const shared = generateShareUrl();
+                if (shared) return shared;
+            } catch (e) {}
+        }
         return window.currentViralLink || window.location.href;
     }
 

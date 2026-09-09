@@ -50,6 +50,81 @@ const COLOR_SCHEMES = {
 };
 
 // ============================================
+// SHARE CARD COPY (per locale)
+// ============================================
+// The card language follows the page, not localStorage: a /ko/ result has to
+// render a Korean card even for a visitor whose stored preference is English.
+// Same rule the on-page result copy already follows (33dcf68).
+
+const AGE_CARD_COPY = {
+    en: {
+        title: 'My AI Age', realAge: 'Real Age', yearsOld: 'years old',
+        mentalAge: 'Mental Age', energyAge: 'Energy Age',
+        mental: 'Mental', energy: 'Energy',
+        younger: n => `${n}y younger`, older: n => `${n}y older`,
+        sumYoung: 'Younger than my age!', sumBalanced: 'Perfectly balanced!',
+        sumWise: 'Wise soul energy!',
+        hashtags: '#MyAIAge  #AgeCalculator',
+        comparison: 'Age Comparison', you: 'You', friend: 'Friend', real: 'Real'
+    },
+    ko: {
+        title: '나의 AI 나이', realAge: '실제 나이', yearsOld: '세',
+        mentalAge: '정신 나이', energyAge: '에너지 나이',
+        mental: '정신', energy: '에너지',
+        younger: n => `${n}세 젊음`, older: n => `${n}세 성숙`,
+        sumYoung: '나이보다 훨씬 젊어요!', sumBalanced: '완벽한 균형이에요!',
+        sumWise: '지혜로운 영혼이네요!',
+        hashtags: '#나의AI나이  #나이계산기',
+        comparison: '나이 비교', you: '나', friend: '친구', real: '실제'
+    },
+    ja: {
+        title: '私のAI年齢', realAge: '実年齢', yearsOld: '歳',
+        mentalAge: '精神年齢', energyAge: 'エネルギー年齢',
+        mental: '精神', energy: 'エネルギー',
+        younger: n => `${n}歳若い`, older: n => `${n}歳上`,
+        sumYoung: '年齢よりずっと若い!', sumBalanced: '完璧なバランス!',
+        sumWise: '賢い魂のエネルギー!',
+        hashtags: '#私のAI年齢  #年齢計算機',
+        comparison: '年齢比較', you: 'あなた', friend: '友達', real: '実年齢'
+    },
+    zh: {
+        title: '我的AI年龄', realAge: '实际年龄', yearsOld: '岁',
+        mentalAge: '心理年龄', energyAge: '活力年龄',
+        mental: '心理', energy: '活力',
+        younger: n => `年轻${n}岁`, older: n => `年长${n}岁`,
+        sumYoung: '比实际年龄年轻得多!', sumBalanced: '完美平衡!',
+        sumWise: '智慧的灵魂!',
+        hashtags: '#我的AI年龄  #年龄计算器',
+        comparison: '年龄对比', you: '我', friend: '朋友', real: '实际'
+    },
+    es: {
+        title: 'Mi edad IA', realAge: 'Edad real', yearsOld: 'años',
+        mentalAge: 'Edad mental', energyAge: 'Edad de energía',
+        mental: 'Mental', energy: 'Energía',
+        younger: n => `${n} años menos`, older: n => `${n} años más`,
+        sumYoung: '¡Más joven que mi edad!', sumBalanced: '¡Perfectamente equilibrado!',
+        sumWise: '¡Energía de alma sabia!',
+        hashtags: '#MiEdadIA  #CalculadoraDeEdad',
+        comparison: 'Comparación de edad', you: 'Tú', friend: 'Amigo', real: 'Real'
+    }
+};
+
+function ageCardLang() {
+    const l = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return AGE_CARD_COPY[l] ? l : 'en';
+}
+
+function ageCopy() {
+    return AGE_CARD_COPY[ageCardLang()];
+}
+
+// The watermark has to keep the locale prefix. Without it the printed URL
+// 301s to /en/ and a Korean recipient of a Korean card lands on English.
+function ageCardUrl() {
+    return `smartaitest.com/${ageCardLang()}/age-calculator`;
+}
+
+// ============================================
 // MAIN IMAGE GENERATION FUNCTIONS
 // ============================================
 
@@ -155,7 +230,7 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     ctx.textAlign = 'center';
 
     ctx.font = 'bold 72px Poppins, sans-serif';
-    ctx.fillText('My AI Age', centerX, 200);
+    ctx.fillText(ageCopy().title, centerX, 200);
 
     ctx.font = '36px Inter, sans-serif';
     ctx.globalAlpha = 0.8;
@@ -176,7 +251,7 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     // Real Age
     ctx.fillStyle = '#374151';
     ctx.font = '32px Inter, sans-serif';
-    ctx.fillText('Real Age', centerX, cardY + 80);
+    ctx.fillText(ageCopy().realAge, centerX, cardY + 80);
 
     ctx.fillStyle = '#111827';
     ctx.font = 'bold 120px Poppins, sans-serif';
@@ -184,7 +259,7 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
 
     ctx.fillStyle = '#6b7280';
     ctx.font = '28px Inter, sans-serif';
-    ctx.fillText('years old', centerX, cardY + 270);
+    ctx.fillText(ageCopy().yearsOld, centerX, cardY + 270);
 
     // Divider
     ctx.strokeStyle = '#e5e7eb';
@@ -197,24 +272,24 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     // Mental Age
     const mentalGap = results.mentalAge - results.realAge;
     drawAgeBox(ctx, cardX + 50, cardY + 370, 380, 300,
-        'Mental Age', results.mentalAge, mentalGap,
+        ageCopy().mentalAge, results.mentalAge, mentalGap,
         ['#8b5cf6', '#6366f1'], '#8b5cf6');
 
     // Energy Age
     const energyGap = results.energyAge - results.realAge;
     drawAgeBox(ctx, cardX + cardWidth - 430, cardY + 370, 380, 300,
-        'Energy Age', results.energyAge, energyGap,
+        ageCopy().energyAge, results.energyAge, energyGap,
         ['#10b981', '#06b6d4'], '#10b981');
 
     // Summary text
     const avgGap = (mentalGap + energyGap) / 2;
     let summaryText;
     if (avgGap <= -5) {
-        summaryText = "Younger than my age!";
+        summaryText = ageCopy().sumYoung;
     } else if (avgGap <= 2) {
-        summaryText = "Perfectly balanced!";
+        summaryText = ageCopy().sumBalanced;
     } else {
-        summaryText = "Wise soul energy!";
+        summaryText = ageCopy().sumWise;
     }
 
     ctx.fillStyle = '#374151';
@@ -224,8 +299,9 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     // Gap summary
     ctx.font = '28px Inter, sans-serif';
     ctx.fillStyle = '#6b7280';
-    const mentalText = mentalGap <= 0 ? `Mental: ${Math.abs(mentalGap)}y younger` : `Mental: ${mentalGap}y older`;
-    const energyText = energyGap <= 0 ? `Energy: ${Math.abs(energyGap)}y younger` : `Energy: ${energyGap}y older`;
+    const c = ageCopy();
+    const mentalText = `${c.mental}: ` + (mentalGap <= 0 ? c.younger(Math.abs(mentalGap)) : c.older(mentalGap));
+    const energyText = `${c.energy}: ` + (energyGap <= 0 ? c.younger(Math.abs(energyGap)) : c.older(energyGap));
     ctx.fillText(`${mentalText}  |  ${energyText}`, centerX, cardY + 820);
 
     // Emoji decoration
@@ -235,12 +311,12 @@ async function drawStoryContent(ctx, config, results, colorScheme) {
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '28px Inter, sans-serif';
-    ctx.fillText('#MyAIAge  #AgeCalculator', centerX, 1600);
+    ctx.fillText(ageCopy().hashtags, centerX, 1600);
 
     // URL
     ctx.font = '24px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/age-calculator', centerX, 1660);
+    ctx.fillText(ageCardUrl(), centerX, 1660);
     ctx.globalAlpha = 1;
 }
 
@@ -255,7 +331,7 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
     ctx.textAlign = 'center';
 
     ctx.font = 'bold 56px Poppins, sans-serif';
-    ctx.fillText('My AI Age', centerX, 100);
+    ctx.fillText(ageCopy().title, centerX, 100);
 
     // Main card
     const cardWidth = 950;
@@ -270,7 +346,7 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
     // Real Age - compact
     ctx.fillStyle = '#374151';
     ctx.font = '26px Inter, sans-serif';
-    ctx.fillText('Real Age', centerX, cardY + 50);
+    ctx.fillText(ageCopy().realAge, centerX, cardY + 50);
 
     ctx.fillStyle = '#111827';
     ctx.font = 'bold 80px Poppins, sans-serif';
@@ -278,7 +354,7 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
 
     ctx.fillStyle = '#6b7280';
     ctx.font = '22px Inter, sans-serif';
-    ctx.fillText('years old', centerX, cardY + 175);
+    ctx.fillText(ageCopy().yearsOld, centerX, cardY + 175);
 
     // Divider
     ctx.strokeStyle = '#e5e7eb';
@@ -291,19 +367,19 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
     // Mental Age - compact
     const mentalGap = results.mentalAge - results.realAge;
     drawAgeBoxCompact(ctx, cardX + 40, cardY + 240, 420, 220,
-        'Mental Age', results.mentalAge, mentalGap,
+        ageCopy().mentalAge, results.mentalAge, mentalGap,
         ['#8b5cf6', '#6366f1']);
 
     // Energy Age - compact
     const energyGap = results.energyAge - results.realAge;
     drawAgeBoxCompact(ctx, cardX + cardWidth - 460, cardY + 240, 420, 220,
-        'Energy Age', results.energyAge, energyGap,
+        ageCopy().energyAge, results.energyAge, energyGap,
         ['#10b981', '#06b6d4']);
 
     // Summary
     const avgGap = (mentalGap + energyGap) / 2;
-    let summaryText = avgGap <= -5 ? "Younger than my age!" :
-                      avgGap <= 2 ? "Perfectly balanced!" : "Wise soul energy!";
+    let summaryText = avgGap <= -5 ? ageCopy().sumYoung :
+                      avgGap <= 2 ? ageCopy().sumBalanced : ageCopy().sumWise;
 
     ctx.fillStyle = '#374151';
     ctx.font = 'bold 32px Poppins, sans-serif';
@@ -316,11 +392,11 @@ async function drawSquareContent(ctx, config, results, colorScheme) {
     // Bottom info
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '24px Inter, sans-serif';
-    ctx.fillText('#MyAIAge  #AgeCalculator', centerX, 980);
+    ctx.fillText(ageCopy().hashtags, centerX, 980);
 
     ctx.font = '20px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/age-calculator', centerX, 1020);
+    ctx.fillText(ageCardUrl(), centerX, 1020);
     ctx.globalAlpha = 1;
 }
 
@@ -351,7 +427,7 @@ function drawAgeBox(ctx, x, y, width, height, label, age, gap, gradientColors, a
     // Gap label
     ctx.font = '24px Inter, sans-serif';
     ctx.globalAlpha = 0.9;
-    const gapText = gap <= 0 ? `${Math.abs(gap)}y younger` : `${gap}y older`;
+    const gapText = gap <= 0 ? ageCopy().younger(Math.abs(gap)) : ageCopy().older(gap);
     ctx.fillText(gapText, x + width / 2, y + 200);
     ctx.globalAlpha = 1;
 
@@ -384,7 +460,7 @@ function drawAgeBoxCompact(ctx, x, y, width, height, label, age, gap, gradientCo
 
     ctx.font = '20px Inter, sans-serif';
     ctx.globalAlpha = 0.9;
-    const gapText = gap <= 0 ? `${Math.abs(gap)}y younger` : `${gap}y older`;
+    const gapText = gap <= 0 ? ageCopy().younger(Math.abs(gap)) : ageCopy().older(gap);
     ctx.fillText(gapText, x + width / 2, y + 150);
     ctx.globalAlpha = 1;
 
@@ -477,14 +553,14 @@ async function generateComparisonImage(myResults, friendResults, format = 'story
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
     ctx.font = 'bold 64px Poppins, sans-serif';
-    ctx.fillText('Age Comparison', config.width / 2, 150);
+    ctx.fillText(ageCopy().comparison, config.width / 2, 150);
 
     // Draw two columns
     const colWidth = 450;
     const startY = format === 'story' ? 250 : 200;
 
     // My results (left)
-    drawComparisonColumn(ctx, 60, startY, colWidth, myResults, 'You', format);
+    drawComparisonColumn(ctx, 60, startY, colWidth, myResults, ageCopy().you, format);
 
     // VS
     ctx.fillStyle = '#ffffff';
@@ -492,7 +568,7 @@ async function generateComparisonImage(myResults, friendResults, format = 'story
     ctx.fillText('VS', config.width / 2, startY + 300);
 
     // Friend results (right)
-    drawComparisonColumn(ctx, config.width - colWidth - 60, startY, colWidth, friendResults, 'Friend', format);
+    drawComparisonColumn(ctx, config.width - colWidth - 60, startY, colWidth, friendResults, ageCopy().friend, format);
 
     // Watermark
     drawWatermark(ctx, config);
@@ -520,7 +596,7 @@ function drawComparisonColumn(ctx, x, y, width, results, label, format) {
     // Real Age
     ctx.font = '24px Inter, sans-serif';
     ctx.fillStyle = '#6b7280';
-    ctx.fillText('Real', x + width / 2, y + 100);
+    ctx.fillText(ageCopy().real, x + width / 2, y + 100);
     ctx.font = 'bold 48px Poppins, sans-serif';
     ctx.fillStyle = '#111827';
     ctx.fillText(results.realAge.toString(), x + width / 2, y + 160);

@@ -8,7 +8,33 @@
  * - Early returns
  */
 
-const SITE_URL = 'https://smartaitest.com/life-summary/';
+function lifeShareLang() {
+    const l = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return ['en', 'ko', 'ja', 'zh', 'es'].includes(l) ? l : 'en';
+}
+
+// A getter, not a const: `/life-summary/` 301s to `/en/life-summary/`, so a
+// Korean sender's link landed a Korean recipient on the English page.
+function siteUrl() {
+    // Prefer the shared-entry page for the soul type actually on screen: the
+    // recipient sees which type this was instead of a blank birthdate form.
+    const t = (typeof window !== 'undefined') && window.currentSoulType;
+    const id = t && t.id;
+    const base = `https://smartaitest.com/${lifeShareLang()}/life-summary/`;
+    return id ? `${base}s/${id}/` : base;
+}
+
+const LIFE_SHARE_COPY = {
+    en: { lead: 'My AI Life Summary', cta: 'Discover yours at' },
+    ko: { lead: '나의 AI 인생 요약', cta: '당신의 인생 요약도 확인해보세요' },
+    ja: { lead: '私のAI人生要約', cta: 'あなたの要約もこちらで' },
+    zh: { lead: '我的AI人生总结', cta: '快来看看你的' },
+    es: { lead: 'Mi resumen de vida IA', cta: 'Descubre el tuyo en' }
+};
+
+function lifeShareCopy() {
+    return LIFE_SHARE_COPY[lifeShareLang()];
+}
 const HASHTAGS = 'AILifeSummary,PersonalityTest';
 
 // ===== Performance: DOM Query Cache =====
@@ -51,7 +77,7 @@ function initShareButtons(sentence, lang = 'en') {
     // Clear DOM cache when re-initializing (page might have changed)
     clearDomCache();
 
-    const shareText = `My AI Life Summary: "${sentence}" - Discover yours at`;
+    const shareText = `${lifeShareCopy().lead}: "${sentence}" - ${lifeShareCopy().cta}`;
 
     // Twitter/X Share - Use cached DOM query
     const twitterBtn = getCachedElement('share-twitter');
@@ -163,7 +189,7 @@ function initShareButtons(sentence, lang = 'en') {
  */
 function shareToTwitter(text) {
     const encodedText = encodeURIComponent(text);
-    const url = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodeURIComponent(SITE_URL)}&hashtags=${HASHTAGS}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodeURIComponent(siteUrl())}&hashtags=${HASHTAGS}`;
     openShareWindow(url, 'twitter');
     trackShare('twitter');
 }
@@ -172,7 +198,7 @@ function shareToTwitter(text) {
  * Share to Facebook
  */
 function shareToFacebook() {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl())}`;
     openShareWindow(url, 'facebook');
     trackShare('facebook');
 }
@@ -182,7 +208,7 @@ function shareToFacebook() {
  * @param {string} text - Text to share
  */
 function shareToWhatsApp(text) {
-    const encodedText = encodeURIComponent(text + ' ' + SITE_URL);
+    const encodedText = encodeURIComponent(text + ' ' + siteUrl());
     const url = `https://wa.me/?text=${encodedText}`;
     window.open(url, '_blank');
     trackShare('whatsapp');
@@ -193,7 +219,7 @@ function shareToWhatsApp(text) {
  * @param {string} text - Text to share
  */
 function shareToLinkedIn(text) {
-    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE_URL)}`;
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl())}`;
     openShareWindow(url, 'linkedin');
     trackShare('linkedin');
 }
@@ -204,7 +230,7 @@ function shareToLinkedIn(text) {
  */
 function shareToPinterest(description) {
     const imageUrl = encodeURIComponent('https://smartaitest.com/assets/images/og-image.png');
-    const url = encodeURIComponent(SITE_URL);
+    const url = encodeURIComponent(siteUrl());
     const desc = encodeURIComponent(description);
     const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${url}&media=${imageUrl}&description=${desc}`;
     window.open(pinterestUrl, '_blank', 'width=750,height=600');
@@ -216,8 +242,8 @@ function shareToPinterest(description) {
  * @param {string} text - Text to share
  */
 function shareToTelegram(text) {
-    const encodedText = encodeURIComponent(text + ' ' + SITE_URL);
-    const url = `https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${encodedText}`;
+    const encodedText = encodeURIComponent(text + ' ' + siteUrl());
+    const url = `https://t.me/share/url?url=${encodeURIComponent(siteUrl())}&text=${encodedText}`;
     window.location.href = url;
     trackShare('telegram');
 }
@@ -227,7 +253,7 @@ function shareToTelegram(text) {
  * @param {string} text - Text to share
  */
 function shareToInstagram(text) {
-    const fullText = `${text}\n\n🔗 ${SITE_URL}\n\n#AILifeSummary #PersonalityTest #BirthdayTest`;
+    const fullText = `${text}\n\n🔗 ${siteUrl()}\n\n#AILifeSummary #PersonalityTest #BirthdayTest`;
     navigator.clipboard.writeText(fullText).then(() => {
         const lang = document.documentElement.lang || 'en';
         const messages = {
@@ -257,7 +283,7 @@ function shareToInstagram(text) {
  * @param {string} text - Text to share
  */
 function shareToThreads(text) {
-    const fullText = `${text}\n\n${SITE_URL}`;
+    const fullText = `${text}\n\n${siteUrl()}`;
     navigator.clipboard.writeText(fullText).then(() => {
         const lang = document.documentElement.lang || 'en';
         const messages = {
@@ -280,7 +306,7 @@ function shareToThreads(text) {
  * @param {string} text - Text to share
  */
 function shareToLine(text) {
-    const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(SITE_URL)}&text=${encodeURIComponent(text)}`;
+    const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(siteUrl())}&text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
     trackShare('line');
 }
@@ -290,7 +316,7 @@ function shareToLine(text) {
  * @param {string} text - Text to share
  */
 function shareToKakao(text) {
-    const fullText = `${text}\n\n${SITE_URL}`;
+    const fullText = `${text}\n\n${siteUrl()}`;
     navigator.clipboard.writeText(fullText).then(() => {
         const lang = document.documentElement.lang || 'en';
         const messages = {
@@ -312,7 +338,7 @@ function shareToKakao(text) {
  * @param {string} text - Text to share
  */
 function shareToReddit(text) {
-    const url = `https://www.reddit.com/submit?url=${encodeURIComponent(SITE_URL)}&title=${encodeURIComponent(text)}`;
+    const url = `https://www.reddit.com/submit?url=${encodeURIComponent(siteUrl())}&title=${encodeURIComponent(text)}`;
     window.location.href = url;
     trackShare('reddit');
 }
@@ -322,7 +348,7 @@ function shareToReddit(text) {
  * @param {string} text - Text to share
  */
 function shareToWeChat(text) {
-    const fullText = `${text}\n\n${SITE_URL}`;
+    const fullText = `${text}\n\n${siteUrl()}`;
     navigator.clipboard.writeText(fullText).then(() => {
         alert('📋 已复制!\n\n打开微信粘贴分享');
     }).catch(() => {
@@ -336,7 +362,7 @@ function shareToWeChat(text) {
  * @param {string} text - Text to share
  */
 function shareToWeibo(text) {
-    const url = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(SITE_URL)}&title=${encodeURIComponent(text)}`;
+    const url = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(siteUrl())}&title=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'width=600,height=600');
     trackShare('weibo');
 }
@@ -346,7 +372,7 @@ function shareToWeibo(text) {
  * @param {string} sentence - The sentence to copy
  */
 async function copyToClipboard(sentence) {
-    const textToCopy = `My AI Life Summary: "${sentence}" - Discover yours at ${SITE_URL}`;
+    const textToCopy = `${lifeShareCopy().lead}: "${sentence}" - ${lifeShareCopy().cta} ${siteUrl()}`;
 
     try {
         await navigator.clipboard.writeText(textToCopy);
@@ -470,9 +496,9 @@ function setupNativeShare(sentence) {
         nativeShareBtn.addEventListener('click', async () => {
             try {
                 await navigator.share({
-                    title: 'My AI Life Summary',
-                    text: `My AI Life Summary: "${sentence}"`,
-                    url: SITE_URL
+                    title: lifeShareCopy().lead,
+                    text: `${lifeShareCopy().lead}: "${sentence}"`,
+                    url: siteUrl()
                 });
                 trackShare('native');
             } catch (err) {
@@ -595,7 +621,7 @@ function generateShareableUrl(birthdate) {
     const encoded = btoa(reversed);
     // URL-safe Base64 (replace +/= with URL-friendly chars)
     const urlSafe = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-    return `${SITE_URL}/generate?d=${urlSafe}`;
+    return `${siteUrl()}generate?d=${urlSafe}`;
 }
 
 /**

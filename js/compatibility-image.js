@@ -152,6 +152,56 @@ function drawHeartDecorations(ctx, config, colorScheme) {
     ctx.globalAlpha = 1;
 }
 
+// ============================================
+// SHARE CARD COPY (per locale)
+// ============================================
+// The card follows the page language, not localStorage. The result data
+// objects (ANIMAL_COUPLES, relationshipType, movieGenre) already carry every
+// locale, so the card only ever hardcoded `.en` — this picks the right key.
+
+const COMPAT_CARD_COPY = {
+    en: { title: 'Our Compatibility', animalType: '🐾 Animal Couple Type',
+          movie: 'Your Love Movie', movieShort: 'Love Movie', lucky: 'Lucky Date',
+          cats: ['Communication', 'Values', 'Energy', 'Emotional', 'Growth'],
+          hashtags: '#AICompatibility  #AnimalCouple' },
+    ko: { title: '우리의 궁합', animalType: '🐾 우리의 동물 커플 유형',
+          movie: '우리의 사랑 영화', movieShort: '사랑 영화', lucky: '럭키 데이트',
+          cats: ['소통', '가치관', '에너지', '정서적 유대', '성장'],
+          hashtags: '#AI궁합  #동물커플' },
+    ja: { title: '私たちの相性', animalType: '🐾 動物カップルタイプ',
+          movie: '二人のラブムービー', movieShort: 'ラブムービー', lucky: 'ラッキーデート',
+          cats: ['コミュニケーション', '価値観', 'エネルギー', '情緒的絆', '成長'],
+          hashtags: '#AI相性診断  #動物カップル' },
+    zh: { title: '我们的契合度', animalType: '🐾 你们的动物情侣类型',
+          movie: '你们的爱情电影', movieShort: '爱情电影', lucky: '幸运约会日',
+          cats: ['沟通', '价值观', '活力', '情感联结', '成长'],
+          hashtags: '#AI契合度  #动物情侣' },
+    es: { title: 'Nuestra compatibilidad', animalType: '🐾 Tipo de pareja animal',
+          movie: 'Su película de amor', movieShort: 'Película de amor', lucky: 'Cita de la suerte',
+          cats: ['Comunicación', 'Valores', 'Energía', 'Emocional', 'Crecimiento'],
+          hashtags: '#CompatibilidadIA  #ParejaAnimal' }
+};
+
+function compatCardLang() {
+    const l = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return COMPAT_CARD_COPY[l] ? l : 'en';
+}
+
+function compatCopy() {
+    return COMPAT_CARD_COPY[compatCardLang()];
+}
+
+// Pick a locale value out of a {en, ko, ja, zh, es} bag, falling back to en.
+function compatL(bag, fallback) {
+    if (!bag) return fallback || '';
+    return bag[compatCardLang()] || bag.en || fallback || '';
+}
+
+// Keep the locale prefix: `/compatibility/` 301s to `/en/compatibility/`.
+function compatCardUrl() {
+    return `smartaitest.com/${compatCardLang()}/compatibility`;
+}
+
 /**
  * Draw content for Story format (1080x1920)
  */
@@ -163,7 +213,7 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
     ctx.textAlign = 'center';
 
     ctx.font = 'bold 64px Poppins, sans-serif';
-    ctx.fillText('Our Compatibility', centerX, 180);
+    ctx.fillText(compatCopy().title, centerX, 180);
 
     ctx.font = '32px Inter, sans-serif';
     ctx.globalAlpha = 0.8;
@@ -173,7 +223,10 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
     // Main result card
     const cardY = 300;
     const cardWidth = 900;
-    const cardHeight = 1250;
+    // 1330, not 1250: the movie-genre line below the last category bar is
+    // drawn at cardY + 1280 and was falling 30px outside the card onto the
+    // pink background, where it rendered unreadable.
+    const cardHeight = 1330;
     const cardX = (config.width - cardWidth) / 2;
 
     // Card background
@@ -210,7 +263,7 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
         // Animal couple title
         ctx.fillStyle = colorScheme.gradient[0];
         ctx.font = 'bold 28px Poppins, sans-serif';
-        ctx.fillText('🐾 Animal Couple Type', centerX, cardY + 330);
+        ctx.fillText(compatCopy().animalType, centerX, cardY + 330);
 
         // Animal emojis
         ctx.font = '80px sans-serif';
@@ -227,13 +280,13 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
         // Animal couple name
         ctx.fillStyle = '#374151';
         ctx.font = 'bold 32px Poppins, sans-serif';
-        const coupleTitle = results.animalCouple.title?.en || 'Unique Duo';
+        const coupleTitle = compatL(results.animalCouple.title, 'Unique Duo');
         ctx.fillText(coupleTitle, centerX, cardY + 500);
 
         // Animal couple description
         ctx.font = '22px Inter, sans-serif';
         ctx.fillStyle = '#6b7280';
-        const coupleDesc = results.animalCouple.desc?.en || '';
+        const coupleDesc = compatL(results.animalCouple.desc, '');
         // Wrap text if too long
         wrapTextCompat(ctx, coupleDesc, centerX, cardY + 540, 700, 28);
     }
@@ -253,7 +306,7 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
     // Relationship type (use creative label if available)
     ctx.fillStyle = '#374151';
     ctx.font = 'bold 32px Poppins, sans-serif';
-    const relLabel = results.relationshipType.creativeLabels?.en || results.relationshipType.labels.en;
+    const relLabel = compatL(results.relationshipType.creativeLabels) || compatL(results.relationshipType.labels);
     ctx.fillText(`${results.relationshipType.emoji} ${relLabel}`, centerX, cardY + 890);
 
     // Category bars
@@ -263,7 +316,7 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
     const barSpacing = 55;
 
     const categories = ['communication', 'values', 'energy', 'emotional', 'growth'];
-    const categoryLabels = ['Communication', 'Values', 'Energy', 'Emotional', 'Growth'];
+    const categoryLabels = compatCopy().cats;
     const categoryIcons = ['💬', '⚖️', '⚡', '💗', '🌱'];
 
     categories.forEach((cat, index) => {
@@ -309,18 +362,18 @@ async function drawCompatStoryContent(ctx, config, results, colorScheme) {
 
         ctx.fillStyle = colorScheme.gradient[0];
         ctx.font = 'bold 24px Poppins, sans-serif';
-        ctx.fillText(`${results.movieGenre.emoji} Your Love Movie: ${results.movieGenre.title.en}`, centerX, cardY + 1280);
+        ctx.fillText(`${results.movieGenre.emoji} ${compatCopy().movie}: ${compatL(results.movieGenre.title)}`, centerX, cardY + 1280);
     }
 
     // Hashtags
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '26px Inter, sans-serif';
-    ctx.fillText('#AICompatibility  #AnimalCouple', centerX, 1720);
+    ctx.fillText(compatCopy().hashtags, centerX, 1720);
 
     // URL
     ctx.font = '22px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/compatibility', centerX, 1770);
+    ctx.fillText(compatCardUrl(), centerX, 1770);
     ctx.globalAlpha = 1;
 }
 
@@ -335,7 +388,7 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
     ctx.textAlign = 'center';
 
     ctx.font = 'bold 48px Poppins, sans-serif';
-    ctx.fillText('Our Compatibility', centerX, 80);
+    ctx.fillText(compatCopy().title, centerX, 80);
 
     // Main card
     const cardWidth = 950;
@@ -363,7 +416,7 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
         // Animal couple title
         ctx.fillStyle = '#374151';
         ctx.font = 'bold 24px Poppins, sans-serif';
-        const coupleTitle = results.animalCouple.title?.en || 'Unique Duo';
+        const coupleTitle = compatL(results.animalCouple.title, 'Unique Duo');
         ctx.fillText(coupleTitle, centerX, cardY + 125);
     }
 
@@ -385,7 +438,7 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
     // Relationship type (use creative label)
     ctx.fillStyle = '#374151';
     ctx.font = 'bold 24px Poppins, sans-serif';
-    const relLabel = results.relationshipType.creativeLabels?.en || results.relationshipType.labels.en;
+    const relLabel = compatL(results.relationshipType.creativeLabels) || compatL(results.relationshipType.labels);
     ctx.fillText(`${results.relationshipType.emoji} ${relLabel}`, centerX, cardY + 320);
 
     // Category bars (compact)
@@ -433,7 +486,7 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
     if (results.animalCouple && results.animalCouple.desc) {
         ctx.font = '16px Inter, sans-serif';
         ctx.fillStyle = '#6b7280';
-        const desc = results.animalCouple.desc.en || '';
+        const desc = compatL(results.animalCouple.desc, '');
         ctx.fillText(desc.substring(0, 60) + (desc.length > 60 ? '...' : ''), centerX, cardY + 680);
     }
 
@@ -441,24 +494,24 @@ async function drawCompatSquareContent(ctx, config, results, colorScheme) {
     if (results.movieGenre) {
         ctx.fillStyle = colorScheme.gradient[0];
         ctx.font = 'bold 18px Poppins, sans-serif';
-        ctx.fillText(`${results.movieGenre.emoji} Love Movie: ${results.movieGenre.title.en}`, centerX, cardY + 730);
+        ctx.fillText(`${results.movieGenre.emoji} ${compatCopy().movieShort}: ${compatL(results.movieGenre.title)}`, centerX, cardY + 730);
     }
 
     // Lucky Date
     if (results.luckyDate) {
         ctx.fillStyle = '#9ca3af';
         ctx.font = '16px Inter, sans-serif';
-        ctx.fillText(`${results.luckyDate.emoji} Lucky Date: ${results.luckyDate.dateFormatted.en}`, centerX, cardY + 770);
+        ctx.fillText(`${results.luckyDate.emoji} ${compatCopy().lucky}: ${compatL(results.luckyDate.dateFormatted)}`, centerX, cardY + 770);
     }
 
     // Bottom info
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.font = '20px Inter, sans-serif';
-    ctx.fillText('#AICompatibility  #AnimalCouple', centerX, 1010);
+    ctx.fillText(compatCopy().hashtags, centerX, 1010);
 
     ctx.font = '16px Inter, sans-serif';
     ctx.globalAlpha = 0.7;
-    ctx.fillText('smartaitest.com/compatibility', centerX, 1045);
+    ctx.fillText(compatCardUrl(), centerX, 1045);
     ctx.globalAlpha = 1;
 }
 

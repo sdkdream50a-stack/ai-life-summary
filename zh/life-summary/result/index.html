@@ -988,7 +988,14 @@ body { padding-bottom: 96px; }
                 };
                 window.vb_copyLink = function(){
                     gtagSafe('share_copy_link', {tool:'life-summary'});
-                    var url = window.location.href;
+                    // The shared-entry page for this soul type, not the result
+                    // route: that route reads the *recipient's* storage and
+                    // bounces them to a blank birthdate form.
+                    var url = (function(){
+                try { if (typeof siteUrl === 'function') { var s = siteUrl(); if (s) return s; } }
+                catch (e) {}
+                return window.location.href;
+            }());
                     var ok = function(){ showToast('✓ Link copied'); };
                     if(navigator.clipboard && navigator.clipboard.writeText){
                         navigator.clipboard.writeText(url).then(ok, function(){ window.prompt('Copy:', url); });
@@ -1151,7 +1158,9 @@ body { padding-bottom: 96px; }
         let currentSoulType = null;
         let currentLang = 'ko';
         let shareImageGenerator = null;
-        let currentImageFormat = 'square';
+        // 'story', not 'square': #format-story ships with the .active class, so the
+        // UI said 9:16 while the generator produced a 1:1 card.
+        let currentImageFormat = 'story';
         let currentImageType = 'full';
 
         document.addEventListener('DOMContentLoaded', async function() {
@@ -1166,6 +1175,9 @@ body { padding-bottom: 96px; }
 
             // Get soul type from birthday
             currentSoulType = getSoulTypeFromBirthday(birthdate);
+            // Publish it: top-level `let` is script-scoped, so share.js could not
+            // see the type and fell back to the plain landing URL.
+            window.currentSoulType = currentSoulType;
 
             // Initialize share image generator
             shareImageGenerator = new ShareImageGenerator({ lang: currentLang });
@@ -1328,7 +1340,11 @@ body { padding-bottom: 96px; }
                     locale: currentLang,
                     score: '',
                     type: currentSoulType?.name?.[currentLang] || '',
-                    url: window.location.href
+                    url: (function(){
+                try { if (typeof siteUrl === 'function') { var s = siteUrl(); if (s) return s; } }
+                catch (e) {}
+                return window.location.href;
+            }())
                 });
             }
 
@@ -1942,7 +1958,12 @@ body { padding-bottom: 96px; }
         function initNewShareButtons() {
             const typeName = () => currentSoulType ? getSoulTypeName(currentSoulType, currentLang) : '';
             const emoji = () => currentSoulType?.emoji || '';
-            const url = () => window.location.href;
+            // Shared-entry page for this soul type, not the result route.
+            const url = () => (function(){
+                try { if (typeof siteUrl === 'function') { var s = siteUrl(); if (s) return s; } }
+                catch (e) {}
+                return window.location.href;
+            }());
 
             // Generate share text
             const getShareText = () => {

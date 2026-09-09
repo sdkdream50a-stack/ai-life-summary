@@ -47,5 +47,15 @@
         </div>
     </div>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
+<script>
+// Shared-entry fallback: a mistyped or retired share token
+// (/{lang}/{product}/s/{token}/ or /{lang}/personality-type/t/{code}/) should
+// still land the visitor on that test rather than dead-ending on a 404.
+(function () {
+  var m = location.pathname.match(
+    /^\/(en|ko|ja|zh|es)\/(life-summary|compatibility|age-calculator|personality-type)\/(?:s|t)\/[^/]+\/?$/);
+  if (m) { location.replace('/' + m[1] + '/' + m[2] + '/'); }
+}());
+</script>
 </body>
 </html>

@@ -14,13 +14,27 @@
  * The score/type summary lives in the share TEXT; the link invites the
  * recipient to take the test themselves — which is also what the copy says.
  */
-function generateShareUrl() {
+function compatEntryPath() {
     // Derive the locale test-entry path from the current result path.
     // /ko/compatibility/result/ -> /ko/compatibility/ ; /compatibility/result.html -> /compatibility/
     const path = window.location.pathname
         .replace(/result\/?$/, '')
         .replace(/result\.html$/, '');
-    return window.location.origin + (path || '/compatibility/');
+    return path || '/compatibility/';
+}
+
+function generateShareUrl() {
+    // Prefer the shared-entry page: it shows the recipient which animal couple
+    // this was before inviting them in. Linking to the result route instead
+    // just bounced them to a blank quiz, because that route reads *their*
+    // storage and finds nothing.
+    const key = window.compatibilityResults
+        && window.compatibilityResults.animalCouple
+        && window.compatibilityResults.animalCouple.key;
+    const entry = compatEntryPath();
+    if (key) return `${window.location.origin}${entry}s/${key}/`;
+    // Unknown pairing: fall back to the plain locale landing.
+    return window.location.origin + entry;
 }
 
 /**
