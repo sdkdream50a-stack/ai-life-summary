@@ -381,8 +381,14 @@ const AnalyticsEvents = {
     // ---- test_start: first real interaction with a quiz --------------------
     if (surface === 'test_landing') {
       const start = () => this.once('test_start', 'test_start', { test_type: test });
+      // number inputs count: the birthday tools (age-calculator, life-summary)
+      // open on three <input type="number"> fields and have no radio/select on
+      // the first step, so without this a real user could answer the whole
+      // first step and still register no start. `change` (not `input`) keeps
+      // this to a committed value rather than a stray keystroke, and once()
+      // still caps it at one per page load.
       document.addEventListener('change', e => {
-        if (e.target && e.target.matches('input[type=radio], input[type=checkbox], select')) start();
+        if (e.target && e.target.matches('input[type=radio], input[type=checkbox], input[type=number], select')) start();
       }, true);
       document.addEventListener('click', e => {
         if (e.target && e.target.closest(
