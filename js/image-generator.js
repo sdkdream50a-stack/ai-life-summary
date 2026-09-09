@@ -265,7 +265,10 @@ function drawContent(ctx, canvas, sentence, format, lang = 'en') {
     ctx.globalAlpha = 0.7;
     ctx.font = `${sizes.watermark}px "Inter", sans-serif`;
     const watermarkY = format === 'story' ? height * 0.92 : height * 0.88;
-    ctx.fillText('smartaitest.com', width / 2, watermarkY);
+    // Locale-prefixed: a bare smartaitest.com/life-summary 301s to /en/.
+    const wmLang = ['en','ko','ja','zh','es'].includes((lang || 'en').slice(0,2))
+        ? (lang || 'en').slice(0,2) : 'en';
+    ctx.fillText(`smartaitest.com/${wmLang}/life-summary`, width / 2, watermarkY);
 
     // Draw bottom decoration
     ctx.globalAlpha = 0.5;
@@ -404,7 +407,7 @@ async function shareImageNative(sentence) {
 
         if (navigator.canShare({ files: [file] })) {
             await navigator.share({
-                title: 'My AI Life Summary',
+                title: (typeof lifeShareCopy === 'function') ? lifeShareCopy().lead : 'My AI Life Summary',
                 text: sentence,
                 files: [file]
             });

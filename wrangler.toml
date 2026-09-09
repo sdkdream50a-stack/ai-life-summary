@@ -3,3 +3,6 @@ compatibility_date = "2024-01-01"
 
 [assets]
 directory = "./"
+# Serve the custom 404 page so a mistyped or retired shared-entry token
+# can bounce the visitor to the right test landing instead of a bare 404.
+not_found_handling = "404-page"

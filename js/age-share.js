@@ -10,14 +10,33 @@
 /**
  * Generate a shareable URL with encoded results
  */
+function ageShareLang() {
+    const l = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+    return ['en', 'ko', 'ja', 'zh', 'es'].includes(l) ? l : 'en';
+}
+
+// A bucket, never the actual ages: the band is all the recipient needs to see
+// a teaser, and it keeps anything age-identifying out of a link that travels
+// through third parties.
+function ageShareBand(results) {
+    if (!results || typeof results.realAge !== 'number') return null;
+    const mentalGap = results.mentalAge - results.realAge;
+    const energyGap = results.energyAge - results.realAge;
+    const avg = (mentalGap + energyGap) / 2;
+    if (avg <= -10) return 'mind-much-younger';
+    if (avg <= -3) return 'mind-younger';
+    if (avg < 3) return 'mind-balanced';
+    if (avg < 10) return 'mind-older';
+    return 'mind-much-older';
+}
+
 function generateShareUrl(results) {
-    const baseUrl = window.location.origin + '/age-calculator/';
-    const params = new URLSearchParams({
-        r: results.realAge,
-        m: results.mentalAge,
-        e: results.energyAge
-    });
-    return `${baseUrl}?${params.toString()}`;
+    // Keep the locale prefix. `/age-calculator/` 301s to `/en/age-calculator/`,
+    // so a Korean sender's link used to land a Korean recipient on English.
+    // The old `?r=&m=&e=` payload was dead on arrival — the landing never read it.
+    const base = `${window.location.origin}/${ageShareLang()}/age-calculator/`;
+    const band = ageShareBand(results);
+    return band ? `${base}s/${band}/` : base;
 }
 
 /**
@@ -248,7 +267,7 @@ async function shareNative(results) {
     if (navigator.share) {
         try {
             await navigator.share({
-                title: 'My AI Age Results',
+                title: ageShareCopy().title,
                 text: generateShareText(results, 'native'),
                 url: generateShareUrl(results)
             });
@@ -302,7 +321,7 @@ async function copyShareLink(results) {
 async function copyShareText(results) {
     const text = generateShareText(results, 'clipboard');
     const url = generateShareUrl(results);
-    const fullText = `${text}\n\nTry it: ${url}\n\n#MyAIAge #AgeCalculator`;
+    const fullText = `${text}\n\n${url}\n\n#MyAIAge #AgeCalculator`;
 
     try {
         await navigator.clipboard.writeText(fullText);
@@ -316,6 +335,53 @@ async function copyShareText(results) {
 // SHARE TEXT GENERATION
 // ============================================
 
+// ============================================
+// SHARE TEXT COPY (per locale)
+// ============================================
+// Follows the page language, not localStorage — same rule as the result copy.
+
+const AGE_SHARE_COPY = {
+    en: {
+        vibeYoungest: "I'm way younger than my age! ", vibeYoung: 'Feeling younger than ever! ',
+        vibeBalanced: 'Perfectly balanced! ', vibeWise: 'Wise soul here! ',
+        title: 'My AI Age Results', real: 'Real Age', mental: 'Mental Age', energy: 'Energy Age',
+        years: '', cta: 'Discover YOUR age:', ctaTry: 'Try it yourself!',
+        younger: n => `${n}y younger`, older: n => `${n}y older`, same: 'same as real age'
+    },
+    ko: {
+        vibeYoungest: '실제 나이보다 훨씬 젊게 나왔어요! ', vibeYoung: '그 어느 때보다 젊어요! ',
+        vibeBalanced: '완벽한 균형이에요! ', vibeWise: '지혜로운 영혼이네요! ',
+        title: '나의 AI 나이 결과', real: '실제 나이', mental: '정신 나이', energy: '에너지 나이',
+        years: '세', cta: '당신의 나이도 확인해보세요:', ctaTry: '당신도 해보세요!',
+        younger: n => `${n}세 젊음`, older: n => `${n}세 성숙`, same: '실제 나이와 동일'
+    },
+    ja: {
+        vibeYoungest: '実年齢よりずっと若い結果でした! ', vibeYoung: 'かつてないほど若い! ',
+        vibeBalanced: '完璧なバランス! ', vibeWise: '賢い魂です! ',
+        title: '私のAI年齢の結果', real: '実年齢', mental: '精神年齢', energy: 'エネルギー年齢',
+        years: '歳', cta: 'あなたの年齢も調べてみて:', ctaTry: 'あなたも試してみて!',
+        younger: n => `${n}歳若い`, older: n => `${n}歳上`, same: '実年齢と同じ'
+    },
+    zh: {
+        vibeYoungest: '比实际年龄年轻得多! ', vibeYoung: '感觉前所未有的年轻! ',
+        vibeBalanced: '完美平衡! ', vibeWise: '智慧的灵魂! ',
+        title: '我的AI年龄结果', real: '实际年龄', mental: '心理年龄', energy: '活力年龄',
+        years: '岁', cta: '快来测测你的年龄:', ctaTry: '你也来试试!',
+        younger: n => `年轻${n}岁`, older: n => `年长${n}岁`, same: '与实际年龄相同'
+    },
+    es: {
+        vibeYoungest: '¡Soy mucho más joven que mi edad! ', vibeYoung: '¡Más joven que nunca! ',
+        vibeBalanced: '¡Perfectamente equilibrado! ', vibeWise: '¡Alma sabia por aquí! ',
+        title: 'Mi resultado de edad IA', real: 'Edad real', mental: 'Edad mental', energy: 'Edad de energía',
+        years: ' años', cta: 'Descubre TU edad:', ctaTry: '¡Pruébalo tú también!',
+        younger: n => `${n} años menos`, older: n => `${n} años más`, same: 'igual que la edad real'
+    }
+};
+
+function ageShareCopy() {
+    return AGE_SHARE_COPY[ageShareLang()];
+}
+
 /**
  * Generate share text based on platform
  */
@@ -325,47 +391,50 @@ function generateShareText(results, platform = 'default') {
     const energyGap = energyAge - realAge;
 
     // Determine the vibe
+    const C = ageShareCopy();
     let vibe = '';
     const avgGap = (mentalGap + energyGap) / 2;
 
     if (avgGap <= -7) {
-        vibe = "I'm way younger than my age! ";
+        vibe = C.vibeYoungest;
     } else if (avgGap <= -3) {
-        vibe = "Feeling younger than ever! ";
+        vibe = C.vibeYoung;
     } else if (avgGap <= 3) {
-        vibe = "Perfectly balanced! ";
+        vibe = C.vibeBalanced;
     } else {
-        vibe = "Wise soul here! ";
+        vibe = C.vibeWise;
     }
+
+    const gapL = g => g < 0 ? C.younger(Math.abs(g)) : g > 0 ? C.older(g) : C.same;
 
     switch (platform) {
         case 'twitter':
-            return `${vibe}My AI Age Results:\nReal: ${realAge}\nMental: ${mentalAge} (${mentalGap >= 0 ? '+' : ''}${mentalGap})\nEnergy: ${energyAge} (${energyGap >= 0 ? '+' : ''}${energyGap})\n\nDiscover YOUR age:`;
+            return `${vibe}${C.title}:\n${C.real}: ${realAge}${C.years}\n${C.mental}: ${mentalAge}${C.years} (${gapL(mentalGap)})\n${C.energy}: ${energyAge}${C.years} (${gapL(energyGap)})\n\n${C.cta}`;
 
         case 'whatsapp':
         case 'line':
         case 'telegram':
-            return `${vibe}\n\nMy AI Age Calculator Results:\nReal Age: ${realAge} years\nMental Age: ${mentalAge} years (${getGapText(mentalGap)})\nEnergy Age: ${energyAge} years (${getGapText(energyGap)})\n\nTry it yourself!`;
+            return `${vibe}\n\n${C.title}:\n${C.real}: ${realAge}${C.years}\n${C.mental}: ${mentalAge}${C.years} (${gapL(mentalGap)})\n${C.energy}: ${energyAge}${C.years} (${gapL(energyGap)})\n\n${C.ctaTry}`;
 
         case 'threads':
         case 'instagram':
-            return `${vibe}\n\n🎂 Real Age: ${realAge}\n🧠 Mental Age: ${mentalAge} (${getGapText(mentalGap)})\n⚡ Energy Age: ${energyAge} (${getGapText(energyGap)})\n\nTry the AI Age Calculator!`;
+            return `${vibe}\n\n🎂 ${C.real}: ${realAge}${C.years}\n🧠 ${C.mental}: ${mentalAge}${C.years} (${gapL(mentalGap)})\n⚡ ${C.energy}: ${energyAge}${C.years} (${gapL(energyGap)})\n\n${C.ctaTry}`;
 
         case 'pinterest':
-            return `AI Age Calculator: Real ${realAge}, Mental ${mentalAge}, Energy ${energyAge}. Discover your mental and energy age!`;
+            return `${C.title}: ${C.real} ${realAge}, ${C.mental} ${mentalAge}, ${C.energy} ${energyAge}. ${C.cta}`;
 
         case 'wechat':
         case 'weibo':
             return `${vibe}\n\nAI年龄计算器结果:\n实际年龄: ${realAge}岁\n心理年龄: ${mentalAge}岁 (${getGapTextZh(mentalGap)})\n能量年龄: ${energyAge}岁 (${getGapTextZh(energyGap)})\n\n快来测试你的AI年龄!`;
 
         case 'clipboard':
-            return `My AI Age Results:\nReal Age: ${realAge}\nMental Age: ${mentalAge} (${getGapText(mentalGap)})\nEnergy Age: ${energyAge} (${getGapText(energyGap)})`;
+            return `${C.title}:\n${C.real}: ${realAge}${C.years}\n${C.mental}: ${mentalAge}${C.years} (${gapL(mentalGap)})\n${C.energy}: ${energyAge}${C.years} (${gapL(energyGap)})`;
 
         case 'native':
-            return `${vibe}Real: ${realAge}, Mental: ${mentalAge}, Energy: ${energyAge}. Discover YOUR age!`;
+            return `${vibe}${C.real}: ${realAge}, ${C.mental}: ${mentalAge}, ${C.energy}: ${energyAge}. ${C.cta}`;
 
         default:
-            return `My AI Age: Real ${realAge}, Mental ${mentalAge}, Energy ${energyAge}`;
+            return `${C.title}: ${C.real} ${realAge}, ${C.mental} ${mentalAge}, ${C.energy} ${energyAge}`;
     }
 }
 

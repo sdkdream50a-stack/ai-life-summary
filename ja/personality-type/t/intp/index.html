@@ -73,5 +73,44 @@ body{margin:0;background:var(--stage);color:#F4F1F8;font-family:'Pretendard',-ap
 <footer class="tp-foot">© AI Test Lab · smartaitest.com</footer>
 <script src="/js/consent-manager.js?v=8af1ea9f"></script>
 <script src="/js/analytics-events.js?v=da69b087" defer></script>
+<script>
+(function () {
+  var P = (function () { var m = location.pathname.match(/^\/([a-z]{2})\/personality-type\/t\/([a-z]+)\//);
+    return { test_type: 'personality-type', share_token: m ? m[2] : '', lang: m ? m[1] : '' }; }());
+  var entryFired = false;
+
+  // analytics-events.js is deferred and gates on consent + GA config, so wait
+  // for it rather than firing into nothing. track() does its own queueing.
+  function withAnalytics(cb, tries) {
+    tries = tries || 0;
+    if (window.AnalyticsEvents && typeof window.AnalyticsEvents.track === 'function') { cb(); return; }
+    if (tries < 100) { setTimeout(function () { withAnalytics(cb, tries + 1); }, 50); }
+  }
+  function track(name) {
+    withAnalytics(function () { window.AnalyticsEvents.track(name, P); });
+  }
+
+  withAnalytics(function () {
+    if (entryFired) return;
+    entryFired = true;
+    window.AnalyticsEvents.track('share_entry', P);
+    window.AnalyticsEvents.track('shared_result_view', P);
+  });
+
+  var cta = document.getElementById('shared-cta') || document.querySelector('.tp-cta');
+  if (cta) {
+    cta.addEventListener('click', function (e) {
+      var href = cta.getAttribute('href');
+      if (!href || e.defaultPrevented || e.metaKey || e.ctrlKey ||
+          e.shiftKey || e.altKey || e.button !== 0) { return; }
+      // Navigating immediately cancels the in-flight beacon, so hold the hop
+      // briefly. The landing fires its own test_start; this marks the hand-off.
+      e.preventDefault();
+      track('shared_to_test_start');
+      setTimeout(function () { window.location.href = href; }, 250);
+    });
+  }
+}());
+</script>
 </body>
 </html>

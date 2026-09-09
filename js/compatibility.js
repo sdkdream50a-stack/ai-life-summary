@@ -1429,9 +1429,13 @@ function getAnimalCouple(animalA, animalB) {
     // Look up pairing
     const pairing = ANIMAL_COUPLES[key] || ANIMAL_COUPLES[reverseKey] || DEFAULT_COUPLE;
 
+    // `key` is the shared-entry token: the pairing label, nothing personal.
+    const resolvedKey = ANIMAL_COUPLES[key] ? key : (ANIMAL_COUPLES[reverseKey] ? reverseKey : null);
+
     return {
         animalA,
         animalB,
+        key: resolvedKey,
         ...pairing
     };
 }
