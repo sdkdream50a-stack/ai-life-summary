@@ -44,3 +44,17 @@ EXP1 Result→Next Test · EXP2 Share UX · EXP3 Fate bridge copy/placement · E
 ## 4. NEW BASELINE
 
 production 검증 후 아래에 기록한다.
+
+```text
+PRODUCTION_DEPLOYED          = PR #12 (1fa4009, live 04:39:05Z) + PR #13 (f6d2658, live 04:48:45Z)
+PRODUCTION_VERIFIED          = 24/24 checks · 390px regression 40/40 · CLS love-type 8/8 = 0 · CSP violations 0 · JS errors 0
+SMARTAITEST_REBASE_VERIFIED_AT = 2026-09-17T04:51:48Z
+NEW_BASELINE_START_AT        = 2026-09-17T04:51:48Z
+PRE_REBASE_END               = 2026-09-17T04:37:48Z
+QA_TRAFFIC_WINDOW (exclude)  = 2026-09-17T04:37:48Z .. 04:51:48Z  (baseline 판독은 2026-09-18 부터)
+NEXT_EXPERIMENT              = EXP1 Result → Next Test (Control baseline 14일 수집 후 variant)
+```
+
+### Follow-up found during production verification (PR #13)
+- quiz landings: intermittent CLS 0.502 when the quiz script arrived late → `#pt-container` min-height reservation
+- CSP: Cloudflare Web Analytics beacon was the last violation → allowed
