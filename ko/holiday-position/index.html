@@ -380,7 +380,7 @@
   /* KPI 이벤트 — gtag 있으면 전송, 없으면 no-op (GA4 설치는 운영자 잔여) */
   function track(name) {
     try {
-      if (typeof window.gtag === 'function') window.gtag('event', name);
+      if (window.AnalyticsEvents && typeof window.AnalyticsEvents.track === 'function') window.AnalyticsEvents.track(name, {});
     } catch (e) { /* 계측 실패가 UX를 막지 않게 */ }
   }
 
@@ -656,6 +656,6 @@
 })();
 </script>
 <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087" defer></script>
+<script src="/js/analytics-events.js?v=824d0278" defer></script>
 </body>
 </html>

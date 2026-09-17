@@ -25,7 +25,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/compatibility/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/compatibility/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/compatibility/result/">
-    <meta name="description" content="Your entertainment compatibility result. See a playful score and conversation prompts based on both people's answers, with optional birthday labels for fun.">
+    <meta name="description" content="질문으로 본 두 사람의 궁합 결과입니다. 점수와 대화 소재는 재미와 대화를 위한 참고용입니다.">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook -->
@@ -359,7 +359,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
@@ -889,39 +889,8 @@
             </div>
         </section>
 
-        <!-- Try Again / More Tests -->
-        <section class="py-10">
-            <div class="max-w-2xl mx-auto px-4 text-center">
-                <span class="text-4xl mb-4 inline-block kick-float">&#128149;</span>
-                <h2 class="kick-heading text-2xl font-bold mb-4 text-white">
-
-                    더 많은 테스트
-
-                </h2>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/ko/compatibility/" class="kick-btn kick-btn-primary kick-btn-bounce font-semibold py-3 px-6 rounded-xl inline-flex items-center justify-center space-x-2">
-                        <span>&#8634;</span>
-
-                        다시 테스트
-
-                    </a>
-                    <a href="/ko/kpop-match/" onclick="try{gtag('event','related_test_click',{source:'compatibility_result',target:'kpop-match'})}catch(e){}" class="bg-white/10 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
-                        <span>&#127908;</span>
-                        <span class="lang-en">K-Pop Persona Match</span>
-                        <span class="lang-ko">K-팝 페르소나 매칭</span>
-                        <span class="lang-ja">K-POPペルソナ診断</span>
-                        <span class="lang-zh">K-pop人格匹配</span>
-                        <span class="lang-es">K-Pop Persona Match</span>
-                    </a>
-                    <a href="/ko/age-calculator/" onclick="try{gtag('event','related_test_click',{source:'compatibility_result',target:'age-calculator'})}catch(e){}" class="bg-white text-gray-700 font-semibold py-3 px-6 rounded-lg border border-gray-300 hover:bg-gray-50 transition inline-flex items-center justify-center space-x-2">
-                        <span>&#127874;</span>
-
-                        AI 나이 계산기
-
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="compatibility"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-pink-50 to-rose-50">
@@ -991,36 +960,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-pink-50 via-rose-50 to-indigo-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-pink-600 mb-2">
-                        7일 · 5개 테스트 · 한 명의 당신
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        7일 안에 자기를 5각도로 보기
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        결과 하나는 한 조각, 일주일 5개 결과는 패턴. 5개 도구 한 번씩 해보고 라인업 캡처해 보세요.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/ko/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">1일차 · 완료</p></a>
-                    <a href="/ko/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">2일차</p></a>
-                    <a href="/ko/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">3일차</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">5일차</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">7일차</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    가입·이메일 없음. 일주일 동안 5개의 60초 테스트만. 북마크하고 돌아오세요.
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'compatibility'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='compatibility-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -1082,30 +1025,30 @@
 
                     </h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/ko/life-summary/" class="hover:text-white transition">AI Life Summary</a></li>
-                        <li><a href="/ko/age-calculator/" class="hover:text-white transition">AI Age Calculator</a></li>
-                        <li><a href="/ko/compatibility/" class="hover:text-white transition">AI Compatibility</a></li>
+                        <li><a href="/ko/life-summary/" class="hover:text-white transition">인생 요약</a></li>
+                        <li><a href="/ko/age-calculator/" class="hover:text-white transition">나이 계산기</a></li>
+                        <li><a href="/ko/compatibility/" class="hover:text-white transition">궁합 테스트</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="font-semibold text-white mb-4">바로가기</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/ko/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/ko/about/" class="hover:text-white transition">About</a></li>
-                        <li><a href="/ko/contact/" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="/ko/" class="hover:text-white transition">홈</a></li>
+                        <li><a href="/ko/about/" class="hover:text-white transition">소개</a></li>
+                        <li><a href="/ko/contact/" class="hover:text-white transition">문의</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <h4 class="font-semibold text-white mb-4">약관·정책</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/ko/privacy-policy/" class="hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="/ko/terms-of-service/" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="/ko/privacy-policy/" class="hover:text-white transition">개인정보처리방침</a></li>
+                        <li><a href="/ko/terms-of-service/" class="hover:text-white transition">이용약관</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
-                <p class="mt-2">All tests are for entertainment purposes only.</p>
+                <p>&copy; 2026 AI Test Lab.</p>
+                <p class="mt-2">모든 테스트는 재미와 자기 성찰을 위한 것입니다.</p>
             </div>
         </div>
     </footer>
@@ -1117,7 +1060,7 @@
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
     <script src="/js/localization.js?v=99260b3e"></script>
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1440,7 +1383,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -1767,5 +1710,6 @@
     }
 
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
+    <meta name="description" content="根据输入和生活习惯回答生成的趣味年龄比较结果。">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -315,7 +315,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -635,66 +635,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-
-                    &#128302; 尝试更多测试
-
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/zh/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI人生总结
-
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    获取由生日哈希和句子模板生成的娱乐性一句话人生总结。
-
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-
-                                    立即尝试 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/zh/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI配对测试
-
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    通过计算两人的答题差异，获得娱乐性的爱情配对结果。
-
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-
-                                    立即尝试 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -763,36 +705,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7天 · 5个测试 · 一个你
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        7天，5种角度看自己
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        单个结果是片段，一周5个结果显现模式。
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/zh/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">第1天 · 完成</p></a>
-                    <a href="/zh/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">第2天</p></a>
-                    <a href="/zh/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">第3天</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">第5天</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">第7天</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    无需注册 — 加入书签再回来。
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -906,7 +822,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1127,7 +1043,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -1231,5 +1147,6 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
