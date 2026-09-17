@@ -32,7 +32,11 @@ for (const l of LANGS) {
   for (const s of ['love-type', 'work-style', 'communication-style', 'vibe-check', 'kpop-match']) SURFACES.push([`${l}/${s}/index.html`, s]);
 }
 for (const [file, slug] of SURFACES) {
-  const html = read(file);
+  const raw = read(file);
+  const html = raw.replace(/<!--[\s\S]*?-->/g, '');
+  const ids = html.match(/\bid=["']sat-result-rail["']/g) || [];
+  if (ids.length !== 1) fail(`${file}: expected exactly 1 active element with id=sat-result-rail, got ${ids.length}`);
+  if (/<(template|noscript)\b[^>]*>(?:(?!<\/\1>)[\s\S])*sat-result-rail/i.test(html)) fail(`${file}: rail mount/script inside <template>/<noscript>`);
   const mounts = html.match(/<div id="sat-result-rail" data-test="([^"]+)"><\/div>/g) || [];
   if (mounts.length !== 1) fail(`${file}: expected exactly 1 rail mount, got ${mounts.length}`);
   else if (!mounts[0].includes(`data-test="${slug}"`)) fail(`${file}: rail mounted for the wrong test (${mounts[0]})`);
@@ -53,6 +57,30 @@ for (const s of ['kpop-match', 'vibe-check', 'age-calculator', 'work-style', 'co
   const f = cfg.FATE[s];
   if (!f || f.level === 'HIGH' || f.level === 'MEDIUM') fail(`FATE relevance: ${s} must stay LOW/NONE`);
 }
+const assert = require('assert');
+try {
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(cfg.FATE)), {
+    compatibility: { level: 'HIGH', kind: 'pair' }, 'marriage-compatibility': { level: 'HIGH', kind: 'pair' },
+    'love-type': { level: 'HIGH', kind: 'self' }, 'life-summary': { level: 'HIGH', kind: 'self' },
+    'friend-compatibility': { level: 'MEDIUM', kind: 'pair' }, 'personality-type': { level: 'MEDIUM', kind: 'self' },
+    'communication-style': { level: 'LOW' }, 'work-style': { level: 'LOW' }, 'age-calculator': { level: 'LOW' },
+    'vibe-check': { level: 'LOW' }, 'kpop-match': { level: 'NONE' } });
+} catch (e) { fail('FATE relevance contract changed (exact map expected — update this guard deliberately with a pre-registered experiment)'); }
+try {
+  const kept = new URL(cfg.withOrigin('https://fateaiverse.com/profiles/new?utm_source=partner', 'love-type', 'ko', 'result'));
+  assert.deepStrictEqual(kept.searchParams.getAll('utm_source'), ['partner']);
+  for (const [lang, prefix] of [['ko', '/ko'], ['ja', '/ja'], ['en', '']]) {
+    for (const [kind, p2, t] of [['self', '/profiles/new', 'love-type'], ['pair', '/compatibility', 'compatibility']]) {
+      const u = new URL(cfg.fateHref(t, lang, kind));
+      assert.strictEqual(u.hostname, 'fateaiverse.com');
+      assert.strictEqual(u.pathname, prefix + p2);
+      assert.deepStrictEqual(u.searchParams.getAll('utm_source'), ['smartaitest']);
+      const ALLOWED = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'origin_test', 'origin_surface', 'origin_locale'];
+      for (const k of u.searchParams.keys()) assert.ok(ALLOWED.includes(k), 'non-allowlisted param ' + k);
+      for (const k of ALLOWED) assert.strictEqual(u.searchParams.getAll(k).length, 1);
+    }
+  }
+} catch (e) { fail('FATE URL matrix/attribution: ' + e.message.split('\n')[0]); }
 const bases = Object.keys(cfg.FATE_BASE).sort().join(',');
 if (bases !== 'en,ja,ko') fail(`FATE locales: expected en,ja,ko, got ${bases}`);
 const href = cfg.fateHref('love-type', 'ko', 'self');
@@ -69,9 +97,12 @@ if (!/insertAffiliateSection\(containerId, html\) \{\s*(\/\/[^\n]*\n\s*)*return;
 
 // ------------------------------------------------------------------ 4
 const ae = read('js/analytics-events.js');
-const bind = ae.slice(ae.indexOf('  bindEvents() {'), ae.indexOf('detectTestType()'));
-for (const legacy of ['trackPageView()', 'onShareClicked(', 'onTestCompleted(', 'onTestStarted(']) {
-  if (bind.includes(legacy)) fail(`analytics-events.js: bindEvents re-binds legacy ${legacy} (duplicates the canonical funnel)`);
+{
+  const start = ae.indexOf('{', ae.indexOf('  bindEvents() {'));
+  let depth = 0, end = start;
+  for (let i = start; i < ae.length; i++) { if (ae[i] === '{') depth++; else if (ae[i] === '}' && --depth === 0) { end = i; break; } }
+  const body = ae.slice(start + 1, end).replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '').trim();
+  if (body) fail(`analytics-events.js: bindEvents must stay empty (legacy duplicates retired) — found: ${body.slice(0, 80)}`);
 }
 
 // ------------------------------------------------------------------ 5/6/7
@@ -88,6 +119,10 @@ const ROOT_TEST = /href="\/(vibe-check|kpop-match|age-calculator|life-summary|co
 for (const f of htmlFiles) {
   const html = read(f);
   if (/function gtagSafe\([^)]*\)\s*\{[^}]*gtag\('event'/.test(html)) fail(`${f}: gtagSafe sends straight to gtag (bypasses consent queue)`);
+  const inline = (html.match(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi) || []).join('\n') + (html.match(/\son\w+="[^"]*"/g) || []).join('\n');
+  // Direct inline sends bypass the consent queue. Only the dead legacy referral_landing path (viral-link ref_dob, never generated) is tolerated.
+  const direct = [...inline.matchAll(/(?:window\s*\.\s*|window\s*\[\s*['"])?gtag(?:['"]\s*\])?\s*\(\s*['"]event['"]\s*,\s*['"]([\w-]+)/g)].map(m => m[1]).filter(n => n !== 'referral_landing');
+  if (direct.length) fail(`${f}: inline gtag('event', ${direct[0]}) bypasses AnalyticsEvents.track consent queue`);
   for (const re of FAKE) if (re.test(html)) fail(`${f}: fabricated participation claim ${re}`);
   if (/^(ko|en|ja|zh|es)\//.test(f.replace(/^\.\//, '')) && ROOT_TEST.test(html)) fail(`${f}: links a root test path (301s to /en/): ${html.match(ROOT_TEST)[0]}`);
 }
