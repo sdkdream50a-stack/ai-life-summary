@@ -3,7 +3,7 @@
 <head>
     <!-- GA loaded via consent manager --><!-- Clarity loaded via consent manager -->
     <meta charset="UTF-8">
-    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
+    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net https://scripts.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://fundingchoicesmessages.google.com https://*.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -245,7 +245,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body class="kick-mesh-bg text-white min-h-screen">
@@ -259,8 +259,8 @@
             <a href="/ko/compatibility/" class="kick-navbar-link text-pink-400">❤️‍🔥 궁합</a>
             <a href="/ko/life-summary/" class="kick-navbar-link">🔮 소울</a>
             <a href="/ko/age-calculator/" class="kick-navbar-link">⏳ 나이</a>
-            <a href="/vibe-check/" class="kick-navbar-link">🔥 바이브</a>
-            <a href="/kpop-match/" class="kick-navbar-link">💜 K-팝</a>
+            <a href="/ko/vibe-check/" class="kick-navbar-link">🔥 바이브</a>
+            <a href="/ko/kpop-match/" class="kick-navbar-link">💜 K-팝</a>
             <a href="/blog.html" class="kick-navbar-link">📝 블로그</a>
         </div>
         <!-- Language Selector -->
@@ -298,7 +298,7 @@
                 <div class="text-5xl md:text-6xl mb-3">💞</div>
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-3"><span class="kick-gradient-text">결혼 궁합 테스트</span></h1>
                 <p class="text-base md:text-lg text-white/80 mb-6">오래 함께할 우리의 케미를 미리 보기</p>
-                <a href="/ko/compatibility/" onclick="try{gtag('event','derivative_cta_click',{source:'marriage-compatibility',target:'compatibility'})}catch(e){}"
+                <a href="/ko/compatibility/" onclick="try{AnalyticsEvents.track('derivative_cta_click',{source:'marriage-compatibility',target:'compatibility'})}catch(e){}"
                    class="kick-btn kick-btn-primary font-bold py-3 px-8 rounded-xl inline-flex items-center gap-2 text-lg">우리 부부 궁합 확인하기 →</a>
                 <p class="text-white/50 text-sm mt-3">무료 · 회원가입 없음 · 즉시 결과</p>
             </div>
@@ -324,7 +324,7 @@
                 </details>
                 </div>
                 <div class="text-center pt-2">
-                    <a href="/ko/compatibility/" onclick="try{gtag('event','derivative_cta_click',{source:'marriage-compatibility',target:'compatibility'})}catch(e){}"
+                    <a href="/ko/compatibility/" onclick="try{AnalyticsEvents.track('derivative_cta_click',{source:'marriage-compatibility',target:'compatibility'})}catch(e){}"
                        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white" style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">우리 부부 궁합 확인하기 →</a>
                 </div>
                 <p class="text-sm text-gray-500 pt-4 border-t border-gray-100">관련 테스트: <a href="/ko/compatibility/" class="text-indigo-600 hover:underline font-semibold">AI 궁합 테스트 (커플)</a>

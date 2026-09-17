@@ -3,7 +3,7 @@
 <head>
     <!-- GA loaded via consent manager --><!-- Clarity loaded via consent manager -->
     <meta charset="UTF-8">
-    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
+    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net https://scripts.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://fundingchoicesmessages.google.com https://*.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -920,7 +920,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 
     <!-- S2-1 Home hierarchy (inline: no Tailwind rebuild) -->
@@ -1059,13 +1059,13 @@
                 <!-- Bold Headline -->
                 <h1 class="kick-heading text-3xl md:text-4xl lg:text-5xl mb-4 text-white">
 
-                    지금의 나, <span class="kick-gradient-text">한마디로 하면?</span>
+                    지금의 나, <span class="kick-gradient-text">어떤 사람일까?</span>
 
                 </h1>
 
                 <p class="text-base md:text-xl text-white/70 mb-6 max-w-2xl mx-auto">
 
-                    40문항 성격 유형 검사(약 5분)부터 연애·궁합 간단 테스트까지. 가입 없이 무료.
+                    몇 분이면 가볍게 알아보고, 친구와 결과를 비교해볼 수 있어요. 가입 없이 무료.
 
                 </p>
 
@@ -1098,18 +1098,18 @@
                 <div class="s2-chips">
                     <a href="#test-personality" class="s2-chip">
                         <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">나</span>
+                        <span class="s2-chip-label">제대로 알아보기</span>
                         <span class="s2-chip-note">40문항·약 5분</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">연애·친구</span>
-                        <span class="s2-chip-note">둘이서</span>
                     </a>
                     <a href="#more-tests" class="s2-chip">
                         <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">가볍게 해보기</span>
+                        <span class="s2-chip-label">빠르게 해보기</span>
                         <span class="s2-chip-note">5문항부터</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">둘이 해보기</span>
+                        <span class="s2-chip-note">연인·친구</span>
                     </a>
                 </div>
             </div>

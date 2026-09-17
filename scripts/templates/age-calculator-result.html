@@ -322,7 +322,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -621,59 +621,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-                    &#128302; Try More Tests
-
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/en/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-                                    AI Life Summary
-
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-                                    Generate a playful birthday-based life-summary sentence for entertainment.
-
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-                                    Try Now &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/en/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-                                    AI Compatibility
-
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-                                    Compare two people’s Likert-answer differences with fixed weights for an entertainment result.
-
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-                                    Try Now &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -735,36 +684,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7 DAYS · 5 TESTS · ONE YOU
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        The 5-in-7 Self-Discovery Challenge
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        One result tells you something. Five results across a week tell you the pattern.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/en/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">Day 1 · Done</p></a>
-                    <a href="/en/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">Day 2</p></a>
-                    <a href="/en/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">Day 3</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">Day 5</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">Day 7</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    No signup, no email — bookmark and come back.
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -808,11 +731,11 @@
                     </h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/en/life-summary/" class="hover:text-white transition">
-                            AI Life Summary
+                            Life Summary
 
                         </a></li>
                         <li><a href="/en/age-calculator/" class="hover:text-white transition">
-                            AI Age Calculator
+                            Age Calculator
 
                         </a></li>
                     </ul>
@@ -855,7 +778,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-                <p>&copy; 2025 AI Test Lab. All rights reserved.</p>
+                <p>&copy; 2026 AI Test Lab. All rights reserved.</p>
                 <p class="mt-2">
                     All tests are for entertainment purposes only.
 
@@ -870,7 +793,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -1091,7 +1014,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -1195,6 +1118,7 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
 <!-- I18N_PAGE_END en -->
@@ -1222,7 +1146,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
+    <meta name="description" content="입력과 생활 습관 답변으로 만든 재미용 나이 비교 결과입니다.">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -1517,7 +1441,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -1837,66 +1761,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-
-                    &#128302; 다른 테스트 해보기
-
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/ko/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI 인생 요약
-
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    생년월일 해시와 문장 템플릿으로 만드는 오락용 인생 요약을 받아보세요.
-
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-
-                                    지금 해보기 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/ko/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI 궁합 테스트
-
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    두 사람의 답변 차이를 계산하는 오락용 연인 궁합을 확인해보세요.
-
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-
-                                    지금 해보기 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -1965,36 +1831,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7일 · 5개 테스트 · 한 명의 당신
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        7일 안에 자기를 5각도로 보기
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        결과 하나는 한 조각, 일주일 5개 결과는 패턴.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/ko/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">1일차 · 완료</p></a>
-                    <a href="/ko/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">2일차</p></a>
-                    <a href="/ko/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">3일차</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">5일차</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">7일차</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    가입·이메일 없음 — 북마크하고 돌아오세요.
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -2121,7 +1961,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -2342,7 +2182,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -2446,6 +2286,7 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
 <!-- I18N_PAGE_END ko -->
@@ -2473,7 +2314,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
+    <meta name="description" content="入力と生活習慣の回答から作った、楽しみのための年齢比較の結果です。">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -2768,7 +2609,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -3088,66 +2929,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-
-                    &#128302; 他のテストを試す
-
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/ja/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AIライフサマリー
-
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    誕生日に基づいてAIが生成した一文であなたの人生サマリーを取得しましょう。
-
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-
-                                    今すぐ試す &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/ja/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI相性診断
-
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    2人の回答差を計算する娯楽用の恋愛相性テストを楽しみましょう。
-
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-
-                                    今すぐ試す &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -3216,36 +2999,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7日間・5つの診断・一人のあなた
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        7日間で自分を5角度から見る
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        1つの結果は1ピース、5つの結果はパターン。
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/ja/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">1日目 · 完了</p></a>
-                    <a href="/ja/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">2日目</p></a>
-                    <a href="/ja/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">3日目</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">5日目</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">7日目</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    登録不要 — ブックマークして戻ってきて。
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -3370,7 +3127,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -3591,7 +3348,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -3695,6 +3452,7 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
 <!-- I18N_PAGE_END ja -->
@@ -3722,7 +3480,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
+    <meta name="description" content="根据输入和生活习惯回答生成的趣味年龄比较结果。">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -4017,7 +3775,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -4337,66 +4095,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-
-                    &#128302; 尝试更多测试
-
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/zh/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI人生总结
-
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    获取由生日哈希和句子模板生成的娱乐性一句话人生总结。
-
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-
-                                    立即尝试 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/zh/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    AI配对测试
-
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    通过计算两人的答题差异，获得娱乐性的爱情配对结果。
-
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-
-                                    立即尝试 &#8594;
-
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -4465,36 +4165,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7天 · 5个测试 · 一个你
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        7天，5种角度看自己
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        单个结果是片段，一周5个结果显现模式。
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/zh/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">第1天 · 完成</p></a>
-                    <a href="/zh/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">第2天</p></a>
-                    <a href="/zh/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">第3天</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">第5天</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">第7天</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    无需注册 — 加入书签再回来。
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -4608,7 +4282,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -4829,7 +4503,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -4933,6 +4607,7 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
 <!-- I18N_PAGE_END zh -->
@@ -4960,7 +4635,7 @@
     <link rel="alternate" hreflang="zh" href="https://smartaitest.com/zh/age-calculator/result/">
     <link rel="alternate" hreflang="es" href="https://smartaitest.com/es/age-calculator/result/">
     <link rel="alternate" hreflang="x-default" href="https://smartaitest.com/en/age-calculator/result/">
-    <meta name="description" content="Your playful age-comparison result based on your inputs and lifestyle answers. For entertainment, not medical or psychological measurement.">
+    <meta name="description" content="Tu comparación de edad para divertirse, basada en tus datos y respuestas sobre hábitos.">
     <meta name="robots" content="noindex, follow">
 
     <!-- Open Graph / Facebook (dynamic values will be set by JS) -->
@@ -5255,7 +4930,7 @@
     }
     </style>
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 <style id="floating-bar-safe-space">
 /* The floating navbar is position:fixed and is pinned to the bottom on phones,
@@ -5554,59 +5229,8 @@
             </div>
         </section>
 
-        <!-- Try More Tests -->
-        <section class="py-10 bg-gradient-to-br from-indigo-50 to-purple-50">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl font-bold text-center mb-8">
-
-                    &#128302; Prueba Más Tests
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Life Summary Card -->
-                    <a href="/es/life-summary/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#10024;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    Resumen de Vida IA
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    Obtén una frase ludica creada con un hash de cumpleaños y plantillas narrativas.
-                                </p>
-                                <span class="inline-block mt-3 text-primary font-medium text-sm">
-
-                                    Probar Ahora &#8594;
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- AI Compatibility Card -->
-                    <a href="/es/compatibility/" class="block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-                        <div class="flex items-start space-x-4">
-                            <span class="text-4xl">&#128149;</span>
-                            <div>
-                                <h3 class="font-heading font-semibold text-lg mb-2">
-
-                                    Compatibilidad IA
-                                    <span class="text-xs bg-red-500 text-white px-2 py-1 rounded ml-2">NEW</span>
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-
-                                    Compara las diferencias entre las respuestas de dos personas con un resultado ludico.
-                                </p>
-                                <span class="inline-block mt-3 text-pink-500 font-medium text-sm">
-
-                                    Probar Ahora &#8594;
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Result rail: friend · next test · related · contextual bridge (js/result-rail.js) -->
+        <div id="sat-result-rail" data-test="age-calculator"></div>
 
         <!-- Viral Boost section -->
         <section class="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
@@ -5668,36 +5292,10 @@
             </div>
         </section>
 
-        <!-- 5 Tests Challenge — PMF retention card (Step 5b) -->
-        <section class="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-            <div class="max-w-3xl mx-auto px-4">
-                <div class="text-center mb-8">
-                    <p class="text-sm font-semibold text-orange-600 mb-2">
-                        7 DÍAS · 5 TESTS · UN TÚ
-                    </p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900" style="font-family: Poppins, sans-serif;">
-                        El Reto 5-en-7 de Autodescubrimiento
-                    </h2>
-                    <p class="text-gray-600 max-w-xl mx-auto">
-                        Un resultado te dice algo, cinco en una semana revelan el patrón.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <a href="/es/age-calculator/" class="bg-white border border-yellow-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">⏳</div><p class="font-semibold text-sm text-yellow-700">Mental Age</p><p class="text-xs text-gray-500 mt-1">Día 1 · Hecho</p></a>
-                    <a href="/es/life-summary/" class="bg-white border border-indigo-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔮</div><p class="font-semibold text-sm text-indigo-700">Life Summary</p><p class="text-xs text-gray-500 mt-1">Día 2</p></a>
-                    <a href="/es/compatibility/" class="bg-white border border-pink-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">❤️‍🔥</div><p class="font-semibold text-sm text-pink-700">Compatibility</p><p class="text-xs text-gray-500 mt-1">Día 3</p></a>
-                    <a href="/vibe-check/" class="bg-white border border-orange-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">🔥</div><p class="font-semibold text-sm text-orange-700">Vibe Check</p><p class="text-xs text-gray-500 mt-1">Día 5</p></a>
-                    <a href="/kpop-match/" class="bg-white border border-fuchsia-200 rounded-xl p-4 text-center hover:shadow-md transition"><div class="text-3xl mb-2">💜</div><p class="font-semibold text-sm text-fuchsia-700">K-Pop Match</p><p class="text-xs text-gray-500 mt-1">Día 7</p></a>
-                </div>
-                <p class="text-center text-xs text-gray-400 mt-6">
-                    Sin registro — marca esta página.
-                </p>
-            </div>
-        </section>
 
         <script>
             (function(){
-                function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+                function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
                 function showToast(m){var el=document.getElementById('vb-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
                 function loadScript(s){return new Promise(function(r,j){var x=document.createElement('script');x.src=s;x.onload=r;x.onerror=j;document.head.appendChild(x);});}
                 window.vb_saveImage=function(){gtagSafe('share_save_image',{tool:'age-calculator'});var el=document.getElementById('result-stage')||document.querySelector('main')||document.body;var p=(typeof html2canvas==='function')?Promise.resolve():loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');p.then(function(){return html2canvas(el,{backgroundColor:'#ffffff',scale:2,useCORS:true});}).then(function(c){var a=document.createElement('a');a.download='age-calculator-result.png';a.href=c.toDataURL('image/png');a.click();showToast('✓ Saved');}).catch(function(){showToast('⚠ Save failed');});};
@@ -5811,7 +5409,7 @@
     <script src="/js/age-image-generator.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <!-- Stage 5: Monetization -->
-    <script src="/js/monetization.js"></script>
+    <script src="/js/monetization.js?v=a1138f8f"></script>
 
     <!-- Result Page Script -->
     <script>
@@ -6032,7 +5630,7 @@
     <!-- Gamification Scripts -->
     <script src="../../../js/badges.js"></script>
     <script src="../../../js/level-xp.js"></script>
-    <script src="../../../js/streak.js"></script>
+    <script src="../../../js/streak.js?v=490ebf9c"></script>
     <script src="../../../js/user-data.js"></script>
     <script src="../../../js/auth.js"></script>
     <script src="../../../js/gamification-ui.js"></script>
@@ -6136,6 +5734,7 @@
         window.dispatchEvent(new CustomEvent('gamification-update'));
     })();
     </script>
+    <script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
 <!-- I18N_PAGE_END es -->

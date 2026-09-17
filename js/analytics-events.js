@@ -97,30 +97,12 @@ const AnalyticsEvents = {
    * Bind automatic event tracking
    */
   bindEvents() {
-    // Auto-detect page type and track page view
-    this.trackPageView();
-
-    // Listen for test start
-    document.addEventListener('click', (e) => {
-      const startBtn = e.target.closest('[data-test-start], .test-start-btn, #start-test-btn');
-      if (startBtn) {
-        this.onTestStarted(startBtn.dataset.testType || this.detectTestType());
-      }
-    });
-
-    // Listen for share button clicks
-    document.addEventListener('click', (e) => {
-      const shareBtn = e.target.closest('[data-share], .share-btn, [id^="share-"]');
-      if (shareBtn) {
-        const platform = shareBtn.dataset.platform || shareBtn.id.replace('share-', '').replace('-btn', '');
-        this.onShareClicked(platform);
-      }
-    });
-
-    // Track result page load
-    if (window.location.pathname.includes('/result')) {
-      this.onTestCompleted();
-    }
+    // Retired 2026-09-17 (product rebase): this used to send a custom
+    // `page_view` (on top of GA4's own automatic page_view), `test_started`,
+    // `share_clicked` and `test_completed`. Each duplicated a canonical event
+    // bound in bindCanonicalFunnel (test_start, share_click, test_complete),
+    // so every completion and share was counted twice under two names.
+    // The canonical funnel is now the only automatic binding.
   },
 
   /**

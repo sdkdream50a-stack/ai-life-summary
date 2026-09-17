@@ -58,6 +58,7 @@ class StreakSystem {
    * Update streak based on participation
    */
   updateStreak(streakData) {
+    streakData = streakData || {}; // some result pages call without stored data
     const today = this.getTodayKST();
     const yesterday = this.getYesterdayKST();
     const lastDate = streakData.lastParticipationDate;
@@ -139,6 +140,7 @@ class StreakSystem {
    * Get streak status message
    */
   getStreakStatus(streakData, lang = 'ko') {
+    streakData = streakData || {}; // some result pages call without stored data
     const currentStreak = streakData.currentStreak || 0;
     const today = this.getTodayKST();
     const yesterday = this.getYesterdayKST();
@@ -182,6 +184,7 @@ class StreakSystem {
    * Get week display data
    */
   getWeekDisplay(streakData) {
+    streakData = streakData || {}; // some result pages call without stored data
     const today = new Date();
     const kstToday = new Date(today.toLocaleString('en-US', { timeZone: this.timezone }));
     const dayOfWeek = kstToday.getDay(); // 0 = Sunday

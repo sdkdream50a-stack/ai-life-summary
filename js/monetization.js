@@ -153,18 +153,13 @@ const ContextualAffiliateManager = {
      * Insert affiliate section into DOM
      */
     insertAffiliateSection(containerId, html) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        container.innerHTML = html;
-        container.classList.remove('hidden');
-
-        // Track impression
-        if (typeof gtag === 'function') {
-            gtag('event', 'affiliate_impression', {
-                section: containerId
-            });
-        }
+        // Disabled 2026-09-17 (product rebase). The "affiliate" links here were
+        // plain netflix.com / disneyplus.com URLs with no program behind them,
+        // yet the block was labelled sponsored and disclosed as affiliate — a
+        // disclosure that was not true — and it emitted affiliate_impression
+        // into the funnel the real affiliate foundation (js/result-rail.js)
+        // now owns. Nothing is rendered until an approved program exists.
+        return;
     },
 
     /**

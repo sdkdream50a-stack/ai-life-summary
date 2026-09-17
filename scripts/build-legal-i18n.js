@@ -172,6 +172,10 @@ function transform(srcHtml, slug, lang) {
     //     Also handle "./" without leading dot in some hrefs like href="./xxx" already covered.
     //     And handle things like href="/" (root absolute) - leave alone.
 
+    // 12. Root test paths 301 to /en/ — keep the visitor in this page's locale.
+    h = h.replace(/href="\/(vibe-check|kpop-match|age-calculator|life-summary|compatibility|personality-type|love-type|work-style|communication-style)\/"/g,
+        `href="/${lang}/$1/"`);
+
     return h;
 }
 

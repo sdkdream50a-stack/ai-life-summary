@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
+    <!-- Content Security Policy --> <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.gstatic.com https://cdn.jsdelivr.net https://developers.kakao.com https://t1.kakaocdn.net https://scripts.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://pagead2.googlesyndication.com https://adservice.google.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.adtrafficquality.google https://googleads.g.doubleclick.net https://fundingchoicesmessages.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://*.adtrafficquality.google https://fundingchoicesmessages.google.com https://*.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; ">
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
@@ -100,7 +100,7 @@
     </style>
     <!-- Google Consent Mode v2 defaults set by consent-manager.js -->
     <script src="/js/consent-manager.js?v=8af1ea9f"></script>
-<script src="/js/analytics-events.js?v=da69b087"></script>
+<script src="/js/analytics-events.js?v=824d0278"></script>
     <link rel="stylesheet" href="/css/pretendard.css">
 </head>
 <body>
@@ -114,8 +114,8 @@
                 <a href="/en/life-summary/" class="hover:text-white" title="Life Summary">🔮 Soul</a>
                 <a href="/en/compatibility/" class="hover:text-white" title="Compatibility">❤️‍🔥 Compat</a>
                 <a href="/en/age-calculator/" class="hover:text-white" title="Mental Age">⏳ Age</a>
-                <a href="/vibe-check/" class="text-orange-400 font-semibold" title="Vibe Check">🔥 Vibe</a>
-                <a href="/kpop-match/" class="hover:text-white" title="K-Pop Match">💜 K-Pop</a>
+                <a href="/en/vibe-check/" class="text-orange-400 font-semibold" title="Vibe Check">🔥 Vibe</a>
+                <a href="/en/kpop-match/" class="hover:text-white" title="K-Pop Match">💜 K-Pop</a>
                 <a href="/blog.html" class="hover:text-white">📝 Blog</a>
             </div>
             <button id="vc-mobile-btn" class="md:hidden text-white p-1" aria-label="Menu">
@@ -131,8 +131,8 @@
             <a href="/en/life-summary/" class="text-2xl text-white font-bold hover:text-purple-400 transition">🔮 Soul Type</a>
             <a href="/en/compatibility/" class="text-2xl text-white font-bold hover:text-pink-400 transition">❤️‍🔥 Compatibility</a>
             <a href="/en/age-calculator/" class="text-2xl text-white font-bold hover:text-cyan-400 transition">⏳ Mental Age</a>
-            <a href="/vibe-check/" class="text-2xl text-orange-400 font-bold">🔥 Vibe Check</a>
-            <a href="/kpop-match/" class="text-2xl text-white font-bold hover:text-fuchsia-400 transition">💜 K-Pop Match</a>
+            <a href="/en/vibe-check/" class="text-2xl text-orange-400 font-bold">🔥 Vibe Check</a>
+            <a href="/en/kpop-match/" class="text-2xl text-white font-bold hover:text-fuchsia-400 transition">💜 K-Pop Match</a>
             <div class="border-t border-white/20 w-48 my-2"></div>
             <a href="/blog.html" class="text-lg text-white/70 hover:text-white">Blog</a>
             <a href="/en/about/" class="text-lg text-white/70 hover:text-white">About</a>
@@ -264,13 +264,7 @@
                 <p id="vc-toast" class="mt-4 text-sm text-green-400 font-medium hidden"></p>
             </div>
 
-            <!-- Cross promo -->
-            <div class="mt-10 text-sm text-white/50">
-                Want a less savage test?
-
-                <a href="/en/life-summary/" class="text-pink-400 hover:underline ml-2">AI Life Summary</a> ·
-                <a href="/en/compatibility/" class="text-pink-400 hover:underline">AI Compatibility</a>
-            </div>
+            <div id="sat-result-rail" data-test="vibe-check"></div>
         </section>
 
     </main>
@@ -281,7 +275,7 @@
 
     <script>
     (function(){
-        function gtagSafe(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+        function gtagSafe(n,p){try{if(window.AnalyticsEvents&&typeof AnalyticsEvents.track==='function')AnalyticsEvents.track(n,p||{});}catch(e){}}
         function show(id){document.getElementById(id).classList.remove('hidden');}
         function hide(id){document.getElementById(id).classList.add('hidden');}
         function showToast(m){var el=document.getElementById('vc-toast');if(!el)return;el.textContent=m;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden');},2200);}
@@ -536,5 +530,6 @@
         document.documentElement.classList.add('js-ready');
     }
     </script>
+<script src="/js/result-rail.js?v=83917d4a" defer></script>
 </body>
 </html>
