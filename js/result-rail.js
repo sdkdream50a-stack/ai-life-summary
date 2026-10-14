@@ -184,7 +184,8 @@
       ja: '質問から見た二人のケミはここまで。生年月日にもとづく伝統的な関係の読み方も気になるなら、比べてみることができます。' },
     fate_btn: { ko: '다른 관점으로 나를 보기', en: 'See me from another perspective', ja: '別の視点で自分を見る' },
     fate_btn_pair: { ko: '다른 관점으로 우리 보기', en: 'See us from another perspective', ja: '別の視点で二人を見る' },
-    fate_note: { ko: 'FateAIverse(외부 사이트)로 이동 · 기본 분석 무료 · 재미와 자기 성찰용', en: 'Opens FateAIverse (external site) · basic reading free · for reflection and fun', ja: 'FateAIverse（外部サイト）へ移動・基本分析は無料・楽しみと自己理解のために' },
+    // ko: FateAIverse 결제는 2026-10-14 부터 KO(국내 카드)만 열림 → 유료 리포트 가격을 미리 밝힌다(ja/en 은 결제 미개설이라 그대로).
+    fate_note: { ko: 'FateAIverse(외부 사이트)로 이동 · 기본 분석 무료, 심층 리포트는 유료(₩12,900) · 재미와 자기 성찰용', en: 'Opens FateAIverse (external site) · basic reading free · for reflection and fun', ja: 'FateAIverse（外部サイト）へ移動・基本分析は無料・楽しみと自己理解のために' },
     aff_title: { ko: '관련해서 참고할 만한 것', en: 'Things that may help', ja: '参考になるもの', zh: '或许有帮助', es: 'Cosas que pueden ayudar' },
     aff_disclosure: {
       ko: '이 영역에는 제휴 링크가 포함될 수 있으며, 링크를 통해 구매하면 운영자가 일정 수수료를 받을 수 있습니다. 구매 가격은 달라지지 않습니다.',
