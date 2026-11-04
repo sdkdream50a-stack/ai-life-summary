@@ -486,6 +486,38 @@
     }
   }
 
+  function addResultShortcut(root, test, lang) {
+    var targets = {
+      'personality-type': ['#pt-type-header', '.pt-type-header'],
+      'compatibility': ['#person-a-name', '.kick-glass'],
+      'age-calculator': ['#real-age', '.kick-glass'],
+      'life-summary': ['#reveal-card', '.reveal-card']
+    };
+    var target = targets[test];
+    if (!target || document.querySelector('a[href="#sat-result-rail"]')) return;
+    var marker = document.querySelector(target[0]);
+    var card = marker && marker.closest(target[1]);
+    if (!card || !card.parentElement) return;
+    var labels = {
+      ko: '다른 테스트 보기', ja: '他の診断を見る', en: 'More tests',
+      zh: '查看其他测试', es: 'Más tests'
+    };
+    var link = el('a', {
+      href: '#sat-result-rail',
+      'class': test === 'personality-type' ? 'pt-btn pt-btn-secondary' :
+        'px-6 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition text-center',
+      style: 'display:block;width:fit-content;margin:16px auto;',
+      text: labels[lang] || labels.en
+    });
+    link.addEventListener('click', function (event) {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey ||
+          event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    card.insertAdjacentElement('afterend', link);
+  }
+
   function mount() {
     var root = document.getElementById('sat-result-rail');
     if (!root || root.getAttribute('data-mounted')) return;
@@ -495,6 +527,7 @@
     if (LOCALES.indexOf(lang) === -1) return;
     root.setAttribute('data-mounted', '1');
     injectStyles();
+    addResultShortcut(root, test, lang);
     tagExistingFateLinks(test, lang);
 
     // vibe-check and kpop-match already carry their own "bring a friend" card.

@@ -182,30 +182,29 @@ def reject_consent(page, run):
 
 
 def observe(page, run, fields, count_inputs=True):
-    run["horizontal_overflow"] |= page.evaluate(
-        "() => Math.max(document.documentElement.scrollWidth,"
-        " document.body?.scrollWidth || 0) > 390"
-    )
-    controls = page.locator(
-        'main input:not([type=radio]):not([type=checkbox])'
-        ':not([type=hidden]):not([type=submit]):not([type=button]),'
-        'main select, main textarea'
-    )
-    for i in range(controls.count()):
-        control = controls.nth(i)
-        if count_inputs and control.evaluate(VISIBLE_JS):
-            key = control.evaluate(
-                "(el) => el.id || el.name || el.outerHTML"
-            )
-            fields.add((urlsplit(page.url).path, key))
+    snapshot = page.evaluate("""countInputs => {
+        const visible = (""" + VISIBLE_JS + """);
+        const controls = countInputs ? [...document.querySelectorAll(
+            'main input:not([type=radio]):not([type=checkbox])' +
+            ':not([type=hidden]):not([type=submit]):not([type=button]),' +
+            'main select, main textarea'
+        )] : [];
+        return {
+            path: location.pathname,
+            fields: controls.filter(visible).map(el =>
+                el.id || el.name || el.outerHTML),
+            overflow: Math.max(document.documentElement.scrollWidth,
+                document.body?.scrollWidth || 0) > 390,
+            progress: [...document.querySelectorAll(
+                '#pt-progress-text, #question-progress, #q-counter,' +
+                '[role=progressbar], progress'
+            )].some(visible)
+        };
+    }""", count_inputs)
+    fields.update((snapshot["path"], key) for key in snapshot["fields"])
     run["input_fields"] = len(fields)
-    progress = page.locator(
-        '#pt-progress-text, #question-progress, #q-counter,'
-        '[role=progressbar], progress'
-    )
-    run["progress_present"] |= any(
-        progress.nth(i).evaluate(VISIBLE_JS) for i in range(progress.count())
-    )
+    run["horizontal_overflow"] |= snapshot["overflow"]
+    run["progress_present"] |= snapshot["progress"]
 
 
 def fill_fake(page, seed):
