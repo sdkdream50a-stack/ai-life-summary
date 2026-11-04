@@ -186,11 +186,11 @@ function tokensFor(product, lang) {
 // ── Preview image ────────────────────────────────────────────────────────
 // These are the URLs people paste into KakaoTalk/LINE/X. Without og:image the
 // link unfurls as a bare card, so each compatibility couple gets its own
-// language-neutral 1200x630 image (scripts/generate-compat-og.py, same pattern
-// as assets/images/pt/ for personality types). Other products use the site card.
-function ogImage(product, token) {
-  if (product === 'compatibility' && fs.existsSync(path.join(ROOT, 'assets/images/cc', `${token}.jpg`))) {
-    return `${ORIGIN}/assets/images/cc/${token}.jpg`;
+// localized 1200x630 image per language (scripts/generate-compat-og.py).
+// Other products use the site card.
+function ogImage(product, token, lang) {
+  if (product === 'compatibility' && fs.existsSync(path.join(ROOT, 'assets/images/cc', lang, `${token}.jpg`))) {
+    return `${ORIGIN}/assets/images/cc/${lang}/${token}.jpg`;
   }
   return `${ORIGIN}/assets/images/og-default.png`;
 }
@@ -233,13 +233,13 @@ ${alts}
 <meta property="og:title" content="${esc(ogTitle)}">
 <meta property="og:description" content="${esc(metaDesc)}">
 <meta property="og:site_name" content="AI Test Lab">
-<meta property="og:image" content="${ogImage(product, item.token)}">
+<meta property="og:image" content="${ogImage(product, item.token, lang)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(ogTitle)}">
 <meta name="twitter:description" content="${esc(metaDesc)}">
-<meta name="twitter:image" content="${ogImage(product, item.token)}">
+<meta name="twitter:image" content="${ogImage(product, item.token, lang)}">
 <link rel="stylesheet" href="/css/pretendard.css">
 <style>
 :root{--stage:#0E0E10;--lav:#D9C8F0;--lav2:#BBA8DA}
@@ -327,8 +327,11 @@ ${item.desc ? `<p class="tp-desc">${esc(item.desc)}</p>` : ''}
 
 // ── Emit ─────────────────────────────────────────────────────────────────
 if (process.argv.includes('--dump-compat-tokens')) {
-  const en = tokensFor('compatibility', 'en');
-  console.log(JSON.stringify(en.map(t => ({ token: t.token, emoji: t.emoji, title: t.title, desc: t.desc }))));
+  const items = LANGS.flatMap(lang => tokensFor('compatibility', lang).map(t => ({
+    lang, kicker: UI[lang].kicker.compatibility,
+    token: t.token, emoji: t.emoji, title: t.title, desc: t.desc
+  })));
+  console.log(JSON.stringify(items));
   process.exit(0);
 }
 
