@@ -7,6 +7,11 @@ Usage: audit-mobile-flows.py <base-url> <out-dir> <locale> [slug...]
                             [--seed first|last]
 
 CAVEATS
+- Read-only session: this diff is unapplied. JS/Python syntax was checked in
+  memory; browser behavior and mobile layout remain unverified.
+- result_share_top/result_next_top use document CSS pixels (top + scrollY),
+  or null if absent. Next top includes the recommendation-rail anchor and
+  landing links; next_test_links still counts only landing links.
 - base-url is an origin (http[s]://localhost or a literal loopback IP, with
   optional port). Only same-origin HTTP(S) resources are allowed; analytics
   and advertising paths are blocked even on that origin. All WebSockets,
@@ -340,27 +345,41 @@ def result_metrics(page, slug, run):
     parts = page.locator(IDENTITY[slug]).all_inner_texts()
     run["result_text"] = "\n".join(" ".join(p.split()) for p in parts if p.strip())
     run["result_reached"] = True
-    run["share_buttons"] = page.evaluate("""() => {
+    share_metrics = page.evaluate("""() => {
         const rendered = e => !e.closest('.hidden,[hidden],[aria-hidden="true"]')
             && e.getClientRects().length &&
             getComputedStyle(e).visibility !== 'hidden';
-        return [...document.querySelectorAll('button,a,[role=button]')]
+        const buttons = [...document.querySelectorAll('button,a,[role=button]')]
             .filter(rendered).filter(e =>
                 /share|copy.?link|공유|복사|シェア|共有|分享|复制|compartir|copiar/i
                 .test([e.id,e.className,e.getAttribute('onclick'),
                        e.getAttribute('aria-label'),e.textContent].join(' ')))
-            .length;
+            ;
+        return {count: buttons.length, top: buttons.length
+            ? Math.min(...buttons.map(e => e.getBoundingClientRect().top + scrollY))
+            : null};
     }""")
-    run["next_test_links"] = page.evaluate("""({slugs, current}) =>
-        [...document.querySelectorAll('main a[href]')].filter(e => {
-            if (e.closest('nav,footer,.hidden,[hidden]') ||
-                !e.getClientRects().length) return false;
+    run["share_buttons"] = share_metrics["count"]
+    run["result_share_top"] = share_metrics["top"]
+    next_metrics = page.evaluate("""({slugs, current}) => {
+        const links = [...document.querySelectorAll('main a[href]')].filter(e =>
+            !e.closest('nav,footer,.hidden,[hidden],[aria-hidden="true"]') &&
+            e.getClientRects().length &&
+            getComputedStyle(e).visibility !== 'hidden');
+        const landing = links.filter(e => {
             const u = new URL(e.href);
             const p = u.pathname.split('/').filter(Boolean);
             return u.origin === location.origin && p.length === 2 &&
                 slugs.includes(p[1]) && p[1] !== current && !u.hash;
-        }).length
-    """, {"slugs": SLUGS, "current": slug})
+        });
+        const next = links.filter(e => landing.includes(e) ||
+            e.getAttribute('href') === '#sat-result-rail');
+        return {count: landing.length, top: next.length
+            ? Math.min(...next.map(e => e.getBoundingClientRect().top + scrollY))
+            : null};
+    }""", {"slugs": SLUGS, "current": slug})
+    run["next_test_links"] = next_metrics["count"]
+    run["result_next_top"] = next_metrics["top"]
     run["adsbygoogle"] = page.locator("ins.adsbygoogle").count()
 
 
@@ -370,7 +389,8 @@ def audit(browser, base, origin, locale, slug, seed, folder):
                share_buttons=None, next_test_links=None, adsbygoogle=None,
                horizontal_overflow=False, pageerrors=[], failure_reason=None,
                screenshots={}, consent_button_in_viewport=None,
-               compatibility_path=None)
+               compatibility_path=None, result_share_top=None,
+               result_next_top=None)
     context = None
     page = None
     fields = set()
