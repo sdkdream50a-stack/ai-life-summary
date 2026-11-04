@@ -7,6 +7,7 @@
   const valid = id => ANIMALS.some(animal => animal.id === id);
   const params = new URLSearchParams(location.search);
   const from = valid(params.get('from')) ? params.get('from') : null;
+  if (from) document.getElementById('invite-subtitle').textContent = ui[19];
   const src = SHARE_SRC.includes(params.get('src')) ? params.get('src') : '';
   // Remove labels and untrusted query/hash before consent/analytics can see the URL.
   history.replaceState(null, '', location.pathname);
