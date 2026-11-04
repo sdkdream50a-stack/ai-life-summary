@@ -105,11 +105,27 @@ function shareToLine(results) {
 }
 
 /**
- * Share to KakaoTalk - copies link for sharing
+ * The site has no Kakao app key, so the Kakao SDK cannot run. On phones the
+ * system share sheet lists KakaoTalk. Resolves true when the sheet handled it,
+ * including a cancel, so a cancelled share does not also copy and alert.
  */
-function shareToKakao(results) {
+async function openKakaoSheet(text, url) {
+    if (!isMobile() || !navigator.share) return false;
+    try {
+        await navigator.share({ text, url });
+        return true;
+    } catch (err) {
+        return err.name === 'AbortError';
+    }
+}
+
+/**
+ * Share to KakaoTalk - share sheet on phones, otherwise copies link for sharing
+ */
+async function shareToKakao(results) {
     const url = generateShareUrl(results);
     const text = `🧠 AI 나이 계산기 결과!\n실제: ${results.realAge}세, 정신: ${results.mentalAge}세, 에너지: ${results.energyAge}세\n\n`;
+    if (await openKakaoSheet(text.trim(), url)) return;
     const fullText = text + url;
 
     navigator.clipboard.writeText(fullText).then(() => {

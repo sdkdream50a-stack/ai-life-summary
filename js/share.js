@@ -312,10 +312,29 @@ function shareToLine(text) {
 }
 
 /**
+ * The site has no Kakao app key, so the Kakao SDK cannot run. On phones the
+ * system share sheet lists KakaoTalk. Resolves true when the sheet handled it,
+ * including a cancel, so a cancelled share does not also copy and alert.
+ */
+async function openKakaoSheet(text, url) {
+    if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || !navigator.share) return false;
+    try {
+        await navigator.share({ text, url });
+        return true;
+    } catch (err) {
+        return err.name === 'AbortError';
+    }
+}
+
+/**
  * Share to KakaoTalk
  * @param {string} text - Text to share
  */
-function shareToKakao(text) {
+async function shareToKakao(text) {
+    if (await openKakaoSheet(text, siteUrl())) {
+        trackShare('kakao');
+        return;
+    }
     const fullText = `${text}\n\n${siteUrl()}`;
     navigator.clipboard.writeText(fullText).then(() => {
         const lang = document.documentElement.lang || 'en';
