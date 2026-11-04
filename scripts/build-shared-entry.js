@@ -84,6 +84,14 @@ const UI = {
         kicker: { 'life-summary': 'Tipo de alma', compatibility: 'Tipo de pareja animal', 'age-calculator': 'Edad IA' } }
 };
 
+const COMPAT_INVITE_CTA = {
+  en: 'Answer first, then send it to them →',
+  ko: '먼저 답하고 상대에게 보내기 →',
+  ja: 'まず自分が答えて、相手に送る →',
+  zh: '先自己答题，再发给对方 →',
+  es: 'Responde primero y envíaselo →'
+};
+
 const PRODUCT_NAME = {
   'life-summary':    { en: 'AI Life Summary', ko: 'AI 인생 요약', ja: 'AI人生要約', zh: 'AI人生总结', es: 'Resumen de vida IA' },
   'compatibility':   { en: 'Compatibility Test', ko: '궁합 테스트', ja: '相性診断', zh: '契合度测试', es: 'Test de compatibilidad' },
@@ -274,7 +282,7 @@ body{margin:0;background:var(--stage);color:#F4F1F8;font-family:'Pretendard',-ap
 <h1 class="tp-name">${esc(item.title)}</h1>
 ${item.tagline ? `<p class="tp-tagline">${esc(item.tagline)}</p>` : ''}
 ${item.desc ? `<p class="tp-desc">${esc(item.desc)}</p>` : ''}
-<a class="tp-cta" id="shared-cta" href="${landing}">${esc(ui.cta)}</a>
+<a class="tp-cta" id="shared-cta" href="${landing}">${esc(ui.cta)}</a>${product === 'compatibility' ? `\n<a class="tp-all" href="/${lang}/compatibility/invite/">${esc(COMPAT_INVITE_CTA[lang])}</a>` : ''}
 <a class="tp-all" href="${landing}">${esc(ui.all)}</a>
 <p class="tp-note">${esc(ui.note)}</p>
 </div>
