@@ -19,6 +19,16 @@ function compatShareLang() {
     return ['en', 'ko', 'ja', 'zh', 'es'].includes(l) ? l : 'en';
 }
 
+function compatShareTags(englishTags) {
+    const localized = {
+        ja: ['相性診断'],
+        ko: ['궁합테스트'],
+        zh: ['配对测试'],
+        es: ['TestDeCompatibilidad']
+    };
+    return localized[compatShareLang()] || englishTags;
+}
+
 function compatEntryPath() {
     // Take the locale from the page, the way the other products do, rather than
     // munging the pathname. The root /compatibility/result.html has no locale
@@ -92,7 +102,7 @@ function shareToTwitter() {
 
     const text = generateShareText('twitter');
     const url = generateShareUrl('x');
-    const hashtags = 'AICompatibility,LoveTest,SoulmateTest';
+    const hashtags = encodeURIComponent(compatShareTags(['AICompatibility', 'LoveTest', 'SoulmateTest']).join(','));
 
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
     window.open(twitterUrl, '_blank', 'width=600,height=400');
@@ -227,7 +237,7 @@ function shareToThreads() {
 function shareToInstagram() {
     const text = generateShareText('instagram');
     const url = generateShareUrl('instagram');
-    const fullText = `${text}\n\n🔗 ${url}\n\n#AICompatibility #LoveTest #CoupleTest #SoulmateTest`;
+    const fullText = `${text}\n\n🔗 ${url}\n\n${compatShareTags(['AICompatibility', 'LoveTest', 'CoupleTest', 'SoulmateTest']).map(tag => '#' + tag).join(' ')}`;
 
     navigator.clipboard.writeText(fullText).then(() => {
         const lang = document.documentElement.lang || 'en';
@@ -367,7 +377,7 @@ function showCopyFeedback() {
 async function copyShareText() {
     const text = generateShareText('clipboard');
     const url = generateShareUrl('copy');
-    const fullText = `${text}\n\nTry it: ${url}\n\n#AICompatibility #LoveTest`;
+    const fullText = `${text}\n\nTry it: ${url}\n\n${compatShareTags(['AICompatibility', 'LoveTest']).map(tag => '#' + tag).join(' ')}`;
 
     try {
         await navigator.clipboard.writeText(fullText);

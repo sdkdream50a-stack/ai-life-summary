@@ -899,6 +899,9 @@
                         Test Another Couple
 
                     </a>
+                    <a id="compat-invite-cta" href="/en/compatibility/invite/" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 transition inline-flex items-center justify-center text-center">
+                        Invite your partner to answer
+                    </a>
                 </div>
                 <p id="vb-toast" class="mt-4 text-sm text-green-600 font-medium hidden"></p>
             </div>
@@ -1008,7 +1011,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=98f7cee8"></script>
+    <script src="/js/compatibility-share.js?v=90348909"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -1115,6 +1118,15 @@
                 ? calculateCompatibilityFromAnswers(inputData, currentLang)
                 : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
+
+            const inviteCta = document.getElementById('compat-invite-cta');
+            const ownAnimal = results.personA && results.personA.animal;
+            if (inviteCta && ownAnimal && ANIMALS.some(animal => animal.id === ownAnimal.id)) {
+                // The sender opens the page as themselves: a from= link would treat them as the invitee.
+                inviteCta.addEventListener('click', () => {
+                    try { localStorage.setItem('compat-invite-animal', ownAnimal.id); } catch (_) { /* The page falls back to its own questions. */ }
+                });
+            }
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
@@ -2590,6 +2602,9 @@
                         다른 커플 테스트
 
                     </a>
+                    <a id="compat-invite-cta" href="/ko/compatibility/invite/" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 transition inline-flex items-center justify-center text-center">
+                        상대에게 답변 요청하기
+                    </a>
                 </div>
                 <p id="vb-toast" class="mt-4 text-sm text-green-600 font-medium hidden"></p>
             </div>
@@ -2721,7 +2736,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=98f7cee8"></script>
+    <script src="/js/compatibility-share.js?v=90348909"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -2831,6 +2846,15 @@
                 ? calculateCompatibilityFromAnswers(inputData)
                 : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
+
+            const inviteCta = document.getElementById('compat-invite-cta');
+            const ownAnimal = results.personA && results.personA.animal;
+            if (inviteCta && ownAnimal && ANIMALS.some(animal => animal.id === ownAnimal.id)) {
+                // The sender opens the page as themselves: a from= link would treat them as the invitee.
+                inviteCta.addEventListener('click', () => {
+                    try { localStorage.setItem('compat-invite-animal', ownAnimal.id); } catch (_) { /* The page falls back to its own questions. */ }
+                });
+            }
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
@@ -4308,6 +4332,9 @@
                         別のカップル診断
 
                     </a>
+                    <a id="compat-invite-cta" href="/ja/compatibility/invite/" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 transition inline-flex items-center justify-center text-center">
+                        相手を招待して回答してもらう
+                    </a>
                 </div>
                 <p id="vb-toast" class="mt-4 text-sm text-green-600 font-medium hidden"></p>
             </div>
@@ -4438,7 +4465,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=98f7cee8"></script>
+    <script src="/js/compatibility-share.js?v=90348909"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -4545,6 +4572,15 @@
                 ? calculateCompatibilityFromAnswers(inputData, currentLang)
                 : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
+
+            const inviteCta = document.getElementById('compat-invite-cta');
+            const ownAnimal = results.personA && results.personA.animal;
+            if (inviteCta && ownAnimal && ANIMALS.some(animal => animal.id === ownAnimal.id)) {
+                // The sender opens the page as themselves: a from= link would treat them as the invitee.
+                inviteCta.addEventListener('click', () => {
+                    try { localStorage.setItem('compat-invite-animal', ownAnimal.id); } catch (_) { /* The page falls back to its own questions. */ }
+                });
+            }
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
@@ -6012,6 +6048,9 @@
                         测试其他情侣
 
                     </a>
+                    <a id="compat-invite-cta" href="/zh/compatibility/invite/" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 transition inline-flex items-center justify-center text-center">
+                        邀请对方来答题
+                    </a>
                 </div>
                 <p id="vb-toast" class="mt-4 text-sm text-green-600 font-medium hidden"></p>
             </div>
@@ -6123,7 +6162,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=98f7cee8"></script>
+    <script src="/js/compatibility-share.js?v=90348909"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -6230,6 +6269,15 @@
                 ? calculateCompatibilityFromAnswers(inputData, currentLang)
                 : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
+
+            const inviteCta = document.getElementById('compat-invite-cta');
+            const ownAnimal = results.personA && results.personA.animal;
+            if (inviteCta && ownAnimal && ANIMALS.some(animal => animal.id === ownAnimal.id)) {
+                // The sender opens the page as themselves: a from= link would treat them as the invitee.
+                inviteCta.addEventListener('click', () => {
+                    try { localStorage.setItem('compat-invite-animal', ownAnimal.id); } catch (_) { /* The page falls back to its own questions. */ }
+                });
+            }
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
@@ -7673,6 +7721,9 @@
 
                         Probar Otra Pareja
                     </a>
+                    <a id="compat-invite-cta" href="/es/compatibility/invite/" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-200 hover:bg-gray-50 transition inline-flex items-center justify-center text-center">
+                        Invita a la otra persona a responder
+                    </a>
                 </div>
                 <p id="vb-toast" class="mt-4 text-sm text-green-600 font-medium hidden"></p>
             </div>
@@ -7800,7 +7851,7 @@
 
     <!-- Scripts -->
     <script src="/js/compatibility.js"></script>
-    <script src="/js/compatibility-share.js?v=98f7cee8"></script>
+    <script src="/js/compatibility-share.js?v=90348909"></script>
     <script src="/js/compatibility-image.js"></script>
     <script src="/js/result-enhancements.js"></script>
     <script src="/js/viral-link.js?v=98614de5"></script>
@@ -7907,6 +7958,15 @@
                 ? calculateCompatibilityFromAnswers(inputData, currentLang)
                 : calculateCompatibility(inputData.personA, inputData.personB);
             window.compatibilityResults = results;
+
+            const inviteCta = document.getElementById('compat-invite-cta');
+            const ownAnimal = results.personA && results.personA.animal;
+            if (inviteCta && ownAnimal && ANIMALS.some(animal => animal.id === ownAnimal.id)) {
+                // The sender opens the page as themselves: a from= link would treat them as the invitee.
+                inviteCta.addEventListener('click', () => {
+                    try { localStorage.setItem('compat-invite-animal', ownAnimal.id); } catch (_) { /* The page falls back to its own questions. */ }
+                });
+            }
 
             // Display names and zodiac
             document.getElementById('person-a-name').textContent = results.personA.name;
