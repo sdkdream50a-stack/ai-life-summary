@@ -27,7 +27,14 @@ function compatEntryPath() {
     return `/${compatShareLang()}/compatibility/`;
 }
 
-function generateShareUrl() {
+// Chat apps (KakaoTalk, LINE, WeChat) open links without a Referer, so shared
+// visits otherwise look like Direct traffic. A fixed channel tag says which
+// button produced the link. Only these literal values are ever sent; the tag
+// never carries anything the user typed.
+const SHARE_SRC = ['x', 'facebook', 'whatsapp', 'line', 'kakao', 'telegram', 'reddit',
+    'pinterest', 'linkedin', 'threads', 'instagram', 'wechat', 'weibo', 'webshare', 'copy'];
+
+function generateShareUrl(src) {
     // Prefer the shared-entry page: it shows the recipient which animal couple
     // this was before inviting them in. Linking to the result route instead
     // just bounced them to a blank quiz, because that route reads *their*
@@ -36,9 +43,10 @@ function generateShareUrl() {
         && window.compatibilityResults.animalCouple
         && window.compatibilityResults.animalCouple.key;
     const entry = compatEntryPath();
-    if (key) return `${window.location.origin}${entry}s/${key}/`;
+    const tag = SHARE_SRC.includes(src) ? `?src=${src}` : '';
+    if (key) return `${window.location.origin}${entry}s/${key}/${tag}`;
     // Unknown pairing: fall back to the plain locale landing.
-    return window.location.origin + entry;
+    return window.location.origin + entry + tag;
 }
 
 /**
@@ -83,7 +91,7 @@ function shareToTwitter() {
     if (!results) return;
 
     const text = generateShareText('twitter');
-    const url = generateShareUrl();
+    const url = generateShareUrl('x');
     const hashtags = 'AICompatibility,LoveTest,SoulmateTest';
 
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
@@ -94,7 +102,7 @@ function shareToTwitter() {
  * Share to Facebook
  */
 function shareToFacebook() {
-    const url = generateShareUrl();
+    const url = generateShareUrl('facebook');
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
     window.open(facebookUrl, '_blank', 'width=600,height=400');
 }
@@ -104,7 +112,7 @@ function shareToFacebook() {
  */
 function shareToWhatsApp() {
     const text = generateShareText('whatsapp');
-    const url = generateShareUrl();
+    const url = generateShareUrl('whatsapp');
     const fullText = `${text}\n\n${url}`;
 
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`;
@@ -116,7 +124,7 @@ function shareToWhatsApp() {
  */
 function shareToLine() {
     const text = generateShareText('line');
-    const url = generateShareUrl();
+    const url = generateShareUrl('line');
 
     const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
     window.open(lineUrl, '_blank');
@@ -127,7 +135,7 @@ function shareToLine() {
  */
 function shareToKakao() {
     const results = window.compatibilityResults;
-    const url = generateShareUrl();
+    const url = generateShareUrl('kakao');
     const text = results
         ? `💕 궁합 테스트 결과!\n${results.personA.name || 'A'} & ${results.personB.name || 'B'}: ${results.overallScore}% ${results.relationshipType.emoji}\n\n`
         : '궁합 테스트 결과!\n\n';
@@ -153,7 +161,7 @@ function shareToKakao() {
  */
 function shareToTelegram() {
     const text = generateShareText('telegram');
-    const url = generateShareUrl();
+    const url = generateShareUrl('telegram');
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
     window.open(telegramUrl, '_blank', 'width=600,height=500');
 }
@@ -164,7 +172,7 @@ function shareToTelegram() {
 function shareToReddit() {
     const results = window.compatibilityResults;
     const title = results ? `AI Compatibility Score: ${results.overallScore}%` : 'AI Compatibility Test Results';
-    const url = generateShareUrl();
+    const url = generateShareUrl('reddit');
     const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
     window.open(redditUrl, '_blank', 'width=600,height=600');
 }
@@ -173,7 +181,7 @@ function shareToReddit() {
  * Share to Pinterest
  */
 function shareToPinterest() {
-    const url = generateShareUrl();
+    const url = generateShareUrl('pinterest');
     const imageUrl = 'https://smartaitest.com/assets/images/compatibility-og.png';
     const description = generateShareText('pinterest');
     const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
@@ -184,7 +192,7 @@ function shareToPinterest() {
  * Share to LinkedIn
  */
 function shareToLinkedIn() {
-    const url = generateShareUrl();
+    const url = generateShareUrl('linkedin');
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
     window.open(linkedInUrl, '_blank', 'width=600,height=600');
 }
@@ -194,7 +202,7 @@ function shareToLinkedIn() {
  */
 function shareToThreads() {
     const text = generateShareText('threads');
-    const url = generateShareUrl();
+    const url = generateShareUrl('threads');
     const fullText = `${text}\n\n${url}`;
 
     navigator.clipboard.writeText(fullText).then(() => {
@@ -218,7 +226,7 @@ function shareToThreads() {
  */
 function shareToInstagram() {
     const text = generateShareText('instagram');
-    const url = generateShareUrl();
+    const url = generateShareUrl('instagram');
     const fullText = `${text}\n\n🔗 ${url}\n\n#AICompatibility #LoveTest #CoupleTest #SoulmateTest`;
 
     navigator.clipboard.writeText(fullText).then(() => {
@@ -249,7 +257,7 @@ function shareToInstagram() {
  */
 function shareToWeChat() {
     const text = generateShareText('wechat');
-    const url = generateShareUrl();
+    const url = generateShareUrl('wechat');
     const fullText = `${text}\n\n${url}`;
 
     navigator.clipboard.writeText(fullText).then(() => {
@@ -264,7 +272,7 @@ function shareToWeChat() {
  */
 function shareToWeibo() {
     const text = generateShareText('weibo');
-    const url = generateShareUrl();
+    const url = generateShareUrl('weibo');
     const weiboUrl = `https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
     window.open(weiboUrl, '_blank', 'width=600,height=600');
 }
@@ -281,7 +289,7 @@ async function shareNative() {
             await navigator.share({
                 title: 'Our AI Compatibility Results!',
                 text: generateShareText('native'),
-                url: generateShareUrl()
+                url: generateShareUrl('webshare')
             });
             return true;
         } catch (err) {
@@ -302,7 +310,7 @@ async function shareNative() {
  * Copy share link to clipboard
  */
 async function copyResultLink() {
-    const url = generateShareUrl();
+    const url = generateShareUrl('copy');
 
     try {
         await navigator.clipboard.writeText(url);
@@ -358,7 +366,7 @@ function showCopyFeedback() {
  */
 async function copyShareText() {
     const text = generateShareText('clipboard');
-    const url = generateShareUrl();
+    const url = generateShareUrl('copy');
     const fullText = `${text}\n\nTry it: ${url}\n\n#AICompatibility #LoveTest`;
 
     try {

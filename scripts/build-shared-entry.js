@@ -183,6 +183,18 @@ function tokensFor(product, lang) {
   throw new Error('unknown product ' + product);
 }
 
+// ── Preview image ────────────────────────────────────────────────────────
+// These are the URLs people paste into KakaoTalk/LINE/X. Without og:image the
+// link unfurls as a bare card, so each compatibility couple gets its own
+// localized 1200x630 image per language (scripts/generate-compat-og.py).
+// Other products use the site card.
+function ogImage(product, token, lang) {
+  if (product === 'compatibility' && fs.existsSync(path.join(ROOT, 'assets/images/cc', lang, `${token}.jpg`))) {
+    return `${ORIGIN}/assets/images/cc/${lang}/${token}.jpg`;
+  }
+  return `${ORIGIN}/assets/images/og-default.png`;
+}
+
 // ── Page template (mirrors the shipped /t/ pages) ────────────────────────
 const CSP = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms; object-src 'none'; base-uri 'self'; form-action 'self';";
 
@@ -221,9 +233,13 @@ ${alts}
 <meta property="og:title" content="${esc(ogTitle)}">
 <meta property="og:description" content="${esc(metaDesc)}">
 <meta property="og:site_name" content="AI Test Lab">
+<meta property="og:image" content="${ogImage(product, item.token, lang)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(ogTitle)}">
 <meta name="twitter:description" content="${esc(metaDesc)}">
+<meta name="twitter:image" content="${ogImage(product, item.token, lang)}">
 <link rel="stylesheet" href="/css/pretendard.css">
 <style>
 :root{--stage:#0E0E10;--lav:#D9C8F0;--lav2:#BBA8DA}
@@ -310,6 +326,15 @@ ${item.desc ? `<p class="tp-desc">${esc(item.desc)}</p>` : ''}
 }
 
 // ── Emit ─────────────────────────────────────────────────────────────────
+if (process.argv.includes('--dump-compat-tokens')) {
+  const items = LANGS.flatMap(lang => tokensFor('compatibility', lang).map(t => ({
+    lang, kicker: UI[lang].kicker.compatibility,
+    token: t.token, emoji: t.emoji, title: t.title, desc: t.desc
+  })));
+  console.log(JSON.stringify(items));
+  process.exit(0);
+}
+
 const PRODUCTS = ['life-summary', 'compatibility', 'age-calculator'];
 let written = 0, stale = 0;
 
