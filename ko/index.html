@@ -143,11 +143,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -955,6 +950,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -1087,34 +1097,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    무엇이 궁금해?
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">제대로 알아보기</span>
-                        <span class="s2-chip-note">40문항·약 5분</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">빠르게 해보기</span>
-                        <span class="s2-chip-note">5문항부터</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">둘이 해보기</span>
-                        <span class="s2-chip-note">연인·친구</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -1139,6 +1121,34 @@
                         <ul class="s2-flag-meta"><li>2명</li><li>8문항 × 2</li><li>가입 없이</li><li>무료</li></ul>
                         <p class="s2-flag-result">결과에서 보는 것: 궁합 점수와 문항별 응답 일치도</p>
                         <span class="s2-flag-cta">두 사람 궁합 검사하기 <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    무엇이 궁금해?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">제대로 알아보기</span>
+                        <span class="s2-chip-note">40문항·약 5분</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">빠르게 해보기</span>
+                        <span class="s2-chip-note">5문항부터</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">둘이 해보기</span>
+                        <span class="s2-chip-note">연인·친구</span>
                     </a>
                 </div>
             </div>

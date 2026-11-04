@@ -71,7 +71,7 @@ for (const lang of LANGS) {
   const exp = EXPECT[lang];
 
   // 2. no AI capability claim in the Hero (brand names stripped first)
-  const headAndHero = text.slice(0, text.indexOf('id="intent"') === -1 ? text.length : text.indexOf('id="intent"'));
+  const headAndHero = text.slice(0, text.indexOf('id="flagship"') === -1 ? text.length : text.indexOf('id="flagship"'));
   let scrubbed = headAndHero;
   BRAND.forEach(b => { scrubbed = scrubbed.replace(b, ' '); });
   const claim = AI_CLAIMS.find(c => scrubbed.includes(c));
@@ -86,6 +86,12 @@ for (const lang of LANGS) {
   if (hub) fail(lang, '4 viral hub', `"${hub}" still referenced`);
   const rt = REALTIME.find(m => text.includes(m));
   if (rt) fail(lang, '4 real-time promise', `"${rt}" still on the Home`);
+
+  const flagshipIndex = html.search(/<section\b[^>]*\bid="flagship"/);
+  const intentIndex = html.search(/<section\b[^>]*\bid="intent"/);
+  if (flagshipIndex < 0 || intentIndex < 0 || flagshipIndex >= intentIndex) {
+    fail(lang, 'home order', '#flagship must precede #intent');
+  }
 
   // 5/6. both flagships present, as flagship cards, in order
   const flagHrefs = [...html.matchAll(/<a[^>]*class="s2-flag-card"[^>]*>/g)]

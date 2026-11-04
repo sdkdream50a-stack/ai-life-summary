@@ -143,11 +143,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -953,6 +948,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -1081,34 +1091,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    What do you want to know?
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">Take a deeper look</span>
-                        <span class="s2-chip-note">40 questions · ~5 min</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">Something quick</span>
-                        <span class="s2-chip-note">From 5 questions</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">Try it together</span>
-                        <span class="s2-chip-note">Love &amp; friends</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -1133,6 +1115,34 @@
                         <ul class="s2-flag-meta"><li>2 people</li><li>8 questions × 2</li><li>No sign-up</li><li>Free</li></ul>
                         <p class="s2-flag-result">What you get: a compatibility score and how closely you matched on each question</p>
                         <span class="s2-flag-cta">Test compatibility for two <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    What do you want to know?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">Take a deeper look</span>
+                        <span class="s2-chip-note">40 questions · ~5 min</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">Something quick</span>
+                        <span class="s2-chip-note">From 5 questions</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">Try it together</span>
+                        <span class="s2-chip-note">Love &amp; friends</span>
                     </a>
                 </div>
             </div>
