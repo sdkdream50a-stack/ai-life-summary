@@ -20,8 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>AI Test Lab - 40-Question Self-Report Type Test | Birthday Fun</title>
-    <meta name="description" content="Free self-discovery tools: a 40-question personality questionnaire, a birthday-based life summary, a quick compatibility quiz, and a fun age comparison for entertainment.">
+    <title>AI Test Lab - Free Personality, Compatibility &amp; Mental Age Tests</title>
+    <meta name="description" content="Free tests that take minutes with no sign-up: a 40-question personality type test, couple compatibility, and mental age. Compare results with friends, just for fun.">
     <meta name="keywords" content="40-question self-report type test, free personality test, personality quiz, birthday-based entertainment, life summary, compatibility test, mental age fun, PersonalityTest">
     <meta name="author" content="AI Test Lab">
     <meta name="robots" content="index, follow">
@@ -41,8 +41,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/en/">
-    <meta property="og:title" content="AI Test Lab - Self-Report Type Test & Birthday Fun">
-    <meta property="og:description" content="Try a quick self-discovery test. Results are for entertainment and conversation.">
+    <meta property="og:title" content="AI Test Lab - Free Personality, Compatibility &amp; Mental Age Tests">
+    <meta property="og:description" content="Free tests that take minutes with no sign-up: a 40-question personality type test, couple compatibility, and mental age. Compare results with friends, just for fun.">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -53,8 +53,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/en/">
-    <meta name="twitter:title" content="AI Test Lab - Self-Report Type Test & Birthday Fun">
-    <meta name="twitter:description" content="Try a quick self-discovery test. Results are for entertainment and conversation.">
+    <meta name="twitter:title" content="AI Test Lab - Free Personality, Compatibility &amp; Mental Age Tests">
+    <meta name="twitter:description" content="Free tests that take minutes with no sign-up: a 40-question personality type test, couple compatibility, and mental age. Compare results with friends, just for fun.">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta name="twitter:creator" content="@AITestLab">
 
@@ -150,11 +150,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -960,6 +955,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -1088,34 +1098,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    What do you want to know?
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">Take a deeper look</span>
-                        <span class="s2-chip-note">40 questions · ~5 min</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">Something quick</span>
-                        <span class="s2-chip-note">From 5 questions</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">Try it together</span>
-                        <span class="s2-chip-note">Love &amp; friends</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -1140,6 +1122,34 @@
                         <ul class="s2-flag-meta"><li>2 people</li><li>8 questions × 2</li><li>No sign-up</li><li>Free</li></ul>
                         <p class="s2-flag-result">What you get: a compatibility score and how closely you matched on each question</p>
                         <span class="s2-flag-cta">Test compatibility for two <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    What do you want to know?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">Take a deeper look</span>
+                        <span class="s2-chip-note">40 questions · ~5 min</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">Something quick</span>
+                        <span class="s2-chip-note">From 5 questions</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">Try it together</span>
+                        <span class="s2-chip-note">Love &amp; friends</span>
                     </a>
                 </div>
             </div>
@@ -1855,8 +1865,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>AI 테스트 랩 - 무료 40문항 자기보고 성격유형 검사 | 생일 기반 재미 콘텐츠</title>
-    <meta name="description" content="무료 자기이해 도구 모음. 40문항 성격유형 질문, 생년월일 해시 인생요약, 고정 가중치 궁합 퀴즈, 고정 오프셋 나이 비교를 재미로 이용해보세요.">
+    <title>AI 테스트 랩 - 성격 유형·궁합·정신연령 무료 테스트</title>
+    <meta name="description" content="가입 없이 몇 분이면 끝나는 무료 테스트 모음. 40문항 성격 유형, 두 사람 궁합, 정신연령을 재미로 확인하고 친구와 비교해 보세요.">
     <meta name="keywords" content="40문항 자기보고 성격유형 검사, 무료 성격테스트, 생일 기반 재미 콘텐츠, 인생요약, 오락용 궁합테스트, 정신나이 재미 테스트, 자기이해 테스트, PersonalityTest">
     <meta name="author" content="AI Test Lab">
     <meta name="robots" content="index, follow">
@@ -1876,8 +1886,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/ko/">
-    <meta property="og:title" content="AI 테스트 랩 - 자기보고 성격유형 검사와 생일 기반 재미 콘텐츠">
-    <meta property="og:description" content="1분 만에 즐기는 자기이해 테스트. 결과는 오락과 대화용 참고 자료입니다.">
+    <meta property="og:title" content="AI 테스트 랩 - 성격 유형·궁합·정신연령 무료 테스트">
+    <meta property="og:description" content="가입 없이 몇 분이면 끝나는 무료 테스트 모음. 40문항 성격 유형, 두 사람 궁합, 정신연령을 재미로 확인하고 친구와 비교해 보세요.">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -1888,8 +1898,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/ko/">
-    <meta name="twitter:title" content="AI 테스트 랩 - 자기보고 성격유형 검사와 생일 기반 재미 콘텐츠">
-    <meta name="twitter:description" content="1분 만에 즐기는 자기이해 테스트. 결과는 오락과 대화용 참고 자료입니다.">
+    <meta name="twitter:title" content="AI 테스트 랩 - 성격 유형·궁합·정신연령 무료 테스트">
+    <meta name="twitter:description" content="가입 없이 몇 분이면 끝나는 무료 테스트 모음. 40문항 성격 유형, 두 사람 궁합, 정신연령을 재미로 확인하고 친구와 비교해 보세요.">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta name="twitter:creator" content="@AITestLab">
 
@@ -1985,11 +1995,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -2797,6 +2802,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -2929,34 +2949,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    무엇이 궁금해?
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">제대로 알아보기</span>
-                        <span class="s2-chip-note">40문항·약 5분</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">빠르게 해보기</span>
-                        <span class="s2-chip-note">5문항부터</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">둘이 해보기</span>
-                        <span class="s2-chip-note">연인·친구</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -2981,6 +2973,34 @@
                         <ul class="s2-flag-meta"><li>2명</li><li>8문항 × 2</li><li>가입 없이</li><li>무료</li></ul>
                         <p class="s2-flag-result">결과에서 보는 것: 궁합 점수와 문항별 응답 일치도</p>
                         <span class="s2-flag-cta">두 사람 궁합 검사하기 <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    무엇이 궁금해?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">제대로 알아보기</span>
+                        <span class="s2-chip-note">40문항·약 5분</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">빠르게 해보기</span>
+                        <span class="s2-chip-note">5문항부터</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">둘이 해보기</span>
+                        <span class="s2-chip-note">연인·친구</span>
                     </a>
                 </div>
             </div>
@@ -3740,8 +3760,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <!-- Primary SEO Meta Tags -->
-    <title>AI Test Lab｜40問の性格タイプ診断・相性・精神年齢のセルフチェック</title>
-    <meta name="description" content="無料の自己理解ツール集。40問の性格タイプ質問票、誕生日ハッシュの人生要約、固定加重の相性クイズ、固定オフセットの年齢比較を娯楽として楽しめます。">
+    <title>AI Test Lab｜性格タイプ・相性・精神年齢の無料診断</title>
+    <meta name="description" content="登録なし、数分で終わる無料診断。40問の性格タイプ、2人の相性、精神年齢を楽しくチェックして、友達と比べてみよう。">
     <meta name="keywords" content="自己回答式40問性格タイプ診断, 無料性格テスト, 誕生日ベースのエンタメ, 人生要約, 娯楽用相性テスト, 精神年齢の遊び, 自己理解テスト, PersonalityTest">
     <meta name="author" content="AI Test Lab">
     <meta name="robots" content="index, follow">
@@ -3761,8 +3781,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartaitest.com/ja/">
-    <meta property="og:title" content="AI Test Lab｜性格・相性・年齢のセルフチェック">
-    <meta property="og:description" content="1分で楽しめる自己理解テスト。結果はエンタメと会話のきっかけです。">
+    <meta property="og:title" content="AI Test Lab｜性格タイプ・相性・精神年齢の無料診断">
+    <meta property="og:description" content="登録なし、数分で終わる無料診断。40問の性格タイプ、2人の相性、精神年齢を楽しくチェックして、友達と比べてみよう。">
     <meta property="og:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -3773,8 +3793,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://smartaitest.com/ja/">
-    <meta name="twitter:title" content="AI Test Lab｜性格・相性・年齢のセルフチェック">
-    <meta name="twitter:description" content="1分で楽しめる自己理解テスト。結果はエンタメと会話のきっかけです。">
+    <meta name="twitter:title" content="AI Test Lab｜性格タイプ・相性・精神年齢の無料診断">
+    <meta name="twitter:description" content="登録なし、数分で終わる無料診断。40問の性格タイプ、2人の相性、精神年齢を楽しくチェックして、友達と比べてみよう。">
     <meta name="twitter:image" content="https://smartaitest.com/assets/images/og-default.png">
     <meta name="twitter:creator" content="@AITestLab">
 
@@ -3870,11 +3890,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -4680,6 +4695,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -4808,34 +4838,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    何を知りたい？
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">しっかり知る</span>
-                        <span class="s2-chip-note">40問・約5分</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">さくっと試す</span>
-                        <span class="s2-chip-note">5問から</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">2人でやってみる</span>
-                        <span class="s2-chip-note">恋愛・友だち</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -4860,6 +4862,34 @@
                         <ul class="s2-flag-meta"><li>2人</li><li>8問 × 2</li><li>登録なし</li><li>無料</li></ul>
                         <p class="s2-flag-result">結果でわかること：相性スコアと、質問ごとの一致度</p>
                         <span class="s2-flag-cta">二人の相性を診断する <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    何を知りたい？
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">しっかり知る</span>
+                        <span class="s2-chip-note">40問・約5分</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">さくっと試す</span>
+                        <span class="s2-chip-note">5問から</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">2人でやってみる</span>
+                        <span class="s2-chip-note">恋愛・友だち</span>
                     </a>
                 </div>
             </div>
@@ -5774,11 +5804,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -6584,6 +6609,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -6712,34 +6752,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    你想知道什么？
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">认真了解自己</span>
-                        <span class="s2-chip-note">40题·约5分钟</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">快速测一测</span>
-                        <span class="s2-chip-note">5题起</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">两个人一起测</span>
-                        <span class="s2-chip-note">恋爱·朋友</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -6764,6 +6776,34 @@
                         <ul class="s2-flag-meta"><li>2人</li><li>8题 × 2</li><li>无需注册</li><li>免费</li></ul>
                         <p class="s2-flag-result">结果包含：配对分数与每道题的回答一致度</p>
                         <span class="s2-flag-cta">测试两人配对 <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    你想知道什么？
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">认真了解自己</span>
+                        <span class="s2-chip-note">40题·约5分钟</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">快速测一测</span>
+                        <span class="s2-chip-note">5题起</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">两个人一起测</span>
+                        <span class="s2-chip-note">恋爱·朋友</span>
                     </a>
                 </div>
             </div>
@@ -7653,11 +7693,6 @@
     </script>
 
     <!-- Tailwind CSS -->
-    <!-- Google Fonts with Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (Local Build) -->
     <link rel="stylesheet" href="../css/tailwind.css" fetchpriority="high">
@@ -8463,6 +8498,21 @@
             border-radius:999px;font-weight:800;font-size:1.0625rem;background:#fff;color:#111827;
             text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
         .s2-hero-cta:hover{opacity:.9}
+        @media(max-width:640px){
+            #hero.kick-mesh-bg{padding-top:1rem;padding-bottom:.5rem}
+            #hero > div{padding-top:0}
+            #hero .hero-orb,#hero > div > .flex,.s2-hero-cta,
+            #flagship h2,.s2-flag-result{display:none}
+            #hero h1{margin-bottom:.5rem}
+            #hero p{margin-bottom:0}
+            #flagship{padding-top:.5rem;padding-bottom:1rem}
+            .s2-flag-grid{gap:.75rem}
+            .s2-flag-card{gap:.25rem;padding:.75rem;min-height:48px}
+            .s2-flag-card > [aria-hidden="true"]{font-size:1.5rem;line-height:1}
+            .s2-flag-title{font-size:1.125rem;margin:0}
+            .s2-flag-promise{font-size:.875rem}
+            .s2-flag-cta{min-height:48px;margin-top:.25rem;padding:.5rem .75rem}
+        }
         /* S2-2A: interactive targets reach 44px without growing the visible text */
         .kick-navbar-logo,.kick-navbar-link,.kick-footer-link{
             display:inline-flex;align-items:center;justify-content:center;
@@ -8592,33 +8642,6 @@
             </div>
         </section>
 
-        <!-- Intent -->
-        <section id="intent" class="py-10 hp-dark">
-            <div class="max-w-4xl mx-auto px-4">
-                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-
-                    ¿Qué quieres saber?
-
-                </h2>
-                <div class="s2-chips">
-                    <a href="#test-personality" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
-                        <span class="s2-chip-label">Conócete a fondo</span>
-                        <span class="s2-chip-note">40 preguntas · ~5 min</span>
-                    </a>
-                    <a href="#more-tests" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
-                        <span class="s2-chip-label">Algo rápido</span>
-                        <span class="s2-chip-note">Desde 5 preguntas</span>
-                    </a>
-                    <a href="#test-compatibility" class="s2-chip">
-                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
-                        <span class="s2-chip-label">Hacedlo en pareja o con amigos</span>
-                        <span class="s2-chip-note">Amor y amigos</span>
-                    </a></div>
-            </div>
-        </section>
-
         <!-- Flagship Tests -->
         <section id="flagship" class="py-12 hp-dark">
             <div class="max-w-5xl mx-auto px-4">
@@ -8645,6 +8668,33 @@
                         <span class="s2-flag-cta">Test de compatibilidad para dos <span aria-hidden="true">&rarr;</span></span>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- Intent -->
+        <section id="intent" class="py-10 hp-dark">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
+
+                    ¿Qué quieres saber?
+
+                </h2>
+                <div class="s2-chips">
+                    <a href="#test-personality" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">🧭</span>
+                        <span class="s2-chip-label">Conócete a fondo</span>
+                        <span class="s2-chip-note">40 preguntas · ~5 min</span>
+                    </a>
+                    <a href="#more-tests" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">✨</span>
+                        <span class="s2-chip-label">Algo rápido</span>
+                        <span class="s2-chip-note">Desde 5 preguntas</span>
+                    </a>
+                    <a href="#test-compatibility" class="s2-chip">
+                        <span class="s2-chip-emoji" aria-hidden="true">💞</span>
+                        <span class="s2-chip-label">Hacedlo en pareja o con amigos</span>
+                        <span class="s2-chip-note">Amor y amigos</span>
+                    </a></div>
             </div>
         </section>
 

@@ -277,6 +277,31 @@
 
     function renderResult(result) {
       var type = getTypeText(result.code, lang);
+      var emoji = document.getElementById('lt-type-emoji');
+      var shareButton = document.getElementById('lt-share');
+      var card = emoji && emoji.parentElement;
+      var actions = shareButton && shareButton.parentElement;
+      if (card && card.parentElement && actions) {
+        card.parentElement.insertBefore(actions, card.nextSibling);
+        var more = actions.querySelector('a[href="#sat-result-rail"]');
+        if (!more) {
+          more = document.createElement('a');
+          more.href = '#sat-result-rail';
+          more.className = 'pt-btn pt-btn-secondary';
+          more.addEventListener('click', function(event) {
+            var rail = document.getElementById('sat-result-rail');
+            if (rail) {
+              event.preventDefault();
+              rail.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+          });
+          actions.appendChild(more);
+        }
+        more.textContent = {
+          ko:'다른 테스트 보기', ja:'他の診断を見る', en:'More tests',
+          zh:'查看其他测试', es:'Más tests'
+        }[lang];
+      }
       setText('lt-type-emoji', type.emoji);
       setText('lt-type-code', result.code);
       setText('lt-type-name', type.name);

@@ -4,12 +4,48 @@
    한글+라틴 단일 폰트로 통일. 기존 인라인 Inter/Poppins 스택을
    덮어씀(font-family만, 레이아웃 무영향). 2026-07-04.
    ============================================================ */
+/* 2026-11-04: 2MB 단일 파일을 글자 범위별 4개로 분할. 페이지가 쓰는 글자의 파일만 받는다.
+   한글 파일은 KS X 1001 2350자 — 그 밖의 드문 글자는 시스템 글꼴로 표시된다.
+   되돌리기: 이 블록을 /fonts/PretendardVariable.woff2 단일 선언으로 복원. */
 @font-face {
   font-family: 'Pretendard Variable';
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+  src: url('/fonts/pretendard-latin-v1.woff2') format('woff2-variations');
+  unicode-range: U+0000-024F, U+2000-206F, U+20A0-20BF, U+2122, U+FE00-FE0F;
+}
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/pretendard-kr-v1.woff2') format('woff2-variations');
+  unicode-range: U+3131-318E, U+AC00-D7A3;
+}
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/pretendard-kana-v1.woff2') format('woff2-variations');
+  unicode-range: U+3000-30FF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/pretendard-sym-v1.woff2') format('woff2-variations');
+  unicode-range: U+2070-209F, U+20C0-2121, U+2123-2FFF, U+3200-33FF, U+1F000-1FFFF;
+}
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/pretendard-misc-v1.woff2') format('woff2-variations');
+  unicode-range: U+0250-1FFF, U+F900-FDFF;
 }
 
 :root {

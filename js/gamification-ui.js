@@ -196,51 +196,33 @@ class GamificationUI {
    * Show badge earned popup
    */
   showBadgePopup(badge, lang = 'ko') {
-    const rarityConfig = typeof RARITY_CONFIG !== 'undefined'
-      ? RARITY_CONFIG[badge.rarity]
-      : { color: '#f59e0b', label: { ko: badge.rarity } };
+    if (this.badgeToast) this.badgeToast.remove();
+    const toast = document.createElement('div');
+    toast.className = 'badge-toast';
+    const message = document.createElement('span');
+    message.className = 'badge-toast-message';
+    message.setAttribute('role', 'status');
+    message.textContent = `${badge.emoji} ${this.t('newBadge', lang)} ${badge.name[lang] || badge.name.en} · +${badge.xpReward} XP`;
+    toast.appendChild(message);
 
-    const content = `
-      <div class="badge-popup">
-        <div class="badge-popup-header">
-          <span class="confetti-left">🎉</span>
-          <span class="badge-popup-title">${this.t('newBadge', lang)}</span>
-          <span class="confetti-right">🎉</span>
-        </div>
-
-        <div class="badge-popup-emoji bounce-animation">
-          ${badge.emoji}
-        </div>
-
-        <div class="badge-popup-name">
-          "${badge.name[lang] || badge.name.en}"
-        </div>
-
-        <div class="badge-popup-rarity" style="color: ${rarityConfig.color}">
-          ${rarityConfig.label[lang] || rarityConfig.label.en}
-        </div>
-
-        <div class="badge-popup-description">
-          ${badge.description[lang] || badge.description.en}
-        </div>
-
-        <div class="badge-popup-xp">
-          +${badge.xpReward} XP ${this.t('earned', lang)}!
-        </div>
-
-        <div class="badge-popup-actions">
-          <button class="popup-btn popup-btn-primary" onclick="gamificationUI.closePopup()">
-            ${this.t('confirm', lang)}
-          </button>
-          <button class="popup-btn popup-btn-secondary" onclick="gamificationUI.shareBadge('${badge.id}')">
-            ${this.t('share', lang)}
-          </button>
-        </div>
-      </div>
-    `;
-
-    this.showPopup(content, 'badge-earned');
-    this.playConfetti();
+    const close = () => {
+      clearTimeout(timer);
+      toast.remove();
+      if (this.badgeToast === toast) this.badgeToast = null;
+    };
+    const share = document.createElement('button');
+    share.type = 'button';
+    share.textContent = this.t('share', lang);
+    share.addEventListener('click', () => this.shareBadge(badge.id));
+    toast.appendChild(share);
+    const dismiss = document.createElement('button');
+    dismiss.type = 'button';
+    dismiss.textContent = this.t('confirm', lang);
+    dismiss.addEventListener('click', close);
+    toast.appendChild(dismiss);
+    document.body.appendChild(toast);
+    this.badgeToast = toast;
+    const timer = setTimeout(close, 4000);
   }
 
   /**

@@ -21,6 +21,10 @@
 /js/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
+# 글꼴 - 30일 캐시 (분할 파일은 이름에 버전 포함)
+/fonts/*
+  Cache-Control: public, max-age=2592000, immutable
+
 # 이미지 - 30일 캐시 (변경 빈도 낮음)
 /assets/images/*
   Cache-Control: public, max-age=2592000, immutable

@@ -272,6 +272,18 @@
     }).join('');
   }
 
+  function moveShareBlock() {
+    const description = document.getElementById('pt-type-desc');
+    const button = document.getElementById('pt-share-btn');
+    const card = description && description.closest('.pt-card');
+    const share = button && button.closest('.pt-card');
+    if (card && share && card !== share &&
+        card.parentElement === share.parentElement &&
+        card.nextElementSibling !== share) {
+      card.insertAdjacentElement('afterend', share);
+    }
+  }
+
   // ── Loading screen ────────────────────────────────────────────
   const loadingEl = document.getElementById('pt-loading');
   const resultEl = document.getElementById('pt-result-content');
@@ -280,6 +292,7 @@
     if (loadTxt) loadTxt.textContent = L.loading;
     setTimeout(function() {
       loadingEl.style.display = 'none';
+      moveShareBlock();
       resultEl.style.display = 'block';
     }, 1500);
   }
