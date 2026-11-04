@@ -141,14 +141,30 @@ function shareToLine() {
 }
 
 /**
- * Share to KakaoTalk - copies link for sharing
+ * The site has no Kakao app key, so the Kakao SDK cannot run. On phones the
+ * system share sheet lists KakaoTalk. Resolves true when the sheet handled it,
+ * including a cancel, so a cancelled share does not also copy and alert.
  */
-function shareToKakao() {
+async function openKakaoSheet(text, url) {
+    if (!isMobile() || !navigator.share) return false;
+    try {
+        await navigator.share({ text, url });
+        return true;
+    } catch (err) {
+        return err.name === 'AbortError';
+    }
+}
+
+/**
+ * Share to KakaoTalk - share sheet on phones, otherwise copies link for sharing
+ */
+async function shareToKakao() {
     const results = window.compatibilityResults;
     const url = generateShareUrl('kakao');
     const text = results
         ? `💕 궁합 테스트 결과!\n${results.personA.name || 'A'} & ${results.personB.name || 'B'}: ${results.overallScore}% ${results.relationshipType.emoji}\n\n`
         : '궁합 테스트 결과!\n\n';
+    if (await openKakaoSheet(text.trim(), url)) return;
     const fullText = text + url;
 
     navigator.clipboard.writeText(fullText).then(() => {
@@ -192,7 +208,12 @@ function shareToReddit() {
  */
 function shareToPinterest() {
     const url = generateShareUrl('pinterest');
-    const imageUrl = 'https://smartaitest.com/assets/images/compatibility-og.png';
+    const key = window.compatibilityResults
+        && window.compatibilityResults.animalCouple
+        && window.compatibilityResults.animalCouple.key;
+    const imageUrl = key
+        ? `https://smartaitest.com/assets/images/cc/${compatShareLang()}/${key}.jpg`
+        : 'https://smartaitest.com/assets/images/og-default.png';
     const description = generateShareText('pinterest');
     const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
     window.open(pinterestUrl, '_blank', 'width=750,height=600');
